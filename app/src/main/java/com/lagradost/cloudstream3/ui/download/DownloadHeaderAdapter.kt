@@ -6,13 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.databinding.DownloadHeaderEpisodeBinding
 import com.lagradost.cloudstream3.mvvm.logError
+import com.lagradost.cloudstream3.ui.result.DiffCallback
 import com.lagradost.cloudstream3.utils.UIHelper.setImage
 import com.lagradost.cloudstream3.utils.VideoDownloadHelper
-import java.util.*
 
 data class VisualDownloadHeaderCached(
     val currentOngoingDownloads: Int,
@@ -29,12 +31,16 @@ data class DownloadHeaderClickEvent(
 )
 
 class DownloadHeaderAdapter(
-    var cardList: List<VisualDownloadHeaderCached>,
+    private var cardList: MutableList<VisualDownloadHeaderCached>,
     private val clickCallback: (DownloadHeaderClickEvent) -> Unit,
     private val movieClickCallback: (DownloadClickEvent) -> Unit,
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : ListAdapter<VisualDownloadHeaderCached, DownloadHeaderAdapter.DownloadHeaderViewHolder>(
+    DiffCallback
+) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    private var currentList = emptyList<VisualDownloadHeaderCached>()
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DownloadHeaderViewHolder {
         return DownloadHeaderViewHolder(
             DownloadHeaderEpisodeBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -46,20 +52,20 @@ class DownloadHeaderAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (holder) {
-            is DownloadHeaderViewHolder -> {
-                holder.bind(cardList[position])
-            }
-        }
+    override fun onBindViewHolder(holder: DownloadHeaderViewHolder, position: Int) {
+        holder.bind(cardList[position])
+    }
+
+    fun submitCustomList(list: List<VisualDownloadHeaderCached>) {
+        currentList = list
+        submitNewList(list)
     }
 
     override fun getItemCount(): Int {
-        return cardList.size
+        return cardList.count()
     }
 
-    class DownloadHeaderViewHolder
-    constructor(
+    class DownloadHeaderViewHolder (
         val binding: DownloadHeaderEpisodeBinding,
         private val clickCallback: (DownloadHeaderClickEvent) -> Unit,
         private val movieClickCallback: (DownloadClickEvent) -> Unit,
@@ -138,12 +144,29 @@ class DownloadHeaderAdapter(
                         logError(t)
                     }
 
-
                     episodeHolder.setOnClickListener {
                         clickCallback.invoke(DownloadHeaderClickEvent(0, d))
                     }
                 }
             }
+        }
+    }
+
+    private fun submitNewList(newList: List<VisualDownloadHeaderCached>) {
+        val diffCallback = DiffCallback(cardList, newList)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        cardList.clear()
+        cardList.addAll(newList)
+        diffResult.dispatchUpdatesTo(this)
+    }
+
+    companion object DiffCallback : DiffUtil.ItemCallback<VisualDownloadHeaderCached>() {
+        override fun areItemsTheSame(oldItem: VisualDownloadHeaderCached, newItem: VisualDownloadHeaderCached): Boolean {
+            return oldItem.data.id == newItem.data.id
+        }
+
+        override fun areContentsTheSame(oldItem: VisualDownloadHeaderCached, newItem: VisualDownloadHeaderCached): Boolean {
+            return oldItem == newItem
         }
     }
 }
