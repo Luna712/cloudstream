@@ -104,7 +104,7 @@ class DownloadChildFragment : Fragment() {
             setAppBarNoScrollFlagsOnTV()
         }
 
-        val adapter: RecyclerView.Adapter<RecyclerView.ViewHolder> =
+        val adapter: RecyclerView.Adapter<DownloadAdapter.DownloadViewHolder> =
             DownloadAdapter(
                 ArrayList(),
                 {}

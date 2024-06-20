@@ -61,7 +61,7 @@ class DownloadAdapter(
     var cardList: List<VisualDownloadCachedAbstract>,
     private val clickCallback: (DownloadHeaderClickEvent) -> Unit,
     private val movieClickCallback: (DownloadClickEvent) -> Unit,
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : RecyclerView.Adapter<DownloadAdapter.DownloadViewHolder>() {
 
     companion object {
         private const val VIEW_TYPE_HEADER = 0
