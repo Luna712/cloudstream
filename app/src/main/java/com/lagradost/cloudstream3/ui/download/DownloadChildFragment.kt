@@ -35,6 +35,7 @@ class DownloadChildFragment : Fragment() {
 
     override fun onDestroyView() {
         downloadDeleteEventListener?.let { VideoDownloadManager.downloadDeleteEvent -= it }
+        downloadDeleteEventListener = null
         binding = null
         super.onDestroyView()
     }
@@ -126,9 +127,11 @@ class DownloadChildFragment : Fragment() {
 
     private fun setUpDownloadDeleteListener(folder: String) {
         downloadDeleteEventListener = { id: Int ->
-            val list = (binding?.downloadChildList?.adapter as? DownloadAdapter)?.currentList
+            val adapter = binding?.downloadChildList?.adapter as? DownloadAdapter
+            val list = adapter?.currentList
             if (list != null) {
                 if (list.any { it.data.id == id }) {
+                    adapter.removeItem(id)
                     updateList(folder)
                 }
             }
