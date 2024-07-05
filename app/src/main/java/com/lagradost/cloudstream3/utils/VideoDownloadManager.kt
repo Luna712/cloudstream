@@ -17,18 +17,19 @@ import androidx.work.Data
 import androidx.work.ExistingWorkPolicy
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.GlideUrl
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.APIHolder.getApiFromNameNull
 import com.lagradost.cloudstream3.AcraApplication.Companion.removeKey
 import com.lagradost.cloudstream3.AcraApplication.Companion.setKey
 import com.lagradost.cloudstream3.BuildConfig
+import com.lagradost.cloudstream3.IDownloadableMinimum
 import com.lagradost.cloudstream3.MainActivity
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.mvvm.logError
-import com.lagradost.cloudstream3.mvvm.normalSafeApiCall
 import com.lagradost.cloudstream3.services.VideoDownloadService
 import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream3.utils.Coroutines.main
@@ -105,16 +106,6 @@ object VideoDownloadManager {
         Pause,
         Resume,
         Stop,
-    }
-
-    interface IDownloadableMinimum {
-        val url: String
-        val referer: String
-        val headers: Map<String, String>
-    }
-
-    fun IDownloadableMinimum.getId(): Int {
-        return url.hashCode()
     }
 
     data class DownloadEpisodeMetadata(
@@ -234,10 +225,10 @@ object VideoDownloadManager {
                 return cachedBitmaps[url]
             }
 
-            val bitmap = com.bumptech.glide.Glide.with(this)
+            val bitmap = Glide.with(this)
                 .asBitmap()
                 .load(GlideUrl(url) { headers ?: emptyMap() })
-                .into(720, 720)
+                .submit(720, 720)
                 .get()
 
             if (bitmap != null) {

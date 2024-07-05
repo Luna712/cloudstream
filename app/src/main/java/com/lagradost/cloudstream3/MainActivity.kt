@@ -56,9 +56,7 @@ import com.google.common.collect.Comparators.min
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
 import com.lagradost.cloudstream3.APIHolder.allProviders
 import com.lagradost.cloudstream3.APIHolder.apis
-import com.lagradost.cloudstream3.APIHolder.getApiDubstatusSettings
 import com.lagradost.cloudstream3.APIHolder.initAll
-import com.lagradost.cloudstream3.APIHolder.updateHasTrailers
 import com.lagradost.cloudstream3.AcraApplication.Companion.getKey
 import com.lagradost.cloudstream3.AcraApplication.Companion.removeKey
 import com.lagradost.cloudstream3.AcraApplication.Companion.setKey
@@ -121,16 +119,18 @@ import com.lagradost.cloudstream3.ui.settings.SettingsGeneral
 import com.lagradost.cloudstream3.ui.setup.HAS_DONE_SETUP_KEY
 import com.lagradost.cloudstream3.ui.setup.SetupFragmentExtensions
 import com.lagradost.cloudstream3.utils.ApkInstaller
-import com.lagradost.cloudstream3.utils.AppUtils.html
-import com.lagradost.cloudstream3.utils.AppUtils.isCastApiAvailable
-import com.lagradost.cloudstream3.utils.AppUtils.isLtr
-import com.lagradost.cloudstream3.utils.AppUtils.isNetworkAvailable
-import com.lagradost.cloudstream3.utils.AppUtils.isRtl
-import com.lagradost.cloudstream3.utils.AppUtils.loadCache
-import com.lagradost.cloudstream3.utils.AppUtils.loadRepository
-import com.lagradost.cloudstream3.utils.AppUtils.loadResult
-import com.lagradost.cloudstream3.utils.AppUtils.loadSearchResult
-import com.lagradost.cloudstream3.utils.AppUtils.setDefaultFocus
+import com.lagradost.cloudstream3.utils.AppContextUtils.getApiDubstatusSettings
+import com.lagradost.cloudstream3.utils.AppContextUtils.html
+import com.lagradost.cloudstream3.utils.AppContextUtils.isCastApiAvailable
+import com.lagradost.cloudstream3.utils.AppContextUtils.isLtr
+import com.lagradost.cloudstream3.utils.AppContextUtils.isNetworkAvailable
+import com.lagradost.cloudstream3.utils.AppContextUtils.isRtl
+import com.lagradost.cloudstream3.utils.AppContextUtils.loadCache
+import com.lagradost.cloudstream3.utils.AppContextUtils.loadRepository
+import com.lagradost.cloudstream3.utils.AppContextUtils.loadResult
+import com.lagradost.cloudstream3.utils.AppContextUtils.loadSearchResult
+import com.lagradost.cloudstream3.utils.AppContextUtils.setDefaultFocus
+import com.lagradost.cloudstream3.utils.AppContextUtils.updateHasTrailers
 import com.lagradost.cloudstream3.utils.BackupUtils.backup
 import com.lagradost.cloudstream3.utils.BackupUtils.setUpBackup
 import com.lagradost.cloudstream3.utils.BiometricAuthenticator.BiometricCallback
@@ -1112,23 +1112,6 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
 
         MainAPI.settingsForProvider = settingsForProvider
 
-        // Change library icon with logo of current api in sync
-        libraryViewModel = ViewModelProvider(this)[LibraryViewModel::class.java]
-        libraryViewModel?.currentApiName?.observe(this) {
-            val syncAPI =  libraryViewModel?.currentSyncApi
-            Log.i("SYNC_API", "${syncAPI?.name}, ${syncAPI?.idPrefix}")
-            val icon = if (syncAPI?.idPrefix ==  localListApi.idPrefix) {
-                R.drawable.library_icon
-            } else {
-                syncAPI?.icon ?: R.drawable.library_icon
-            }
-
-            binding?.apply {
-                navRailView.menu.findItem(R.id.navigation_library)?.setIcon(icon)
-                navView.menu.findItem(R.id.navigation_library)?.setIcon(icon)
-            }
-        }
-
         loadThemes(this)
         updateLocale()
         super.onCreate(savedInstanceState)
@@ -1536,6 +1519,26 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
                     api.initialize()
                 } catch (e: Exception) {
                     logError(e)
+                }
+            }
+            
+            // we need to run this after we init all apis, otherwise currentSyncApi will fuck itself
+            this@MainActivity.runOnUiThread {
+                // Change library icon with logo of current api in sync
+                libraryViewModel = ViewModelProvider(this@MainActivity)[LibraryViewModel::class.java]
+                libraryViewModel?.currentApiName?.observe(this@MainActivity) {
+                    val syncAPI =  libraryViewModel?.currentSyncApi
+                    Log.i("SYNC_API", "${syncAPI?.name}, ${syncAPI?.idPrefix}")
+                    val icon = if (syncAPI?.idPrefix ==  localListApi.idPrefix) {
+                        R.drawable.library_icon
+                    } else {
+                        syncAPI?.icon ?: R.drawable.library_icon
+                    }
+
+                    binding?.apply {
+                        navRailView.menu.findItem(R.id.navigation_library)?.setIcon(icon)
+                        navView.menu.findItem(R.id.navigation_library)?.setIcon(icon)
+                    }
                 }
             }
         }

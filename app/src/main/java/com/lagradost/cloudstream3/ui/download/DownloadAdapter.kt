@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.text.format.Formatter.formatShortFileSize
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -14,7 +15,7 @@ import com.lagradost.cloudstream3.databinding.DownloadChildEpisodeBinding
 import com.lagradost.cloudstream3.databinding.DownloadHeaderEpisodeBinding
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.ui.download.button.DownloadStatusTell
-import com.lagradost.cloudstream3.utils.AppUtils.getNameFull
+import com.lagradost.cloudstream3.utils.AppContextUtils.getNameFull
 import com.lagradost.cloudstream3.utils.DataStoreHelper.fixVisual
 import com.lagradost.cloudstream3.utils.DataStoreHelper.getViewPos
 import com.lagradost.cloudstream3.utils.UIHelper.setImage
@@ -26,6 +27,9 @@ const val DOWNLOAD_ACTION_RESUME_DOWNLOAD = 2
 const val DOWNLOAD_ACTION_PAUSE_DOWNLOAD = 3
 const val DOWNLOAD_ACTION_DOWNLOAD = 4
 const val DOWNLOAD_ACTION_LONG_CLICK = 5
+
+const val DOWNLOAD_ACTION_GO_TO_CHILD = 0
+const val DOWNLOAD_ACTION_LOAD_RESULT = 1
 
 abstract class VisualDownloadCached(
     open val currentBytes: Long,
@@ -111,7 +115,7 @@ class DownloadAdapter(
                 downloadHeaderPoster.apply {
                     setImage(d.poster)
                     setOnClickListener {
-                        clickCallback.invoke(DownloadHeaderClickEvent(1, d))
+                        clickCallback.invoke(DownloadHeaderClickEvent(DOWNLOAD_ACTION_LOAD_RESULT, d))
                     }
                 }
 
@@ -131,8 +135,15 @@ class DownloadAdapter(
                         downloadButton.applyMetaData(card.child.id, card.currentBytes, card.totalBytes)
                         // We will let the view model handle this
                         downloadButton.doSetProgress = false
+                        downloadButton.progressBar.progressDrawable =
+                            downloadButton.getDrawableFromStatus(status)
+                                ?.let { ContextCompat.getDrawable(downloadButton.context, it) }
                         downloadHeaderInfo.text = formattedSizeString
-                    } else downloadButton.doSetProgress = true
+                    } else {
+                        downloadButton.doSetProgress = true
+                        downloadButton.progressBar.progressDrawable =
+                            ContextCompat.getDrawable(downloadButton.context, downloadButton.progressDrawable)
+                    }
 
                     downloadButton.setDefaultClickListener(card.child, downloadHeaderInfo, mediaClickCallback)
                     downloadButton.isVisible = true
@@ -161,7 +172,7 @@ class DownloadAdapter(
                     }
 
                     episodeHolder.setOnClickListener {
-                        clickCallback.invoke(DownloadHeaderClickEvent(0, d))
+                        clickCallback.invoke(DownloadHeaderClickEvent(DOWNLOAD_ACTION_GO_TO_CHILD, d))
                     }
                 }
             }
@@ -181,6 +192,38 @@ class DownloadAdapter(
                         max = (visualPos.duration / 1000).toInt()
                         progress = (visualPos.position / 1000).toInt()
                     }
+                }
+
+                val status = downloadButton.getStatus(d.id, card.currentBytes, card.totalBytes)
+                if (status == DownloadStatusTell.IsDone) {
+                    // We do this here instead if we are finished downloading
+                    // so that we can use the value from the view model
+                    // rather than extra unneeded disk operations and to prevent a
+                    // delay in updating download icon state.
+                    downloadButton.setProgress(card.currentBytes, card.totalBytes)
+                    downloadButton.applyMetaData(d.id, card.currentBytes, card.totalBytes)
+                    // We will let the view model handle this
+                    downloadButton.doSetProgress = false
+                    downloadButton.progressBar.progressDrawable =
+                        downloadButton.getDrawableFromStatus(status)
+                            ?.let { ContextCompat.getDrawable(downloadButton.context, it) }
+                    downloadChildEpisodeTextExtra.text = formatShortFileSize(downloadChildEpisodeTextExtra.context, card.totalBytes)
+                } else {
+                    downloadButton.doSetProgress = true
+                    downloadButton.progressBar.progressDrawable =
+                        ContextCompat.getDrawable(downloadButton.context, downloadButton.progressDrawable)
+                }
+
+                downloadButton.setDefaultClickListener(d, downloadChildEpisodeTextExtra, mediaClickCallback)
+                downloadButton.isVisible = true
+
+                downloadChildEpisodeText.apply {
+                    text = context.getNameFull(d.name, d.episode, d.season)
+                    isSelected = true // Needed for text repeating
+                }
+
+                downloadChildEpisodeHolder.setOnClickListener {
+                    mediaClickCallback.invoke(DownloadClickEvent(DOWNLOAD_ACTION_PLAY_FILE, d))
                 }
 
                 val status = downloadButton.getStatus(d.id, card.currentBytes, card.totalBytes)
