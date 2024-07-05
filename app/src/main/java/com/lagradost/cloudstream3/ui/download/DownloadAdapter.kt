@@ -225,31 +225,6 @@ class DownloadAdapter(
                 downloadChildEpisodeHolder.setOnClickListener {
                     mediaClickCallback.invoke(DownloadClickEvent(DOWNLOAD_ACTION_PLAY_FILE, d))
                 }
-
-                val status = downloadButton.getStatus(d.id, card.currentBytes, card.totalBytes)
-                if (status == DownloadStatusTell.IsDone) {
-                    // We do this here instead if we are finished downloading
-                    // so that we can use the value from the view model
-                    // rather than extra unneeded disk operations and to prevent a
-                    // delay in updating download icon state.
-                    downloadButton.setProgress(card.currentBytes, card.totalBytes)
-                    downloadButton.applyMetaData(d.id, card.currentBytes, card.totalBytes)
-                    // We will let the view model handle this
-                    downloadButton.doSetProgress = false
-                    downloadChildEpisodeTextExtra.text = formatShortFileSize(downloadChildEpisodeTextExtra.context, card.totalBytes)
-                } else downloadButton.doSetProgress = true
-
-                downloadButton.setDefaultClickListener(d, downloadChildEpisodeTextExtra, mediaClickCallback)
-                downloadButton.isVisible = true
-
-                downloadChildEpisodeText.apply {
-                    text = context.getNameFull(d.name, d.episode, d.season)
-                    isSelected = true // Needed for text repeating
-                }
-
-                downloadChildEpisodeHolder.setOnClickListener {
-                    mediaClickCallback.invoke(DownloadClickEvent(DOWNLOAD_ACTION_PLAY_FILE, d))
-                }
             }
         }
     }
