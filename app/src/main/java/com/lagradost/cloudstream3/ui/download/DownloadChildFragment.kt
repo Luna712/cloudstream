@@ -129,11 +129,9 @@ class DownloadChildFragment : Fragment() {
         downloadDeleteEventListener = { id: Int ->
             val adapter = binding?.downloadChildList?.adapter as? DownloadAdapter
             val list = adapter?.currentList
-            if (list != null) {
-                if (list.any { it.data.id == id }) {
-                    adapter.removeItem(id)
-                    updateList(folder)
-                }
+            if (list?.any { it.data.id == id }) {
+                adapter.removeItem(id)
+                updateList(folder)
             }
         }
         downloadDeleteEventListener?.let { VideoDownloadManager.downloadDeleteEvent += it }
