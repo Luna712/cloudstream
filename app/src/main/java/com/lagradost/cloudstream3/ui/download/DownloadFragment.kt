@@ -245,8 +245,8 @@ class DownloadFragment : Fragment() {
         }
     }
 
-    private fun handleSelectedChange(selectedItemIds: MutableSet<Int>) {
-        if (selectedItemIds.isNotEmpty()) {
+    private fun handleSelectedChange(selected: MutableSet<Int>) {
+        if (selected.isNotEmpty()) {
             binding?.downloadDeleteAppbar?.isVisible = true
             binding?.downloadStorageAppbar?.isVisible = false
             activity?.attachBackPressedCallback {
