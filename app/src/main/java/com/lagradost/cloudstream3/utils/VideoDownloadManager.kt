@@ -140,6 +140,7 @@ object VideoDownloadManager {
         @JsonProperty("totalBytes") val totalBytes: Long,
         @JsonProperty("relativePath") val relativePath: String,
         @JsonProperty("displayName") val displayName: String,
+        @JsonProperty("downloadedBytes") val downloadedBytes: Long? = null,
         @JsonProperty("extraInfo") val extraInfo: String? = null,
         @JsonProperty("basePath") val basePath: String? = null // null is for legacy downloads. See getDefaultPath()
     )
@@ -671,6 +672,7 @@ object VideoDownloadManager {
                     id.toString(),
                     template.copy(
                         totalBytes = approxTotalBytes,
+                        downloadedBytes = bytesDownloaded,
                         extraInfo = if (isHLS) hlsWrittenProgress.toString() else null
                     )
                 )
@@ -1091,10 +1093,12 @@ object VideoDownloadManager {
             }
 
             metadata.totalBytes = items.totalLength
+            metadata.bytesDownloaded = items.downloadLength ?: 0
             metadata.type = DownloadType.IsDownloading
             metadata.setDownloadFileInfoTemplate(
                 DownloadedFileInfo(
                     totalBytes = metadata.approxTotalBytes,
+                    downloadedBytes = metadata.bytesDownloaded,
                     relativePath = folder,
                     displayName = displayName,
                     basePath = basePath
@@ -1707,8 +1711,8 @@ object VideoDownloadManager {
         getDownloadFileInfo(context, id, removeKeys = true)
 
     private fun DownloadedFileInfo.toFile(context: Context): SafeFile? {
-        return basePathToFile(context, this.basePath)?.gotoDirectory(relativePath)
-            ?.findFile(displayName)
+        val baseFile = basePathToFile(context, this.basePath)
+        return baseFile?.gotoDirectory(relativePath)?.findFile(displayName)
     }
 
     private fun getDownloadFileInfo(
@@ -1716,25 +1720,26 @@ object VideoDownloadManager {
         id: Int,
         removeKeys: Boolean = false
     ): DownloadedFileInfoResult? {
-        try {
-            val info =
-                context.getKey<DownloadedFileInfo>(KEY_DOWNLOAD_INFO, id.toString()) ?: return null
+        return try {
+            val info = context.getKey<DownloadedFileInfo>(KEY_DOWNLOAD_INFO, id.toString())
+                ?: return null
+
             val file = info.toFile(context)
 
             // only delete the key if the file is not found
             if (file == null || !file.existsOrThrow()) {
-                //if (removeKeys) context.removeKey(KEY_DOWNLOAD_INFO, id.toString()) // TODO READD
+                // if (removeKeys) context.removeKey(KEY_DOWNLOAD_INFO, id.toString()) // TODO READD
                 return null
             }
 
-            return DownloadedFileInfoResult(
+            DownloadedFileInfoResult(
                 file.lengthOrThrow(),
                 info.totalBytes,
                 file.uriOrThrow()
             )
         } catch (e: Exception) {
             logError(e)
-            return null
+            null
         }
     }
 
