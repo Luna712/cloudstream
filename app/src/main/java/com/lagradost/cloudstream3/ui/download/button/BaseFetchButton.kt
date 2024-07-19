@@ -9,6 +9,8 @@ import androidx.annotation.LayoutRes
 import androidx.core.view.isVisible
 import androidx.core.widget.ContentLoadingProgressBar
 import com.lagradost.cloudstream3.R
+import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
+import com.lagradost.cloudstream3.utils.Coroutines.mainWork
 import com.lagradost.cloudstream3.utils.DataStore.getKey
 import com.lagradost.cloudstream3.utils.VideoDownloadManager
 
@@ -79,11 +81,17 @@ abstract class BaseFetchButton(context: Context, attributeSet: AttributeSet) :
         )
 
         if (savedData != null) {
-            val downloadedBytes = savedData.downloadedBytes ?: 0
-            val totalBytes = savedData.totalBytes
+                ioSafe {
+                    val downloadedBytes = savedData.downloadedBytes
+                        ?: (VideoDownloadManager.getDownloadFileInfoAndUpdateSettings(context, id)?.fileLength ?: 0)
 
-            setProgress(downloadedBytes, totalBytes)
-            applyMetaData(id, downloadedBytes, totalBytes)
+                    mainWork {
+                        val totalBytes = savedData.totalBytes
+
+                        setProgress(downloadedBytes, totalBytes)
+                        applyMetaData(id, downloadedBytes, totalBytes)
+                    }
+            }
         } else run { resetView() }
     }
 
