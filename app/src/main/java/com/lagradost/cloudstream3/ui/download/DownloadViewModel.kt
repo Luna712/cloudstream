@@ -22,10 +22,26 @@ import com.lagradost.cloudstream3.utils.DataStore.getFolderName
 import com.lagradost.cloudstream3.utils.DataStore.getKey
 import com.lagradost.cloudstream3.utils.DataStore.getKeys
 import com.lagradost.cloudstream3.utils.VideoDownloadHelper
+import com.lagradost.cloudstream3.utils.VideoDownloadManager.KEY_DOWNLOAD_INFO
+import com.lagradost.cloudstream3.utils.VideoDownloadManager.DownloadedFileInfo
 import com.lagradost.cloudstream3.utils.VideoDownloadManager.deleteFilesAndUpdateSettings
 import com.lagradost.cloudstream3.utils.VideoDownloadManager.getDownloadFileInfoAndUpdateSettings
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+
+
+private data class DeleteData(
+    val ids: Set<Int>,
+    val parentIds: Set<Int>,
+    val seriesNames: List<String>,
+    val names: List<String>,
+    val parentName: String?
+)
+
+private data class DownloadByteData(
+    val currentBytes: Long,
+    val totalBytes: Long
+)
 
 class DownloadViewModel : ViewModel() {
 
@@ -153,11 +169,11 @@ class DownloadViewModel : ViewModel() {
         val totalDownloads = mutableMapOf<Int, Int>()
 
         children.forEach { child ->
-            val childFile = getDownloadFileInfoAndUpdateSettings(context, child.id) ?: return@forEach
-            if (childFile.fileLength <= 1) return@forEach
+            val childFile = getByteInfo(context, child.id) ?: return@forEach
+            if (childFile.currentBytes <= 1) return@forEach
 
             val len = childFile.totalBytes
-            val flen = childFile.fileLength
+            val flen = childFile.currentBytes
 
             totalBytesUsedByChild.merge(child.parentId, len, Long::plus)
             currentBytesUsedByChild.merge(child.parentId, flen, Long::plus)
@@ -214,9 +230,9 @@ class DownloadViewModel : ViewModel() {
                 context.getKey<VideoDownloadHelper.DownloadEpisodeCached>(key)
             }.mapNotNull {
                 val isSelected = selectedItemIds.value?.contains(it.id) ?: false
-                val info = getDownloadFileInfoAndUpdateSettings(context, it.id) ?: return@mapNotNull null
+                val info = getByteInfo(context, it.id) ?: return@mapNotNull null
                 VisualDownloadCached.Child(
-                    currentBytes = info.fileLength,
+                    currentBytes = info.currentBytes,
                     totalBytes = info.totalBytes,
                     isSelected = isSelected,
                     data = it,
@@ -228,6 +244,31 @@ class DownloadViewModel : ViewModel() {
             previousVisual = visual
             _childCards.postValue(visual)
         }
+    }
+
+    private fun getByteInfo(context: Context, id: Int): DownloadByteData? {
+        // We use the key here when possible so that we can load
+        // downloads much faster.
+        val savedData = context.getKey<DownloadedFileInfo>(
+            KEY_DOWNLOAD_INFO, id.toString()
+        ) ?: return null
+
+        // If downloadedBytes is null, fetch the data from
+        // getDownloadFileInfoAndUpdateSettings and update metaData
+        // so that we can get it from the key next time.
+        // We do this for backwards compatibility from
+        // before downloadedBytes was added to the key.
+        // TODO eventually remove this backwards compatibility
+        //  when it is all migrated to add downloadedBytes
+        val currentBytes = savedData.downloadedBytes ?:
+            getDownloadFileInfoAndUpdateSettings(
+                context, id, updateMetaData = true
+            )?.fileLength ?: return null
+
+        return DownloadByteData(
+            currentBytes = currentBytes,
+            totalBytes = savedData.totalBytes,
+        )
     }
 
     private fun removeItems(idsToRemove: Set<Int>) = viewModelScope.launchSafe {
@@ -424,12 +465,4 @@ class DownloadViewModel : ViewModel() {
 
         return (headers + children).filter { it.data.id == itemId }
     }
-
-    private data class DeleteData(
-        val ids: Set<Int>,
-        val parentIds: Set<Int>,
-        val seriesNames: List<String>,
-        val names: List<String>,
-        val parentName: String?
-    )
 }

@@ -80,19 +80,39 @@ abstract class BaseFetchButton(context: Context, attributeSet: AttributeSet) :
             VideoDownloadManager.KEY_DOWNLOAD_INFO, id.toString()
         )
 
-        if (savedData != null) {
-                ioSafe {
-                    val downloadedBytes = savedData.downloadedBytes
-                        ?: (VideoDownloadManager.getDownloadFileInfoAndUpdateSettings(context, id)?.fileLength ?: 0)
+        val downloadedBytes = savedData?.downloadedBytes
 
-                    mainWork {
-                        val totalBytes = savedData.totalBytes
+        if (downloadedBytes != null) {
+            // If downloadedBytes is available in the key,
+            // update the UI immediately on the main thread
+            // so we can prevent delayed UI updates
+            val totalBytes = savedData.totalBytes
+            setProgress(downloadedBytes, totalBytes)
+            applyMetaData(id, downloadedBytes, totalBytes)
+        } else {
+            // If downloadedBytes is null, fetch the data in
+            // the IO thread so we don't lag the UI
+            // We do this for backwards compatibility from
+            // before downloadedBytes was added to the key,
+            // however, we will set downloadedBytes here so that
+            // we can use it directly next time.
+            // TODO eventually remove this backwards compatibility
+            //  when it is all migrated to add downloadedBytes
+            ioSafe {
+                val fetchedData = VideoDownloadManager.getDownloadFileInfoAndUpdateSettings(
+                    context, id, updateMetaData = true
+                )
+                val fetchedDownloadedBytes = fetchedData?.fileLength
 
-                        setProgress(downloadedBytes, totalBytes)
-                        applyMetaData(id, downloadedBytes, totalBytes)
-                    }
+                mainWork {
+                    if (fetchedDownloadedBytes != null) {
+                        val totalBytes = savedData?.totalBytes ?: fetchedData.totalBytes
+                        setProgress(fetchedDownloadedBytes, totalBytes)
+                        applyMetaData(id, fetchedDownloadedBytes, totalBytes)
+                    } else run { resetView() }
+                }
             }
-        } else run { resetView() }
+        }
     }
 
     abstract fun setStatus(status: VideoDownloadManager.DownloadType?)

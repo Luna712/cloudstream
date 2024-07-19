@@ -1315,6 +1315,7 @@ object VideoDownloadManager {
             metadata.setDownloadFileInfoTemplate(
                 DownloadedFileInfo(
                     totalBytes = 0,
+                    downloadedBytes = 0,
                     relativePath = folder,
                     displayName = displayName,
                     basePath = basePath
@@ -1707,18 +1708,19 @@ object VideoDownloadManager {
          return res
      }
  */
-    fun getDownloadFileInfoAndUpdateSettings(context: Context, id: Int): DownloadedFileInfoResult? =
-        getDownloadFileInfo(context, id, removeKeys = true)
+    fun getDownloadFileInfoAndUpdateSettings(context: Context, id: Int, updateMetaData: Boolean = false): DownloadedFileInfoResult? =
+        getDownloadFileInfo(context, id, removeKeys = true, updateMetaData)
 
     private fun DownloadedFileInfo.toFile(context: Context): SafeFile? {
-        val baseFile = basePathToFile(context, this.basePath)
+        val baseFile = basePathToFile(context, basePath)
         return baseFile?.gotoDirectory(relativePath)?.findFile(displayName)
     }
 
     private fun getDownloadFileInfo(
         context: Context,
         id: Int,
-        removeKeys: Boolean = false
+        removeKeys: Boolean = false,
+        updateMetaData: Boolean = false
     ): DownloadedFileInfoResult? {
         return try {
             val info = context.getKey<DownloadedFileInfo>(KEY_DOWNLOAD_INFO, id.toString())
@@ -1730,6 +1732,26 @@ object VideoDownloadManager {
             if (file == null || !file.existsOrThrow()) {
                 // if (removeKeys) context.removeKey(KEY_DOWNLOAD_INFO, id.toString()) // TODO READD
                 return null
+            }
+
+            // To migrate to save downloadedBytes in key
+            if (updateMetaData && info.downloadedBytes == null) {
+                val metadata = DownloadMetaData(
+                    totalBytes = info.totalBytes,
+                    bytesDownloaded = file.lengthOrThrow(),
+                    createNotificationCallback = {},
+                    id = id,
+                )
+
+                metadata.setDownloadFileInfoTemplate(
+                    DownloadedFileInfo(
+                        totalBytes = metadata.approxTotalBytes,
+                        downloadedBytes = metadata.bytesDownloaded,
+                        relativePath = info.relativePath,
+                        displayName = info.displayName,
+                        basePath = info.basePath
+                    )
+                )
             }
 
             DownloadedFileInfoResult(
