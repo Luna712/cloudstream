@@ -1,7 +1,7 @@
 [versions]
 acraCore = "5.12.0"
 appcompat = "1.7.0"
-biometric = "1.4.0-alpha02"
+biometric = "1.4.0-alpha03"
 buildkonfigGradlePlugin = "0.15.2"
 coil = "3.1.0"
 colorpicker = "1.1.0"
