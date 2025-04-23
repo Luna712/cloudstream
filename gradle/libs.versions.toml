@@ -44,7 +44,7 @@ torrentserver = "883c17942d"
 tvprovider = "1.0.0"
 video = "1.0.0"
 workRuntime = "2.10.0"
-workRuntimeKtx = "2.10.0"
+workRuntimeKtx = "2.10.1"
 
 jvmTarget = "1.8"
 minSdk = "21"
