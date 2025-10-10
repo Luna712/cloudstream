@@ -16,8 +16,9 @@ import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.databinding.LogcatBinding
 import com.lagradost.cloudstream3.mvvm.logError
-import com.lagradost.cloudstream3.mvvm.normalSafeApiCall
+import com.lagradost.cloudstream3.mvvm.safe
 import com.lagradost.cloudstream3.network.initClient
+import com.lagradost.cloudstream3.plugins.PluginManager
 import com.lagradost.cloudstream3.services.BackupWorkManager
 import com.lagradost.cloudstream3.ui.settings.Globals.EMULATOR
 import com.lagradost.cloudstream3.ui.settings.Globals.TV
@@ -64,6 +65,7 @@ class SettingsUpdates : PreferenceFragmentCompat() {
         }
     }
 
+    @Suppress("DEPRECATION_ERROR")
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         hideKeyboard()
         setPreferencesFromResource(R.xml.settings_updates, rootKey)
@@ -104,7 +106,7 @@ class SettingsUpdates : PreferenceFragmentCompat() {
             activity?.restorePrompt()
             return@setOnPreferenceClickListener true
         }
-        getPref(R.string.backup_path_key)?.hideOn(TV or EMULATOR)?.setOnPreferenceClickListener {
+        getPref(R.string.backup_path_key)?.hideOn(EMULATOR)?.setOnPreferenceClickListener {
             val dirs = getBackupDirsForDisplay()
             val currentDir =
                 settingsManager.getString(getString(R.string.backup_dir_key), null)
@@ -252,10 +254,17 @@ class SettingsUpdates : PreferenceFragmentCompat() {
             }
             return@setOnPreferenceClickListener true
         }
+
+        getPref(R.string.manual_update_plugins_key)?.setOnPreferenceClickListener {
+            ioSafe {
+                PluginManager.___DO_NOT_CALL_FROM_A_PLUGIN_manuallyReloadAndUpdatePlugins(activity ?: return@ioSafe)
+            }
+            return@setOnPreferenceClickListener true // Return true for the listener
+        }
     }
 
     private fun getBackupDirsForDisplay(): List<String> {
-        return normalSafeApiCall {
+        return safe {
             context?.let { ctx ->
                 val defaultDir = BackupUtils.getDefaultBackupDir(ctx)?.filePath()
                 val first = listOf(defaultDir)

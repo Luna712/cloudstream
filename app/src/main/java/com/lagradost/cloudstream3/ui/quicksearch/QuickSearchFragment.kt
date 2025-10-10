@@ -16,6 +16,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.lagradost.cloudstream3.APIHolder.getApiFromNameNull
 import com.lagradost.cloudstream3.CommonActivity.activity
@@ -27,6 +28,7 @@ import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.mvvm.observe
 import com.lagradost.cloudstream3.ui.home.HomeFragment
 import com.lagradost.cloudstream3.ui.home.HomeFragment.Companion.loadHomepageList
+import com.lagradost.cloudstream3.ui.home.HomeViewModel
 import com.lagradost.cloudstream3.ui.home.ParentItemAdapter
 import com.lagradost.cloudstream3.ui.search.SearchAdapter
 import com.lagradost.cloudstream3.ui.search.SearchClickCallback
@@ -38,7 +40,9 @@ import com.lagradost.cloudstream3.ui.settings.Globals.TV
 import com.lagradost.cloudstream3.ui.settings.Globals.isLayout
 import com.lagradost.cloudstream3.utils.AppContextUtils.filterProviderByPreferredMedia
 import com.lagradost.cloudstream3.utils.AppContextUtils.filterSearchResultByFilmQuality
+import com.lagradost.cloudstream3.utils.AppContextUtils.isRecyclerScrollable
 import com.lagradost.cloudstream3.utils.AppContextUtils.ownShow
+import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream3.utils.UIHelper
 import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingStatusbar
 import com.lagradost.cloudstream3.utils.UIHelper.getSpanCount
@@ -135,7 +139,6 @@ class QuickSearchFragment : Fragment() {
             HomeFragment.currentSpan = it
         }
         binding?.quickSearchAutofitResults?.spanCount = HomeFragment.currentSpan
-        HomeFragment.currentSpan = HomeFragment.currentSpan
         HomeFragment.configEvent.invoke(HomeFragment.currentSpan)
     }
 
@@ -158,7 +161,8 @@ class QuickSearchFragment : Fragment() {
             getApiFromNameNull(providers?.first())?.hasQuickSearch ?: false
         } else false
 
-        if (isSingleProvider) {
+        val firstProvider = providers?.firstOrNull()
+        if (isSingleProvider && firstProvider != null) {
             binding?.quickSearchAutofitResults?.apply {
                 adapter = SearchAdapter(
                     ArrayList(),
@@ -168,27 +172,58 @@ class QuickSearchFragment : Fragment() {
                 }
             }
 
+            binding?.quickSearchAutofitResults?.addOnScrollListener(object :
+                RecyclerView.OnScrollListener() {
+                var expandCount = 0
+
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+
+                    val adapter = recyclerView.adapter
+                    if (adapter !is SearchAdapter) return
+
+                    val count = adapter.itemCount
+                    val currentHasNext = adapter.hasNext
+
+                    if (!recyclerView.isRecyclerScrollable() && currentHasNext && expandCount != count) {
+                        expandCount = count
+                        ioSafe {
+                            searchViewModel.expandAndReturn(firstProvider)
+                        }
+                    }
+                }
+            })
+
             try {
                 binding?.quickSearch?.queryHint =
-                    getString(R.string.search_hint_site).format(providers?.first())
+                    getString(R.string.search_hint_site).format(firstProvider)
             } catch (e: Exception) {
                 logError(e)
             }
         } else {
             binding?.quickSearchMasterRecycler?.adapter =
-                ParentItemAdapter(fragment = this, id = "quickSearchMasterRecycler".hashCode(), { callback ->
-                    SearchHelper.handleSearchClickCallback(callback)
-                    //when (callback.action) {
-                    //SEARCH_ACTION_LOAD -> {
-                    //    clickCallback?.invoke(callback)
-                    //}
-                    //    else -> SearchHelper.handleSearchClickCallback(activity, callback)
-                    //}
-                }, { item ->
-                    bottomSheetDialog = activity?.loadHomepageList(item, dismissCallback = {
-                        bottomSheetDialog = null
+                ParentItemAdapter(
+                    fragment = this,
+                    id = "quickSearchMasterRecycler".hashCode(),
+                    { callback ->
+                        SearchHelper.handleSearchClickCallback(callback)
+                        //when (callback.action) {
+                        //SEARCH_ACTION_LOAD -> {
+                        //    clickCallback?.invoke(callback)
+                        //}
+                        //    else -> SearchHelper.handleSearchClickCallback(activity, callback)
+                        //}
+                    },
+                    { item ->
+                        bottomSheetDialog = activity?.loadHomepageList(item, dismissCallback = {
+                            bottomSheetDialog = null
+                        }, expandCallback = { searchViewModel.expandAndReturn(it) })
+                    },
+                    expandCallback = { name ->
+                        ioSafe {
+                            searchViewModel.expandAndReturn(name)
+                        }
                     })
-                })
             binding?.quickSearchMasterRecycler?.layoutManager = GridLayoutManager(context, 1)
         }
         binding?.quickSearchAutofitResults?.isVisible = isSingleProvider
@@ -200,13 +235,27 @@ class QuickSearchFragment : Fragment() {
                 // https://stackoverflow.com/questions/6866238/concurrent-modification-exception-adding-to-an-arraylist
                 listLock.lock()
                 (binding?.quickSearchMasterRecycler?.adapter as ParentItemAdapter?)?.apply {
-                    updateList(list.map { ongoing ->
-                        val ongoingList = HomePageList(
-                            ongoing.apiName,
-                            if (ongoing.data is Resource.Success) ongoing.data.value else ArrayList()
+                    val newItems = list.map { ongoing ->
+                        val dataList = ongoing.value.list
+                        val dataListFiltered =
+                            context?.filterSearchResultByFilmQuality(dataList) ?: dataList
+
+                        val homePageList = HomePageList(
+                            ongoing.key,
+                            dataListFiltered
                         )
-                        ongoingList
-                    })
+
+                        val expandableList = HomeViewModel.ExpandableHomepageList(
+                            homePageList,
+                            ongoing.value.currentPage,
+                            ongoing.value.hasNext
+                        )
+
+                        expandableList
+                    }
+
+                    submitList(newItems)
+                    //notifyDataSetChanged()
                 }
             } catch (e: Exception) {
                 logError(e)
@@ -248,9 +297,12 @@ class QuickSearchFragment : Fragment() {
             when (it) {
                 is Resource.Success -> {
                     it.value.let { data ->
-                        (binding?.quickSearchAutofitResults?.adapter as? SearchAdapter)?.updateList(
-                            context?.filterSearchResultByFilmQuality(data) ?: data
+                        val adapter =
+                            (binding?.quickSearchAutofitResults?.adapter as? SearchAdapter)
+                        adapter?.updateList(
+                            context?.filterSearchResultByFilmQuality(data.list) ?: data.list
                         )
+                        adapter?.hasNext = data.hasNext
                     }
                     searchExitIcon?.alpha = 1f
                     binding?.quickSearchLoadingBar?.alpha = 0f

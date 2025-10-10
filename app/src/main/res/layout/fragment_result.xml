@@ -360,14 +360,14 @@
 
                                 <com.google.android.material.button.MaterialButton
                                     android:id="@+id/result_meta_site"
-                                    android:layout_gravity="center_vertical"
                                     style="@style/SmallBlackButton"
+                                    android:layout_gravity="center_vertical"
                                     tools:text="Gogoanime" />
 
                                 <com.google.android.material.button.MaterialButton
                                     android:id="@+id/result_meta_content_rating"
-                                    android:layout_gravity="center_vertical"
                                     style="@style/SmallBlackButton"
+                                    android:layout_gravity="center_vertical"
                                     tools:text="PG-13" />
 
                                 <TextView
@@ -409,8 +409,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:ellipsize="end"
-                                    android:maxLines="10"
                                     android:foreground="@drawable/outline_drawable"
+                                    android:maxLines="10"
                                     android:nextFocusUp="@id/result_back"
                                     android:nextFocusDown="@id/result_bookmark_Button"
                                     android:paddingTop="5dp"
@@ -644,6 +644,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:layout_marginBottom="10dp"
                             android:orientation="vertical"
                             android:visibility="gone"
                             tools:visibility="visible">
@@ -657,7 +658,6 @@
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="0dp"
                                 android:layout_marginEnd="0dp"
-                                android:layout_marginBottom="10dp"
                                 android:nextFocusUp="@id/result_bookmark_Button"
                                 android:nextFocusDown="@id/result_download_movie"
                                 android:text="@string/resume"
@@ -673,21 +673,13 @@
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginStart="0dp"
                                 android:layout_marginEnd="0dp"
-                                android:layout_marginBottom="10dp"
                                 android:nextFocusUp="@id/result_bookmark_Button"
                                 android:nextFocusDown="@id/result_download_movie"
                                 android:text="@string/next_episode"
                                 android:visibility="gone"
                                 app:icon="@drawable/cast_ic_mini_controller_skip_next" />
 
-                            <TextView
-                                android:id="@+id/result_resume_series_title"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textColor="?attr/textColor"
-                                android:textSize="17sp"
-                                android:textStyle="bold"
-                                tools:text="S1E1 Episode 1" />
+
                         </LinearLayout>
 
                         <LinearLayout
@@ -695,57 +687,87 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:paddingTop="10dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="15dp"
                             android:visibility="gone"
                             tools:visibility="visible">
 
-                            <androidx.core.widget.ContentLoadingProgressBar
-                                android:id="@+id/result_resume_series_progress"
-                                style="?android:attr/progressBarStyleHorizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="20dp"
-                                android:layout_gravity="end|center_vertical"
-                                android:layout_weight="1"
-                                android:indeterminate="false"
-                                android:max="100"
-                                android:progress="0"
-                                android:progressBackgroundTint="?attr/colorPrimary"
+                            <TextView
+                                android:id="@+id/result_resume_series_title"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:textColor="?attr/textColor"
+                                android:layout_gravity="center_vertical"
+                                android:textSize="17sp"
+                                android:textStyle="bold"
+                                tools:text="S1E1 Episode 1"
                                 android:visibility="visible"
-                                tools:progress="50"
                                 tools:visibility="visible" />
 
-                            <TextView
-                                android:id="@+id/result_resume_series_progress_text"
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:id="@+id/progress_group"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_weight="0"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
                                 android:gravity="center"
-                                android:paddingStart="10dp"
-                                android:textColor="?attr/grayTextColor"
-                                tools:ignore="RtlSymmetry"
-                                tools:text="69m\nremaining" />
+                                android:layout_gravity="center_vertical">
+
+                                <FrameLayout
+                                    android:id="@+id/watch_progress_container"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center">
+
+                                    <ImageView
+                                        android:id="@+id/episode_play_icon"
+                                        style="@style/ContinueWatchingPlayUnderlayProgress"
+                                        />
+<!--                                    <com.google.android.material.imageview.ShapeableImageView-->
+<!--                                        android:id="@+id/episode_play_icon"-->
+<!--                                        android:layout_width="@dimen/episode_watching_progress_size"-->
+<!--                                        android:layout_height="@dimen/episode_watching_progress_size"-->
+<!--                                        android:scaleType="center"-->
+<!--                                        android:src="@drawable/netflix_play"-->
+<!--                                        android:layout_gravity="center"-->
+<!--                                        app:shapeAppearanceOverlay="@style/CircularImageViewStyle"-->
+<!--                                        />-->
+                                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                                        android:id="@+id/result_resume_series_progress"
+                                        style="@style/ContinueWatchingCircularProgress"
+                                        tools:progress="50" />
+                                </FrameLayout>
+
+                                <TextView
+                                    android:id="@+id/result_resume_series_progress_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:paddingStart="10dp"
+                                    android:textColor="?attr/grayTextColor"
+                                    tools:text="69m\nremaining" />
+                            </LinearLayout>
                         </LinearLayout>
-
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <LinearLayout
+                            <com.lagradost.cloudstream3.widget.FlowLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="10dp"
                                 android:gravity="center_vertical"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                app:itemSpacing="10dp">
 
                                 <com.google.android.material.button.MaterialButton
                                     android:id="@+id/result_season_button"
                                     style="@style/MultiSelectButton"
                                     android:layout_gravity="center_vertical"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginEnd="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
                                     android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
                                     android:nextFocusLeft="@id/result_episode_select"
                                     android:nextFocusRight="@id/result_episode_select"
@@ -761,8 +783,8 @@
                                     android:id="@+id/result_episode_select"
                                     style="@style/MultiSelectButton"
                                     android:layout_gravity="center_vertical"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginEnd="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
                                     android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
                                     android:nextFocusLeft="@id/result_season_button"
                                     android:nextFocusRight="@id/result_season_button"
@@ -778,8 +800,8 @@
                                     android:id="@+id/result_dub_select"
                                     style="@style/MultiSelectButton"
                                     android:layout_gravity="center_vertical"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginEnd="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
                                     android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_down_24"
                                     android:nextFocusLeft="@id/result_season_button"
                                     android:nextFocusRight="@id/result_season_button"
@@ -788,7 +810,23 @@
                                     android:paddingStart="10dp"
                                     android:paddingEnd="5dp"
                                     android:visibility="gone"
-                                    tools:text="Dubbed"
+                                    tools:text="Dubbed1"
+                                    tools:visibility="visible" />
+
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/result_sort_button"
+                                    style="@style/MultiSelectButton"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:nextFocusLeft="@id/result_dub_select"
+                                    android:nextFocusUp="@id/result_description"
+                                    android:nextFocusDown="@id/result_episodes"
+                                    android:paddingStart="10dp"
+                                    android:paddingEnd="5dp"
+                                    android:text="Sort"
+                                    android:visibility="gone"
                                     tools:visibility="visible" />
 
                                 <TextView
@@ -796,13 +834,15 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
                                     android:paddingTop="10dp"
                                     android:paddingBottom="10dp"
                                     android:textColor="?attr/textColor"
                                     android:textSize="17sp"
                                     android:textStyle="normal"
                                     tools:text="8 Episodes" />
-                            </LinearLayout>
+                            </com.lagradost.cloudstream3.widget.FlowLayout>
 
 
                             <!--TODO add next airing-->
