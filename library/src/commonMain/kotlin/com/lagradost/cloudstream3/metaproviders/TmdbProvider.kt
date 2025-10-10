@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.metaproviders
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.lagradost.api.Log
 import com.lagradost.cloudstream3.Actor
 import com.lagradost.cloudstream3.ErrorLoadingException
 import com.lagradost.cloudstream3.HomePageList
@@ -150,7 +151,7 @@ open class TmdbProvider : MainAPI() {
                         this.description = episode.overview
                         this.date = episode.air_date?.time
                         this.posterUrl = getImageUrl(episode.still_path)
-                        com.lagradost.cloudstream3.CommonActivity.showToast("poster: ${this.posterUrl}")
+                        Log.d("Test", "poster: ${this.posterUrl}")
                     }
                 } ?: (1..(season.episode_count ?: 1)).map { episodeNum ->
                     newEpisode(
@@ -162,7 +163,7 @@ open class TmdbProvider : MainAPI() {
                             this.name ?: this.original_name,
                         ).toJson()
                     ) {
-                        com.lagradost.cloudstream3.CommonActivity.showToast("Test")
+                        Log.d("Test", "Test")
                         this.episode = episodeNum
                         this.season = season.season_number
                     }
