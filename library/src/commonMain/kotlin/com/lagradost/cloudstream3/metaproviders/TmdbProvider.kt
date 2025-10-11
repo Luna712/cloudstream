@@ -132,9 +132,10 @@ open class TmdbProvider : MainAPI() {
     }
 
     private suspend fun TvShow.toLoadResponse(): TvSeriesLoadResponse {
-        Log.d("Test", this.seasons.firstOrNull())
+        Log.d("Test", "Season: ${this.seasons.firstOrNull()}")
         val episodes = this.seasons?.filter { !disableSeasonZero || (it.season_number ?: 0) != 0 }
             ?.mapNotNull { season ->
+                Log.d("Test", "Episode: ${season.episodes.firstOrNull()}")
                 season.episodes?.map { episode ->
                     newEpisode(
                         TmdbLink(
