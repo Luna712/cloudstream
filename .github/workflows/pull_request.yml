@@ -5,21 +5,43 @@ on: [pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v5
-    - name: Set up JDK 17
-      uses: actions/setup-java@v5
-      with:
-        java-version: '17'
-        distribution: 'adopt'
-        cache: gradle
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-    - name: Run Gradle
-      run: ./gradlew assemblePrereleaseDebug
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: pull-request-build
-        path: "app/build/outputs/apk/prerelease/debug/*.apk"
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          cache: gradle
+
+      - name: Cache Gradle build outputs
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches/build-cache-*
+            ~/.gradle/build-cache
+            .gradle/build-cache
+          key: ${{ runner.os }}-gradle-build-${{ hashFiles(
+              '**/*.gradle*',
+              '**/*.gradle.kts',
+              '**/gradle-wrapper.properties',
+              '**/libs.versions.toml',
+              '**/settings.gradle*',
+              '**/gradle.properties'
+            ) }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-build-
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Run Gradle build
+        run: ./gradlew assemblePrereleaseDebug --build-cache --configuration-cache
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pull-request-build-${{ github.event.pull_request.number || github.run_number }}
+          path: app/build/outputs/apk/prerelease/debug/*.apk
