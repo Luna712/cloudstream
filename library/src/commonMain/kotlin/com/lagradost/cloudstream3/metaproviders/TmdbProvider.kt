@@ -68,7 +68,7 @@ open class TmdbProvider : MainAPI() {
     open val apiName = "TMDB"
 
     // As some sites doesn't support s0
-    open val disableSeasonZero = true
+    open val disableSeasonZero = false
 
     override val hasMainPage = true
     override val providerType = ProviderType.MetaProvider
@@ -141,7 +141,7 @@ open class TmdbProvider : MainAPI() {
             val seasonNumber = season.season_number ?: continue
 
             val response: Response<TvSeason> = tmdb.tvSeasonsService()
-                .season(this.id, seasonNumber)
+                .season(this.id, seasonNumber, "external_ids,images,episodes")
                 .awaitResponse()
 
             val fullSeason = response.body() ?: continue
