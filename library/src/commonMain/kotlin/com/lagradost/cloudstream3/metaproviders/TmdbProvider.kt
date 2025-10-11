@@ -132,6 +132,7 @@ open class TmdbProvider : MainAPI() {
     }
 
     private suspend fun TvShow.toLoadResponse(): TvSeriesLoadResponse {
+        Log.d("Test", this.seasons.firstOrNull())
         val episodes = this.seasons?.filter { !disableSeasonZero || (it.season_number ?: 0) != 0 }
             ?.mapNotNull { season ->
                 season.episodes?.map { episode ->
