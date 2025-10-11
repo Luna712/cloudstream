@@ -120,41 +120,44 @@ open class TmdbProvider : MainAPI() {
         val tvSeasonsService = tmdb.tvSeasonsService()
         Log.d("TMDB", "Building TvShow load response for: ${this.name}")
 
-        val episodes = this.seasons
-            ?.filter { !disableSeasonZero || (it.season_number ?: 0) != 0 }
-            ?.flatMap { season ->
-                val seasonNumber = season.season_number ?: return@flatMap emptyList()
-                val seasonResponse = runCatching {
-                    tvSeasonsService.season(
+        val episodes = mutableListOf<Episode>()
+
+        val validSeasons = this.seasons?.filter { !disableSeasonZero || (it.season_number ?: 0) != 0 } ?: emptyList()
+        for (season in validSeasons) {
+            val seasonNumber = season.season_number ?: continue
+
+            val response: retrofit2.Response<com.uwetrottmann.tmdb2.entities.TvSeason> =
+                try {
+                    tvSeasonsService.season(this.id, seasonNumber, "external_ids,images,episodes").awaitResponse()
+                } catch (e: Exception) {
+                    Log.e("TMDB", "Failed to load season $seasonNumber for ${this.name}: ${e.message}")
+                    continue
+                }
+
+            val fullSeason = response.body() ?: continue
+            Log.d("TMDB", "Fetched season $seasonNumber with ${fullSeason.episodes?.size ?: 0} episodes")
+
+            fullSeason.episodes?.forEach { episode ->
+                episodes += newEpisode(
+                    TmdbLink(
+                        episode.external_ids?.imdb_id ?: this.external_ids?.imdb_id,
                         this.id,
-                        seasonNumber
-                    ).awaitResponse().body()
-                }.getOrNull()
-
-                val fullSeason = seasonResponse ?: return@flatMap emptyList()
-                Log.d("TMDB", "Fetched season $seasonNumber with ${fullSeason.episodes?.size ?: 0} episodes")
-
-                fullSeason.episodes?.map { episode ->
-                    newEpisode(
-                        TmdbLink(
-                            episode.external_ids?.imdb_id ?: this.external_ids?.imdb_id,
-                            this.id,
-                            episode.episode_number,
-                            episode.season_number,
-                            this.name ?: this.original_name
-                        ).toJson()
-                    ) {
-                        this.name = episode.name
-                        this.season = episode.season_number
-                        this.episode = episode.episode_number
-                        this.score = Score.from10(episode.vote_average)
-                        this.description = episode.overview
-                        this.date = episode.air_date?.time
-                        this.posterUrl = getImageUrl(episode.still_path)
-                        Log.d("TMDB", "Episode S${episode.season_number}E${episode.episode_number} → ${episode.name}")
-                    }
-                } ?: emptyList()
-            } ?: emptyList()
+                        episode.episode_number,
+                        episode.season_number,
+                        this.name ?: this.original_name
+                    ).toJson()
+                ) {
+                    this.name = episode.name
+                    this.season = episode.season_number
+                    this.episode = episode.episode_number
+                    this.score = Score.from10(episode.vote_average)
+                    this.description = episode.overview
+                    this.date = episode.air_date?.time
+                    this.posterUrl = getImageUrl(episode.still_path)
+                    Log.d("TMDB", "Episode S${episode.season_number}E${episode.episode_number}: ${episode.name}")
+                }
+            }
+        }
 
         return newTvSeriesLoadResponse(
             this.name ?: this.original_name,
@@ -163,20 +166,15 @@ open class TmdbProvider : MainAPI() {
             episodes
         ) {
             posterUrl = getImageUrl(poster_path)
-            year = first_air_date?.let {
-                Calendar.getInstance().apply { time = it }.get(Calendar.YEAR)
-            }
+            year = first_air_date?.let { Calendar.getInstance().apply { time = it }.get(Calendar.YEAR) }
             plot = overview
             addImdbId(external_ids?.imdb_id)
-
             tags = genres?.mapNotNull { it.name }
             duration = episode_run_time?.average()?.toInt()
             score = Score.from10(vote_average)
             addTrailer(videos.toTrailers())
-
-            recommendations = (this@toLoadResponse.recommendations
-                ?: this@toLoadResponse.similar)?.results?.map { it.toSearchResponse() }
-
+            recommendations = (this@toLoadResponse.recommendations ?: this@toLoadResponse.similar)
+                ?.results?.map { it.toSearchResponse() }
             addActors(credits?.cast?.toList().toActors())
             contentRating = fetchContentRating(id, "US")
         }
