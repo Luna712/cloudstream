@@ -185,9 +185,8 @@ open class TmdbProvider : MainAPI() {
             duration = episode_run_time?.average()?.toInt()
             score = Score.from10(vote_average)
             addTrailer(videos.toTrailers())
-
-            recommendations = (this@toLoadResponse.recommendations ?: this@toLoadResponse.similar)
-                ?.results?.map { it.toSearchResponse() }
+            recommendations = (this@toLoadResponse.recommendations
+                ?: this@toLoadResponse.similar)?.results?.map { it.toSearchResponse() }
             addActors(credits?.cast?.toList().toActors())
             contentRating = fetchContentRating(id, "US")
         }
