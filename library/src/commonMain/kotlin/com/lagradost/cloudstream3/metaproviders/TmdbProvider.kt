@@ -68,7 +68,7 @@ open class TmdbProvider : MainAPI() {
     open val apiName = "TMDB"
 
     // As some sites doesn't support s0
-    open val disableSeasonZero = false
+    open val disableSeasonZero = true
 
     override val hasMainPage = true
     override val providerType = ProviderType.MetaProvider
@@ -174,13 +174,18 @@ open class TmdbProvider : MainAPI() {
             episodes
         ) {
             posterUrl = getImageUrl(poster_path)
-            year = first_air_date?.let { Calendar.getInstance().apply { time = it }.get(Calendar.YEAR) }
+            year = first_air_date?.let {
+                Calendar.getInstance().apply {
+                    time = it
+                }.get(Calendar.YEAR)
+            }
             plot = overview
             addImdbId(external_ids?.imdb_id)
             tags = genres?.mapNotNull { it.name }
             duration = episode_run_time?.average()?.toInt()
             score = Score.from10(vote_average)
             addTrailer(videos.toTrailers())
+
             recommendations = (this@toLoadResponse.recommendations ?: this@toLoadResponse.similar)
                 ?.results?.map { it.toSearchResponse() }
             addActors(credits?.cast?.toList().toActors())
