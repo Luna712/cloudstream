@@ -51,10 +51,6 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="36">
 
-        <property
-            android:name="android.window.PROPERTY_COMPAT_ALLOW_RESTRICTED_RESIZABILITY"
-            android:value="true" />
-
         <meta-data
             android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
             android:value="com.lagradost.cloudstream3.utils.CastOptionsProvider" />
@@ -247,6 +243,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+        <!--TODO: Temporarily opt out of forced layout changes in sdk 36. Needs to be addressed before updating to sdk 37 -->
+        <property android:name="android.window.PROPERTY_COMPAT_ALLOW_RESTRICTED_RESIZABILITY" android:value="true" />
     </application>
     
 </manifest>
