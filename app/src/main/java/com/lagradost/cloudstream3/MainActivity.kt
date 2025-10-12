@@ -1270,9 +1270,31 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             null
         }
 
-        binding?.root?.setOnApplyWindowInsetsListener { view, insets ->
+        /*binding?.root?.setOnApplyWindowInsetsListener { view, insets ->
             val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
             view.updatePadding(bottom = systemBars.bottom)
+            WindowInsets.CONSUMED
+        }*/
+        binding?.navView?.setOnApplyWindowInsetsListener { view, insets ->
+            val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
+            val orientation = view.resources.configuration.orientation
+
+            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                // Navigation bar at the bottom
+                view.updatePadding(
+                    left = 0,
+                    right = 0,
+                    bottom = systemBars.bottom
+                )
+            } else {
+                // Navigation bars move to the sides (usually on landscape)
+                view.updatePadding(
+                    left = systemBars.left,
+                    right = systemBars.right,
+                    bottom = 0
+                )
+            }
+
             WindowInsets.CONSUMED
         }
 
