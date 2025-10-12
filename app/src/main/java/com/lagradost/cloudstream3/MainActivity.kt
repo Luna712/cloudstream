@@ -40,6 +40,7 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.core.view.marginStart
 import androidx.core.view.updateLayoutParams
+import androidx.core.view.updatePadding
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.FragmentActivity
@@ -1274,19 +1275,19 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
 
         ViewCompat.setOnApplyWindowInsetsListener(binding!!.root) { view, insets ->
         //binding?.root?.setOnApplyWindowInsetsListener { view, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            //val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             /*v.updateLayoutParams<MarginLayoutParams> {
                 leftMargin = insets.left
                 bottomMargin = insets.bottom
                 rightMargin = insets.right
             }*/
-            view.setPadding(
+            /*view.setPadding(
                 systemBars.left,
                 systemBars.top,
                 systemBars.right,
                 systemBars.bottom
-            )
-            //view.updatePadding(bottom = insets.systemWindowInsetBottom)
+            )*/
+            view.updatePadding(bottom = insets.systemWindowInsetBottom)
 
             WindowInsetsCompat.CONSUMED
         }
