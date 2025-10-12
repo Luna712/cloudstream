@@ -184,7 +184,6 @@
         <item name="white">@color/DraculaTextColor</item>
         <item name="black">@color/DraculaPrimaryGrayBackground</item>
         <item name="colorOnPrimary">@color/DraculaTextColor</item>
-        <item name="android:navigationBarColor">@color/DraculaPrimaryGrayBackground</item>
     </style>
 
     <style name="LavenderMode">
