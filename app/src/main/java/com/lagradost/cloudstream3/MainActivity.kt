@@ -1275,7 +1275,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             view.updatePadding(bottom = systemBars.bottom)
             WindowInsets.CONSUMED
         }*/
-        binding?.navView?.setOnApplyWindowInsetsListener { view, insets ->
+        binding?.root?.setOnApplyWindowInsetsListener { view, insets ->
             val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
             val orientation = view.resources.configuration.orientation
 
