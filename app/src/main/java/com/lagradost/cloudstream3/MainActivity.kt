@@ -1272,19 +1272,21 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             null
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+        // ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+        binding?.root.setOnApplyWindowInsetsListener { view, insets ->
+            // val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             /*v.updateLayoutParams<MarginLayoutParams> {
                 leftMargin = insets.left
                 bottomMargin = insets.bottom
                 rightMargin = insets.right
             }*/
-            view.setPadding(
+            /* view.setPadding(
                 systemBars.left,
                 systemBars.top,
                 systemBars.right,
                 systemBars.bottom
-            )
+            )*/
+            view.updatePadding(bottom = insets.systemWindowInsetBottom)
 
             WindowInsetsCompat.CONSUMED
         }
