@@ -1271,26 +1271,15 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             null
         }
 
+        // Handle Android 15+ edge-to-edge design
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) { // Android 15+
             binding?.root?.setOnApplyWindowInsetsListener { view, insets ->
                 val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
-                val orientation = view.resources.configuration.orientation
-
-                // if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-                // Navigation bar at the bottom
                 view.updatePadding(
                     left = systemBars.left,
                     right = systemBars.right,
                     bottom = systemBars.bottom
                 )
-                /* } else {
-                    // Navigation bar on the side (landscape mode)
-                    view.updatePadding(
-                        left = systemBars.left,
-                        right = systemBars.right,
-                        bottom = 0
-                    )
-                } */
 
                 WindowInsets.CONSUMED
             }
