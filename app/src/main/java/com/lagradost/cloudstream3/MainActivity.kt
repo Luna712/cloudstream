@@ -10,6 +10,7 @@ import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.graphics.Rect
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.AttributeSet
 import android.util.Log
@@ -1270,27 +1271,29 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             null
         }
 
-        binding?.root?.setOnApplyWindowInsetsListener { view, insets ->
-            val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
-            val orientation = view.resources.configuration.orientation
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) { // Android 15+
+            binding?.root?.setOnApplyWindowInsetsListener { view, insets ->
+                val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
+                val orientation = view.resources.configuration.orientation
 
-            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                // if (orientation == Configuration.ORIENTATION_PORTRAIT) {
                 // Navigation bar at the bottom
-                view.updatePadding(
-                    left = 0,
-                    right = 0,
-                    bottom = systemBars.bottom
-                )
-            } else {
-                // Navigation bars move to the sides (usually on landscape)
                 view.updatePadding(
                     left = systemBars.left,
                     right = systemBars.right,
-                    bottom = 0
+                    bottom = systemBars.bottom
                 )
-            }
+                /* } else {
+                    // Navigation bar on the side (landscape mode)
+                    view.updatePadding(
+                        left = systemBars.left,
+                        right = systemBars.right,
+                        bottom = 0
+                    )
+                } */
 
-            WindowInsets.CONSUMED
+                WindowInsets.CONSUMED
+            }
         }
 
         // overscan
