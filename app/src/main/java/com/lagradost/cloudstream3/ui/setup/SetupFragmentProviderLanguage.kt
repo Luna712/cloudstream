@@ -40,7 +40,7 @@ class SetupFragmentProviderLanguage : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fixPaddingSystemBars(binding?.setupRoot)
+        fixPaddingSystemBars(view)
 
         safe {
             val ctx = context ?: return@safe
