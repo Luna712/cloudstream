@@ -380,12 +380,12 @@ object UIHelper {
     fun fixPaddingStatusbar(v: View?) {
         if (v == null) return
         val ctx = v.context ?: return
-        /*v.setPadding(
+        v.setPadding(
             v.paddingLeft,
             v.paddingTop + ctx.getStatusBarHeight(),
             v.paddingRight,
             v.paddingBottom
-        )*/
+        )
     }
 
     fun fixPaddingStatusbarMargin(v: View?) {
@@ -427,7 +427,7 @@ object UIHelper {
 
                 WindowInsets.CONSUMED
             }
-        }
+        } else fixPaddingStatusbar(v)
     }
 
     fun Context.getNavigationBarHeight(): Int {
