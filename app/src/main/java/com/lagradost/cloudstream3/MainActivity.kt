@@ -559,11 +559,11 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
                 if (landscape) {
                     navRailView.isVisible = true
                     navView.isVisible = false
-                    fixPaddingSystemBars(navRailView)
+                    fixPaddingSystemBars(navRailView.root)
                 } else {
                     navRailView.isVisible = false
                     navView.isVisible = true
-                    fixPaddingSystemBars(navView)
+                    fixPaddingSystemBars(navView.root)
                 }
             } else {
                 navRailView.isVisible = false
