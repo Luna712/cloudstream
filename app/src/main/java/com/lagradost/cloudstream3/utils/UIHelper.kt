@@ -424,7 +424,8 @@ object UIHelper {
                     bottom = systemBars.bottom
                 )
 
-                WindowInsets.CONSUMED
+                // WindowInsets.CONSUMED
+                insets
             }
         }
     }
