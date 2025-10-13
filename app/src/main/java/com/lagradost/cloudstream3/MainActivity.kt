@@ -555,8 +555,21 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         }
 
         binding?.apply {
-            navRailView.isVisible = isNavVisible && landscape
-            navView.isVisible = isNavVisible && !landscape
+            if (isNavVisible) {
+                if (landscape) {
+                    navRailView.isVisible = true
+                    navView.isVisible = false
+                    fixPaddingSystemBars(navRailView)
+                } else {
+                    navRailView.isVisible = false
+                    navView.isVisible = true
+                    fixPaddingSystemBars(navView)
+                }
+            } else {
+                navRailView.isVisible = false
+                navView.isVisible = false
+            }
+
             navHostFragment.layoutParams = (navHostFragment.layoutParams as ViewGroup.MarginLayoutParams).apply {
                 marginStart = if (isNavVisible && landscape && isLayout(TV or EMULATOR)) 62.toPx else 0
             }
@@ -1268,8 +1281,6 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             showToast(txt(R.string.unable_to_inflate, t.message ?: ""), Toast.LENGTH_LONG)
             null
         }
-
-        fixPaddingSystemBars(binding?.root)
 
         // overscan
         val padding = settingsManager.getInt(getString(R.string.overscan_key), 0).toPx
