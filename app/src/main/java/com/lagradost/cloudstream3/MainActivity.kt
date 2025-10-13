@@ -1262,14 +1262,13 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             } else {
                 val newLocalBinding = ActivityMainBinding.inflate(layoutInflater, null, false)
                 setContentView(newLocalBinding.root)
+                fixPaddingSystemBars(newLocalBinding.navView)
                 newLocalBinding
             }
         } catch (t: Throwable) {
             showToast(txt(R.string.unable_to_inflate, t.message ?: ""), Toast.LENGTH_LONG)
             null
         }
-
-        fixPaddingSystemBars(binding?.root)
 
         // overscan
         val padding = settingsManager.getInt(getString(R.string.overscan_key), 0).toPx
