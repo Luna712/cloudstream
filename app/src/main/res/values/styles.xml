@@ -88,6 +88,7 @@
     <style name="AmoledModeLight" parent="AmoledMode">
         <item name="primaryGrayBackground">@color/amoledModeLight</item>
         <item name="boxItemBackground">@color/amoledModeLight</item>
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 
     <style name="ChipFilled" parent="@style/Widget.Material3.Chip.Filter">
@@ -172,6 +173,8 @@
         <item name="black">@color/white</item>
 
         <item name="colorOnPrimary">@color/blackText</item>
+
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 
     <style name="DraculaMode">
@@ -196,6 +199,7 @@
         <item name="white">@color/LavenderTextColor</item>
         <item name="black">@color/LavenderPrimaryGrayBackground</item>
         <item name="colorOnPrimary">@color/LavenderTextColor</item>
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 
     <style name="MonetMode">
