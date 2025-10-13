@@ -380,12 +380,12 @@ object UIHelper {
     fun fixPaddingStatusbar(v: View?) {
         if (v == null) return
         val ctx = v.context ?: return
-        v.setPadding(
+        /*v.setPadding(
             v.paddingLeft,
             v.paddingTop + ctx.getStatusBarHeight(),
             v.paddingRight,
             v.paddingBottom
-        )
+        )*/
     }
 
     fun fixPaddingStatusbarMargin(v: View?) {
@@ -421,7 +421,8 @@ object UIHelper {
                 view.updatePadding(
                     left = systemBars.left,
                     right = systemBars.right,
-                    bottom = systemBars.bottom
+                    bottom = systemBars.bottom,
+                    top = systemBars.top
                 )
 
                 WindowInsets.CONSUMED
