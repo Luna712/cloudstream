@@ -1270,7 +1270,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             null
         }
 
-        fixPaddingSystemBars(binding?.root)
+        fixPaddingSystemBars(binding?.bottomPadding)
 
         // overscan
         val padding = settingsManager.getInt(getString(R.string.overscan_key), 0).toPx
