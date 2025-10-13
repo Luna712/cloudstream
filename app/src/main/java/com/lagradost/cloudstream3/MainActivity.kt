@@ -33,6 +33,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
+import androidx.core.view.doOnLayout
 import androidx.core.view.get
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
@@ -1262,12 +1263,15 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             } else {
                 val newLocalBinding = ActivityMainBinding.inflate(layoutInflater, null, false)
                 setContentView(newLocalBinding.root)
-                fixPaddingSystemBars(newLocalBinding.navView)
                 newLocalBinding
             }
         } catch (t: Throwable) {
             showToast(txt(R.string.unable_to_inflate, t.message ?: ""), Toast.LENGTH_LONG)
             null
+        }
+
+        binding?.navView?.doOnLayout {
+            fixPaddingSystemBars(binding?.navView)
         }
 
         // overscan
