@@ -377,8 +377,7 @@ object UIHelper {
         return result
     }
 
-    private fun fixPaddingStatusbar(v: View?) {
-        if (v == null) return
+    private fun fixPaddingStatusbar(v: View) {
         val ctx = v.context ?: return
         v.setPadding(
             v.paddingLeft,
