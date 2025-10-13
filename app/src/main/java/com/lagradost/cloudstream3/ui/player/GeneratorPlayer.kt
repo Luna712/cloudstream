@@ -116,7 +116,6 @@ import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.cloudstream3.utils.UIHelper.clipboardHelper
 import com.lagradost.cloudstream3.utils.UIHelper.colorFromAttribute
 import com.lagradost.cloudstream3.utils.UIHelper.dismissSafe
-import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingStatusbar
 import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingSystemBars
 import com.lagradost.cloudstream3.utils.UIHelper.hideSystemUI
 import com.lagradost.cloudstream3.utils.UIHelper.popCurrentPage
@@ -622,8 +621,6 @@ class GeneratorPlayer : FullScreenPlayer() {
         val binding =
             DialogOnlineSubtitlesBinding.inflate(LayoutInflater.from(context), null, false)
         dialog.setContentView(binding.root)
-
-        fixPaddingStatusbar(binding.root)
         fixPaddingSystemBars(binding.root)
 
         var currentSubtitles: List<AbstractSubtitleEntities.SubtitleEntity> = emptyList()
@@ -1046,8 +1043,6 @@ class GeneratorPlayer : FullScreenPlayer() {
                 val binding =
                     PlayerSelectSourceAndSubsBinding.inflate(LayoutInflater.from(ctx), null, false)
                 sourceDialog.setContentView(binding.root)
-
-                fixPaddingStatusbar(binding.root)
                 fixPaddingSystemBars(binding.root)
 
                 selectSourceDialog = sourceDialog
@@ -1405,8 +1400,6 @@ class GeneratorPlayer : FullScreenPlayer() {
                 val trackDialog = Dialog(ctx, R.style.AlertDialogCustomBlack)
                 trackDialog.setContentView(binding.root)
                 trackDialog.show()
-
-                fixPaddingStatusbar(binding.root)
                 fixPaddingSystemBars(binding.root)
 
 //                selectTracksDialog = tracksDialog
