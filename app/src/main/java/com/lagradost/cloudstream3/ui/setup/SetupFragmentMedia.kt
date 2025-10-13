@@ -40,7 +40,7 @@ class SetupFragmentMedia : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         safe {
-            fixPaddingSystemBars(view)
+            fixPaddingSystemBars(binding?.setupRoot)
 
             val ctx = context ?: return@safe
             val settingsManager = PreferenceManager.getDefaultSharedPreferences(ctx)

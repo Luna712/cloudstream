@@ -173,7 +173,7 @@ class ChromecastSubtitlesFragment : Fragment() {
         onColorSelectedEvent += ::onColorSelected
         onDialogDismissedEvent += ::onDialogDismissed
 
-        fixPaddingSystemBars(view)
+        fixPaddingSystemBars(binding?.subsRoot)
 
         state = getCurrentSavedStyle()
         updateState()

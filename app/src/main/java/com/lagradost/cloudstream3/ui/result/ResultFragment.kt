@@ -300,8 +300,6 @@ object ResultFragment {
         context?.updateHasTrailers()
         activity?.loadCache()
 
-        //activity?.fixPaddingStatusbar(result_barstatus)
-
         /* val backParameter = result_back.layoutParams as FrameLayout.LayoutParams
          backParameter.setMargins(
              backParameter.leftMargin,
@@ -310,8 +308,6 @@ object ResultFragment {
              backParameter.bottomMargin
          )
          result_back.layoutParams = backParameter*/
-
-        // activity?.fixPaddingStatusbar(result_toolbar)
 
         val storedData = (activity ?: context)?.let {
             getStoredData(it)
