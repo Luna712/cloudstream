@@ -384,8 +384,8 @@ class SubtitlesFragment : DialogFragment() {
             context?.getExternalFilesDir(null)?.absolutePath.toString() + "/Fonts"
         )
 
-        fixPaddingStatusbar(binding?.subsRoot)
-        fixPaddingSystemBars(binding?.subsRoot)
+        fixPaddingStatusbar(view)
+        fixPaddingSystemBars(view)
 
         state = getCurrentSavedStyle()
         context?.updateState()
