@@ -31,6 +31,7 @@ import android.widget.ListView
 import android.widget.Toast.LENGTH_LONG
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
+import androidx.annotation.DimenRes
 import androidx.annotation.StyleRes
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.appcompat.view.menu.MenuBuilder
@@ -413,11 +414,12 @@ object UIHelper {
     }
 
     fun fixPaddingSystemBars(
-		v: View?,
-		setHeight: Boolean = false,
-		setWidth: Boolean = false
-	) {
+        v: View?,
+        @DimenRes heightResId: Int? = null,
+        @DimenRes widthResId: Int? = null
+    ) {
         if (v == null) return
+
         // Handle Android 15+ edge-to-edge design
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) { // Android 15+
             v.setOnApplyWindowInsetsListener { view, insets ->
@@ -428,15 +430,17 @@ object UIHelper {
                     bottom = systemBars.bottom
                 )
 
-                if (setHeight) {
+                heightResId?.let {
+                    val heightPx = view.resources.getDimensionPixelSize(it)
                     view.updateLayoutParams {
-                        height = 70.toPx + systemBars.bottom
-					}
+                        height = heightPx + systemBars.bottom
+                    }
                 }
 
-                if (setWidth) {
+                widthResId?.let {
+                    val widthPx = view.resources.getDimensionPixelSize(it)
                     view.updateLayoutParams {
-						width = 62.toPx + systemBars.left + systemBars.right
+                        width = widthPx + systemBars.left + systemBars.right
                     }
                 }
 
