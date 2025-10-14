@@ -238,7 +238,7 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fixPaddingStatusbar(binding?.searchRoot)
-        fixPaddingSystemBars(binding?.searchRoot)
+        fixPaddingSystemBars(binding?.searchRoot, padBottom = false)
 
         fixGrid()
         reloadRepos()
