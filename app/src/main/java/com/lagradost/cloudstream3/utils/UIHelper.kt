@@ -425,7 +425,7 @@ object UIHelper {
                 )
 
                 if (height) {
-                    v.updateLayoutParams {
+                    view.updateLayoutParams {
                         height = 70.toPx + bars.bottom
                     }
                 }
