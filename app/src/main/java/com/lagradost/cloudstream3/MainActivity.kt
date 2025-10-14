@@ -1270,8 +1270,15 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         }
 
         //fixPaddingSystemBars(binding?.navHostFragment)
-        fixPaddingSystemBars(binding?.navView, true)
-        fixPaddingSystemBars(binding?.navRailView, false, true)
+        fixPaddingSystemBars(
+            v = binding?.navView,
+            heightResId = R.dimen.nav_view_height
+        )
+
+        fixPaddingSystemBars(
+            v = binding?.navRailView,
+            widthResId = R.dimen.nav_rail_view_width
+        )
 
         // overscan
         val padding = settingsManager.getInt(getString(R.string.overscan_key), 0).toPx
