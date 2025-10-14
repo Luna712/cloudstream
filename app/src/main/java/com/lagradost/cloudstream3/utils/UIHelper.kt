@@ -450,7 +450,9 @@ object UIHelper {
                     val widthPx = view.resources.getDimensionPixelSize(it)
                     showToast(systemBars.left.toString() + "|" + systemBars.right.toString())
                     view.updateLayoutParams {
-                        width = widthPx + systemBars.left
+                        if (systemBars.left > 0) {
+                            width = widthPx + systemBars.left
+                        } else width = widthPx
                     }
                 }
 
