@@ -167,6 +167,7 @@ import com.lagradost.cloudstream3.utils.UIHelper.colorFromAttribute
 import com.lagradost.cloudstream3.utils.UIHelper.dismissSafe
 import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingSystemBars
 import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingSystemBars2
+import com.lagradost.cloudstream3.utils.UIHelper.setupEdgeToEdge
 import com.lagradost.cloudstream3.utils.UIHelper.getResourceColor
 import com.lagradost.cloudstream3.utils.UIHelper.hideKeyboard
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
@@ -1271,11 +1272,12 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             null
         }
 
-        fixPaddingSystemBars(binding?.navHostFragment)
-        fixPaddingSystemBars2(binding?.navHostFragment)
+        //fixPaddingSystemBars(binding?.navHostFragment)
+        //fixPaddingSystemBars2(binding?.navHostFragment)
         //fixPaddingSystemBars(binding?.homeRoot)
         //fixPaddingSystemBars2(binding?.navView)
         //fixPaddingSystemBars(binding?.navView)
+        setupEdgeToEdge(binding!!)
 
         // overscan
         val padding = settingsManager.getInt(getString(R.string.overscan_key), 0).toPx
