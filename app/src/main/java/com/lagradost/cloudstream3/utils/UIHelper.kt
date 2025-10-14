@@ -423,9 +423,6 @@ object UIHelper {
                     right = systemBars.right,
                     bottom = systemBars.bottom
                 )
-                view.updateLayoutParams {
-                    height = nav.bottom
-                }
 
                 // WindowInsets.CONSUMED
                 insets
@@ -440,7 +437,7 @@ object UIHelper {
             v.setOnApplyWindowInsetsListener { view, insets ->
                 val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
                 view.updateLayoutParams {
-                    height = nav.bottom
+                    height = systemBars.bottom
                 }
 
                 // WindowInsets.CONSUMED
