@@ -430,13 +430,11 @@ object UIHelper {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) { // Android 15+
             v.setOnApplyWindowInsetsListener { view, insets ->
                 val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
-                if (heightResId == null && widthResId == null) {
-                    view.updatePadding(
-                        left = systemBars.left,
-                        right = systemBars.right,
-                        bottom = systemBars.bottom
-                    )
-                }
+                view.updatePadding(
+                    left = systemBars.left,
+                    right = systemBars.right,
+                    bottom = systemBars.bottom
+                )
 
                 // These are used to support both the bottom and rail navigation views
                 // so that we expand the dimensions to add room for the system bar, so
@@ -451,6 +449,7 @@ object UIHelper {
                 widthResId?.let {
                     val widthPx = view.resources.getDimensionPixelSize(it)
                     view.updateLayoutParams {
+                        showToast(systemBars.left.toString() + "|" systemBars.right.toString())
                         width = widthPx + systemBars.left
                     }
                 }
