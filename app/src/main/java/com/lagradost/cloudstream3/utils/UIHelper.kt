@@ -412,7 +412,7 @@ object UIHelper {
         v.layoutParams = params
     }
 
-    fun fixPaddingSystemBars(v: View?, height: Boolean = false) {
+    fun fixPaddingSystemBars(v: View?, setHeight: Boolean = false) {
         if (v == null) return
         // Handle Android 15+ edge-to-edge design
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) { // Android 15+
@@ -424,7 +424,7 @@ object UIHelper {
                     bottom = systemBars.bottom
                 )
 
-                if (height) {
+                if (setHeight) {
                     view.updateLayoutParams {
                         height = 70.toPx + systemBars.bottom
                     }
