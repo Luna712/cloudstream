@@ -422,7 +422,7 @@ object UIHelper {
             v.setOnApplyWindowInsetsListener { view, insets ->
                 val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
                 // If we are changing the dimensions, we dont need to update padding.
-                if (heightResId || widthResId) {
+                if (heightResId != null || widthResId != null) {
                     view.updatePadding(
                         left = systemBars.left,
                         right = systemBars.right,
