@@ -330,6 +330,7 @@ open class ResultFragmentPhone : FullScreenPlayer() {
 
         // ===== setup =====
         UIHelper.fixPaddingStatusbar(binding?.resultTopBar)
+        UIHelper.fixPaddingSystemBars(binding?.root)
         val storedData = getStoredData() ?: return
         activity?.window?.decorView?.clearFocus()
         activity?.loadCache()
