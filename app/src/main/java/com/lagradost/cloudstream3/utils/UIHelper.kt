@@ -430,7 +430,7 @@ object UIHelper {
     }
 
     fun fixPaddingSystemBars2(v: View?) {
-        if (v == null) return
+        /*if (v == null) return
         // Handle Android 15+ edge-to-edge design
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) { // Android 15+
             v.setOnApplyWindowInsetsListener { view, insets ->
@@ -441,7 +441,12 @@ object UIHelper {
 
                 WindowInsets.CONSUMED
             }
-        }
+        }*/
+        if (v == null) return
+        val ctx = v.context ?: return
+        val params = v.layoutParams
+        params.height = ctx.getNavigationBarHeight()
+        v.layoutParams = params
     }
 
     fun Context.getNavigationBarHeight(): Int {
