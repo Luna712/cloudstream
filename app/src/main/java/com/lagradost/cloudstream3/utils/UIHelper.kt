@@ -365,6 +365,14 @@ object UIHelper {
         //}
     }
 
+    fun Activity.setNavigationBarColorCompat(@AttrRes resourceId: Int) {
+        // This has no affect on Android 15+ with edge-to-edge design.
+        // fixPaddingSystemBars handles this appropriately.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) return
+        @Suppress("DEPRECATION")
+        window.navigationBarColor = colorFromAttribute(resourceId)
+    }
+
     fun Context.getStatusBarHeight(): Int {
         if (isLayout(Globals.TV or EMULATOR)) {
             return 0
