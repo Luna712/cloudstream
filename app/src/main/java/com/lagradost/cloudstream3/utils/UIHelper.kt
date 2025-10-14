@@ -423,9 +423,9 @@ object UIHelper {
         v: View?,
         @DimenRes heightResId: Int? = null,
         @DimenRes widthResId: Int? = null,
-        padLeft: Boolean = true,
-        padRight: Boolean = false,
-        padBottom: Boolean = false
+        padLeft: Boolean = false,
+        padRight: Boolean = true,
+        padBottom: Boolean = true
     ) {
         if (v == null) return
 
