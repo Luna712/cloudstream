@@ -423,6 +423,25 @@ object UIHelper {
                     right = systemBars.right,
                     bottom = systemBars.bottom
                 )
+                view.updateLayoutParams {
+                    height = nav.bottom
+                }
+
+                // WindowInsets.CONSUMED
+                insets
+            }
+        }
+    }
+
+    fun fixPaddingSystemBars2(v: View?) {
+        if (v == null) return
+        // Handle Android 15+ edge-to-edge design
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) { // Android 15+
+            v.setOnApplyWindowInsetsListener { view, insets ->
+                val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
+                view.updateLayoutParams {
+                    height = nav.bottom
+                }
 
                 // WindowInsets.CONSUMED
                 insets
