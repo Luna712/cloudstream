@@ -436,7 +436,11 @@ fun Activity.setupEdgeToEdge(binding: ActivityMainBinding) {
         )
 
         // The nav bar itself draws behind, not padded
-        binding.navView.setPadding(0, 0, 0, 0)
+        //binding.navView.setPadding(0, 0, 0, 0)
+        // Apply padding to content area
+        binding.navView.updatePadding(
+            bottom = bars.bottom
+        )
 
         insets
     }
