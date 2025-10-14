@@ -412,7 +412,7 @@ object UIHelper {
         v.layoutParams = params
     }
 
-    fun fixPaddingSystemBars(v: View?, setHeight: Boolean = false) {
+    fun fixPaddingSystemBars2(v: View?, setHeight: Boolean = false) {
         if (v == null) return
         // Handle Android 15+ edge-to-edge design
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) { // Android 15+
@@ -434,6 +434,48 @@ object UIHelper {
             }
         }
     }
+    fun fixPaddingSystemBars(
+	v: View?,
+	setHeight: Boolean = false,
+	setWidth: Boolean = false
+) {
+	if (v == null) return
+
+	// Handle Android 15+ edge-to-edge design
+	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) { // Android 15+
+		var originalHeight = 0
+		var originalWidth = 0
+
+		v.setOnApplyWindowInsetsListener { view, insets ->
+			val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
+			view.updatePadding(
+				left = systemBars.left,
+				right = systemBars.right,
+				bottom = systemBars.bottom
+			)
+
+			view.updateLayoutParams {
+				if (setHeight) {
+					// Capture original height once so that it doesn't keep adding more height
+					if (originalHeight == 0) {
+						originalHeight = view.height
+					}
+					height = originalHeight + systemBars.bottom
+				}
+
+				if (setWidth) {
+					// Capture original width once so that it doesn't keep adding more width
+					if (originalWidth == 0) {
+						originalWidth = view.width
+					}
+					width = originalWidth + systemBars.left + systemBars.right
+				}
+			}
+
+			WindowInsets.CONSUMED
+		}
+	}
+}
 
     fun Context.getNavigationBarHeight(): Int {
         var result = 0
