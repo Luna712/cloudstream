@@ -74,6 +74,11 @@ import kotlin.math.roundToInt
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.disableBackPressedCallback
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.enableBackPressedCallback
 
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import com.lagradost.cloudstream3.databinding.ActivityMainBinding
+
 object UIHelper {
     val Int.toPx: Int get() = (this * Resources.getSystem().displayMetrics.density).toInt()
     val Float.toPx: Float get() = (this * Resources.getSystem().displayMetrics.density)
@@ -411,6 +416,31 @@ object UIHelper {
         params.height = ctx.getStatusBarHeight()
         v.layoutParams = params
     }
+
+fun Activity.setupEdgeToEdge(binding: ActivityMainBinding) {
+    WindowCompat.setDecorFitsSystemWindows(window, false)
+
+    ViewCompat.setOnApplyWindowInsetsListener(binding.homeRoot) { _, insets ->
+        val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+        // Apply padding to content area
+        binding.navHostFragment.updatePadding(
+            top = bars.top,
+            bottom = bars.bottom
+        )
+
+        // Side nav rail gets start padding if needed (landscape gesture area)
+        binding.navRailView.updatePadding(
+            left = bars.left,
+            right = bars.right
+        )
+
+        // The nav bar itself draws behind, not padded
+        binding.navView.setPadding(0, 0, 0, 0)
+
+        insets
+    }
+}
 
     fun fixPaddingSystemBars(v: View?) {
         if (v == null) return
