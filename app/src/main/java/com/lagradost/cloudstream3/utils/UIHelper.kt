@@ -449,7 +449,7 @@ object UIHelper {
                 widthResId?.let {
                     val widthPx = view.resources.getDimensionPixelSize(it)
                     view.updateLayoutParams {
-                        width = widthPx + systemBars.left + systemBars.right
+                        width = widthPx + systemBars.left
                     }
                 }
 
