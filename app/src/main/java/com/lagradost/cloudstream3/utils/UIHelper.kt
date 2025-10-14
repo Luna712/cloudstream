@@ -434,7 +434,7 @@ object UIHelper {
                 val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
                 view.updatePadding(
                     left = systemBars.left,
-                    right = systemBars.right,,
+                    right = systemBars.right,
                     bottom = systemBars.bottom,
                     top = systemBars.top
                 )
