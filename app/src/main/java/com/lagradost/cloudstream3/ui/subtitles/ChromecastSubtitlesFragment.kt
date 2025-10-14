@@ -34,6 +34,7 @@ import com.lagradost.cloudstream3.utils.DataStore.setKey
 import com.lagradost.cloudstream3.utils.Event
 import com.lagradost.cloudstream3.utils.SingleSelectionHelper.showDialog
 import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingStatusbar
+import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingSystemBars
 import com.lagradost.cloudstream3.utils.UIHelper.hideSystemUI
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
 import com.lagradost.cloudstream3.utils.UIHelper.popCurrentPage
@@ -174,6 +175,7 @@ class ChromecastSubtitlesFragment : Fragment() {
         onDialogDismissedEvent += ::onDialogDismissed
 
         fixPaddingStatusbar(binding?.subsRoot)
+        fixPaddingSystemBars(binding?.subsRoot)
 
         state = getCurrentSavedStyle()
         updateState()

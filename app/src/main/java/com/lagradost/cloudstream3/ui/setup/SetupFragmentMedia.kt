@@ -16,7 +16,7 @@ import com.lagradost.cloudstream3.databinding.FragmentSetupMediaBinding
 import com.lagradost.cloudstream3.mvvm.safe
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingStatusbar
-
+import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingSystemBars
 
 class SetupFragmentMedia : Fragment() {
     var binding: FragmentSetupMediaBinding? = null
@@ -41,6 +41,7 @@ class SetupFragmentMedia : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         safe {
             fixPaddingStatusbar(binding?.setupRoot)
+            fixPaddingSystemBars(binding?.setupRoot)
 
             val ctx = context ?: return@safe
             val settingsManager = PreferenceManager.getDefaultSharedPreferences(ctx)

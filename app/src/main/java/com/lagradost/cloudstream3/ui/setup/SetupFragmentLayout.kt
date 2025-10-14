@@ -14,6 +14,7 @@ import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.databinding.FragmentSetupLayoutBinding
 import com.lagradost.cloudstream3.mvvm.safe
 import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingStatusbar
+import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingSystemBars
 import org.acra.ACRA
 
 
@@ -39,6 +40,7 @@ class SetupFragmentLayout : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fixPaddingStatusbar(binding?.setupRoot)
+        fixPaddingSystemBars(binding?.setupRoot)
 
         safe {
             val ctx = context ?: return@safe
