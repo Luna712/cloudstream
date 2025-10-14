@@ -370,7 +370,7 @@ object UIHelper {
         // fixPaddingSystemBars handles this appropriately.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) return
         @Suppress("DEPRECATION")
-        window.navigationBarColor = colorFromAttribute(resourceId)
+        window?.navigationBarColor = colorFromAttribute(resourceId)
     }
 
     fun Context.getStatusBarHeight(): Int {
@@ -438,6 +438,9 @@ object UIHelper {
                     bottom = systemBars.bottom
                 )
 
+                // These are used to support both the bottom and rail navigation views
+                // so that we expand the dimensions to add room for the system bar, so
+                // that the system bar will be the same color as the navigation views.
                 heightResId?.let {
                     val heightPx = view.resources.getDimensionPixelSize(it)
                     view.updateLayoutParams {

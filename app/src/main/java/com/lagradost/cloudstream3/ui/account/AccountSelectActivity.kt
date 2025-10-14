@@ -31,8 +31,8 @@ import com.lagradost.cloudstream3.utils.BiometricAuthenticator.startBiometricAut
 import com.lagradost.cloudstream3.utils.DataStoreHelper.accounts
 import com.lagradost.cloudstream3.utils.DataStoreHelper.selectedKeyIndex
 import com.lagradost.cloudstream3.utils.DataStoreHelper.setAccount
-import com.lagradost.cloudstream3.utils.UIHelper.colorFromAttribute
 import com.lagradost.cloudstream3.utils.UIHelper.openActivity
+import com.lagradost.cloudstream3.utils.UIHelper.setNavigationBarColorCompat
 
 class AccountSelectActivity : FragmentActivity(), BiometricCallback {
 
@@ -43,8 +43,7 @@ class AccountSelectActivity : FragmentActivity(), BiometricCallback {
         super.onCreate(savedInstanceState)
         loadThemes(this)
 
-        @Suppress("DEPRECATION")
-        window.navigationBarColor = colorFromAttribute(R.attr.primaryBlackBackground)
+        setNavigationBarColorCompat(R.attr.primaryBlackBackground)
 
         // Are we editing and coming from MainActivity?
         val isEditingFromMainActivity = intent.getBooleanExtra(
