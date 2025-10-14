@@ -422,7 +422,10 @@ object UIHelper {
     fun fixPaddingSystemBars(
         v: View?,
         @DimenRes heightResId: Int? = null,
-        @DimenRes widthResId: Int? = null
+        @DimenRes widthResId: Int? = null,
+        padLeft: Boolean = true,
+        padRight: Boolean = false,
+        padBottom: Boolean = false
     ) {
         if (v == null) return
 
@@ -431,9 +434,9 @@ object UIHelper {
             v.setOnApplyWindowInsetsListener { view, insets ->
                 val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
                 view.updatePadding(
-                    left = systemBars.left,
-                    right = systemBars.right,
-                    bottom = systemBars.bottom
+                    left = if (padLeft) systemBars.left else view.paddingLeft,
+                    right = if (padRight) systemBars.right else view.paddingRight,
+                    bottom = if (padBottom) systemBars.bottom else view.paddingBottom
                 )
 
                 // These are used to support both the bottom and rail navigation views
