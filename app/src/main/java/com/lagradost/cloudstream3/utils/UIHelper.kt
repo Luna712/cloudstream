@@ -421,12 +421,15 @@ object UIHelper {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) { // Android 15+
             v.setOnApplyWindowInsetsListener { view, insets ->
                 val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
-                view.updatePadding(
-                    left = systemBars.left,
-                    right = systemBars.right,
-                    bottom = systemBars.bottom,
-                    top = systemBars.top
-                )
+                // If we are changing the dimensions, we dont need to update padding.
+                if (heightResId || widthResId) {
+                    view.updatePadding(
+                        left = systemBars.left,
+                        right = systemBars.right,
+                        bottom = systemBars.bottom,
+                        top = systemBars.top
+                    )
+                }
 
                 // These are used to support both the bottom and rail navigation views
                 // so that we expand the dimensions to add room for the system bar, so
