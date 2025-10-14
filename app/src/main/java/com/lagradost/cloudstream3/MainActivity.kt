@@ -1272,6 +1272,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         }
 
         fixPaddingSystemBars(binding?.navHostFragment)
+        fixPaddingSystemBars(binding?.homeRoot)
         //fixPaddingSystemBars2(binding?.bottomPadding)
 
         // overscan
