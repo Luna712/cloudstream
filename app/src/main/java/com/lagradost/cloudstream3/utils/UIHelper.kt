@@ -386,17 +386,6 @@ object UIHelper {
         return result
     }
 
-    fun fixPaddingStatusbar(v: View?) {
-        if (v == null) return
-        val ctx = v.context ?: return
-        v.setPadding(
-            v.paddingLeft,
-            v.paddingTop + ctx.getStatusBarHeight(),
-            v.paddingRight,
-            v.paddingBottom
-        )
-    }
-
     fun fixPaddingStatusbarMargin(v: View?) {
         if (v == null) return
         val ctx = v.context ?: return
@@ -458,6 +447,15 @@ object UIHelper {
 
                 WindowInsets.CONSUMED
             }
+        } else {
+            // Before Android 15, we just need to handle the status bar
+            val ctx = v.context ?: return
+            v.setPadding(
+                v.paddingLeft,
+                v.paddingTop + ctx.getStatusBarHeight(),
+                v.paddingRight,
+                v.paddingBottom
+            )
         }
     }
 
