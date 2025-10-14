@@ -8,14 +8,6 @@
     android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|keyboard|navigation"
     android:paddingTop="0dp">
 
-    <View
-        android:id="@+id/bottom_padding"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="bottom"
-        android:importantForAccessibility="no"
-        android:background="?attr/primaryGrayBackground" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -56,6 +48,15 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:menu="@menu/bottom_nav_menu" />
+        <View
+    android:id="@+id/bottom_padding"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:background="?attr/primaryGrayBackground"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="@id/nav_view"
+    app:layout_constraintEnd_toEndOf="@id/nav_view"
+    tools:layout_height="40dp" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_host_fragment"
