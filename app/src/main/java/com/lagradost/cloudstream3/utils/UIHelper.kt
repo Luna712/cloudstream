@@ -430,7 +430,7 @@ object UIHelper {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) { // Android 15+
             v.setOnApplyWindowInsetsListener { view, insets ->
                 val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
-                view.updatePadding(
+                    view.updatePadding(
                     left = systemBars.left,
                     right = systemBars.right,
                     bottom = systemBars.bottom
@@ -449,6 +449,7 @@ object UIHelper {
                 widthResId?.let {
                     val widthPx = view.resources.getDimensionPixelSize(it)
                     showToast(systemBars.left.toString() + "|" + systemBars.right.toString())
+                    view.updatePadding(right = 0)
                     view.updateLayoutParams {
                         if (systemBars.left > 0) {
                             width = widthPx + systemBars.left
