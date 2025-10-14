@@ -369,7 +369,7 @@ object UIHelper {
         // This has no affect on Android 15+ with edge-to-edge design.
         // fixPaddingSystemBars handles this appropriately.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
-            window?.isNavigationBarContrastEnforced = false
+            window?.isNavigationBarContrastEnforced = true
             return
         }
         @Suppress("DEPRECATION")
