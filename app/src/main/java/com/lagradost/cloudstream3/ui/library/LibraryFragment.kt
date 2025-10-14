@@ -150,7 +150,7 @@ class LibraryFragment : Fragment() {
     @SuppressLint("ResourceType", "CutPasteId")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fixPaddingStatusbar(binding?.searchStatusBarPadding)
+        fixPaddingSystemBars(binding?.searchStatusBarPadding)
 
         binding?.sortFab?.setOnClickListener(sortChangeClickListener)
         binding?.librarySort?.setOnClickListener(sortChangeClickListener)

@@ -434,8 +434,9 @@ object UIHelper {
                 val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
                 view.updatePadding(
                     left = systemBars.left,
-                    right = systemBars.right,
-                    bottom = systemBars.bottom
+                    right = systemBars.right,,
+                    bottom = systemBars.bottom,
+                    top = systemBars.top
                 )
 
                 // These are used to support both the bottom and rail navigation views
