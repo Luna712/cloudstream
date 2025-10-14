@@ -31,6 +31,7 @@ import com.lagradost.cloudstream3.utils.BiometricAuthenticator.startBiometricAut
 import com.lagradost.cloudstream3.utils.DataStoreHelper.accounts
 import com.lagradost.cloudstream3.utils.DataStoreHelper.selectedKeyIndex
 import com.lagradost.cloudstream3.utils.DataStoreHelper.setAccount
+import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingSystemBars
 import com.lagradost.cloudstream3.utils.UIHelper.openActivity
 import com.lagradost.cloudstream3.utils.UIHelper.setNavigationBarColorCompat
 
@@ -104,6 +105,7 @@ class AccountSelectActivity : FragmentActivity(), BiometricCallback {
 
         val binding = ActivityAccountSelectBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        fixPaddingSystemBars(binding.root)
 
         val recyclerView: AutofitRecyclerView = binding.accountRecyclerView
 
