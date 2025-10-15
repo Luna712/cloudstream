@@ -2,7 +2,7 @@
     <!-- Base application theme. Material3 -->
     <style name="AppTheme" parent="Theme.Material3.Dark.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_background</item>
-        <item name="android:navigationBarColor">?attr/primaryGrayBackground</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:colorEdgeEffect">?attr/textColor</item>
 
         <!--<item name="android:navigationBarColor">@color/darkBackground</item>-->
