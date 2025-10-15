@@ -423,8 +423,6 @@ object UIHelper {
         v: View?,
         @DimenRes heightResId: Int? = null,
         @DimenRes widthResId: Int? = null,
-        padLeft: Boolean = true,
-        padRight: Boolean = true,
         padBottom: Boolean = true
     ) {
         if (v == null) return
@@ -434,8 +432,8 @@ object UIHelper {
             v.setOnApplyWindowInsetsListener { view, insets ->
                 val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
                 view.updatePadding(
-                    left = if (padLeft) systemBars.left else view.paddingLeft,
-                    right = if (padRight) systemBars.right else view.paddingRight,
+                    left = systemBars.left,
+                    right = systemBars.right,
                     bottom = if (padBottom) systemBars.bottom else view.paddingBottom
                 )
 
