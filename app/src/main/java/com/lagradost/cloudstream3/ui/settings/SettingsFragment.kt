@@ -184,7 +184,6 @@ class SettingsFragment : Fragment() {
         fixSystemBarsPadding(
             binding?.root,
             padBottom = false,
-            padTop = false,
             padLeft = isLayout(TV or EMULATOR)
         )
 
