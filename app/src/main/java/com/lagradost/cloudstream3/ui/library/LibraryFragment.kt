@@ -151,7 +151,7 @@ class LibraryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fixSystemBarsPadding(
-            binding?.searchStatusBarPadding,
+            binding?.root,
             padBottom = isLayout(TV or EMULATOR),
             padLeft = isLayout(TV or EMULATOR)
         )
