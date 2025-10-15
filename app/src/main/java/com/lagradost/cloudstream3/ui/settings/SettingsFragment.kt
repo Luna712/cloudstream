@@ -123,7 +123,13 @@ class SettingsFragment : Fragment() {
                     }
                 }
             }
-            UIHelper.fixPaddingStatusbar(settingsToolbar)
+            UIHelper.fixPaddingSystemBars(
+                settingsToolbar,
+                padTop = true,
+                padBottom = false,
+                padLeft = false,
+                padRight = false
+            )
         }
 
         fun Fragment?.setUpToolbar(@StringRes title: Int) {
@@ -140,7 +146,13 @@ class SettingsFragment : Fragment() {
                     }
                 }
             }
-            UIHelper.fixPaddingStatusbar(settingsToolbar)
+            UIHelper.fixPaddingSystemBars(
+                settingsToolbar,
+                padTop = true,
+                padBottom = false,
+                padLeft = false,
+                padRight = false
+            )
         }
 
         fun getFolderSize(dir: File): Long {

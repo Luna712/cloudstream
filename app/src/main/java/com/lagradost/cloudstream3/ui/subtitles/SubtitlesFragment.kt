@@ -47,7 +47,6 @@ import com.lagradost.cloudstream3.utils.SingleSelectionHelper.showDialog
 import com.lagradost.cloudstream3.utils.SingleSelectionHelper.showMultiDialog
 import com.lagradost.cloudstream3.utils.SubtitleHelper.fromCodeToLangTagIETF
 import com.lagradost.cloudstream3.utils.SubtitleHelper.languages
-import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingStatusbar
 import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingSystemBars
 import com.lagradost.cloudstream3.utils.UIHelper.hideSystemUI
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
@@ -386,8 +385,11 @@ class SubtitlesFragment : DialogFragment() {
             context?.getExternalFilesDir(null)?.absolutePath.toString() + "/Fonts"
         )
 
-        fixPaddingStatusbar(binding?.subsRoot)
-        fixPaddingSystemBars(binding?.subsRoot, padBottom = navigationBarPadBottom)
+        fixPaddingSystemBars(
+            binding?.subsRoot,
+            padTop = true,
+            padBottom = navigationBarPadBottom
+        )
 
         state = getCurrentSavedStyle()
         context?.updateState()
