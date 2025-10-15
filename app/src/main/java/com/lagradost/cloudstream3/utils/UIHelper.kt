@@ -431,7 +431,7 @@ object UIHelper {
         if (v == null) return
 
         // edge-to-edge is very buggy on earlier versions so we just
-        // handle rhe status bar here instead for older versions.
+        // handle the status bar here instead.
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
             val ctx = v.context ?: return
             v.setPadding(
