@@ -381,7 +381,7 @@ object UIHelper {
         // edge-to-edge handles this
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             enableEdgeToEdge(
-                statusBarStyle = SystemBarStyle.auto(
+                navigationBarStyle = SystemBarStyle.auto(
                     lightScrim = colorFromAttribute(resourceId),
                     darkScrim = colorFromAttribute(resourceId)
                 )
