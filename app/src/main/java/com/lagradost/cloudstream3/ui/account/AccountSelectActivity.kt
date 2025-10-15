@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.FragmentActivity
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
@@ -32,6 +31,7 @@ import com.lagradost.cloudstream3.utils.BiometricAuthenticator.startBiometricAut
 import com.lagradost.cloudstream3.utils.DataStoreHelper.accounts
 import com.lagradost.cloudstream3.utils.DataStoreHelper.selectedKeyIndex
 import com.lagradost.cloudstream3.utils.DataStoreHelper.setAccount
+import com.lagradost.cloudstream3.utils.UIHelper.enableEdgeToEdgeCompat
 import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingSystemBars
 import com.lagradost.cloudstream3.utils.UIHelper.openActivity
 import com.lagradost.cloudstream3.utils.UIHelper.setNavigationBarColorCompat
@@ -45,7 +45,7 @@ class AccountSelectActivity : FragmentActivity(), BiometricCallback {
         super.onCreate(savedInstanceState)
         loadThemes(this)
 
-        // enableEdgeToEdge() // Backcompat edge-to-edge
+        enableEdgeToEdgeCompat()
         setNavigationBarColorCompat(R.attr.primaryBlackBackground)
 
         // Are we editing and coming from MainActivity?
