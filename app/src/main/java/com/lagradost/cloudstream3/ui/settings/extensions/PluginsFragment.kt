@@ -53,7 +53,12 @@ class PluginsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fixPaddingSystemBars(binding?.root, padBottom = false, padLeft = false)
+        fixPaddingSystemBars(
+            binding?.root,
+            padTop = true,
+            padBottom = false,
+            padLeft = false
+        )
 
         // Since the ViewModel is getting reused the tvTypes must be cleared between uses
         pluginViewModel.tvTypes.clear()
