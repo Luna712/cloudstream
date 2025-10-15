@@ -360,6 +360,8 @@ class SubtitlesFragment : DialogFragment() {
     private lateinit var state: SaveCaptionStyle
     private var hide: Boolean = true
 
+    var navigationBarPadBottom = false
+
     override fun onDestroy() {
         super.onDestroy()
         onColorSelectedEvent -= ::onColorSelected
@@ -385,7 +387,7 @@ class SubtitlesFragment : DialogFragment() {
         )
 
         fixPaddingStatusbar(binding?.subsRoot)
-        fixPaddingSystemBars(binding?.subsRoot)
+        fixPaddingSystemBars(binding?.subsRoot, padBottom = navigationBarPadBottom)
 
         state = getCurrentSavedStyle()
         context?.updateState()
