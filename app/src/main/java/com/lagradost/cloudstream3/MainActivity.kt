@@ -38,7 +38,6 @@ import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.core.view.marginStart
-import androidx.core.view.WindowCompat.enableEdgeToEdge
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -164,6 +163,7 @@ import com.lagradost.cloudstream3.utils.SnackbarHelper.showSnackbar
 import com.lagradost.cloudstream3.utils.UIHelper.changeStatusBarState
 import com.lagradost.cloudstream3.utils.UIHelper.checkWrite
 import com.lagradost.cloudstream3.utils.UIHelper.dismissSafe
+import com.lagradost.cloudstream3.utils.UIHelper.enableEdgeToEdgeCompat
 import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingSystemBars
 import com.lagradost.cloudstream3.utils.UIHelper.getResourceColor
 import com.lagradost.cloudstream3.utils.UIHelper.hideKeyboard
@@ -1187,7 +1187,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         MainAPI.settingsForProvider = settingsForProvider
 
         loadThemes(this)
-        enableEdgeToEdge(window) // Backcompat edge-to-edge
+        enableEdgeToEdgeCompat()
         setNavigationBarColorCompat(R.attr.primaryGrayBackground)
         updateLocale()
         super.onCreate(savedInstanceState)
