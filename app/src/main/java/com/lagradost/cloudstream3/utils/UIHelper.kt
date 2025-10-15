@@ -29,8 +29,9 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ListAdapter
 import android.widget.ListView
 import android.widget.Toast.LENGTH_LONG
-import androidx.activity.enableEdgeToEdge
+import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.DimenRes
@@ -376,7 +377,7 @@ object UIHelper {
         WindowCompat.enableEdgeToEdge(window)
     }
 
-    fun Activity.setNavigationBarColorCompat(@AttrRes resourceId: Int) {
+    fun ComponentActivity.setNavigationBarColorCompat(@AttrRes resourceId: Int) {
         // edge-to-edge handles this
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             enableEdgeToEdge(
