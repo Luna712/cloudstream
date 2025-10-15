@@ -435,7 +435,7 @@ object UIHelper {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
             if (padTop) {
                 val ctx = v.context ?: return
-                v.updatePadding(top = v.paddingTop + ctx.getStatusBarHeight())
+                v.updatePadding(top = ctx.getStatusBarHeight())
             }
             return
         }
