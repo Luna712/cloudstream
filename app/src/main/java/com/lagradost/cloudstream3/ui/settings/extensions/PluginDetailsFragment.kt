@@ -67,7 +67,6 @@ class PluginDetailsFragment(val data: PluginViewData) : BottomSheetDialogFragmen
         binding?.apply {
             fixSystemBarsPadding(
                 root,
-                padTop = true,
                 padBottom = false,
                 padLeft = isLayout(TV or EMULATOR)
             )

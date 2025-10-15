@@ -239,7 +239,6 @@ class DownloadFragment : Fragment() {
         context?.let { downloadsViewModel.updateHeaderList(it) }
         fixSystemBarsPadding(
             binding?.downloadRoot,
-            padTop = true,
             padBottom = false,
             padLeft = isLayout(TV or EMULATOR)
         )

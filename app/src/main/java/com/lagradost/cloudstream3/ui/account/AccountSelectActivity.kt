@@ -107,7 +107,7 @@ class AccountSelectActivity : FragmentActivity(), BiometricCallback {
 
         val binding = ActivityAccountSelectBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        fixSystemBarsPadding(binding.root)
+        fixSystemBarsPadding(binding.root, padTop = false)
 
         val recyclerView: AutofitRecyclerView = binding.accountRecyclerView
 

@@ -175,7 +175,6 @@ class ChromecastSubtitlesFragment : Fragment() {
 
         fixSystemBarsPadding(
             binding?.subsRoot,
-            padTop = true,
             padBottom = false,
             padLeft = isLayout(TV or EMULATOR)
         )

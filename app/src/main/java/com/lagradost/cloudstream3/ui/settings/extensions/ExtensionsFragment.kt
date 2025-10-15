@@ -88,7 +88,6 @@ class ExtensionsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         fixSystemBarsPadding(
             binding?.root,
-            padTop = true,
             padBottom = false,
             padLeft = isLayout(TV or EMULATOR)
         )

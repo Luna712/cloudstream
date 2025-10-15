@@ -125,7 +125,6 @@ class SettingsFragment : Fragment() {
             }
             UIHelper.fixSystemBarsPadding(
                 settingsToolbar,
-                padTop = true,
                 padBottom = false,
                 padLeft = false,
                 padRight = false
@@ -148,7 +147,6 @@ class SettingsFragment : Fragment() {
             }
             UIHelper.fixSystemBarsPadding(
                 settingsToolbar,
-                padTop = true,
                 padBottom = false,
                 padLeft = false,
                 padRight = false
@@ -191,6 +189,7 @@ class SettingsFragment : Fragment() {
         fixSystemBarsPadding(
             binding?.root,
             padBottom = false,
+            padTop = false,
             padLeft = isLayout(TV or EMULATOR)
         )
 

@@ -423,7 +423,7 @@ object UIHelper {
         v: View?,
         @DimenRes heightResId: Int? = null,
         @DimenRes widthResId: Int? = null,
-        padTop: Boolean = false,
+        padTop: Boolean = true,
         padBottom: Boolean = true,
         padLeft: Boolean = true,
         padRight: Boolean = true
