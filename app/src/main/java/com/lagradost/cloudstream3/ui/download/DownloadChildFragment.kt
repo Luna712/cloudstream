@@ -22,6 +22,7 @@ import com.lagradost.cloudstream3.ui.settings.Globals.isLayout
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.attachBackPressedCallback
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.detachBackPressedCallback
 import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingStatusbar
+import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingSystemBars
 import com.lagradost.cloudstream3.utils.UIHelper.setAppBarNoScrollFlagsOnTV
 
 class DownloadChildFragment : Fragment() {
@@ -163,6 +164,7 @@ class DownloadChildFragment : Fragment() {
 
         context?.let { downloadsViewModel.updateChildList(it, folder) }
         fixPaddingStatusbar(binding?.downloadChildRoot)
+        fixPaddingSystemBars(binding?.downloadChildRoot, padBottom = false)
     }
 
     private fun handleSelectedChange(selected: MutableSet<Int>) {
