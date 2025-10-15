@@ -45,7 +45,7 @@ class AccountSelectActivity : FragmentActivity(), BiometricCallback {
         super.onCreate(savedInstanceState)
         loadThemes(this)
 
-        enableEdgeToEdge() // Backcompat edge-to-edge
+        // enableEdgeToEdge() // Backcompat edge-to-edge
         setNavigationBarColorCompat(R.attr.primaryBlackBackground)
 
         // Are we editing and coming from MainActivity?
