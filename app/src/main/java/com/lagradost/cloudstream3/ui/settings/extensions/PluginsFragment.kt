@@ -20,6 +20,7 @@ import com.lagradost.cloudstream3.ui.result.setLinearListLayout
 import com.lagradost.cloudstream3.ui.settings.Globals.EMULATOR
 import com.lagradost.cloudstream3.ui.settings.Globals.TV
 import com.lagradost.cloudstream3.ui.settings.Globals.isLayout
+import com.lagradost.cloudstream3.ui.settings.SettingsFragment.Companion.setSystemBarsPadding
 import com.lagradost.cloudstream3.ui.settings.SettingsFragment.Companion.setToolBarScrollFlags
 import com.lagradost.cloudstream3.ui.settings.SettingsFragment.Companion.setUpToolbar
 import com.lagradost.cloudstream3.utils.AppContextUtils.getApiProviderLangSettings
@@ -53,12 +54,6 @@ class PluginsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fixSystemBarsPadding(
-            binding?.root,
-            padTop = false,
-            padBottom = isLayout(TV or EMULATOR),
-            padLeft = isLayout(TV or EMULATOR)
-        )
 
         // Since the ViewModel is getting reused the tvTypes must be cleared between uses
         pluginViewModel.tvTypes.clear()
@@ -86,6 +81,7 @@ class PluginsFragment : Fragment() {
 
         setToolBarScrollFlags()
         setUpToolbar(name)
+        setSystemBarsPadding()
         binding?.settingsToolbar?.apply {
             setOnMenuItemClickListener { menuItem ->
                 when (menuItem?.itemId) {
