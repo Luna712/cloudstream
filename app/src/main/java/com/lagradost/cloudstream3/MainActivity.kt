@@ -1187,7 +1187,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         MainAPI.settingsForProvider = settingsForProvider
 
         loadThemes(this)
-        // enableEdgeToEdge() // Backcompat edge-to-edge
+        enableEdgeToEdge() // Backcompat edge-to-edge
         setNavigationBarColorCompat(R.attr.primaryGrayBackground)
         updateLocale()
         super.onCreate(savedInstanceState)
