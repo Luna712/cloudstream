@@ -164,7 +164,7 @@ class DownloadChildFragment : Fragment() {
 
         context?.let { downloadsViewModel.updateChildList(it, folder) }
         fixPaddingStatusbar(binding?.downloadChildRoot)
-        fixPaddingSystemBars(binding?.downloadChildRoot, padBottom = false)
+        fixPaddingSystemBars(binding?.downloadChildRoot, padBottom = false, padLeft = false)
     }
 
     private fun handleSelectedChange(selected: MutableSet<Int>) {

@@ -62,7 +62,7 @@ class PluginDetailsFragment(val data: PluginViewData) : BottomSheetDialogFragmen
         super.onViewCreated(view, savedInstanceState)
         val metadata = data.plugin.second
         binding?.apply {
-            fixPaddingSystemBars(root, padBottom = false)
+            fixPaddingSystemBars(root, padBottom = false, padLeft = false)
             pluginIcon.loadImage(metadata.iconUrl?.replace("%size%", "$iconSize")
                 ?.replace("%exact_size%", "$iconSizeExact")) {
                 error { getImageFromDrawable(context ?: return@error null , R.drawable.ic_baseline_extension_24) }

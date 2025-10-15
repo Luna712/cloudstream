@@ -85,7 +85,7 @@ class ExtensionsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fixPaddingSystemBars(binding?.root, padBottom = false)
+        fixPaddingSystemBars(binding?.root, padBottom = false, padLeft = false)
 
         setUpToolbar(R.string.extensions)
         setToolBarScrollFlags()

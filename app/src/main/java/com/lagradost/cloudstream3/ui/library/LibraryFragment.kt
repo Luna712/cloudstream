@@ -152,7 +152,7 @@ class LibraryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fixPaddingStatusbar(binding?.searchStatusBarPadding)
-        fixPaddingSystemBars(binding?.root, padBottom = false)
+        fixPaddingSystemBars(binding?.root, padBottom = false, padLeft = false)
 
         binding?.sortFab?.setOnClickListener(sortChangeClickListener)
         binding?.librarySort?.setOnClickListener(sortChangeClickListener)

@@ -238,7 +238,7 @@ class DownloadFragment : Fragment() {
 
         context?.let { downloadsViewModel.updateHeaderList(it) }
         fixPaddingStatusbar(binding?.downloadRoot)
-        fixPaddingSystemBars(binding?.downloadRoot, padBottom = false)
+        fixPaddingSystemBars(binding?.downloadRoot, padBottom = false, padLeft = false)
     }
 
     private fun handleItemClick(click: DownloadHeaderClickEvent) {

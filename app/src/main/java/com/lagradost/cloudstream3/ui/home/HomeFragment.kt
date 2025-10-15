@@ -642,7 +642,7 @@ class HomeFragment : Fragment() {
         context?.let { HomeChildItemAdapter.updatePosterSize(it) }
 
         binding?.apply {
-            fixPaddingSystemBars(root, padBottom = false)
+            fixPaddingSystemBars(root, padBottom = false, padLeft = false)
             //homeChangeApiLoading.setOnClickListener(apiChangeClickListener)
             //homeChangeApiLoading.setOnClickListener(apiChangeClickListener)
             homeApiFab.setOnClickListener(apiChangeClickListener)

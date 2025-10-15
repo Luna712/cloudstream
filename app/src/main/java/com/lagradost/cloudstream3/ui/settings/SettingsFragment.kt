@@ -176,7 +176,7 @@ class SettingsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        fixPaddingSystemBars(binding?.root, padBottom = false)
+        fixPaddingSystemBars(binding?.root, padBottom = false, padLeft = false)
         fun navigate(id: Int) {
             activity?.navigate(id, Bundle())
         }
