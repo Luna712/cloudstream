@@ -255,6 +255,7 @@ class ResultFragmentTv : Fragment() {
 
         // ===== setup =====
         val storedData = getStoredData() ?: return
+        fixPaddingSystemBars(binding?.root, padTop = true)
         activity?.window?.decorView?.clearFocus()
         activity?.loadCache()
         hideKeyboard()
