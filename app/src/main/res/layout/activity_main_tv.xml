@@ -31,6 +31,7 @@
             android:background="?attr/primaryGrayBackground"
             android:descendantFocusability="afterDescendants"
             android:minWidth="@dimen/nav_rail_view_width"
+            android:maxWidth="@dimen/nav_rail_view_width"
             app:collapsedItemMinHeight="0dp"
             app:expanded="false"
             app:expandedItemMinHeight="0dp"
