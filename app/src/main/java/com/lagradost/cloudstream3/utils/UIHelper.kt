@@ -384,17 +384,6 @@ object UIHelper {
         return result
     }
 
-    fun fixPaddingStatusbar(v: View?) {
-        if (v == null) return
-        val ctx = v.context ?: return
-        v.setPadding(
-            v.paddingLeft,
-            v.paddingTop + ctx.getStatusBarHeight(),
-            v.paddingRight,
-            v.paddingBottom
-        )
-    }
-
     fun fixPaddingStatusbarMargin(v: View?) {
         if (v == null) return
         val ctx = v.context ?: return
@@ -423,43 +412,43 @@ object UIHelper {
         v: View?,
         @DimenRes heightResId: Int? = null,
         @DimenRes widthResId: Int? = null,
+        padTop: Boolean = false,
         padBottom: Boolean = true,
-        padLeft: Boolean = true
+        padLeft: Boolean = true,
+        padRight: Boolean = true
     ) {
         if (v == null) return
 
-        // Handle Android 15+ edge-to-edge design
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) { // Android 15+
-            v.setOnApplyWindowInsetsListener { view, insets ->
-                val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
-                view.updatePadding(
-                    left = if (padLeft) systemBars.left else view.paddingLeft,
-                    right = systemBars.right,
-                    bottom = if (padBottom) systemBars.bottom else view.paddingBottom
-                )
+        // Handle edge-to-edge design
+        v.setOnApplyWindowInsetsListener { view, insets ->
+            val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
+            view.updatePadding(
+                left = if (padLeft) systemBars.left else view.paddingLeft,
+                right = if (padRight) systemBars.right else view.paddingRight,
+                bottom = if (padBottom) systemBars.bottom else view.paddingBottom
+                top = if (padTop) systemBars.top else view.paddingTop
+            )
 
-                // These are used to support both the bottom and rail navigation views
-                // so that we expand the dimensions to add room for the system bar, so
-                // that the system bar will be the same color as the navigation views.
-                heightResId?.let {
-                    val heightPx = view.resources.getDimensionPixelSize(it)
-                    view.updateLayoutParams {
-                        height = heightPx + systemBars.bottom
-                    }
+            // These are used to support both the bottom and rail navigation views
+            // so that we expand the dimensions to add room for the system bar, so
+            // that the system bar will be the same color as the navigation views.
+            heightResId?.let {
+                val heightPx = view.resources.getDimensionPixelSize(it)
+                view.updateLayoutParams {
+                    height = heightPx + systemBars.bottom
                 }
-
-                widthResId?.let {
-                    val widthPx = view.resources.getDimensionPixelSize(it)
-                    view.updatePadding(right = 0, left = systemBars.left)
-                    view.updateLayoutParams {
-                        if (systemBars.left > 0) {
-                            width = widthPx + systemBars.left
-                        } else width = widthPx
-                    }
-                }
-
-                WindowInsets.CONSUMED
             }
+
+            widthResId?.let {
+                val widthPx = view.resources.getDimensionPixelSize(it)
+                view.updateLayoutParams {
+                    if (systemBars.left > 0) {
+                        width = widthPx + systemBars.left
+                    } else width = widthPx
+                }
+            }
+
+            WindowInsets.CONSUMED
         }
     }
 

@@ -24,6 +24,7 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.annotation.IdRes
@@ -1186,6 +1187,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         MainAPI.settingsForProvider = settingsForProvider
 
         loadThemes(this)
+        enableEdgeToEdge() // Backcompat edge-to-edge
         updateLocale()
         super.onCreate(savedInstanceState)
         try {
@@ -1276,7 +1278,8 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
 
         fixPaddingSystemBars(
             v = binding?.navRailView,
-            widthResId = R.dimen.nav_rail_view_width
+            widthResId = R.dimen.nav_rail_view_width,
+            padRight = false
         )
 
         // overscan

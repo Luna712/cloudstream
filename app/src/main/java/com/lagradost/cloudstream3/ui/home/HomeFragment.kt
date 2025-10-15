@@ -667,7 +667,6 @@ class HomeFragment : Fragment() {
                 homeViewModel, accountViewModel
             )
             homeMasterRecycler.adapter = homeMasterAdapter
-            //fixPaddingStatusbar(homeLoadingStatusbar)
 
             homeApiFab.isVisible = isLayout(PHONE)
 
@@ -800,10 +799,6 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-
-
-        //context?.fixPaddingStatusbarView(home_statusbar)
-        //context?.fixPaddingStatusbar(home_padding)
 
         observeNullable(homeViewModel.popup) { item ->
             if (item == null) {

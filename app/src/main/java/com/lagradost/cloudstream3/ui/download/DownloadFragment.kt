@@ -46,7 +46,6 @@ import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.detachBackPres
 import com.lagradost.cloudstream3.utils.DOWNLOAD_EPISODE_CACHE
 import com.lagradost.cloudstream3.utils.DataStore.getFolderName
 import com.lagradost.cloudstream3.utils.UIHelper.dismissSafe
-import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingStatusbar
 import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingSystemBars
 import com.lagradost.cloudstream3.utils.UIHelper.hideKeyboard
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
@@ -237,8 +236,12 @@ class DownloadFragment : Fragment() {
         }
 
         context?.let { downloadsViewModel.updateHeaderList(it) }
-        fixPaddingStatusbar(binding?.downloadRoot)
-        fixPaddingSystemBars(binding?.downloadRoot, padBottom = false, padLeft = false)
+        fixPaddingSystemBars(
+            binding?.downloadRoot,
+            padTop = true,
+            padBottom = false,
+            padLeft = false
+        )
     }
 
     private fun handleItemClick(click: DownloadHeaderClickEvent) {

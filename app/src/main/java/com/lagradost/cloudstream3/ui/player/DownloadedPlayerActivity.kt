@@ -30,6 +30,7 @@ class DownloadedPlayerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         CommonActivity.loadThemes(this)
         CommonActivity.init(this)
+        enableEdgeToEdge() // Backcompat edge-to-edge
         setContentView(R.layout.empty_layout)
         Log.i(dTAG, "onCreate")
 
