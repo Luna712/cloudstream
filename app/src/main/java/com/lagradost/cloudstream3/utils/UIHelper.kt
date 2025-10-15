@@ -29,6 +29,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ListAdapter
 import android.widget.ListView
 import android.widget.Toast.LENGTH_LONG
+import androidx.activity.enableEdgeToEdge
+import androidx.activity.SystemBarStyle
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.DimenRes
@@ -376,7 +378,15 @@ object UIHelper {
 
     fun Activity.setNavigationBarColorCompat(@AttrRes resourceId: Int) {
         // edge-to-edge handles this
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) return
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            enableEdgeToEdge(
+                statusBarStyle = SystemBarStyle.auto(
+                    lightScrim = colorFromAttribute(resourceId),
+                    darkScrim = colorFromAttribute(resourceId)
+                )
+            )
+            return
+        }
 
         @Suppress("DEPRECATION")
         window?.navigationBarColor = colorFromAttribute(resourceId)
