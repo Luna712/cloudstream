@@ -152,7 +152,7 @@ class LibraryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         fixSystemBarsPadding(
             binding?.searchStatusBarPadding,
-            padBottom = false,
+            padBottom = isLayout(TV or EMULATOR),
             padLeft = isLayout(TV or EMULATOR)
         )
 

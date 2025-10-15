@@ -644,7 +644,7 @@ class HomeFragment : Fragment() {
         binding?.apply {
             fixSystemBarsPadding(
                 root,
-                padBottom = false,
+                padBottom = isLayout(TV or EMULATOR),
                 padTop = isLayout(TV or EMULATOR),
                 padLeft = isLayout(TV or EMULATOR)
             )
