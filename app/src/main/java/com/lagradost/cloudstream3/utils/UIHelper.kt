@@ -425,7 +425,7 @@ object UIHelper {
             view.updatePadding(
                 left = if (padLeft) systemBars.left else view.paddingLeft,
                 right = if (padRight) systemBars.right else view.paddingRight,
-                bottom = if (padBottom) systemBars.bottom else view.paddingBottom
+                bottom = if (padBottom) systemBars.bottom else view.paddingBottom,
                 top = if (padTop) systemBars.top else view.paddingTop
             )
 
