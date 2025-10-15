@@ -433,13 +433,10 @@ object UIHelper {
         // edge-to-edge is very buggy on earlier versions so we just
         // handle the status bar here instead.
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
-            val ctx = v.context ?: return
-            v.setPadding(
-                v.paddingLeft,
-                v.paddingTop + ctx.getStatusBarHeight(),
-                v.paddingRight,
-                v.paddingBottom
-            )
+            if (padTop) {
+                val ctx = v.context ?: return
+                v.updatePadding(top = v.paddingTop + ctx.getStatusBarHeight())
+            }
             return
         }
 
