@@ -55,7 +55,7 @@ import com.lagradost.cloudstream3.utils.ImageLoader.loadImage
 import com.lagradost.cloudstream3.utils.SingleSelectionHelper.showBottomDialog
 import com.lagradost.cloudstream3.utils.SingleSelectionHelper.showBottomDialogInstant
 import com.lagradost.cloudstream3.utils.UIHelper.dismissSafe
-import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingSystemBars
+import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 import com.lagradost.cloudstream3.utils.UIHelper.hideKeyboard
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
 import com.lagradost.cloudstream3.utils.UIHelper.populateChips
@@ -256,7 +256,7 @@ class ResultFragmentTv : Fragment() {
 
         // ===== setup =====
         val storedData = getStoredData() ?: return
-        fixPaddingSystemBars(binding?.root)
+        fixSystemBarsPadding(binding?.root)
         activity?.window?.decorView?.clearFocus()
         activity?.loadCache()
         hideKeyboard()

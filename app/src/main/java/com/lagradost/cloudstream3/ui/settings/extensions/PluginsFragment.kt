@@ -25,7 +25,7 @@ import com.lagradost.cloudstream3.ui.settings.SettingsFragment.Companion.setUpTo
 import com.lagradost.cloudstream3.utils.AppContextUtils.getApiProviderLangSettings
 import com.lagradost.cloudstream3.utils.SingleSelectionHelper.showMultiDialog
 import com.lagradost.cloudstream3.utils.SubtitleHelper.getNameNextToFlagEmoji
-import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingSystemBars
+import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 import com.lagradost.cloudstream3.utils.UIHelper.toPx
 
 const val PLUGINS_BUNDLE_NAME = "name"
@@ -53,11 +53,11 @@ class PluginsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fixPaddingSystemBars(
+        fixSystemBarsPadding(
             binding?.root,
             padTop = true,
             padBottom = false,
-            padLeft = false
+            padLeft = isLayout(TV or EMULATOR)
         )
 
         // Since the ViewModel is getting reused the tvTypes must be cleared between uses

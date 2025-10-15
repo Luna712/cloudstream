@@ -21,7 +21,7 @@ import com.lagradost.cloudstream3.ui.settings.Globals.PHONE
 import com.lagradost.cloudstream3.ui.settings.Globals.isLayout
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.attachBackPressedCallback
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.detachBackPressedCallback
-import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingSystemBars
+import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 import com.lagradost.cloudstream3.utils.UIHelper.setAppBarNoScrollFlagsOnTV
 
 class DownloadChildFragment : Fragment() {
@@ -162,11 +162,11 @@ class DownloadChildFragment : Fragment() {
         }
 
         context?.let { downloadsViewModel.updateChildList(it, folder) }
-        fixPaddingSystemBars(
+        fixSystemBarsPadding(
             binding?.downloadChildRoot,
             padTop = true,
             padBottom = false,
-            padLeft = false
+            padLeft = isLayout(TV or EMULATOR)
         )
     }
 

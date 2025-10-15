@@ -56,7 +56,7 @@ import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.Event
 import com.lagradost.cloudstream3.utils.SubtitleHelper.getFlagFromIso
 import com.lagradost.cloudstream3.utils.UIHelper.dismissSafe
-import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingSystemBars
+import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 import com.lagradost.cloudstream3.utils.UIHelper.getSpanCount
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
 import com.lagradost.cloudstream3.utils.UIHelper.popupMenuNoIconsAndNoStringRes
@@ -642,7 +642,7 @@ class HomeFragment : Fragment() {
         context?.let { HomeChildItemAdapter.updatePosterSize(it) }
 
         binding?.apply {
-            fixPaddingSystemBars(
+            fixSystemBarsPadding(
                 root,
                 padBottom = false,
                 padTop = isLayout(TV or EMULATOR),

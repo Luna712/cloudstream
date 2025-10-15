@@ -419,7 +419,7 @@ object UIHelper {
         v.layoutParams = params
     }
 
-    fun fixPaddingSystemBars(
+    fun fixSystemBarsPadding(
         v: View?,
         @DimenRes heightResId: Int? = null,
         @DimenRes widthResId: Int? = null,

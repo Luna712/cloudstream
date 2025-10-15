@@ -29,7 +29,7 @@ import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.ImageLoader.loadImage
 import com.lagradost.cloudstream3.utils.UIHelper
 import com.lagradost.cloudstream3.utils.UIHelper.clipboardHelper
-import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingSystemBars
+import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
 import com.lagradost.cloudstream3.utils.UIHelper.toPx
 import com.lagradost.cloudstream3.utils.getImageFromDrawable
@@ -123,7 +123,7 @@ class SettingsFragment : Fragment() {
                     }
                 }
             }
-            UIHelper.fixPaddingSystemBars(
+            UIHelper.fixSystemBarsPadding(
                 settingsToolbar,
                 padTop = true,
                 padBottom = false,
@@ -146,7 +146,7 @@ class SettingsFragment : Fragment() {
                     }
                 }
             }
-            UIHelper.fixPaddingSystemBars(
+            UIHelper.fixSystemBarsPadding(
                 settingsToolbar,
                 padTop = true,
                 padBottom = false,
@@ -188,7 +188,12 @@ class SettingsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        fixPaddingSystemBars(binding?.root, padBottom = false, padLeft = false)
+        fixSystemBarsPadding(
+            binding?.root,
+            padBottom = false,
+            padLeft = isLayout(TV or EMULATOR)
+        )
+
         fun navigate(id: Int) {
             activity?.navigate(id, Bundle())
         }
