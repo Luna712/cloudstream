@@ -375,9 +375,11 @@ object UIHelper {
     }
 
     fun Activity.setNavigationBarColorCompat(@AttrRes resourceId: Int) {
-        // This is deprecated so we just add a compat method to handle when needed.
-        // @Suppress("DEPRECATION")
-        //window?.navigationBarColor = colorFromAttribute(resourceId)
+        // edge-to-edge handles this
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) return
+
+        @Suppress("DEPRECATION")
+        window?.navigationBarColor = colorFromAttribute(resourceId)
     }
 
     fun Context.getStatusBarHeight(): Int {
@@ -427,6 +429,19 @@ object UIHelper {
         padRight: Boolean = true
     ) {
         if (v == null) return
+
+        // edge-to-edge is very buggy on earlier versions so we just
+        // handle rhe status bar here instead for older versions.
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            val ctx = v.context ?: return
+            v.setPadding(
+                v.paddingLeft,
+                v.paddingTop + ctx.getStatusBarHeight(),
+                v.paddingRight,
+                v.paddingBottom
+            )
+            return
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
