@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.lagradost.cloudstream3.CommonActivity
 import com.lagradost.cloudstream3.R
@@ -12,6 +11,7 @@ import com.lagradost.cloudstream3.mvvm.safe
 import com.lagradost.cloudstream3.ui.player.OfflinePlaybackHelper.playLink
 import com.lagradost.cloudstream3.ui.player.OfflinePlaybackHelper.playUri
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.attachBackPressedCallback
+import com.lagradost.cloudstream3.utils.UIHelper.enableEdgeToEdgeCompat
 
 class DownloadedPlayerActivity : AppCompatActivity() {
     private val dTAG = "DownloadedPlayerAct"
@@ -31,7 +31,7 @@ class DownloadedPlayerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         CommonActivity.loadThemes(this)
         CommonActivity.init(this)
-        enableEdgeToEdge() // Backcompat edge-to-edge
+        enableEdgeToEdgeCompat()
         setContentView(R.layout.empty_layout)
         Log.i(dTAG, "onCreate")
 
