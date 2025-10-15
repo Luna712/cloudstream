@@ -49,6 +49,8 @@ import androidx.core.view.marginRight
 import androidx.core.view.marginTop
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.NavOptions
@@ -419,36 +421,30 @@ object UIHelper {
     ) {
         if (v == null) return
 
-        // Handle edge-to-edge design
-        v.setOnApplyWindowInsetsListener { view, insets ->
-            val systemBars = insets.getInsets(WindowInsets.Type.systemBars())
+        ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
             view.updatePadding(
-                left = if (padLeft) systemBars.left else view.paddingLeft,
-                right = if (padRight) systemBars.right else view.paddingRight,
-                bottom = if (padBottom) systemBars.bottom else view.paddingBottom,
-                top = if (padTop) systemBars.top else view.paddingTop
+                left = if (padLeft) insets.left else view.paddingLeft,
+                right = if (padRight) insets.right else view.paddingRight,
+                bottom = if (padBottom) insets.bottom else view.paddingBottom,
+                top = if (padTop) insets.top else view.paddingTop
             )
 
-            // These are used to support both the bottom and rail navigation views
-            // so that we expand the dimensions to add room for the system bar, so
-            // that the system bar will be the same color as the navigation views.
             heightResId?.let {
                 val heightPx = view.resources.getDimensionPixelSize(it)
                 view.updateLayoutParams {
-                    height = heightPx + systemBars.bottom
+                    height = heightPx + insets.bottom
                 }
             }
 
             widthResId?.let {
                 val widthPx = view.resources.getDimensionPixelSize(it)
                 view.updateLayoutParams {
-                    if (systemBars.left > 0) {
-                        width = widthPx + systemBars.left
-                    } else width = widthPx
+                    width = if (insets.left > 0) widthPx + insets.left else widthPx
                 }
             }
 
-            WindowInsets.CONSUMED
+            WindowInsetsCompat.CONSUMED
         }
     }
 
