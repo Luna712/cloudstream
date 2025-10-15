@@ -175,7 +175,7 @@ class ChromecastSubtitlesFragment : Fragment() {
         onDialogDismissedEvent += ::onDialogDismissed
 
         fixPaddingStatusbar(binding?.subsRoot)
-        fixPaddingSystemBars(binding?.subsRoot)
+        fixPaddingSystemBars(binding?.subsRoot, padBottom = false)
 
         state = getCurrentSavedStyle()
         updateState()
