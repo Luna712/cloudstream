@@ -50,6 +50,7 @@ import androidx.core.view.marginTop
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -367,10 +368,16 @@ object UIHelper {
         //}
     }
 
+    fun Activity.enableEdgeToEdgeCompat() {
+        // edge-to-edge is very buggy on earlier versions
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) return
+        WindowCompat.enableEdgeToEdge(activity.window)
+    }
+
     fun Activity.setNavigationBarColorCompat(@AttrRes resourceId: Int) {
         // This is deprecated so we just add a compat method to handle when needed.
         @Suppress("DEPRECATION")
-        window?.navigationBarColor = colorFromAttribute(resourceId)
+        //window?.navigationBarColor = colorFromAttribute(resourceId)
     }
 
     fun Context.getStatusBarHeight(): Int {
