@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fitsSystemWindows="true"
     android:background="@android:color/transparent">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -13,6 +12,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/primaryGrayBackground"
         android:descendantFocusability="afterDescendants"
+        android:paddingTop="@dimen/navbar_height"
         app:layout_scrollFlags="scroll|enterAlways"
         app:navigationIconTint="?attr/iconColor"
         app:titleTextColor="?attr/textColor"
