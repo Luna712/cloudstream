@@ -439,7 +439,10 @@ object UIHelper {
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
-            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val insets = windowInsets.getInsets(
+                WindowInsetsCompat.Type.systemBars()
+                    or WindowInsetsCompat.Type.displayCutout()
+            )
             view.updatePadding(
                 left = if (padLeft) insets.left else view.paddingLeft,
                 right = if (padRight) insets.right else view.paddingRight,
