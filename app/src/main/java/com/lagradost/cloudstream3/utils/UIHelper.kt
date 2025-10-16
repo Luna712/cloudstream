@@ -373,6 +373,7 @@ object UIHelper {
 
     fun Activity.setNavigationBarColorCompat(@AttrRes resourceId: Int) {
         // edge-to-edge handles this
+        window.isNavigationBarContrastEnforced = false
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) return
 
         @Suppress("DEPRECATION")
