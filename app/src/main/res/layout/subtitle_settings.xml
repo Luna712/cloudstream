@@ -7,10 +7,10 @@
     android:background="?attr/primaryGrayBackground">
 
     <LinearLayout
-        android:background="?attr/primaryBlackBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="?attr/primaryBlackBackground">
 
         <TextView
             android:layout_width="match_parent"
