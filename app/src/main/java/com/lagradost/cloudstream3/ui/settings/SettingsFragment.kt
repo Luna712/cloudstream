@@ -143,6 +143,8 @@ class SettingsFragment : Fragment() {
         fun Fragment.setSystemBarsPadding() {
             fixSystemBarsPadding(
                 view,
+                marginTop = true
+                padTop = false,
                 padLeft = isLayout(TV or EMULATOR),
                 padBottom = isLayout(TV or EMULATOR)
             )

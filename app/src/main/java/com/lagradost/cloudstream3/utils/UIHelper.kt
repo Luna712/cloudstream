@@ -423,7 +423,8 @@ object UIHelper {
         padTop: Boolean = true,
         padBottom: Boolean = true,
         padLeft: Boolean = true,
-        padRight: Boolean = true
+        padRight: Boolean = true,
+        marginTop: Boolean = false
     ) {
         if (v == null) return
 
@@ -439,6 +440,7 @@ object UIHelper {
 
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            if (marginTop) fixPaddingStatusbarMargin(view)
             view.updatePadding(
                 left = if (padLeft) insets.left else view.paddingLeft,
                 right = if (padRight) insets.right else view.paddingRight,
