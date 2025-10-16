@@ -21,6 +21,7 @@
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
         android:background="?attr/primaryGrayBackground">
 
         <LinearLayout
