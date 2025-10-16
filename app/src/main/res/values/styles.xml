@@ -6,7 +6,7 @@
         <item name="android:colorEdgeEffect">?attr/textColor</item>
 
         <!--<item name="android:navigationBarColor">@color/darkBackground</item>-->
-        <item name="android:statusBarColor">?attr/iconGrayBackground</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
 
         <item name="android:scrollbarThumbVertical">@null</item>
         <item name="android:scrollbarThumbHorizontal">@null</item>
