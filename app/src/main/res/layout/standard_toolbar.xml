@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:background="?attr/primaryGrayBackground"
         android:descendantFocusability="afterDescendants"
-        android:paddingTop="@dimen/navbar_height"
         app:layout_scrollFlags="scroll|enterAlways"
         app:navigationIconTint="?attr/iconColor"
         app:titleTextColor="?attr/textColor"
