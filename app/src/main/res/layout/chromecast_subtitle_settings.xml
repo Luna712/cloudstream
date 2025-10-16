@@ -3,13 +3,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/subs_root"
-        android:background="?attr/primaryGrayBackground">
+        android:background="?attr/primaryBlackBackground">
 
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/primaryBlackBackground">
+            android:layout_height="wrap_content">
 
         <TextView
                 android:paddingStart="20dp"
