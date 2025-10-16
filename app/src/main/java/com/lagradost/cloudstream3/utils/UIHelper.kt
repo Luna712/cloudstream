@@ -48,7 +48,6 @@ import androidx.core.view.marginLeft
 import androidx.core.view.marginRight
 import androidx.core.view.marginTop
 import androidx.core.view.updateLayoutParams
-import androidx.core.view.updateMargins
 import androidx.core.view.updatePadding
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
@@ -424,33 +423,22 @@ object UIHelper {
         padTop: Boolean = true,
         padBottom: Boolean = true,
         padLeft: Boolean = true,
-        padRight: Boolean = true,
-        marginTop: Boolean = false
+        padRight: Boolean = true
     ) {
         if (v == null) return
 
         // edge-to-edge is very buggy on earlier versions so we just
         // handle the status bar here instead.
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
-            val ctx = v.context ?: return
-            if (marginTop) {
-                v.updateLayoutParams<MarginLayoutParams> {
-                    updateMargins(top = ctx.getStatusBarHeight())
-                }
+            if (padTop) {
+                val ctx = v.context ?: return
+                v.updatePadding(top = ctx.getStatusBarHeight())
             }
-
-            if (padTop) v.updatePadding(top = ctx.getStatusBarHeight())
             return
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
-            if (marginTop) {
-                view.updateLayoutParams<MarginLayoutParams> {
-                    updateMargins(top = insets.top)
-                }
-            }
-
             view.updatePadding(
                 left = if (padLeft) insets.left else view.paddingLeft,
                 right = if (padRight) insets.right else view.paddingRight,
