@@ -31,7 +31,6 @@ import com.lagradost.cloudstream3.ui.result.setLinearListLayout
 import com.lagradost.cloudstream3.utils.setText
 import com.lagradost.cloudstream3.ui.settings.Globals.TV
 import com.lagradost.cloudstream3.ui.settings.Globals.isLayout
-import com.lagradost.cloudstream3.ui.settings.SettingsFragment.Companion.setPaddingBottom
 import com.lagradost.cloudstream3.ui.settings.SettingsFragment.Companion.setSystemBarsPadding
 import com.lagradost.cloudstream3.ui.settings.SettingsFragment.Companion.setToolBarScrollFlags
 import com.lagradost.cloudstream3.ui.settings.SettingsFragment.Companion.setUpToolbar
@@ -88,7 +87,6 @@ class ExtensionsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpToolbar(R.string.extensions)
         setSystemBarsPadding()
-        setPaddingBottom()
         setToolBarScrollFlags()
 
         binding?.repoRecyclerView?.apply {
