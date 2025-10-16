@@ -29,6 +29,7 @@
 
     <LinearLayout
         android:id="@+id/blank_repo_screen"
+        android:background="?attr/primaryBlackBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="20dp"
