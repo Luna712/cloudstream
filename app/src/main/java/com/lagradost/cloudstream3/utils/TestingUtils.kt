@@ -128,7 +128,7 @@ object TestingUtils {
             Assert.fail("Api ${api.name} did not return any search responses")
             TestResult.Fail // Should not be reached
         } else {
-            TestResultList(searchResults.list)
+            TestResultList(searchResults)
         }
     }
 
