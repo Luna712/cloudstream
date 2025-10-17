@@ -55,7 +55,7 @@ class ProviderTests {
 //                 }
 //                 logError(e)
 //                 null
-//             }?.list
+//             }?.items
 //             if (!response.isNullOrEmpty()) {
 //                 correctResponses++
 //                 if (searchResult == null) {
