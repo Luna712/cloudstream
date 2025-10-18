@@ -439,12 +439,28 @@ object UIHelper {
 
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val displayCutout = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout())
             view.updatePadding(
                 left = if (padLeft) insets.left else view.paddingLeft,
                 right = if (padRight) insets.right else view.paddingRight,
                 bottom = if (padBottom) insets.bottom else view.paddingBottom,
                 top = if (padTop) insets.top else view.paddingTop
             )
+
+            view.updateLayoutParams<MarginLayoutParams> {
+                if (displayCutout.left > view.paddingLeft) {
+                    leftMargin = maxOf(leftMargin, displayCutout.left - view.paddingLeft)
+                }
+                if (displayCutout.right > view.paddingRight) {
+                    rightMargin = maxOf(rightMargin, displayCutout.right - view.paddingRight)
+                }
+                if (displayCutout.top > view.paddingTop) {
+                    topMargin = maxOf(topMargin, displayCutout.top - view.paddingTop)
+                }
+                if (displayCutout.bottom > view.paddingBottom) {
+                    bottomMargin = maxOf(bottomMargin, displayCutout.bottom - view.paddingBottom)
+                }
+            }
 
             heightResId?.let {
                 val heightPx = view.resources.getDimensionPixelSize(it)
