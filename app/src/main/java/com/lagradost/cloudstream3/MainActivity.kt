@@ -1276,7 +1276,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             binding?.navView,
             heightResId = R.dimen.nav_view_height,
             padTop = false,
-            fixCutoutBackground = false
+            overlayCutout = false
         )
 
         fixSystemBarsPadding(

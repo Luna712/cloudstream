@@ -430,7 +430,7 @@ object UIHelper {
         padBottom: Boolean = true,
         padLeft: Boolean = true,
         padRight: Boolean = true,
-		fixCutoutBackground: Boolean = true
+		overlayCutout: Boolean = true
 	) {
         if (v == null) return
 
@@ -470,7 +470,7 @@ object UIHelper {
                 }
             }
 
-			if (fixCutoutBackground && isLayout(PHONE)) {
+			if (overlayCutout && isLayout(PHONE)) {
                 // Draw a black overlay over the cutout. We do this so that
                 // it doesn't use the fragment background. We want it to
                 // appear as if the screen actually ends at cutout.
