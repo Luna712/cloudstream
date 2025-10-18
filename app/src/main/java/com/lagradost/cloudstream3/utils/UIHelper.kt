@@ -53,7 +53,7 @@ import androidx.core.view.marginLeft
 import androidx.core.view.marginRight
 import androidx.core.view.marginTop
 import androidx.core.view.updateLayoutParams
-import androidx.core.view.updatePadding
+import androidx.core.view.updatePaddingRelative
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -444,15 +444,16 @@ object UIHelper {
             return
         }
 
+		val isRtl = ViewCompat.getLayoutDirection(view) == ViewCompat.LAYOUT_DIRECTION_RTL
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
             val insets = windowInsets.getInsets(
                 WindowInsetsCompat.Type.systemBars()
                     or WindowInsetsCompat.Type.displayCutout()
             )
 
-            view.updatePadding(
-                left = if (padLeft) insets.left else view.paddingLeft,
-                right = if (padRight) insets.right else view.paddingRight,
+            view.updatePaddingRelative(
+                start = if (padLeft) insets.left else view.paddingLeft,
+                end = if (padRight) insets.right else view.paddingRight,
                 bottom = if (padBottom) insets.bottom else view.paddingBottom,
                 top = if (padTop) insets.top else view.paddingTop
             )
@@ -484,8 +485,8 @@ object UIHelper {
                         view.overlay.add(
                             CutoutOverlayDrawable(
 							    view,
-							    leftCutout = left,
-							    rightCutout = right
+							    leftCutout = if (isRtl) right else left,
+							    rightCutout = if (isRtl) left else right
 						    )
                         )
 				    } else view.overlay.clear()
