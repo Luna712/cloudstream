@@ -489,14 +489,6 @@ object UIHelper {
 						view.height.toFloat(),
 						paint
 					)
-					if (top > 0) canvas.drawRect(0f, 0f, view.width.toFloat(), top.toFloat(), paint)
-					if (bottom > 0) canvas.drawRect(
-						0f,
-						view.height - bottom.toFloat(),
-						view.width.toFloat(),
-						view.height.toFloat(),
-						paint
-					)
 				}
 				override fun setAlpha(alpha: Int) {}
 				override fun getOpacity() = android.graphics.PixelFormat.OPAQUE
