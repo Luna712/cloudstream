@@ -480,6 +480,7 @@ object UIHelper {
                     val left = if (!padLeft) 0 else cutout.safeInsetLeft
                     val right = if (!padRight) 0 else cutout.safeInsetRight
 					if (left > 0 || right > 0) {
+                        view.overlay.clear()
                         view.overlay.add(
                             CutoutOverlayDrawable(
 							    view,
@@ -488,7 +489,7 @@ object UIHelper {
 						    )
                         )
 				    } else view.overlay.clear()
-                } else view.overlay.clear()
+                }
 			}
 
             WindowInsetsCompat.CONSUMED
