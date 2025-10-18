@@ -444,7 +444,7 @@ object UIHelper {
             return
         }
 
-		val background = (v.rootView ?: v).rootView
+		val background = (v.rootView ?: v).rootView.background
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
             val insets = windowInsets.getInsets(
                 WindowInsetsCompat.Type.systemBars()
