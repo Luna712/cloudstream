@@ -488,7 +488,7 @@ object UIHelper {
                             if (left > 0) canvas.drawRect(0f, 0f, left.toFloat(), view.height.toFloat(), paint)
                             if (right > 0) canvas.drawRect(
                                 view.width - right.toFloat(),
-                                view.width.toFloat(),
+                                0f, view.width.toFloat(),
                                 view.height.toFloat(),
                                 paint
                             )
