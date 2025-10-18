@@ -444,8 +444,8 @@ object UIHelper {
             return
         }
 
-		val isRtl = ViewCompat.getLayoutDirection(view) == ViewCompat.LAYOUT_DIRECTION_RTL
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
+		    val isRtl = ViewCompat.getLayoutDirection(view) == ViewCompat.LAYOUT_DIRECTION_RTL
             val insets = windowInsets.getInsets(
                 WindowInsetsCompat.Type.systemBars()
                     or WindowInsetsCompat.Type.displayCutout()
