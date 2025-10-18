@@ -464,10 +464,10 @@ object UIHelper {
             }
 
             // Make cutout sides black instead of showing the background
-            view.rootWindowInsets?.displayCutout?.let {
+            /*view.rootWindowInsets?.displayCutout?.let {
                 val decorView = (view.rootView ?: view).rootView
                 decorView.setBackgroundColor(Color.BLACK)
-            }
+            }*/
 
             WindowInsetsCompat.CONSUMED
         }
