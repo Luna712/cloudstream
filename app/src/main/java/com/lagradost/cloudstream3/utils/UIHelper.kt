@@ -479,8 +479,8 @@ object UIHelper {
                 if (cutout != null) {
                     val left = cutout.safeInsetLeft
                     val right = if (!padRight) 0 else cutout.safeInsetRight
+					val decorView = (view.rootView ?: view).rootView
 					if (left > 0 || right > 0) {
-						val decorView = (view.rootView ?: view).rootView
                         decorView.background = CutoutOverlayDrawable(
 							view = decorView,
 							leftCutout = left,
