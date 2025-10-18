@@ -8,8 +8,6 @@
         <!--<item name="android:navigationBarColor">@color/darkBackground</item>-->
         <item name="android:statusBarColor">?attr/iconGrayBackground</item>
 
-        <item name="android:windowLayoutInDisplayCutoutMode">never</item>
-
         <item name="android:scrollbarThumbVertical">@null</item>
         <item name="android:scrollbarThumbHorizontal">@null</item>
 
