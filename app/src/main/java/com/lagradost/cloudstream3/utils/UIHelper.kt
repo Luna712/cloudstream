@@ -444,6 +444,7 @@ object UIHelper {
             return
         }
 
+		val background = v.background
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
             val insets = windowInsets.getInsets(
                 WindowInsetsCompat.Type.systemBars()
@@ -478,7 +479,6 @@ object UIHelper {
                 if (cutout != null) {
                     val left = cutout.safeInsetLeft
                     val right = cutout.safeInsetRight
-					val background = view.background
 					if (left > 0 || (right > 0 && padRight)) {
                         view.background = object : Drawable() {
                             private val paint = Paint().apply {
