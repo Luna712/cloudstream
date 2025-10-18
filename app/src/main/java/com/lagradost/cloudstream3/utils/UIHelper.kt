@@ -444,7 +444,7 @@ object UIHelper {
             return
         }
 
-		val background = (v.rootView ?: v).rootView.background
+		val background = v.background
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
             val insets = windowInsets.getInsets(
                 WindowInsetsCompat.Type.systemBars()
@@ -479,14 +479,13 @@ object UIHelper {
                 if (cutout != null) {
                     val left = cutout.safeInsetLeft
                     val right = if (!padRight) 0 else cutout.safeInsetRight
-					val decorView = (view.rootView ?: view).rootView
 					if (left > 0 || right > 0) {
-                        decorView.background = CutoutOverlayDrawable(
-							view = decorView,
+                        view.background = CutoutOverlayDrawable(
+							view,
 							leftCutout = left,
 							rightCutout = right
 						)
-				    } else decorView.background = background
+				    } else view.background = background
                 }
 			}
 
