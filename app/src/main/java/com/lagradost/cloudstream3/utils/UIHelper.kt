@@ -15,7 +15,9 @@ import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.ColorFilter
 import android.graphics.Paint
+import android.graphics.PixelFormat
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.os.Build
@@ -494,8 +496,8 @@ object UIHelper {
                             )
                         }
                         override fun setAlpha(alpha: Int) {}
-                        override fun getOpacity() = android.graphics.PixelFormat.OPAQUE
-                        override fun setColorFilter(colorFilter: android.graphics.ColorFilter?) {}
+                        override fun getOpacity() = PixelFormat.OPAQUE
+                        override fun setColorFilter(colorFilter: ColorFilter?) {}
                     }
                 }
 			}
