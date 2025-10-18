@@ -74,8 +74,9 @@ import com.lagradost.cloudstream3.CommonActivity.activity
 import com.lagradost.cloudstream3.CommonActivity.showToast
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.mvvm.logError
-import com.lagradost.cloudstream3.ui.settings.Globals
 import com.lagradost.cloudstream3.ui.settings.Globals.EMULATOR
+import com.lagradost.cloudstream3.ui.settings.Globals.PHONE
+import com.lagradost.cloudstream3.ui.settings.Globals.TV
 import com.lagradost.cloudstream3.ui.settings.Globals.isLayout
 import com.lagradost.cloudstream3.utils.Coroutines.main
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
@@ -222,7 +223,7 @@ object UIHelper {
     }
 
     fun View?.setAppBarNoScrollFlagsOnTV() {
-        if (isLayout(Globals.TV or EMULATOR)) {
+        if (isLayout(TV or EMULATOR)) {
             this?.updateLayoutParams<AppBarLayout.LayoutParams> {
                 scrollFlags = AppBarLayout.LayoutParams.SCROLL_FLAG_NO_SCROLL
             }
@@ -385,7 +386,7 @@ object UIHelper {
     }
 
     fun Context.getStatusBarHeight(): Int {
-        if (isLayout(Globals.TV or EMULATOR)) {
+        if (isLayout(TV or EMULATOR)) {
             return 0
         }
 
@@ -470,7 +471,7 @@ object UIHelper {
                 }
             }
 
-			if (fixCutoutBackground) {
+			if (fixCutoutBackground && isLayout(PHONE)) {
                 // Draw a black background for the cutout. We do this so that
                 // it doesn't use the fragment background. We want it to
                 // appear as if the screen actually ends at cutout.
