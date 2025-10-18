@@ -480,12 +480,12 @@ object UIHelper {
                     val left = if (!padLeft) 0 else cutout.safeInsetLeft
                     val right = if (!padRight) 0 else cutout.safeInsetRight
 					if (left > 0 || right > 0) {
-                        view.background = CutoutOverlayDrawable(
+                        view.overlay.add(CutoutOverlayDrawable(
 							view,
 							leftCutout = left,
 							rightCutout = right
-						)
-				    } else view.background = background
+						))
+				    } else view.overlay.clear()
                 }
 			}
 

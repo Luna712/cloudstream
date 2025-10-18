@@ -1283,8 +1283,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             binding?.navRailView,
             widthResId = R.dimen.nav_rail_view_width,
             padRight = false,
-            padTop = false,
-            fixCutoutBackground = false
+            padTop = false
         )
 
         // overscan
