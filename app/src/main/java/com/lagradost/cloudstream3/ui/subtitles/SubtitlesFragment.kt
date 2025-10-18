@@ -391,6 +391,7 @@ class SubtitlesFragment : DialogFragment() {
 
         fixSystemBarsPadding(
             binding?.subsRoot,
+            padLeft = false,
             padBottom = systemBarsPadBottom
         )
 
