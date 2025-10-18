@@ -427,8 +427,9 @@ object UIHelper {
         padTop: Boolean = true,
         padBottom: Boolean = true,
         padLeft: Boolean = true,
-        padRight: Boolean = true
-    ) {
+        padRight: Boolean = true,
+		fixCutoutBackground: Boolean = true
+	) {
         if (v == null) return
 
         // edge-to-edge is very buggy on earlier versions so we just
@@ -467,34 +468,37 @@ object UIHelper {
                 }
             }
 
-			val cutout = windowInsets.displayCutout
-		if (cutout != null) {
-			val left = cutout.safeInsetLeft
-			val top = cutout.safeInsetTop
-			val right = cutout.safeInsetRight
-			val bottom = cutout.safeInsetBottom
+			if (fixCutoutBackground) {
+                // Draw a black background for the cutout. We do this so that
+                // it doesn't use the fragment background. We want it to
+                // appear as if the screen actually ends at cutout.
+                val cutout = windowInsets.displayCutout
+                if (cutout != null) {
+                    val left = cutout.safeInsetLeft
+                    val top = cutout.safeInsetTop
+                    val right = cutout.safeInsetRight
+                    val bottom = cutout.safeInsetBottom
 
-			// Replace background with one that includes black cutout fill
-			view.background = object : Drawable() {
-				private val paint = Paint().apply {
-					color = Color.BLACK
-					style = Paint.Style.FILL
-				}
-				override fun draw(canvas: Canvas) {
-					if (left > 0) canvas.drawRect(0f, 0f, left.toFloat(), view.height.toFloat(), paint)
-					if (right > 0) canvas.drawRect(
-						right.toFloat(),
-						0f,
-						view.width.toFloat(),
-						view.height.toFloat(),
-						paint
-					)
-				}
-				override fun setAlpha(alpha: Int) {}
-				override fun getOpacity() = android.graphics.PixelFormat.OPAQUE
-				override fun setColorFilter(colorFilter: android.graphics.ColorFilter?) {}
+                    view.background = object : Drawable() {
+                        private val paint = Paint().apply {
+                            color = Color.BLACK
+                            style = Paint.Style.FILL
+                        }
+                        override fun draw(canvas: Canvas) {
+                            if (left > 0) canvas.drawRect(0f, 0f, left.toFloat(), view.height.toFloat(), paint)
+                            if (right > 0) canvas.drawRect(
+                                right.toFloat(), 0f,
+                                view.width.toFloat(),
+                                view.height.toFloat(),
+                                paint
+                            )
+                        }
+                        override fun setAlpha(alpha: Int) {}
+                        override fun getOpacity() = android.graphics.PixelFormat.OPAQUE
+                        override fun setColorFilter(colorFilter: android.graphics.ColorFilter?) {}
+                    }
+                }
 			}
-		}
 
             WindowInsetsCompat.CONSUMED
         }
