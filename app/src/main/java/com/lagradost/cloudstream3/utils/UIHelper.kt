@@ -13,11 +13,11 @@ import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
-import android.graphics.drawable.ShapeDrawable
-import android.graphics.drawable.shapes.RectShape
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.os.TransactionTooLargeException
@@ -467,34 +467,42 @@ object UIHelper {
                 }
             }
 
+			val cutout = windowInsets.displayCutout
+		if (cutout != null) {
+			val left = cutout.safeInsetLeft
+			val top = cutout.safeInsetTop
+			val right = cutout.safeInsetRight
+			val bottom = cutout.safeInsetBottom
 
-	val cutout = windowInsets.displayCutout
-	view.overlay.clear()
-
-	if (cutout != null) {
-		val paint = Paint().apply { color = Color.BLACK }
-		val bounds = mutableListOf<Rect>()
-
-		// Use the safe insets to know which sides need fake-black bars
-		val left = cutout.safeInsetLeft
-		val top = cutout.safeInsetTop
-		val right = cutout.safeInsetRight
-		val bottom = cutout.safeInsetBottom
-
-		// Add bounds for each affected side
-		if (left > 0) bounds += Rect(0, 0, left, view.height)
-		if (right > 0) bounds += Rect(view.width - right, 0, view.width, view.height)
-		if (top > 0) bounds += Rect(0, 0, view.width, top)
-		if (bottom > 0) bounds += Rect(0, view.height - bottom, view.width, view.height)
-
-		for (rect in bounds) {
-			val overlay = ShapeDrawable(RectShape()).apply {
-				paint.color = Color.BLACK
-				setBounds(rect)
+			// Replace background with one that includes black cutout fill
+			view.background = object : Drawable() {
+				private val paint = Paint().apply {
+					color = Color.BLACK
+					style = Paint.Style.FILL
+				}
+				override fun draw(canvas: Canvas) {
+					if (left > 0) canvas.drawRect(0f, 0f, left.toFloat(), view.height.toFloat(), paint)
+					if (right > 0) canvas.drawRect(
+						view.width - right.toFloat(),
+						0f,
+						view.width.toFloat(),
+						view.height.toFloat(),
+						paint
+					)
+					if (top > 0) canvas.drawRect(0f, 0f, view.width.toFloat(), top.toFloat(), paint)
+					if (bottom > 0) canvas.drawRect(
+						0f,
+						view.height - bottom.toFloat(),
+						view.width.toFloat(),
+						view.height.toFloat(),
+						paint
+					)
+				}
+				override fun setAlpha(alpha: Int) {}
+				override fun getOpacity() = android.graphics.PixelFormat.OPAQUE
+				override fun setColorFilter(colorFilter: android.graphics.ColorFilter?) {}
 			}
-			view.overlay.add(overlay)
 		}
-	}
 
             WindowInsetsCompat.CONSUMED
         }
