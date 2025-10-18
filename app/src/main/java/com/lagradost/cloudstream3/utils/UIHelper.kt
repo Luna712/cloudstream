@@ -444,7 +444,7 @@ object UIHelper {
             return
         }
 
-		val background = v.background
+		val background = (v.rootView ?: v).rootView
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
             val insets = windowInsets.getInsets(
                 WindowInsetsCompat.Type.systemBars()
@@ -478,10 +478,15 @@ object UIHelper {
                 val cutout = windowInsets.displayCutout
                 if (cutout != null) {
                     val left = cutout.safeInsetLeft
-                    val right = cutout.safeInsetRight
-					if (left > 0 || (right > 0 && padRight)) {
-                        view.background = CutoutOverlayDrawable(view)
-				    } else view.background = background
+                    val right = if (!padRight) 0 else cutout.safeInsetRight
+					if (left > 0 || right > 0) {
+						val decorView = (view.rootView ?: view).rootView
+                        decorView.background = CutoutOverlayDrawable(
+							view = decorView,
+							leftCutout = left,
+							rightCutout = right
+						)
+				    } else decorView.background = background
                 }
 			}
 
@@ -668,26 +673,21 @@ object UIHelper {
 }
 
 private class CutoutOverlayDrawable(
-	private val view: View
+	private val view: View,
+	private val leftCutout: Int,
+	private val rightCutout: Int,
 ) : Drawable() {
 	private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
 		color = Color.BLACK
 		style = Paint.Style.FILL
 	}
 
-	var leftCutout = 0
-	var rightCutout = 0
-	var padRight = true
-
 	override fun draw(canvas: Canvas) {
-		if (leftCutout > 0) {
-			canvas.drawRect(0f, 0f, leftCutout.toFloat(), view.height.toFloat(), paint)
-		}
-		if (rightCutout > 0 && padRight) {
+		if (leftCutout > 0) canvas.drawRect(0f, 0f, leftCutout.toFloat(), view.height.toFloat(), paint)
+		if (rightCutout > 0) {
 			canvas.drawRect(
 				view.width - rightCutout.toFloat(),
-				0f,
-				view.width.toFloat(),
+				0f, view.width.toFloat(),
 				view.height.toFloat(),
 				paint
 			)
