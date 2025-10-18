@@ -476,7 +476,7 @@ object UIHelper {
                 // appear as if the screen actually ends at cutout.
                 val cutout = windowInsets.displayCutout
                 if (cutout != null) {
-                    val left = cutout.safeInsetLeft
+                    val left = if (!padLeft) 0 else cutout.safeInsetLeft
                     val right = if (!padRight) 0 else cutout.safeInsetRight
 					if (left > 0 || right > 0) {
                         view.background = CutoutOverlayDrawable(
