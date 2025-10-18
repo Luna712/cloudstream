@@ -444,7 +444,6 @@ object UIHelper {
             return
         }
 
-		val background = v.background
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
             val insets = windowInsets.getInsets(
                 WindowInsetsCompat.Type.systemBars()
@@ -472,7 +471,7 @@ object UIHelper {
             }
 
 			if (fixCutoutBackground && isLayout(PHONE)) {
-                // Draw a black background for the cutout. We do this so that
+                // Draw a black overlay over the cutout. We do this so that
                 // it doesn't use the fragment background. We want it to
                 // appear as if the screen actually ends at cutout.
                 val cutout = windowInsets.displayCutout
@@ -480,11 +479,13 @@ object UIHelper {
                     val left = if (!padLeft) 0 else cutout.safeInsetLeft
                     val right = if (!padRight) 0 else cutout.safeInsetRight
 					if (left > 0 || right > 0) {
-                        view.overlay.add(CutoutOverlayDrawable(
-							view,
-							leftCutout = left,
-							rightCutout = right
-						))
+                        view.overlay.add(
+                            CutoutOverlayDrawable(
+							    view,
+							    leftCutout = left,
+							    rightCutout = right
+						    )
+                        )
 				    } else view.overlay.clear()
                 }
 			}
