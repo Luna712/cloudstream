@@ -1273,13 +1273,6 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         }
 
         fixSystemBarsPadding(
-            binding?.homeRoot,
-            padRight = false,
-            padBottom = false,
-            padTop = false
-        )
-
-        fixSystemBarsPadding(
             binding?.navView,
             heightResId = R.dimen.nav_view_height,
             padTop = false,
