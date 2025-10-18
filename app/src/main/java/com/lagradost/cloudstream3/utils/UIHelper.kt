@@ -488,7 +488,7 @@ object UIHelper {
 						    )
                         )
 				    } else view.overlay.clear()
-                }
+                } else view.overlay.clear()
 			}
 
             WindowInsetsCompat.CONSUMED
