@@ -478,6 +478,7 @@ object UIHelper {
                 if (cutout != null) {
                     val left = cutout.safeInsetLeft
                     val right = cutout.safeInsetRight
+					val background = view.background
 					if (left > 0 || (right > 0 && padRight)) {
                         view.background = object : Drawable() {
                             private val paint = Paint().apply {
@@ -497,7 +498,7 @@ object UIHelper {
                             override fun getOpacity() = PixelFormat.OPAQUE
                             override fun setColorFilter(colorFilter: ColorFilter?) {}
                         }
-				    }
+				    } else view.background = background
                 }
 			}
 
