@@ -1284,7 +1284,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             widthResId = R.dimen.nav_rail_view_width,
             padRight = false,
             padTop = false,
-            fixCutoutBackground = false
+            fixCutoutBackground = true
         )
 
         // overscan
