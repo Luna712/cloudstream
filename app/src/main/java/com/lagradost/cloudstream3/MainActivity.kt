@@ -1273,6 +1273,13 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         }
 
         fixSystemBarsPadding(
+            binding?.homeRoot,
+            padRight = false,
+            padBottom = false,
+            padTop = false
+        )
+
+        fixSystemBarsPadding(
             binding?.navView,
             heightResId = R.dimen.nav_view_height,
             padTop = false,
@@ -1285,13 +1292,6 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             padRight = false,
             padTop = false,
             fixCutoutBackground = false
-        )
-
-        fixSystemBarsPadding(
-            binding?.homeRoot,
-            padRight = false,
-            padBottom = false,
-            padTop = false
         )
 
         // overscan
