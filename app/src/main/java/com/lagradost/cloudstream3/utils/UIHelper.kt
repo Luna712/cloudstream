@@ -14,6 +14,10 @@ import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Rect
+import android.graphics.drawable.ShapeDrawable
+import android.graphics.drawable.shapes.RectShape
 import android.os.Build
 import android.os.Bundle
 import android.os.TransactionTooLargeException
@@ -463,11 +467,34 @@ object UIHelper {
                 }
             }
 
-            // Make cutout sides black instead of showing the background
-            view.rootWindowInsets?.displayCutout?.let {
-                val decorView = (view.rootView ?: view).rootView
-                decorView.setBackgroundColor(Color.BLACK)
-            }
+
+	val cutout = windowInsets.displayCutout
+	view.overlay.clear()
+
+	if (cutout != null) {
+		val paint = Paint().apply { color = Color.BLACK }
+		val bounds = mutableListOf<Rect>()
+
+		// Use the safe insets to know which sides need fake-black bars
+		val left = cutout.safeInsetLeft
+		val top = cutout.safeInsetTop
+		val right = cutout.safeInsetRight
+		val bottom = cutout.safeInsetBottom
+
+		// Add bounds for each affected side
+		if (left > 0) bounds += Rect(0, 0, left, view.height)
+		if (right > 0) bounds += Rect(view.width - right, 0, view.width, view.height)
+		if (top > 0) bounds += Rect(0, 0, view.width, top)
+		if (bottom > 0) bounds += Rect(0, view.height - bottom, view.width, view.height)
+
+		for (rect in bounds) {
+			val overlay = ShapeDrawable(RectShape()).apply {
+				paint.color = Color.BLACK
+				setBounds(rect)
+			}
+			view.overlay.add(overlay)
+		}
+	}
 
             WindowInsetsCompat.CONSUMED
         }
