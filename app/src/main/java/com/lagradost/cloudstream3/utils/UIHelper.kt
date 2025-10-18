@@ -694,5 +694,6 @@ private class CutoutOverlayDrawable(
 
 	override fun setAlpha(alpha: Int) {}
 	override fun setColorFilter(colorFilter: ColorFilter?) {}
+    @Suppress("OVERRIDE_DEPRECATION")
 	override fun getOpacity() = PixelFormat.OPAQUE
 }
