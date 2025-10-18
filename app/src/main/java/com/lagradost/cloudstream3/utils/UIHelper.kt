@@ -478,25 +478,26 @@ object UIHelper {
                 if (cutout != null) {
                     val left = cutout.safeInsetLeft
                     val right = cutout.safeInsetRight
-
-                    view.background = object : Drawable() {
-                        private val paint = Paint().apply {
-                            color = Color.BLACK
-                            style = Paint.Style.FILL
+					if (left > 0 || (right > 0 && padRight)) {
+                        view.background = object : Drawable() {
+                            private val paint = Paint().apply {
+                                color = Color.BLACK
+                                style = Paint.Style.FILL
+                            }
+                            override fun draw(canvas: Canvas) {
+                                if (left > 0) canvas.drawRect(0f, 0f, left.toFloat(), view.height.toFloat(), paint)
+                                if (right > 0 && padRight) canvas.drawRect(
+                                    view.width - right.toFloat(),
+                                    0f, view.width.toFloat(),
+                                    view.height.toFloat(),
+                                    paint
+                                )
+                            }
+                            override fun setAlpha(alpha: Int) {}
+                            override fun getOpacity() = PixelFormat.OPAQUE
+                            override fun setColorFilter(colorFilter: ColorFilter?) {}
                         }
-                        override fun draw(canvas: Canvas) {
-                            if (left > 0) canvas.drawRect(0f, 0f, left.toFloat(), view.height.toFloat(), paint)
-                            if (right > 0) canvas.drawRect(
-                                view.width - right.toFloat(),
-                                0f, view.width.toFloat(),
-                                view.height.toFloat(),
-                                paint
-                            )
-                        }
-                        override fun setAlpha(alpha: Int) {}
-                        override fun getOpacity() = PixelFormat.OPAQUE
-                        override fun setColorFilter(colorFilter: ColorFilter?) {}
-                    }
+				    }
                 }
 			}
 
