@@ -1291,15 +1291,7 @@ class CS3IPlayer : IPlayer {
                 override fun onPlaybackStateChanged(playbackState: Int) {
                     exoPlayer?.let { exo ->
                         when (playbackState) {
-                            Player.STATE_BUFFERING -> {
-                                event(
-                                    StatusEvent(
-                                        wasPlaying = if (isPlaying) CSPlayerLoading.IsPlaying else CSPlayerLoading.IsPaused,
-                                        isPlaying = CSPlayerLoading.IsBuffering
-                                    )
-                                )
-                                updatedTime(source = PlayerEventSource.Player)
-                            }
+                            Player.STATE_BUFFERING -> updatedTime(source = PlayerEventSource.Player)
 
                             Player.STATE_READY -> onRenderFirst()
 
