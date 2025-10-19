@@ -53,7 +53,7 @@ import androidx.core.view.marginLeft
 import androidx.core.view.marginRight
 import androidx.core.view.marginTop
 import androidx.core.view.updateLayoutParams
-import androidx.core.view.updatePaddingRelative
+import androidx.core.view.updatePadding
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -439,7 +439,7 @@ object UIHelper {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
             if (padTop) {
                 val ctx = v.context ?: return
-                v.updatePaddingRelative(top = ctx.getStatusBarHeight())
+                v.updatePadding(top = ctx.getStatusBarHeight())
             }
             return
         }
@@ -454,9 +454,9 @@ object UIHelper {
                     or WindowInsetsCompat.Type.displayCutout()
             )
 
-            view.updatePaddingRelative(
-                start = if (leftCheck) insets.left else view.paddingStart,
-                end = if (rightCheck) insets.right else view.paddingEnd,
+            view.updatePadding(
+                left = if (leftCheck) insets.left else view.paddingLeft,
+                right = if (rightCheck) insets.right else view.paddingRight,
                 bottom = if (padBottom) insets.bottom else view.paddingBottom,
                 top = if (padTop) insets.top else view.paddingTop
             )
@@ -471,8 +471,8 @@ object UIHelper {
             widthResId?.let {
                 val widthPx = view.resources.getDimensionPixelSize(it)
 				view.updateLayoutParams {
-					val inset = if (isRtl) insets.left else insets.right
-                    width = if (inset > 0) widthPx + inset else widthPx
+					val startInset = if (isRtl) insets.right else insets.left
+                    width = if (startInset > 0) widthPx + startInset else widthPx
                 }
             }
 
