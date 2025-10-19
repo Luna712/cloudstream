@@ -1244,37 +1244,31 @@ class CS3IPlayer : IPlayer {
                 override fun onTracksChanged(tracks: Tracks) {
                     safe {
                         val textTracks = tracks.groups.filter { it.type == TRACK_TYPE_TEXT }
+                        playerSelectedSubtitleTracks = textTracks.flatMap { group ->
+                            group.getFormats().mapNotNull { (format, _) ->
+                                format.id?.stripTrackId()?.let { it to group.isSelected }
+                            }
+                        }
 
-                        playerSelectedSubtitleTracks =
-                            textTracks.map { group ->
-                                group.getFormats().mapNotNull { (format, _) ->
-                                    (format.id?.stripTrackId()
-                                        ?: return@mapNotNull null) to group.isSelected
-                                }
-                            }.flatten()
+                        val exoPlayerReportedTracks = tracks.groups
+                            .filter { it.type == TRACK_TYPE_TEXT }
+                            .getFormats()
+                            .mapNotNull { (format, _) ->
+                                if (format.id == null ||
+                                    format.language == null ||
+                                    format.language?.startsWith("-") == true
+                                ) return@mapNotNull null
 
-                        val exoPlayerReportedTracks =
-                            tracks.groups.filter { it.type == TRACK_TYPE_TEXT }.getFormats()
-                                .mapNotNull { (format, _) ->
-                                    // Filter out non subs, already used subs and subs without languages
-                                    if (format.id == null ||
-                                        format.language == null ||
-                                        format.language?.startsWith("-") == true
-                                    ) return@mapNotNull null
-
-                                    return@mapNotNull SubtitleData(
-                                        // Nicer looking displayed names
-                                        fromTagToLanguageName(format.language)
-                                            ?: format.language!!,
-                                        format.label ?: "",
-                                        // See setPreferredTextLanguage
-                                        format.id!!.stripTrackId(),
-                                        SubtitleOrigin.EMBEDDED_IN_VIDEO,
-                                        format.sampleMimeType ?: MimeTypes.APPLICATION_SUBRIP,
-                                        emptyMap(),
-                                        format.language,
-                                    )
-                                }
+                                SubtitleData(
+                                    fromTagToLanguageName(format.language) ?: format.language!!,
+                                    format.label ?: "",
+                                    format.id!!.stripTrackId(),
+                                    SubtitleOrigin.EMBEDDED_IN_VIDEO,
+                                    format.sampleMimeType ?: MimeTypes.APPLICATION_SUBRIP,
+                                    emptyMap(),
+                                    format.language
+                                )
+                            }
 
                         event(EmbeddedSubtitlesFetchedEvent(tracks = exoPlayerReportedTracks))
                         event(TracksChangedEvent())
@@ -1282,121 +1276,79 @@ class CS3IPlayer : IPlayer {
                     }
                 }
 
-                //fixme: Use onPlaybackStateChanged(int) and onPlayWhenReadyChanged(boolean, int) instead.
-                override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
+                override fun onPlayWhenReadyChanged(playWhenReady: Boolean, reason: Int) {
                     exoPlayer?.let { exo ->
                         event(
                             StatusEvent(
                                 wasPlaying = if (isPlaying) CSPlayerLoading.IsPlaying else CSPlayerLoading.IsPaused,
-                                isPlaying = if (playbackState == Player.STATE_BUFFERING) CSPlayerLoading.IsBuffering else if (exo.isPlaying) CSPlayerLoading.IsPlaying else CSPlayerLoading.IsPaused
+                                isPlaying = if (playWhenReady) CSPlayerLoading.IsPlaying else CSPlayerLoading.IsPaused
                             )
                         )
                         isPlaying = exo.isPlaying
                     }
+                }
 
-                    when (playbackState) {
-                        Player.STATE_READY -> {
-                            onRenderFirst()
-                        }
-
-                        else -> {}
-                    }
-
-
-                    if (playWhenReady) {
+                override fun onPlaybackStateChanged(playbackState: Int) {
+                    exoPlayer?.let { exo ->
                         when (playbackState) {
-                            Player.STATE_READY -> {
-
-                            }
-
-                            Player.STATE_ENDED -> {
-                                event(VideoEndedEvent())
-                            }
-
                             Player.STATE_BUFFERING -> {
+                                event(
+                                    StatusEvent(
+                                        wasPlaying = if (isPlaying) CSPlayerLoading.IsPlaying else CSPlayerLoading.IsPaused,
+                                        isPlaying = CSPlayerLoading.IsBuffering
+                                    )
+                                )
                                 updatedTime(source = PlayerEventSource.Player)
                             }
 
-                            Player.STATE_IDLE -> {
+                            Player.STATE_READY -> onRenderFirst()
 
+                            Player.STATE_ENDED -> {
+                                // Resets subtitle delay on video end
+                                setSubtitleOffset(0)
+                                event(VideoEndedEvent())
+
+                                if (PreferenceManager.getDefaultSharedPreferences(context)
+                                    ?.getBoolean(
+                                        context.getString(R.string.autoplay_next_key),
+                                        true
+                                    ) == true
+                                ) {
+                                    handleEvent(CSPlayerEvent.NextEpisode, source = PlayerEventSource.Player)
+                                }
                             }
 
-                            else -> Unit
+                            Player.STATE_IDLE -> {
+                                // no-op
+                            }
                         }
                     }
                 }
-
-                override fun onPlayerError(error: PlaybackException) {
-                    // If the Network fails then ignore the exception if the duration is set.
-                    // This is to switch mirrors automatically if the stream has not been fetched, but
-                    // allow playing the buffer without internet as then the duration is fetched.
-                    when {
-                        error.errorCode == PlaybackException.ERROR_CODE_IO_NETWORK_CONNECTION_FAILED
-                                && exoPlayer?.duration != TIME_UNSET -> {
-                            exoPlayer?.prepare()
-                        }
-
-                        error.errorCode == PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW -> {
-                            // Re-initialize player at the current live window default position.
-                            exoPlayer?.seekToDefaultPosition()
-                            exoPlayer?.prepare()
-                        }
-
-                        else -> {
-                            event(ErrorEvent(error))
-                        }
-                    }
-
-                    super.onPlayerError(error)
-                }
-
-                //override fun onCues(cues: MutableList<Cue>) {
-                //    super.onCues(cues.map { cue -> cue.buildUpon().setText("Hello world").setSize(Cue.DIMEN_UNSET).build() })
-                //}
 
                 override fun onIsPlayingChanged(isPlaying: Boolean) {
                     super.onIsPlayingChanged(isPlaying)
+                    this@CS3IPlayer.isPlaying = isPlaying
                     if (isPlaying) {
                         event(RequestAudioFocusEvent())
                         onRenderFirst()
                     }
                 }
 
-                override fun onPlaybackStateChanged(playbackState: Int) {
-                    super.onPlaybackStateChanged(playbackState)
-                    when (playbackState) {
-                        Player.STATE_READY -> {
-
+                override fun onPlayerError(error: PlaybackException) {
+                    when {
+                        error.errorCode == PlaybackException.ERROR_CODE_IO_NETWORK_CONNECTION_FAILED &&
+                        exoPlayer?.duration != TIME_UNSET -> {
+                            exoPlayer?.prepare()
                         }
 
-                        Player.STATE_ENDED -> {
-                            // Resets subtitle delay on ended video
-                            setSubtitleOffset(0)
-
-                            // Only play next episode if autoplay is on (default)
-                            if (PreferenceManager.getDefaultSharedPreferences(context)
-                                    ?.getBoolean(
-                                        context.getString(R.string.autoplay_next_key),
-                                        true
-                                    ) == true
-                            ) {
-                                handleEvent(
-                                    CSPlayerEvent.NextEpisode,
-                                    source = PlayerEventSource.Player
-                                )
-                            }
+                        error.errorCode == PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW -> {
+                            exoPlayer?.seekToDefaultPosition()
+                            exoPlayer?.prepare()
                         }
 
-                        Player.STATE_BUFFERING -> {
-                            updatedTime(source = PlayerEventSource.Player)
-                        }
-
-                        Player.STATE_IDLE -> {
-                            // IDLE
-                        }
-
-                        else -> Unit
+                        else -> event(ErrorEvent(error))
                     }
+                    super.onPlayerError(error)
                 }
 
                 override fun onVideoSizeChanged(videoSize: VideoSize) {
