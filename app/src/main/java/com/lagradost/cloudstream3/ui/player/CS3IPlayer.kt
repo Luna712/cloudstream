@@ -1179,7 +1179,7 @@ class CS3IPlayer : IPlayer {
 
         //println("PLAYBACK POS $playbackPosition")
         return exoPlayerBuilder.build().apply {
-            if (playWhenReady) play() else pause()
+            setPlayWhenReady(playWhenReady)
             seekTo(currentWindow, playbackPosition)
             setMediaSource(
                 MergingMediaSource(
@@ -1281,7 +1281,7 @@ class CS3IPlayer : IPlayer {
                         event(
                             StatusEvent(
                                 wasPlaying = if (isPlaying) CSPlayerLoading.IsPlaying else CSPlayerLoading.IsPaused,
-                                isPlaying = if (playWhenReady) CSPlayerLoading.IsPlaying else CSPlayerLoading.IsPaused
+                                isPlaying = if (exo.isPlaying) CSPlayerLoading.IsPlaying else CSPlayerLoading.IsPaused
                             )
                         )
                         isPlaying = exo.isPlaying
