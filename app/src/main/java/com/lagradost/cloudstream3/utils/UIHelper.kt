@@ -446,17 +446,17 @@ object UIHelper {
 
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
 		    val isRtl = ViewCompat.getLayoutDirection(view) == ViewCompat.LAYOUT_DIRECTION_RTL
+			val leftCheck = if (isRtl) padRight else padLeft
+			val rightCheck = if (isRtl) padLeft else padRight
+
             val insets = windowInsets.getInsets(
                 WindowInsetsCompat.Type.systemBars()
                     or WindowInsetsCompat.Type.displayCutout()
             )
 
-			val startInset = if (isRtl) insets.right else insets.left
-			val endInset = if (isRtl) insets.left else insets.right
-
             view.updatePaddingRelative(
-                start = if (padLeft) startInset else view.paddingStart,
-                end = if (padRight) endInset else view.paddingEnd,
+                start = if (leftCheck) insets.left else view.paddingStart,
+                end = if (rightCheck) insets.right else view.paddingEnd,
                 bottom = if (padBottom) insets.bottom else view.paddingBottom,
                 top = if (padTop) insets.top else view.paddingTop
             )
@@ -471,7 +471,8 @@ object UIHelper {
             widthResId?.let {
                 val widthPx = view.resources.getDimensionPixelSize(it)
 				view.updateLayoutParams {
-                    width = if (endInset > 0) widthPx + endInset else widthPx
+					val inset = if (isRtl) insets.left else insets.right
+                    width = if (inset > 0) widthPx + inset else widthPx
                 }
             }
 
@@ -481,8 +482,8 @@ object UIHelper {
                 // appear as if the screen actually ends at cutout.
                 val cutout = windowInsets.displayCutout
                 if (cutout != null) {
-                    val left = if (!padLeft) 0 else cutout.safeInsetLeft
-                    val right = if (!padRight) 0 else cutout.safeInsetRight
+                    val left = if (!leftCheck) 0 else cutout.safeInsetLeft
+                    val right = if (!rightCheck) 0 else cutout.safeInsetRight
 					if (left > 0 || right > 0) {
                         view.overlay.clear()
                         view.overlay.add(
