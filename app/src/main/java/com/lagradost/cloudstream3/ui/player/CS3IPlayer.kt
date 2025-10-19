@@ -1229,7 +1229,7 @@ class CS3IPlayer : IPlayer {
             exoPlayer?.prepare()
 
             exoPlayer?.let { exo ->
-                event(StatusEvent(CSPlayerLoading.IsBuffering, CSPlayerLoading.IsBuffering))
+                // event(StatusEvent(CSPlayerLoading.IsBuffering, CSPlayerLoading.IsBuffering))
                 isPlaying = exo.isPlaying
             }
 
