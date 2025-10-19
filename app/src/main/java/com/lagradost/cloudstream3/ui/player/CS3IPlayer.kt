@@ -1285,7 +1285,7 @@ class CS3IPlayer : IPlayer {
                         event(
                             StatusEvent(
                                 wasPlaying = if (isPlaying) CSPlayerLoading.IsPlaying else CSPlayerLoading.IsPaused,
-                                isPlaying = if (exo.isPlaying) CSPlayerLoading.IsPlaying else CSPlayerLoading.IsPaused
+                                isPlaying = if (playWhenReady) CSPlayerLoading.IsPlaying else CSPlayerLoading.IsPaused
                             )
                         )
                         isPlaying = exo.isPlaying
@@ -1299,7 +1299,7 @@ class CS3IPlayer : IPlayer {
                                 event(
                                     StatusEvent(
                                         wasPlaying = if (isPlaying) CSPlayerLoading.IsPlaying else CSPlayerLoading.IsPaused,
-                                        isPlaying = CSPlayerLoading.IsBuffering
+                                        isPlaying = if (exo.isPlaying) CSPlayerLoading.IsPlaying else CSPlayerLoading.IsBuffering
                                     )
                                 )
                                 updatedTime(source = PlayerEventSource.Player)
