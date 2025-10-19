@@ -471,11 +471,7 @@ object UIHelper {
             widthResId?.let {
                 val widthPx = view.resources.getDimensionPixelSize(it)
 				view.updateLayoutParams {
-                    width = when {
-                        isRtl && insets.right > 0 -> widthPx + insets.right
-                        !isRtl && insets.left > 0 -> widthPx + insets.left
-                        else -> widthPx
-                    }
+                    width = if (endInset > 0) widthPx + endInset else widthPx
                 }
             }
 
