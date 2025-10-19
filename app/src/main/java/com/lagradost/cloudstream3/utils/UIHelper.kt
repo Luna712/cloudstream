@@ -492,8 +492,8 @@ object UIHelper {
                         view.overlay.add(
                             CutoutOverlayDrawable(
 							    view,
-							    leftCutout = left,
-							    rightCutout = right
+							    leftCutout = if (isRtl) right else left,
+							    rightCutout = if (isRtl) left else right
 						    )
                         )
 				    } else view.overlay.clear()
