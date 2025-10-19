@@ -451,9 +451,12 @@ object UIHelper {
                     or WindowInsetsCompat.Type.displayCutout()
             )
 
+			val startInset = if (isRtl) insets.right else insets.left
+			val endInset = if (isRtl) insets.left else insets.right
+
             view.updatePaddingRelative(
-                start = if (padLeft) insets.left else view.paddingLeft,
-                end = if (padRight) insets.right else view.paddingRight,
+                start = if (padLeft) startInset else view.paddingStart,
+                end = if (padRight) endInset else view.paddingEnd,
                 bottom = if (padBottom) insets.bottom else view.paddingBottom,
                 top = if (padTop) insets.top else view.paddingTop
             )
@@ -466,7 +469,6 @@ object UIHelper {
             }
 
             widthResId?.let {
-                val isRtl = ViewCompat.getLayoutDirection(view) == ViewCompat.LAYOUT_DIRECTION_RTL
                 val widthPx = view.resources.getDimensionPixelSize(it)
 				view.updateLayoutParams {
                     width = when {
