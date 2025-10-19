@@ -489,13 +489,13 @@ object UIHelper {
                         view.overlay.add(
                             CutoutOverlayDrawable(
                                 view,
-							    leftCutout = left,
-							    rightCutout = right
-						    )
+                                leftCutout = left,
+                                rightCutout = right
+                            )
                         )
-				    }
+                    }
                 }
-			}
+            }
 
             WindowInsetsCompat.CONSUMED
         }
