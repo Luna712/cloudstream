@@ -471,7 +471,7 @@ object UIHelper {
             widthResId?.let {
                 val widthPx = view.resources.getDimensionPixelSize(it)
 				view.updateLayoutParams {
-					val startInset = if (view.isRtl()) insets.right else insets.left
+					val startInset = if (isRtl()) insets.right else insets.left
                     width = if (startInset > 0) widthPx + startInset else widthPx
                 }
             }
@@ -484,8 +484,8 @@ object UIHelper {
                 if (cutout != null) {
                     val left = if (!leftCheck) 0 else cutout.safeInsetLeft
                     val right = if (!rightCheck) 0 else cutout.safeInsetRight
+                    view.overlay.clear()
 					if (left > 0 || right > 0) {
-                        view.overlay.clear()
                         view.overlay.add(
                             CutoutOverlayDrawable(
 							    view,
@@ -493,7 +493,7 @@ object UIHelper {
 							    rightCutout = right
 						    )
                         )
-				    } else view.overlay.clear()
+				    }
                 }
 			}
 
