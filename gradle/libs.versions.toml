@@ -115,4 +115,4 @@ work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "w
 [bundles]
 media3 = ["media3-cast", "media3-common", "media3-datasource-okhttp", "media3-exoplayer", "media3-exoplayer-dash", "media3-exoplayer-hls", "media3-session", "media3-ui"]
 nextlibMedia3 = ["nextlib-media3ext", "nextlib-mediainfo"]
-navigationKtx = ["navigation-ui-ktx", "navigation-fragment-ktx"]
+navigation3 = ["navigation3-runtime", "navigation3-ui"]
