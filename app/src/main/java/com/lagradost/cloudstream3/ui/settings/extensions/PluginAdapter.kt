@@ -42,7 +42,7 @@ data class PluginViewData(
 )
 
 class PluginAdapter(
-    val context: Context,
+    val context: Context?,
     val iconClickCallback: (Plugin) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -183,7 +183,7 @@ class PluginAdapter(
                     binding.actionSettings.isVisible = true
                     binding.actionSettings.setOnClickListener {
                         try {
-                            plugin.openSettings!!.invoke(context)
+                            context?.let { plugin.openSettings!!.invoke(context) }
                         } catch (e: Throwable) {
                             Log.e(
                                 "PluginAdapter",
