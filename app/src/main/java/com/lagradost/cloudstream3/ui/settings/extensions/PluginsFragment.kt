@@ -157,7 +157,7 @@ class PluginsFragment : Fragment() {
         )
 
         binding?.pluginRecyclerView?.adapter =
-            PluginAdapter {
+            PluginAdapter(context) {
                 pluginViewModel.handlePluginAction(activity, url, it, isLocal)
             }
 
