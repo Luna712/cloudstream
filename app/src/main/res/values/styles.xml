@@ -553,7 +553,7 @@
         <item name="android:windowBackground">@color/transparent</item>
     </style>
 
-    <style name="DialogFullscreen" parent="AlertDialogCustom">
+    <style name="DialogFullscreen" parent="AlertDialogCustomBlack">
         <item name="android:windowEnterAnimation">@anim/enter_anim</item>
         <item name="android:windowExitAnimation">@anim/exit_anim</item>
         <item name="android:layout_width">match_parent</item>
