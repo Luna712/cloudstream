@@ -418,7 +418,7 @@ class SubtitlesFragment : DialogFragment() {
             }
         }
         binding?.apply {
-            setContentView(root)
+            dialog?.setContentView(root)
             fixSystemBarsPadding(
                 root,
                 padBottom = systemBarsAddPadding,
