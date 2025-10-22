@@ -619,7 +619,7 @@ class GeneratorPlayer : FullScreenPlayer() {
         val binding =
             DialogOnlineSubtitlesBinding.inflate(LayoutInflater.from(context), null, false)
         dialog.setContentView(binding.root)
-        fixSystemBarsPadding(binding.root, overlayCutout = false)
+        fixSystemBarsPadding(binding.root)
 
         var currentSubtitles: List<AbstractSubtitleEntities.SubtitleEntity> = emptyList()
         var currentSubtitle: AbstractSubtitleEntities.SubtitleEntity? = null
@@ -1042,7 +1042,7 @@ class GeneratorPlayer : FullScreenPlayer() {
                     PlayerSelectSourceAndSubsBinding.inflate(LayoutInflater.from(ctx), null, false)
                 sourceDialog.setContentView(binding.root)
 
-                fixSystemBarsPadding(binding.root, overlayCutout = false)
+                fixSystemBarsPadding(binding.root)
                 selectSourceDialog = sourceDialog
 
                 sourceDialog.show()
@@ -1401,7 +1401,7 @@ class GeneratorPlayer : FullScreenPlayer() {
                 trackDialog.setContentView(binding.root)
                 trackDialog.show()
 
-                fixSystemBarsPadding(binding.root, overlayCutout = false)
+                fixSystemBarsPadding(binding.root)
 
 //                selectTracksDialog = tracksDialog
 
