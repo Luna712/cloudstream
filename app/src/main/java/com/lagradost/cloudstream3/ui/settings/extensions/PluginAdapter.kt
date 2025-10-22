@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.ui.settings.extensions
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.text.format.Formatter.formatShortFileSize
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,7 +9,6 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.lagradost.cloudstream3.AcraApplication.Companion.getActivity
@@ -42,6 +42,7 @@ data class PluginViewData(
 )
 
 class PluginAdapter(
+    val context: Context,
     val iconClickCallback: (Plugin) -> Unit
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -182,10 +183,7 @@ class PluginAdapter(
                     binding.actionSettings.isVisible = true
                     binding.actionSettings.setOnClickListener {
                         try {
-                            val activity = itemView.context.getActivity() as AppCompatActivity
-                            activity.lifecycleScope.launchWhenResumed {
-                                plugin.openSettings!!.invoke(itemView.context)
-                            }
+                            plugin.openSettings!!.invoke(context)
                         } catch (e: Throwable) {
                             Log.e(
                                 "PluginAdapter",
