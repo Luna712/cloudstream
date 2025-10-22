@@ -389,12 +389,6 @@ class SubtitlesFragment : DialogFragment() {
             context?.getExternalFilesDir(null)?.absolutePath.toString() + "/Fonts"
         )
 
-        fixSystemBarsPadding(
-            binding?.subsRoot,
-            padBottom = systemBarsAddPadding,
-            padLeft = systemBarsAddPadding
-        )
-
         state = getCurrentSavedStyle()
         context?.updateState()
 
@@ -424,6 +418,13 @@ class SubtitlesFragment : DialogFragment() {
             }
         }
         binding?.apply {
+            setContentView(root)
+            fixSystemBarsPadding(
+                root,
+                padBottom = systemBarsAddPadding,
+                padLeft = systemBarsAddPadding
+            )
+
             subsTextColor.setup(0)
             subsOutlineColor.setup(1)
             subsBackgroundColor.setup(2)
