@@ -364,7 +364,7 @@ class SubtitlesFragment : DialogFragment() {
     private lateinit var state: SaveCaptionStyle
     private var hide: Boolean = true
 
-    var systemBarsAddPadding = isLandscape()
+    var systemBarsAddPadding = isLayout(TV or EMULATOR)
 
     override fun onDestroy() {
         super.onDestroy()
@@ -392,7 +392,7 @@ class SubtitlesFragment : DialogFragment() {
 
         fixSystemBarsPadding(
             binding?.subsRoot,
-            padBottom = systemBarsAddPadding,
+            padBottom = systemBarsAddPadding || isLandscape(),
             padLeft = systemBarsAddPadding
         )
 
