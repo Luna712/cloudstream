@@ -24,6 +24,7 @@ import com.lagradost.cloudstream3.ui.home.HomeFragment.Companion.errorProfilePic
 import com.lagradost.cloudstream3.ui.settings.Globals.EMULATOR
 import com.lagradost.cloudstream3.ui.settings.Globals.PHONE
 import com.lagradost.cloudstream3.ui.settings.Globals.TV
+import com.lagradost.cloudstream3.ui.settings.Globals.isLandscape
 import com.lagradost.cloudstream3.ui.settings.Globals.isLayout
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.ImageLoader.loadImage
@@ -144,7 +145,7 @@ class SettingsFragment : Fragment() {
             fixSystemBarsPadding(
                 view,
                 padLeft = isLayout(TV or EMULATOR),
-                padBottom = isLayout(TV or EMULATOR)
+                padBottom = isLayout(TV or EMULATOR) || isLandscape()
             )
         }
 

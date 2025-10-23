@@ -42,6 +42,7 @@ import com.lagradost.cloudstream3.ui.player.OutlineSpan
 import com.lagradost.cloudstream3.ui.player.RoundedBackgroundColorSpan
 import com.lagradost.cloudstream3.ui.settings.Globals.EMULATOR
 import com.lagradost.cloudstream3.ui.settings.Globals.TV
+import com.lagradost.cloudstream3.ui.settings.Globals.isLandscape
 import com.lagradost.cloudstream3.ui.settings.Globals.isLayout
 import com.lagradost.cloudstream3.utils.DataStore.setKey
 import com.lagradost.cloudstream3.utils.Event
@@ -363,7 +364,7 @@ class SubtitlesFragment : DialogFragment() {
     private lateinit var state: SaveCaptionStyle
     private var hide: Boolean = true
 
-    var systemBarsAddPadding = isLayout(TV or EMULATOR)
+    var systemBarsAddPadding = isLayout(TV or EMULATOR) || isLandscape()
 
     override fun onDestroy() {
         super.onDestroy()
