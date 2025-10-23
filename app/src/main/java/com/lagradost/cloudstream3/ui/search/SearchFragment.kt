@@ -240,7 +240,7 @@ class SearchFragment : Fragment() {
         fixSystemBarsPadding(
             binding?.searchRoot,
             padBottom = isLandscape(),
-            padLeft = isLayout(TV or EMULATOR)
+            padLeft = isLandscape()
         )
 
         fixGrid()

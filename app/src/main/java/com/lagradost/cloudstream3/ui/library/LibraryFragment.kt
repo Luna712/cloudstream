@@ -154,7 +154,7 @@ class LibraryFragment : Fragment() {
         fixSystemBarsPadding(
             binding?.root,
             padBottom = isLandscape(),
-            padLeft = isLayout(TV or EMULATOR)
+            padLeft = isLandscape()
         )
 
         binding?.sortFab?.setOnClickListener(sortChangeClickListener)

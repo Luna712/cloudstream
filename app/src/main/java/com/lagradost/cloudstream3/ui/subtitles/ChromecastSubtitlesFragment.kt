@@ -29,6 +29,7 @@ import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.databinding.ChromecastSubtitleSettingsBinding
 import com.lagradost.cloudstream3.ui.settings.Globals.EMULATOR
 import com.lagradost.cloudstream3.ui.settings.Globals.TV
+import com.lagradost.cloudstream3.ui.settings.Globals.isLandscape
 import com.lagradost.cloudstream3.ui.settings.Globals.isLayout
 import com.lagradost.cloudstream3.utils.DataStore.setKey
 import com.lagradost.cloudstream3.utils.Event
@@ -176,7 +177,7 @@ class ChromecastSubtitlesFragment : Fragment() {
         fixSystemBarsPadding(
             binding?.subsRoot,
             padBottom = isLandscape(),
-            padLeft = isLayout(TV or EMULATOR)
+            padLeft = isLandscape()
         )
 
         state = getCurrentSavedStyle()

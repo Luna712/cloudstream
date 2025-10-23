@@ -17,10 +17,7 @@ import com.lagradost.cloudstream3.plugins.VotingApi.getVotes
 import com.lagradost.cloudstream3.plugins.VotingApi.hasVoted
 import com.lagradost.cloudstream3.plugins.VotingApi.vote
 import com.lagradost.cloudstream3.R
-import com.lagradost.cloudstream3.ui.settings.Globals.EMULATOR
-import com.lagradost.cloudstream3.ui.settings.Globals.TV
 import com.lagradost.cloudstream3.ui.settings.Globals.isLandscape
-import com.lagradost.cloudstream3.ui.settings.Globals.isLayout
 import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream3.utils.Coroutines.main
 import com.lagradost.cloudstream3.utils.getImageFromDrawable
@@ -69,7 +66,7 @@ class PluginDetailsFragment(val data: PluginViewData) : BottomSheetDialogFragmen
             fixSystemBarsPadding(
                 root,
                 padBottom = isLandscape(),
-                padLeft = isLayout(TV or EMULATOR)
+                padLeft = isLandscape()
             )
             pluginIcon.loadImage(metadata.iconUrl?.replace("%size%", "$iconSize")
                 ?.replace("%exact_size%", "$iconSizeExact")) {
