@@ -392,7 +392,9 @@ class SubtitlesFragment : DialogFragment() {
         )
 
         if (backgroundColor != null) {
-            binding?.subsRoot?.setBackgroundColor(getResourceColor(backgroundColor))
+            binding?.subsRoot?.setBackgroundColor(
+                getResourceColor(backgroundColor, 1f)
+            )
         }
 
         fixSystemBarsPadding(
