@@ -48,8 +48,8 @@ import com.lagradost.cloudstream3.utils.Event
 import com.lagradost.cloudstream3.utils.SingleSelectionHelper.showDialog
 import com.lagradost.cloudstream3.utils.SingleSelectionHelper.showMultiDialog
 import com.lagradost.cloudstream3.utils.SubtitleHelper.languages
-import com.lagradost.cloudstream3.utils.UIHelper.colorFromAttribute
 import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
+import com.lagradost.cloudstream3.utils.UIHelper.getResourceColor
 import com.lagradost.cloudstream3.utils.UIHelper.hideSystemUI
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
 import com.lagradost.cloudstream3.utils.UIHelper.popCurrentPage
@@ -392,7 +392,7 @@ class SubtitlesFragment : DialogFragment() {
         )
 
         if (backgroundColor != null) {
-            binding?.subsRoot?.setBackgroundColor(colorFromAttribute(backgroundColor))
+            binding?.subsRoot?.setBackgroundColor(getResourceColor(backgroundColor))
         }
 
         fixSystemBarsPadding(
