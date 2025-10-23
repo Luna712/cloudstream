@@ -575,7 +575,7 @@
         <item name="android:windowMinWidthMinor">95%</item> <!-- 95% -->
     </style>
 
-    <style name="AlertDialogCustomBlack" parent="Theme.AppCompat.Dialog.Alert">
+    <style name="AlertDialogCustomBlack" parent="Theme.AppCompat.Dialog">
         <item name="android:windowBackground">?attr/primaryBlackBackground</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
