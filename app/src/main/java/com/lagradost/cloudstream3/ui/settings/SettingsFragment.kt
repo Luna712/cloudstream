@@ -184,7 +184,7 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         fixSystemBarsPadding(
             binding?.root,
-            padBottom = false,
+            padBottom = isLayout(TV or EMULATOR) || isLandscape(),
             padLeft = isLayout(TV or EMULATOR)
         )
 
