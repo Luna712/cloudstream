@@ -562,9 +562,8 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
-    <style name="DialogFullscreenBlack" parent="DialogFullscreen">
-        <item name="android:windowEnterAnimation">@anim/enter_anim</item>
-        <item name="android:windowExitAnimation">@anim/exit_anim</item>
+    <style name="DialogFullscreenPlayer" parent="DialogFullscreen">
+        <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:windowTranslucentStatus">false</item>
     </style>
 
