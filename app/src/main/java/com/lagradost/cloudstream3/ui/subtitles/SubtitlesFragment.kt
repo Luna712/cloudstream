@@ -385,6 +385,7 @@ class SubtitlesFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dialog?.setContentView(view)
         hide = arguments?.getBoolean("hide") ?: true
         val popFragment = arguments?.getBoolean("popFragment") ?: false
         onColorSelectedEvent += ::onColorSelected
@@ -402,7 +403,7 @@ class SubtitlesFragment : DialogFragment() {
         }*/
 
         fixSystemBarsPadding(
-            binding?.subsRoot,
+            view,
             padBottom = systemBarsAddPadding,
             padLeft = systemBarsAddPadding
         )
