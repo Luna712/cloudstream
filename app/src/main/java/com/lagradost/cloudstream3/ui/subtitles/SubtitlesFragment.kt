@@ -372,11 +372,11 @@ class SubtitlesFragment : DialogFragment() {
 
     override fun onStart() {
         super.onStart()
-        dialog?.window?.setWindowAnimations(R.style.DialogFullscreenBlack)
+        dialog?.window?.setWindowAnimations(R.style.DialogFullscreenPlayer)
     }
 
     override fun getTheme(): Int {
-        return R.style.DialogFullscreenBlack
+        return R.style.DialogFullscreenPlayer
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
