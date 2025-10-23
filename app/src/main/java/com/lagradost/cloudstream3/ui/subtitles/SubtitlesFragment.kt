@@ -17,6 +17,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.AttrRes
 import androidx.annotation.FontRes
 import androidx.annotation.OptIn
 import androidx.annotation.Px
@@ -48,8 +49,8 @@ import com.lagradost.cloudstream3.utils.Event
 import com.lagradost.cloudstream3.utils.SingleSelectionHelper.showDialog
 import com.lagradost.cloudstream3.utils.SingleSelectionHelper.showMultiDialog
 import com.lagradost.cloudstream3.utils.SubtitleHelper.languages
+import com.lagradost.cloudstream3.utils.UIHelper.colorFromAttribute
 import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
-import com.lagradost.cloudstream3.utils.UIHelper.getResourceColor
 import com.lagradost.cloudstream3.utils.UIHelper.hideSystemUI
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
 import com.lagradost.cloudstream3.utils.UIHelper.popCurrentPage
@@ -364,8 +365,9 @@ class SubtitlesFragment : DialogFragment() {
     private lateinit var state: SaveCaptionStyle
     private var hide: Boolean = true
 
-    var systemBarsAddPadding = isLayout(TV or EMULATOR)
+    @AttrRes
     var backgroundColor: Int? = null
+    var systemBarsAddPadding = isLayout(TV or EMULATOR)
 
     override fun onDestroy() {
         super.onDestroy()
@@ -389,18 +391,6 @@ class SubtitlesFragment : DialogFragment() {
         onDialogDismissedEvent += ::onDialogDismissed
         binding?.subsImportText?.text = getString(R.string.subs_import_text).format(
             context?.getExternalFilesDir(null)?.absolutePath.toString() + "/Fonts"
-        )
-
-        if (backgroundColor != null) {
-            binding?.subsRoot?.setBackgroundColor(
-                getResourceColor(backgroundColor, 1f)
-            )
-        }
-
-        fixSystemBarsPadding(
-            binding?.subsRoot,
-            padBottom = systemBarsAddPadding,
-            padLeft = systemBarsAddPadding
         )
 
         state = getCurrentSavedStyle()
@@ -432,6 +422,18 @@ class SubtitlesFragment : DialogFragment() {
             }
         }
         binding?.apply {
+            if (backgroundColor != null) {
+                subsRoot.setBackgroundColor(
+                    colorFromAttribute(backgroundColor)
+                )
+            }
+
+            fixSystemBarsPadding(
+                subsRoot,
+                padBottom = systemBarsAddPadding,
+                padLeft = systemBarsAddPadding
+            )
+
             subsTextColor.setup(0)
             subsOutlineColor.setup(1)
             subsBackgroundColor.setup(2)
