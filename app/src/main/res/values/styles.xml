@@ -564,7 +564,6 @@
 
     <style name="DialogFullscreenBlack">
         <item name="android:windowBackground">?attr/primaryBlackBackground</item>
-        <item name="android:windowFullscreen">true</item>
         <item name="android:windowEnterAnimation">@anim/enter_anim</item>
         <item name="android:windowExitAnimation">@anim/exit_anim</item>
         <item name="android:layout_width">match_parent</item>
