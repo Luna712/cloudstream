@@ -166,7 +166,7 @@ class DownloadChildFragment : Fragment() {
         fixSystemBarsPadding(
             binding?.downloadChildRoot,
             padBottom = isLandscape(),
-            padLeft = isLandscape()
+            padLeft = isLayout(TV or EMULATOR)
         )
     }
 

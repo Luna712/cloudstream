@@ -648,7 +648,7 @@ class HomeFragment : Fragment() {
                 root,
                 padTop = false,
                 padBottom = isLandscape(),
-                padLeft = isLandscape()
+                padLeft = isLayout(TV or EMULATOR)
             )
             //homeChangeApiLoading.setOnClickListener(apiChangeClickListener)
             //homeChangeApiLoading.setOnClickListener(apiChangeClickListener)

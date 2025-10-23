@@ -66,7 +66,7 @@ class PluginDetailsFragment(val data: PluginViewData) : BottomSheetDialogFragmen
             fixSystemBarsPadding(
                 root,
                 padBottom = isLandscape(),
-                padLeft = isLandscape()
+                padLeft = isLayout(TV or EMULATOR)
             )
             pluginIcon.loadImage(metadata.iconUrl?.replace("%size%", "$iconSize")
                 ?.replace("%exact_size%", "$iconSizeExact")) {

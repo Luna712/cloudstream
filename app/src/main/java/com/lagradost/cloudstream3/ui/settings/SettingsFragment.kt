@@ -144,7 +144,7 @@ class SettingsFragment : Fragment() {
         fun Fragment.setSystemBarsPadding() {
             fixSystemBarsPadding(
                 view,
-                padLeft = isLandscape(),
+                padLeft = isLayout(TV or EMULATOR),
                 padBottom = isLandscape()
             )
         }
@@ -185,7 +185,7 @@ class SettingsFragment : Fragment() {
         fixSystemBarsPadding(
             binding?.root,
             padBottom = isLandscape(),
-            padLeft = isLandscape()
+            padLeft = isLayout(TV or EMULATOR)
         )
 
         fun navigate(id: Int) {
