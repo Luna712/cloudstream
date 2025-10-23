@@ -17,7 +17,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.AttrRes
 import androidx.annotation.FontRes
 import androidx.annotation.OptIn
 import androidx.annotation.Px
@@ -49,15 +48,12 @@ import com.lagradost.cloudstream3.utils.Event
 import com.lagradost.cloudstream3.utils.SingleSelectionHelper.showDialog
 import com.lagradost.cloudstream3.utils.SingleSelectionHelper.showMultiDialog
 import com.lagradost.cloudstream3.utils.SubtitleHelper.languages
-import com.lagradost.cloudstream3.utils.UIHelper.colorFromAttribute
 import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 import com.lagradost.cloudstream3.utils.UIHelper.hideSystemUI
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
 import com.lagradost.cloudstream3.utils.UIHelper.popCurrentPage
 import com.lagradost.cloudstream3.utils.UIHelper.toPx
 import java.io.File
-
-import android.util.Log
 
 const val SUBTITLE_KEY = "subtitle_settings"
 const val SUBTITLE_AUTO_SELECT_KEY = "subs_auto_select"
@@ -204,34 +200,6 @@ class SubtitlesFragment : DialogFragment() {
             // 6. set alignment
             return this.setSubtitleAlignment(style.alignment)
         }
-
-fun logThemeAttributes(context: Context, tag: String = "ThemeDump") {
-	val theme = context.theme
-	val typedValue = TypedValue()
-	val attrsField = android.R::class.java.getDeclaredClasses()
-		.firstOrNull { it.simpleName == "attr" }?.fields ?: return
-
-	Log.d(tag, "---- Dumping theme attributes ----")
-
-	for (field in attrsField) {
-		try {
-			val attrId = field.getInt(null)
-			if (theme.resolveAttribute(attrId, typedValue, true)) {
-				val name = field.name
-				val value = when (typedValue.type) {
-					TypedValue.TYPE_REFERENCE -> "@${typedValue.resourceId}"
-					TypedValue.TYPE_STRING -> typedValue.string.toString()
-					else -> typedValue.coerceToString()?.toString() ?: "?"
-				}
-				Log.d(tag, "$name = $value")
-			}
-		} catch (e: Exception) {
-			Log.e(tag, "Error reading ${field.name}: ${e.message}")
-		}
-	}
-
-	Log.d(tag, "---- End of theme dump ----")
-}
 
         private fun Context.fromSaveToStyle(data: SaveCaptionStyle): CaptionStyleCompat {
             return CaptionStyleCompat(
@@ -395,8 +363,6 @@ fun logThemeAttributes(context: Context, tag: String = "ThemeDump") {
     private lateinit var state: SaveCaptionStyle
     private var hide: Boolean = true
 
-    @AttrRes
-    var backgroundColor: Int? = null
     var systemBarsAddPadding = isLayout(TV or EMULATOR)
 
     override fun onDestroy() {
@@ -415,7 +381,6 @@ fun logThemeAttributes(context: Context, tag: String = "ThemeDump") {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dialog?.setContentView(view)
         hide = arguments?.getBoolean("hide") ?: true
         val popFragment = arguments?.getBoolean("popFragment") ?: false
         onColorSelectedEvent += ::onColorSelected
@@ -423,19 +388,9 @@ fun logThemeAttributes(context: Context, tag: String = "ThemeDump") {
         binding?.subsImportText?.text = getString(R.string.subs_import_text).format(
             context?.getExternalFilesDir(null)?.absolutePath.toString() + "/Fonts"
         )
-        logThemeAttributes(requireContext())
-        dialog?.context?.let { logThemeAttributes(it, "DialogTheme") }
-
-        /*if (backgroundColor != 0) {
-            context?.let { ctx ->
-                binding?.subsRoot?.setBackgroundColor(
-                    ctx.colorFromAttribute(backgroundColor)
-                )
-            }
-        }*/
 
         fixSystemBarsPadding(
-            view,
+            binding?.subsRoot,
             padBottom = systemBarsAddPadding,
             padLeft = systemBarsAddPadding
         )
