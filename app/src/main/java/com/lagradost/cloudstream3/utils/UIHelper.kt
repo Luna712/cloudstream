@@ -553,8 +553,8 @@ object UIHelper {
             val controller = WindowCompat.getInsetsController(window, window.decorView)
             if (isLayout(EMULATOR)) {
                 controller.show(WindowInsetsCompat.Type.navigationBars())
+                controller.hide(WindowInsetsCompat.Type.statusBars())
             } else controller.show(WindowInsetsCompat.Type.systemBars())
-            changeStatusBarState(isLayout(EMULATOR))
             return
         }
 
