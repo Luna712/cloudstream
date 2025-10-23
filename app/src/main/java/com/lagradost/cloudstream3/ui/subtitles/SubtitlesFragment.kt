@@ -393,6 +393,20 @@ class SubtitlesFragment : DialogFragment() {
             context?.getExternalFilesDir(null)?.absolutePath.toString() + "/Fonts"
         )
 
+        if (backgroundColor != null) {
+            context?.let { ctx ->
+                binding?.subsRoot?.setBackgroundColor(
+                    ctx.colorFromAttribute(backgroundColor)
+                )
+            }
+        }
+
+        fixSystemBarsPadding(
+            binding?.subsRoot,
+            padBottom = systemBarsAddPadding,
+            padLeft = systemBarsAddPadding
+        )
+
         state = getCurrentSavedStyle()
         context?.updateState()
 
@@ -422,18 +436,6 @@ class SubtitlesFragment : DialogFragment() {
             }
         }
         binding?.apply {
-            if (backgroundColor != null) {
-                subsRoot.setBackgroundColor(
-                    colorFromAttribute(backgroundColor)
-                )
-            }
-
-            fixSystemBarsPadding(
-                subsRoot,
-                padBottom = systemBarsAddPadding,
-                padLeft = systemBarsAddPadding
-            )
-
             subsTextColor.setup(0)
             subsOutlineColor.setup(1)
             subsBackgroundColor.setup(2)
