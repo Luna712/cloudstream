@@ -562,12 +562,10 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
-    <style name="DialogFullscreenBlack" parent="AlertDialogCustomBlack">
+    <style name="DialogFullscreenBlack" parent="DialogFullscreen">
         <item name="android:windowEnterAnimation">@anim/enter_anim</item>
         <item name="android:windowExitAnimation">@anim/exit_anim</item>
-
-        <item name="listPreferredItemHeight">56dp</item>
-        <item name="listPreferredItemHeightLarge">72dp</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="DialogHalfFullscreen" parent="AlertDialogCustom">
