@@ -572,6 +572,11 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:navigationBarColor">?attr/primaryBlackBackground</item>
+
+        <item name="android:insetLeft">@dimen/mtrl_alert_dialog_background_inset_start</item>
+        <item name="android:insetRight">@dimen/mtrl_alert_dialog_background_inset_end</item>
+        <item name="android:insetTop">@dimen/mtrl_alert_dialog_background_inset_top</item>
+        <item name="android:insetBottom">@dimen/mtrl_alert_dialog_background_inset_bottom</item>
     </style>
 
     <style name="DialogHalfFullscreen" parent="AlertDialogCustom">
