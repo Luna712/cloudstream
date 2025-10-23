@@ -366,7 +366,7 @@ class SubtitlesFragment : DialogFragment() {
     private var hide: Boolean = true
 
     @AttrRes
-    var backgroundColor: Int? = null
+    var backgroundColor: Int = 0
     var systemBarsAddPadding = isLayout(TV or EMULATOR)
 
     override fun onDestroy() {
@@ -393,13 +393,13 @@ class SubtitlesFragment : DialogFragment() {
             context?.getExternalFilesDir(null)?.absolutePath.toString() + "/Fonts"
         )
 
-        if (backgroundColor != null) {
+        /*if (backgroundColor != 0) {
             context?.let { ctx ->
                 binding?.subsRoot?.setBackgroundColor(
                     ctx.colorFromAttribute(backgroundColor)
                 )
             }
-        }
+        }*/
 
         fixSystemBarsPadding(
             binding?.subsRoot,
