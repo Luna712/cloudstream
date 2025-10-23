@@ -563,8 +563,13 @@
     </style>
 
     <style name="DialogFullscreenPlayer" parent="DialogFullscreen">
+        <item name="android:windowBackground">?attr/primaryBlackBackground</item>
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:windowTranslucentStatus">false</item>
+
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:navigationBarColor">?attr/primaryBlackBackground</item>
     </style>
 
     <style name="DialogHalfFullscreen" parent="AlertDialogCustom">
@@ -576,7 +581,6 @@
     </style>
 
     <style name="AlertDialogCustomBlack" parent="Theme.AppCompat.Dialog.Alert">
-        <item name="android:windowBackground">?attr/primaryBlackBackground</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
 
