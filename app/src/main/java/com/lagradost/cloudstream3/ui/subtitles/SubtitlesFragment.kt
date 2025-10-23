@@ -392,7 +392,7 @@ class SubtitlesFragment : DialogFragment() {
         )
 
         if (backgroundColor != null) {
-            binding?.subsRoot?.backgroundColor = colorFromAttribute(backgroundColor)
+            binding?.subsRoot?.background = colorFromAttribute(backgroundColor)
         }
 
         fixSystemBarsPadding(
