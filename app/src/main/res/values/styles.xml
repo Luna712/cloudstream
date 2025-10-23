@@ -565,7 +565,7 @@
     <style name="DialogFullscreenBlack" parent="DialogFullscreen">
         <item name="android:windowEnterAnimation">@anim/enter_anim</item>
         <item name="android:windowExitAnimation">@anim/exit_anim</item>
-        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentStatus"false</item>
     </style>
 
     <style name="DialogHalfFullscreen" parent="AlertDialogCustom">
