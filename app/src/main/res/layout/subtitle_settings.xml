@@ -273,7 +273,7 @@
 
             <TextView
                 android:id="@+id/subs_import_text"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_rowWeight="1"
                 android:gravity="center"
