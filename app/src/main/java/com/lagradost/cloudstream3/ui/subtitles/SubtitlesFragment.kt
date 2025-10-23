@@ -48,6 +48,7 @@ import com.lagradost.cloudstream3.utils.Event
 import com.lagradost.cloudstream3.utils.SingleSelectionHelper.showDialog
 import com.lagradost.cloudstream3.utils.SingleSelectionHelper.showMultiDialog
 import com.lagradost.cloudstream3.utils.SubtitleHelper.languages
+import com.lagradost.cloudstream3.utils.UIHelper.colorFromAttribute
 import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 import com.lagradost.cloudstream3.utils.UIHelper.hideSystemUI
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
@@ -364,6 +365,7 @@ class SubtitlesFragment : DialogFragment() {
     private var hide: Boolean = true
 
     var systemBarsAddPadding = isLayout(TV or EMULATOR)
+    var backgroundColor: Int? = null
 
     override fun onDestroy() {
         super.onDestroy()
@@ -388,6 +390,10 @@ class SubtitlesFragment : DialogFragment() {
         binding?.subsImportText?.text = getString(R.string.subs_import_text).format(
             context?.getExternalFilesDir(null)?.absolutePath.toString() + "/Fonts"
         )
+
+        if (backgroundColor != null) {
+            binding?.subsRoot?.backgroundColor = colorFromAttribute(backgroundColor)
+        }
 
         fixSystemBarsPadding(
             binding?.subsRoot,
