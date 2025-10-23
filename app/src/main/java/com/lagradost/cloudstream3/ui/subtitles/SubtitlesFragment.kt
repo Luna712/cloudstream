@@ -366,7 +366,7 @@ class SubtitlesFragment : DialogFragment() {
     private var hide: Boolean = true
 
     @AttrRes
-    var backgroundColor: Int = 0
+    var backgroundColor: Int? = null
     var systemBarsAddPadding = isLayout(TV or EMULATOR)
 
     override fun onDestroy() {
