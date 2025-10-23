@@ -564,6 +564,7 @@
 
     <style name="DialogFullscreenBlack">
         <item name="android:windowBackground">?attr/primaryBlackBackground</item>
+        <item name="android:windowFullscreen">true</item>
         <item name="android:windowEnterAnimation">@anim/enter_anim</item>
         <item name="android:windowExitAnimation">@anim/exit_anim</item>
         <item name="android:layout_width">match_parent</item>
@@ -572,6 +573,7 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:navigationBarColor">?attr/primaryBlackBackground</item>
+        <item name="android:statusBarColor">?attr/primaryBlackBackground</item>
     </style>
 
     <style name="DialogHalfFullscreen" parent="AlertDialogCustom">
