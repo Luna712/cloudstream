@@ -1065,7 +1065,6 @@ class GeneratorPlayer : FullScreenPlayer() {
                     safe {
                         val subtitlesFragment = SubtitlesFragment()
                         subtitlesFragment.systemBarsAddPadding = true
-                        subtitlesFragment.backgroundColor = R.attr.primaryBlackBackground
                         subtitlesFragment.show(this.parentFragmentManager, "SubtitleSettings")
                     }
                 }
