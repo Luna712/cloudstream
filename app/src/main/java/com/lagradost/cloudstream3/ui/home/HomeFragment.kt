@@ -647,7 +647,7 @@ class HomeFragment : Fragment() {
             fixSystemBarsPadding(
                 root,
                 padTop = false,
-                padBottom = isLayout(TV or EMULATOR) || isLandscape(),
+                padBottom = isLandscape(),
                 padLeft = isLayout(TV or EMULATOR)
             )
             //homeChangeApiLoading.setOnClickListener(apiChangeClickListener)

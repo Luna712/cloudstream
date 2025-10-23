@@ -153,7 +153,7 @@ class LibraryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         fixSystemBarsPadding(
             binding?.root,
-            padBottom = isLayout(TV or EMULATOR) || isLandscape(),
+            padBottom = isLandscape(),
             padLeft = isLayout(TV or EMULATOR)
         )
 

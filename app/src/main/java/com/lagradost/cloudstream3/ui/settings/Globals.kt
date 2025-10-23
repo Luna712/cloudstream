@@ -47,7 +47,8 @@ object Globals {
 
     /** Returns true if the current orientation is landscape. */
     fun isLandscape(): Boolean =
-        Resources.getSystem().configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+        isLayout(TV or EMULATOR) ||
+            Resources.getSystem().configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
     /** Returns true if the layout is any of the flags,
      * so isLayout(TV or EMULATOR) is a valid statement for checking if the layout is in the emulator

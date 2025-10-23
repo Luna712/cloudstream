@@ -239,7 +239,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         fixSystemBarsPadding(
             binding?.searchRoot,
-            padBottom = isLayout(TV or EMULATOR) || isLandscape(),
+            padBottom = isLandscape(),
             padLeft = isLayout(TV or EMULATOR)
         )
 
