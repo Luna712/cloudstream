@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.core.view.ViewCompat
 import com.lagradost.cloudstream3.CommonActivity.screenHeight
 import com.lagradost.cloudstream3.CommonActivity.screenWidth
 import com.lagradost.cloudstream3.LoadResponse
@@ -24,7 +25,6 @@ open class ResultTrailerPlayer : ResultFragmentPhone() {
     override var lockRotation = false
     override var isFullScreenPlayer = false
     override var hasPipModeSupport = false
-    override var systemBarsAddPadding = false
 
     companion object {
         const val TAG = "RESULT_TRAILER"
@@ -59,7 +59,11 @@ open class ResultTrailerPlayer : ResultFragmentPhone() {
             }
 
             if (isFullScreenPlayer) {
-                binding?.root?.setPadding(0, 0, 0, 0)
+                binding?.apply {
+                    // Remove listener
+                    ViewCompat.setOnApplyWindowInsetsListener(root, null)
+                    root.setPadding(0, 0, 0, 0)
+                }
             }
 
             //result_trailer_loading?.isVisible = false
