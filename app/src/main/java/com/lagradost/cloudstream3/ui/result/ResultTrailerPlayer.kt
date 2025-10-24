@@ -57,6 +57,10 @@ open class ResultTrailerPlayer : ResultFragmentPhone() {
                 screenHeight
             }
 
+            if (isFullScreenPlayer) {
+                binding?.root?.setPadding(0, 0, 0, 0)
+            }
+
             //result_trailer_loading?.isVisible = false
             resultBinding?.resultSmallscreenHolder?.isVisible = !isFullScreenPlayer
             binding?.resultFullscreenHolder?.isVisible = isFullScreenPlayer
@@ -169,13 +173,13 @@ open class ResultTrailerPlayer : ResultFragmentPhone() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         playerBinding?.playerFullscreen?.setOnClickListener {
             updateFullscreen(!isFullScreenPlayer)
         }
         updateFullscreen(isFullScreenPlayer)
         uiReset()
 
-        super.onViewCreated(view, savedInstanceState)
         playerBinding?.playerIntroPlay?.setOnClickListener {
             playerBinding?.playerIntroPlay?.isGone = true
             player.handleEvent(CSPlayerEvent.Play, PlayerEventSource.UI)
