@@ -27,7 +27,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
 import android.view.WindowManager
-import android.view.WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
@@ -241,7 +240,7 @@ open class FullScreenPlayer : AbstractPlayerFragment() {
      * */
     private fun View.isValidTouch(rawX: Float, rawY: Float): Boolean {
         // NOTE: screenWidth is without the navbar width when 3button nav is turned on.
-        if (Build.VERSION.SDK_INT >= 30) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             // real = absolute dimen without any default deductions like navbar width
             val windowMetrics =
                 (context?.getSystemService(Context.WINDOW_SERVICE) as? WindowManager)?.currentWindowMetrics
@@ -418,9 +417,9 @@ open class FullScreenPlayer : AbstractPlayerFragment() {
 
     open fun lockOrientation(activity: Activity) {
         @Suppress("DEPRECATION")
-        val display = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R)
+        val display = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
             (activity.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
-        else activity.display!!
+        } else activity.display!!
         val rotation = display.rotation
         val currentOrientation = activity.resources.configuration.orientation
         val orientation: Int
@@ -466,7 +465,8 @@ open class FullScreenPlayer : AbstractPlayerFragment() {
             activity?.hideSystemUI()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && fullscreenNotch) {
                 val params = activity?.window?.attributes
-                params?.layoutInDisplayCutoutMode = LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+                params?.layoutInDisplayCutoutMode =
+                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS
                 activity?.window?.attributes = params
             }
         }
@@ -478,13 +478,13 @@ open class FullScreenPlayer : AbstractPlayerFragment() {
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_USER
 
         // simply resets brightness and notch settings that might have been overridden
-        val lp = activity?.window?.attributes
-        lp?.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
+        val params = activity?.window?.attributes
+        params?.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            lp?.layoutInDisplayCutoutMode =
+            params?.layoutInDisplayCutoutMode =
                 WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_DEFAULT
         }
-        activity?.window?.attributes = lp
+        activity?.window?.attributes = params
         activity?.showSystemUI()
     }
 
