@@ -169,11 +169,11 @@ open class ResultTrailerPlayer : ResultFragmentPhone() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         playerBinding?.playerFullscreen?.setOnClickListener {
             updateFullscreen(!isFullScreenPlayer)
         }
         updateFullscreen(isFullScreenPlayer)
+        super.onViewCreated(view, savedInstanceState)
         uiReset()
 
         playerBinding?.playerIntroPlay?.setOnClickListener {
