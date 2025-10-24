@@ -441,6 +441,14 @@ object UIHelper {
         return null
     }
 
+    private fun Window.setTranslucentStatus(enabled: Boolean) {
+        if (enabled) {
+            addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        } else {
+            clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        }
+    }
+
     fun fixSystemBarsPadding(
         v: View?,
         @DimenRes heightResId: Int? = null,
@@ -464,10 +472,7 @@ object UIHelper {
             return
         }
 
-        if (translucentStatus) {
-            v.context?.findWindow()?.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        }
-
+        v.context?.findWindow()?.setTranslucentStatus(translucentStatus)
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
             val leftCheck = if (view.isRtl()) padRight else padLeft
             val rightCheck = if (view.isRtl()) padLeft else padRight
