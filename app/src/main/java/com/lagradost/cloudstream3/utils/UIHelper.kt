@@ -385,6 +385,19 @@ object UIHelper {
         window?.navigationBarColor = colorFromAttribute(resourceId)
     }
 
+    fun Activity.setStatusBarColorCompat(@AttrRes resourceId: Int) {
+        // edge-to-edge handles this
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) return
+
+        @Suppress("DEPRECATION")
+        window?.statusBarColor = colorFromAttribute(resourceId)
+    }
+
+    fun Activity.enableTranslucentStatusBarCompat() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return
+        window?.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+    }
+
     fun Context.getStatusBarHeight(): Int {
         if (isLayout(TV or EMULATOR)) {
             return 0
