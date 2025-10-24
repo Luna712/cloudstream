@@ -19,6 +19,7 @@ import com.lagradost.cloudstream3.ui.player.PlayerEventSource
 import com.lagradost.cloudstream3.ui.player.SubtitleData
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.attachBackPressedCallback
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.detachBackPressedCallback
+import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 
 open class ResultTrailerPlayer : ResultFragmentPhone() {
 
@@ -58,11 +59,14 @@ open class ResultTrailerPlayer : ResultFragmentPhone() {
                 screenHeight
             }
 
-            if (isFullScreenPlayer) {
-                binding?.apply {
+            binding?.apply {
+                if (isFullScreenPlayer) {
                     // Remove listener
                     ViewCompat.setOnApplyWindowInsetsListener(root, null)
                     root.setPadding(0, 0, 0, 0)
+                } else {
+                    fixSystemBarsPadding(root)
+                    ViewCompat.requestApplyInsets(root)
                 }
             }
 
