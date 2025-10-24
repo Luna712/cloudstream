@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.ImageView
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
@@ -261,6 +262,9 @@ class QuickSearchFragment : Fragment() {
                 listLock.unlock()
             }
         }
+
+        val searchExitIcon =
+            binding?.quickSearch?.findViewById<ImageView>(androidx.appcompat.R.id.search_close_btn)
 
         binding?.quickSearch?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
