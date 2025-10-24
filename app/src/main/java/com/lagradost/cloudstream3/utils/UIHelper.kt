@@ -8,6 +8,7 @@ import android.app.Dialog
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
@@ -28,6 +29,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
+import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.ListAdapter
@@ -385,6 +387,14 @@ object UIHelper {
         window?.navigationBarColor = colorFromAttribute(resourceId)
     }
 
+    fun Activity.setStatusBarColorCompat(@AttrRes resourceId: Int) {
+        // edge-to-edge handles this
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) return
+
+        @Suppress("DEPRECATION")
+        window?.statusBarColor = colorFromAttribute(resourceId)
+    }
+
     fun Context.getStatusBarHeight(): Int {
         if (isLayout(TV or EMULATOR)) {
             return 0
@@ -422,6 +432,23 @@ object UIHelper {
         v.layoutParams = params
     }
 
+    private fun Context.findWindow(): Window? {
+        var ctx = this
+        while (ctx is ContextWrapper) {
+            if (ctx is Activity) return ctx.window
+            ctx = ctx.baseContext
+        }
+        return null
+    }
+
+    private fun Window.setTranslucentStatus(enabled: Boolean) {
+        if (enabled) {
+            addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        } else {
+            clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        }
+    }
+
     fun fixSystemBarsPadding(
         v: View?,
         @DimenRes heightResId: Int? = null,
@@ -430,7 +457,8 @@ object UIHelper {
         padBottom: Boolean = true,
         padLeft: Boolean = true,
         padRight: Boolean = true,
-        overlayCutout: Boolean = true
+        overlayCutout: Boolean = true,
+        translucentStatus: Boolean = false
     ) {
         if (v == null) return
 
@@ -444,6 +472,7 @@ object UIHelper {
             return
         }
 
+        v.context?.findWindow()?.setTranslucentStatus(translucentStatus)
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
             val leftCheck = if (view.isRtl()) padRight else padLeft
             val rightCheck = if (view.isRtl()) padLeft else padRight
