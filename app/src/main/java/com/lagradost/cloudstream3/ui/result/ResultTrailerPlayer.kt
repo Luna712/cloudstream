@@ -48,6 +48,18 @@ open class ResultTrailerPlayer : ResultFragmentPhone() {
     }
 
     private fun fixPlayerSize() {
+        binding?.apply {
+            // Remove existing listener
+            ViewCompat.setOnApplyWindowInsetsListener(root, null)
+            if (isFullScreenPlayer) {
+                root.setPadding(0, 0, 0, 0)
+            } else {
+                // Reapply padding when not in full screen
+                fixSystemBarsPadding(root)
+                ViewCompat.requestApplyInsets(root)
+            }
+        }
+
         playerWidthHeight?.let { (w, h) ->
             if(w <= 0 || h <= 0) return@let
 
@@ -57,17 +69,6 @@ open class ResultTrailerPlayer : ResultFragmentPhone() {
                 screenWidth
             } else {
                 screenHeight
-            }
-
-            binding?.apply {
-                if (isFullScreenPlayer) {
-                    // Remove listener
-                    ViewCompat.setOnApplyWindowInsetsListener(root, null)
-                    root.setPadding(0, 0, 0, 0)
-                } else {
-                    fixSystemBarsPadding(root)
-                    ViewCompat.requestApplyInsets(root)
-                }
             }
 
             //result_trailer_loading?.isVisible = false
