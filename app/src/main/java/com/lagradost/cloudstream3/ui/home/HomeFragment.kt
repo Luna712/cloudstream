@@ -641,7 +641,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         fixGrid()
 
-        context?.let { HomeChildItemAdapter.updatePosterSize(it)
+        context?.let { HomeChildItemAdapter.updatePosterSize(it) }
 
         binding?.apply {
             fixSystemBarsPadding(
