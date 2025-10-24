@@ -71,6 +71,7 @@ import com.lagradost.cloudstream3.utils.Event
 import com.lagradost.cloudstream3.utils.SubtitleHelper.getFlagFromIso
 import com.lagradost.cloudstream3.utils.TvChannelUtils
 import com.lagradost.cloudstream3.utils.UIHelper.dismissSafe
+import com.lagradost.cloudstream3.utils.UIHelper.enableTranslucentStatusBarCompat
 import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 import com.lagradost.cloudstream3.utils.UIHelper.getSpanCount
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
@@ -642,6 +643,7 @@ class HomeFragment : Fragment() {
         fixGrid()
 
         context?.let { HomeChildItemAdapter.updatePosterSize(it) }
+        activity?.enableTranslucentStatusBarCompat()
 
         binding?.apply {
             fixSystemBarsPadding(
