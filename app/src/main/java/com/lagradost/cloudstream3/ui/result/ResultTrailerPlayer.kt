@@ -24,6 +24,7 @@ open class ResultTrailerPlayer : ResultFragmentPhone() {
     override var lockRotation = false
     override var isFullScreenPlayer = false
     override var hasPipModeSupport = false
+    override var systemBarsAddPadding = false
 
     companion object {
         const val TAG = "RESULT_TRAILER"
