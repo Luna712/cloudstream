@@ -463,7 +463,7 @@ open class FullScreenPlayer : AbstractPlayerFragment() {
     protected fun enterFullscreen() {
         if (isFullScreenPlayer) {
             activity?.hideSystemUI()
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && fullscreenNotch) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 val params = activity?.window?.attributes
                 params?.layoutInDisplayCutoutMode =
                     WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS
