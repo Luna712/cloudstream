@@ -49,10 +49,11 @@ open class ResultTrailerPlayer : ResultFragmentPhone() {
 
     private fun fixPlayerSize() {
         binding?.apply {
-            // Remove existing listener
-            ViewCompat.setOnApplyWindowInsetsListener(root, null)
             if (isFullScreenPlayer) {
-                root.setPadding(0, 0, 0, 0)
+                // Remove listener
+                ViewCompat.setOnApplyWindowInsetsListener(root, null)
+                root.overlay.clear() // Clear the cutout overlay
+                root.setPadding(0, 0, 0, 0) // Reset padding for full screen
             } else {
                 // Reapply padding when not in full screen
                 fixSystemBarsPadding(root)
