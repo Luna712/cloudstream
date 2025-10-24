@@ -173,9 +173,9 @@ open class ResultTrailerPlayer : ResultFragmentPhone() {
             updateFullscreen(!isFullScreenPlayer)
         }
         updateFullscreen(isFullScreenPlayer)
-        super.onViewCreated(view, savedInstanceState)
         uiReset()
 
+        super.onViewCreated(view, savedInstanceState)
         playerBinding?.playerIntroPlay?.setOnClickListener {
             playerBinding?.playerIntroPlay?.isGone = true
             player.handleEvent(CSPlayerEvent.Play, PlayerEventSource.UI)
