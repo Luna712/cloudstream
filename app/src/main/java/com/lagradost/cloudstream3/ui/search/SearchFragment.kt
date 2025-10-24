@@ -274,10 +274,10 @@ class SearchFragment : Fragment() {
             }
         }
 
-        selectedApis = DataStoreHelper.searchPreferenceProviders.toMutableSet()
-
         val searchExitIcon =
             binding?.mainSearch?.findViewById<ImageView>(androidx.appcompat.R.id.search_close_btn)
+
+        selectedApis = DataStoreHelper.searchPreferenceProviders.toMutableSet()
 
         binding?.searchFilter?.setOnClickListener { searchView ->
             searchView?.context?.let { ctx ->
