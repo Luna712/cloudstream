@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.AbsListView
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -274,6 +275,9 @@ class SearchFragment : Fragment() {
         }
 
         selectedApis = DataStoreHelper.searchPreferenceProviders.toMutableSet()
+
+        val searchExitIcon =
+            binding?.mainSearch?.findViewById<ImageView>(androidx.appcompat.R.id.search_close_btn)
 
         binding?.searchFilter?.setOnClickListener { searchView ->
             searchView?.context?.let { ctx ->
