@@ -323,14 +323,12 @@ open class ResultFragmentPhone : FullScreenPlayer() {
         viewModel.reloadEpisodes()
     }
 
-    protected open var systemBarsAddPadding = true
-
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // ===== setup =====
-        if (systemBarsAddPadding) fixSystemBarsPadding(binding?.root)
+        // fixSystemBarsPadding(binding?.root)
         val storedData = getStoredData() ?: return
         activity?.window?.decorView?.clearFocus()
         activity?.loadCache()
