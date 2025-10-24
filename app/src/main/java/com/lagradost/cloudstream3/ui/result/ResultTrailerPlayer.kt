@@ -3,6 +3,7 @@ package com.lagradost.cloudstream3.ui.result
 import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
@@ -48,16 +49,18 @@ open class ResultTrailerPlayer : ResultFragmentPhone() {
     }
 
     private fun fixPlayerSize() {
-        binding?.apply {
-            if (isFullScreenPlayer) {
-                // Remove listener
-                ViewCompat.setOnApplyWindowInsetsListener(root, null)
-                root.overlay.clear() // Clear the cutout overlay
-                root.setPadding(0, 0, 0, 0) // Reset padding for full screen
-            } else {
-                // Reapply padding when not in full screen
-                fixSystemBarsPadding(root)
-                ViewCompat.requestApplyInsets(root)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            binding?.apply {
+                if (isFullScreenPlayer) {
+                    // Remove listener
+                    ViewCompat.setOnApplyWindowInsetsListener(root, null)
+                    root.overlay.clear() // Clear the cutout overlay
+                    root.setPadding(0, 0, 0, 0) // Reset padding for full screen
+                } else {
+                    // Reapply padding when not in full screen
+                    fixSystemBarsPadding(root)
+                    ViewCompat.requestApplyInsets(root)
+                }
             }
         }
 
