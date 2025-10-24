@@ -451,7 +451,7 @@
         <item name="android:queryHint">@string/search_hint</item>
         <item name="android:background">@color/transparent</item>
         <item name="android:fontFamily">@font/google_sans</item>
-        <item name="android:closeIconTint">?attr/textColor</item>
+        <item name="closeIconTint">?attr/textColor</item>
     </style>
 
     <style name="AppBottomSheetDialogTheme">
