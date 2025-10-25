@@ -72,7 +72,7 @@ android {
         manifestPlaceholders["target_sdk_version"] = libs.versions.targetSdk.get()
 
         ndk {
-            debugSymbolLevel = "none"
+            abiFilters += listOf("arm64-v8a", "armeabi-v7a")
         }
 
         // Reads local.properties
