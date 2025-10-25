@@ -41,6 +41,12 @@ android {
         unitTests.isReturnDefaultValues = true
     }
 
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+
     viewBinding {
         enable = true
     }
