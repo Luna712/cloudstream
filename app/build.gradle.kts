@@ -71,6 +71,10 @@ android {
 
         manifestPlaceholders["target_sdk_version"] = libs.versions.targetSdk.get()
 
+        ndk {
+            debugSymbolLevel = "none"
+        }
+
         // Reads local.properties
         val localProperties = gradleLocalProperties(rootDir, project.providers)
 
@@ -150,7 +154,7 @@ android {
 
     packaging {
         jniLibs {
-            useLegacyPackaging = true
+            useLegacyPackaging = false
         }
     }
 
