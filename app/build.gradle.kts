@@ -41,12 +41,6 @@ android {
         unitTests.isReturnDefaultValues = true
     }
 
-    packagingOptions {
-        jniLibs {
-            useLegacyPackaging = true
-        }
-    }
-
     viewBinding {
         enable = true
     }
@@ -152,6 +146,12 @@ android {
 
     buildFeatures {
         buildConfig = true
+    }
+
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging = true
+        }
     }
 
     namespace = "com.lagradost.cloudstream3"
