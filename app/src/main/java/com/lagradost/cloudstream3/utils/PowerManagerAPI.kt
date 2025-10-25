@@ -4,7 +4,6 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Build.VERSION.SDK_INT
 import android.os.PowerManager
 import android.provider.Settings
 import android.util.Log
@@ -21,13 +20,9 @@ private const val TAG = "PowerManagerAPI"
 
 object BatteryOptimizationChecker {
 
-    fun isAppRestricted(context: Context?): Boolean {
-        if (SDK_INT >= 23 && context != null) {
-            val powerManager = context.getSystemService(Context.POWER_SERVICE) as PowerManager
-            return !powerManager.isIgnoringBatteryOptimizations(context.packageName)
-        }
-
-        return false // below Marshmallow, it's always unrestricted when app is in background
+    fun isAppRestricted(context: Context): Boolean {
+        val powerManager = context.getSystemService(Context.POWER_SERVICE) as PowerManager
+        return !powerManager.isIgnoringBatteryOptimizations(context.packageName)
     }
 
     fun openBatteryOptimizationSettings(context: Context) {
