@@ -571,7 +571,6 @@ open class ResultFragmentPhone : FullScreenPlayer() {
                 setRecycledViewPool(SearchAdapter.sharedPool)
                 adapter =
                     SearchAdapter(
-                        ArrayList(),
                         this,
                     ) { callback ->
                         SearchHelper.handleSearchClickCallback(callback)
@@ -595,6 +594,7 @@ open class ResultFragmentPhone : FullScreenPlayer() {
             resultBinding?.apply {
                 if (resume == null) {
                     resultResumeParent.isVisible = false
+                    resultPlayParent.isVisible = true
                     resultResumeProgressHolder.isVisible = false
                     return@observeNullable
                 }
@@ -611,7 +611,7 @@ open class ResultFragmentPhone : FullScreenPlayer() {
                             )
                     }
                     if (resume.isMovie){
-                        resultPlayMovie.isGone = true
+                        resultPlayParent.isGone = true
                         resultResumeSeriesProgressText.isVisible = true
                         resultResumeSeriesProgressText.setText(progress.progressLeft)
                     }
@@ -623,9 +623,9 @@ open class ResultFragmentPhone : FullScreenPlayer() {
                     resultResumeProgressHolder.isVisible = true
                 } ?: run {
                     resultResumeProgressHolder.isVisible = false
-                    if(!resume.isMovie){
+                    if (!resume.isMovie) {
                         resultNextSeriesButton.isVisible = true
-                        resultNextSeriesButton.text =context?.getNameFull(
+                        resultNextSeriesButton.text = context?.getNameFull(
                             resume.result.name,
                             resume.result.episode,
                             resume.result.season
@@ -700,6 +700,12 @@ open class ResultFragmentPhone : FullScreenPlayer() {
                         )
                     }
                     resultPlayMovie.setOnLongClickListener {
+                        viewModel.handleAction(
+                            EpisodeClickEvent(ACTION_SHOW_OPTIONS, ep)
+                        )
+                        return@setOnLongClickListener true
+                    }
+                    resultResumeSeriesButton.setOnLongClickListener {
                         viewModel.handleAction(
                             EpisodeClickEvent(ACTION_SHOW_OPTIONS, ep)
                         )
@@ -802,7 +808,7 @@ open class ResultFragmentPhone : FullScreenPlayer() {
                     resultDataHolder.isGone = d.comingSoon
 
                     resultCastItems.isGone = d.actors.isNullOrEmpty()
-                    (resultCastItems.adapter as? ActorAdaptor)?.updateList(d.actors ?: emptyList())
+                    (resultCastItems.adapter as? ActorAdaptor)?.submitList(d.actors)
 
                     if (d.contentRatingText == null) {
                         // If there is no rating to display, we don't want an empty gap
@@ -1252,7 +1258,7 @@ open class ResultFragmentPhone : FullScreenPlayer() {
             root.isGone = isInvalid
             root.post {
                 rec?.let { list ->
-                    (resultRecommendationsList.adapter as? SearchAdapter)?.updateList(list.filter { it.apiName == matchAgainst })
+                    (resultRecommendationsList.adapter as? SearchAdapter)?.submitList(list.filter { it.apiName == matchAgainst })
                 }
             }
         }
