@@ -10,7 +10,7 @@ import androidx.core.view.setPadding
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil3.load
+import coil3.dispose
 import com.lagradost.cloudstream3.APIHolder.unixTimeMS
 import com.lagradost.cloudstream3.CommonActivity
 import com.lagradost.cloudstream3.R
@@ -248,14 +248,26 @@ class EpisodeAdapter(
                 if (card.videoWatchState == VideoWatchState.Watched) {
                     // This cannot be done in getDisplayPosition() as when you have not watched something
                     // the duration and position is 0
-                    episodeProgress.max = 1
-                    episodeProgress.progress = 1
-                    episodeProgress.isVisible = true
+                    //episodeProgress.max = 1
+                    //episodeProgress.progress = 1
+                    episodePlayIcon.setImageResource(R.drawable.ic_baseline_check_24)
+                    episodeProgress.isVisible = false
                 } else {
                     val displayPos = card.getDisplayPosition()
-                    episodeProgress.max = (card.duration / 1000).toInt()
-                    episodeProgress.progress = (displayPos / 1000).toInt()
-                    episodeProgress.isVisible = displayPos > 0L
+                    val durationSec = (card.duration / 1000).toInt()
+                    val progressSec = (displayPos / 1000).toInt()
+
+                    if (displayPos == card.duration) {
+                        episodePlayIcon.setImageResource(R.drawable.ic_baseline_check_24)
+                        episodeProgress.isVisible = false
+                    } else {
+                        episodePlayIcon.setImageResource(R.drawable.netflix_play)
+                        episodeProgress.apply {
+                            max = durationSec
+                            progress = progressSec
+                            isVisible = displayPos > 0L
+                        }
+                    }
                 }
 
                 val posterVisible = !card.poster.isNullOrBlank()
@@ -263,7 +275,7 @@ class EpisodeAdapter(
                     episodePoster.loadImage(card.poster)
                 } else {
                     // Clear the image
-                    episodePoster.load(null)
+                    episodePoster.dispose()
                 }
                 episodePoster.isVisible = posterVisible
 
