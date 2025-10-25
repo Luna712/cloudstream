@@ -416,6 +416,7 @@ class ResultFragmentTv : Fragment() {
             //}
 
             resultRecommendationsList.spanCount = 8
+            resultRecommendationsList.setRecycledViewPool(SearchAdapter.sharedPool)
             resultRecommendationsList.adapter =
                 SearchAdapter(
                     ArrayList(),
@@ -427,6 +428,7 @@ class ResultFragmentTv : Fragment() {
                         SearchHelper.handleSearchClickCallback(callback)
                 }
 
+            resultEpisodes.setRecycledViewPool(EpisodeAdapter.sharedPool)
             resultEpisodes.adapter =
                 EpisodeAdapter(
                     false,
@@ -468,6 +470,7 @@ class ResultFragmentTv : Fragment() {
                 it?.isVisible == true
             }
 
+            resultCastItems.setRecycledViewPool(ActorAdaptor.sharedPool)
             resultCastItems.adapter = ActorAdaptor(aboveCast?.id) {
                 toggleEpisodes(false)
             }

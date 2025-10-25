@@ -251,6 +251,7 @@ class SearchFragment : Fragment() {
                 }
 
             searchRoot.findViewById<TextView>(androidx.appcompat.R.id.search_src_text)?.tag = "tv_no_focus_tag"
+            searchAutofitResults.setRecycledViewPool(SearchAdapter.sharedPool)
             searchAutofitResults.adapter = adapter
             searchLoadingBar.alpha = 0f
         }
@@ -593,6 +594,7 @@ class SearchFragment : Fragment() {
             searchHistoryRecycler.setLinearListLayout(isHorizontal = false, nextRight = FOCUS_SELF)
             //searchHistoryRecycler.layoutManager = GridLayoutManager(context, 1)
 
+            searchMasterRecycler.setRecycledViewPool(ParentItemAdapter.sharedPool)
             searchMasterRecycler.adapter = masterAdapter
             //searchMasterRecycler.setLinearListLayout(isHorizontal = false, nextRight = FOCUS_SELF)
 
