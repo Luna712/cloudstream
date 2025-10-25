@@ -530,7 +530,7 @@ class CS3IPlayer : IPlayer {
             exoPlayer?.currentPosition?.also { pos ->
                 // This seems to properly refresh all subtitles
                 // It needs to be done as all subtitle cues with timings are pre-processed
-                currentTextRenderer?.resetPosition(pos, false)
+                currentTextRenderer?.resetPosition(pos/*, false*/)
             }
         }
     }
