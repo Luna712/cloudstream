@@ -7,7 +7,6 @@ import android.content.res.Configuration
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,6 +59,7 @@ import com.lagradost.cloudstream3.ui.result.FOCUS_SELF
 import com.lagradost.cloudstream3.ui.result.setLinearListLayout
 import com.lagradost.cloudstream3.ui.settings.Globals.EMULATOR
 import com.lagradost.cloudstream3.ui.settings.Globals.TV
+import com.lagradost.cloudstream3.ui.settings.Globals.isLandscape
 import com.lagradost.cloudstream3.ui.settings.Globals.isLayout
 import com.lagradost.cloudstream3.utils.AppContextUtils.filterProviderByPreferredMedia
 import com.lagradost.cloudstream3.utils.AppContextUtils.filterSearchResultByFilmQuality
@@ -74,7 +74,7 @@ import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.DataStoreHelper.currentAccount
 import com.lagradost.cloudstream3.utils.SubtitleHelper
 import com.lagradost.cloudstream3.utils.UIHelper.dismissSafe
-import com.lagradost.cloudstream3.utils.UIHelper.fixPaddingStatusbar
+import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 import com.lagradost.cloudstream3.utils.UIHelper.getSpanCount
 import com.lagradost.cloudstream3.utils.UIHelper.hideKeyboard
 import java.util.Locale
@@ -236,8 +236,12 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        fixSystemBarsPadding(
+            binding?.searchRoot,
+            padBottom = isLandscape(),
+            padLeft = isLayout(TV or EMULATOR)
+        )
 
-        fixPaddingStatusbar(binding?.searchRoot)
         fixGrid()
         reloadRepos()
 
@@ -278,16 +282,6 @@ class SearchFragment : Fragment() {
 
         val searchExitIcon =
             binding?.mainSearch?.findViewById<ImageView>(androidx.appcompat.R.id.search_close_btn)
-        // val searchMagIcon =
-        //    binding?.mainSearch?.findViewById<ImageView>(androidx.appcompat.R.id.search_mag_icon)
-        // searchMagIcon.scaleX = 0.65f
-        // searchMagIcon.scaleY = 0.65f
-
-        // Set the color for the search exit icon to the correct theme text color
-        val searchExitIconColor = TypedValue()
-
-        activity?.theme?.resolveAttribute(R.attr.textColor, searchExitIconColor, true)
-        searchExitIcon?.setColorFilter(searchExitIconColor.data)
 
         selectedApis = DataStoreHelper.searchPreferenceProviders.toMutableSet()
 

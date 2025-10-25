@@ -3,7 +3,6 @@ package com.lagradost.cloudstream3.ui.home
 import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -457,6 +456,7 @@ class HomeParentItemAdapterPreview(
                 nextLeft = R.id.nav_rail_view,
                 nextRight = FOCUS_SELF
             )
+
             bookmarkRecyclerView.setLinearListLayout(
                 nextLeft = R.id.nav_rail_view,
                 nextRight = FOCUS_SELF
@@ -575,13 +575,6 @@ class HomeParentItemAdapterPreview(
             }
 
             (binding as? FragmentHomeHeadBinding)?.apply {
-                val searchExitIcon =
-                    homeSearch.findViewById<ImageView?>(androidx.appcompat.R.id.search_close_btn)
-                // Set the color for the search exit icon to the correct theme text color
-                val searchExitIconColor = TypedValue()
-                activity?.theme?.resolveAttribute(R.attr.textColor, searchExitIconColor, true)
-                searchExitIcon?.setColorFilter(searchExitIconColor.data)
-
                 homeSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                     override fun onQueryTextSubmit(query: String): Boolean {
                         viewModel.queryTextSubmit(query)
@@ -603,9 +596,7 @@ class HomeParentItemAdapterPreview(
                     params.height = 0
                     layoutParams = params
                 }
-            } else {
-                fixPaddingStatusbarView(homeNonePadding)
-            }
+            } else fixPaddingStatusbarView(homeNonePadding)
 
             when (preview) {
                 is Resource.Success -> {
