@@ -71,10 +71,6 @@ android {
 
         manifestPlaceholders["target_sdk_version"] = libs.versions.targetSdk.get()
 
-        ndk {
-            abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64")
-        }
-
         // Reads local.properties
         val localProperties = gradleLocalProperties(rootDir, project.providers)
 
