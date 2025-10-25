@@ -205,10 +205,11 @@ abstract class AbstractPlayerFragment(
 
     private var pipReceiver: BroadcastReceiver? = null
     override fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean) {
+        if (!hasPipModeSupport) return
         super.onPictureInPictureModeChanged(isInPictureInPictureMode)
         try {
-            isInPIPMode = hasPipModeSupport && isInPictureInPictureMode
-            if (isInPIPMode) {
+            isInPIPMode = isInPictureInPictureMode
+            if (isInPictureInPictureMode) {
                 // Hide the full-screen UI (controls, etc.) while in picture-in-picture mode.
                 piphide?.isVisible = false
                 pipReceiver = object : BroadcastReceiver() {
