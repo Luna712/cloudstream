@@ -1277,7 +1277,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             padRight = false,
             padTop = false
         )
-            ViewCompat.setOnApplyWindowInsetsListener(newLocalBinding.navView, null)
+            ViewCompat.setOnApplyWindowInsetsListener(binding!!.navView, null)
         }
 
         // overscan
