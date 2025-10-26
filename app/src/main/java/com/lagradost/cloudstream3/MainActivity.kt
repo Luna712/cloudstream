@@ -38,6 +38,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.core.view.marginStart
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -543,29 +544,9 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         }*/
 
         binding?.apply {
-            if (isNavVisible) {
-                navRailView.isVisible = isLandscape()
-                navView.isVisible = !isLandscape()
-                fixSystemBarsPadding(
-                    navRailView,
-                    widthResId = R.dimen.nav_rail_view_width,
-                    padTop = false,
-                    padRight = false,
-                    padBottom = isLandscape(),
-                    padLeft = isLandscape()
-                )
-
-                fixSystemBarsPadding(
-                    navView,
-                    heightResId = R.dimen.nav_view_height,
-                    overlayCutout = false,
-                    padTop = false,
-                    padBottom = !isLandscape(),
-                    padLeft = !isLandscape(),
-                    padRight = !isLandscape()
-                )
-            }
-
+            navRailView.isVisible = isNavVisible && isLandscape()
+            navView.isVisible = isNavVisible && !isLandscape()
+            ViewCompat.requestApplyInsets(navView)
             navHostFragment.apply {
                 val marginPx = resources.getDimensionPixelSize(R.dimen.nav_rail_view_width)
                 layoutParams = (navHostFragment.layoutParams as ViewGroup.MarginLayoutParams).apply {
@@ -1282,6 +1263,20 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             showToast(txt(R.string.unable_to_inflate, t.message ?: ""), Toast.LENGTH_LONG)
             null
         }
+
+        fixSystemBarsPadding(
+            binding?.navView,
+            heightResId = R.dimen.nav_view_height,
+            padTop = false,
+            overlayCutout = false
+        )
+
+        fixSystemBarsPadding(
+            binding?.navRailView,
+            widthResId = R.dimen.nav_rail_view_width,
+            padRight = false,
+            padTop = false
+        )
 
         // overscan
         val padding = settingsManager.getInt(getString(R.string.overscan_key), 0).toPx
