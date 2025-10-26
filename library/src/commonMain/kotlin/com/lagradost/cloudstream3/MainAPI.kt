@@ -1323,17 +1323,23 @@ fun MainAPI.updateUrl(url: String): String {
 }
 
 /**
- * Enum class representing different rating formats.
+ * Enum class representing different score formats.
  *
- * This enum defines various formats for representing ratings, including:
- * - [STAR] for a star rating (e.g., ★)
- * - [OUT_OF_10] for a rating out of 10 (e.g., 8/10)
- * - [OUT_OF_100] for a rating out of 100 (e.g., 85/100)
- * - [POSITIVE_NEGATIVE] for a binary positive or negative rating (e.g., Positive, Negative)
- * - [PERCENT] for a percentage-based rating (e.g., 80%)
+ * This class is used so that providers can control the format that the score displays in.
+ * This is useful when you want to make the score display like it does on the source API
+ * that you are using to get the rating. Unlike normal overall scores, review scores
+ * are often different formats or positive/negitive.
+ We can probably make [Score] do this automatically.
+ *
+ * This enum defines various formats for representing scores, including:
+ * - [STAR] for a star score (e.g., ★)
+ * - [OUT_OF_10] for a score out of 10 (e.g., 8/10)
+ * - [OUT_OF_100] for a score out of 100 (e.g., 85/100)
+ * - [POSITIVE_NEGATIVE] for a binary positive or negative score (e.g., Positive, Negative)
+ * - [PERCENT] for a percentage-based score (e.g., 80%)
  */
 @Prerelease
-enum class RatingFormat {
+enum class ScoreFormat {
     STAR,
     OUT_OF_10,
     OUT_OF_100,
@@ -1344,9 +1350,9 @@ enum class RatingFormat {
 /**
  * Data class representing a user's review.
  *
- * This class contains details about a user's review, including their rating,
+ * This class contains details about a user's review, including their score,
  * review content, and metadata such as username, avatar, and date.
- * It also supports different types of rating formats via the [ratingFormat] property.
+ * It also supports different types of score formats via the [scoreFormat] property.
  *
  * The constructor for this class can not be called directly, you must use [newReviewResponse].
  *
@@ -1357,9 +1363,9 @@ enum class RatingFormat {
  * @param avatarUrl The URL for the reviewer's avatar image.
  * @param avatarHeaders The headers for the avatar URL.
  * @param isSpoiler Whether the review contains spoilers.
- * @param rating The overall rating of the review.
- * @param ratings A list of additional ratings for specific categories (e.g., acting, story, etc.).
- * @param ratingFormat The format used for displaying the rating (defaults to [RatingFormat.STAR]).
+ * @param score The overall score of the review.
+ * @param scores A list of additional scores for specific categories (e.g., acting, story, etc.).
+ * @param scoreFormat The format used for displaying the rating (defaults to [RatingFormat.STAR]).
  *
  * @see newReviewResponse
  */
@@ -1373,9 +1379,9 @@ data class ReviewResponse internal constructor(
     var avatarUrl: String? = null,
     var avatarHeaders: Map<String, String>? = null,
     var isSpoiler: Boolean = false,
-    var rating: Number? = null,
-    var ratings: List<Pair<Number, String>>? = null,
-    var ratingFormat: RatingFormat = RatingFormat.STAR,
+    var score: Score? = null,
+    var scores: List<Pair<Score, String>>? = null,
+    var scoreFormat: ScoreFormat = ScoreFormat.STAR,
 ) {
     /**
      * Adds a review date to the [ReviewResponse] object by parsing a string date.
@@ -1402,15 +1408,15 @@ data class ReviewResponse internal constructor(
     }
 
     /**
-     * Adds a rating for a specific category to the [ReviewResponse].
+     * Adds a score for a specific category to the [ReviewResponse].
      *
-     * @param rating The rating value for the category (e.g., a numeric rating).
+     * @param score The [Score] value for the category.
      * @param category The name of the category being rated (e.g., "Acting", "Story").
      */
-    fun addRatingCategory(rating: Number, category: String) {
-        val updatedRatings = this@ReviewResponse.ratings?.toMutableList() ?: mutableListOf()
-        updatedRatings.add(Pair(rating, category))
-        this@ReviewResponse.ratings = updatedRatings
+    fun addScoreCategory(score: Score, category: String) {
+        val updatedScores = this@ReviewResponse.scores?.toMutableList() ?: mutableListOf()
+        updatedScores.add(Pair(score, category))
+        this@ReviewResponse.scores = updatedScores
     }
 }
 
