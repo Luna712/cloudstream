@@ -547,6 +547,8 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             navRailView.isVisible = isNavVisible && isLandscape()
             navView.isVisible = isNavVisible && !isLandscape()
             ViewCompat.requestApplyInsets(navView)
+            ViewCompat.requestApplyInsets(navRailView)
+            showToast(isLandscape().toString())
             navHostFragment.apply {
                 val marginPx = resources.getDimensionPixelSize(R.dimen.nav_rail_view_width)
                 layoutParams = (navHostFragment.layoutParams as ViewGroup.MarginLayoutParams).apply {
