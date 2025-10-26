@@ -543,25 +543,26 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         }*/
 
         binding?.apply {
-            navRailView.isVisible = isNavVisible && isLandscape()
-            navView.isVisible = isNavVisible && !isLandscape()
             if (isNavVisible) {
+                navRailView.isVisible = isLandscape()
+                navView.isVisible = !isLandscape()
                 fixSystemBarsPadding(
                     navRailView,
                     widthResId = R.dimen.nav_rail_view_width,
-                    padRight = false,
                     padTop = false,
-                    padTop = isLandscape(),
-                    padBottom = isLandscape()
+                    padRight = false,
+                    padBottom = isLandscape(),
+                    padLeft = isLandscape()
                 )
 
                 fixSystemBarsPadding(
                     navView,
                     heightResId = R.dimen.nav_view_height,
-                    padTop = false,
                     overlayCutout = false,
-                    padTop = !isLandscape(),
-                    padBottom = !isLandscape()
+                    padTop = false,
+                    padBottom = !isLandscape(),
+                    padLeft = !isLandscape(),
+                    padRight = !isLandscape()
                 )
             }
 
