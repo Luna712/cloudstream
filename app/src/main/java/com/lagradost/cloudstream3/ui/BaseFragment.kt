@@ -46,7 +46,13 @@ abstract class BaseFragment<T : ViewBinding>(
     protected open fun onBindingCreated(binding: T, savedInstanceState: Bundle?) {}
 
 	override fun onConfigurationChanged(newConfig: Configuration) {
-        binding?.let { ViewCompat.requestApplyInsets(it.root) }
+        binding?.let {
+			fixSystemBarsPadding(
+				it.root,
+				padBottom = isLandscape(),
+				padLeft = isLayout(TV or EMULATOR)
+			)
+		}
 		super.onConfigurationChanged(newConfig)
 	}
 

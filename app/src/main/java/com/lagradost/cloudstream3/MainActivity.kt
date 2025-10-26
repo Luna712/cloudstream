@@ -38,7 +38,6 @@ import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.core.view.marginStart
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -546,9 +545,6 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         binding?.apply {
             navRailView.isVisible = isNavVisible && isLandscape()
             navView.isVisible = isNavVisible && !isLandscape()
-            ViewCompat.requestApplyInsets(navView)
-            ViewCompat.requestApplyInsets(navRailView)
-            showToast(isLandscape().toString())
             navHostFragment.apply {
                 val marginPx = resources.getDimensionPixelSize(R.dimen.nav_rail_view_width)
                 layoutParams = (navHostFragment.layoutParams as ViewGroup.MarginLayoutParams).apply {
