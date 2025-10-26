@@ -444,7 +444,6 @@ object UIHelper {
             return
         }
 
-        v.setPadding(0, 0, 0, 0)
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
             val leftCheck = if (view.isRtl()) padRight else padLeft
             val rightCheck = if (view.isRtl()) padLeft else padRight
