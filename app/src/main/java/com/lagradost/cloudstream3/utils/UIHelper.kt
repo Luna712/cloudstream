@@ -444,6 +444,7 @@ object UIHelper {
             return
         }
 
+        v.setPadding(0, 0, 0, 0)
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
             val leftCheck = if (view.isRtl()) padRight else padLeft
             val rightCheck = if (view.isRtl()) padLeft else padRight
@@ -454,10 +455,10 @@ object UIHelper {
             )
 
             view.updatePadding(
-                left = if (leftCheck) insets.left else 0,
-                right = if (rightCheck) insets.right else 0,
-                //bottom = if (padBottom) insets.bottom else 0,
-                //top = if (padTop) insets.top else 0
+                left = if (leftCheck) insets.left else view.paddingLeft,
+                right = if (rightCheck) insets.right else view.paddingRight,
+                bottom = if (padBottom) insets.bottom else view.paddingBottom,
+                top = if (padTop) insets.top else view.paddingTop
             )
 
             heightResId?.let {
