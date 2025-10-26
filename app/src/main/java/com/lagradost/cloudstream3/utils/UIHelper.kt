@@ -456,12 +456,13 @@ object UIHelper {
             view.updatePadding(
                 left = if (leftCheck) insets.left else 0,
                 right = if (rightCheck) insets.right else 0,
-                bottom = if (padBottom) insets.bottom else 0,
+                //bottom = if (padBottom) insets.bottom else 0,
                 //top = if (padTop) insets.top else 0
             )
 
             heightResId?.let {
                 val heightPx = view.resources.getDimensionPixelSize(it)
+                showToast((heightPx + insets.bottom).toString())
                 view.updateLayoutParams {
                     height = heightPx + insets.bottom
                 }
