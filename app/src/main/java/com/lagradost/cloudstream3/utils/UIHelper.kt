@@ -462,7 +462,7 @@ object UIHelper {
 
             heightResId?.let {
                 val heightPx = view.resources.getDimensionPixelSize(it)
-                showToast((heightPx + insets.bottom).toString())
+                //showToast((heightPx + insets.bottom).toString())
                 view.updateLayoutParams {
                     height = heightPx + insets.bottom
                 }
