@@ -31,7 +31,7 @@ abstract class BaseFragment<T : ViewBinding>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fixPadding()
+        fixPadding(view)
         binding?.let { onBindingCreated(it, savedInstanceState) }
     }
 
@@ -39,7 +39,7 @@ abstract class BaseFragment<T : ViewBinding>(
     protected open fun onBindingCreated(binding: T, savedInstanceState: Bundle?) {}
 
     override fun onConfigurationChanged(newConfig: Configuration) {
-        fixPadding()
+        fixPadding(binding?.root)
         super.onConfigurationChanged(newConfig)
     }
 
@@ -48,13 +48,11 @@ abstract class BaseFragment<T : ViewBinding>(
         _binding = null
     }
 
-    private fun fixPadding() {
-        binding?.let {
-            fixSystemBarsPadding(
-                it.root,
-                padBottom = isLandscape(),
-                padLeft = isLayout(TV or EMULATOR)
-            )
-        }
+    private fun fixPadding(view: View?) {
+        fixSystemBarsPadding(
+            view,
+            padBottom = isLandscape(),
+            padLeft = isLayout(TV or EMULATOR)
+        )
     }
 }
