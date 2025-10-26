@@ -38,6 +38,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.core.view.marginStart
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -1269,12 +1270,15 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             overlayCutout = false
         )
 
-        fixSystemBarsPadding(
+        if (isLandscape) {
+            fixSystemBarsPadding(
             binding?.navRailView,
             widthResId = R.dimen.nav_rail_view_width,
             padRight = false,
             padTop = false
         )
+            ViewCompat.setOnApplyWindowInsetsListener(newLocalBinding.navView, null)
+        }
 
         // overscan
         val padding = settingsManager.getInt(getString(R.string.overscan_key), 0).toPx
