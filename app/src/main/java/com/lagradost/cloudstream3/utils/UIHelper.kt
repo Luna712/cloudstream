@@ -457,7 +457,7 @@ object UIHelper {
                 left = if (leftCheck) insets.left else 0,
                 right = if (rightCheck) insets.right else 0,
                 bottom = if (padBottom) insets.bottom else 0,
-                top = if (padTop) insets.top else 0
+                //top = if (padTop) insets.top else 0
             )
 
             heightResId?.let {
