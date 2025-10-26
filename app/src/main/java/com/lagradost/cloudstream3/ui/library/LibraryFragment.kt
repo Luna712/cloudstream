@@ -149,11 +149,6 @@ class LibraryFragment : Fragment() {
     @SuppressLint("ResourceType", "CutPasteId")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fixSystemBarsPadding(
-            binding?.root,
-            padBottom = isLandscape(),
-            padLeft = isLayout(TV or EMULATOR)
-        )
 
         binding?.sortFab?.setOnClickListener(sortChangeClickListener)
         binding?.librarySort?.setOnClickListener(sortChangeClickListener)
@@ -578,6 +573,11 @@ class LibraryFragment : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     override fun onConfigurationChanged(newConfig: Configuration) {
         binding?.viewpager?.adapter?.notifyDataSetChanged()
+        fixSystemBarsPadding(
+            binding?.root,
+            padBottom = isLandscape(),
+            padLeft = isLayout(TV or EMULATOR)
+        )
         super.onConfigurationChanged(newConfig)
     }
 
