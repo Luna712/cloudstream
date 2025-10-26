@@ -1270,7 +1270,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             overlayCutout = false
         )
 
-        if (isLandscape) {
+        if (isLandscape()) {
             fixSystemBarsPadding(
             binding?.navRailView,
             widthResId = R.dimen.nav_rail_view_width,
