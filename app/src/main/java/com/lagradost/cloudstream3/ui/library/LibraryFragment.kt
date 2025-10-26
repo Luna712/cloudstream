@@ -141,7 +141,7 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(FragmentLibraryBind
 
     //override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     @SuppressLint("ResourceType", "CutPasteId")
-    override fun onBindingCreated(binding: FragmentLibraryBinding) {
+    override fun onBindingCreated(binding: FragmentLibraryBinding, savedInstanceState: Bundle?) {
         //super.onViewCreated(view, savedInstanceState)
 
         binding?.sortFab?.setOnClickListener(sortChangeClickListener)

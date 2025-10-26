@@ -21,7 +21,7 @@ abstract class BaseFragment<T : ViewBinding>(
 	protected var _binding: T? = null
 	protected val binding: T? get() = _binding
 
-	final override fun onCreateView(
+	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
@@ -39,11 +39,11 @@ abstract class BaseFragment<T : ViewBinding>(
 				padLeft = isLayout(TV or EMULATOR)
 			)
 		}
-		binding?.let { onBindingCreated(it) }
+		binding?.let { onBindingCreated(it, savedInstanceState) }
 	}
 
 	/** Called when binding has been safely created and view is ready. */
-	protected open fun onBindingCreated(binding: T) {}
+    protected open fun onBindingCreated(binding: T, savedInstanceState: Bundle?) {}
 
 	override fun onConfigurationChanged(newConfig: Configuration) {
         binding?.let { ViewCompat.requestApplyInsets(it.root) }
