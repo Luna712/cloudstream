@@ -649,8 +649,7 @@ class HomeFragment : Fragment() {
                 root,
                 padTop = false,
                 padBottom = isLandscape(),
-                padLeft = isLayout(TV or EMULATOR),
-                translucentStatus = true
+                padLeft = isLayout(TV or EMULATOR)
             )
             //homeChangeApiLoading.setOnClickListener(apiChangeClickListener)
             //homeChangeApiLoading.setOnClickListener(apiChangeClickListener)
@@ -764,6 +763,7 @@ class HomeFragment : Fragment() {
         }
 
         observe(homeViewModel.page) { data ->
+            activity?.setTranslucentStatus(true)
             binding?.apply {
                 when (data) {
                     is Resource.Success -> {
