@@ -646,7 +646,7 @@ class HomeFragment : Fragment() {
         context?.let { HomeChildItemAdapter.updatePosterSize(it) }
 
         binding?.apply {
-            activity?.setStatusBarProtectionColor(view, R.color.primaryGrayBackground)
+            activity?.setStatusBarProtectionColor(view, R.attr.primaryBlackBackground)
             fixSystemBarsPadding(
                 view,
                 padTop = false,
