@@ -28,7 +28,7 @@ object BackPressedCallbackHelper {
                 callback.invoke()
             }
             onBackInvokedDispatcher.registerOnBackInvokedCallback(
-                OnBackInvokedDispatcher.PRIORITY_DEFAULT,
+                OnBackInvokedDispatcher.PRIORITY_SYSTEM_NAVIGATION_OBSERVER,
                 predictiveCallback
             )
             callbackMap[id] = predictiveCallback
@@ -82,4 +82,5 @@ object BackPressedCallbackHelper {
         }
         if (map.isEmpty()) backPressedCallbacks.remove(this)
     }
+
 }
