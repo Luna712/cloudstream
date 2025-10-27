@@ -172,6 +172,7 @@
         <item name="colorOnPrimary">@color/blackText</item>
         <item name="isLightTheme">true</item>
         <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="DraculaMode">
@@ -198,6 +199,7 @@
         <item name="colorOnPrimary">@color/LavenderTextColor</item>
         <item name="isLightTheme">true</item>
         <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="MonetMode">
