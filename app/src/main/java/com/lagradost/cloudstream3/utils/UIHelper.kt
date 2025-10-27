@@ -462,6 +462,22 @@ object UIHelper {
             return
         }
 
+if (v is androidx.core.view.insets.ProtectionLayout) {
+    val paneBackgroundColor = androidx.core.content.ContextCompat.getColor(
+        v.context,
+        R.color.primaryGrayBackground
+    )
+
+    v.setProtections(
+        listOf(
+            androidx.core.view.insets.GradientProtection(
+                androidx.core.view.WindowInsetsCompat.Side.TOP,
+                paneBackgroundColor
+            )
+        )
+    )
+}
+
         (v.context as? Activity)?.window?.setTranslucentStatus(translucentStatus)
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
             val leftCheck = if (view.isRtl()) padRight else padLeft
