@@ -501,11 +501,13 @@ object UIHelper {
         }
     }
 
-    fun setStatusBarProtectionColor(
+    fun Activity.setStatusBarProtectionColor(
         view: View,
         @ColorRes colorRes: Int
     ) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) return
         if (view is androidx.core.view.insets.ProtectionLayout) {
+            window?.isNavigationBarContrastEnforced = false
             val paneBackgroundColor = ContextCompat.getColor(
                 view.context, colorRes
             )
