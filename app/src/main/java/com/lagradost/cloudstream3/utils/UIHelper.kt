@@ -513,7 +513,7 @@ object UIHelper {
 
         view.setProtections(
             listOf(
-                androidx.core.view.insets.ColorProtection(
+                androidx.core.view.insets.GradientProtection(
                     WindowInsetsCompat.Side.TOP,
                     paneBackgroundColor
                 )
