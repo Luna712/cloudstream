@@ -466,7 +466,7 @@ object UIHelper {
 if (v is androidx.core.view.insets.ProtectionLayout) {
     val paneBackgroundColor = androidx.core.content.ContextCompat.getColor(
         v.context,
-        R.color.primaryGrayBackground
+        R.color.primaryBlackBackground
     )
 
     v.setProtections(
