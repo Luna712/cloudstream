@@ -73,7 +73,7 @@ import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 import com.lagradost.cloudstream3.utils.UIHelper.getSpanCount
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
 import com.lagradost.cloudstream3.utils.UIHelper.popupMenuNoIconsAndNoStringRes
-import com.lagradost.cloudstream3.utils.UIHelper.setTranslucentStatus
+import com.lagradost.cloudstream3.utils.UIHelper.setStatusBarProtectionColor
 import com.lagradost.cloudstream3.utils.UIHelper.toPx
 import com.lagradost.cloudstream3.utils.txt
 import androidx.core.net.toUri
@@ -646,8 +646,9 @@ class HomeFragment : Fragment() {
         context?.let { HomeChildItemAdapter.updatePosterSize(it) }
 
         binding?.apply {
+            setStatusBarProtectionColor(view, R.color.primaryBlackBackground)
             fixSystemBarsPadding(
-                root,
+                view,
                 padTop = false,
                 padBottom = isLandscape(),
                 padLeft = isLayout(TV or EMULATOR)
@@ -764,7 +765,6 @@ class HomeFragment : Fragment() {
         }
 
         observe(homeViewModel.page) { data ->
-            activity?.setTranslucentStatus(true)
             binding?.apply {
                 when (data) {
                     is Resource.Success -> {
