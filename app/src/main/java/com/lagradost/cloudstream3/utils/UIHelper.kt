@@ -34,6 +34,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ListAdapter
 import android.widget.ListView
 import android.widget.Toast.LENGTH_LONG
+import androidx.activity.ComponentActivity
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.DimenRes
@@ -42,7 +43,6 @@ import androidx.appcompat.view.ContextThemeWrapper
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.app.ActivityCompat
-import androidx.core.app.ComponentActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import androidx.core.graphics.alpha
