@@ -86,6 +86,9 @@ import kotlin.math.roundToInt
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.disableBackPressedCallback
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.enableBackPressedCallback
 
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
+
 object UIHelper {
     val Int.toPx: Int get() = (this * Resources.getSystem().displayMetrics.density).toInt()
     val Float.toPx: Float get() = (this * Resources.getSystem().displayMetrics.density)
@@ -375,7 +378,11 @@ object UIHelper {
     fun Activity.enableEdgeToEdgeCompat() {
         // edge-to-edge is very buggy on earlier versions
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) return
-        WindowCompat.enableEdgeToEdge(window)
+        //WindowCompat.enableEdgeToEdge(window)
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
+            navigationBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
+        )
     }
 
     fun Activity.setNavigationBarColorCompat(@AttrRes resourceId: Int) {
@@ -440,7 +447,7 @@ object UIHelper {
         padLeft: Boolean = true,
         padRight: Boolean = true,
         overlayCutout: Boolean = true,
-        translucentStatus: Boolean = false
+        translucentStatus: Boolean = true
     ) {
         if (v == null) return
 
