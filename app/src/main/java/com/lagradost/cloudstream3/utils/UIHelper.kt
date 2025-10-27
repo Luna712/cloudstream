@@ -503,24 +503,22 @@ object UIHelper {
 
     fun Activity.setStatusBarProtectionColor(
         view: View,
-        @ColorRes colorRes: Int
+        @AttrRes attrRes: Int
     ) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) return
-        if (view is androidx.core.view.insets.ProtectionLayout) {
-            window?.isNavigationBarContrastEnforced = false
-            val paneBackgroundColor = ContextCompat.getColor(
-                view.context, colorRes
-            )
+        if (view !is androidx.core.view.insets.ProtectionLayout) return
 
-            view.setProtections(
-                listOf(
-                    androidx.core.view.insets.ColorProtection(
-                        WindowInsetsCompat.Side.TOP,
-                        paneBackgroundColor
-                    )
+        window?.isNavigationBarContrastEnforced = false
+        val paneBackgroundColor = view.context.colorFromAttribute(attrRes)
+
+        view.setProtections(
+            listOf(
+                androidx.core.view.insets.ColorProtection(
+                    WindowInsetsCompat.Side.TOP,
+                    paneBackgroundColor
                 )
             )
-        }
+        )
     }
 
     fun Context.getNavigationBarHeight(): Int {
