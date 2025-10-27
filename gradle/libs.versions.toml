@@ -42,13 +42,13 @@ tmdbJava = "2.13.0"
 torrentserver = "7861970e038b35cd8c6918384e49caf26903e09e"
 tvprovider = "1.1.0"
 video = "1.0.0"
-workRuntime = "2.10.5"
-workRuntimeKtx = "2.10.5"
+workRuntime = "2.11.0"
+workRuntimeKtx = "2.11.0"
 
 jvmTarget = "1.8"
-minSdk = "21"
+minSdk = "23"
 compileSdk = "36"
-targetSdk = "35"
+targetSdk = "36"
 
 [libraries]
 acra-core = { module = "ch.acra:acra-core", version.ref = "acraCore" }

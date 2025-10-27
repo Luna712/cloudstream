@@ -6,7 +6,6 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -231,10 +230,8 @@ class DownloadFragment : Fragment() {
             steamImageviewHolder.isVisible = isLayout(TV)
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            binding?.downloadList?.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
-                handleScroll(scrollY - oldScrollY)
-            }
+        binding?.downloadList?.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+            handleScroll(scrollY - oldScrollY)
         }
 
         context?.let { downloadsViewModel.updateHeaderList(it) }

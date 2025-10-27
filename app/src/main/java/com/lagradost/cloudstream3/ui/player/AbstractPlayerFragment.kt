@@ -205,6 +205,7 @@ abstract class AbstractPlayerFragment(
 
     private var pipReceiver: BroadcastReceiver? = null
     override fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean) {
+        if (!hasPipModeSupport) return
         super.onPictureInPictureModeChanged(isInPictureInPictureMode)
         try {
             isInPIPMode = isInPictureInPictureMode

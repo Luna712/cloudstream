@@ -12,6 +12,7 @@ import com.lagradost.cloudstream3.ui.player.OfflinePlaybackHelper.playLink
 import com.lagradost.cloudstream3.ui.player.OfflinePlaybackHelper.playUri
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.attachBackPressedCallback
 import com.lagradost.cloudstream3.utils.UIHelper.enableEdgeToEdgeCompat
+import android.content.pm.ActivityInfo
 
 class DownloadedPlayerActivity : AppCompatActivity() {
     private val dTAG = "DownloadedPlayerAct"
@@ -40,6 +41,9 @@ class DownloadedPlayerActivity : AppCompatActivity() {
         if (OfflinePlaybackHelper.playIntent(activity = this, intent = intent)) {
             return
         }
+
+        // Lock to landscape (for example)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
 
         if (intent?.action == Intent.ACTION_SEND || intent?.action == Intent.ACTION_OPEN_DOCUMENT || intent?.action == Intent.ACTION_VIEW) {
             val extraText = safe { // I dont trust android

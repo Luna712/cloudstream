@@ -3,7 +3,6 @@ package com.lagradost.cloudstream3.ui.settings.extensions
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.DialogInterface
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -110,16 +109,15 @@ class ExtensionsFragment : Fragment() {
                     }
                 }
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
-                    val dy = scrollY - oldScrollY
-                    if (dy > 0) { //check for scroll down
-                        binding?.addRepoButton?.shrink() // hide
-                    } else if (dy < -5) {
-                        binding?.addRepoButton?.extend() // show
-                    }
+            setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+                val dy = scrollY - oldScrollY
+                if (dy > 0) { // check for scroll down
+                    binding?.addRepoButton?.shrink() // hide
+                } else if (dy < -5) {
+                    binding?.addRepoButton?.extend() // show
                 }
             }
+
             adapter = RepoAdapter(false, {
                 findNavController().navigate(
                     R.id.navigation_settings_extensions_to_navigation_settings_plugins,
