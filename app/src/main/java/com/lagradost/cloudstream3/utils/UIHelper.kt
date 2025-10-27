@@ -385,6 +385,14 @@ object UIHelper {
         window?.navigationBarColor = colorFromAttribute(resourceId)
     }
 
+    fun Activity.setStatusBarColorCompat(@AttrRes resourceId: Int) {
+        // edge-to-edge handles this
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) return
+
+        @Suppress("DEPRECATION")
+        window?.statusBarColor = colorFromAttribute(resourceId)
+    }
+
     fun Context.getStatusBarHeight(): Int {
         if (isLayout(TV or EMULATOR)) {
             return 0
@@ -430,7 +438,8 @@ object UIHelper {
         padBottom: Boolean = true,
         padLeft: Boolean = true,
         padRight: Boolean = true,
-        overlayCutout: Boolean = true
+        overlayCutout: Boolean = true,
+        translucentStatus: Boolean = false
     ) {
         if (v == null) return
 
@@ -444,6 +453,7 @@ object UIHelper {
             return
         }
 
+        (v.context as? Activity)?.window?.setTranslucentStatus(translucentStatus)
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
             val leftCheck = if (view.isRtl()) padRight else padLeft
             val rightCheck = if (view.isRtl()) padLeft else padRight
