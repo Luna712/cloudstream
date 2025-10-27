@@ -462,7 +462,7 @@ object UIHelper {
             return
         }
 
-        (v.context as? Activity)?.window?.setTranslucentStatus(translucentStatus)
+        //(v.context as? Activity)?.window?.setTranslucentStatus(translucentStatus)
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
             val leftCheck = if (view.isRtl()) padRight else padLeft
             val rightCheck = if (view.isRtl()) padLeft else padRight
