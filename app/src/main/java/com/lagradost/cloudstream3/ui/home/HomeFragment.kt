@@ -646,13 +646,13 @@ class HomeFragment : Fragment() {
         context?.let { HomeChildItemAdapter.updatePosterSize(it) }
 
         binding?.apply {
-            activity?.setStatusBarProtectionColor(view, R.color.primaryBlackBackground)
-            /*fixSystemBarsPadding(
+            activity?.setStatusBarProtectionColor(view, R.color.primaryGrayBackground)
+            fixSystemBarsPadding(
                 view,
                 padTop = false,
                 padBottom = isLandscape(),
                 padLeft = isLayout(TV or EMULATOR)
-            )*/
+            )
             //homeChangeApiLoading.setOnClickListener(apiChangeClickListener)
             //homeChangeApiLoading.setOnClickListener(apiChangeClickListener)
             homeApiFab.setOnClickListener(apiChangeClickListener)
