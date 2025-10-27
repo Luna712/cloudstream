@@ -684,6 +684,10 @@ object UIHelper {
         return popup
     }
 
+    fun Activity.setTranslucentStatus(enabled: Boolean) {
+        window?.setTranslucentStatus(enabled)
+    }
+
     private fun Window.setTranslucentStatus(enabled: Boolean) {
         if (enabled) {
             addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
