@@ -28,15 +28,14 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
-import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.ListAdapter
 import android.widget.ListView
 import android.widget.Toast.LENGTH_LONG
-import androidx.activity.ComponentActivity
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.StyleRes
 import androidx.appcompat.view.ContextThemeWrapper
@@ -86,9 +85,6 @@ import kotlinx.coroutines.delay
 import kotlin.math.roundToInt
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.disableBackPressedCallback
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.enableBackPressedCallback
-
-import androidx.activity.SystemBarStyle
-import androidx.activity.enableEdgeToEdge
 
 object UIHelper {
     val Int.toPx: Int get() = (this * Resources.getSystem().displayMetrics.density).toInt()
@@ -376,15 +372,10 @@ object UIHelper {
         )
     }
 
-    //fun ComponentActivity.enableEdgeToEdgeCompat() {
     fun Activity.enableEdgeToEdgeCompat() {
         // edge-to-edge is very buggy on earlier versions
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) return
         WindowCompat.enableEdgeToEdge(window)
-        /*enableEdgeToEdge(
-            statusBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
-            navigationBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
-        )*/
     }
 
     fun Activity.setNavigationBarColorCompat(@AttrRes resourceId: Int) {
@@ -393,14 +384,6 @@ object UIHelper {
 
         @Suppress("DEPRECATION")
         window?.navigationBarColor = colorFromAttribute(resourceId)
-    }
-
-    fun Activity.setStatusBarColorCompat(@AttrRes resourceId: Int) {
-        // edge-to-edge handles this
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) return
-
-        @Suppress("DEPRECATION")
-        window?.statusBarColor = colorFromAttribute(resourceId)
     }
 
     fun Context.getStatusBarHeight(): Int {
@@ -448,8 +431,7 @@ object UIHelper {
         padBottom: Boolean = true,
         padLeft: Boolean = true,
         padRight: Boolean = true,
-        overlayCutout: Boolean = true,
-        translucentStatus: Boolean = false
+        overlayCutout: Boolean = true
     ) {
         if (v == null) return
 
@@ -463,23 +445,6 @@ object UIHelper {
             return
         }
 
-if (v is androidx.core.view.insets.ProtectionLayout) {
-    val paneBackgroundColor = androidx.core.content.ContextCompat.getColor(
-        v.context,
-        R.color.primaryBlackBackground
-    )
-
-    v.setProtections(
-        listOf(
-            androidx.core.view.insets.GradientProtection(
-                androidx.core.view.WindowInsetsCompat.Side.TOP,
-                paneBackgroundColor
-            )
-        )
-    )
-}
-
-        //(v.context as? Activity)?.window?.setTranslucentStatus(translucentStatus)
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
             val leftCheck = if (view.isRtl()) padRight else padLeft
             val rightCheck = if (view.isRtl()) padLeft else padRight
@@ -533,6 +498,26 @@ if (v is androidx.core.view.insets.ProtectionLayout) {
             }
 
             WindowInsetsCompat.CONSUMED
+        }
+    }
+
+    fun setStatusBarProtectionColor(
+        view: View,
+        @ColorRes colorRes: Int
+    ) {
+        if (view is androidx.core.view.insets.ProtectionLayout) {
+            val paneBackgroundColor = ContextCompat.getColor(
+                view.context, colorRes
+            )
+
+            view.setProtections(
+                listOf(
+                    androidx.core.view.insets.ColorProtection(
+                        WindowInsetsCompat.Side.TOP,
+                        paneBackgroundColor
+                    )
+                )
+            )
         }
     }
 
@@ -707,19 +692,6 @@ if (v is androidx.core.view.insets.ProtectionLayout) {
 
         popup.show()
         return popup
-    }
-
-    fun Activity.setTranslucentStatus(enabled: Boolean) {
-        //window?.setTranslucentStatus(enabled)
-    }
-
-    private fun Window.setTranslucentStatus(enabled: Boolean) {
-        if (enabled) {
-            addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            return
-        }
-
-        clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
     }
 }
 
