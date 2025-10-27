@@ -376,14 +376,15 @@ object UIHelper {
         )
     }
 
-    fun ComponentActivity.enableEdgeToEdgeCompat() {
+    //fun ComponentActivity.enableEdgeToEdgeCompat() {
+    fun Activity.enableEdgeToEdgeCompat() {
         // edge-to-edge is very buggy on earlier versions
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) return
-        //WindowCompat.enableEdgeToEdge(window)
-        enableEdgeToEdge(
+        WindowCompat.enableEdgeToEdge(window)
+        /*enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
             navigationBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
-        )
+        )*/
     }
 
     fun Activity.setNavigationBarColorCompat(@AttrRes resourceId: Int) {
@@ -478,7 +479,7 @@ if (v is androidx.core.view.insets.ProtectionLayout) {
     )
 }
 
-        (v.context as? Activity)?.window?.setTranslucentStatus(translucentStatus)
+        //(v.context as? Activity)?.window?.setTranslucentStatus(translucentStatus)
         ViewCompat.setOnApplyWindowInsetsListener(v) { view, windowInsets ->
             val leftCheck = if (view.isRtl()) padRight else padLeft
             val rightCheck = if (view.isRtl()) padLeft else padRight
@@ -709,7 +710,7 @@ if (v is androidx.core.view.insets.ProtectionLayout) {
     }
 
     fun Activity.setTranslucentStatus(enabled: Boolean) {
-        window?.setTranslucentStatus(enabled)
+        //window?.setTranslucentStatus(enabled)
     }
 
     private fun Window.setTranslucentStatus(enabled: Boolean) {
