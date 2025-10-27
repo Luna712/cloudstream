@@ -42,6 +42,7 @@ import androidx.appcompat.view.ContextThemeWrapper
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.app.ActivityCompat
+import androidx.core.app.ComponentActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import androidx.core.graphics.alpha
@@ -375,7 +376,7 @@ object UIHelper {
         )
     }
 
-    fun Activity.enableEdgeToEdgeCompat() {
+    fun ComponentActivity.enableEdgeToEdgeCompat() {
         // edge-to-edge is very buggy on earlier versions
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) return
         //WindowCompat.enableEdgeToEdge(window)
