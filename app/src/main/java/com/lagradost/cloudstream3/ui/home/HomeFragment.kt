@@ -649,7 +649,8 @@ class HomeFragment : Fragment() {
                 root,
                 padTop = false,
                 padBottom = isLandscape(),
-                padLeft = isLayout(TV or EMULATOR)
+                padLeft = isLayout(TV or EMULATOR),
+                translucentStatus = true
             )
             //homeChangeApiLoading.setOnClickListener(apiChangeClickListener)
             //homeChangeApiLoading.setOnClickListener(apiChangeClickListener)
