@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.view.insets.ProtectionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_root"
@@ -247,4 +248,4 @@
         app:icon="@drawable/ic_baseline_play_arrow_24"
         tools:ignore="ContentDescription"
         tools:visibility="visible" />
-</FrameLayout>
+</androidx.core.view.insets.ProtectionLayout>
