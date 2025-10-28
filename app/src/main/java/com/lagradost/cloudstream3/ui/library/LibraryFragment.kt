@@ -540,7 +540,7 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onConfigurationChanged(newConfig: Configuration) {
-        binding?.viewpager?.adapter?.notifyDataSetChanged()
+        // binding?.viewpager?.adapter?.notifyDataSetChanged()
         super.onConfigurationChanged(newConfig)
     }
 
