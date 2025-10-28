@@ -63,9 +63,9 @@ abstract class BaseFragment<T : ViewBinding>(
     /** Called when binding has been safely created and view is ready. No savedInstanceState. */
     protected open fun onBindingCreated(binding: T) {}
 
-    override fun onConfigurationChanged(config: Configuration) {
+    override fun onConfigurationChanged(newConfig: Configuration) {
         binding?.apply { fixPadding(root) }
-        super.onConfigurationChanged(config)
+        super.onConfigurationChanged(newConfig)
     }
 
     override fun onDestroyView() {
