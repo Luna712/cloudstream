@@ -39,7 +39,7 @@ abstract class BaseFragment<T : ViewBinding>(
             val root = inflater.inflate(layoutId, container, false)
             _binding = try {
                 @Suppress("UNCHECKED_CAST")
-                getBindFunction()?.invoke(null, root) as? T
+                getBindMethod()?.invoke(null, root) as? T
             } catch (t: Throwable) {
                 showToast(
                     txt(R.string.unable_to_inflate, t.message ?: ""),
@@ -87,13 +87,12 @@ abstract class BaseFragment<T : ViewBinding>(
         )
     }
 
-    private fun getBindFunction(): Method? {
-        val clazz = bindingInflater::class.java.enclosingClass ?: return null
+    private fun getBindMethod(): Method? {
+        val clazz = bindingInflater::class.java.declaringClass ?: return null
         return try {
             clazz.getMethod("bind", View::class.java)
-        } catch (e: Exception) {
-            showToast(e.message)
-            logError(e)
+        } catch (t: Throwable) {
+            logError(t)
             null
         }
     }
