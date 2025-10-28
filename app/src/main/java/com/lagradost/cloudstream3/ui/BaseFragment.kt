@@ -151,10 +151,10 @@ abstract class BaseFragment<T : ViewBinding>(
         val key = javaClass.name
         // Keep weak cached reference but clear strong reference
         if (isRemoving || activity?.isFinishing == true) {
-            bindingCache.remove(key)
-            bindingPool[key]?.clear()
+            //bindingCache.remove(key)
+            //bindingPool[key]?.clear()
         }
-        _binding = null
+        //_binding = null
     }
 
     /**
