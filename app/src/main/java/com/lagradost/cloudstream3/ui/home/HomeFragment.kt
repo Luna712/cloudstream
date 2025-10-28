@@ -621,7 +621,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         }
     }
 
-    override fun fixPadding(view: View?) {
+    override fun fixPadding(view: View) {
         fixSystemBarsPadding(
             view,
             padTop = false,
@@ -631,10 +631,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onBindingCreated(
-        binding: FragmentHomeBinding,
-        savedInstanceState: Bundle?
-    ) {
+    override fun onBindingCreated(binding: FragmentHomeBinding) {
         fixGrid()
         context?.let { HomeChildItemAdapter.updatePosterSize(it) }
 

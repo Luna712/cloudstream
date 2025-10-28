@@ -42,7 +42,6 @@ import com.lagradost.cloudstream3.utils.AppContextUtils.filterSearchResultByFilm
 import com.lagradost.cloudstream3.utils.AppContextUtils.isRecyclerScrollable
 import com.lagradost.cloudstream3.utils.AppContextUtils.ownShow
 import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
-import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 import com.lagradost.cloudstream3.utils.UIHelper.getSpanCount
 import com.lagradost.cloudstream3.utils.UIHelper.hideKeyboard
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
@@ -138,14 +137,7 @@ class QuickSearchFragment : BaseFragment<QuickSearchBinding>(
         fixGrid()
     }
 
-    override fun fixPadding(view: View?) {
-        fixSystemBarsPadding(view)
-    }
-
-    override fun onBindingCreated(
-        binding: QuickSearchBinding,
-        savedInstanceState: Bundle?
-    ) {
+    override fun onBindingCreated(binding: QuickSearchBinding) {
         fixGrid()
         arguments?.getStringArray(PROVIDER_KEY)?.let {
             providers = it.toSet()

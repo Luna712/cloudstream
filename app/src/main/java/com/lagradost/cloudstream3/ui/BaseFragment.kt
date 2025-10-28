@@ -12,10 +12,6 @@ import androidx.viewbinding.ViewBinding
 import com.lagradost.cloudstream3.CommonActivity.showToast
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.mvvm.logError
-import com.lagradost.cloudstream3.ui.settings.Globals.EMULATOR
-import com.lagradost.cloudstream3.ui.settings.Globals.TV
-import com.lagradost.cloudstream3.ui.settings.Globals.isLandscape
-import com.lagradost.cloudstream3.ui.settings.Globals.isLayout
 import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 
@@ -60,11 +56,16 @@ abstract class BaseFragment<T : ViewBinding>(
     }
 
     /** Called when binding has been safely created and view is ready. */
-    protected open fun onBindingCreated(binding: T, savedInstanceState: Bundle?) {}
+    protected open fun onBindingCreated(binding: T, savedInstanceState: Bundle?) {
+        onBindingCreated(binding)
+    }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        fixPadding(binding?.root)
-        super.onConfigurationChanged(newConfig)
+    /** Called when binding has been safely created and view is ready. No savedInstanceState. */
+    protected open fun onBindingCreated(binding: T) {}
+
+    override fun onConfigurationChanged(config: Configuration) {
+        binding?.apply { fixPadding(root) }
+        super.onConfigurationChanged(config)
     }
 
     override fun onDestroyView() {
@@ -75,12 +76,8 @@ abstract class BaseFragment<T : ViewBinding>(
     @LayoutRes
     protected open fun pickLayout(): Int? = null
 
-    protected open fun fixPadding(view: View?) {
-        fixSystemBarsPadding(
-            view,
-            padBottom = isLandscape(),
-            padLeft = isLayout(TV or EMULATOR)
-        )
+    protected open fun fixPadding(view: View) {
+        fixSystemBarsPadding(view)
     }
 
     sealed class BindingCreator<T : ViewBinding> {
