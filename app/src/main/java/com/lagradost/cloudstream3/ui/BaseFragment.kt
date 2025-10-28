@@ -49,7 +49,7 @@ abstract class BaseFragment<T : ViewBinding>(
         return _binding?.root ?: root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fixPadding(view)
         binding?.let { onBindingCreated(it, savedInstanceState) }
