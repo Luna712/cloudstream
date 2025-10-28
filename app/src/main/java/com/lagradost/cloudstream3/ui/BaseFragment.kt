@@ -54,6 +54,7 @@ abstract class BaseFragment<T : ViewBinding>(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val layoutId = pickLayout()
         val key = javaClass.name
         val argsHash = arguments?.toString()?.hashCode() ?: 0
         val cacheKey = "$key-$layoutId-$argsHash"
@@ -76,7 +77,6 @@ abstract class BaseFragment<T : ViewBinding>(
         }
 
         // Inflate new instance if no cached or pooled binding available
-        val layoutId = pickLayout()
         val root: View? = layoutId?.let { inflater.inflate(it, container, false) }
         _binding = try {
             when (bindingCreator) {
