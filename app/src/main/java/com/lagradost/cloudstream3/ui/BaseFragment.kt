@@ -37,11 +37,20 @@ abstract class BaseFragment<T : ViewBinding>(
     private var _binding: T? = null
     protected val binding: T? get() = _binding
 
+    private var recycledRoot: View? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // If we already have a binding, reuse its root view instead of inflating again.
+        _binding?.let { existingBinding ->
+            recycledRoot = existingBinding.root
+            (existingBinding.root.parent as? ViewGroup)?.removeView(existingBinding.root)
+            return recycledRoot
+        }
+
         val layoutId = pickLayout()
         val root: View? = layoutId?.let { inflater.inflate(it, container, false) }
         _binding = try {
@@ -61,7 +70,8 @@ abstract class BaseFragment<T : ViewBinding>(
             null
         }
 
-        return _binding?.root ?: root
+        recycledRoot = _binding?.root ?: root
+        return recycledRoot
     }
 
     /**
@@ -106,10 +116,13 @@ abstract class BaseFragment<T : ViewBinding>(
         super.onConfigurationChanged(newConfig)
     }
 
-    /** Cleans up the binding reference when the view is destroyed to avoid memory leaks. */
-    override fun onDestroyView() {
-        super.onDestroyView()
+    /**
+     * Completely clear the cached binding if you *know* the fragment
+     * won’t be shown again soon (e.g., manually removing from FragmentManager).
+     */
+    protected fun clearBindingCache() {
         _binding = null
+        recycledRoot = null
     }
 
     /**
