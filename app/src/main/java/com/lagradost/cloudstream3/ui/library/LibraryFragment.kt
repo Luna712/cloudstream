@@ -102,16 +102,14 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
         super.onSaveInstanceState(outState)
     }
 
-    private fun updateRandom() {
+    private fun updateRandom(binding: FragmentLibraryBinding) {
         val position = libraryViewModel.currentPage.value ?: 0
         val pages = (libraryViewModel.pages.value as? Resource.Success)?.value ?: return
         if (toggleRandomButton) {
             listLibraryItems.clear()
             listLibraryItems.addAll(pages[position].items)
-            binding?.libraryRandom?.isVisible = listLibraryItems.isNotEmpty()
-        } else {
-            binding?.libraryRandom?.isGone = true
-        }
+            binding.libraryRandom.isVisible = listLibraryItems.isNotEmpty()
+        } else binding.libraryRandom.isGone = true
     }
 
     @SuppressLint("ResourceType", "CutPasteId")
@@ -119,24 +117,24 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
         binding: FragmentLibraryBinding,
         savedInstanceState: Bundle?
     ) {
-        binding?.sortFab?.setOnClickListener(sortChangeClickListener)
-        binding?.librarySort?.setOnClickListener(sortChangeClickListener)
+        binding.sortFab.setOnClickListener(sortChangeClickListener)
+        binding.librarySort.setOnClickListener(sortChangeClickListener)
 
-        binding?.libraryRoot?.findViewById<TextView>(androidx.appcompat.R.id.search_src_text)
+        binding.libraryRoot.findViewById<TextView>(androidx.appcompat.R.id.search_src_text)
             ?.apply {
                 tag = "tv_no_focus_tag"
-                //Expand the Appbar when search bar is focused, fixing scroll up issue
+                // Expand the Appbar when search bar is focused, fixing scroll up issue
                 setOnFocusChangeListener { _, _ ->
-                    binding?.searchBar?.setExpanded(true)
+                    binding.searchBar.setExpanded(true)
                 }
             }
 
         val searchCallback = Runnable {
-            val newText = binding?.mainSearch?.query?.toString() ?: return@Runnable
+            val newText = binding.mainSearch.query.toString()
             libraryViewModel.sort(ListSorting.Query, newText)
         }
 
-        binding?.mainSearch?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.mainSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 libraryViewModel.sort(ListSorting.Query, query)
                 return true
@@ -152,11 +150,11 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
                     return true
                 }
 
-                binding?.mainSearch?.removeCallbacks(searchCallback)
+                binding.mainSearch.removeCallbacks(searchCallback)
 
                 // Delay the execution of the search operation by 1 second (adjust as needed)
                 // this prevents running search when the user is typing
-                binding?.mainSearch?.postDelayed(searchCallback, 1000)
+                binding.mainSearch.postDelayed(searchCallback, 1000)
 
                 return true
             }
@@ -164,7 +162,7 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
 
         libraryViewModel.reloadPages(false)
 
-        binding?.listSelector?.setOnClickListener {
+        binding.listSelector.setOnClickListener {
             val items = libraryViewModel.availableApiNames
             val currentItem = libraryViewModel.currentApiName.value
 
@@ -187,10 +185,10 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
                     getString(R.string.random_button_key),
                     false
                 ) && isLayout(PHONE)
-            binding?.libraryRandom?.visibility = View.GONE
+            binding.libraryRandom.visibility = View.GONE
         }
 
-        binding?.libraryRandom?.setOnClickListener {
+        binding.libraryRandom.setOnClickListener {
             if (listLibraryItems.isNotEmpty()) {
                 val listLibraryItem = listLibraryItems.random()
                 libraryViewModel.currentSyncApi?.syncIdName?.let {
@@ -266,21 +264,21 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
             }
         }
 
-        binding?.providerSelector?.setOnClickListener {
+        binding.providerSelector.setOnClickListener {
             val syncName = libraryViewModel.currentSyncApi?.syncIdName ?: return@setOnClickListener
             activity?.showPluginSelectionDialog(syncName.name, syncName)
         }
 
-        binding?.viewpager?.setPageTransformer(LibraryScrollTransformer())
+        binding.viewpager.setPageTransformer(LibraryScrollTransformer())
 
-        binding?.viewpager?.adapter = ViewpagerAdapter(
+        binding.viewpager.adapter = ViewpagerAdapter(
             { isScrollingDown: Boolean ->
                 if (isScrollingDown) {
-                    binding?.sortFab?.shrink()
-                    binding?.libraryRandom?.shrink()
+                    binding.sortFab.shrink()
+                    binding.libraryRandom.shrink()
                 } else {
-                    binding?.sortFab?.extend()
-                    binding?.libraryRandom?.extend()
+                    binding.sortFab.extend()
+                    binding.libraryRandom.extend()
                 }
             }) callback@{ searchClickCallback ->
             // To prevent future accidents
@@ -313,14 +311,14 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
             }
         }
 
-        binding?.apply {
+        binding.apply {
             viewpager.offscreenPageLimit = 2
             viewpager.reduceDragSensitivity()
             searchBar.setExpanded(true)
         }
 
         val startLoading = Runnable {
-            binding?.apply {
+            binding.apply {
                 gridview.numColumns = context?.getSpanCount() ?: 3
                 gridview.adapter =
                     context?.let { LoadingPosterAdapter(it, 6 * 3) }
@@ -331,7 +329,7 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
         }
 
         val stopLoading = Runnable {
-            binding?.apply {
+            binding.apply {
                 gridview.adapter = null
                 libraryLoadingOverlay.isVisible = false
                 libraryLoadingShimmer.stopShimmer()
@@ -347,7 +345,7 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
                     val pages = resource.value
                     val showNotice = pages.all { it.items.isEmpty() }
 
-                    binding?.apply {
+                    binding.apply {
                         emptyListTextview.isVisible = showNotice
                         if (showNotice) {
                             if (libraryViewModel.availableApiNames.size > 1) {
@@ -375,11 +373,11 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
                         )*/
 
                         libraryViewModel.currentPage.value?.let { page ->
-                            binding?.viewpager?.setCurrentItem(page, false)
-                            binding?.searchBar?.setExpanded(true)
+                            binding.viewpager.setCurrentItem(page, false)
+                            binding.searchBar.setExpanded(true)
                         }
 
-                        updateRandom()
+                        updateRandom(binding)
 
                         // Only stop loading after 300ms to hide the fade effect the viewpager produces when updating
                         // Without this there would be a flashing effect:
@@ -420,21 +418,20 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
                             tab.view.nextFocusDownId = R.id.search_result_root
 
                             tab.view.setOnClickListener {
-                                val currentItem =
-                                    binding?.viewpager?.currentItem ?: return@setOnClickListener
+                                val currentItem = binding.viewpager.currentItem
                                 val distance = abs(position - currentItem)
                                 hideViewpager(distance)
                             }
                             //Expand the appBar on tab focus
                             tab.view.setOnFocusChangeListener { _, _ ->
-                                binding?.searchBar?.setExpanded(true)
+                                binding.searchBar.setExpanded(true)
                             }
                         }.attach()
 
-                        binding?.libraryTabLayout?.addOnTabSelectedListener(object :
+                        binding.libraryTabLayout.addOnTabSelectedListener(object :
                             TabLayout.OnTabSelectedListener {
                             override fun onTabSelected(tab: TabLayout.Tab?) {
-                                binding?.libraryTabLayout?.selectedTabPosition?.let { page ->
+                                binding.libraryTabLayout.selectedTabPosition.let { page ->
                                     libraryViewModel.switchPage(page)
                                 }
                             }
@@ -459,9 +456,9 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
         }
 
         observe(libraryViewModel.currentPage) { position ->
-            updateRandom()
-            val all = binding?.viewpager?.allViews?.toList()
-                ?.filterIsInstance<AutofitRecyclerView>()
+            updateRandom(binding)
+            val all = binding.viewpager.allViews.toList()
+                .filterIsInstance<AutofitRecyclerView>()
 
             all?.forEach { view ->
                 view.isVisible = view.tag == position
@@ -473,14 +470,6 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
                     view.descendantFocusability = FOCUS_BLOCK_DESCENDANTS
             }
         }
-
-        /*binding?.viewpager?.registerOnPageChangeCallback(object :
-            ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-
-                super.onPageSelected(position)
-            }
-        })*/
     }
 
     private fun loadLibraryItem(

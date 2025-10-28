@@ -75,7 +75,7 @@ abstract class BaseFragment<T : ViewBinding>(
     @LayoutRes
     protected open fun pickLayout(): Int? = null
 
-    private fun fixPadding(view: View?) {
+    protected open fun fixPadding(view: View?) {
         fixSystemBarsPadding(
             view,
             padBottom = isLandscape(),
