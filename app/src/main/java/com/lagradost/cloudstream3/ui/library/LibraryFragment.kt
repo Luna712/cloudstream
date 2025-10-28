@@ -7,20 +7,16 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.ViewGroup.FOCUS_AFTER_DESCENDANTS
 import android.view.ViewGroup.FOCUS_BLOCK_DESCENDANTS
 import android.view.animation.AlphaAnimation
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.allViews
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,14 +27,12 @@ import com.lagradost.cloudstream3.APIHolder.allProviders
 import com.lagradost.cloudstream3.AcraApplication.Companion.getKey
 import com.lagradost.cloudstream3.AcraApplication.Companion.openBrowser
 import com.lagradost.cloudstream3.AcraApplication.Companion.setKey
-import com.lagradost.cloudstream3.CommonActivity
 import com.lagradost.cloudstream3.MainActivity
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.SearchResponse
 import com.lagradost.cloudstream3.databinding.FragmentLibraryBinding
 import com.lagradost.cloudstream3.mvvm.Resource
 import com.lagradost.cloudstream3.mvvm.debugAssert
-import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.mvvm.observe
 import com.lagradost.cloudstream3.syncproviders.SyncAPI
 import com.lagradost.cloudstream3.syncproviders.SyncIdName
@@ -48,17 +42,13 @@ import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.cloudstream3.ui.BaseFragment
 import com.lagradost.cloudstream3.ui.search.SEARCH_ACTION_LOAD
 import com.lagradost.cloudstream3.ui.search.SEARCH_ACTION_SHOW_METADATA
-import com.lagradost.cloudstream3.ui.settings.Globals.EMULATOR
 import com.lagradost.cloudstream3.ui.settings.Globals.PHONE
-import com.lagradost.cloudstream3.ui.settings.Globals.TV
-import com.lagradost.cloudstream3.ui.settings.Globals.isLandscape
 import com.lagradost.cloudstream3.ui.settings.Globals.isLayout
 import com.lagradost.cloudstream3.utils.AppContextUtils.loadResult
 import com.lagradost.cloudstream3.utils.AppContextUtils.loadSearchResult
 import com.lagradost.cloudstream3.utils.AppContextUtils.reduceDragSensitivity
 import com.lagradost.cloudstream3.utils.DataStoreHelper.currentAccount
 import com.lagradost.cloudstream3.utils.SingleSelectionHelper.showBottomDialog
-import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 import com.lagradost.cloudstream3.utils.UIHelper.getSpanCount
 import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.math.abs
@@ -84,7 +74,11 @@ data class ProviderLibraryData(
     val apiName: String
 )
 
-class LibraryFragment : BaseFragment<FragmentLibraryBinding>(FragmentLibraryBinding::inflate) {
+class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
+    FragmentLibraryBinding::inflate,
+    baseLayout = R.layout.fragment_library,
+    tvLayout = R.layout.fragment_library_tv
+) {
     companion object {
 
         val listLibraryItems = mutableListOf<SyncAPI.LibraryItem>()
@@ -99,26 +93,6 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(FragmentLibraryBind
     private val libraryViewModel: LibraryViewModel by activityViewModels()
 
     private var toggleRandomButton = false
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        val layout =
-            if (isLayout(TV or EMULATOR)) R.layout.fragment_library_tv else R.layout.fragment_library
-        val root = inflater.inflate(layout, container, false)
-        _binding = try {
-            FragmentLibraryBinding.bind(root)
-        } catch (t: Throwable) {
-            CommonActivity.showToast(
-                txt(R.string.unable_to_inflate, t.message ?: ""),
-                Toast.LENGTH_LONG
-            )
-            logError(t)
-            null
-        }
-
-        return root
-    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         binding?.viewpager?.currentItem?.let { currentItem ->
@@ -140,7 +114,10 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(FragmentLibraryBind
     }
 
     @SuppressLint("ResourceType", "CutPasteId")
-    override fun onBindingCreated(binding: FragmentLibraryBinding, savedInstanceState: Bundle?) {
+    override fun onBindingCreated(
+        binding: FragmentLibraryBinding,
+        savedInstanceState: Bundle?
+    ) {
         binding?.sortFab?.setOnClickListener(sortChangeClickListener)
         binding?.librarySort?.setOnClickListener(sortChangeClickListener)
 
