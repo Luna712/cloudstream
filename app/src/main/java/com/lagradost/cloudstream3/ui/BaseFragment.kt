@@ -91,7 +91,9 @@ abstract class BaseFragment<T : ViewBinding>(
         val clazz = bindingInflater::class.java.enclosingClass ?: return null
         return try {
             clazz.getMethod("bind", View::class.java)
-        } catch (_: Exception) {
+        } catch (e: Exception) {
+            showToast(e.message)
+            logError(e)
             null
         }
     }
