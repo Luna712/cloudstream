@@ -78,7 +78,6 @@ import com.lagradost.cloudstream3.utils.txt
 import androidx.core.net.toUri
 import androidx.core.view.isInvisible
 
-
 private const val TAG = "HomeFragment"
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(
