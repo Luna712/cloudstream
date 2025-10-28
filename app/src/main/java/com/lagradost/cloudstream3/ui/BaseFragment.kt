@@ -18,12 +18,9 @@ import com.lagradost.cloudstream3.ui.settings.Globals.isLandscape
 import com.lagradost.cloudstream3.ui.settings.Globals.isLayout
 import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
-import java.lang.reflect.Method
 
 abstract class BaseFragment<T : ViewBinding>(
-    private val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> T,
-    @LayoutRes private val baseLayout: Int? = null,
-    @LayoutRes private val tvLayout: Int? = null
+    private val bindingCreator: BindingCreator<T>
 ) : Fragment() {
 
     private var _binding: T? = null
@@ -35,24 +32,25 @@ abstract class BaseFragment<T : ViewBinding>(
         savedInstanceState: Bundle?
     ): View? {
         val layoutId = pickLayout()
-        if (layoutId != null) {
-            val root = inflater.inflate(layoutId, container, false)
-            _binding = try {
-                @Suppress("UNCHECKED_CAST")
-                getBindMethod()?.invoke(null, root) as? T
-            } catch (t: Throwable) {
-                showToast(
-                    txt(R.string.unable_to_inflate, t.message ?: ""),
-                    Toast.LENGTH_LONG
-                )
-                logError(t)
-                null
+        val root: View? = layoutId?.let { inflater.inflate(it, container, false) }
+        _binding = try {
+            when (bindingCreator) {
+                is BindingCreator.Inflate -> bindingCreator.fn(inflater, container, false)
+                is BindingCreator.Bind -> {
+                    if (root != null) bindingCreator.fn(root)
+                    else throw IllegalStateException("Root view is null for bind()")
+                }
             }
-            return root
+        } catch (t: Throwable) {
+            showToast(
+                txt(R.string.unable_to_inflate, t.message ?: ""),
+                Toast.LENGTH_LONG
+            )
+            logError(t)
+            null
         }
 
-        _binding = bindingInflater(inflater, container, false)
-        return _binding?.root
+        return _binding?.root ?: root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -74,10 +72,8 @@ abstract class BaseFragment<T : ViewBinding>(
         _binding = null
     }
 
-    private fun pickLayout(): Int? = when {
-        isLayout(TV or EMULATOR) && tvLayout != null -> tvLayout
-        else -> baseLayout
-    }
+    @LayoutRes
+    protected open fun pickLayout(): Int? = null
 
     private fun fixPadding(view: View?) {
         fixSystemBarsPadding(
@@ -87,13 +83,13 @@ abstract class BaseFragment<T : ViewBinding>(
         )
     }
 
-    private fun getBindMethod(): Method? {
-        val clazz = bindingInflater::class.java.declaringClass ?: return null
-        return try {
-            clazz.getMethod("bind", View::class.java)
-        } catch (t: Throwable) {
-            logError(t)
-            null
-        }
+    sealed class BindingCreator<T : ViewBinding> {
+        class Inflate<T : ViewBinding>(
+            val fn: (LayoutInflater, ViewGroup?, Boolean) -> T
+        ) : BindingCreator<T>()
+
+        class Bind<T : ViewBinding>(
+            val fn: (View) -> T
+        ) : BindingCreator<T>()
     }
 }
