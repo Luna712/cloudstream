@@ -55,21 +55,23 @@ abstract class BaseFragment<T : ViewBinding>(
         savedInstanceState: Bundle?
     ): View? {
         val key = javaClass.name
+        val argsHash = arguments?.toString()?.hashCode() ?: 0
+        val cacheKey = "$key-$layoutId-$argsHash"
 
         // Try to get from cache first
-        val cached = bindingCache[key]?.get() as? T
+        val cached = bindingCache[cacheKey]?.get() as? T
         if (cached != null && cached.root.parent == null) {
             _binding = cached
-            Log.d("TESTCACHE", "Getting ${key} from cache")
+            Log.d("TESTCACHE", "Getting ${cacheKey} from cache")
             return cached.root
         }
 
         // Try to get from pool next
-        val pooled = bindingPool[key]?.firstOrNull { it.get()?.root?.parent == null }?.get() as? T
+        val pooled = bindingPool[cacheKey]?.firstOrNull { it.get()?.root?.parent == null }?.get() as? T
         if (pooled != null) {
             _binding = pooled
-            bindingCache[key] = WeakReference(pooled)
-            Log.d("TESTCACHE", "Getting ${key} from pool")
+            bindingCache[cacheKey] = WeakReference(pooled)
+            Log.d("TESTCACHE", "Getting ${cacheKey} from pool")
             return pooled.root
         }
 
@@ -93,10 +95,13 @@ abstract class BaseFragment<T : ViewBinding>(
             null
         }
 
+        // Detach from any existing parent just in case
+        _binding?.root?.parent?.let { (it as? ViewGroup)?.removeView(_binding!!.root) }
+
         // Store in cache and pool
         _binding?.let {
-            bindingCache[key] = WeakReference(it)
-            val pool = bindingPool.getOrPut(key) { CopyOnWriteArrayList() }
+            bindingCache[cacheKey] = WeakReference(it)
+            val pool = bindingPool.getOrPut(cacheKey) { CopyOnWriteArrayList() }
             if (pool.size < 3) pool.add(WeakReference(it))
         }
 
@@ -153,10 +158,13 @@ abstract class BaseFragment<T : ViewBinding>(
 
     override fun onDestroy() {
         super.onDestroy()
-        val key = javaClass.name
+        val keyPrefix = javaClass.name
+        bindingCache.keys
+            .filter { it.startsWith(keyPrefix) }
+            .forEach { bindingCache.remove(it) }
+
         if (isRemoving || activity?.isFinishing == true) {
-            bindingCache.remove(key)
-            bindingPool[key]?.clear()
+            bindingPool[keyPrefix]?.clear()
         }
     }
 
