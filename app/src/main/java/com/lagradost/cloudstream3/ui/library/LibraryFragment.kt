@@ -75,9 +75,7 @@ data class ProviderLibraryData(
 )
 
 class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
-    FragmentLibraryBinding::inflate,
-    baseLayout = R.layout.fragment_library,
-    tvLayout = R.layout.fragment_library_tv
+    BaseFragment.BindingCreator.Bind(FragmentLibraryBinding::bind)
 ) {
     companion object {
 
@@ -93,6 +91,9 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
     private val libraryViewModel: LibraryViewModel by activityViewModels()
 
     private var toggleRandomButton = false
+
+    override fun pickLayout(): Int? =
+        if (isLayout(PHONE)) R.layout.fragment_library else R.layout.fragment_library_tv
 
     override fun onSaveInstanceState(outState: Bundle) {
         binding?.viewpager?.currentItem?.let { currentItem ->
