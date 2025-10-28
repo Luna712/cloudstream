@@ -148,13 +148,16 @@ abstract class BaseFragment<T : ViewBinding>(
     /** Cleans up the binding reference when the view is destroyed to avoid memory leaks. */
     override fun onDestroyView() {
         super.onDestroyView()
-        /* val key = javaClass.name
-        // Keep weak cached reference but clear strong reference
+        _binding = null
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val key = javaClass.name
         if (isRemoving || activity?.isFinishing == true) {
             bindingCache.remove(key)
             bindingPool[key]?.clear()
         }
-        _binding = null */
     }
 
     /**
