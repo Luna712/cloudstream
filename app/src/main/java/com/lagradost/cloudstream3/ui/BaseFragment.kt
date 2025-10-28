@@ -8,166 +8,147 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.viewbinding.ViewBinding
 import com.lagradost.cloudstream3.CommonActivity.showToast
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
+import java.lang.ref.WeakReference
+import java.util.concurrent.ConcurrentHashMap
 
 /**
- * A base Fragment class that simplifies ViewBinding usage and handles view inflation safely.
+ * A high-performance Fragment base class that provides:
+ *  - Safe and automatic ViewBinding creation
+ *  - Intelligent view recycling and caching across lifecycles
+ *  - Seamless compatibility with Navigation Component and ViewPager
+ *  - Optional layout inflation fallback via [pickLayout]
  *
- * This class allows two modes of creating ViewBinding:
- * 1. Inflate: Using the standard `inflate()` method provided by generated ViewBinding classes.
- * 2. Bind: Using `bind()` on an existing root view.
- *
- * It also provides hooks for:
- * - Safe initialization of the binding (`onBindingCreated`)
- * - Automatic padding adjustment for system bars (`fixPadding`)
- * - Optional layout resource selection via `pickLayout()`
- *
- * @param T The type of ViewBinding for this Fragment.
- * @param bindingCreator The strategy used to create the binding instance.
+ * This implementation minimizes unnecessary inflations while still
+ * ensuring fragments can be garbage collected when memory is tight.
  */
 abstract class BaseFragment<T : ViewBinding>(
-    private val bindingCreator: BindingCreator<T>
+	private val bindingCreator: BindingCreator<T>
 ) : Fragment() {
 
-    private var _binding: T? = null
-    protected val binding: T? get() = _binding
+	private var _binding: T? = null
+	protected val binding: T? get() = _binding
 
-    private var recycledRoot: View? = null
+	private var recycledRoot: View? = null
+	private var isFullyDestroyed = false
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // If we already have a binding, reuse its root view instead of inflating again.
-        _binding?.let { existingBinding ->
-            recycledRoot = existingBinding.root
-            (existingBinding.root.parent as? ViewGroup)?.removeView(existingBinding.root)
-            return recycledRoot
-        }
+	companion object {
+		/** Global binding cache (weak references to prevent memory leaks). */
+		private val bindingCache = ConcurrentHashMap<String, WeakReference<ViewBinding>>()
+	}
 
-        val layoutId = pickLayout()
-        val root: View? = layoutId?.let { inflater.inflate(it, container, false) }
-        _binding = try {
-            when (bindingCreator) {
-                is BindingCreator.Inflate -> bindingCreator.fn(inflater, container, false)
-                is BindingCreator.Bind -> {
-                    if (root != null) bindingCreator.fn(root)
-                    else throw IllegalStateException("Root view is null for bind()")
-                }
-            }
-        } catch (t: Throwable) {
-            showToast(
-                txt(R.string.unable_to_inflate, t.message ?: ""),
-                Toast.LENGTH_LONG
-            )
-            logError(t)
-            null
-        }
+	override fun onCreateView(
+		inflater: LayoutInflater,
+		container: ViewGroup?,
+		savedInstanceState: Bundle?
+	): View? {
+		val key = cacheKey()
 
-        recycledRoot = _binding?.root ?: root
-        return recycledRoot
-    }
+		// Try cached binding first (if still valid)
+		val cached = bindingCache[key]?.get() as? T
+		if (cached != null && cached.root.parent == null) {
+			_binding = cached
+			recycledRoot = cached.root
+			return recycledRoot
+		}
 
-    /**
-     * Called after the fragment's view has been created.
-     *
-     * This method is `final` to ensure that the binding is properly initialized and
-     * system bar padding adjustments are applied before any subclass logic runs.
-     * Subclasses should use [onBindingCreated] instead of overriding this method directly.
-     */
-    final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        fixPadding(view)
-        binding?.let { onBindingCreated(it, savedInstanceState) }
-    }
+		// Otherwise, inflate normally
+		val layoutId = pickLayout()
+		val root: View? = layoutId?.let { inflater.inflate(it, container, false) }
 
-    /**
-     * Called when the binding is safely created and view is ready.
-     * Can be overridden to provide fragment-specific initialization.
-     *
-     * @param binding The safely created ViewBinding.
-     * @param savedInstanceState Saved state bundle or null.
-     */
-    protected open fun onBindingCreated(binding: T, savedInstanceState: Bundle?) {
-        onBindingCreated(binding)
-    }
+		_binding = try {
+			when (bindingCreator) {
+				is BindingCreator.Inflate -> bindingCreator.fn(inflater, container, false)
+				is BindingCreator.Bind -> {
+					if (root != null) bindingCreator.fn(root)
+					else throw IllegalStateException("Root view is null for bind()")
+				}
+			}
+		} catch (t: Throwable) {
+			showToast(txt(R.string.unable_to_inflate, t.message ?: ""), Toast.LENGTH_LONG)
+			logError(t)
+			null
+		}
 
-    /**
-     * Called when the binding is safely created and view is ready.
-     * Overload without savedInstanceState for convenience.
-     *
-     * @param binding The safely created ViewBinding.
-     */
-    protected open fun onBindingCreated(binding: T) {}
+		recycledRoot = _binding?.root ?: root
+		_binding?.let { bindingCache[key] = WeakReference(it) }
+		return recycledRoot
+	}
 
-    /**
-     * Called when the device configuration changes (e.g., orientation).
-     * Re-applies system bar padding fixes to the root view to ensure it
-     * readjusts for orientation changes.
-     */
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        binding?.apply { fixPadding(root) }
-        super.onConfigurationChanged(newConfig)
-    }
+	final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
+		fixPadding(view)
+		binding?.let { onBindingCreated(it, savedInstanceState) }
 
-    /**
-     * Completely clear the cached binding if you *know* the fragment
-     * won’t be shown again soon (e.g., manually removing from FragmentManager).
-     */
-    protected fun clearBindingCache() {
-        _binding = null
-        recycledRoot = null
-    }
+		// Lifecycle watcher for cleanup
+		viewLifecycleOwner.lifecycle.addObserver(LifecycleEventObserver { _, event ->
+			if (event == Lifecycle.Event.ON_DESTROY) {
+				isFullyDestroyed = shouldClearCache()
+				if (isFullyDestroyed) {
+					clearBindingCache()
+				}
+			}
+		})
+	}
 
-    /**
-     * Pick a layout resource ID for the fragment.
-     *
-     * Return `null` by default. Override to provide a layout resource when using
-     * `BindingCreator.Bind`. Not needed if using `BindingCreator.Inflate`.
-     *
-     * @return Layout resource ID or null.
-     */
-    @LayoutRes
-    protected open fun pickLayout(): Int? = null
+	protected open fun onBindingCreated(binding: T, savedInstanceState: Bundle?) {
+		onBindingCreated(binding)
+	}
 
-    /**
-     * Apply padding adjustments for system bars to the root view.
-     *
-     * @param view The root view to adjust.
-     */
-    protected open fun fixPadding(view: View) {
-        fixSystemBarsPadding(view)
-    }
+	protected open fun onBindingCreated(binding: T) {}
 
-    /**
-     * Sealed class representing the two strategies for creating a ViewBinding instance.
-     */
-    sealed class BindingCreator<T : ViewBinding> {
+	override fun onConfigurationChanged(newConfig: Configuration) {
+		binding?.apply { fixPadding(root) }
+		super.onConfigurationChanged(newConfig)
+	}
 
-        /**
-         * Use the standard inflate() method for creating the binding.
-         *
-         * @param fn Lambda that inflates the binding.
-         */
-        class Inflate<T : ViewBinding>(
-            val fn: (LayoutInflater, ViewGroup?, Boolean) -> T
-        ) : BindingCreator<T>()
+	/** Clears binding reference and removes it from global cache. */
+	protected fun clearBindingCache() {
+		_binding = null
+		recycledRoot = null
+		bindingCache.remove(cacheKey())
+		isFullyDestroyed = false
+	}
 
-        /**
-         * Use bind() on an existing root view to create the binding. This should
-         * be used if you are differing per device layouts, such as different
-         * layouts for TV and Phone.
-         *
-         * @param fn Lambda that binds the root view.
-         */
-        class Bind<T : ViewBinding>(
-            val fn: (View) -> T
-        ) : BindingCreator<T>()
-    }
+	override fun onDestroyView() {
+		super.onDestroyView()
+		// Keep binding cached; do not nullify immediately.
+	}
+
+	/**
+	 * Determines whether the cache should be cleared.
+	 * Default behavior:
+	 *  - Clears cache when fragment is removed or activity is finishing
+	 *  - Retains cache otherwise (e.g., ViewPager/tab fragments)
+	 */
+	protected open fun shouldClearCache(): Boolean {
+		return isRemoving || activity?.isFinishing == true || !isAdded
+	}
+
+	/** Generates a unique cache key for this fragment type. */
+	protected open fun cacheKey(): String = javaClass.name
+
+	@LayoutRes
+	protected open fun pickLayout(): Int? = null
+
+	protected open fun fixPadding(view: View) {
+		fixSystemBarsPadding(view)
+	}
+
+	sealed class BindingCreator<T : ViewBinding> {
+		class Inflate<T : ViewBinding>(
+			val fn: (LayoutInflater, ViewGroup?, Boolean) -> T
+		) : BindingCreator<T>()
+
+		class Bind<T : ViewBinding>(
+			val fn: (View) -> T
+		) : BindingCreator<T>()
+	}
 }
