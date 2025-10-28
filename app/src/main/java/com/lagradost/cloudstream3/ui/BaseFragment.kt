@@ -2,6 +2,7 @@ package com.lagradost.cloudstream3.ui
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,6 +60,7 @@ abstract class BaseFragment<T : ViewBinding>(
         val cached = bindingCache[key]?.get() as? T
         if (cached != null && cached.root.parent == null) {
             _binding = cached
+            Log.d("TESTCACHE", "Getting ${key} from cache")
             return cached.root
         }
 
@@ -67,6 +69,7 @@ abstract class BaseFragment<T : ViewBinding>(
         if (pooled != null) {
             _binding = pooled
             bindingCache[key] = WeakReference(pooled)
+            Log.d("TESTCACHE", "Getting ${key} from pool")
             return pooled.root
         }
 
