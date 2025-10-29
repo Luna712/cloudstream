@@ -458,7 +458,8 @@ abstract class AbstractPlayerFragment(
         if (event !is DownloadEvent) {
             Log.i(TAG, "Handle event: $event")
         }
-        
+
+        val player = player
         if (player is CS3IPlayer) {
             player.hasNextEpisode = hasNextEpisode
         }
