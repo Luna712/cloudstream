@@ -14,7 +14,6 @@ import com.lagradost.cloudstream3.ui.BaseFragment
 import com.lagradost.cloudstream3.ui.settings.extensions.PluginsViewModel
 import com.lagradost.cloudstream3.ui.settings.extensions.RepoAdapter
 import com.lagradost.cloudstream3.utils.Coroutines.main
-import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 
 class SetupFragmentExtensions : BaseFragment<FragmentSetupExtensionsBinding>(
     BaseFragment.BindingCreator.Inflate(FragmentSetupExtensionsBinding::inflate)
