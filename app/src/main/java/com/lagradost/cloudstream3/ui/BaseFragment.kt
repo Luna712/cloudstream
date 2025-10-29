@@ -14,6 +14,7 @@ import androidx.viewbinding.ViewBinding
 import com.lagradost.cloudstream3.CommonActivity.showToast
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.mvvm.logError
+import com.lagradost.cloudstream3.ui.settings.SettingsFragment.Companion.setSystemBarsPadding
 import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 
@@ -213,29 +214,13 @@ abstract class BasePreferenceFragmentCompat<T : ViewBinding>(
 ) : PreferenceFragmentCompat(), BaseFragmentHelper<T> {
     override var _binding: T? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // We can't have null for this one
-        return createBinding(inflater, container, savedInstanceState) ?:
-            super.onCreateView(inflater, container, savedInstanceState)
-    }
-
-    final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        onViewReady(view, savedInstanceState)
+        setSystemBarsPadding()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        handleConfigurationChanged(newConfig)
-    }
-
-    /** Cleans up the binding reference when the view is destroyed to avoid memory leaks. */
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        setSystemBarsPadding()
     }
 }
