@@ -520,13 +520,14 @@ abstract class AbstractPlayerFragment(
                 context?.let { ctx ->
                     // Resets subtitle delay on ended video
                     player.setSubtitleOffset(0)
+                    if (!hasNextEpisode) return
 
                     // Only play next episode if autoplay is on (default)
                     if (PreferenceManager.getDefaultSharedPreferences(ctx)
                             ?.getBoolean(
                                 ctx.getString(R.string.autoplay_next_key),
                                 true
-                            ) == true && hasNextEpisode
+                            ) == true
                     ) {
                         player.handleEvent(
                             CSPlayerEvent.NextEpisode,
