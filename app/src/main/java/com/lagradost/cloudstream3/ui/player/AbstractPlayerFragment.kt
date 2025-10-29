@@ -458,7 +458,6 @@ abstract class AbstractPlayerFragment(
         if (event !is DownloadEvent) {
             Log.i(TAG, "Handle event: $event")
         }
-
         when (event) {
             is DownloadEvent -> {
                 onDownload(event)
