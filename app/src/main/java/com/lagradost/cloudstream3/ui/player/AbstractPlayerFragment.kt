@@ -81,6 +81,7 @@ abstract class AbstractPlayerFragment(
     var resizeMode: Int = 0
     var subView: SubtitleView? = null
     var isBuffering = true
+    protected var hasNextEpisode = false
     protected open var hasPipModeSupport = true
 
     var playerPausePlayHolderHolder: FrameLayout? = null
@@ -525,7 +526,7 @@ abstract class AbstractPlayerFragment(
                             ?.getBoolean(
                                 ctx.getString(R.string.autoplay_next_key),
                                 true
-                            ) == true
+                            ) == true && hasNextEpisode
                     ) {
                         player.handleEvent(
                             CSPlayerEvent.NextEpisode,
