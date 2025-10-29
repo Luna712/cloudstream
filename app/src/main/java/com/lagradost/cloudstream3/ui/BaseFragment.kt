@@ -74,7 +74,6 @@ abstract class BaseFragmentHelper<T : ViewBinding>(
      * Subclasses should use [onBindingCreated] instead of overriding this method directly.
      */
     protected fun onViewReady(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         fixPadding(view)
         binding?.let { onBindingCreated(it, savedInstanceState) }
     }
