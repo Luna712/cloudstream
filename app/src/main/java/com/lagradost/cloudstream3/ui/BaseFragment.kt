@@ -238,11 +238,7 @@ abstract class BaseBottomSheetDialogFragment<T : ViewBinding>(
     }
 }
 
-abstract class BasePreferenceFragmentCompat<T : ViewBinding>(
-    override val bindingCreator: BaseFragment.BindingCreator<T>
-) : PreferenceFragmentCompat(), BaseFragmentHelper<T> {
-    override var _binding: T? = null
-
+abstract class BasePreferenceFragmentCompat(): PreferenceFragmentCompat() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setSystemBarsPadding()
