@@ -22,7 +22,7 @@ const val HAS_DONE_SETUP_KEY = "HAS_DONE_SETUP"
 class SetupFragmentLanguage : BaseFragment<FragmentSetupLanguageBinding>(
     BaseFragment.BindingCreator.Inflate(FragmentSetupLanguageBinding::inflate)
 ) {
-    override fun onBindingCreated(binding: FragmentChildDownloadsBinding) {
+    override fun onBindingCreated(binding: FragmentSetupLanguageBinding) {
         // We don't want a crash for all users
         safe {
             val ctx = context ?: return@safe
