@@ -459,11 +459,6 @@ abstract class AbstractPlayerFragment(
             Log.i(TAG, "Handle event: $event")
         }
 
-        val player = player
-        if (player is CS3IPlayer) {
-            player.hasNextEpisode = hasNextEpisode
-        }
-
         when (event) {
             is DownloadEvent -> {
                 onDownload(event)
@@ -566,6 +561,7 @@ abstract class AbstractPlayerFragment(
 
         val player = player
         if (player is CS3IPlayer) {
+            player.hasNextEpisode = hasNextEpisode
             // preview bar
             val progressBar: PreviewTimeBar? = playerView?.findViewById(R.id.exo_progress)
             val previewImageView: ImageView? = playerView?.findViewById(R.id.previewImageView)
