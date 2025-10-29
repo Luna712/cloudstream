@@ -48,9 +48,9 @@ private interface BaseFragmentHelper<T : ViewBinding> {
         val creator = bindingCreator
         bindingRef = try {
             when (creator) {
-                is BaseFragment.BindingCreator.Inflate -> creator.fn.invoke(inflater, container, false)
+                is BaseFragment.BindingCreator.Inflate -> creator.fn(inflater, container, false)
                 is BaseFragment.BindingCreator.Bind -> {
-                    if (root != null) creator.fn.invoke(root)
+                    if (root != null) creator.fn(root)
                     else throw IllegalStateException("Root view is null for bind()")
                 }
             }
