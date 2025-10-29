@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.ui
 
 import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -86,25 +87,19 @@ private interface BaseFragmentHelper<T : ViewBinding> {
      * @param binding The safely created ViewBinding.
      * @param savedInstanceState Saved state bundle or null.
      */
-    fun onBindingCreated(binding: T, savedInstanceState: Bundle?) {
-        onBindingCreated(binding)
-    }
-
-    /**
-     * Called when the binding is safely created and view is ready.
-     * Overload without savedInstanceState for convenience.
-     *
-     * @param binding The safely created ViewBinding.
-     */
-    fun onBindingCreated(binding: T) {}
+    fun onBindingCreated(binding: T, savedInstanceState: Bundle? = null) {}
 
     /**
      * Called when the device configuration changes (e.g., orientation).
      * Re-applies system bar padding fixes to the root view to ensure it
      * readjusts for orientation changes.
      */
+    var lastOrientation: Int = Resources.getSystem().configuration.orientation
     fun handleConfigurationChanged(newConfig: Configuration) {
-        binding?.apply { fixPadding(root) }
+        if (newConfig.orientation != lastOrientation) {
+            binding?.apply { fixPadding(root) }
+            lastOrientation = newConfig.orientation
+        }
     }
 
     /**
