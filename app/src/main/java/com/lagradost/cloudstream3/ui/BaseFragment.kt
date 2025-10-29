@@ -45,9 +45,8 @@ private interface BaseFragmentHelper<T : ViewBinding> {
     ): View? {
         val layoutId = pickLayout()
         val root: View? = layoutId?.let { inflater.inflate(it, container, false) }
-        val creator = bindingCreator
-        bindingRef = try {
-            when (creator) {
+        _binding = try {
+            when (val creator = bindingCreator) {
                 is BaseFragment.BindingCreator.Inflate -> creator.fn(inflater, container, false)
                 is BaseFragment.BindingCreator.Bind -> {
                     if (root != null) creator.fn(root)
