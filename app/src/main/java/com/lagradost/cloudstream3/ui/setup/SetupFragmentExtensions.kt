@@ -62,7 +62,7 @@ class SetupFragmentExtensions : BaseFragment<FragmentSetupExtensionsBinding>(
         }
     }
 
-    override fun onBindingCreated(binding: FragmentChildDownloadsBinding) {
+    override fun onBindingCreated(binding: FragmentSetupExtensionsBinding) {
         val isSetup = arguments?.getBoolean(SETUP_EXTENSION_BUNDLE_IS_SETUP) ?: false
 
         safe {
