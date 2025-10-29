@@ -1649,6 +1649,7 @@ class GeneratorPlayer : FullScreenPlayer() {
 
             else -> {
                 val hasNextEpisode = viewModel.hasNextEpisode() == true
+                this.hasNextEpisode = hasNextEpisode
                 playerBinding?.playerGoForward?.isVisible = hasNextEpisode
                 playerBinding?.playerGoForwardRoot?.isVisible = hasNextEpisode
             }
@@ -2036,7 +2037,6 @@ class GeneratorPlayer : FullScreenPlayer() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        hasNextEpisode = viewModel.hasNextEpisode() ?: false
         var langFilterList = listOf<String>()
         var filterSubByLang = false
 
