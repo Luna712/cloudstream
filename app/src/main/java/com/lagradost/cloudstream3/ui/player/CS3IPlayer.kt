@@ -152,6 +152,7 @@ class CS3IPlayer : IPlayer {
     private var currentLink: ExtractorLink? = null
     private var currentDownloadedFile: ExtractorUri? = null
     private var hasUsedFirstRender = false
+    private var hasNextEpisode = false
 
     private var currentWindow: Int = 0
     private var playbackPosition: Long = 0
@@ -267,6 +268,10 @@ class CS3IPlayer : IPlayer {
 
     override fun hasPreview(): Boolean {
         return imageGenerator.hasPreview()
+    }
+
+    fun setHasNextEpisode(hasNext: Boolean) {
+        hasNextEpisode = hasNext
     }
 
     override fun loadPlayer(
@@ -1497,7 +1502,7 @@ class CS3IPlayer : IPlayer {
                             setSubtitleOffset(0)
 
                             // Only play next episode if autoplay is on (default)
-                            if (PreferenceManager.getDefaultSharedPreferences(context)
+                            if (hasNextEpisode && PreferenceManager.getDefaultSharedPreferences(context)
                                     ?.getBoolean(
                                         context.getString(R.string.autoplay_next_key),
                                         true
