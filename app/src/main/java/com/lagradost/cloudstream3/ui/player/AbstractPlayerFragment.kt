@@ -560,6 +560,7 @@ abstract class AbstractPlayerFragment(
 
         val player = player
         if (player is CS3IPlayer) {
+            player.setHasNextEpisode(hasNextEpisode)
             // preview bar
             val progressBar: PreviewTimeBar? = playerView?.findViewById(R.id.exo_progress)
             val previewImageView: ImageView? = playerView?.findViewById(R.id.previewImageView)
