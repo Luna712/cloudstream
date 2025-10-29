@@ -56,7 +56,7 @@ const val DOWNLOAD_NAVIGATE_TO = "downloadpage"
 class DownloadFragment : BaseFragment<FragmentDownloadsBinding>(
     BaseFragment.BindingCreator.Inflate(FragmentDownloadsBinding::inflate)
 ) {
-    private val downloadsViewModel: DownloadViewModel by activityViewModels()
+    private val downloadViewModel: DownloadViewModel by activityViewModels()
 
     private fun View.setLayoutWidth(weight: Long) {
         val param = LinearLayout.LayoutParams(
@@ -97,7 +97,7 @@ class DownloadFragment : BaseFragment<FragmentDownloadsBinding>(
          * observer to properly receive and handle the state change.
          */
         Handler(Looper.getMainLooper()).post {
-            downloadsViewModel.setIsMultiDeleteState(false)
+            downloadViewModel.setIsMultiDeleteState(false)
         }
 
         /**
@@ -106,14 +106,14 @@ class DownloadFragment : BaseFragment<FragmentDownloadsBinding>(
          * inconsistent state where selected items do
          * not match the multi delete state we are in.
          */
-        downloadsViewModel.clearSelectedItems()
+        downloadViewModel.clearSelectedItems()
 
-        observe(downloadsViewModel.headerCards) {
+        observe(downloadViewModel.headerCards) {
             (binding.downloadList.adapter as? DownloadAdapter)?.submitList(it)
             binding.downloadLoading.isVisible = false
             binding.textNoDownloads.isVisible = it.isEmpty()
         }
-        observe(downloadsViewModel.availableBytes) {
+        observe(downloadViewModel.availableBytes) {
             updateStorageInfo(
                 binding.root.context,
                 it,
@@ -122,7 +122,7 @@ class DownloadFragment : BaseFragment<FragmentDownloadsBinding>(
                 binding.downloadFree
             )
         }
-        observe(downloadsViewModel.usedBytes) {
+        observe(downloadViewModel.usedBytes) {
             updateStorageInfo(
                 binding.root.context,
                 it,
@@ -139,7 +139,7 @@ class DownloadFragment : BaseFragment<FragmentDownloadsBinding>(
             binding.downloadBytesBar.isVisible = hasBytes
             binding.downloadLoadingBytes.isGone = hasBytes
         }
-        observe(downloadsViewModel.downloadBytes) {
+        observe(downloadViewModel.downloadBytes) {
             updateStorageInfo(
                 binding.root.context,
                 it,
@@ -148,31 +148,31 @@ class DownloadFragment : BaseFragment<FragmentDownloadsBinding>(
                 binding.downloadApp
             )
         }
-        observe(downloadsViewModel.selectedBytes) {
-            updateDeleteButton(downloadsViewModel.selectedItemIds.value?.count() ?: 0, it)
+        observe(downloadViewModel.selectedBytes) {
+            updateDeleteButton(downloadViewModel.selectedItemIds.value?.count() ?: 0, it)
         }
-        observe(downloadsViewModel.isMultiDeleteState) { isMultiDeleteState ->
+        observe(downloadViewModel.isMultiDeleteState) { isMultiDeleteState ->
             val adapter = binding.downloadList.adapter as? DownloadAdapter
             adapter?.setIsMultiDeleteState(isMultiDeleteState)
             binding.downloadDeleteAppbar.isVisible = isMultiDeleteState
             if (!isMultiDeleteState) {
                 activity?.detachBackPressedCallback("Downloads")
-                downloadsViewModel.clearSelectedItems()
+                downloadViewModel.clearSelectedItems()
                 // Prevent race condition and make sure
                 // we don't display it early
-                if (downloadsViewModel.usedBytes.value?.let { it > 0 } == true) {
+                if (downloadViewModel.usedBytes.value?.let { it > 0 } == true) {
                     binding.downloadAppbar.isVisible = true
                 }
             }
         }
-        observe(downloadsViewModel.selectedItemIds) {
+        observe(downloadViewModel.selectedItemIds) {
             handleSelectedChange(it)
-            updateDeleteButton(it.count(), downloadsViewModel.selectedBytes.value ?: 0L)
+            updateDeleteButton(it.count(), downloadViewModel.selectedBytes.value ?: 0L)
 
             binding.btnDelete.isVisible = it.isNotEmpty()
             binding.selectItemsText.isVisible = it.isEmpty()
 
-            val allSelected = downloadsViewModel.isAllSelected()
+            val allSelected = downloadViewModel.isAllSelected()
             if (allSelected) {
                 binding.btnToggleAll.setText(R.string.deselect_all)
             } else binding.btnToggleAll.setText(R.string.select_all)
@@ -183,14 +183,14 @@ class DownloadFragment : BaseFragment<FragmentDownloadsBinding>(
             { click ->
                 if (click.action == DOWNLOAD_ACTION_DELETE_FILE) {
                     context?.let { ctx ->
-                        downloadsViewModel.handleSingleDelete(ctx, click.data.id)
+                        downloadViewModel.handleSingleDelete(ctx, click.data.id)
                     }
                 } else handleDownloadClick(click)
             },
             { itemId, isChecked ->
                 if (isChecked) {
-                    downloadsViewModel.addSelected(itemId)
-                } else downloadsViewModel.removeSelected(itemId)
+                    downloadViewModel.addSelected(itemId)
+                } else downloadViewModel.removeSelected(itemId)
             }
         )
 
@@ -228,7 +228,7 @@ class DownloadFragment : BaseFragment<FragmentDownloadsBinding>(
             }
         }
 
-        context?.let { downloadsViewModel.updateHeaderList(it) }
+        context?.let { downloadViewModel.updateHeaderList(it) }
     }
 
     private fun handleItemClick(click: DownloadHeaderClickEvent) {
@@ -255,32 +255,32 @@ class DownloadFragment : BaseFragment<FragmentDownloadsBinding>(
             binding?.downloadDeleteAppbar?.isVisible = true
             binding?.downloadAppbar?.isVisible = false
             activity?.attachBackPressedCallback("Downloads") {
-                downloadsViewModel.setIsMultiDeleteState(false)
+                downloadViewModel.setIsMultiDeleteState(false)
             }
 
             binding?.btnDelete?.setOnClickListener {
                 context?.let { ctx ->
-                    downloadsViewModel.handleMultiDelete(ctx)
+                    downloadViewModel.handleMultiDelete(ctx)
                 }
             }
 
             binding?.btnCancel?.setOnClickListener {
-                downloadsViewModel.setIsMultiDeleteState(false)
+                downloadViewModel.setIsMultiDeleteState(false)
             }
 
             binding?.btnToggleAll?.setOnClickListener {
-                val allSelected = downloadsViewModel.isAllSelected()
+                val allSelected = downloadViewModel.isAllSelected()
                 val adapter = binding?.downloadList?.adapter as? DownloadAdapter
                 if (allSelected) {
                     adapter?.notifySelectionStates()
-                    downloadsViewModel.clearSelectedItems()
+                    downloadViewModel.clearSelectedItems()
                 } else {
                     adapter?.notifyAllSelected()
-                    downloadsViewModel.selectAllItems()
+                    downloadViewModel.selectAllItems()
                 }
             }
 
-            downloadsViewModel.setIsMultiDeleteState(true)
+            downloadViewModel.setIsMultiDeleteState(true)
         }
     }
 
