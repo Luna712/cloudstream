@@ -137,6 +137,7 @@ class CS3IPlayer : IPlayer {
     var videoBufferMs = 0L
 
     val imageGenerator = IPreviewGenerator.new()
+    var hasNextEpisode = false
 
     private val seekActionTime = 30000L
     private val isMediaSeekable
@@ -152,7 +153,6 @@ class CS3IPlayer : IPlayer {
     private var currentLink: ExtractorLink? = null
     private var currentDownloadedFile: ExtractorUri? = null
     private var hasUsedFirstRender = false
-    private var hasNextEpisode = false
 
     private var currentWindow: Int = 0
     private var playbackPosition: Long = 0
@@ -268,10 +268,6 @@ class CS3IPlayer : IPlayer {
 
     override fun hasPreview(): Boolean {
         return imageGenerator.hasPreview()
-    }
-
-    fun setHasNextEpisode(hasNext: Boolean) {
-        hasNextEpisode = hasNext
     }
 
     override fun loadPlayer(
