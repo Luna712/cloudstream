@@ -115,7 +115,7 @@ class DownloadFragment : BaseFragment<FragmentDownloadsBinding>(
         }
         observe(downloadsViewModel.availableBytes) {
             updateStorageInfo(
-                view.context,
+                binding.root.context,
                 it,
                 R.string.free_storage,
                 binding.downloadFreeTxt,
@@ -124,7 +124,7 @@ class DownloadFragment : BaseFragment<FragmentDownloadsBinding>(
         }
         observe(downloadsViewModel.usedBytes) {
             updateStorageInfo(
-                view.context,
+                binding.root.context,
                 it,
                 R.string.used_storage,
                 binding.downloadUsedTxt,
@@ -141,7 +141,7 @@ class DownloadFragment : BaseFragment<FragmentDownloadsBinding>(
         }
         observe(downloadsViewModel.downloadBytes) {
             updateStorageInfo(
-                view.context,
+                binding.root.context,
                 it,
                 R.string.app_storage,
                 binding.downloadAppTxt,
