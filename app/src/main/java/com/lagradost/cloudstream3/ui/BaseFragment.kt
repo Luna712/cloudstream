@@ -47,11 +47,12 @@ private interface BaseFragmentHelper<T : ViewBinding> {
     ): View? {
         val layoutId = pickLayout()
         val root: View? = layoutId?.let { inflater.inflate(it, container, false) }
+        val creator = bindingCreator
         bindingRef = try {
-            when (bindingCreator) {
-                is BaseFragment.BindingCreator.Inflate -> bindingCreator.fn.invoke(inflater, container, false)
+            when (creator) {
+                is BaseFragment.BindingCreator.Inflate -> creator.fn.invoke(inflater, container, false)
                 is BaseFragment.BindingCreator.Bind -> {
-                    if (root != null) bindingCreator.fn.invoke(root)
+                    if (root != null) creator.fn.invoke(root)
                     else throw IllegalStateException("Root view is null for bind()")
                 }
             }
@@ -222,7 +223,11 @@ abstract class BasePreferenceFragmentCompat<T : ViewBinding>(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = createBinding(inflater, container, savedInstanceState)
+    ): View {
+        // We can't have null for this one
+        return createBinding(inflater, container, savedInstanceState) ?:
+            super<PreferenceFragmentCompat>.onCreateView(inflater, container, savedInstanceState)
+    }
 
     final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super<PreferenceFragmentCompat>.onViewCreated(view, savedInstanceState)
