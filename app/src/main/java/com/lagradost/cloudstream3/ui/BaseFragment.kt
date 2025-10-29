@@ -49,9 +49,9 @@ private interface BaseFragmentHelper<T : ViewBinding> {
         val root: View? = layoutId?.let { inflater.inflate(it, container, false) }
         bindingRef = try {
             when (bindingCreator) {
-                is BaseFragment.BindingCreator.Inflate -> bindingCreator.fn(inflater, container, false)
+                is BaseFragment.BindingCreator.Inflate -> bindingCreator.fn.invoke(inflater, container, false)
                 is BaseFragment.BindingCreator.Bind -> {
-                    if (root != null) bindingCreator.fn(root)
+                    if (root != null) bindingCreator.fn.invoke(root)
                     else throw IllegalStateException("Root view is null for bind()")
                 }
             }
@@ -145,17 +145,17 @@ abstract class BaseFragment<T : ViewBinding>(
     ): View? = createBinding(inflater, container, savedInstanceState)
 
     final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        super<Fragment>.onViewCreated(view, savedInstanceState)
         onViewReady(view, savedInstanceState)
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
+        super<Fragment>.onConfigurationChanged(newConfig)
         super<BaseFragmentHelper>.onConfigurationChanged(newConfig)
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
+        super<Fragment>.onDestroyView()
         super<BaseFragmentHelper>.onDestroyView()
     }
 
@@ -198,17 +198,17 @@ abstract class BaseDialogFragment<T : ViewBinding>(
     ): View? = createBinding(inflater, container, savedInstanceState)
 
     final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        super<DialogFragment>.onViewCreated(view, savedInstanceState)
         onViewReady(view, savedInstanceState)
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
+        super<DialogFragment>.onConfigurationChanged(newConfig)
         super<BaseFragmentHelper>.onConfigurationChanged(newConfig)
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
+        super<DialogFragment>.onDestroyView()
         super<BaseFragmentHelper>.onDestroyView()
     }
 }
@@ -225,17 +225,17 @@ abstract class BasePreferenceFragmentCompat<T : ViewBinding>(
     ): View? = createBinding(inflater, container, savedInstanceState)
 
     final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        super<PreferenceFragmentCompat>.onViewCreated(view, savedInstanceState)
         onViewReady(view, savedInstanceState)
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
+        super<PreferenceFragmentCompat>.onConfigurationChanged(newConfig)
         super<BaseFragmentHelper>.onConfigurationChanged(newConfig)
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
+        super<PreferenceFragmentCompat>.onDestroyView()
         super<BaseFragmentHelper>.onDestroyView()
     }
 }
