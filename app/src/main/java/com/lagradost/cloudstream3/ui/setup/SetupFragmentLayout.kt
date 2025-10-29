@@ -13,7 +13,7 @@ import com.lagradost.cloudstream3.ui.BaseFragment
 class SetupFragmentLayout : BaseFragment<FragmentSetupLayoutBinding>(
     BaseFragment.BindingCreator.Inflate(FragmentSetupLayoutBinding::inflate)
 ) {
-    override fun onBindingCreated(binding: FragmentChildDownloadsBinding) {
+    override fun onBindingCreated(binding: FragmentSetupLayoutBinding) {
         safe {
             val ctx = context ?: return@safe
 
