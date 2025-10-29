@@ -520,7 +520,7 @@ abstract class AbstractPlayerFragment(
                 context?.let { ctx ->
                     // Resets subtitle delay on ended video
                     player.setSubtitleOffset(0)
-                    if (!hasNextEpisode) return
+                    if (!hasNextEpisode) return@let
 
                     // Only play next episode if autoplay is on (default)
                     if (PreferenceManager.getDefaultSharedPreferences(ctx)
