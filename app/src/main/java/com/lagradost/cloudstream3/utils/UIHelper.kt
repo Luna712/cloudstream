@@ -560,12 +560,13 @@ object UIHelper {
     }
 
     fun Context.shouldShowPIPMode(isInPlayer: Boolean): Boolean {
+        if (!isInPlayer) return false
         return try {
             val settingsManager = PreferenceManager.getDefaultSharedPreferences(this)
             settingsManager?.getBoolean(
                 getString(R.string.pip_enabled_key),
                 true
-            ) ?: true && isInPlayer
+            ) ?: true
         } catch (e: Exception) {
             logError(e)
             false
