@@ -8,6 +8,7 @@ import androidx.annotation.OptIn
 import androidx.media3.common.MimeTypes
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.ui.SubtitleView
+import com.lagradost.cloudstream3.CommonActivity.isInPIPMode
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.ui.subtitles.SaveCaptionStyle
 import com.lagradost.cloudstream3.ui.subtitles.SubtitlesFragment.Companion.setSubtitleViewStyle
@@ -118,7 +119,7 @@ class PlayerSubtitleHelper {
     fun setSubStyle(style: SaveCaptionStyle) {
         Log.i(TAG, "SET STYLE = $style")
         subtitleView?.translationY = -style.elevation.toPx.toFloat()
-        setSubtitleViewStyle(subtitleView, style, true)
+        setSubtitleViewStyle(subtitleView, style, !isInPIPMode)
     }
 
     fun initSubtitles(subView: SubtitleView?, subHolder: FrameLayout?, style: SaveCaptionStyle?) {
