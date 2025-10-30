@@ -197,7 +197,7 @@ abstract class AbstractPlayerFragment(
             activity?.let { act ->
                 PlayerPipHelper.updatePIPModeActions(
                     act,
-                    isPlayingRightNow,
+                    canEnterPipMode,
                     player.getAspectRatio()
                 )
             }
