@@ -291,6 +291,8 @@ object CommonActivity {
     }
 
     private fun Activity.enterPIPMode() {
+        Log.d("PIPMODETEST", shouldShowPIPMode(canEnterPipMode).toString())
+        Log.d("PIPMODETEST2", canShowPipMode.toString())
         if (!shouldShowPIPMode(canEnterPipMode) || !canShowPipMode) return
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
