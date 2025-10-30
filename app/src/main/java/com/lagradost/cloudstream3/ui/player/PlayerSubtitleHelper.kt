@@ -118,8 +118,13 @@ class PlayerSubtitleHelper {
 
     fun setSubStyle(style: SaveCaptionStyle) {
         Log.i(TAG, "SET STYLE = $style")
-        subtitleView?.translationY = -style.elevation.toPx.toFloat()
-        setSubtitleViewStyle(subtitleView, style, !isInPIPMode)
+        // We don't want subtitle elevation in PiP, otherwise
+        // it pushes it outside the player.
+        if (!isInPIPMode) {
+            subtitleView?.translationY = -style.elevation.toPx.toFloat()
+        }
+
+        setSubtitleViewStyle(subtitleView, style, applyElevation = !isInPIPMode)
     }
 
     fun initSubtitles(subView: SubtitleView?, subHolder: FrameLayout?, style: SaveCaptionStyle?) {
