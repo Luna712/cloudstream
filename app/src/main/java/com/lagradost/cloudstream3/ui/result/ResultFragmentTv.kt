@@ -80,7 +80,7 @@ class ResultFragmentTv : BaseFragment<FragmentResultTvBinding>(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         viewModel =
             ViewModelProvider(this)[ResultViewModel2::class.java]
         viewModel.EPISODE_RANGE_SIZE = 50
