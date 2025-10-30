@@ -158,7 +158,7 @@ class ChromecastSubtitlesFragment : BaseFragment<ChromecastSubtitleSettingsBindi
         )
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onBindingCreated(binding: ChromecastSubtitleSettingsBinding) {
         hide = arguments?.getBoolean("hide") ?: true
         onColorSelectedEvent += ::onColorSelected
         onDialogDismissedEvent += ::onDialogDismissed
