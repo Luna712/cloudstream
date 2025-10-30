@@ -6,7 +6,7 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.util.DisplayMetrics
 import android.util.TypedValue
-import android.view.view
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.media3.common.text.Cue
