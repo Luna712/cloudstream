@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.Typeface
+import android.os.Bundle
 import android.text.Layout
 import android.text.Spannable
 import android.text.SpannableString
