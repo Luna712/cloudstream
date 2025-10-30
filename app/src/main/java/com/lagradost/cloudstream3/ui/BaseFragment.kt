@@ -185,7 +185,7 @@ abstract class BaseFragment<T : ViewBinding>(
     }
 }
 
-/*
+/**
  * Simple BaseFragment to just handle padding should not be used
  * except for ResultFragmentPhone via AbstractPlayerFragment.
  * This can be removed when AbstractPlayerFragment is
@@ -202,7 +202,7 @@ abstract class SimpleBaseFragment(): Fragment() {
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        fixPadding(view)
+        view?.let { fixPadding(it) }
     }
 
     protected open fun fixPadding(view: View) {}
