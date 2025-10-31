@@ -23,6 +23,7 @@ import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.media3.common.PlaybackException
 import androidx.media3.exoplayer.ExoPlayer
@@ -212,6 +213,7 @@ abstract class AbstractPlayerFragment(
             if (isInPictureInPictureMode) {
                 // Hide the full-screen UI (controls, etc.) while in picture-in-picture mode.
                 piphide?.isVisible = false
+                subView.updatePadding(top = 0)
                 pipReceiver = object : BroadcastReceiver() {
                     override fun onReceive(
                         context: Context,
