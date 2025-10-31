@@ -53,7 +53,6 @@ private interface BaseFragmentHelper<T : ViewBinding> {
         // Try to reuse a binding from the pool first
         BaseFragmentPool.acquire<T>(javaClass.name)?.let {
 			Log.d(TAG, "Binding acquired from pool")
-			clearBinding(it)
             _binding = it
             return it.root
         }
@@ -88,8 +87,18 @@ private interface BaseFragmentHelper<T : ViewBinding> {
      * Subclasses should use [onBindingCreated] instead of overriding this method directly.
      */
     fun onViewReady(view: View, savedInstanceState: Bundle?) {
+		val key = javaClass.name
+		// If a previous binding exists and it's different, clear its cache
+		val previousBinding = BaseFragmentPool.acquire<T>(key)
+		if (previousBinding != null && previousBinding !== _binding) {
+			BaseFragmentPool.clearFor(key)
+			Log.d(TAG, "Binding cache cleared for fragment $key")
+		}
         fixPadding(view)
         binding?.let { onBindingCreated(it, savedInstanceState) }
+
+		 // Release current binding to the pool
+		_binding?.let { BaseFragmentPool.release(key, it) }
     }
 
     /**
@@ -142,31 +151,6 @@ private interface BaseFragmentHelper<T : ViewBinding> {
             _binding = null
         }
     }
-
-fun clearBinding(binding: ViewBinding) {
-    clearView(binding.root)
-}
-
-fun clearView(view: View) {
-    view.apply {
-        setOnClickListener(null)
-        setOnLongClickListener(null)
-        setOnTouchListener(null)
-
-        if (this is android.widget.ImageView) {
-            setImageDrawable(null)
-            setImageBitmap(null)
-        }
-
-        if (this is android.widget.Checkable) isChecked = false
-    }
-
-    if (view is ViewGroup) {
-        for (i in 0 until view.childCount) {
-            clearView(view.getChildAt(i))
-        }
-    }
-}
 }
 
 /**
@@ -199,6 +183,12 @@ object BaseFragmentPool {
 	fun clearAll() {
 		pool.values.flatten().forEach { (it.root.parent as? ViewGroup)?.removeView(it.root) }
 		pool.clear()
+	}
+
+	/** Clears the cache for a specific fragment (key). */
+    fun clearFor(key: String) {
+        pool[key]?.forEach { (it.root.parent as? ViewGroup)?.removeView(it.root) }
+        pool.remove(key)
 	}
 }
 
