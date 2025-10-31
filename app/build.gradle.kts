@@ -238,6 +238,8 @@ dependencies {
 
         this.extra.set("isDebug", isDebug)
     })
+
+    dokka(project(":app:"))
 }
 
 tasks.register<Jar>("androidSourcesJar") {
