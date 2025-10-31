@@ -212,6 +212,11 @@ abstract class AbstractPlayerFragment(
             if (isInPictureInPictureMode) {
                 // Hide the full-screen UI (controls, etc.) while in picture-in-picture mode.
                 piphide?.isVisible = false
+                SubtitlesFragment.setSubtitleViewStyle(
+                    subView,
+                    SubtitlesFragment.getCurrentSavedStyle(),
+                    false
+                )
                 pipReceiver = object : BroadcastReceiver() {
                     override fun onReceive(
                         context: Context,
@@ -241,6 +246,11 @@ abstract class AbstractPlayerFragment(
                 // Restore the full-screen UI.
                 piphide?.isVisible = true
                 exitedPipMode()
+                SubtitlesFragment.setSubtitleViewStyle(
+                    subView,
+                    SubtitlesFragment.getCurrentSavedStyle(),
+                    true
+                )
                 pipReceiver?.let {
                     // Prevents java.lang.IllegalArgumentException: Receiver not registered
                     safe {

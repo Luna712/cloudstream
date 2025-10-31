@@ -19,6 +19,7 @@ import androidx.annotation.FontRes
 import androidx.annotation.OptIn
 import androidx.annotation.Px
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.updatePadding
 import androidx.media3.common.text.Cue
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.ui.CaptionStyleCompat
@@ -109,10 +110,8 @@ class SubtitlesFragment : BaseDialogFragment<SubtitleSettingsBinding>(
             view.setStyle(style)
 
             if (applyElevation) {
-                view.setPadding(
-                    view.paddingLeft, data.elevation.toPx, view.paddingRight, view.paddingBottom
-                )
-            }
+                view.updatePadding(top = data.elevation.toPx)
+            } else view.updatePadding(top = 0)
 
             // we default to 25sp, this is needed as RoundedBackgroundColorSpan breaks on override sizes
             val size = data.fixedTextSize ?: 25.0f
