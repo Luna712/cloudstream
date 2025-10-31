@@ -238,8 +238,6 @@ dependencies {
 
         this.extra.set("isDebug", isDebug)
     })
-
-    dokka(project(":app:"))
 }
 
 tasks.register<Jar>("androidSourcesJar") {
@@ -282,7 +280,7 @@ tasks.withType<KotlinJvmCompile> {
     }
 }
 
-dokka {
+/*dokka {
     moduleName = "App"
     dokkaSourceSets {
         main {
@@ -299,4 +297,4 @@ dokka {
             }
         }
     }
-}
+}*/
