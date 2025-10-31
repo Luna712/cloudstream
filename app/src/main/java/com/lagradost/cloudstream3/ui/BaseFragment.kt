@@ -53,6 +53,7 @@ private interface BaseFragmentHelper<T : ViewBinding> {
         // Try to reuse a binding from the pool first
         BaseFragmentPool.acquire<T>(javaClass.name)?.let {
 			Log.d(TAG, "Binding acquired from pool")
+			clearBinding(it)
             _binding = it
             return it.root
         }
@@ -141,6 +142,35 @@ private interface BaseFragmentHelper<T : ViewBinding> {
             _binding = null
         }
     }
+
+fun clearBinding(binding: ViewBinding) {
+    clearView(binding.root)
+}
+
+fun clearView(view: View) {
+    view.apply {
+        setOnClickListener(null)
+        setOnLongClickListener(null)
+        setOnTouchListener(null)
+
+        visibility = View.VISIBLE
+
+        if (this is android.widget.ImageView) {
+            setImageDrawable(null)
+            setImageBitmap(null)
+        }
+
+        if (this is android.widget.TextView) text = ""
+
+        if (this is android.widget.Checkable) isChecked = false
+    }
+
+    if (view is ViewGroup) {
+        for (i in 0 until view.childCount) {
+            clearView(view.getChildAt(i))
+        }
+    }
+}
 }
 
 /**
