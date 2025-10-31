@@ -8,7 +8,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 plugins {
     kotlin("multiplatform")
     id("maven-publish")
-    id("com.android.library")
+    id("com.android.kotlin.multiplatform.library")
     id("com.codingfeline.buildkonfig")
     id("org.jetbrains.dokka")
 }
