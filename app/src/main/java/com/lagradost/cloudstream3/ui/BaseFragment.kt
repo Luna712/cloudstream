@@ -87,18 +87,11 @@ private interface BaseFragmentHelper<T : ViewBinding> {
      * Subclasses should use [onBindingCreated] instead of overriding this method directly.
      */
     fun onViewReady(view: View, savedInstanceState: Bundle?) {
-		val key = javaClass.name
-		// If a previous binding exists and it's different, clear its cache
-		val previousBinding = BaseFragmentPool.acquire<T>(key)
-		if (previousBinding != null && previousBinding !== _binding) {
-			BaseFragmentPool.clearFor(key)
-			Log.d(TAG, "Binding cache cleared for fragment $key")
-		}
         fixPadding(view)
         binding?.let { onBindingCreated(it, savedInstanceState) }
 
-		 // Release current binding to the pool
-		_binding?.let { BaseFragmentPool.release(key, it) }
+		BaseFragmentPool.clearFor(javaClass.name)
+		_binding?.let { BaseFragmentPool.release(javaClass.name, it) }
     }
 
     /**
