@@ -46,7 +46,7 @@ private interface BaseFragmentHelper<T : ViewBinding> {
         savedInstanceState: Bundle?
     ): View? {
         // Try to reuse a binding from the pool first
-        ViewBindingPool.acquire<T>(javaClass.name)?.let {
+        BaseFragmentPool.acquire<T>(javaClass.name)?.let {
             _binding = it
             return it.root
         }
@@ -130,15 +130,24 @@ private interface BaseFragmentHelper<T : ViewBinding> {
     /** Called by fragments when they’re destroyed, so the binding can be recycled. */
     fun recycleBindingOnDestroy() {
         _binding?.let {
-            ViewBindingPool.release(javaClass.name, it)
+            BaseFragmentPool.release(javaClass.name, it)
             _binding = null
         }
     }
 }
 
-object ViewBindingPool {
+/**
+ * A global pool for reusing [ViewBinding] instances across fragments to reduce
+ * layout inflation overhead and improve navigation performance.
+ *
+ * This pool is intended for use with fragments that extend [BaseFragment],
+ * [BaseDialogFragment], or [BaseBottomSheetDialogFragment] which support
+ * recycling of their bindings.
+ */
+object BaseFragmentPool {
 	private val pool = mutableMapOf<String, MutableList<ViewBinding>>()
 
+	/** Attempts to acquire a recycled binding from the pool. */
 	fun <T : ViewBinding> acquire(key: String): T? {
 		val list = pool[key] ?: return null
 		val binding = list.removeLastOrNull() as? T ?: return null
@@ -147,11 +156,13 @@ object ViewBindingPool {
 		return binding
 	}
 
+	/** Releases a binding back to the pool for later reuse. */
 	fun <T : ViewBinding> release(key: String, binding: T) {
 		val list = pool.getOrPut(key) { mutableListOf() }
 		list.add(binding)
 	}
 
+	/** Clears all cached bindings from the pool. */
 	fun clearAll() {
 		pool.values.flatten().forEach { (it.root.parent as? ViewGroup)?.removeView(it.root) }
 		pool.clear()
