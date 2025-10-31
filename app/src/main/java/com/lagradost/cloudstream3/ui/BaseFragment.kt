@@ -153,14 +153,10 @@ fun clearView(view: View) {
         setOnLongClickListener(null)
         setOnTouchListener(null)
 
-        visibility = View.VISIBLE
-
         if (this is android.widget.ImageView) {
             setImageDrawable(null)
             setImageBitmap(null)
         }
-
-        if (this is android.widget.TextView) text = ""
 
         if (this is android.widget.Checkable) isChecked = false
     }
