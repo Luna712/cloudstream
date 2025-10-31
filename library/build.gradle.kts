@@ -21,18 +21,17 @@ kotlin {
         // If this is the same com.lagradost.cloudstream3.R stops working
         namespace = "com.lagradost.api"
         compileSdk = libs.versions.compileSdk.get().toInt()
-        defaultConfig {
+        /*defaultConfig {
             minSdk = libs.versions.minSdk.get().toInt()
-        }
+        }*/
         withJava()
-        compileOptions {
-            sourceCompatibility = JavaVersion.toVersion(javaTarget.target)
-            targetCompatibility = JavaVersion.toVersion(javaTarget.target)
+        compilerOptions {
+            jvmTarget.set(javaTarget)
         }
         lint {
             targetSdk = libs.versions.targetSdk.get().toInt()
         }
-        manifest.srcFile("src/androidMain/AndroidManifest.xml")
+        // manifest.srcFile("src/androidMain/AndroidManifest.xml")
     }
 
     jvm()
