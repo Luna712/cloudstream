@@ -17,7 +17,24 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 
 kotlin {
     version = "1.0.1"
-    androidTarget()
+    android {
+        // If this is the same com.lagradost.cloudstream3.R stops working
+        namespace = "com.lagradost.api"
+        compileSdk = libs.versions.compileSdk.get().toInt()
+        defaultConfig {
+            minSdk = libs.versions.minSdk.get().toInt()
+        }
+        withJava()
+        compileOptions {
+            sourceCompatibility = JavaVersion.toVersion(javaTarget.target)
+            targetCompatibility = JavaVersion.toVersion(javaTarget.target)
+        }
+        lint {
+            targetSdk = libs.versions.targetSdk.get().toInt()
+        }
+        manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    }
+
     jvm()
 
     compilerOptions {
@@ -70,32 +87,6 @@ buildkonfig {
             FieldSpec.Type.STRING,
             "MDL_API_KEY", (System.getenv("MDL_API_KEY") ?: localProperties["mdl.key"]).toString()
         )
-    }
-}
-
-android {
-    compileSdk = libs.versions.compileSdk.get().toInt()
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-
-    defaultConfig {
-        minSdk = libs.versions.minSdk.get().toInt()
-    }
-
-    // If this is the same com.lagradost.cloudstream3.R stops working
-    namespace = "com.lagradost.api"
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.toVersion(javaTarget.target)
-        targetCompatibility = JavaVersion.toVersion(javaTarget.target)
-    }
-
-    @Suppress("UnstableApiUsage")
-    testOptions {
-        targetSdk = libs.versions.targetSdk.get().toInt()
-    }
-
-    lint {
-        targetSdk = libs.versions.targetSdk.get().toInt()
     }
 }
 
