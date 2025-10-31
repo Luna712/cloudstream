@@ -40,45 +40,13 @@ private interface BaseFragmentHelper<T : ViewBinding> {
     var _binding: T?
     val binding: T? get() = _binding
 
-    companion object {
-        // Global binding pool shared by all fragments
-        private val bindingPool = mutableMapOf<String, MutableList<ViewBinding>>()
-
-        /** Removes all cached bindings for all fragments. */
-        fun clearAllBindingPools() {
-            bindingPool.values.flatten().forEach { binding ->
-                (binding.root.parent as? ViewGroup)?.removeView(binding.root)
-            }
-            bindingPool.clear()
-        }
-
-        /** Internal helper to fetch a binding from the pool for the given key. */
-        @Suppress("UNCHECKED_CAST")
-        fun <T : ViewBinding> acquireFromPool(key: String): T? {
-            val list = bindingPool[key] ?: return null
-            val binding = list.removeLastOrNull() as? T ?: return null
-
-            // Make sure it's detached from any previous parent view hierarchy
-            (binding.root.parent as? ViewGroup)?.removeView(binding.root)
-
-            if (list.isEmpty()) bindingPool.remove(key)
-            return binding
-        }
-
-        /** Internal helper to return a binding to the pool for later reuse. */
-        fun <T : ViewBinding> releaseToPool(key: String, binding: T) {
-            val list = bindingPool.getOrPut(key) { mutableListOf() }
-            list.add(binding)
-        }
-    }
-
     fun createBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Try to reuse a binding from the pool first
-        acquireFromPool<T>(javaClass.name)?.let {
+        ViewBindingPool.acquire<T>(javaClass.name)?.let {
             _binding = it
             return it.root
         }
@@ -161,12 +129,33 @@ private interface BaseFragmentHelper<T : ViewBinding> {
 
     /** Called by fragments when they’re destroyed, so the binding can be recycled. */
     fun recycleBindingOnDestroy() {
-        val key = javaClass.name
         _binding?.let {
-            releaseToPool(key, it)
+            ViewBindingPool.release(javaClass.name, it)
             _binding = null
         }
     }
+}
+
+object ViewBindingPool {
+	private val pool = mutableMapOf<String, MutableList<ViewBinding>>()
+
+	fun <T : ViewBinding> acquire(key: String): T? {
+		val list = pool[key] ?: return null
+		val binding = list.removeLastOrNull() as? T ?: return null
+		(binding.root.parent as? ViewGroup)?.removeView(binding.root)
+		if (list.isEmpty()) pool.remove(key)
+		return binding
+	}
+
+	fun <T : ViewBinding> release(key: String, binding: T) {
+		val list = pool.getOrPut(key) { mutableListOf() }
+		list.add(binding)
+	}
+
+	fun clearAll() {
+		pool.values.flatten().forEach { (it.root.parent as? ViewGroup)?.removeView(it.root) }
+		pool.clear()
+	}
 }
 
 abstract class BaseFragment<T : ViewBinding>(
