@@ -2,6 +2,7 @@ package com.lagradost.cloudstream3.ui
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +41,10 @@ private interface BaseFragmentHelper<T : ViewBinding> {
     var _binding: T?
     val binding: T? get() = _binding
 
+	companion object {
+        const val TAG = "BaseFragment"
+	}
+
     fun createBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,6 +52,7 @@ private interface BaseFragmentHelper<T : ViewBinding> {
     ): View? {
         // Try to reuse a binding from the pool first
         BaseFragmentPool.acquire<T>(javaClass.name)?.let {
+			Log.d(TAG, "Binding acquired from pool")
             _binding = it
             return it.root
         }
@@ -131,6 +137,7 @@ private interface BaseFragmentHelper<T : ViewBinding> {
     fun recycleBindingOnDestroy() {
         _binding?.let {
             BaseFragmentPool.release(javaClass.name, it)
+			Log.d(TAG, "Binding released to pool")
             _binding = null
         }
     }
