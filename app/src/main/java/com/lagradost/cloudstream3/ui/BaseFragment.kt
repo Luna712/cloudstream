@@ -125,13 +125,31 @@ private interface BaseFragmentHelper<T : ViewBinding> {
 abstract class BaseFragment<T : ViewBinding>(
     override val bindingCreator: BindingCreator<T>
 ) : Fragment(), BaseFragmentHelper<T> {
+
     override var _binding: T? = null
+
+    companion object {
+        // Generic pool keyed by class name
+        private val bindingPool = mutableMapOf<String, ViewBinding>()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = createBinding(inflater, container, savedInstanceState)
+    ): View? {
+        val key = javaClass.name
+
+        // Try to reuse a binding from pool
+        @Suppress("UNCHECKED_CAST")
+        val recycled = bindingPool.remove(key) as? T
+        if (recycled != null) {
+            _binding = recycled
+            return recycled.root
+        }
+
+        return createBinding(inflater, container, savedInstanceState)
+    }
 
     final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -151,6 +169,12 @@ abstract class BaseFragment<T : ViewBinding>(
     /** Cleans up the binding reference when the view is destroyed to avoid memory leaks. */
     override fun onDestroyView() {
         super.onDestroyView()
+        val binding = _binding ?: return
+
+        // Recycle it for reuse later
+        val key = javaClass.name
+        bindingPool[key] = binding
+
         _binding = null
     }
 
