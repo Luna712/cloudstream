@@ -91,8 +91,9 @@ private interface BaseFragmentHelper<T : ViewBinding> {
         binding?.let { onBindingCreated(it, savedInstanceState) }
 
 		BaseFragmentPool.clearFor(javaClass.name)
-		_binding?.let { BaseFragmentPool.release(javaClass.name, it) }
-    }
+		binding?.let { BaseFragmentPool.release(javaClass.name, it) }
+		Log.d(TAG, "Recreated cache for ${javaClass.name}")
+	}
 
     /**
      * Called when the binding is safely created and view is ready.
