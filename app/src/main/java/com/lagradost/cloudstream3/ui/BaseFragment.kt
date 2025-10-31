@@ -89,10 +89,6 @@ private interface BaseFragmentHelper<T : ViewBinding> {
     fun onViewReady(view: View, savedInstanceState: Bundle?) {
         fixPadding(view)
         binding?.let { onBindingCreated(it, savedInstanceState) }
-
-		BaseFragmentPool.clearFor(javaClass.name)
-		binding?.let { BaseFragmentPool.release(javaClass.name, it) }
-		Log.d(TAG, "Recreated cache for ${javaClass.name}")
 	}
 
     /**
@@ -177,12 +173,6 @@ object BaseFragmentPool {
 	fun clearAll() {
 		pool.values.flatten().forEach { (it.root.parent as? ViewGroup)?.removeView(it.root) }
 		pool.clear()
-	}
-
-	/** Clears the cache for a specific fragment (key). */
-    fun clearFor(key: String) {
-        pool[key]?.forEach { (it.root.parent as? ViewGroup)?.removeView(it.root) }
-        pool.remove(key)
 	}
 }
 
