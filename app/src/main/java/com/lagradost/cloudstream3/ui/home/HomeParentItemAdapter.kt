@@ -101,7 +101,7 @@ open class ParentItemAdapter(
                 binding.homeChildRecyclerview.setRecycledViewPool(HomeChildItemAdapter.sharedPool)
                 binding.homeChildRecyclerview.setHasFixedSize(true)
                 binding.homeChildRecyclerview.isNestedScrollingEnabled = false
-                (binding.homeChildRecyclerview.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 16
+                (binding.homeChildRecyclerview.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 32
             }
             ?: HomeChildItemAdapter(
                 id = id + position + 100,
