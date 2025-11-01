@@ -108,10 +108,6 @@ open class ParentItemAdapter(
                 adapter.isHorizontal = info.isHorizontalImages
                 adapter.hasNext = item.hasNext
                 adapter.submitList(info.list)
-                binding.homeChildRecyclerview.setRecycledViewPool(HomeChildItemAdapter.sharedPool)
-                binding.homeChildRecyclerview.setHasFixedSize(true)
-                binding.homeChildRecyclerview.isNestedScrollingEnabled = false
-                (binding.homeChildRecyclerview.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 32
 
                 binding.homeChildRecyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                     var expandCount = 0
@@ -127,6 +123,10 @@ open class ParentItemAdapter(
                 binding.homeChildRecyclerview.adapter = adapter
             }
 
+        binding.homeChildRecyclerview.setRecycledViewPool(HomeChildItemAdapter.sharedPool)
+        binding.homeChildRecyclerview.setHasFixedSize(true)
+        binding.homeChildRecyclerview.isNestedScrollingEnabled = false
+        (binding.homeChildRecyclerview.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 32
         binding.homeChildRecyclerview.setLinearListLayout(
             isHorizontal = true,
             nextLeft = startFocus,
