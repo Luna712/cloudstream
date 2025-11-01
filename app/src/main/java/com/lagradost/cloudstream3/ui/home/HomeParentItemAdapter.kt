@@ -94,6 +94,11 @@ open class ParentItemAdapter(
         val info = item.list
 
         val currentAdapter = binding.homeChildRecyclerview.adapter as? HomeChildItemAdapter
+            ?.apply {
+                if (isHorizontal != info.isHorizontalImages) isHorizontal = info.isHorizontalImages
+                if (hasNext != item.hasNext) hasNext = item.hasNext
+                submitIncomparableList(info.list)
+            }
             ?: HomeChildItemAdapter(
                 id = id + position + 100,
                 clickCallback = clickCallback,
@@ -121,12 +126,6 @@ open class ParentItemAdapter(
                 })
                 binding.homeChildRecyclerview.adapter = adapter
             }
-
-        if (currentAdapter != null) {
-            if (currentAdapter.isHorizontal != info.isHorizontalImages) currentAdapter.isHorizontal = info.isHorizontalImages
-            if (currentAdapter.hasNext != item.hasNext) currentAdapter.hasNext = item.hasNext
-            currentAdapter.submitIncomparableList(info.list)
-        }
 
         binding.homeChildRecyclerview.setLinearListLayout(
             isHorizontal = true,
