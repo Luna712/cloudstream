@@ -38,7 +38,7 @@ object ImageLoader {
     private const val TAG = "CoilImgLoader"
 
     internal fun buildImageLoader(context: PlatformContext): ImageLoader = ImageLoader.Builder(context)
-            .crossfade(false) // Disable fade animation for performance
+            .crossfade(200)
             .allowHardware(SDK_INT >= 28) // SDK_INT < 28, cant use hardware bitmaps for Palette Builder
             .diskCachePolicy(CachePolicy.ENABLED)
             .memoryCachePolicy(CachePolicy.ENABLED)
