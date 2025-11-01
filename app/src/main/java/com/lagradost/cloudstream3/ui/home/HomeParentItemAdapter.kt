@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.lagradost.cloudstream3.HomePageList
@@ -118,6 +119,8 @@ open class ParentItemAdapter(
                     submitIncomparableList(item.list.list)
                 }
             }
+
+            (homeChildRecyclerview.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 6
 
             homeChildRecyclerview.setLinearListLayout(
                 isHorizontal = true,
