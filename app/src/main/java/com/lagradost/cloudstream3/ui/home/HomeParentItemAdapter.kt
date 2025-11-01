@@ -101,8 +101,7 @@ open class ParentItemAdapter(
                 binding.homeChildRecyclerview.setRecycledViewPool(HomeChildItemAdapter.sharedPool)
                 binding.homeChildRecyclerview.setHasFixedSize(true)
                 binding.homeChildRecyclerview.isNestedScrollingEnabled = false
-                (binding.homeChildRecyclerview.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 4
-                com.lagradost.cloudstream3.CommonActivity.showToast("NO")
+                (binding.homeChildRecyclerview.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 16
             }
             ?: HomeChildItemAdapter(
                 id = id + position + 100,
@@ -110,14 +109,13 @@ open class ParentItemAdapter(
                 nextFocusUp = binding.homeChildRecyclerview.nextFocusUpId,
                 nextFocusDown = binding.homeChildRecyclerview.nextFocusDownId,
             ).also { adapter ->
-                com.lagradost.cloudstream3.CommonActivity.showToast("YES")
                 adapter.isHorizontal = info.isHorizontalImages
                 adapter.hasNext = item.hasNext
                 adapter.submitList(info.list)
                 binding.homeChildRecyclerview.setRecycledViewPool(HomeChildItemAdapter.sharedPool)
                 binding.homeChildRecyclerview.setHasFixedSize(true)
                 binding.homeChildRecyclerview.isNestedScrollingEnabled = false
-                (binding.homeChildRecyclerview.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 4
+                (binding.homeChildRecyclerview.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 16
 
                 binding.homeChildRecyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                     var expandCount = 0
