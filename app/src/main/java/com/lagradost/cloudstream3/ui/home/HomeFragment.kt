@@ -21,6 +21,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.preference.PreferenceManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -679,7 +680,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                 homeViewModel.queryTextSubmit("")
             }
 
+            (homeMasterRecycler.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 8
             homeMasterRecycler.setHasFixedSize(true)
+
             homeMasterRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     if (isLayout(PHONE)) {
