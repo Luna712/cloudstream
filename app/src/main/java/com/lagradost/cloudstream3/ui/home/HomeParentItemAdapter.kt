@@ -98,6 +98,7 @@ open class ParentItemAdapter(
                 if (isHorizontal != info.isHorizontalImages) isHorizontal = info.isHorizontalImages
                 if (hasNext != item.hasNext) hasNext = item.hasNext
                 submitIncomparableList(info.list)
+                com.lagradost.cloudstream3.CommonActivity.showToast("NO")
             }
             ?: HomeChildItemAdapter(
                 id = id + position + 100,
@@ -105,6 +106,7 @@ open class ParentItemAdapter(
                 nextFocusUp = binding.homeChildRecyclerview.nextFocusUpId,
                 nextFocusDown = binding.homeChildRecyclerview.nextFocusDownId,
             ).also { adapter ->
+                com.lagradost.cloudstream3.CommonActivity.showToast("YES")
                 adapter.isHorizontal = info.isHorizontalImages
                 adapter.hasNext = item.hasNext
                 adapter.submitList(info.list)
