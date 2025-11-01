@@ -106,7 +106,7 @@ open class ParentItemAdapter(
                 binding.homeChildRecyclerview.setRecycledViewPool(HomeChildItemAdapter.sharedPool)
                 binding.homeChildRecyclerview.setHasFixedSize(true)
                 binding.homeChildRecyclerview.isNestedScrollingEnabled = false
-                (binding.homeChildRecyclerview.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 6
+                (binding.homeChildRecyclerview.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 8
 
                 binding.homeChildRecyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                     var expandCount = 0
