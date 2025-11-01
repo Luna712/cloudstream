@@ -97,8 +97,6 @@ open class ParentItemAdapter(
             val currentAdapter = homeChildRecyclerview.adapter as? HomeChildItemAdapter
             if (currentAdapter == null) {
                 homeChildRecyclerview.setRecycledViewPool(HomeChildItemAdapter.sharedPool)
-                homeChildRecyclerview.setHasFixedSize(true)
-                homeChildRecyclerview.isNestedScrollingEnabled = false
                 homeChildRecyclerview.adapter = HomeChildItemAdapter(
                     id = id + position + 100,
                     clickCallback = clickCallback,
@@ -121,6 +119,8 @@ open class ParentItemAdapter(
             }
 
             (homeChildRecyclerview.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 6
+            homeChildRecyclerview.setHasFixedSize(true)
+            homeChildRecyclerview.isNestedScrollingEnabled = false
 
             homeChildRecyclerview.setLinearListLayout(
                 isHorizontal = true,
