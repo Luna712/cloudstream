@@ -93,7 +93,7 @@ open class ParentItemAdapter(
         val binding = holder.view as? HomepageParentBinding ?: return
         val info = item.list
 
-        val currentAdapter = binding.homeChildRecyclerview.adapter as? HomeChildItemAdapter
+        val currentAdapter = (binding.homeChildRecyclerview.adapter as? HomeChildItemAdapter)
             ?.apply {
                 if (isHorizontal != info.isHorizontalImages) isHorizontal = info.isHorizontalImages
                 if (hasNext != item.hasNext) hasNext = item.hasNext
