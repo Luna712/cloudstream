@@ -48,7 +48,7 @@ open class ParentItemAdapter(
 ) {
     companion object {
         val sharedPool =
-            RecyclerView.RecycledViewPool().apply { this.setMaxRecycledViews(CONTENT, 4) }
+            RecyclerView.RecycledViewPool().apply { this.setMaxRecycledViews(CONTENT, 8) }
     }
 
     data class ParentItemHolder(val binding: ViewBinding) : ViewHolderState<Bundle>(binding) {
@@ -96,6 +96,8 @@ open class ParentItemAdapter(
             val currentAdapter = homeChildRecyclerview.adapter as? HomeChildItemAdapter
             if (currentAdapter == null) {
                 homeChildRecyclerview.setRecycledViewPool(HomeChildItemAdapter.sharedPool)
+                homeChildRecyclerview.setHasFixedSize(true)
+                homeChildRecyclerview.isNestedScrollingEnabled = false
                 homeChildRecyclerview.adapter = HomeChildItemAdapter(
                     id = id + position + 100,
                     clickCallback = clickCallback,
