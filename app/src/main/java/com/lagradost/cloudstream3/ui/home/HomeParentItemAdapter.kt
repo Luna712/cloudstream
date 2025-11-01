@@ -90,83 +90,52 @@ open class ParentItemAdapter(
     ) {
         val startFocus = R.id.nav_rail_view
         val endFocus = FOCUS_SELF
-        val binding = holder.view
-        if (binding !is HomepageParentBinding) return
+        val binding = holder.view as? HomepageParentBinding ?: return
         val info = item.list
-        binding.apply {
-            val currentAdapter = homeChildRecyclerview.adapter as? HomeChildItemAdapter
-            if (currentAdapter == null) {
-                homeChildRecyclerview.setRecycledViewPool(HomeChildItemAdapter.sharedPool)
-                homeChildRecyclerview.adapter = HomeChildItemAdapter(
-                    id = id + position + 100,
-                    clickCallback = clickCallback,
-                    nextFocusUp = homeChildRecyclerview.nextFocusUpId,
-                    nextFocusDown = homeChildRecyclerview.nextFocusDownId,
-                ).apply {
-                    isHorizontal = info.isHorizontalImages
-                    hasNext = item.hasNext
-                    submitList(item.list.list)
-                }
-            } else {
-                currentAdapter.apply {
-                    isHorizontal = info.isHorizontalImages
-                    hasNext = item.hasNext
-                    this.clickCallback = this@ParentItemAdapter.clickCallback
-                    nextFocusUp = homeChildRecyclerview.nextFocusUpId
-                    nextFocusDown = homeChildRecyclerview.nextFocusDownId
-                    submitIncomparableList(item.list.list)
-                }
-            }
 
-            (homeChildRecyclerview.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 6
-            homeChildRecyclerview.setHasFixedSize(true)
-            homeChildRecyclerview.isNestedScrollingEnabled = false
+        val currentAdapter = binding.homeChildRecyclerview.adapter as? HomeChildItemAdapter
+            ?: HomeChildItemAdapter(
+                id = id + position + 100,
+                clickCallback = clickCallback,
+                nextFocusUp = binding.homeChildRecyclerview.nextFocusUpId,
+                nextFocusDown = binding.homeChildRecyclerview.nextFocusDownId,
+            ).also { adapter ->
+                adapter.isHorizontal = info.isHorizontalImages
+                adapter.hasNext = item.hasNext
+                adapter.submitList(info.list)
+                binding.homeChildRecyclerview.setRecycledViewPool(HomeChildItemAdapter.sharedPool)
+                binding.homeChildRecyclerview.setHasFixedSize(true)
+                binding.homeChildRecyclerview.isNestedScrollingEnabled = false
+                (binding.homeChildRecyclerview.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 6
 
-            homeChildRecyclerview.setLinearListLayout(
-                isHorizontal = true,
-                nextLeft = startFocus,
-                nextRight = endFocus,
-            )
-            homeChildMoreInfo.text = info.name
-
-            homeChildRecyclerview.addOnScrollListener(object :
-                RecyclerView.OnScrollListener() {
-                var expandCount = 0
-                val name = item.list.name
-
-                override fun onScrollStateChanged(
-                    recyclerView: RecyclerView,
-                    newState: Int
-                ) {
-                    super.onScrollStateChanged(recyclerView, newState)
-
-                    val adapter = recyclerView.adapter
-                    if (adapter !is HomeChildItemAdapter) return
-
-                    val count = adapter.itemCount
-                    val hasNext = adapter.hasNext
-                    /*println(
-                        "scolling ${recyclerView.isRecyclerScrollable()} ${
-                            recyclerView.canScrollHorizontally(
-                                1
-                            )
-                        }"
-                    )*/
-                    //!recyclerView.canScrollHorizontally(1)
-                    if (!recyclerView.isRecyclerScrollable() && hasNext && expandCount != count) {
-                        expandCount = count
-                        expandCallback?.invoke(name)
+                binding.homeChildRecyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                    var expandCount = 0
+                    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                        super.onScrollStateChanged(recyclerView, newState)
+                        val adapter = recyclerView.adapter as? HomeChildItemAdapter ?: return
+                        if (!recyclerView.isRecyclerScrollable() && adapter.hasNext && expandCount != adapter.itemCount) {
+                            expandCount = adapter.itemCount
+                            expandCallback?.invoke(info.name)
+                        }
                     }
-                }
-            })
-
-            //(recyclerView.adapter as HomeChildItemAdapter).notifyDataSetChanged()
-            if (isLayout(PHONE)) {
-                homeChildMoreInfo.setOnClickListener {
-                    moreInfoClickCallback.invoke(item)
-                }
+                })
+                binding.homeChildRecyclerview.adapter = adapter
             }
+
+        if (currentAdapter != null) {
+            if (currentAdapter.isHorizontal != info.isHorizontalImages) currentAdapter.isHorizontal = info.isHorizontalImages
+            if (currentAdapter.hasNext != item.hasNext) currentAdapter.hasNext = item.hasNext
+            currentAdapter.submitIncomparableList(info.list)
         }
+
+        binding.homeChildRecyclerview.setLinearListLayout(
+            isHorizontal = true,
+            nextLeft = startFocus,
+            nextRight = endFocus
+        )
+
+        binding.homeChildMoreInfo.text = info.name
+        if (isLayout(PHONE)) binding.homeChildMoreInfo.setOnClickListener { moreInfoClickCallback(item) }
     }
 
     override fun onCreateContent(parent: ViewGroup): ParentItemHolder {
