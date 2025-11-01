@@ -98,10 +98,6 @@ open class ParentItemAdapter(
                 if (isHorizontal != info.isHorizontalImages) isHorizontal = info.isHorizontalImages
                 if (hasNext != item.hasNext) hasNext = item.hasNext
                 submitIncomparableList(info.list)
-                binding.homeChildRecyclerview.setRecycledViewPool(HomeChildItemAdapter.sharedPool)
-                binding.homeChildRecyclerview.setHasFixedSize(true)
-                binding.homeChildRecyclerview.isNestedScrollingEnabled = false
-                (binding.homeChildRecyclerview.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 32
             }
             ?: HomeChildItemAdapter(
                 id = id + position + 100,
@@ -115,7 +111,7 @@ open class ParentItemAdapter(
                 binding.homeChildRecyclerview.setRecycledViewPool(HomeChildItemAdapter.sharedPool)
                 binding.homeChildRecyclerview.setHasFixedSize(true)
                 binding.homeChildRecyclerview.isNestedScrollingEnabled = false
-                (binding.homeChildRecyclerview.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 16
+                (binding.homeChildRecyclerview.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 32
 
                 binding.homeChildRecyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                     var expandCount = 0
