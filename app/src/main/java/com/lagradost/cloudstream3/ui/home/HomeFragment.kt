@@ -680,7 +680,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                 homeViewModel.queryTextSubmit("")
             }
 
-            (homeMasterRecycler.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 3
+            // (homeMasterRecycler.layoutManager as? LinearLayoutManager)?.initialPrefetchItemCount = 3
             homeMasterRecycler.setHasFixedSize(true)
 
             homeMasterRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
