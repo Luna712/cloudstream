@@ -54,7 +54,7 @@ targetSdk = "35"
 [libraries]
 acra-core = { module = "ch.acra:acra-core", version.ref = "acraCore" }
 acra-toast = { module = "ch.acra:acra-toast", version.ref = "acraCore" }
-activity = { module = "androidx.activity:activity", version.ref = "activity" }
+activity = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 biometric = { module = "androidx.biometric:biometric", version.ref = "biometric" }
 buildkonfig-gradle-plugin = { module = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin", version.ref = "buildkonfigGradlePlugin" }
