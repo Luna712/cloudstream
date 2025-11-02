@@ -329,7 +329,7 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
 
         val startLoading = Runnable {
             binding.apply {
-                gridview.numColumns = context?.getSpanCount() ?: 3
+                gridview.numColumns = root.context.getSpanCount()
                 gridview.adapter =
                     context?.let { LoadingPosterAdapter(it, 6 * 3) }
                 libraryLoadingOverlay.isVisible = true

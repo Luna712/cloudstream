@@ -617,7 +617,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         )
 
         // Fix grid
-        currentSpan = activity?.getSpanCount() ?: currentSpan
+        currentSpan = view.context.getSpanCount()
         configEvent.invoke(currentSpan)
     }
 

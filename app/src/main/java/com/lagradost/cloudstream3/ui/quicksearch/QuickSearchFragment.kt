@@ -96,7 +96,7 @@ class QuickSearchFragment : BaseFragment<QuickSearchBinding>(
         fixSystemBarsPadding(view)
 
         // Fix grid
-        HomeFragment.currentSpan = activity?.getSpanCount() ?: HomeFragment.currentSpan
+        HomeFragment.currentSpan = view.context.getSpanCount()
         binding?.quickSearchAutofitResults?.spanCount = HomeFragment.currentSpan
         HomeFragment.configEvent.invoke(HomeFragment.currentSpan)
     }
