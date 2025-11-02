@@ -114,7 +114,7 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
         } else binding.libraryRandom.isGone = true
     }
 
-    override fun fixPadding(view: View) {
+    override fun fixLayout(view: View) {
         fixSystemBarsPadding(
             view,
             padBottom = isLandscape(),
