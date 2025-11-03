@@ -57,7 +57,7 @@ private interface BaseFragmentHelper<T : ViewBinding> {
         // Try to reuse a binding from the pool first
         BaseFragmentPool.acquire<T>(javaClass.name)?.let {
 			Log.d(TAG, "Binding acquired from pool for ${javaClass.name}")
-			_binding = it
+            _binding = it
             return it.root
         }
 
