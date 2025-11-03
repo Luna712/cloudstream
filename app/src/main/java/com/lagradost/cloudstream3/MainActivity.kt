@@ -11,7 +11,6 @@ import android.content.res.Configuration
 import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
-import android.util.AttributeSet
 import android.util.Log
 import android.view.Gravity
 import android.view.KeyEvent
@@ -26,6 +25,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.viewModels
 import androidx.annotation.IdRes
 import androidx.annotation.MainThread
 import androidx.appcompat.app.AlertDialog
@@ -39,7 +39,6 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.core.view.marginStart
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -787,7 +786,6 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         }
     }
 
-
     private val pluginsLock = Mutex()
     private fun onAllPluginsLoaded(success: Boolean = false) {
         ioSafe {
@@ -822,19 +820,13 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         }
     }
 
-    lateinit var viewModel: ResultViewModel2
-    lateinit var syncViewModel: SyncViewModel
-    private var libraryViewModel: LibraryViewModel? = null
+    private val viewModel: ResultViewModel2 by viewModels()
+    private val syncViewModel: SyncViewModel by viewModels()
+    private val libraryViewModel: LibraryViewModel by viewModels()
+    private val homeViewModel: HomeViewModel by viewModels()
 
     /** kinda dirty, however it signals that we should use the watch status as sync or not*/
     var isLocalList: Boolean = false
-    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-
-        viewModel = ViewModelProvider(this)[ResultViewModel2::class.java]
-        syncViewModel = ViewModelProvider(this)[SyncViewModel::class.java]
-
-        return super.onCreateView(name, context, attrs)
-    }
 
     private fun hidePreviewPopupDialog() {
         bottomPreviewPopup.dismissSafe(this)
@@ -1611,10 +1603,8 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             // we need to run this after we init all apis, otherwise currentSyncApi will fuck itself
             this@MainActivity.runOnUiThread {
                 // Change library icon with logo of current api in sync
-                libraryViewModel =
-                    ViewModelProvider(this@MainActivity)[LibraryViewModel::class.java]
-                libraryViewModel?.currentApiName?.observe(this@MainActivity) {
-                    val syncAPI = libraryViewModel?.currentSyncApi
+                observe(libraryViewModel.currentApiName) {
+                    val syncAPI = libraryViewModel.currentSyncApi
                     Log.i("SYNC_API", "${syncAPI?.name}, ${syncAPI?.idPrefix}")
                     val icon = if (syncAPI?.idPrefix == localListApi.idPrefix) {
                         R.drawable.library_icon_selector
@@ -1738,9 +1728,6 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
                 navProfileCard?.setOnClickListener {
                     showAccountSelectLinear()
                 }
-
-                val homeViewModel =
-                    ViewModelProvider(this@MainActivity)[HomeViewModel::class.java]
 
                 observe(homeViewModel.currentAccount) { currentAccount ->
                     if (currentAccount != null) {

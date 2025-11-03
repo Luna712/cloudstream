@@ -14,7 +14,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.core.widget.NestedScrollView
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.button.MaterialButton
@@ -68,7 +68,7 @@ class ResultFragmentTv : BaseFragment<FragmentResultTvBinding>(
     BaseFragment.BindingCreator.Inflate(FragmentResultTvBinding::inflate)
 ) {
 
-    private lateinit var viewModel: ResultViewModel2
+    private val viewModel: ResultViewModel2 by activityViewModels()
 
     override fun onDestroyView() {
         updateUIEvent -= ::updateUI
@@ -81,11 +81,7 @@ class ResultFragmentTv : BaseFragment<FragmentResultTvBinding>(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel =
-            ViewModelProvider(this)[ResultViewModel2::class.java]
-        viewModel.EPISODE_RANGE_SIZE = 50
         updateUIEvent += ::updateUI
-
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

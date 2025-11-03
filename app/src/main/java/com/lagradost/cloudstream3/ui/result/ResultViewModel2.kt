@@ -44,6 +44,8 @@ import com.lagradost.cloudstream3.ui.player.LOADTYPE_INAPP_DOWNLOAD
 import com.lagradost.cloudstream3.ui.player.RepoLinkGenerator
 import com.lagradost.cloudstream3.ui.player.SubtitleData
 import com.lagradost.cloudstream3.ui.result.EpisodeAdapter.Companion.getPlayerAction
+import com.lagradost.cloudstream3.ui.settings.Globals.PHONE
+import com.lagradost.cloudstream3.ui.settings.Globals.isLayout
 import com.lagradost.cloudstream3.ui.subtitles.SubtitlesFragment
 import com.lagradost.cloudstream3.ui.WatchType
 import com.lagradost.cloudstream3.utils.*
@@ -395,7 +397,6 @@ data class ExtractedTrailerData(
 
 class ResultViewModel2 : ViewModel() {
     private var currentResponse: LoadResponse? = null
-    var EPISODE_RANGE_SIZE: Int = 20
     fun clear() {
         currentResponse = null
         _page.postValue(null)
@@ -516,8 +517,8 @@ class ResultViewModel2 : ViewModel() {
 
     companion object {
         const val TAG = "RVM2"
-        //private const val EPISODE_RANGE_SIZE = 20
-        //private const val EPISODE_RANGE_OVERLOAD = 30
+        private val EPISODE_RANGE_SIZE = if (isLayout(PHONE)) 20 else 50
+        private val EPISODE_RANGE_OVERLOAD = EPISODE_RANGE_SIZE + 10
 
         private fun List<SeasonData>?.getSeason(season: Int?): SeasonData? {
             if (season == null) return null
@@ -564,15 +565,13 @@ class ResultViewModel2 : ViewModel() {
             )
 
         private fun getRanges(
-            allEpisodes: Map<EpisodeIndexer, List<ResultEpisode>>,
-            EPISODE_RANGE_SIZE: Int
+            allEpisodes: Map<EpisodeIndexer, List<ResultEpisode>>
         ): Map<EpisodeIndexer, List<EpisodeRange>> {
             return allEpisodes.keys.mapNotNull { index ->
                 val episodes =
                     allEpisodes[index] ?: return@mapNotNull null // this should never happened
 
                 // fast case
-                val EPISODE_RANGE_OVERLOAD = EPISODE_RANGE_SIZE + 10
                 if (episodes.size <= EPISODE_RANGE_OVERLOAD) {
                     return@mapNotNull index to listOf(
                         EpisodeRange(
@@ -2518,9 +2517,8 @@ class ResultViewModel2 : ViewModel() {
         }
 
         currentEpisodes = allEpisodes
-        val ranges = getRanges(allEpisodes, EPISODE_RANGE_SIZE)
+        val ranges = getRanges(allEpisodes)
         currentRanges = ranges
-
 
         // this takes the indexer most preferable by the user given the current sorting
         val min = ranges.keys.minByOrNull { index ->

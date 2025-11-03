@@ -12,7 +12,7 @@ import android.widget.ImageView
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -88,8 +88,8 @@ class QuickSearchFragment : BaseFragment<QuickSearchBinding>(
     }
 
     private var providers: Set<String>? = null
-    private lateinit var searchViewModel: SearchViewModel
 
+    private val searchViewModel: SearchViewModel by activityViewModels()
     private var bottomSheetDialog: BottomSheetDialog? = null
 
     override fun onCreateView(
@@ -100,7 +100,6 @@ class QuickSearchFragment : BaseFragment<QuickSearchBinding>(
         activity?.window?.setSoftInputMode(
             WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
         )
-        searchViewModel = ViewModelProvider(this)[SearchViewModel::class.java]
         bottomSheetDialog?.ownShow()
         return super.onCreateView(inflater, container, savedInstanceState)
     }

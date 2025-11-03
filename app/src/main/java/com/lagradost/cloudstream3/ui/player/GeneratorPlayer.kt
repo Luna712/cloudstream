@@ -32,7 +32,7 @@ import androidx.core.content.edit
 import androidx.core.text.toSpanned
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.viewModelScope
 import androidx.media3.common.Format.NO_VALUE
 import androidx.media3.common.MimeTypes
@@ -157,8 +157,9 @@ class GeneratorPlayer : FullScreenPlayer() {
     private var titleRez = 3
     private var limitTitle = 0
 
-    private lateinit var viewModel: PlayerGeneratorViewModel //by activityViewModels()
-    private lateinit var sync: SyncViewModel
+    private val viewModel: PlayerGeneratorViewModel by activityViewModels()
+    private val sync: SyncViewModel by activityViewModels()
+
     private var currentLinks: Set<Pair<ExtractorLink?, ExtractorUri?>> = setOf()
     private var currentSubs: Set<SubtitleData> = setOf()
 
@@ -1872,9 +1873,6 @@ class GeneratorPlayer : FullScreenPlayer() {
         // this is used instead of layout-television to follow the settings and some TV devices are not classified as TV for some reason
         layout =
             if (isLayout(TV or EMULATOR)) R.layout.fragment_player_tv else R.layout.fragment_player
-
-        viewModel = ViewModelProvider(this)[PlayerGeneratorViewModel::class.java]
-        sync = ViewModelProvider(this)[SyncViewModel::class.java]
 
         viewModel.attachGenerator(lastUsedGenerator)
         unwrapBundle(savedInstanceState)

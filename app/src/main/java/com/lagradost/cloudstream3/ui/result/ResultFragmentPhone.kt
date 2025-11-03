@@ -23,7 +23,7 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.core.widget.NestedScrollView
 import androidx.core.widget.doOnTextChanged
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import com.discord.panels.OverlappingPanelsLayout
 import com.discord.panels.PanelState
 import com.discord.panels.PanelsChildGestureRegionObserver
@@ -101,8 +101,8 @@ open class ResultFragmentPhone : FullScreenPlayer() {
             }
         }
 
-    protected lateinit var viewModel: ResultViewModel2
-    protected lateinit var syncModel: SyncViewModel
+    private val viewModel: ResultViewModel2 by activityViewModels()
+    private val syncModel: SyncViewModel by activityViewModels()
 
     protected var binding: FragmentResultSwipeBinding? = null
     protected var resultBinding: FragmentResultBinding? = null
@@ -116,16 +116,11 @@ open class ResultFragmentPhone : FullScreenPlayer() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel =
-            ViewModelProvider(this)[ResultViewModel2::class.java]
-        syncModel =
-            ViewModelProvider(this)[SyncViewModel::class.java]
         updateUIEvent += ::updateUI
 
         val root = super.onCreateView(inflater, container, savedInstanceState) ?: return null
         FragmentResultSwipeBinding.bind(root).let { bind ->
-            resultBinding =
-                bind.fragmentResult//FragmentResultBinding.bind(binding.root.findViewById(R.id.fragment_result))
+            resultBinding = bind.fragmentResult
             recommendationBinding = bind.resultRecommendations
             syncBinding = bind.resultSync
             binding = bind
