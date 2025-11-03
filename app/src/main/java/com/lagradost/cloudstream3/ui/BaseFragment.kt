@@ -41,10 +41,6 @@ private interface BaseFragmentHelper<T : ViewBinding> {
     var _binding: T?
     val binding: T? get() = _binding
 
-	// We use this so that we only recycle the initial binding and
-	// not save dynamic states.
-	var initialBinding: T?
-
 	companion object {
         const val TAG = "BaseFragment"
 	}
@@ -54,18 +50,22 @@ private interface BaseFragmentHelper<T : ViewBinding> {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Try to reuse a binding from the pool first
-        BaseFragmentPool.acquire<T>(javaClass.name)?.let {
-			Log.d(TAG, "Binding acquired from pool for ${javaClass.name}")
-            _binding = it
-            return it.root
-        }
+        // Try to reuse a cached root view first
+        val cachedRoot = BaseFragmentPool.acquire(javaClass.name)
 
         val layoutId = pickLayout()
-        val root: View? = layoutId?.let { inflater.inflate(it, container, false) }
+        val root: View? = cachedRoot ?: layoutId?.let {
+            inflater.inflate(it, container, false)
+        }
+
         _binding = try {
             when (val creator = bindingCreator) {
-                is BaseFragment.BindingCreator.Inflate -> creator.fn(inflater, container, false)
+                is BaseFragment.BindingCreator.Inflate -> {
+                    if (cachedRoot == null) creator.fn(inflater, container, false)
+                    else creator.fn(LayoutInflater.from(root?.context), container, false).also {
+                        Log.d(TAG, "Binding recreated from cached root for ${javaClass.name}")
+                    }
+                }
                 is BaseFragment.BindingCreator.Bind -> {
                     if (root != null) creator.fn(root)
                     else throw IllegalStateException("Root view is null for bind()")
@@ -91,7 +91,6 @@ private interface BaseFragmentHelper<T : ViewBinding> {
      * Subclasses should use [onBindingCreated] instead of overriding this method directly.
      */
     fun onViewReady(view: View, savedInstanceState: Bundle?) {
-		initialBinding = binding
         fixPadding(view)
         binding?.let { onBindingCreated(it, savedInstanceState) }
     }
@@ -140,12 +139,11 @@ private interface BaseFragmentHelper<T : ViewBinding> {
 
     /** Called by fragments when they’re destroyed, so the binding can be recycled. */
     fun recycleBindingOnDestroy() {
-        initialBinding?.let {
+        _binding?.root?.let {
             BaseFragmentPool.release(javaClass.name, it)
-			Log.d(TAG, "Binding released to pool for ${javaClass.name}")
-            _binding = null
-			initialBinding = null
+            Log.d(TAG, "Root view released to pool for ${javaClass.name}")
         }
+        _binding = null
     }
 }
 
@@ -157,36 +155,36 @@ private interface BaseFragmentHelper<T : ViewBinding> {
  * [BaseDialogFragment], or [BaseBottomSheetDialogFragment] which support
  * recycling of their bindings.
  */
+
 object BaseFragmentPool {
-	private val pool = mutableMapOf<String, MutableList<ViewBinding>>()
+    private val pool = mutableMapOf<String, MutableList<View>>()
 
-	/** Attempts to acquire a recycled binding from the pool. */
-	fun <T : ViewBinding> acquire(key: String): T? {
-		val list = pool[key] ?: return null
-		val binding = list.removeLastOrNull() as? T ?: return null
-		(binding.root.parent as? ViewGroup)?.removeView(binding.root)
-		if (list.isEmpty()) pool.remove(key)
-		return binding
-	}
+    /** Attempts to acquire a recycled root view from the pool. */
+    fun acquire(key: String): View? {
+        val list = pool[key] ?: return null
+        val view = list.removeLastOrNull() ?: return null
+        (view.parent as? ViewGroup)?.removeView(view)
+        if (list.isEmpty()) pool.remove(key)
+        return view
+    }
 
-	/** Releases a binding back to the pool for later reuse. */
-	fun <T : ViewBinding> release(key: String, binding: T) {
-		val list = pool.getOrPut(key) { mutableListOf() }
-		list.add(binding)
-	}
+    /** Releases a root view back to the pool for later reuse. */
+    fun release(key: String, view: View) {
+        (view.parent as? ViewGroup)?.removeView(view)
+        pool.getOrPut(key) { mutableListOf() }.add(view)
+    }
 
-	/** Clears all cached bindings from the pool. */
-	fun clearAll() {
-		pool.values.flatten().forEach { (it.root.parent as? ViewGroup)?.removeView(it.root) }
-		pool.clear()
-	}
+    /** Clears all cached views. */
+    fun clearAll() {
+        pool.values.flatten().forEach { (it.parent as? ViewGroup)?.removeView(it) }
+        pool.clear()
+    }
 }
 
 abstract class BaseFragment<T : ViewBinding>(
     override val bindingCreator: BindingCreator<T>
 ) : Fragment(), BaseFragmentHelper<T> {
     override var _binding: T? = null
-    override var initialBinding: T? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -246,7 +244,6 @@ abstract class BaseDialogFragment<T : ViewBinding>(
     override val bindingCreator: BaseFragment.BindingCreator<T>
 ) : DialogFragment(), BaseFragmentHelper<T> {
     override var _binding: T? = null
-    override var initialBinding: T? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -276,7 +273,6 @@ abstract class BaseBottomSheetDialogFragment<T : ViewBinding>(
     override val bindingCreator: BaseFragment.BindingCreator<T>
 ) : BottomSheetDialogFragment(), BaseFragmentHelper<T> {
     override var _binding: T? = null
-    override var initialBinding: T? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
