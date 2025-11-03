@@ -43,7 +43,7 @@ private interface BaseFragmentHelper<T : ViewBinding> {
 
 	// We use this so that we only recycle the initial binding and
 	// not save dynamic states.
-	var initialBinding: T? = null
+	var initialBinding: T?
 
 	companion object {
         const val TAG = "BaseFragment"
@@ -187,6 +187,7 @@ abstract class BaseFragment<T : ViewBinding>(
     override val bindingCreator: BindingCreator<T>
 ) : Fragment(), BaseFragmentHelper<T> {
     override var _binding: T? = null
+    override var initialBinding: T? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -246,6 +247,7 @@ abstract class BaseDialogFragment<T : ViewBinding>(
     override val bindingCreator: BaseFragment.BindingCreator<T>
 ) : DialogFragment(), BaseFragmentHelper<T> {
     override var _binding: T? = null
+    override var initialBinding: T? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -275,6 +277,7 @@ abstract class BaseBottomSheetDialogFragment<T : ViewBinding>(
     override val bindingCreator: BaseFragment.BindingCreator<T>
 ) : BottomSheetDialogFragment(), BaseFragmentHelper<T> {
     override var _binding: T? = null
+    override var initialBinding: T? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
