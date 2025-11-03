@@ -83,7 +83,7 @@ class ResultFragmentTv : BaseFragment<FragmentResultTvBinding>(
     ): View? {
         updateUIEvent += ::updateUI
         viewModel.EPISODE_RANGE_SIZE = 50
-        // reloadViewModel(true)
+        viewModel.clear()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
