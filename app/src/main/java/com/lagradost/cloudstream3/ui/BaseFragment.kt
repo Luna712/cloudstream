@@ -43,7 +43,7 @@ private interface BaseFragmentHelper<T : ViewBinding> {
 
 	// We use this so that we only recycle the initial binding and
 	// not save dynamic states.
-	var initialBinding: T?
+	var initialBinding: T? = null
 
 	companion object {
         const val TAG = "BaseFragment"
