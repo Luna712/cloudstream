@@ -138,7 +138,7 @@ private interface BaseFragmentHelper<T : ViewBinding> {
         _binding?.let {
             BaseFragmentPool.release(javaClass.name, it)
 			Log.d(TAG, "Binding released to pool for ${javaClass.name}")
-            _binding = null
+            //_binding = null
         }
     }
 }
@@ -189,6 +189,7 @@ abstract class BaseFragment<T : ViewBinding>(
 
     final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        recycleBindingOnDestroy()
         onViewReady(view, savedInstanceState)
     }
 
@@ -205,7 +206,6 @@ abstract class BaseFragment<T : ViewBinding>(
     /** Cleans up the binding reference when the view is destroyed to avoid memory leaks. */
     override fun onDestroyView() {
         super.onDestroyView()
-        recycleBindingOnDestroy()
     }
 
     /**
@@ -248,6 +248,7 @@ abstract class BaseDialogFragment<T : ViewBinding>(
 
     final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        recycleBindingOnDestroy()
         onViewReady(view, savedInstanceState)
     }
 
@@ -260,7 +261,6 @@ abstract class BaseDialogFragment<T : ViewBinding>(
     /** Cleans up the binding reference when the view is destroyed to avoid memory leaks. */
     override fun onDestroyView() {
         super.onDestroyView()
-        recycleBindingOnDestroy()
     }
 }
 
