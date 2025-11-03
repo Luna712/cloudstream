@@ -82,6 +82,7 @@ class ResultFragmentTv : BaseFragment<FragmentResultTvBinding>(
         savedInstanceState: Bundle?
     ): View? {
         updateUIEvent += ::updateUI
+        reloadViewModel(true)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
