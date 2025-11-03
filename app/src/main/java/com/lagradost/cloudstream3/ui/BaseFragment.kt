@@ -41,6 +41,10 @@ private interface BaseFragmentHelper<T : ViewBinding> {
     var _binding: T?
     val binding: T? get() = _binding
 
+	// We use this so that we only recycle the initial binding and
+	// not save dynamic states.
+	var initialBinding: T?
+
 	companion object {
         const val TAG = "BaseFragment"
 	}
@@ -53,7 +57,8 @@ private interface BaseFragmentHelper<T : ViewBinding> {
         // Try to reuse a binding from the pool first
         BaseFragmentPool.acquire<T>(javaClass.name)?.let {
 			Log.d(TAG, "Binding acquired from pool for ${javaClass.name}")
-            _binding = it
+			_binding = it
+			initialBinding = it
             return it.root
         }
 
@@ -87,6 +92,7 @@ private interface BaseFragmentHelper<T : ViewBinding> {
      * Subclasses should use [onBindingCreated] instead of overriding this method directly.
      */
     fun onViewReady(view: View, savedInstanceState: Bundle?) {
+		initialBinding = binding
         fixPadding(view)
         binding?.let { onBindingCreated(it, savedInstanceState) }
     }
@@ -135,10 +141,11 @@ private interface BaseFragmentHelper<T : ViewBinding> {
 
     /** Called by fragments when they’re destroyed, so the binding can be recycled. */
     fun recycleBindingOnDestroy() {
-        _binding?.let {
+        initialBinding?.let {
             BaseFragmentPool.release(javaClass.name, it)
 			Log.d(TAG, "Binding released to pool for ${javaClass.name}")
-            //_binding = null
+            _binding = null
+			initialBinding = null
         }
     }
 }
@@ -189,7 +196,6 @@ abstract class BaseFragment<T : ViewBinding>(
 
     final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recycleBindingOnDestroy()
         onViewReady(view, savedInstanceState)
     }
 
@@ -206,6 +212,7 @@ abstract class BaseFragment<T : ViewBinding>(
     /** Cleans up the binding reference when the view is destroyed to avoid memory leaks. */
     override fun onDestroyView() {
         super.onDestroyView()
+        recycleBindingOnDestroy()
     }
 
     /**
@@ -248,7 +255,6 @@ abstract class BaseDialogFragment<T : ViewBinding>(
 
     final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recycleBindingOnDestroy()
         onViewReady(view, savedInstanceState)
     }
 
@@ -261,6 +267,7 @@ abstract class BaseDialogFragment<T : ViewBinding>(
     /** Cleans up the binding reference when the view is destroyed to avoid memory leaks. */
     override fun onDestroyView() {
         super.onDestroyView()
+        recycleBindingOnDestroy()
     }
 }
 
