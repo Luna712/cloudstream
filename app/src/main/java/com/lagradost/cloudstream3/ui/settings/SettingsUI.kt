@@ -1,8 +1,11 @@
 package com.lagradost.cloudstream3.ui.settings
 
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.preference.PreferenceManager
 import androidx.preference.SeekBarPreference
 import com.lagradost.cloudstream3.AcraApplication.Companion.getActivity
@@ -48,18 +51,6 @@ class SettingsUI : BasePreferenceFragmentCompat() {
             val padding = (newValue as? Int)?.toPx ?: return@setOnPreferenceChangeListener true
             (perf.context.getActivity() as? MainActivity)?.binding?.homeRoot?.setPadding(padding, padding, padding, padding)
             return@setOnPreferenceChangeListener true
-        }
-
-        getPref(R.string.bottom_title_key)?.setOnPreferenceChangeListener { _, _ ->
-            HomeChildItemAdapter.sharedPool.clear()
-            SearchAdapter.sharedPool.clear()
-            true
-        }
-
-        getPref(R.string.poster_size_key)?.setOnPreferenceChangeListener { _, _ ->
-            HomeChildItemAdapter.sharedPool.clear()
-            SearchAdapter.sharedPool.clear()
-            true
         }
 
         getPref(R.string.poster_ui_key)?.setOnPreferenceClickListener {
@@ -238,5 +229,29 @@ class SettingsUI : BasePreferenceFragmentCompat() {
             )
             return@setOnPreferenceClickListener true
         }
+
+        // Use a listener to apply when preferences are actually committed in
+        // order to prevent any potential race conditions.
+        val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            when (key) {
+                getString(R.string.bottom_title_key) -> {
+                    HomeChildItemAdapter.sharedPool.clear()
+                    SearchAdapter.sharedPool.clear()
+                }
+
+                getString(R.string.poster_size_key) -> {
+                    HomeChildItemAdapter.sharedPool.clear()
+                    SearchAdapter.sharedPool.clear()
+                    context?.let { HomeChildItemAdapter.updatePosterSize(it) }
+                }
+            }
+        }
+
+        settingsManager.registerOnSharedPreferenceChangeListener(listener)
+        lifecycle.addObserver(object : DefaultLifecycleObserver {
+            override fun onDestroy(owner: LifecycleOwner) {
+                settingsManager.unregisterOnSharedPreferenceChangeListener(listener)
+            }
+        })
     }
 }
