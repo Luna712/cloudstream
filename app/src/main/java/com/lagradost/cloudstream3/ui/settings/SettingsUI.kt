@@ -50,6 +50,18 @@ class SettingsUI : BasePreferenceFragmentCompat() {
             return@setOnPreferenceChangeListener true
         }
 
+        getPref(R.string.bottom_title_key)?.setOnPreferenceChangeListener { _, _ ->
+            HomeChildItemAdapter.sharedPool.clear()
+            SearchAdapter.sharedPool.clear()
+            true
+        }
+
+        getPref(R.string.poster_size_key)?.setOnPreferenceChangeListener { _, _ ->
+            HomeChildItemAdapter.sharedPool.clear()
+            SearchAdapter.sharedPool.clear()
+            true
+        }
+
         getPref(R.string.poster_ui_key)?.setOnPreferenceClickListener {
             val prefNames = resources.getStringArray(R.array.poster_ui_options)
             val keys = resources.getStringArray(R.array.poster_ui_options_values)
@@ -72,17 +84,9 @@ class SettingsUI : BasePreferenceFragmentCompat() {
                 }
                 edit.apply()
                 SearchResultBuilder.updateCache(it.context)
-                HomeChildItemAdapter.sharedPool.clear()
-                SearchAdapter.sharedPool.clear()
             }
 
             return@setOnPreferenceClickListener true
-        }
-
-        getPref(R.string.poster_size_key)?.setOnPreferenceChangeListener { _, _ ->
-            HomeChildItemAdapter.sharedPool.clear()
-            SearchAdapter.sharedPool.clear()
-            true
         }
 
         getPref(R.string.app_layout_key)?.setOnPreferenceClickListener {
