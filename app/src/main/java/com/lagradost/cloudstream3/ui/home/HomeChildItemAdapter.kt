@@ -57,6 +57,10 @@ class ResumeItemAdapter(
     nextFocusDown = nextFocusDown,
     clickCallback = clickCallback
 ) {
+    init {
+        updateCachedPosterSize()
+    }
+
     // As there is no popup on TV we instead use the footer to clear
     override val footers = if (isLayout(TV or EMULATOR)) 1 else 0
 
@@ -130,7 +134,7 @@ open class HomeChildItemAdapter(
             updateCachedPosterSize()
         }
 
-    private fun updateCachedPosterSize() {
+    protected fun updateCachedPosterSize() {
         setWidth = if (!isHorizontal) {
             minPosterSize
         } else {
