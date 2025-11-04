@@ -92,17 +92,14 @@ class Addic7ed : SubtitleAPI() {
             }
         // 3rd case: found several or no results. Still in $HOST/search.php?search=title
         } else {// (response.url.contains("/search.php"))
-            downloadPage = hostDocument
-                .select("table.tabel a")
-                .selectFirst(
-                    when {
-                        seasonNum > 0 -> "a[href~=serie\\/.+\\/$seasonNum\\/$epNum\\/\\w]"
-                        yearNum > 0 -> "a[href~=movie\\/]:contains($yearNum)"
-                        else -> "a[href~=movie\\/]"
-                    }
-                )
-            ?.attr("href")
-            ?.fixUrl() ?: return null
+            downloadPage = hostDocument.select("table.tabel a").selectFirst({
+                // tv series
+                if (seasonNum > 0) "a[href~=serie\\/.+\\/$seasonNum\\/$epNum\\/\\w]"
+                // movie + year
+                else if( yearNum > 0) "a[href~=movie\\/]:contains($yearNum)"
+                // movie
+                else "a[href~=movie\\/]"
+            }())?.attr("href")?.fixUrl() ?: return null
         }
 
         // filter download page by language. Do not work for movies :/
