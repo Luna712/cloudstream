@@ -542,20 +542,12 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         val pager = binding?.viewpager ?: return
-        val currentPage = pager.currentItem
 
-        // Disable animations to prevent disappearing
-        val recyclerView = pager.getChildAt(0) as? RecyclerView
-        val oldAnimator = recyclerView?.itemAnimator
-        recyclerView?.itemAnimator = null
-
-        // Post to ensure the state is restored first
+        // Force new layout
+        pager.requestLayout()
+        pager.invalidate()
         pager.post {
             pager.adapter?.notifyDataSetChanged()
-            pager.setCurrentItem(currentPage, false)
-
-            // Restore animations
-            recyclerView?.itemAnimator = oldAnimator
         }
     }
 
