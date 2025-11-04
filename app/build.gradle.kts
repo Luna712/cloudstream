@@ -6,7 +6,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
     id("com.android.application")
-    // id("org.jetbrains.dokka")
+    id("org.jetbrains.dokka")
 }
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
@@ -282,7 +282,7 @@ tasks.withType<KotlinJvmCompile> {
     }
 }
 
-/*dokka {
+dokka {
     moduleName = "App"
     dokkaSourceSets {
         main {
@@ -299,4 +299,4 @@ tasks.withType<KotlinJvmCompile> {
             }
         }
     }
-}*/
+}
