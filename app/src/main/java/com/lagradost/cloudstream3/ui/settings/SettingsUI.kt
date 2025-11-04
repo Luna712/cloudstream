@@ -4,8 +4,6 @@ import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.LifecycleOwner
 import androidx.preference.PreferenceManager
 import androidx.preference.SeekBarPreference
 import com.lagradost.cloudstream3.AcraApplication.Companion.getActivity
@@ -34,6 +32,18 @@ import com.lagradost.cloudstream3.utils.UIHelper.hideKeyboard
 import com.lagradost.cloudstream3.utils.UIHelper.toPx
 
 class SettingsUI : BasePreferenceFragmentCompat() {
+    // Use a listener to apply when preferences are actually committed in
+    // order to prevent any potential race conditions.
+    private val posterSizeListener =
+        SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            if (key == getString(R.string.poster_size_key)) {
+                HomeChildItemAdapter.sharedPool.clear()
+                ParentItemAdapter.sharedPool.clear()
+                SearchAdapter.sharedPool.clear()
+                context?.let { HomeChildItemAdapter.updatePosterSize(it) }
+            }
+        }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpToolbar(R.string.category_ui)
@@ -53,6 +63,15 @@ class SettingsUI : BasePreferenceFragmentCompat() {
             (perf.context.getActivity() as? MainActivity)?.binding?.homeRoot?.setPadding(padding, padding, padding, padding)
             return@setOnPreferenceChangeListener true
         }
+
+        getPref(R.string.bottom_title_key)?.setOnPreferenceChangeListener { _, _ ->
+            HomeChildItemAdapter.sharedPool.clear()
+            ParentItemAdapter.sharedPool.clear()
+            SearchAdapter.sharedPool.clear()
+            true
+        }
+
+        settingsManager.registerOnSharedPreferenceChangeListener(posterSizeListener)
 
         getPref(R.string.poster_ui_key)?.setOnPreferenceClickListener {
             val prefNames = resources.getStringArray(R.array.poster_ui_options)
@@ -230,31 +249,11 @@ class SettingsUI : BasePreferenceFragmentCompat() {
             )
             return@setOnPreferenceClickListener true
         }
+    }
 
-        // Use a listener to apply when preferences are actually committed in
-        // order to prevent any potential race conditions.
-        val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
-            when (key) {
-                getString(R.string.bottom_title_key) -> {
-                    HomeChildItemAdapter.sharedPool.clear()
-                    ParentItemAdapter.sharedPool.clear()
-                    SearchAdapter.sharedPool.clear()
-                }
-
-                getString(R.string.poster_size_key) -> {
-                    HomeChildItemAdapter.sharedPool.clear()
-                    ParentItemAdapter.sharedPool.clear()
-                    SearchAdapter.sharedPool.clear()
-                    context?.let { HomeChildItemAdapter.updatePosterSize(it) }
-                }
-            }
-        }
-
-        settingsManager.registerOnSharedPreferenceChangeListener(listener)
-        lifecycle.addObserver(object : DefaultLifecycleObserver {
-            override fun onDestroy(owner: LifecycleOwner) {
-                settingsManager.unregisterOnSharedPreferenceChangeListener(listener)
-            }
-        })
+    override fun onDestroyView() {
+        super.onDestroyView()
+        PreferenceManager.getDefaultSharedPreferences(requireContext())
+            .unregisterOnSharedPreferenceChangeListener(posterSizeListener)
     }
 }
