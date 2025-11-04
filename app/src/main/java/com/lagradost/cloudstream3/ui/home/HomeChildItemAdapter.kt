@@ -57,7 +57,6 @@ class ResumeItemAdapter(
     nextFocusDown = nextFocusDown,
     clickCallback = clickCallback
 ) {
-
     // As there is no popup on TV we instead use the footer to clear
     override val footers = if (isLayout(TV or EMULATOR)) 1 else 0
 
