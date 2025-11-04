@@ -541,13 +541,14 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
     @SuppressLint("NotifyDataSetChanged")
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        val pager = binding?.viewpager ?: return
+        val vp = binding?.viewpager ?: return
 
-        // Force new layout
-        pager.requestLayout()
-        pager.invalidate()
-        pager.post {
-            pager.adapter?.notifyDataSetChanged()
+        vp.visibility = View.GONE
+        vp.requestLayout()
+        vp.invalidate()
+        vp.post {
+            vp.adapter?.notifyDataSetChanged()
+            vp.visibility = View.VISIBLE
         }
     }
 
