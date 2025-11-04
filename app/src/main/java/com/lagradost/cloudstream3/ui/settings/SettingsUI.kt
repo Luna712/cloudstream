@@ -15,6 +15,7 @@ import com.lagradost.cloudstream3.SearchQuality
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.ui.BasePreferenceFragmentCompat
 import com.lagradost.cloudstream3.ui.home.HomeChildItemAdapter
+import com.lagradost.cloudstream3.ui.home.ParentItemAdapter
 import com.lagradost.cloudstream3.ui.search.SearchAdapter
 import com.lagradost.cloudstream3.ui.search.SearchResultBuilder
 import com.lagradost.cloudstream3.ui.settings.Globals.EMULATOR
@@ -236,11 +237,13 @@ class SettingsUI : BasePreferenceFragmentCompat() {
             when (key) {
                 getString(R.string.bottom_title_key) -> {
                     HomeChildItemAdapter.sharedPool.clear()
+                    ParentItemAdapter.sharedPool.clear()
                     SearchAdapter.sharedPool.clear()
                 }
 
                 getString(R.string.poster_size_key) -> {
                     HomeChildItemAdapter.sharedPool.clear()
+                    ParentItemAdapter.sharedPool.clear()
                     SearchAdapter.sharedPool.clear()
                     context?.let { HomeChildItemAdapter.updatePosterSize(it) }
                 }
