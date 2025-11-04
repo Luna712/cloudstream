@@ -79,9 +79,10 @@ class SettingsUI : BasePreferenceFragmentCompat() {
             return@setOnPreferenceClickListener true
         }
 
-        getPref(R.string.poster_size_key)?.setOnPreferenceClickListener {
+        getPref(R.string.poster_size_key)?.setOnPreferenceChangeListener { _, _ ->
             HomeChildItemAdapter.sharedPool.clear()
             SearchAdapter.sharedPool.clear()
+            true
         }
 
         getPref(R.string.app_layout_key)?.setOnPreferenceClickListener {
