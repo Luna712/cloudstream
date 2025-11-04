@@ -540,8 +540,23 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onConfigurationChanged(newConfig: Configuration) {
-        binding?.viewpager?.adapter?.notifyDataSetChanged()
         super.onConfigurationChanged(newConfig)
+        val pager = binding?.viewpager ?: return
+        val currentPage = pager.currentItem
+
+        // Disable animations to prevent disappearing
+        val recyclerView = pager.getChildAt(0) as? RecyclerView
+        val oldAnimator = recyclerView?.itemAnimator
+        recyclerView?.itemAnimator = null
+
+        // Post to ensure the state is restored first
+        pager.post {
+            pager.adapter?.notifyDataSetChanged()
+            pager.setCurrentItem(currentPage, false)
+
+            // Restore animations
+            recyclerView?.itemAnimator = oldAnimator
+        }
     }
 
     private val sortChangeClickListener = View.OnClickListener { view ->
