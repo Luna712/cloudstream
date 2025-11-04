@@ -538,18 +538,10 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>(
 
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        val vp = binding?.viewpager ?: return
-
-        vp.visibility = View.GONE
-        vp.requestLayout()
-        vp.invalidate()
-        vp.post {
-            vp.adapter?.notifyDataSetChanged()
-            vp.visibility = View.VISIBLE
-        }
+        val adapter = binding?.viewpager?.adapter ?: return
+        adapter.notifyItemRangeChanged(0, adapter.itemCount)
     }
 
     private val sortChangeClickListener = View.OnClickListener { view ->
