@@ -11,6 +11,8 @@ import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.SearchQuality
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.ui.BasePreferenceFragmentCompat
+import com.lagradost.cloudstream3.ui.home.HomeChildItemAdapter
+import com.lagradost.cloudstream3.ui.search.SearchAdapter
 import com.lagradost.cloudstream3.ui.search.SearchResultBuilder
 import com.lagradost.cloudstream3.ui.settings.Globals.EMULATOR
 import com.lagradost.cloudstream3.ui.settings.Globals.PHONE
@@ -70,9 +72,16 @@ class SettingsUI : BasePreferenceFragmentCompat() {
                 }
                 edit.apply()
                 SearchResultBuilder.updateCache(it.context)
+                HomeChildItemAdapter.sharedPool.clear()
+                SearchAdapter.sharedPool.clear()
             }
 
             return@setOnPreferenceClickListener true
+        }
+
+        getPref(R.string.poster_size_key)?.setOnPreferenceClickListener {
+            HomeChildItemAdapter.sharedPool.clear()
+            SearchAdapter.sharedPool.clear()
         }
 
         getPref(R.string.app_layout_key)?.setOnPreferenceClickListener {
