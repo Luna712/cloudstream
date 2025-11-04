@@ -6,7 +6,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
     id("com.android.application")
-    id("kotlin-android")
+    id("kotlin-android") apply false
     id("org.jetbrains.dokka")
 }
 
