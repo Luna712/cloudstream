@@ -75,6 +75,7 @@ private interface BaseFragmentHelper<T : ViewBinding> {
             null
         }
 
+        recycleBindingOnDestroy()
         return _binding?.root ?: root
     }
 
@@ -86,7 +87,6 @@ private interface BaseFragmentHelper<T : ViewBinding> {
      * Subclasses should use [onBindingCreated] instead of overriding this method directly.
      */
     fun onViewReady(view: View, savedInstanceState: Bundle?) {
-        recycleBindingOnDestroy()
         fixLayout(view)
         binding?.let { onBindingCreated(it, savedInstanceState) }
     }
