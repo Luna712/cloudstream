@@ -553,12 +553,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     override fun pickLayout(): Int? =
         if (isLayout(PHONE)) R.layout.fragment_home else R.layout.fragment_home_tv
 
-    override fun getPoolKey(): String {
-        // No cache if no API
-        if (currentApiName == noneApi.name) return ""
-        return "HomeFragment"
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
