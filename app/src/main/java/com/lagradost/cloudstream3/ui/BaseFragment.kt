@@ -168,7 +168,7 @@ object BaseFragmentPool {
 
     /** Releases a binding back to the pool for later reuse. */
     fun <T : ViewBinding> release(key: String, binding: T) {
-        if (key == "") return null
+        if (key == "") return
         val list = pool.getOrPut(key) { mutableListOf() }
         list.add(binding)
         trimPrefixIfNeeded(key)
