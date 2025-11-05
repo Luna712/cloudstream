@@ -180,11 +180,6 @@ object BaseFragmentPool {
         pool.clear()
     }
 
-    /** Clears cached bindings for a specific key. */
-    fun clearKey(key: String) {
-        pool.remove(key)?.forEach { (it.root.parent as? ViewGroup)?.removeView(it.root) }
-    }
-
     /** Trims bindings for a prefix if total exceeds MAX_PER_PREFIX */
     private fun trimPrefixIfNeeded(key: String) {
         val prefix = key.substringBefore(":")
