@@ -75,7 +75,7 @@ private interface BaseFragmentHelper<T : ViewBinding> {
             null
         }
 
-        recycleBindingOnDestroy()
+        //recycleBindingOnDestroy()
         return _binding?.root ?: root
     }
 
@@ -138,7 +138,7 @@ private interface BaseFragmentHelper<T : ViewBinding> {
         _binding?.let {
             BaseFragmentPool.release(javaClass.name, it)
             Log.d(TAG, "Binding released to pool for ${javaClass.name}")
-            //_binding = null
+            _binding = null
         }
     }
 }
@@ -171,7 +171,7 @@ object BaseFragmentPool {
 
     /** Clears all cached bindings from the pool. */
     fun clearAll() {
-        pool.values.flatten().forEach { (it.root.parent as? ViewGroup)?.removeView(it.root) }
+        //pool.values.flatten().forEach { (it.root.parent as? ViewGroup)?.removeView(it.root) }
         pool.clear()
     }
 }
@@ -205,8 +205,8 @@ abstract class BaseFragment<T : ViewBinding>(
     /** Cleans up the binding reference when the view is destroyed to avoid memory leaks. */
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
-        //recycleBindingOnDestroy()
+       // _binding = null
+        recycleBindingOnDestroy()
     }
 
     /**
