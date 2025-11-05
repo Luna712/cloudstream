@@ -90,7 +90,7 @@ class ResultFragmentTv : BaseFragment<FragmentResultTvBinding>(
     }
 
     override fun getPoolKey(): String {
-        val storedData = getStoredData()
+        val storedData = getStoredData() ?: return "ResultFragmentTv"
         return "ResultFragmentTv:${storedData.name}-${storedData.apiName}"
     }
 
