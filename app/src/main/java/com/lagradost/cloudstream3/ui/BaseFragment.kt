@@ -79,7 +79,7 @@ private interface BaseFragmentHelper<T : ViewBinding> {
         return _binding?.root ?: root
     }
 
-    fun getPoolKey() = javaClass.name
+    fun getPoolKey(): String = javaClass.name
 
     /**
      * Called after the fragment's view has been created.
