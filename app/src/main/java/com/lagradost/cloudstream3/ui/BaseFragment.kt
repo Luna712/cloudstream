@@ -50,8 +50,8 @@ private interface BaseFragmentHelper<T : ViewBinding> {
         savedInstanceState: Bundle?
     ): View? {
         // Try to reuse a binding from the pool first
-        BaseFragmentPool.acquire<T>(javaClass.name)?.let {
-            Log.d(TAG, "Binding acquired from pool for ${javaClass.name}")
+        BaseFragmentPool.acquire<T>(getPoolKey())?.let {
+            Log.d(TAG, "Binding acquired from pool for ${getPoolKey()}")
             _binding = it
             return it.root
         }
@@ -78,6 +78,8 @@ private interface BaseFragmentHelper<T : ViewBinding> {
         //recycleBindingOnDestroy()
         return _binding?.root ?: root
     }
+
+    fun getPoolKey() = javaClass.name
 
     /**
      * Called after the fragment's view has been created.
@@ -136,8 +138,8 @@ private interface BaseFragmentHelper<T : ViewBinding> {
     /** Called by fragments when they’re destroyed, so the binding can be recycled. */
     fun recycleBindingOnDestroy() {
         _binding?.let {
-            BaseFragmentPool.release(javaClass.name, it)
-            Log.d(TAG, "Binding released to pool for ${javaClass.name}")
+            BaseFragmentPool.release(getPoolKey(), it)
+            Log.d(TAG, "Binding released to pool for ${getPoolKey()}")
             _binding = null
         }
     }
@@ -173,6 +175,11 @@ object BaseFragmentPool {
     fun clearAll() {
         pool.values.flatten().forEach { (it.root.parent as? ViewGroup)?.removeView(it.root) }
         pool.clear()
+    }
+
+    /** Clears cached bindings for a specific key. */
+    fun clearKey(key: String) {
+        pool.remove(key)?.forEach { (it.root.parent as? ViewGroup)?.removeView(it.root) }
     }
 }
 
