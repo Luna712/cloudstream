@@ -22,6 +22,10 @@ class SetupFragmentMedia : BaseFragment<FragmentSetupMediaBinding>(
         fixSystemBarsPadding(view)
     }
 
+    // No cache, it tends to mess witb home page
+    // and should not be shown very often.
+    override fun getPoolKey(): String = ""
+
     override fun onBindingCreated(binding: FragmentSetupMediaBinding) {
         safe {
             val ctx = context ?: return@safe

@@ -47,6 +47,10 @@ class SetupFragmentExtensions : BaseFragment<FragmentSetupExtensionsBinding>(
         fixSystemBarsPadding(view)
     }
 
+    // No cache, it tends to mess witb home page
+    // and should not be shown very often.
+    override fun getPoolKey(): String = ""
+
     private fun setRepositories(success: Boolean = true) {
         main {
             val repositories = RepositoryManager.getRepositories() + PREBUILT_REPOSITORIES

@@ -29,6 +29,10 @@ class SetupFragmentLanguage : BaseFragment<FragmentSetupLanguageBinding>(
         fixSystemBarsPadding(view)
     }
 
+    // No cache, it tends to mess witb home page
+    // and should not be shown very often.
+    override fun getPoolKey(): String = ""
+
     override fun onBindingCreated(binding: FragmentSetupLanguageBinding) {
         // We don't want a crash for all users
         safe {
