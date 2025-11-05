@@ -171,7 +171,7 @@ object BaseFragmentPool {
 
     /** Clears all cached bindings from the pool. */
     fun clearAll() {
-        //pool.values.flatten().forEach { (it.root.parent as? ViewGroup)?.removeView(it.root) }
+        pool.values.flatten().forEach { (it.root.parent as? ViewGroup)?.removeView(it.root) }
         pool.clear()
     }
 }
