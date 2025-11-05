@@ -231,7 +231,6 @@ abstract class BaseFragment<T : ViewBinding>(
     /** Cleans up the binding reference when the view is destroyed to avoid memory leaks. */
     override fun onDestroyView() {
         super.onDestroyView()
-       // _binding = null
         recycleBindingOnDestroy()
     }
 
