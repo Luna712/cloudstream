@@ -155,6 +155,7 @@ private interface BaseFragmentHelper<T : ViewBinding> {
  */
 object BaseFragmentPool {
     private val pool = mutableMapOf<String, MutableList<ViewBinding>>()
+    private const val MAX_PER_PREFIX = 3
 
     /** Attempts to acquire a recycled binding from the pool. */
     fun <T : ViewBinding> acquire(key: String): T? {
@@ -169,6 +170,7 @@ object BaseFragmentPool {
     fun <T : ViewBinding> release(key: String, binding: T) {
         val list = pool.getOrPut(key) { mutableListOf() }
         list.add(binding)
+        trimPrefixIfNeeded(key)
     }
 
     /** Clears all cached bindings from the pool. */
@@ -180,6 +182,22 @@ object BaseFragmentPool {
     /** Clears cached bindings for a specific key. */
     fun clearKey(key: String) {
         pool.remove(key)?.forEach { (it.root.parent as? ViewGroup)?.removeView(it.root) }
+    }
+
+    /** Trims bindings for a prefix if total exceeds MAX_PER_PREFIX */
+    private fun trimPrefixIfNeeded(key: String) {
+        val prefix = key.substringBefore(":")
+        val prefixKeys = pool.keys.filter { it.startsWith("$prefix:") }
+        var total = prefixKeys.sumOf { pool[it]?.size ?: 0 }
+
+        while (total > MAX_PER_PREFIX && prefixKeys.isNotEmpty()) {
+            // Remove oldest from the first key with items
+            val oldestKey = prefixKeys.firstOrNull { pool[it]?.isNotEmpty() == true } ?: break
+            val removed = pool[oldestKey]?.removeFirstOrNull() ?: break
+            (removed.root.parent as? ViewGroup)?.removeView(removed.root)
+            if (pool[oldestKey]?.isEmpty() == true) pool.remove(oldestKey)
+            total--
+        }
     }
 }
 
