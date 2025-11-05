@@ -75,7 +75,6 @@ private interface BaseFragmentHelper<T : ViewBinding> {
             null
         }
 
-        //recycleBindingOnDestroy()
         return _binding?.root ?: root
     }
 
@@ -159,6 +158,7 @@ object BaseFragmentPool {
 
     /** Attempts to acquire a recycled binding from the pool. */
     fun <T : ViewBinding> acquire(key: String): T? {
+        if (key == "") return null
         val list = pool[key] ?: return null
         val binding = list.removeLastOrNull() as? T ?: return null
         (binding.root.parent as? ViewGroup)?.removeView(binding.root)
@@ -168,6 +168,7 @@ object BaseFragmentPool {
 
     /** Releases a binding back to the pool for later reuse. */
     fun <T : ViewBinding> release(key: String, binding: T) {
+        if (key == "") return null
         val list = pool.getOrPut(key) { mutableListOf() }
         list.add(binding)
         trimPrefixIfNeeded(key)
