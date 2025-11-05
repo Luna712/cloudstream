@@ -26,7 +26,6 @@ import com.lagradost.cloudstream3.plugins.PluginManager
 import com.lagradost.cloudstream3.ui.APIRepository
 import com.lagradost.cloudstream3.ui.APIRepository.Companion.noneApi
 import com.lagradost.cloudstream3.ui.APIRepository.Companion.randomApi
-import com.lagradost.cloudstream3.ui.BaseFragmentPool
 import com.lagradost.cloudstream3.ui.WatchType
 import com.lagradost.cloudstream3.ui.quicksearch.QuickSearchFragment
 import com.lagradost.cloudstream3.ui.search.SEARCH_ACTION_FOCUSED
@@ -431,8 +430,6 @@ class HomeViewModel : ViewModel() {
 
     private fun reloadHome(unused: Boolean = false) {
         loadAndCancel(DataStoreHelper.currentHomePage, true)
-        // Clear pool when reloading home
-        BaseFragmentPool.clearKey("HomeFragment")
     }
 
     private fun reloadAccount(unused: Boolean = false) {

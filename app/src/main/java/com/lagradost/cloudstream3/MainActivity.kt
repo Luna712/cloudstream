@@ -1290,7 +1290,6 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             false
         ) || accounts.count() <= 1
 
-        binding?.navHostFragment?.isInvisible = false
         if (isLayout(PHONE) && isAuthEnabled(this) && noAccounts) {
             if (deviceHasPasswordPinLock(this)) {
                 startBiometricAuthentication(this, R.string.biometric_authentication_title, false)
