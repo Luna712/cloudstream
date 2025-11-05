@@ -49,11 +49,13 @@ private interface BaseFragmentHelper<T : ViewBinding> {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Try to reuse a binding from the pool first
-        BaseFragmentPool.acquire<T>(getPoolKey())?.let {
-            Log.d(TAG, "Binding acquired from pool for ${getPoolKey()}")
-            _binding = it
-            return it.root
+        if (getPoolKey() != "") {
+            // Try to reuse a binding from the pool first
+            BaseFragmentPool.acquire<T>(getPoolKey())?.let {
+                Log.d(TAG, "Binding acquired from pool for ${getPoolKey()}")
+                _binding = it
+                return it.root
+            }
         }
 
         val layoutId = pickLayout()
