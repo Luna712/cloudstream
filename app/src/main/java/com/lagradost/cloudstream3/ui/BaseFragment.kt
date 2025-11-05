@@ -50,8 +50,9 @@ private interface BaseFragmentHelper<T : ViewBinding> {
         savedInstanceState: Bundle?
     ): View? {
         // Try to reuse a binding from the pool first
-        BaseFragmentPool.acquire<T>(javaClass.name)?.let {
-            Log.d(TAG, "Binding acquired from pool for ${javaClass.name}")
+        val key = T::class.java.name
+        BaseFragmentPool.acquire<T>(key)?.let {
+            Log.d(TAG, "Binding acquired from pool for ${key}")
             _binding = it
             return it.root
         }
@@ -135,8 +136,9 @@ private interface BaseFragmentHelper<T : ViewBinding> {
     /** Called by fragments when they’re destroyed, so the binding can be recycled. */
     fun recycleBindingOnDestroy() {
         _binding?.let {
-            BaseFragmentPool.release(javaClass.name, it)
-            Log.d(TAG, "Binding released to pool for ${javaClass.name}")
+            val key = T::class.java.name
+            BaseFragmentPool.release(key, it)
+            Log.d(TAG, "Binding released to pool for ${key}")
             _binding = null
         }
     }
