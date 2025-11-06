@@ -555,7 +555,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     override fun pickLayout(): Int? =
         if (isLayout(PHONE)) R.layout.fragment_home else R.layout.fragment_home_tv
 
-    override fun getCacheKey(): String {
+    override fun getPoolKey(): String {
         // Setup causes cache to be poisoned, so don't use until
         // setup is done.
         if (getKey(HAS_DONE_SETUP_KEY, false) != true) return ""
