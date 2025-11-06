@@ -912,7 +912,7 @@ class ResultFragmentTv : BaseFragment<FragmentResultTvBinding>(
                         comingSoon = d.comingSoon
                         resultTvComingSoon.isVisible = d.comingSoon
 
-                        populateChips(resultTag, d.tags)
+                        populateChips(resultTag, d.tags, expandable = true)
                         resultCastItems.isGone = d.actors.isNullOrEmpty()
                         (resultCastItems.adapter as? ActorAdaptor)?.submitList(
                             d.actors
