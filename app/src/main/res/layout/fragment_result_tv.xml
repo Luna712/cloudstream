@@ -601,7 +601,7 @@ https://developer.android.com/design/ui/tv/samples/jet-fit
                         android:foreground="@drawable/outline_drawable"
                         android:maxLines="7"
                         android:nextFocusUp="@id/result_play_parent"
-                        android:nextFocusDown="@id/result_cast_items"
+                        android:nextFocusDown="@id/result_tag"
                         android:padding="5dp"
                         android:requiresFadingEdge="vertical"
                         android:textColor="?attr/textColor"
@@ -612,7 +612,11 @@ https://developer.android.com/design/ui/tv/samples/jet-fit
                         android:id="@+id/result_tag"
                         style="@style/ChipParent"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:foreground="@drawable/outline_drawable"
+                        android:nextFocusUp="@id/result_description"
+                        android:nextFocusDown="@id/result_cast_items" />
                 </LinearLayout>
             </LinearLayout>
 
