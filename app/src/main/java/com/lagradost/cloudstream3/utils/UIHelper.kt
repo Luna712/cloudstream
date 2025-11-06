@@ -113,31 +113,46 @@ object UIHelper {
         val maxVisible = 10
         var expanded = false
 
+        fun createChip(tag: String): Chip {
+            return Chip(context).apply {
+                setChipDrawable(ChipDrawable.createFromAttributes(context, null, 0, style))
+                text = tag
+                isChecked = false
+                isCheckable = false
+                isFocusable = false
+                isClickable = false
+                setTextColor(context.colorFromAttribute(R.attr.white))
+            }
+        }
+
+        val toggleChip: Chip? = if (expandable && tags.size > maxVisible) {
+            Chip(context).apply {
+                setChipDrawable(ChipDrawable.createFromAttributes(context, null, 0, style))
+                isChecked = false
+                isCheckable = false
+                isFocusable = true
+                isClickable = true
+                setTextColor(context.colorFromAttribute(R.attr.white))
+                setOnClickListener {
+                    expanded = !expanded
+                    render()
+                }
+            }
+        } else null
+
         fun render() {
             view.removeAllViews()
             val visibleTags = if (expanded) tags else tags.take(maxVisible)
-
             visibleTags.forEach { tag ->
-                val chip = Chip(context).apply {
-                    setChipDrawable(ChipDrawable.createFromAttributes(context, null, 0, style))
-                    text = tag
-                    isChecked = false
-                    isCheckable = false
-                    isFocusable = false
-                    isClickable = false
-                    setTextColor(context.colorFromAttribute(R.attr.white))
-                }
-                view.addView(chip)
+                view.addView(createChip(tag))
+            }
+            toggleChip?.let {
+                it.text = if (expanded) "−" else "+${tags.size - maxVisible}"
+                view.addView(it)
             }
         }
 
         render()
-        if (expandable) {
-            view.setOnClickListener {
-                expanded = !expanded
-                render()
-            }
-        }
     }
 
     fun Activity.requestRW() {
