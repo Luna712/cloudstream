@@ -113,44 +113,31 @@ object UIHelper {
         val maxVisible = 10
         var expanded = false
 
-        fun createChip(tag: String): Chip {
-            return Chip(context).apply {
-                setChipDrawable(ChipDrawable.createFromAttributes(context, null, 0, style))
-                text = tag
-                isChecked = false
-                isCheckable = false
-                isFocusable = false
-                isClickable = false
-                setTextColor(context.colorFromAttribute(R.attr.white))
-            }
-        }
-
         fun render() {
             view.removeAllViews()
             val visibleTags = if (expanded) tags else tags.take(maxVisible)
-            visibleTags.forEach { tag ->
-                view.addView(createChip(tag))
-            }
 
-            if (expandable && tags.size > maxVisible) {
-                val toggleChip = Chip(context).apply {
+            visibleTags.forEach { tag ->
+                val chip = Chip(context).apply {
                     setChipDrawable(ChipDrawable.createFromAttributes(context, null, 0, style))
+                    text = tag
                     isChecked = false
                     isCheckable = false
-                    isFocusable = true
-                    isClickable = true
+                    isFocusable = false
+                    isClickable = false
                     setTextColor(context.colorFromAttribute(R.attr.white))
-                    text = if (expanded) "−" else "+${tags.size - maxVisible}"
-                    setOnClickListener {
-                        expanded = !expanded
-                        render()
-                    }
                 }
-                view.addView(toggleChip)
+                view.addView(chip)
             }
         }
 
         render()
+        if (expandable && tags.size > maxVisible) {
+            view.setOnClickListener {
+                expanded = !expanded
+                render()
+            }
+        }
     }
 
     fun Activity.requestRW() {
