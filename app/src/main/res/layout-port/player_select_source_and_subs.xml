@@ -120,6 +120,7 @@
                     android:layout_weight="1"
                     android:background="?attr/primaryBlackBackground"
                     android:listSelector="@drawable/outline_drawable_forced"
+                    android:requiresFadingEdge="vertical"
                     tools:listitem="@layout/sort_bottom_single_choice" />
 
                 <ListView
@@ -129,6 +130,7 @@
                     android:layout_weight="1"
                     android:background="?attr/primaryBlackBackground"
                     android:listSelector="@drawable/outline_drawable_forced"
+                    android:requiresFadingEdge="vertical"
                     tools:listitem="@layout/sort_bottom_single_choice" />
             </LinearLayout>
         </LinearLayout>
