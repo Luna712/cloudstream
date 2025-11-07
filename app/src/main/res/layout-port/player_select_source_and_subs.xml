@@ -23,8 +23,8 @@
                 android:id="@+id/sort_sources_holder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/profiles_click_settings"
@@ -32,7 +32,6 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:foreground="@drawable/outline_drawable_forced"
                     android:padding="10dp">
 
                     <TextView
@@ -71,13 +70,15 @@
                 android:id="@+id/sort_subtitles_holder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingVertical="10dp">
+                    android:gravity="center_vertical"
+                    android:padding="10dp">
 
                     <TextView
                         android:id="@+id/subtitles_text"
@@ -93,7 +94,7 @@
                         android:id="@+id/subtitles_encoding_format"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="start"
+                        android:gravity="center"
                         android:paddingHorizontal="10dp"
                         android:textColor="?attr/textColor"
                         android:textSize="15sp"
