@@ -35,7 +35,6 @@
 			android:layout_weight="1"
 			android:background="?attr/primaryBlackBackground"
 			android:requiresFadingEdge="vertical"
-			android:nextFocusDown="@id/sort_qualities"
 			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 			tools:layout_height="200dp"
 			tools:listitem="@layout/player_prioritize_item" />
@@ -84,8 +83,6 @@
 			android:layout_weight="1"
 			android:background="?attr/primaryBlackBackground"
 			android:requiresFadingEdge="vertical"
-			android:nextFocusUp="@id/sort_sources"
-			android:nextFocusDown="@id/profile_text_editable"
 			app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 			tools:layout_height="200dp"
 			tools:listfooter="@layout/sort_bottom_footer_add_choice"
