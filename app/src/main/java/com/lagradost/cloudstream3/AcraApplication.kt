@@ -86,7 +86,7 @@ class ExceptionHandler(val errorFile: File, val onError: (() -> Unit)) :
         try {
             PrintStream(errorFile).use { ps ->
                 ps.println("Currently loading extension: ${PluginManager.currentlyLoading ?: "none"}")
-                ps.println("Fatal exception on thread ${thread.name} (${thread.threadId})")
+                ps.println("Fatal exception on thread ${thread.name} (${thread.threadId()})")
                 error.printStackTrace(ps)
             }
         } catch (ignored: FileNotFoundException) {
