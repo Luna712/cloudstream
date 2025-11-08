@@ -1,3 +1,5 @@
+@file:Suppress("ALL")
+
 package com.lagradost.cloudstream3.ui.player
 
 import android.net.Uri
@@ -304,6 +306,26 @@ class UpdatedDefaultExtractorsFactory : ExtractorsFactory {
         timestampSearchBytes: Int
     ): UpdatedDefaultExtractorsFactory {
         tsTimestampSearchBytes = timestampSearchBytes
+        return this
+    }
+
+    @Deprecated(
+        """This method (and all support for 'legacy' subtitle decoding during rendering) will
+        be removed in a future release."""
+    )
+    @Synchronized
+    fun setTextTrackTranscodingEnabled(
+        textTrackTranscodingEnabled: Boolean
+    ): UpdatedDefaultExtractorsFactory {
+        return experimentalSetTextTrackTranscodingEnabled(textTrackTranscodingEnabled)
+    }
+
+    @Deprecated("")
+    @Synchronized
+    override fun experimentalSetTextTrackTranscodingEnabled(
+        textTrackTranscodingEnabled: Boolean
+    ): UpdatedDefaultExtractorsFactory {
+        this.textTrackTranscodingEnabled = textTrackTranscodingEnabled
         return this
     }
 
@@ -619,3 +641,4 @@ class UpdatedDefaultExtractorsFactory : ExtractorsFactory {
             }
     }
 }
+
