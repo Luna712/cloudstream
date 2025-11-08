@@ -11,7 +11,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="10dp"
-        android:paddingEnd="10dp"
+        android:layout_marginEnd="10dp"
         android:animateLayoutChanges="true"
         android:backgroundTint="@color/primaryGrayBackground"
         android:focusable="true"
