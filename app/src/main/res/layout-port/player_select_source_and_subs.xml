@@ -150,8 +150,7 @@
         android:layout_height="wrap_content"
         android:gravity="end|center_vertical"
         android:padding="8dp"
-        android:orientation="horizontal"
-        android:weightSum="2">
+        android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/apply_btt"
