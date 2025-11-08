@@ -99,7 +99,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="?attr/textColor"
                         android:padding="10dp"
-                        android:textSize="15sp"
+                        android:textSize="12sp"
                         android:ellipsize="end"
                         android:singleLine="true"
                         tools:text="Thai (TIS 620-2533/ISO 8859-11)" />
