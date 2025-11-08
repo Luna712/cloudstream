@@ -79,9 +79,8 @@
 
                 <TextView
                     android:id="@+id/subtitles_text"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="@string/pick_subtitle"
                     android:textColor="?attr/textColor"
                     android:textSize="20sp"
@@ -91,11 +90,17 @@
                     android:id="@+id/subtitles_encoding_format"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingHorizontal="10dp"
-                    android:textColor="?attr/textColor"
-                    android:textSize="15sp"
+                    android:layout_marginStart="8dp"
+                    android:textColor="?attr/textColorSecondary"
+                    android:textSize="14sp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     tools:text="Thai (TIS 620-2533/ISO 8859-11)" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
                 <ImageView
                     android:id="@+id/subtitle_settings_btt"
