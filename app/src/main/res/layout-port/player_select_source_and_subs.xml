@@ -97,10 +97,9 @@
                         android:id="@+id/subtitles_encoding_format"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingHorizontal="10dp"
+                        android:paddingHorizontal="14dp"
                         android:textColor="?attr/textColor"
                         android:textSize="15sp"
-                        android:gravity="center"
                         android:ellipsize="end"
                         android:singleLine="true"
                         tools:text="Thai (TIS 620-2533/ISO 8859-11)" />
