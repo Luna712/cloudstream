@@ -1,4 +1,4 @@
-@file:Suppress("ALL")
+@file:Suppress("WARNINGS")
 
 package com.lagradost.cloudstream3.ui.player
 
@@ -641,4 +641,5 @@ class UpdatedDefaultExtractorsFactory : ExtractorsFactory {
             }
     }
 }
+
 
