@@ -97,7 +97,7 @@
                         android:id="@+id/subtitles_encoding_format"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingHorizontal="10dp"
+                        android:padding="10dp"
                         android:textColor="?attr/textColor"
                         android:textSize="15sp"
                         android:ellipsize="end"
