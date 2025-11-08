@@ -100,7 +100,7 @@
                         android:layout_marginStart="8dp"
                         android:textColor="?attr/textColor"
                         android:textSize="13sp"
-                        android:translationY="3dp"
+                        android:translationY="5dp"
                         android:ellipsize="end"
                         android:singleLine="true"
                         tools:text="Thai (TIS 620-2533/ISO 8859-11)" />
