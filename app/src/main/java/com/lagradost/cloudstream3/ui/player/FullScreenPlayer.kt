@@ -2027,6 +2027,10 @@ open class FullScreenPlayer : AbstractPlayerFragment() {
     private fun toggleRotate() {
         activity?.let {
             toggleOrientationWithSensor(it)
+            // If we manually set the orientation using the rotate button,
+            // we set this to true to ignore auto rotate and lock to the
+            // user-requested orientation.
+            updateOrientation(true)
         }
     }
 
