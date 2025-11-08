@@ -98,9 +98,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
+                        android:layout_marginTop="3dp"
                         android:textColor="?attr/textColor"
                         android:textSize="13.5sp"
-                        android:translationY="3dp"
                         android:ellipsize="end"
                         android:singleLine="true"
                         tools:text="Thai (TIS 620-2533/ISO 8859-11)" />
