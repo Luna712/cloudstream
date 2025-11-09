@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
-    id("com.android.application")
+    alias(libs.plugins.android.application)
     // id("org.jetbrains.dokka")
 }
 
