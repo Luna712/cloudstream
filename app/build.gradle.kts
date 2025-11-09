@@ -262,6 +262,7 @@ tasks.register<Jar>("makeJar") {
 }
 
 tasks.named("assemble") {
+    dependsOn(tasks.getByName("androidSourcesJar"))
     dependsOn(tasks.getByName("makeJar"))
 }
 
