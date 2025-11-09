@@ -6,11 +6,11 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
-    kotlin("multiplatform") version "2.2.21"
-    // id("maven-publish")
-    id("com.android.kotlin.multiplatform.library") version "9.0.0-alpha13"
-    id("com.codingfeline.buildkonfig") version "0.17.1"
-    id("org.jetbrains.dokka") version "2.1.0"
+    kotlin("multiplatform")
+    id("maven-publish")
+    id("com.android.kotlin.multiplatform.library")
+    id("com.codingfeline.buildkonfig")
+    id("org.jetbrains.dokka")
 }
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
