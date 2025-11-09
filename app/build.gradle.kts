@@ -265,7 +265,7 @@ tasks.withType<KotlinJvmCompile> {
     compilerOptions {
         jvmTarget.set(javaTarget)
         freeCompilerArgs.addAll(
-            "-Xjvm-default=all-compatibility",
+            "-jvm-default=all-compatibility",
             "-Xannotation-default-target=param-property",
             "-opt-in=com.lagradost.cloudstream3.Prerelease"
         )
