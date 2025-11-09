@@ -6,7 +6,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
-    id("maven-publish") // gradle core plugin
+    //id("maven-publish") // gradle core plugin
     alias(libs.plugins.android.multiplatform.library)
     alias(libs.plugins.buildkonfig.gradle.plugin)
     alias(libs.plugins.dokka.gradle.plugin)
