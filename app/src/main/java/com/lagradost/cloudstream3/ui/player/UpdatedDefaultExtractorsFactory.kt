@@ -1,4 +1,13 @@
-@file:Suppress("WARNINGS")
+@file:Suppress(
+    "ALL",
+    "DEPRECATION",
+    "RedundantVisibilityModifier",
+    "RemoveRedundantQualifierName",
+    "UNCHECKED_CAST",
+    "UNUSED",
+    "UNUSED_PARAMETER",
+    "UNUSED_VARIABLE"
+)
 
 package com.lagradost.cloudstream3.ui.player
 
@@ -641,5 +650,3 @@ class UpdatedDefaultExtractorsFactory : ExtractorsFactory {
             }
     }
 }
-
-
