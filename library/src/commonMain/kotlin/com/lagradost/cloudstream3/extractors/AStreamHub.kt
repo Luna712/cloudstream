@@ -13,7 +13,7 @@ open class AStreamHub : ExtractorApi() {
     override val mainUrl = "https://astreamhub.com"
     override val requiresReferer = true
 
-    override suspend fun getUrl(url: String, referer: String?): List<ExtractorLink>? {
+    override suspend fun getUrl(url: String, referer: String? = null): List<ExtractorLink>? {
         val sources = mutableListOf<ExtractorLink>()
         app.get(url).document.selectFirst("body > script").let { script ->
             val text = script?.html() ?: ""
