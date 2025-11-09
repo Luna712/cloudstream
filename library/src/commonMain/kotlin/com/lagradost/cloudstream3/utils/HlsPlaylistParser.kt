@@ -2078,5 +2078,4 @@ object HlsPlaylistParser {
             sessionKeyDrmInitData = sessionKeyDrmInitData
         )
     }
-
 }
