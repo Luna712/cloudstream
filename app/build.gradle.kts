@@ -262,7 +262,9 @@ tasks.register<Jar>("makeJar") {
 }
 
 tasks.named("assemble") {
-    dependsOn("androidSourcesJar", "makeJar")
+    dependsOn(tasks.getByName("androidSourcesJar"))
+    dependsOn(tasks.getByName("copyJar"))
+    dependsOn(tasks.getByName("makeJar"))
 }
 
 tasks.withType<KotlinJvmCompile> {
