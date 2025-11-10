@@ -244,27 +244,28 @@ tasks.register<Copy>("copyJar") {
     )
     into("build/app-classes")
     include("classes.jar", "library-jvm*.jar")
-    // Remove the version
-    rename("library-jvm.*.jar", "library-jvm.jar")
+    rename("library-jvm.*.jar", "library-jvm.jar") // Remove version suffix
 }
 
-// Merge the app classes and the library classes into classes.jar
 tasks.register<Jar>("makeJar") {
+    description = "Merges app and library classes into one classes.jar"
+    group = "build"
+
     // Duplicates cause hard to catch errors, better to fail at compile time.
     duplicatesStrategy = DuplicatesStrategy.FAIL
-    dependsOn(tasks.getByName("copyJar"))
+    dependsOn("assemble", "copyJar")
+
     from(
         zipTree("build/app-classes/classes.jar"),
         zipTree("build/app-classes/library-jvm.jar")
     )
+
     destinationDirectory.set(layout.buildDirectory)
-    archiveBaseName = "classes"
+    archiveBaseName.set("classes")
 }
 
 tasks.named("assemble") {
-    dependsOn(tasks.getByName("androidSourcesJar"))
-    dependsOn(tasks.getByName("copyJar"))
-    dependsOn(tasks.getByName("makeJar"))
+    dependsOn("androidSourcesJar")
 }
 
 tasks.withType<KotlinJvmCompile> {
