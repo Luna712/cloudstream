@@ -19,7 +19,9 @@ jobs:
       run: chmod +x gradlew
 
     - name: Run Gradle
-      run: ./gradlew assemblePrereleaseDebug
+      run: |
+        ./gradlew assemblePrereleaseDebug build androidSourcesJar
+        ./gradlew makeJar # for classes.jar, has to be done after assemblePrerelease
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v5
