@@ -232,50 +232,33 @@ dependencies {
     })
 }
 
-val androidSourcesJar = tasks.register<Jar>("androidSourcesJar") {
+tasks.register<Jar>("androidSourcesJar") {
     archiveClassifier.set("sources")
     from(android.sourceSets.getByName("main").java.directories) // Full Sources
 }
 
-val copyJar = tasks.register<Copy>("copyJar") {
+tasks.register<Copy>("copyJar") {
     from(
         "build/intermediates/compile_app_classes_jar/prereleaseDebug/bundlePrereleaseDebugClassesToCompileJar",
         "../library/build/libs"
     )
     into("build/app-classes")
     include("classes.jar", "library-jvm*.jar")
-    rename("library-jvm.*.jar", "library-jvm.jar") // Remove version suffix
+    // Remove the version
+    rename("library-jvm.*.jar", "library-jvm.jar")
 }
 
-val makeJar = tasks.register<Jar>("makeJar") {
-    description = "Merges app and library classes into one classes.jar"
-    group = "build"
-
+// Merge the app classes and the library classes into classes.jar
+tasks.register<Jar>("makeJar") {
     // Duplicates cause hard to catch errors, better to fail at compile time.
     duplicatesStrategy = DuplicatesStrategy.FAIL
-    dependsOn(copyJar)
-
+    dependsOn(tasks.getByName("copyJar"))
     from(
         zipTree("build/app-classes/classes.jar"),
         zipTree("build/app-classes/library-jvm.jar")
     )
-
     destinationDirectory.set(layout.buildDirectory)
-    archiveBaseName.set("classes")
-}
-
-configurations {
-    consumable("sources") {
-        outgoing.artifact(androidSourcesJar)
-    }
-    consumable("classes") {
-        outgoing.artifact(makeJar)
-    }
-}
-
-tasks.named("assemble") {
-    dependsOn(androidSourcesJar)
-    finalizedBy(makeJar)
+    archiveBaseName = "classes"
 }
 
 tasks.withType<KotlinJvmCompile> {
