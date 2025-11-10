@@ -83,9 +83,11 @@ buildkonfig {
         buildTypes {
             getByName("debug") {
                 buildConfigField(FieldSpec.Type.BOOLEAN, "DEBUG", "true")
+                logger.quiet("Compiling library with debug flag")
             }
             getByName("release") {
                 buildConfigField(FieldSpec.Type.BOOLEAN, "DEBUG", "false")
+                logger.quiet("Compiling library with release flag")
             }
         }
     }
