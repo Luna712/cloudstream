@@ -31,8 +31,6 @@ kotlin {
         lint {
             targetSdk = libs.versions.targetSdk.get().toInt()
         }
-
-        publishLibraryVariants("debug", "release")
     }
 
     jvm()
