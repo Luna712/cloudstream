@@ -17,6 +17,7 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 
 kotlin {
     version = "1.0.1"
+
     android {
         // If this is the same com.lagradost.cloudstream3.R stops working
         namespace = "com.lagradost.api"
@@ -30,6 +31,8 @@ kotlin {
         lint {
             targetSdk = libs.versions.targetSdk.get().toInt()
         }
+
+        publishLibraryVariants("debug", "release")
     }
 
     jvm()
@@ -56,6 +59,9 @@ kotlin {
             implementation(libs.newpipeextractor)
             implementation(libs.tmdb.java) // TMDB API v3 Wrapper Made with RetroFit
         }
+
+        val androidDebug by getting
+        val androidRelease by getting
     }
 }
 
@@ -79,16 +85,14 @@ buildkonfig {
         )
     }
 
-    android {
-        buildTypes {
-            getByName("debug") {
-                buildConfigField(FieldSpec.Type.BOOLEAN, "DEBUG", "true")
-                logger.quiet("Compiling library with debug flag")
-            }
-            getByName("release") {
-                buildConfigField(FieldSpec.Type.BOOLEAN, "DEBUG", "false")
-                logger.quiet("Compiling library with release flag")
-            }
+    sourceSets {
+        val androidDebug by getting {
+            buildConfigField(FieldSpec.Type.BOOLEAN, "DEBUG", "true")
+            logger.quiet("Compiling library with debug flag")
+        }
+        val androidRelease by getting {
+            buildConfigField(FieldSpec.Type.BOOLEAN, "DEBUG", "false")
+            logger.quiet("Compiling library with release flag")
         }
     }
 }
