@@ -943,7 +943,7 @@ open class FullScreenPlayer : AbstractPlayerFragment() {
             if (!isCurrentTouchValid && isShowing && index == currentTapIndex && player.getIsPlaying()) {
                 onClickChange()
             }
-        }, 5000)
+        }, 3000)
     }
 
     // this is used because you don't want to hide UI when double tap seeking
