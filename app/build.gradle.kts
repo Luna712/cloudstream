@@ -261,6 +261,11 @@ tasks.register<Jar>("makeJar") {
     archiveBaseName = "classes"
 }
 
+tasks.named("assemblePrerelease") {
+    dependsOn(tasks.getByName("androidSourcesJar"))
+    dependsOn(tasks.getByName("makeJar"))
+}
+
 tasks.withType<KotlinJvmCompile> {
     compilerOptions {
         jvmTarget.set(javaTarget)
