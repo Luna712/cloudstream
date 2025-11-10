@@ -71,6 +71,14 @@ buildkonfig {
     exposeObjectWithName = "BuildConfig"
 
     defaultConfigs {
+        val isDebug = kotlin.runCatching { extra.get("isDebug") }.getOrNull() == true
+        if (isDebug) {
+            logger.quiet("Compiling library with debug flag")
+        } else {
+            logger.quiet("Compiling library with release flag")
+        }
+        buildConfigField(FieldSpec.Type.BOOLEAN, "DEBUG", isDebug.toString())
+
         // Reads local.properties
         val localProperties = gradleLocalProperties(rootDir, project.providers)
         buildConfigField(
