@@ -32,7 +32,7 @@ kotlin {
         }
     }
 
-    jvm()
+    // jvm()
 
     compilerOptions {
         freeCompilerArgs.addAll(
