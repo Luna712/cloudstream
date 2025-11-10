@@ -83,15 +83,20 @@ buildkonfig {
         )
     }
 
-    sourceSets {
-        val androidDebug by getting {
-            buildConfigField(FieldSpec.Type.BOOLEAN, "DEBUG", "true")
-            logger.quiet("Compiling library with debug flag")
-        }
-        val androidRelease by getting {
-            buildConfigField(FieldSpec.Type.BOOLEAN, "DEBUG", "false")
-            logger.quiet("Compiling library with release flag")
-        }
+    target(
+        name = "androidDebug",
+        sourceSets = listOf("androidDebug")
+    ) {
+        buildConfigField(FieldSpec.Type.BOOLEAN, "DEBUG", "true")
+        logger.quiet("Compiling library with debug flag")
+    }
+
+    target(
+        name = "androidRelease",
+        sourceSets = listOf("androidRelease")
+    ) {
+        buildConfigField(FieldSpec.Type.BOOLEAN, "DEBUG", "false")
+        logger.quiet("Compiling library with release flag")
     }
 }
 
