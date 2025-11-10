@@ -10,14 +10,14 @@ plugins {
     id("maven-publish")
     id("com.android.kotlin.multiplatform.library")
     id("com.codingfeline.buildkonfig")
-    id("org.jetbrains.dokka")
+    // id("org.jetbrains.dokka")
 }
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 
 kotlin {
     version = "1.0.1"
-    androidLibrary {
+    android {
         // If this is the same com.lagradost.cloudstream3.R stops working
         namespace = "com.lagradost.api"
         compileSdk = libs.versions.compileSdk.get().toInt()
@@ -96,7 +96,7 @@ publishing {
     }
 }
 
-dokka {
+/*dokka {
     moduleName = "Library"
     dokkaSourceSets {
         configureEach {
@@ -113,4 +113,4 @@ dokka {
             }
         }
     }
-}
+}*/
