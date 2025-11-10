@@ -1990,7 +1990,7 @@ open class FullScreenPlayer : AbstractPlayerFragment() {
             }
 
             playerControlsScroll.setOnScrollChangeListener { _, _, _, _, _ ->
-                delayHide()
+                autoHide()
             }
 
             exoProgress.setOnTouchListener { _, event ->
