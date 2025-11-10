@@ -17,10 +17,12 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 
 kotlin {
     version = "1.0.1"
-    android {
+    androidLibrary {
         // If this is the same com.lagradost.cloudstream3.R stops working
         namespace = "com.lagradost.api"
         compileSdk = libs.versions.compileSdk.get().toInt()
+        minSdk = libs.versions.minSdk.get().toInt()
+
         withJava()
         compilerOptions {
             jvmTarget.set(javaTarget)
