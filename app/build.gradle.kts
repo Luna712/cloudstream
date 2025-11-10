@@ -265,6 +265,9 @@ val makeJar = tasks.register<Jar>("makeJar") {
 }
 
 configurations {
+    consumable("sources") {
+        outgoing.artifact(androidSourcesJar)
+    }
     consumable("classes") {
         outgoing.artifact(makeJar)
     }
