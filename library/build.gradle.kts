@@ -57,9 +57,6 @@ kotlin {
             implementation(libs.newpipeextractor)
             implementation(libs.tmdb.java) // TMDB API v3 Wrapper Made with RetroFit
         }
-
-        val androidDebug by getting
-        val androidRelease by getting
     }
 }
 
@@ -81,22 +78,6 @@ buildkonfig {
             "MDL_API_KEY",
             (System.getenv("MDL_API_KEY") ?: localProperties["mdl.key"]).toString()
         )
-    }
-
-    target(
-        name = "androidDebug",
-        sourceSets = listOf("androidDebug")
-    ) {
-        buildConfigField(FieldSpec.Type.BOOLEAN, "DEBUG", "true")
-        logger.quiet("Compiling library with debug flag")
-    }
-
-    target(
-        name = "androidRelease",
-        sourceSets = listOf("androidRelease")
-    ) {
-        buildConfigField(FieldSpec.Type.BOOLEAN, "DEBUG", "false")
-        logger.quiet("Compiling library with release flag")
     }
 }
 
