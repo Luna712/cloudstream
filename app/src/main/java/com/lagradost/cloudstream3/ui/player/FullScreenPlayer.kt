@@ -1989,7 +1989,9 @@ open class FullScreenPlayer : AbstractPlayerFragment() {
                 return@setOnTouchListener handleMotionEvent(callView, event)
             }
 
-            playerControlsScroll.setOnScrollChangeListener { _ -> delayHide() }
+            playerControlsScroll.setOnScrollChangeListener { _, _, _, _, _ ->
+                delayHide()
+            }
 
             exoProgress.setOnTouchListener { _, event ->
                 // this makes the bar not disappear when sliding
