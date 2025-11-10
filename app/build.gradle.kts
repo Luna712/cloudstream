@@ -220,16 +220,8 @@ dependencies {
     implementation(libs.work.runtime.ktx)
     implementation(libs.nicehttp) // HTTP Lib
 
-    implementation(project(":library") {
-        // There does not seem to be a good way of getting the android flavor.
-        val isDebug = gradle.startParameter.taskRequests.any { task ->
-            task.args.any { arg ->
-                arg.contains("debug", true)
-            }
-        }
-
-        this.extra.set("isDebug", isDebug)
-    })
+    debugImplementation(project(":library"))
+    releaseImplementation(project(":library"))
 }
 
 val androidSourcesJar = tasks.register<Jar>("androidSourcesJar") {
