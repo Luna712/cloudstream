@@ -38,5 +38,4 @@ open class AStreamHub : ExtractorApi() {
         }
         return sources
     }
-
 }
