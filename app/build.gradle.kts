@@ -6,8 +6,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
     id("com.android.application")
-    id("kotlin-android")
-    id("org.jetbrains.dokka")
+    // id("org.jetbrains.dokka")
 }
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
@@ -145,6 +144,7 @@ android {
 
     buildFeatures {
         buildConfig = true
+        resValues = true
     }
 
     namespace = "com.lagradost.cloudstream3"
@@ -234,7 +234,7 @@ dependencies {
 
 tasks.register<Jar>("androidSourcesJar") {
     archiveClassifier.set("sources")
-    from(android.sourceSets.getByName("main").java.srcDirs) // Full Sources
+    from(android.sourceSets.getByName("main").java.directories) // Full Sources
 }
 
 tasks.register<Copy>("copyJar") {
@@ -265,14 +265,14 @@ tasks.withType<KotlinJvmCompile> {
     compilerOptions {
         jvmTarget.set(javaTarget)
         freeCompilerArgs.addAll(
-            "-Xjvm-default=all-compatibility",
+            "-jvm-default=enable",
             "-Xannotation-default-target=param-property",
             "-opt-in=com.lagradost.cloudstream3.Prerelease"
         )
     }
 }
 
-dokka {
+/*dokka {
     moduleName = "App"
     dokkaSourceSets {
         main {
@@ -289,4 +289,4 @@ dokka {
             }
         }
     }
-}
+}*/

@@ -8,16 +8,31 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 plugins {
     kotlin("multiplatform")
     id("maven-publish")
-    id("com.android.library")
+    id("com.android.kotlin.multiplatform.library")
     id("com.codingfeline.buildkonfig")
-    id("org.jetbrains.dokka")
+    // id("org.jetbrains.dokka")
 }
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 
 kotlin {
     version = "1.0.1"
-    androidTarget()
+
+    android {
+        // If this is the same com.lagradost.cloudstream3.R stops working
+        namespace = "com.lagradost.api"
+        compileSdk = libs.versions.compileSdk.get().toInt()
+        minSdk = libs.versions.minSdk.get().toInt()
+
+        withJava()
+        compilerOptions {
+            jvmTarget.set(javaTarget)
+        }
+        lint {
+            targetSdk = libs.versions.targetSdk.get().toInt()
+        }
+    }
+
     jvm()
 
     compilerOptions {
@@ -66,37 +81,11 @@ buildkonfig {
 
         // Reads local.properties
         val localProperties = gradleLocalProperties(rootDir, project.providers)
-
         buildConfigField(
             FieldSpec.Type.STRING,
-            "MDL_API_KEY", (System.getenv("MDL_API_KEY") ?: localProperties["mdl.key"]).toString()
+            "MDL_API_KEY",
+            (System.getenv("MDL_API_KEY") ?: localProperties["mdl.key"]).toString()
         )
-    }
-}
-
-android {
-    compileSdk = libs.versions.compileSdk.get().toInt()
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-
-    defaultConfig {
-        minSdk = libs.versions.minSdk.get().toInt()
-    }
-
-    // If this is the same com.lagradost.cloudstream3.R stops working
-    namespace = "com.lagradost.api"
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.toVersion(javaTarget.target)
-        targetCompatibility = JavaVersion.toVersion(javaTarget.target)
-    }
-
-    @Suppress("UnstableApiUsage")
-    testOptions {
-        targetSdk = libs.versions.targetSdk.get().toInt()
-    }
-
-    lint {
-        targetSdk = libs.versions.targetSdk.get().toInt()
     }
 }
 
@@ -108,7 +97,7 @@ publishing {
     }
 }
 
-dokka {
+/*dokka {
     moduleName = "Library"
     dokkaSourceSets {
         configureEach {
@@ -125,4 +114,4 @@ dokka {
             }
         }
     }
-}
+}*/
