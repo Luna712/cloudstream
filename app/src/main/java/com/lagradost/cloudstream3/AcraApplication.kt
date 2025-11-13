@@ -15,9 +15,6 @@ class AcraApplication {
 	companion object {
 		val context get() = CloudStreamApp.context
 
-		fun removeKeys(folder: String): Int? =
-			CloudStreamApp.removeKeys(folder)
-
 		fun <T> setKey(path: String, value: T) =
 			CloudStreamApp.setKey(path, value)
 
@@ -35,14 +32,5 @@ class AcraApplication {
 
 		inline fun <reified T : Any> getKey(folder: String, path: String, defVal: T?): T? =
 			CloudStreamApp.getKey(folder, path, defVal)
-
-		fun getKeys(folder: String): List<String>? =
-			CloudStreamApp.getKeys(folder)
-
-		fun removeKey(folder: String, path: String) =
-			CloudStreamApp.removeKey(folder, path)
-
-		fun removeKey(path: String) =
-			CloudStreamApp.removeKey(path)
 	}
 }
