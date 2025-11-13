@@ -62,7 +62,7 @@ class ExceptionHandler(val errorFile: File, val onError: (() -> Unit)) :
 }
 
 @Prerelease
-open class CloudStreamApp : Application(), SingletonImageLoader.Factory {
+class CloudStreamApp : Application(), SingletonImageLoader.Factory {
 
     override fun onCreate() {
         super.onCreate()
