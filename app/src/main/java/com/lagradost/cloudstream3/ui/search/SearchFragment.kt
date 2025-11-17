@@ -224,7 +224,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
         HomeFragment.configEvent.invoke(currentSpan)
 
         // Fix focus being lost
-        binding?.mainSearch?.requestFocus()
+        val searchText = view.findViewById<TextView>(androidx.appcompat.R.id.search_src_text)
+        searchText?.requestFocus()
     }
 
     override fun onBindingCreated(
@@ -240,8 +241,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
                     SearchHelper.handleSearchClickCallback(callback)
                 }
 
-            searchRoot.findViewById<TextView>(androidx.appcompat.R.id.search_src_text)?.tag =
-                "tv_no_focus_tag"
+            val searchText = searchRoot.findViewById<TextView>(androidx.appcompat.R.id.search_src_text)
+            searchText?.tag = "tv_no_focus_tag"
+            // Set a focus listener to show the keyboard when focused
+            searchText?.setOnFocusChangeListener { view, hasFocus ->
+                if (hasFocus) showInputMethod(view)
+            }
             searchAutofitResults.setRecycledViewPool(SearchAdapter.sharedPool)
             searchAutofitResults.adapter = adapter
             searchLoadingBar.alpha = 0f
@@ -435,13 +440,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
                     return true
                 }
             })
-
-            // Set a focus listener to show the keyboard when focused
-            setOnQueryTextFocusChangeListener { view, hasFocus ->
-                if (hasFocus) {
-                    showInputMethod(view)
-                }
-            }
         }
 
         binding.searchClearCallHistory.setOnClickListener {
