@@ -127,9 +127,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        activity?.window?.setSoftInputMode(
-            WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
-        )
         bottomSheetDialog?.ownShow()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
@@ -227,6 +224,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
         binding: FragmentSearchBinding,
         savedInstanceState: Bundle?
     ) {
+        activity?.window?.setSoftInputMode(
+            WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
+        )
+
         reloadRepos()
         binding.apply {
             val adapter =
