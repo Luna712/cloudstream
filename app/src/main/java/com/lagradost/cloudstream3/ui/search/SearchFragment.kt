@@ -437,11 +437,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
             })
 
             // Set a focus listener to show the keyboard when focused
-            setOnFocusChangeListener { view, hasFocus ->
-                if (!hasFocus) return
-                view.postDelayed({
+            setOnQueryTextFocusChangeListener { view, hasFocus ->
+                if (hasFocus) {
                     showInputMethod(view)
-                }, 200)
+                }
             }
         }
 
@@ -541,15 +540,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
                 listLock.unlock()
             }
         }
-
-
-        /*main_search.setOnQueryTextFocusChangeListener { _, b ->
-            if (b) {
-                // https://stackoverflow.com/questions/12022715/unable-to-show-keyboard-automatically-in-the-searchview
-                showInputMethod(view.findFocus())
-            }
-        }*/
-        //main_search.onActionViewExpanded()*/
 
         val masterAdapter =
             ParentItemAdapter(id = "masterAdapter".hashCode(), { callback ->
