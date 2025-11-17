@@ -222,6 +222,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
         currentSpan = view.context.getSpanCount()
         binding?.searchAutofitResults?.spanCount = currentSpan
         HomeFragment.configEvent.invoke(currentSpan)
+
+        // Fix focus being lost
+        binding?.mainSearch?.requestFocus()
     }
 
     override fun onBindingCreated(
@@ -237,11 +240,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
                     SearchHelper.handleSearchClickCallback(callback)
                 }
 
-            val searchTextView = searchRoot.findViewById<TextView>(androidx.appcompat.R.id.search_src_text)
-            searchTextView?.apply {
-                tag = "tv_no_focus_tag"
-                showInputMethod(this)
-            }
+            searchRoot.findViewById<TextView>(androidx.appcompat.R.id.search_src_text)?.tag =
+                "tv_no_focus_tag"
 
             searchAutofitResults.setRecycledViewPool(SearchAdapter.sharedPool)
             searchAutofitResults.adapter = adapter
@@ -413,33 +413,35 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
             binding.searchFilter.isFocusableInTouchMode = true
         }
 
-        binding.mainSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                search(query)
-
-                binding.mainSearch.let {
-                    hideKeyboard(it)
+        binding.mainSearch.apply {
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    search(query)
+                    hideKeyboard(this@apply)
+                    return true
                 }
 
-                return true
+                override fun onQueryTextChange(newText: String): Boolean {
+                    val showHistory = newText.isBlank()
+                    if (showHistory) {
+                        searchViewModel.clearSearch()
+                        searchViewModel.updateHistory()
+                    }
+                    binding.apply {
+                        searchHistoryHolder.isVisible = showHistory
+                        searchMasterRecycler.isVisible = !showHistory && isAdvancedSearch
+                        searchAutofitResults.isVisible = !showHistory && !isAdvancedSearch
+                    }
+
+                    return true
+                }
+            })
+
+            // Set a focus listener to show the keyboard when focused
+            setOnFocusChangeListener { view, hasFocus ->
+                if (hasFocus) showInputMethod(view)
             }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                //searchViewModel.quickSearch(newText)
-                val showHistory = newText.isBlank()
-                if (showHistory) {
-                    searchViewModel.clearSearch()
-                    searchViewModel.updateHistory()
-                }
-                binding.apply {
-                    searchHistoryHolder.isVisible = showHistory
-                    searchMasterRecycler.isVisible = !showHistory && isAdvancedSearch
-                    searchAutofitResults.isVisible = !showHistory && !isAdvancedSearch
-                }
-
-                return true
-            }
-        })
+        }
 
         binding.searchClearCallHistory.setOnClickListener {
             activity?.let { ctx ->
