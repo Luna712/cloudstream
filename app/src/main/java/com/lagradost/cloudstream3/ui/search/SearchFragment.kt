@@ -127,6 +127,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        activity?.window?.setSoftInputMode(
+            WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
+        )
         bottomSheetDialog?.ownShow()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
@@ -224,10 +227,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
         binding: FragmentSearchBinding,
         savedInstanceState: Bundle?
     ) {
-        activity?.window?.setSoftInputMode(
-            WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
-        )
-
         reloadRepos()
         binding.apply {
             val adapter =
@@ -237,8 +236,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
                     SearchHelper.handleSearchClickCallback(callback)
                 }
 
-            searchRoot.findViewById<TextView>(androidx.appcompat.R.id.search_src_text)?.tag =
-                "tv_no_focus_tag"
+            val searchTextView = searchRoot.findViewById<TextView>(androidx.appcompat.R.id.search_src_text)
+            searchTextView?.apply {
+                tag = "tv_no_focus_tag"
+                showInputMethod(this)
+            }
+
             searchAutofitResults.setRecycledViewPool(SearchAdapter.sharedPool)
             searchAutofitResults.adapter = adapter
             searchLoadingBar.alpha = 0f
