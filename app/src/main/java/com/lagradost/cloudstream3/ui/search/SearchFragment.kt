@@ -415,30 +415,28 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
             binding.searchFilter.isFocusableInTouchMode = true
         }
 
-        binding.mainSearch.apply {
-            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String): Boolean {
-                    search(query)
-                    hideKeyboard(this@apply)
-                    return true
+        binding.mainSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                search(query)
+                hideKeyboard(binding.mainSearch)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                val showHistory = newText.isBlank()
+                if (showHistory) {
+                    searchViewModel.clearSearch()
+                    searchViewModel.updateHistory()
+                }
+                binding.apply {
+                    searchHistoryHolder.isVisible = showHistory
+                    searchMasterRecycler.isVisible = !showHistory && isAdvancedSearch
+                    searchAutofitResults.isVisible = !showHistory && !isAdvancedSearch
                 }
 
-                override fun onQueryTextChange(newText: String): Boolean {
-                    val showHistory = newText.isBlank()
-                    if (showHistory) {
-                        searchViewModel.clearSearch()
-                        searchViewModel.updateHistory()
-                    }
-                    binding.apply {
-                        searchHistoryHolder.isVisible = showHistory
-                        searchMasterRecycler.isVisible = !showHistory && isAdvancedSearch
-                        searchAutofitResults.isVisible = !showHistory && !isAdvancedSearch
-                    }
-
-                    return true
-                }
-            })
-        }
+                return true
+            }
+        })
 
         binding.searchClearCallHistory.setOnClickListener {
             activity?.let { ctx ->
