@@ -436,11 +436,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
                 }
             })
 
-            showInputMethod(this)
-
             // Set a focus listener to show the keyboard when focused
             setOnFocusChangeListener { view, hasFocus ->
-                if (hasFocus) showInputMethod(view)
+                if (!hasFocus) return
+                view.postDelayed({
+                    showInputMethod(view)
+                }, 200)
             }
         }
 
