@@ -89,7 +89,7 @@
                 android:id="@+id/subtitle_offset_input"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:autofillHints="no"
                 android:gravity="center"
                 android:hint="@string/subtitle_offset_hint"
