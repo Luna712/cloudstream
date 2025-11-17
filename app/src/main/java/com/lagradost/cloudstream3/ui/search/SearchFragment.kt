@@ -222,10 +222,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
         currentSpan = view.context.getSpanCount()
         binding?.searchAutofitResults?.spanCount = currentSpan
         HomeFragment.configEvent.invoke(currentSpan)
-
-        // Fix focus being lost
-        val searchText = view.findViewById<TextView>(androidx.appcompat.R.id.search_src_text)
-        searchText?.requestFocus()
     }
 
     override fun onBindingCreated(
@@ -247,6 +243,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(
             searchText?.setOnFocusChangeListener { view, hasFocus ->
                 if (hasFocus) showInputMethod(view)
             }
+            // Ensure focus isn't lost
+            searchText?.post { searchText?.requestFocus() }
             searchAutofitResults.setRecycledViewPool(SearchAdapter.sharedPool)
             searchAutofitResults.adapter = adapter
             searchLoadingBar.alpha = 0f
