@@ -480,13 +480,15 @@ object UIHelper {
                 if (cutout != null) {
                     val left = if (!leftCheck) 0 else cutout.safeInsetLeft
                     val right = if (!rightCheck) 0 else cutout.safeInsetRight
+                    val bottom = cutout.safeInsetBottom
                     view.overlay.clear()
-                    if (left > 0 || right > 0) {
+                    if (left > 0 || right > 0 || bottom > 0) {
                         view.overlay.add(
                             CutoutOverlayDrawable(
                                 view,
                                 leftCutout = left,
-                                rightCutout = right
+                                rightCutout = right,
+                                bottomCutout = bottom
                             )
                         )
                     }
@@ -650,6 +652,7 @@ private class CutoutOverlayDrawable(
     private val view: View,
     private val leftCutout: Int,
     private val rightCutout: Int,
+    private val bottomCutout: Int,
 ) : Drawable() {
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.BLACK
@@ -657,17 +660,29 @@ private class CutoutOverlayDrawable(
     }
 
     override fun draw(canvas: Canvas) {
-        if (leftCutout > 0) canvas.drawRect(
-            0f,
-            0f,
-            leftCutout.toFloat(),
-            view.height.toFloat(),
-            paint
-        )
+        if (leftCutout > 0) {
+            canvas.drawRect(
+                0f, 0f,
+                leftCutout.toFloat(),
+                view.height.toFloat(),
+                paint
+            )
+        }
+
         if (rightCutout > 0) {
             canvas.drawRect(
                 view.width - rightCutout.toFloat(),
                 0f, view.width.toFloat(),
+                view.height.toFloat(),
+                paint
+            )
+        }
+
+        if (bottomCutout > 0) {
+            canvas.drawRect(
+                0f,
+                view.height - bottomCutout.toFloat(),
+                view.width.toFloat(),
                 view.height.toFloat(),
                 paint
             )
