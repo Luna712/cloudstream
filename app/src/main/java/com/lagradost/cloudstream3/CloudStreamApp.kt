@@ -89,7 +89,7 @@ class CloudStreamApp : Application(), SingletonImageLoader.Factory {
     }
 
     override fun newImageLoader(context: PlatformContext): ImageLoader {
-        // Coil module will be initialized and setSafe globally when first `loadImage()` is invoked.
+        // Coil module will be initialized and setSafe globally when first loadImage() is invoked.
         return buildImageLoader(applicationContext)
     }
 
