@@ -474,8 +474,8 @@ open class ResultFragmentPhone : FullScreenPlayer() {
 
             activity?.attachBackPressedCallback("ResultFragmentPhone") {
                 if (resultOverlappingPanels.getSelectedPanel().ordinal == 1) {
-                    resultOverlappingPanels.closePanels()
-                }
+                    activity?.popCurrentPage()
+                } else resultOverlappingPanels.closePanels()
             }
 
             resultMiniSync.setRecycledViewPool(ImageAdapter.sharedPool)
