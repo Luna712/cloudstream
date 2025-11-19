@@ -118,16 +118,13 @@ open class ResultFragmentPhone : FullScreenPlayer() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel =
-            ViewModelProvider(this)[ResultViewModel2::class.java]
-        syncModel =
-            ViewModelProvider(this)[SyncViewModel::class.java]
+        viewModel = ViewModelProvider(this)[ResultViewModel2::class.java]
+        syncModel = ViewModelProvider(this)[SyncViewModel::class.java]
         updateUIEvent += ::updateUI
 
         val root = super.onCreateView(inflater, container, savedInstanceState) ?: return null
         FragmentResultSwipeBinding.bind(root).let { bind ->
-            resultBinding =
-                bind.fragmentResult//FragmentResultBinding.bind(binding.root.findViewById(R.id.fragment_result))
+            resultBinding = bind.fragmentResult
             recommendationBinding = bind.resultRecommendations
             syncBinding = bind.resultSync
             binding = bind
@@ -138,7 +135,6 @@ open class ResultFragmentPhone : FullScreenPlayer() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         PanelsChildGestureRegionObserver.Provider.get().apply {
             resultBinding?.resultCastItems?.let { register(it) }
         }
@@ -487,11 +483,9 @@ open class ResultFragmentPhone : FullScreenPlayer() {
                 nextFocusDown = R.id.result_sync_set_score,
                 clickCallback = { action ->
                     if (action == IMAGE_CLICK || action == IMAGE_LONG_CLICK) {
-                        if (binding?.resultOverlappingPanels?.getSelectedPanel()?.ordinal == 1) {
-                            binding?.resultOverlappingPanels?.openStartPanel()
-                        } else {
-                            binding?.resultOverlappingPanels?.closePanels()
-                        }
+                        if (resultOverlappingPanels.getSelectedPanel().ordinal == 1) {
+                            resultOverlappingPanels.openStartPanel()
+                        } else resultOverlappingPanels.closePanels()
                     }
                 })
             resultSubscribe.setOnClickListener {
