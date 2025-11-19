@@ -70,6 +70,8 @@ import com.lagradost.cloudstream3.utils.AppContextUtils.openBrowser
 import com.lagradost.cloudstream3.utils.AppContextUtils.updateHasTrailers
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.attachBackPressedCallback
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.detachBackPressedCallback
+import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.disableBackPressedCallback
+import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.enableBackPressedCallback
 import com.lagradost.cloudstream3.utils.BatteryOptimizationChecker.openBatteryOptimizationSettings
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.ImageLoader.loadImage
@@ -246,7 +248,7 @@ open class ResultFragmentPhone : FullScreenPlayer() {
         resultBinding = null
         syncBinding = null
         recommendationBinding = null
-        activity?.detachBackPressedCallback("ResultFragmentPhone")
+        activity?.detachBackPressedCallback("ClosePanels")
         super.onDestroyView()
     }
 
@@ -472,9 +474,14 @@ open class ResultFragmentPhone : FullScreenPlayer() {
                 activity?.popCurrentPage()
             }
 
-            activity?.attachBackPressedCallback("ResultFragmentPhone") {
+            activity?.attachBackPressedCallback("ClosePanels") {
                 if (resultOverlappingPanels.getSelectedPanel().ordinal == 1) {
-                    activity?.popCurrentPage()
+                    // If we don't disable we end up in a loop with default behavior calling
+                    // this callback as well, so we disable it, run default behavior,
+                    // then re-enable this callback so it can be used for next back press.
+                    activity?.disableBackPressedCallback("ClosePanels")
+                    activity?.onBackPressedDispatcher?.onBackPressed()
+                    activity?.enableBackPressedCallback("ClosePanels")
                 } else resultOverlappingPanels.closePanels()
             }
 
