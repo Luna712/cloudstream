@@ -155,6 +155,25 @@ android {
         buildConfig = true
     }
 
+    packaging {
+        jniLibs {
+            keepDebugSymbols.addAll(
+                listOf(
+                    "**/libavcodec.so",
+                    "**/libavformat.so",
+                    "**/libavutil.so",
+                    "**/libconscrypt_jni.so",
+                    "**/libgojni.so",
+                    "**/libmedia3ext.so",
+                    "**/libmediainfo.so",
+                    "**/libquickjs.so",
+                    "**/libswresample.so",
+                    "**/libswscale.so"
+                )
+            )
+        }
+    }
+
     namespace = "com.lagradost.cloudstream3"
 }
 
