@@ -68,6 +68,8 @@ import com.lagradost.cloudstream3.utils.AppContextUtils.isCastApiAvailable
 import com.lagradost.cloudstream3.utils.AppContextUtils.loadCache
 import com.lagradost.cloudstream3.utils.AppContextUtils.openBrowser
 import com.lagradost.cloudstream3.utils.AppContextUtils.updateHasTrailers
+import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.attachBackPressedCallback
+import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.detachBackPressedCallback
 import com.lagradost.cloudstream3.utils.BatteryOptimizationChecker.openBatteryOptimizationSettings
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.ImageLoader.loadImage
@@ -248,6 +250,7 @@ open class ResultFragmentPhone : FullScreenPlayer() {
         resultBinding = null
         syncBinding = null
         recommendationBinding = null
+        activity?.detachBackPressedCallback("ResultFragmentPhone")
         super.onDestroyView()
     }
 
@@ -471,6 +474,12 @@ open class ResultFragmentPhone : FullScreenPlayer() {
             resultOverlappingPanels.setEndPanelLockState(OverlappingPanelsLayout.LockState.CLOSE)
             resultBack.setOnClickListener {
                 activity?.popCurrentPage()
+            }
+
+            activity?.attachBackPressedCallback("ResultFragmentPhone") {
+                if (resultOverlappingPanels.getSelectedPanel().ordinal == 1) {
+                    resultOverlappingPanels.closePanels()
+                }
             }
 
             resultMiniSync.setRecycledViewPool(ImageAdapter.sharedPool)
