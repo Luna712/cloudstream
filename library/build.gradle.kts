@@ -36,9 +36,9 @@ kotlin {
     jvm()
 
     compilerOptions {
+        progressiveMode.set(true)
         freeCompilerArgs.addAll(
             "-Xexpect-actual-classes",
-            "-Xreport-perf",
             "-Xannotation-default-target=param-property"
         )
     }
