@@ -275,6 +275,7 @@ tasks.withType<KotlinJvmCompile> {
         freeCompilerArgs.addAll(
             "-jvm-default=enable",
             "-Xannotation-default-target=param-property",
+            "-Xreport-perf",
             "-opt-in=com.lagradost.cloudstream3.Prerelease"
         )
     }
