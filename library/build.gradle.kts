@@ -20,16 +20,11 @@ kotlin {
     androidTarget()
     jvm()
 
-    compilerOptions {
-        freeCompilerArgs.addAll(
-            "-Xexpect-actual-classes",
-            "-Xannotation-default-target=param-property"
-        )
-    }
-
     sourceSets {
         all {
             languageSettings.optIn("com.lagradost.cloudstream3.Prerelease")
+            languageSettings.enableLanguageFeature("ExpectActualClasses")
+            languageSettings.enableLanguageFeature("PropertyParamAnnotationDefaultTargetMode")
         }
 
         commonMain.dependencies {
