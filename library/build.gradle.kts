@@ -38,6 +38,7 @@ kotlin {
     compilerOptions {
         freeCompilerArgs.addAll(
             "-Xexpect-actual-classes",
+            "-Xreport-perf",
             "-Xannotation-default-target=param-property"
         )
     }
