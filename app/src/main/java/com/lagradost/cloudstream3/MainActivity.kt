@@ -704,6 +704,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         broadcastIntent.setClass(this, VideoDownloadRestartReceiver::class.java)
         this.sendBroadcast(broadcastIntent)
         afterPluginsLoadedEvent -= ::onAllPluginsLoaded
+        detachBackPressedCallback("MainActivityDefault")
         super.onDestroy()
     }
 
@@ -1659,8 +1660,6 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             if (navDestination.matchDestination(R.id.navigation_home)) {
                 attachBackPressedCallback("MainActivity") {
                     showConfirmExitDialog(settingsManager)
-                    setNavigationBarColorCompat(R.attr.primaryGrayBackground)
-                    updateLocale()
                 }
             } else detachBackPressedCallback("MainActivity")
         }
