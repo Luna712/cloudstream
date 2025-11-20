@@ -275,9 +275,10 @@ tasks.withType<KotlinJvmCompile> {
         jvmTarget.set(javaTarget)
         jvmDefault.set(JvmDefaultMode.ENABLE)
         optIn.add("com.lagradost.cloudstream3.Prerelease")
-        languageSettings.enableLanguageFeature("PropertyParamAnnotationDefaultTargetMode")
         // freeCompilerArgs.add("-Xannotation-default-target=param-property")
     }
+
+    languageSettings.enableLanguageFeature("PropertyParamAnnotationDefaultTargetMode")
 }
 
 dokka {
