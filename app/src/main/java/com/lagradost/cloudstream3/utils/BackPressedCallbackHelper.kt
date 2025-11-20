@@ -7,7 +7,7 @@ import java.util.WeakHashMap
 object BackPressedCallbackHelper {
     private val backPressedCallbacks = WeakHashMap<ComponentActivity, MutableMap<String, OnBackPressedCallback>>()
 
-    internal class CallbackHelper(
+    class CallbackHelper(
         private val activity: ComponentActivity,
         private val callback: OnBackPressedCallback
     ) {
