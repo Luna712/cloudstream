@@ -272,10 +272,10 @@ tasks.register<Jar>("makeJar") {
 tasks.withType<KotlinJvmCompile> {
     compilerOptions {
         jvmTarget.set(javaTarget)
+        progressiveMode.set(true)
         freeCompilerArgs.addAll(
             "-jvm-default=enable",
             "-Xannotation-default-target=param-property",
-            "-Xreport-perf",
             "-opt-in=com.lagradost.cloudstream3.Prerelease"
         )
     }
