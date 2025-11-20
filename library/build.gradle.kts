@@ -2,6 +2,7 @@ import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.codingfeline.buildkonfig.compiler.FieldSpec
 import org.jetbrains.dokka.gradle.engine.parameters.KotlinPlatform
 import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
+import org.jetbrains.kotlin.config.LanguageFeature
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
@@ -22,9 +23,11 @@ kotlin {
 
     sourceSets {
         all {
-            languageSettings.optIn("com.lagradost.cloudstream3.Prerelease")
-            languageSettings.enableLanguageFeature("ExpectActualClasses")
-            languageSettings.enableLanguageFeature("PropertyParamAnnotationDefaultTargetMode")
+            languageSettings {
+                enableLanguageFeature(LanguageFeature.ExpectActualClasses.toString())
+                enableLanguageFeature(LanguageFeature.PropertyParamAnnotationDefaultTargetMode.toString())
+                optIn("com.lagradost.cloudstream3.Prerelease")
+            }
         }
 
         commonMain.dependencies {
