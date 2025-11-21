@@ -616,7 +616,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
     @SuppressLint("ApplySharedPref") // commit since the op needs to be synchronous
     private fun showConfirmExitDialog(context: Context, settingsManager: SharedPreferences) {
-        val confirmBeforeExit = settingsManager.getInt(getString(R.string.confirm_exit_key), -1)
+        val confirmBeforeExit = settingsManager.getInt(context.getString(R.string.confirm_exit_key), -1)
         if (confirmBeforeExit == 1 || (confirmBeforeExit == -1 && isLayout(PHONE))) {
             // finish() causes a bug on some TVs where player
             // may keep playing after closing the app.
@@ -632,7 +632,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
             .setNegativeButton(R.string.no) { _, _ -> /* NO-OP */ }
             .setPositiveButton(R.string.yes) { _, _ ->
                 if (dontShowAgainCheck.isChecked) {
-                    settingsManager.edit().putInt(getString(R.string.confirm_exit_key), 1).commit()
+                    settingsManager.edit().putInt(context.getString(R.string.confirm_exit_key), 1).commit()
                 }
                 // finish() causes a bug on some TVs where player
                 // may keep playing after closing the app.
