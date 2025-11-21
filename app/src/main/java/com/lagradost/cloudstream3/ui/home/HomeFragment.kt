@@ -5,7 +5,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -619,7 +618,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     }
 
     @SuppressLint("ApplySharedPref") // commit since the op needs to be synchronous
-    private fun showConfirmExitDialog(context: Context, settingsManager: SharedPreferences) {
+    private fun showConfirmExitDialog(context: Context) {
+        val settingsManager = PreferenceManager.getDefaultSharedPreferences(context)
         val confirmBeforeExit = settingsManager.getInt(context.getString(R.string.confirm_exit_key), -1)
         if (confirmBeforeExit == 1 || (confirmBeforeExit == -1 && isLayout(PHONE))) {
             // finish() causes a bug on some TVs where player
@@ -661,7 +661,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
     @SuppressLint("SetTextI18n")
     override fun onBindingCreated(binding: FragmentHomeBinding) {
-        context?.let { HomeChildItemAdapter.updatePosterSize(it) }
+        context?.let { ctx ->
+            HomeChildItemAdapter.updatePosterSize(ctx)
+            activity?.attachBackPressedCallback("HomeFragment") {
+                showConfirmExitDialog(ctx)
+            }
+        }
         binding.apply {
             homeApiFab.setOnClickListener(apiChangeClickListener)
             homeApiFab.setOnLongClickListener {
@@ -760,10 +765,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                     false
                 ) && isLayout(PHONE)
             binding.homeRandom.visibility = View.GONE
-
-            activity?.attachBackPressedCallback("HomeFragment") {
-                showConfirmExitDialog(ctx, settingsManager)
-            }
         }
 
         observe(homeViewModel.apiName) { apiName ->
