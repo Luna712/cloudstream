@@ -5,12 +5,14 @@ import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.ArrayAdapter
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
@@ -62,6 +64,8 @@ import com.lagradost.cloudstream3.utils.AppContextUtils.loadSearchResult
 import com.lagradost.cloudstream3.utils.AppContextUtils.ownHide
 import com.lagradost.cloudstream3.utils.AppContextUtils.ownShow
 import com.lagradost.cloudstream3.utils.AppContextUtils.setDefaultFocus
+import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.attachBackPressedCallback
+import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.detachBackPressedCallback
 import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.Event
@@ -74,6 +78,7 @@ import com.lagradost.cloudstream3.utils.UIHelper.navigate
 import com.lagradost.cloudstream3.utils.UIHelper.popupMenuNoIconsAndNoStringRes
 import com.lagradost.cloudstream3.utils.UIHelper.toPx
 import com.lagradost.cloudstream3.utils.txt
+import kotlin.system.exitProcess
 import androidx.core.net.toUri
 import androidx.core.view.isInvisible
 
@@ -564,6 +569,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
     override fun onDestroyView() {
         bottomSheetDialog?.ownHide()
+        activity?.detachBackPressedCallback("HomeFragment")
         super.onDestroyView()
     }
 
@@ -608,6 +614,34 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         }
     }
 
+    @SuppressLint("ApplySharedPref") // commit since the op needs to be synchronous
+    private fun showConfirmExitDialog(context: Context, settingsManager: SharedPreferences) {
+        val confirmBeforeExit = settingsManager.getInt(getString(R.string.confirm_exit_key), -1)
+        if (confirmBeforeExit == 1 || (confirmBeforeExit == -1 && isLayout(PHONE))) {
+            // finish() causes a bug on some TVs where player
+            // may keep playing after closing the app.
+            if (isLayout(TV)) exitProcess(0) else activity?.finish()
+            return
+        }
+
+        val dialogView = layoutInflater.inflate(R.layout.confirm_exit_dialog, null)
+        val dontShowAgainCheck: CheckBox = dialogView.findViewById(R.id.checkboxDontShowAgain)
+        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+        builder.setView(dialogView)
+            .setTitle(R.string.confirm_exit_dialog)
+            .setNegativeButton(R.string.no) { _, _ -> /* NO-OP */ }
+            .setPositiveButton(R.string.yes) { _, _ ->
+                if (dontShowAgainCheck.isChecked) {
+                    settingsManager.edit().putInt(getString(R.string.confirm_exit_key), 1).commit()
+                }
+                // finish() causes a bug on some TVs where player
+                // may keep playing after closing the app.
+                if (isLayout(TV)) exitProcess(0) else activity?.finish()
+            }
+
+        builder.show().setDefaultFocus()
+    }
+
     override fun fixLayout(view: View) {
         fixSystemBarsPadding(
             view,
@@ -625,8 +659,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     override fun onBindingCreated(binding: FragmentHomeBinding) {
         context?.let { HomeChildItemAdapter.updatePosterSize(it) }
         binding.apply {
-            //homeChangeApiLoading.setOnClickListener(apiChangeClickListener)
-            //homeChangeApiLoading.setOnClickListener(apiChangeClickListener)
             homeApiFab.setOnClickListener(apiChangeClickListener)
             homeApiFab.setOnLongClickListener {
                 if (currentApiName == noneApi.name) return@setOnLongClickListener false
@@ -715,15 +747,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
         }
 
-        //Load value for toggling Random button. Hide at startup
-        context?.let {
-            val settingsManager = PreferenceManager.getDefaultSharedPreferences(it)
+        // Load value for toggling Random button. Hide at startup
+        context?.let { ctx ->
+            val settingsManager = PreferenceManager.getDefaultSharedPreferences(ctx)
             toggleRandomButton =
                 settingsManager.getBoolean(
                     getString(R.string.random_button_key),
                     false
                 ) && isLayout(PHONE)
             binding.homeRandom.visibility = View.GONE
+
+            activity?.attachBackPressedCallback("HomeFragment") {
+                showConfirmExitDialog(ctx, settingsManager)
+            }
         }
 
         observe(homeViewModel.apiName) { apiName ->

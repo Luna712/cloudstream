@@ -1,11 +1,9 @@
 package com.lagradost.cloudstream3
 
 import android.animation.ValueAnimator
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.graphics.Rect
@@ -20,7 +18,6 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -188,7 +185,6 @@ import java.net.URLDecoder
 import java.nio.charset.Charset
 import kotlin.math.abs
 import kotlin.math.absoluteValue
-import kotlin.system.exitProcess
 import androidx.core.net.toUri
 import androidx.tvprovider.media.tv.Channel
 import androidx.tvprovider.media.tv.TvContractCompat
@@ -659,35 +655,6 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         onUserLeaveHint(this)
     }
 
-    @SuppressLint("ApplySharedPref") // commit since the op needs to be synchronous
-    private fun showConfirmExitDialog(settingsManager: SharedPreferences) {
-        val confirmBeforeExit = settingsManager.getInt(getString(R.string.confirm_exit_key), -1)
-
-        if (confirmBeforeExit == 1 || (confirmBeforeExit == -1 && isLayout(PHONE))) {
-            // finish() causes a bug on some TVs where player
-            // may keep playing after closing the app.
-            if (isLayout(TV)) exitProcess(0) else finish()
-            return
-        }
-
-        val dialogView = layoutInflater.inflate(R.layout.confirm_exit_dialog, null)
-        val dontShowAgainCheck: CheckBox = dialogView.findViewById(R.id.checkboxDontShowAgain)
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setView(dialogView)
-            .setTitle(R.string.confirm_exit_dialog)
-            .setNegativeButton(R.string.no) { _, _ -> /*NO-OP*/ }
-            .setPositiveButton(R.string.yes) { _, _ ->
-                if (dontShowAgainCheck.isChecked) {
-                    settingsManager.edit().putInt(getString(R.string.confirm_exit_key), 1).commit()
-                }
-                // finish() causes a bug on some TVs where player
-                // may keep playing after closing the app.
-                if (isLayout(TV)) exitProcess(0) else finish()
-            }
-
-        builder.show().setDefaultFocus()
-    }
-
     override fun onDestroy() {
         filesToDelete.forEach { path ->
             val result = File(path).deleteRecursively()
@@ -703,7 +670,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         broadcastIntent.setClass(this, VideoDownloadRestartReceiver::class.java)
         this.sendBroadcast(broadcastIntent)
         afterPluginsLoadedEvent -= ::onAllPluginsLoaded
-        detachBackPressedCallback("MainActivityDefault")
+        detachBackPressedCallback("MainActivity")
         super.onDestroy()
     }
 
@@ -1655,12 +1622,6 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
                     this.putString(SearchFragment.SEARCH_QUERY, nextSearchQuery)
                 }
             }
-
-            if (navDestination.matchDestination(R.id.navigation_home)) {
-                attachBackPressedCallback("MainActivity") {
-                    showConfirmExitDialog(settingsManager)
-                }
-            } else detachBackPressedCallback("MainActivity")
         }
 
         //val navController = findNavController(R.id.nav_host_fragment)
@@ -2022,7 +1983,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
 //            }
 //        }
 
-        attachBackPressedCallback("MainActivityDefault") {
+        attachBackPressedCallback("MainActivity") {
             setNavigationBarColorCompat(R.attr.primaryGrayBackground)
             updateLocale()
             runDefault()
