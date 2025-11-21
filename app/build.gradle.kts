@@ -241,7 +241,7 @@ dependencies {
     })
 }
 
-/*tasks.register<Jar>("androidSourcesJar") {
+tasks.register<Jar>("androidSourcesJar") {
     archiveClassifier.set("sources")
     from(android.sourceSets.getByName("main").java.directories) // Full Sources
 }
@@ -268,7 +268,7 @@ tasks.register<Jar>("makeJar") {
     )
     destinationDirectory.set(layout.buildDirectory)
     archiveBaseName = "classes"
-}*/
+}
 
 tasks.withType<KotlinJvmCompile> {
     compilerOptions {
