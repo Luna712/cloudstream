@@ -14,24 +14,32 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
-fun getGitCommitHash(): String {
-    return try {
-        val headFile = file("${project.rootDir}/.git/HEAD")
+abstract class GenerateGitHashTask : DefaultTask() {
+    @get:OutputFile
+    abstract val outputFile: RegularFileProperty
 
-        // Read the commit hash from .git/HEAD
-        if (headFile.exists()) {
-            val headContent = headFile.readText().trim()
-            if (headContent.startsWith("ref:")) {
-                val refPath = headContent.substring(5) // e.g., refs/heads/main
-                val commitFile = file("${project.rootDir}/.git/$refPath")
+    @TaskAction
+    fun run() {
+        val head = project.file(".git/HEAD")
+        val hash = if (head.exists()) {
+            val text = head.readText().trim()
+            if (text.startsWith("ref:")) {
+                val ref = text.removePrefix("ref:").trim()
+                val commitFile = project.file(".git/$ref")
                 if (commitFile.exists()) commitFile.readText().trim() else ""
-            } else headContent // If it's a detached HEAD (commit hash directly)
-        } else {
-            "" // If .git/HEAD doesn't exist
-        }.take(7) // Return the short commit hash
-    } catch (_: Throwable) {
-        "" // Just return an empty string if any exception occurs
+            } else text
+        } else ""
+
+        outputFile.get().asFile.writeText(hash.take(7))
     }
+}
+
+val generateGitHash = tasks.register("generateGitHash", GenerateGitHashTask::class) {
+    outputFile.set(layout.buildDirectory.file("generated/git/commit-hash.txt"))
+}
+
+val commitHashProvider = generateGitHash.map {
+    it.outputFile.get().asFile.readText().trim()
 }
 
 android {
@@ -65,7 +73,7 @@ android {
         versionName = "4.6.1"
 
         resValue("string", "app_version", "${defaultConfig.versionName}${versionNameSuffix ?: ""}")
-        resValue("string", "commit_hash", getGitCommitHash())
+        resValue("string", "commit_hash", commitHashProvider.orElse("").get())
         resValue("bool", "is_prerelease", "false")
 
         manifestPlaceholders["target_sdk_version"] = libs.versions.targetSdk.get()
