@@ -729,9 +729,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
         }
 
-        // Load value for toggling Random button. Hide at startup
-        context?.let { ctx ->
-            val settingsManager = PreferenceManager.getDefaultSharedPreferences(ctx)
+        //Load value for toggling Random button. Hide at startup
+        context?.let {
+            val settingsManager = PreferenceManager.getDefaultSharedPreferences(it)
             toggleRandomButton =
                 settingsManager.getBoolean(
                     getString(R.string.random_button_key),
