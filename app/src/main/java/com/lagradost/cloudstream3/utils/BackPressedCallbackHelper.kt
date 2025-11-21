@@ -10,7 +10,7 @@ object BackPressedCallbackHelper {
     class CallbackUtils(
         private val activity: ComponentActivity,
         private val callback: OnBackPressedCallback,
-    ) : ComponentActivity by activity {
+    ) {
         fun runDefault() {
             val wasEnabled = callback.isEnabled
             callback.isEnabled = false
