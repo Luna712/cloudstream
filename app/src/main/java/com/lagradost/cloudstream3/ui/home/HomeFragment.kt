@@ -536,11 +536,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        bottomSheetDialog?.ownShow()
         activity?.attachBackPressedCallback("HomeFragment") {
-            showConfirmExitDialog()
+            activity?.showConfirmExitDialog()
         }
 
+        bottomSheetDialog?.ownShow()
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
