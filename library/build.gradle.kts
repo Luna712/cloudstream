@@ -10,7 +10,7 @@ plugins {
     id("maven-publish")
     id("com.android.kotlin.multiplatform.library")
     id("com.codingfeline.buildkonfig")
-    // id("org.jetbrains.dokka")
+    id("org.jetbrains.dokka")
 }
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
@@ -36,7 +36,6 @@ kotlin {
     jvm()
 
     compilerOptions {
-        progressiveMode.set(true)
         freeCompilerArgs.addAll(
             "-Xexpect-actual-classes",
             "-Xannotation-default-target=param-property"
@@ -98,7 +97,7 @@ publishing {
     }
 }
 
-/*dokka {
+dokka {
     moduleName = "Library"
     dokkaSourceSets {
         configureEach {
@@ -115,4 +114,4 @@ publishing {
             }
         }
     }
-}*/
+}
