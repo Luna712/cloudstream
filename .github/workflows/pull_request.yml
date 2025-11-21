@@ -22,6 +22,7 @@ jobs:
       with:
         cache-encryption-key: ${{ secrets.GRADLE_ENCRYPTION_KEY }}
         cache-read-only: false
+        gradle-version: 9.2.1
 
     - name: Run Gradle
       run: gradle assemblePrereleaseDebug
