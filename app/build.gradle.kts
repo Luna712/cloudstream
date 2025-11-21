@@ -20,7 +20,7 @@ abstract class GenerateGitHashTask : DefaultTask() {
 
     @TaskAction
     fun run() {
-        val head = project.file(".git/HEAD")
+        val head = file("${project.rootDir}/.git/HEAD")
         val hash = if (head.exists()) {
             val text = head.readText().trim()
             if (text.startsWith("ref:")) {
