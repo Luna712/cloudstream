@@ -537,6 +537,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         savedInstanceState: Bundle?
     ): View? {
         bottomSheetDialog?.ownShow()
+        activity?.attachBackPressedCallback("HomeFragment") {
+            activity?.showConfirmExitDialog()
+        }
+
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
@@ -592,29 +596,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     }
 
     @SuppressLint("ApplySharedPref") // commit since the op needs to be synchronous
-    private fun showConfirmExitDialog(context: Context) {
-        val settingsManager = PreferenceManager.getDefaultSharedPreferences(context)
-        val confirmBeforeExit = settingsManager.getInt(context.getString(R.string.confirm_exit_key), -1)
+    private fun Activity.showConfirmExitDialog() {
+        val settingsManager = PreferenceManager.getDefaultSharedPreferences(this)
+        val confirmBeforeExit = settingsManager.getInt(getString(R.string.confirm_exit_key), -1)
         if (confirmBeforeExit == 1 || (confirmBeforeExit == -1 && isLayout(PHONE))) {
             // finish() causes a bug on some TVs where player
             // may keep playing after closing the app.
-            if (isLayout(TV)) exitProcess(0) else activity?.finish()
+            if (isLayout(TV)) exitProcess(0) else finish()
             return
         }
 
         val dialogView = layoutInflater.inflate(R.layout.confirm_exit_dialog, null)
         val dontShowAgainCheck: CheckBox = dialogView.findViewById(R.id.checkboxDontShowAgain)
-        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setView(dialogView)
             .setTitle(R.string.confirm_exit_dialog)
             .setNegativeButton(R.string.no) { _, _ -> /* NO-OP */ }
             .setPositiveButton(R.string.yes) { _, _ ->
                 if (dontShowAgainCheck.isChecked) {
-                    settingsManager.edit().putInt(context.getString(R.string.confirm_exit_key), 1).commit()
+                    settingsManager.edit().putInt(getString(R.string.confirm_exit_key), 1).commit()
                 }
                 // finish() causes a bug on some TVs where player
                 // may keep playing after closing the app.
-                if (isLayout(TV)) exitProcess(0) else activity?.finish()
+                if (isLayout(TV)) exitProcess(0) else finish()
             }
 
         builder.show().setDefaultFocus()
@@ -635,12 +639,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
     @SuppressLint("SetTextI18n")
     override fun onBindingCreated(binding: FragmentHomeBinding) {
-        context?.let { ctx ->
-            HomeChildItemAdapter.updatePosterSize(ctx)
-            activity?.attachBackPressedCallback("HomeFragment") {
-                showConfirmExitDialog(ctx)
-            }
-        }
+        context?.let { HomeChildItemAdapter.updatePosterSize(it) }
         binding.apply {
             homeApiFab.setOnClickListener(apiChangeClickListener)
             homeApiFab.setOnLongClickListener {
