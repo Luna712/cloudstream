@@ -132,35 +132,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
                 false
             )
             bottomSheetDialogBuilder.setContentView(binding.root)
-            //val title = bottomSheetDialogBuilder.findViewById<TextView>(R.id.home_expanded_text)!!
-
-            //title.findViewTreeLifecycleOwner().lifecycle.addObserver()
 
             val item = expand.list
             binding.homeExpandedText.text = item.name
-            // val recycle =
-            //    bottomSheetDialogBuilder.findViewById<AutofitRecyclerView>(R.id.home_expanded_recycler)!!
-            //val titleHolder =
-            //    bottomSheetDialogBuilder.findViewById<FrameLayout>(R.id.home_expanded_drag_down)!!
-
-            // main {
-            //(bottomSheetDialogBuilder.ownerActivity as androidx.fragment.app.FragmentActivity?)?.supportFragmentManager?.fragments?.lastOrNull()?.viewLifecycleOwner?.apply {
-            //    println("GOT LIFE: lifecycle $this")
-            //    this.lifecycle.addObserver(object : DefaultLifecycleObserver {
-            //        override fun onResume(owner: LifecycleOwner) {
-            //            super.onResume(owner)
-            //            println("onResume!!!!")
-            //            bottomSheetDialogBuilder?.ownShow()
-            //        }
-
-            //        override fun onStop(owner: LifecycleOwner) {
-            //            super.onStop(owner)
-            //            bottomSheetDialogBuilder?.ownHide()
-            //        }
-            //    })
-            //}
-            // }
-            //val delete = bottomSheetDialogBuilder.home_expanded_delete
             binding.homeExpandedDelete.isGone = deleteCallback == null
             if (deleteCallback != null) {
                 binding.homeExpandedDelete.setOnClickListener {
