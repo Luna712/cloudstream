@@ -14,6 +14,7 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
+@CacheableTask
 abstract class GenerateGitHashTask : DefaultTask() {
     @get:OutputFile
     abstract val outputFile: RegularFileProperty
