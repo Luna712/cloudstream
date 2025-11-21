@@ -27,20 +27,15 @@ jobs:
         name: pull-request-build
         path: "app/build/outputs/apk/prerelease/debug/*.apk"
 
-  deploy-gh-pages:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v5
-
-    - name: Copy Problems Report
+    - name: Deploy Problems Report to GH Pages
       run: |
         BRANCH_NAME=${GITHUB_REF#refs/heads/}
         TARGET_DIR=gh-pages/$BRANCH_NAME
         mkdir -p $TARGET_DIR
         cp -r build/reports/problems/* $TARGET_DIR/
+      shell: bash
 
-    - name: Deploy to GitHub Pages
+    - name: Push to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
