@@ -569,8 +569,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
     override fun onDestroyView() {
         bottomSheetDialog?.ownHide()
-        activity?.detachBackPressedCallback("HomeFragment")
         super.onDestroyView()
+    }
+
+    override fun onStop() {
+        activity?.detachBackPressedCallback("HomeFragment")
+        super.onStop()
     }
 
     private val apiChangeClickListener = View.OnClickListener { view ->
