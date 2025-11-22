@@ -36,7 +36,7 @@ val generateGitHash = tasks.register("generateGitHash") {
 }
 
 val commitHashProvider = generateGitHash.map {
-    layout.buildDirectory.file("generated/git/commit-hash.txt").asFile.readText().trim()
+    layout.buildDirectory.file("generated/git/commit-hash.txt").readText().trim()
 }
 
 android {
