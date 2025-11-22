@@ -65,7 +65,7 @@ android {
         versionName = "4.6.1"
 
         resValue("string", "app_version", "${defaultConfig.versionName}${versionNameSuffix ?: ""}")
-        resValue("string", "commit_hash", lazy(getGitCommitHash()))
+        resValue("string", "commit_hash", providers.provider { getGitCommitHash() }.get())
         resValue("bool", "is_prerelease", "false")
 
         manifestPlaceholders["target_sdk_version"] = libs.versions.targetSdk.get()
