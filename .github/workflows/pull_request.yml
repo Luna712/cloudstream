@@ -39,7 +39,14 @@ jobs:
         BRANCH_NAME=${GITHUB_REF#refs/heads/}
         TARGET_DIR=gh-pages/$BRANCH_NAME
         mkdir -p "$TARGET_DIR"
-        cp -r build/reports/* "$TARGET_DIR/"
+        if [ -d "build/reports" ]; then
+          cp -r build/reports/. "$TARGET_DIR/"
+        fi
+        for REPORT_DIR in */build/reports; do
+          if [ -d "$REPORT_DIR" ]; then
+            cp -r "$REPORT_DIR/." "$TARGET_DIR/"
+          fi
+        done
       shell: bash
 
     - name: Push to GitHub Pages
