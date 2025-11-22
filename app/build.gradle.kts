@@ -53,7 +53,7 @@ android {
         resValue("bool", "is_prerelease", "false")
 
         val commitHashFile = layout.buildDirectory.file("generated/git/commit-hash.txt")
-        resValue("string", "commit_hash", commitHashFile.get().asFile.takeIf { it.exists() }?.readText()?.trim() ?: ")
+        resValue("string", "commit_hash", commitHashFile.get().asFile.takeIf { it.exists() }?.readText()?.trim() ?: "")
 
         manifestPlaceholders["target_sdk_version"] = libs.versions.targetSdk.get()
 
