@@ -57,7 +57,7 @@ jobs:
           <body>
             <h1>Reports for branch $BRANCH_NAME</h1>
             <ul>" > "$INDEX_FILE"
-        find "$TARGET_DIR" -type f ! -name "index.html" | while read FILE; do
+        find "$TARGET_DIR" -type f -name "*.html" ! -name "index.html" | while read FILE; do
           REL_PATH="${FILE#$TARGET_DIR/}"
           echo "    <li><a href=\"$REL_PATH\">$REL_PATH</a></li>" >> "$INDEX_FILE"
         done
