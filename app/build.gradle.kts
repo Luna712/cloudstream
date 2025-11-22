@@ -138,13 +138,13 @@ android {
 
     sourceSets["main"].java.srcDir(layout.buildDirectory.dir("generated/git"))
     applicationVariants.all { variant ->
-        val task = tasks.register<GenerateGitHashTask>("generateGitHash${variant.name.capitalize()}") {
+        val gitTask = tasks.register<GenerateGitHashTask>("generateGitHash${variant.name.capitalize()}") {
             outputFile.set(layout.buildDirectory.file("generated/git/${variant.name}/GitInfo.kt"))
         }
 
         // Add the generated file to the variant’s sources
         variant.sources.java.addGeneratedSourceDirectory(
-            task.flatMap { it.outputFile }
+            gitTask.flatMap { it.outputFile }
         )
 
         // Ensure variant compilation depends on task
