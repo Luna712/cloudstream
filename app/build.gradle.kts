@@ -14,27 +14,6 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
-@CacheableTask
-abstract class GenerateGitHashTask : DefaultTask() {
-    @get:OutputFile
-    abstract val outputFile: RegularFileProperty
-
-    @TaskAction
-    fun run() {
-        val head = file("${project.rootDir}/.git/HEAD")
-        val hash = if (head.exists()) {
-            val text = head.readText().trim()
-            if (text.startsWith("ref:")) {
-                val ref = text.removePrefix("ref:").trim()
-                val commitFile = project.file(".git/$ref")
-                if (commitFile.exists()) commitFile.readText().trim() else ""
-            } else text
-        } else ""
-
-        outputFile.get().asFile.writeText(hash.take(7))
-    }
-}
-
 val generateGitHash = tasks.register("generateGitHash", GenerateGitHashTask::class) {
     outputFile.set(layout.buildDirectory.file("generated/git/commit-hash.txt"))
 }
