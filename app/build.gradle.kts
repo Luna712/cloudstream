@@ -31,7 +31,7 @@ val generateGitHash = tasks.register("generateGitHash") {
             } else text
         } else ""
 
-        outputFile.get().asFile.writeText(hash.take(7))
+        it.outputFile.get().asFile.writeText(hash.take(7))
     }
 }
 
