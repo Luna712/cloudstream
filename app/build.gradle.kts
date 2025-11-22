@@ -14,10 +14,10 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
-/*val generateGitHash = tasks.register("generateGitHash", GenerateGitHashTask::class) {
+val generateGitHash = tasks.register("generateGitHash", GenerateGitHashTask::class) {
     outputFile.set(layout.buildDirectory.file("generated/git/commit-hash.txt"))
-}*/
-val generateGitHash = tasks.register("generateGitHash") {
+}
+/*val generateGitHash = tasks.register("generateGitHash") {
     val outputFile = layout.buildDirectory.file("generated/git/commit-hash.txt")
 
     doLast {
@@ -33,10 +33,11 @@ val generateGitHash = tasks.register("generateGitHash") {
 
         outputFile.get().asFile.writeText(hash.take(7))
     }
-}
+}*/
 
 val commitHashProvider = generateGitHash.map {
-    file("${layout.buildDirectory.get().asFile}/generated/git/commit-hash.txt").readText().trim()
+    // file("${layout.buildDirectory.get().asFile}/generated/git/commit-hash.txt").readText().trim()
+    it.outputFile.get().asFile.readText().trim()
 }
 
 android {
