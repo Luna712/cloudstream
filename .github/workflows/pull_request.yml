@@ -25,7 +25,7 @@ jobs:
 
     - name: Run Gradle
       run: |
-        ./gradlew dependencies
+        ./gradlew dependencies --scan
         ./gradlew assemblePrerelease build androidSourcesJar --profile --scan
         ./gradlew makeJar --profile --scan # for classes.jar, has to be done after assemblePrerelease
 
