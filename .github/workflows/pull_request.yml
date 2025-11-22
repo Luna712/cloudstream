@@ -23,9 +23,6 @@ jobs:
         cache-encryption-key: ${{ secrets.GRADLE_ENCRYPTION_KEY }}
         cache-read-only: false
 
-    - name: Build buildSrc
-      run: ./gradlew :buildSrc:build
-
     - name: Run Gradle
       run: ./gradlew assemblePrereleaseDebug
 
