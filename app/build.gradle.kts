@@ -18,9 +18,13 @@ val generateGitHash = tasks.register("generateGitHash", GenerateGitHashTask::cla
     outputFile.set(layout.buildDirectory.file("generated/git/commit-hash.txt"))
 }
 
-val commitHashProvider = generateGitHash.map {
+/*val commitHashProvider = generateGitHash.map {
     it.outputFile.get().asFile.readText().trim()
-}
+}*/
+val commitHashProvider: Provider<String> =
+    generateGitHash.flatMap { it.outputFile }.map {
+        it.asFile.readText().trim()
+    }
 
 android {
     @Suppress("UnstableApiUsage")
