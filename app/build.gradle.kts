@@ -14,6 +14,26 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
+fun getGitCommitHash(): String {
+    return try {
+        val headFile = file("${project.rootDir}/.git/HEAD")
+
+        // Read the commit hash from .git/HEAD
+        if (headFile.exists()) {
+            val headContent = headFile.readText().trim()
+            if (headContent.startsWith("ref:")) {
+                val refPath = headContent.substring(5) // e.g., refs/heads/main
+                val commitFile = file("${project.rootDir}/.git/$refPath")
+                if (commitFile.exists()) commitFile.readText().trim() else ""
+            } else headContent // If it's a detached HEAD (commit hash directly)
+        } else {
+            "" // If .git/HEAD doesn't exist
+        }.take(7) // Return the short commit hash
+    } catch (_: Throwable) {
+        "" // Just return an empty string if any exception occurs
+    }
+}
+
 android {
     @Suppress("UnstableApiUsage")
     testOptions {
@@ -45,20 +65,13 @@ android {
         versionName = "4.6.1"
 
         resValue("string", "app_version", "${defaultConfig.versionName}${versionNameSuffix ?: ""}")
+        resValue("string", "commit_hash", getGitCommitHash())
         resValue("bool", "is_prerelease", "false")
-
-        resValue("string", "commit_hash", "")
 
         manifestPlaceholders["target_sdk_version"] = libs.versions.targetSdk.get()
 
         // Reads local.properties
         val localProperties = gradleLocalProperties(rootDir, project.providers)
-
-        buildConfigField(
-            "String",
-            "COMMIT_HASH",
-            "\"" + (System.getenv("COMMIT_HASH") ?: localProperties["commit.hash"]) + "\""
-        )
 
         buildConfigField(
             "long",
