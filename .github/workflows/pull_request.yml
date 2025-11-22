@@ -24,7 +24,7 @@ jobs:
         cache-read-only: false
 
     - name: Run Gradle
-      run: ./gradlew assemblePrereleaseDebug --info --stacktrace --scan --profile --no-build-cache --configuration-cache-problems=warn
+      run: ./gradlew assemblePrereleaseDebug --info --stacktrace --profile --scan --no-build-cache --configuration-cache-problems=warn
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v5
