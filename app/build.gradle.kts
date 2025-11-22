@@ -31,12 +31,12 @@ val generateGitHash = tasks.register("generateGitHash") {
             } else text
         } else ""
 
-        it.outputFile.get().asFile.writeText(hash.take(7))
+        outputFile.get().asFile.writeText(hash.take(7))
     }
 }
 
 val commitHashProvider = generateGitHash.map {
-    it.outputFile.get().asFile.readText().trim()
+    layout.buildDirectory.file("generated/git/commit-hash.txt").asFile.readText().trim()
 }
 
 android {
