@@ -47,6 +47,23 @@ jobs:
             cp -r "$REPORT_DIR/." "$TARGET_DIR/"
           fi
         done
+        INDEX_FILE="$TARGET_DIR/index.html"
+        echo "<!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset='UTF-8'>
+            <title>Reports for $BRANCH_NAME</title>
+          </head>
+          <body>
+            <h1>Reports for branch $BRANCH_NAME</h1>
+            <ul>" > "$INDEX_FILE"
+        find "$TARGET_DIR" -type f ! -name "index.html" | while read FILE; do
+          REL_PATH="${FILE#$TARGET_DIR/}"
+          echo "    <li><a href=\"$REL_PATH\">$REL_PATH</a></li>" >> "$INDEX_FILE"
+        done
+        echo "  </ul>
+          </body>
+        </html>" >> "$INDEX_FILE"
       shell: bash
 
     - name: Push to GitHub Pages
