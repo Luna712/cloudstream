@@ -14,10 +14,10 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
-val generateGitHash = tasks.register<GenerateGitHashTask>("generateGitHash") {
+/*val generateGitHash = tasks.register<GenerateGitHashTask>("generateGitHash") {
     outputFile.set(layout.buildDirectory.file("generated/git/commit-hash.txt"))
     gitDir.set(rootProject.layout.projectDirectory.file(".git"))
-}
+}*/
 
 android {
     @Suppress("UnstableApiUsage")
@@ -52,13 +52,30 @@ android {
         resValue("string", "app_version", "${defaultConfig.versionName}${versionNameSuffix ?: ""}")
         resValue("bool", "is_prerelease", "false")
 
-        val commitHashFile = layout.buildDirectory.file("generated/git/commit-hash.txt")
-        resValue("string", "commit_hash", commitHashFile.get().asFile.takeIf { it.exists() }?.readText()?.trim() ?: "")
+        //val commitHashFile = layout.buildDirectory.file("generated/git/commit-hash.txt")
+        resValue("string", "commit_hash", /*commitHashFile.get().asFile.takeIf { it.exists() }?.readText()?.trim() ?: */ "")
 
         manifestPlaceholders["target_sdk_version"] = libs.versions.targetSdk.get()
 
         // Reads local.properties
         val localProperties = gradleLocalProperties(rootDir, project.providers)
+
+        val gitHashProvider = providers.provider {
+            try {
+                // Try reading .git/HEAD and resolve ref
+                val headFile = rootProject.file(".git/HEAD")
+                if (headFile.exists()) {
+                    val text = headFile.readText().trim()
+                    if (text.startsWith("ref:")) {
+                        val ref = text.removePrefix("ref:").trim()
+                        val commitFile = rootProject.file(".git/$ref")
+                        if (commitFile.exists()) commitFile.readText().trim().take(7) else ""
+                    } else text.take(7)
+                } else ""
+            } catch (_: Exception) { "" }
+        }
+
+        buildConfigField("String", "COMMIT_HASH", "\"${gitHashProvider.get()}\"")
 
         buildConfigField(
             "long",
