@@ -25,7 +25,9 @@ jobs:
 
     - name: Run Gradle
       run: |
-        ./gradlew assemblePrerelease build androidSourcesJar htmlDependencyReport --profile --scan
+        ./gradlew htmlDependencyReport
+        ./gradlew taskReport
+        ./gradlew assemblePrerelease build androidSourcesJar --profile --scan
         ./gradlew makeJar --profile --scan # for classes.jar, has to be done after assemblePrerelease
 
     - name: Upload Artifact
