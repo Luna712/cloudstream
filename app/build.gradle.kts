@@ -14,6 +14,10 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
+val generateGitHash = tasks.register<GenerateGitHashTask>("generateGitHash") {
+    outputFile.set(layout.buildDirectory.file("generated/git/GitInfo.kt"))
+}
+
 android {
     @Suppress("UnstableApiUsage")
     testOptions {
@@ -137,20 +141,8 @@ android {
     }
 
     sourceSets["main"].java.srcDir(layout.buildDirectory.dir("generated/git"))
-    applicationVariants.all { variant ->
-        val gitTask = tasks.register<GenerateGitHashTask>("generateGitHash${variant.name.capitalize()}") {
-            outputFile.set(layout.buildDirectory.file("generated/git/${variant.name}/GitInfo.kt"))
-        }
-
-        // Add the generated file to the variant’s sources
-        variant.sources.java.addGeneratedSourceDirectory(
-            gitTask.flatMap { it.outputFile }
-        )
-
-        // Ensure variant compilation depends on task
-        tasks.named("pre${variant.name.capitalize()}Build") {
-            dependsOn(gitTask)
-        }
+    tasks.named("preBuild") {
+        dependsOn(generateGitHash)
     }
 
     namespace = "com.lagradost.cloudstream3"
