@@ -54,22 +54,11 @@ android {
         // Reads local.properties
         val localProperties = gradleLocalProperties(rootDir, project.providers)
 
-        val gitHashProvider = providers.provider {
-            try {
-                // Try reading .git/HEAD and resolve ref
-                val headFile = rootProject.file(".git/HEAD")
-                if (headFile.exists()) {
-                    val text = headFile.readText().trim()
-                    if (text.startsWith("ref:")) {
-                        val ref = text.removePrefix("ref:").trim()
-                        val commitFile = rootProject.file(".git/$ref")
-                        if (commitFile.exists()) commitFile.readText().trim().take(7) else ""
-                    } else text.take(7)
-                } else ""
-            } catch (_: Exception) { "" }
-        }
-
-        buildConfigField("String", "COMMIT_HASH", "\"${gitHashProvider.get()}\"")
+        buildConfigField(
+            "String",
+            "COMMIT_HASH",
+            "\"" + (System.getenv("COMMIT_HASH") ?: localProperties["commit.hash"]) + "\""
+        )
 
         buildConfigField(
             "long",
