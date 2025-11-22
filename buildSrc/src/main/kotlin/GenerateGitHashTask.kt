@@ -24,15 +24,7 @@ abstract class GenerateGitHashTask : DefaultTask() {
             } else text
         } else ""
 
-        val content = """
-            package com.lagradost.cloudstream3
-            object GitInfo {
-                const val HASH = "${hash.take(7)}"
-            }
-        """.trimIndent()
-
-        val outFile = outputFile.get().asFile
-        outFile.parentFile.mkdirs()
-        outFile.writeText(content)
+        outputFile.get().asFile.parentFile.mkdirs()
+        outputFile.get().asFile.writeText(hash.take(7))
     }
 }
