@@ -14,11 +14,6 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
-/*val generateGitHash = tasks.register<GenerateGitHashTask>("generateGitHash") {
-    outputFile.set(layout.buildDirectory.file("generated/git/commit-hash.txt"))
-    gitDir.set(rootProject.layout.projectDirectory.file(".git"))
-}*/
-
 android {
     @Suppress("UnstableApiUsage")
     testOptions {
@@ -52,8 +47,7 @@ android {
         resValue("string", "app_version", "${defaultConfig.versionName}${versionNameSuffix ?: ""}")
         resValue("bool", "is_prerelease", "false")
 
-        //val commitHashFile = layout.buildDirectory.file("generated/git/commit-hash.txt")
-        resValue("string", "commit_hash", /*commitHashFile.get().asFile.takeIf { it.exists() }?.readText()?.trim() ?: */ "")
+        resValue("string", "commit_hash", "")
 
         manifestPlaceholders["target_sdk_version"] = libs.versions.targetSdk.get()
 
@@ -158,11 +152,6 @@ android {
     buildFeatures {
         buildConfig = true
         resValues = true
-    }
-
-    //sourceSets["main"].java.srcDir(layout.buildDirectory.dir("generated/git"))
-    tasks.named("preBuild") {
-        dependsOn(generateGitHash)
     }
 
     namespace = "com.lagradost.cloudstream3"
