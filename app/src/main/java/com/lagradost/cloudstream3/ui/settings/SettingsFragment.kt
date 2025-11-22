@@ -246,16 +246,15 @@ class SettingsFragment : BaseFragment<MainSettingsBinding>(
         }
 
         val appVersion = getString(R.string.app_version)
-        val commitHash = BuildConfig.COMMIT_HASH
+        val commitInfo = getString(R.string.commit_hash)
         val buildTimestamp = SimpleDateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG,
             Locale.getDefault()
         ).apply { timeZone = TimeZone.getTimeZone("UTC")
         }.format(Date(BuildConfig.BUILD_DATE)).replace("UTC", "")
 
         binding.buildDate.text = buildTimestamp
-        binding.commitHash.text = commitHash
         binding.appVersionInfo.setOnLongClickListener {
-            clipboardHelper(txt(R.string.extension_version), "$appVersion $commitHash $buildTimestamp")
+            clipboardHelper(txt(R.string.extension_version), "$appVersion $commitInfo $buildTimestamp")
             true
         }
     }
