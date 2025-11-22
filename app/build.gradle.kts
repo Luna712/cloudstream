@@ -14,8 +14,25 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
-val generateGitHash = tasks.register("generateGitHash", GenerateGitHashTask::class) {
+/*val generateGitHash = tasks.register("generateGitHash", GenerateGitHashTask::class) {
     outputFile.set(layout.buildDirectory.file("generated/git/commit-hash.txt"))
+}*/
+val generateGitHash = tasks.register("generateGitHash") {
+    val outputFile = layout.buildDirectory.file("generated/git/commit-hash.txt")
+
+    doLast {
+        val head = file("${project.rootDir}/.git/HEAD")
+        val hash = if (head.exists()) {
+            val text = head.readText().trim()
+            if (text.startsWith("ref:")) {
+                val ref = text.removePrefix("ref:").trim()
+                val commitFile = file("${project.rootDir}/.git/$ref")
+                if (commitFile.exists()) commitFile.readText().trim() else ""
+            } else text
+        } else ""
+
+        outputFile.get().asFile.writeText(hash.take(7))
+    }
 }
 
 val commitHashProvider = generateGitHash.map {
