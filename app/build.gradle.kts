@@ -16,7 +16,7 @@ val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
 val generateGitHash = tasks.register<GenerateGitHashTask>("generateGitHash") {
     outputFile.set(layout.buildDirectory.file("generated/git/GitInfo.kt"))
-    gitDir.set(layout.projectDirectory.file(".git"))
+    gitDir.set(rootProject.layout.projectDirectory.file(".git"))
 }
 
 android {
