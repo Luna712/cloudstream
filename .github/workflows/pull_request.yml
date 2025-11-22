@@ -32,12 +32,12 @@ jobs:
         name: pull-request-build
         path: "app/build/outputs/apk/prerelease/debug/*.apk"
 
-    - name: Deploy Problems Report to GH Pages
+    - name: Deploy Reports to GitHub Pages
       run: |
         BRANCH_NAME=${GITHUB_REF#refs/heads/}
         TARGET_DIR=gh-pages/$BRANCH_NAME
-        mkdir -p $TARGET_DIR
-        cp -r build/reports/problems/* $TARGET_DIR/
+        mkdir -p "$TARGET_DIR"
+        cp -r build/reports/* "$TARGET_DIR/"
       shell: bash
 
     - name: Push to GitHub Pages
@@ -47,4 +47,4 @@ jobs:
         publish_dir: ./gh-pages
         user_name: "github-actions"
         user_email: "github-actions@github.com"
-        commit_message: "Update problems report for ${{ github.ref_name }} [ci skip]"
+        commit_message: "Update reports for ${{ github.ref_name }} [ci skip]"
