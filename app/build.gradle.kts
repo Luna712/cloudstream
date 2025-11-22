@@ -15,7 +15,7 @@ val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
 val generateGitHash = tasks.register<GenerateGitHashTask>("generateGitHash") {
-    outputFile.set(layout.buildDirectory.file("generated/git/GitInfo.kt"))
+    outputFile.set(layout.buildDirectory.file("generated/git/commit-hash.txt"))
     gitDir.set(rootProject.layout.projectDirectory.file(".git"))
 }
 
@@ -50,8 +50,10 @@ android {
         versionName = "4.6.1"
 
         resValue("string", "app_version", "${defaultConfig.versionName}${versionNameSuffix ?: ""}")
-        resValue("string", "commit_hash", "")
         resValue("bool", "is_prerelease", "false")
+
+        val commitHashFile = layout.buildDirectory.file("generated/git/commit-hash.txt")
+        resValue("string", "commit_hash", commitHashFile.get().asFile.takeIf { it.exists() }?.readText()?.trim() ?: ")
 
         manifestPlaceholders["target_sdk_version"] = libs.versions.targetSdk.get()
 
@@ -141,7 +143,7 @@ android {
         resValues = true
     }
 
-    sourceSets["main"].java.srcDir(layout.buildDirectory.dir("generated/git"))
+    //sourceSets["main"].java.srcDir(layout.buildDirectory.dir("generated/git"))
     tasks.named("preBuild") {
         dependsOn(generateGitHash)
     }
