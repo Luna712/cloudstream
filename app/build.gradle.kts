@@ -35,28 +35,9 @@ val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
     }
 }*/
 
-fun currentGitCommit() = git(rootProject.layout.projectDirectory, "rev-parse", "HEAD")
-fun git(checkoutDir: Directory, vararg args: String): Provider<String> = provider {
-    val execOutput = ByteArrayOutputStream()
-    val execResult = exec {
-        workingDir = checkoutDir.asFile
-        isIgnoreExitValue = true
-        commandLine = listOf("git", *args)
-        if (OperatingSystem.current().isWindows) {
-            commandLine = listOf("cmd", "/c") + commandLine
-        }
-        standardOutput = execOutput
-    }
-    when {
-        execResult.exitValue == 0 -> String(execOutput.toByteArray()).trim()
-        checkoutDir.asFile.resolve(".git/HEAD").exists() -> {
-            // Read commit id directly from filesystem
-            val headRef = checkoutDir.asFile.resolve(".git/HEAD").readText()
-                .replace("ref: ", "").trim()
-            checkoutDir.asFile.resolve(".git/$headRef").readText().trim()
-        }
-        else -> "<unknown>" // It's a source distribution, we don't know.
-    }
+fun currentGitCommit() = providers.exec {
+    executable("git")
+    args("rev-parse", "--short", "HEAD")
 }
 
 android {
