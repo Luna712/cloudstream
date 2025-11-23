@@ -32,6 +32,7 @@ newpipeextractor = "v0.24.8"
 nextlibMedia3 = "1.8.0-0.9.0"
 nicehttp = "0.4.13"
 overlappingpanels = "0.1.5"
+palantirGradlePlugin = "4.2.0"
 paletteKtx = "1.0.0"
 preferenceKtx = "1.2.1"
 previewseekbarMedia3 = "1.1.1.0"
@@ -102,6 +103,7 @@ nextlib-media3ext = { module = "io.github.anilbeesetti:nextlib-media3ext", versi
 nextlib-mediainfo = { module = "io.github.anilbeesetti:nextlib-mediainfo", version.ref = "nextlibMedia3" }
 nicehttp = { module = "com.github.Blatzar:NiceHttp", version.ref = "nicehttp" }
 overlappingpanels = { module = "com.github.discord:OverlappingPanels", version.ref = "overlappingpanels" }
+palantir-gradle-plugin = { module = "com.palantir.git-version", version.ref = "palantirGradlePlugin" }
 palette-ktx = { module = "androidx.palette:palette-ktx", version.ref = "paletteKtx" }
 preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtx" }
 previewseekbar-media3 = { module = "com.github.rubensousa:previewseekbar-media3", version.ref = "previewseekbarMedia3" }
