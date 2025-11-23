@@ -117,7 +117,7 @@ tvprovider = { module = "androidx.tvprovider:tvprovider", version.ref = "tvprovi
 video = { module = "com.google.android.mediahome:video", version.ref = "video" }
 work-runtime = { module = "androidx.work:work-runtime", version.ref = "workRuntime" }
 work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtx" }
-zipline = { module = "app.cash.zipline:zipline-android", version = "zipline" }
+zipline = { module = "app.cash.zipline:zipline-android", version.ref = "zipline" }
 
 [plugins]
 
