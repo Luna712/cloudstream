@@ -78,7 +78,6 @@ jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 junit = { module = "junit:junit", version.ref = "junit" }
 junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "junitKtx" }
 juniversalchardet = { module = "com.github.albfernandez:juniversalchardet", version.ref = "juniversalchardet" }
-kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinGradlePlugin" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtx" }
 lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
@@ -122,6 +121,7 @@ android-multiplatform-library = { id = "com.android.kotlin.multiplatform.library
 android-gradle-plugin = { id = "com.android.tools.build", version.ref = "androidGradlePlugin" }
 buildkonfig-gradle-plugin = { id = "com.codingfeline.buildkonfig", version.ref = "buildkonfigGradlePlugin" }
 dokka-gradle-plugin = { id = "org.jetbrains.dokka", version.ref = "dokkaGradlePlugin" }
+kotlin-gradle-plugin = { id = "org.jetbrains.kotlin", version.ref = "kotlinGradlePlugin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm" , version.ref = "kotlinGradlePlugin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlinGradlePlugin" }
 
