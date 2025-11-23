@@ -121,7 +121,6 @@ android-multiplatform-library = { id = "com.android.kotlin.multiplatform.library
 android-gradle-plugin = { id = "com.android.tools.build", version.ref = "androidGradlePlugin" }
 buildkonfig-gradle-plugin = { id = "com.codingfeline.buildkonfig", version.ref = "buildkonfigGradlePlugin" }
 dokka-gradle-plugin = { id = "org.jetbrains.dokka", version.ref = "dokkaGradlePlugin" }
-kotlin-gradle-plugin = { id = "org.jetbrains.kotlin", version.ref = "kotlinGradlePlugin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm" , version.ref = "kotlinGradlePlugin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlinGradlePlugin" }
 
