@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.android.multiplatform.library) apply false
     alias(libs.plugins.buildkonfig.gradle.plugin) apply false // Universal build config
     alias(libs.plugins.dokka.gradle.plugin) apply false
-    alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.multiplatform) apply false
 }
