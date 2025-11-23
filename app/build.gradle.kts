@@ -6,9 +6,8 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
-    id("com.android.application")
-    id("com.palantir.git-version")
-    // id("org.jetbrains.dokka")
+    alias(libs.plugins.android.application)
+    // alias(libs.plugins.dokka.gradle.plugin)
 }
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
