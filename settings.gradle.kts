@@ -1,7 +1,7 @@
 // https://developer.android.com/build#settings-file
 pluginManagement {
     repositories {
-        gradlePluginPortal()
+        // gradlePluginPortal()
         google()
         mavenCentral()
     }
