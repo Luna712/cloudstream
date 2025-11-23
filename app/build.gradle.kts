@@ -8,14 +8,15 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 plugins {
     alias(libs.plugins.android.application)
     // alias(libs.plugins.dokka.gradle.plugin)
+    alias(libs.plugins.palantir.gradle.plugin)
 }
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
-// val versionDetails: groovy.lang.Closure<com.palantir.gradle.gitversion.VersionDetails> by extra
-// val details = versionDetails()
+val versionDetails: groovy.lang.Closure<com.palantir.gradle.gitversion.VersionDetails> by extra
+val details = versionDetails()
 
 /*fun getGitCommitHash(): String {
     return try {
@@ -68,7 +69,7 @@ android {
         versionName = "4.6.1"
 
         resValue("string", "app_version", "${defaultConfig.versionName}${versionNameSuffix ?: ""}")
-        resValue("string", "commit_hash", /*details.gitHash*/"")
+        resValue("string", "commit_hash", details.gitHash)
         resValue("bool", "is_prerelease", "false")
 
         manifestPlaceholders["target_sdk_version"] = libs.versions.targetSdk.get()
