@@ -4,7 +4,6 @@ import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
 import org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
-import java.io.ByteArrayOutputStream
 
 plugins {
     alias(libs.plugins.android.application)
@@ -15,29 +14,16 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
-/*fun getGitCommitHash(): Provider<String> {
-    return try {
-        val headFile = providers.fileContents(rootProject.layout.projectDirectory.file(".git/HEAD"))
-
-        // Read the commit hash from .git/HEAD
-        if (headFile.exists()true) {
-            val headContent = headFile.asText
-            if (headContent.startsWith("ref:")) {
-                val refPath = headContent.substring(5) // e.g., refs/heads/main
-                val commitFile = providers.fileContents(rootProject.layout.projectDirectory.file(".git/$refPath"))
-                if (commitFile.exists()true) commitFile.asText else ""
-            } else headContent // If it's a detached HEAD (commit hash directly)
-        } else {
-            "" // If .git/HEAD doesn't exist
-        }.take(7) // Return the short commit hash
-    } catch (_: Throwable) {
-        "" // Just return an empty string if any exception occurs
-    }
-}*/
-
-fun currentGitCommit() = providers.exec {
+fun getCommitHashExec() = providers.exec {
     executable("git")
     args("rev-parse", "--short", "HEAD")
+}
+
+fun getGitCommitHash(): String = try {
+    getCommitHashExec().standardOutput.asText.get().trim()
+} catch (e: Exception) {
+    logger.error("Failed to get git commit hash", e)
+    ""
 }
 
 android {
@@ -71,7 +57,7 @@ android {
         versionName = "4.6.1"
 
         resValue("string", "app_version", "${defaultConfig.versionName}${versionNameSuffix ?: ""}")
-        resValue("string", "commit_hash", currentGitCommit().standardOutput.asText.get().trim())
+        resValue("string", "commit_hash", getGitCommitHash())
         resValue("bool", "is_prerelease", "false")
 
         manifestPlaceholders["target_sdk_version"] = libs.versions.targetSdk.get()
