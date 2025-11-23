@@ -4,6 +4,7 @@ import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
 import org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
+import java.io.ByteArrayOutputStream
 
 plugins {
     alias(libs.plugins.android.application)
@@ -14,23 +15,47 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
-fun getGitCommitHash(): String {
+/*fun getGitCommitHash(): Provider<String> {
     return try {
         val headFile = providers.fileContents(rootProject.layout.projectDirectory.file(".git/HEAD"))
 
         // Read the commit hash from .git/HEAD
-        if (/*headFile.exists()*/true) {
-            val headContent = headFile.asText.trim()
+        if (headFile.exists()true) {
+            val headContent = headFile.asText
             if (headContent.startsWith("ref:")) {
                 val refPath = headContent.substring(5) // e.g., refs/heads/main
                 val commitFile = providers.fileContents(rootProject.layout.projectDirectory.file(".git/$refPath"))
-                if (commitFile.exists()) commitFile.asText.trim() else ""
+                if (commitFile.exists()true) commitFile.asText else ""
             } else headContent // If it's a detached HEAD (commit hash directly)
         } else {
             "" // If .git/HEAD doesn't exist
         }.take(7) // Return the short commit hash
     } catch (_: Throwable) {
         "" // Just return an empty string if any exception occurs
+    }
+}*/
+
+fun currentGitCommit() = git(rootProject.layout.projectDirectory, "rev-parse", "HEAD")
+fun git(checkoutDir: Directory, vararg args: String): Provider<String> = provider {
+    val execOutput = ByteArrayOutputStream()
+    val execResult = exec {
+        workingDir = checkoutDir.asFile
+        isIgnoreExitValue = true
+        commandLine = listOf("git", *args)
+        if (OperatingSystem.current().isWindows) {
+            commandLine = listOf("cmd", "/c") + commandLine
+        }
+        standardOutput = execOutput
+    }
+    when {
+        execResult.exitValue == 0 -> String(execOutput.toByteArray()).trim()
+        checkoutDir.asFile.resolve(".git/HEAD").exists() -> {
+            // Read commit id directly from filesystem
+            val headRef = checkoutDir.asFile.resolve(".git/HEAD").readText()
+                .replace("ref: ", "").trim()
+            checkoutDir.asFile.resolve(".git/$headRef").readText().trim()
+        }
+        else -> "<unknown>" // It's a source distribution, we don't know.
     }
 }
 
@@ -65,7 +90,7 @@ android {
         versionName = "4.6.1"
 
         resValue("string", "app_version", "${defaultConfig.versionName}${versionNameSuffix ?: ""}")
-        resValue("string", "commit_hash", getGitCommitHash())
+        resValue("string", "commit_hash", currentGitCommit())
         resValue("bool", "is_prerelease", "false")
 
         manifestPlaceholders["target_sdk_version"] = libs.versions.targetSdk.get()
