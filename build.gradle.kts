@@ -8,6 +8,7 @@ buildscript {
         classpath(libs.android.gradle.plugin)
         classpath(libs.buildkonfig.gradle.plugin) // Universal build config
         classpath(libs.dokka.gradle.plugin)
+        classpath(libs.palantir.gradle.plugin)
         classpath(libs.kotlin.gradle.plugin)
     }
 }
