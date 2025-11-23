@@ -14,18 +14,6 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
-fun getCommitHashExec() = providers.exec {
-    executable("git")
-    args("rev-parse", "--short", "HEAD")
-}
-
-fun getGitCommitHash(): String = try {
-    getCommitHashExec().standardOutput.asText.get().trim()
-} catch (e: Exception) {
-    logger.error("Failed to get git commit hash", e)
-    ""
-}
-
 android {
     @Suppress("UnstableApiUsage")
     testOptions {
@@ -57,7 +45,11 @@ android {
         versionName = "4.6.1"
 
         resValue("string", "app_version", "${defaultConfig.versionName}${versionNameSuffix ?: ""}")
-        resValue("string", "commit_hash", getGitCommitHash())
+        resValue("string", "commit_hash",
+            providers.exec {
+                commandLine("git", "rev-parse", "--short", "HEAD")
+            }.standardOutput.asText.get().trim()
+        )
         resValue("bool", "is_prerelease", "false")
 
         manifestPlaceholders["target_sdk_version"] = libs.versions.targetSdk.get()
