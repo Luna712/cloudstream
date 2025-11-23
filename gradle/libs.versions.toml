@@ -118,7 +118,6 @@ work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "w
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "androidGradlePlugin" }
-android-gradle-plugin = { id = "com.android.tools.build", version.ref = "androidGradlePlugin" }
 buildkonfig-gradle-plugin = { id = "com.codingfeline.buildkonfig", version.ref = "buildkonfigGradlePlugin" }
 dokka-gradle-plugin = { id = "org.jetbrains.dokka", version.ref = "dokkaGradlePlugin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm" , version.ref = "kotlinGradlePlugin" }
