@@ -16,15 +16,15 @@ val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
 fun getGitCommitHash(): String {
     return try {
-        val headFile = file("${project.rootDir}/.git/HEAD")
+        val headFile = providers.fileContents(rootProject.layout.projectDirectory.file(".git/HEAD"))
 
         // Read the commit hash from .git/HEAD
-        if (headFile.exists()) {
-            val headContent = headFile.readText().trim()
+        if (/*headFile.exists()*/true) {
+            val headContent = headFile.asText.trim()
             if (headContent.startsWith("ref:")) {
                 val refPath = headContent.substring(5) // e.g., refs/heads/main
-                val commitFile = file("${project.rootDir}/.git/$refPath")
-                if (commitFile.exists()) commitFile.readText().trim() else ""
+                val commitFile = providers.fileContents(rootProject.layout.projectDirectory.file(".git/$refPath"))
+                if (commitFile.exists()) commitFile.asText.trim() else ""
             } else headContent // If it's a detached HEAD (commit hash directly)
         } else {
             "" // If .git/HEAD doesn't exist
