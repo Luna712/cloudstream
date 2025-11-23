@@ -5,7 +5,6 @@ plugins {
     alias(libs.plugins.dokka.gradle.plugin) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.multiplatform) apply false
-    alias(libs.plugins.palantir.gradle.plugin) apply false
 }
 
 allprojects {
