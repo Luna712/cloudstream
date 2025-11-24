@@ -179,7 +179,7 @@ document.getElementById(id).style.display = 'none';
     <div class="mdl-layout__header-row">
       <span class="mdl-layout-title">Lint Report: 749 errors, 791 warnings and 3 hints</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Mon Nov 24 17:21:07 UTC 2025 by AGP (9.0.0-beta02)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Mon Nov 24 17:43:26 UTC 2025 by AGP (9.0.0-beta02)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -1857,62 +1857,64 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:2</span>: <span class="message">A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.0</span><br /><pre class="errorlines">
-<span class="lineno">   1 </span>[versions]
-<span class="caretline"><span class="lineno">   2 </span>activityKtx = <span class="warning">"1.11.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">   3 </span>androidGradlePlugin = "9.0.0-beta02"
-<span class="lineno">   4 </span>appcompat = "1.7.1"
-<span class="lineno">   5 </span>biometric = "1.4.0-alpha04"
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:4</span>: <span class="message">A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.0</span><br /><pre class="errorlines">
+<span class="lineno">   1 </span># https://docs.gradle.org/current/userguide/plugins.html#sec:version_catalog_plugin_application
+<span class="lineno">   2 </span># https://docs.gradle.org/current/userguide/dependency_versions.html#sec:strict-version
+<span class="lineno">   3 </span>[versions]
+<span class="caretline"><span class="lineno">   4 </span>activityKtx = <span class="warning">"1.11.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">   5 </span>androidGradlePlugin = "9.0.0-beta02"
+<span class="lineno">   6 </span>appcompat = "1.7.1"
+<span class="lineno">   7 </span>biometric = "1.4.0-alpha04"
 </pre>
 
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:25</span>: <span class="message">A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.9.4 is available: 2.10.0</span><br /><pre class="errorlines">
-<span class="lineno">  22 </span>juniversalchardet = "2.5.0"
-<span class="lineno">  23 </span>kotlinGradlePlugin = "2.3.0-RC"
-<span class="lineno">  24 </span>kotlinxCoroutinesCore = "1.10.2"
-<span class="caretline"><span class="lineno">  25 </span>lifecycleLivedataKtx = <span class="warning">"2.9.4"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  26 </span>lifecycleViewmodelKtx = "2.9.4"
-<span class="lineno">  27 </span>material = "1.14.0-alpha06"
-<span class="lineno">  28 </span>media3 = "1.8.0"
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:27</span>: <span class="message">A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.9.4 is available: 2.10.0</span><br /><pre class="errorlines">
+<span class="lineno">  24 </span>juniversalchardet = "2.5.0"
+<span class="lineno">  25 </span>kotlinGradlePlugin = "2.3.0-RC"
+<span class="lineno">  26 </span>kotlinxCoroutinesCore = "1.10.2"
+<span class="caretline"><span class="lineno">  27 </span>lifecycleLivedataKtx = <span class="warning">"2.9.4"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  28 </span>lifecycleViewmodelKtx = "2.9.4"
+<span class="lineno">  29 </span>material = "1.14.0-alpha06"
+<span class="lineno">  30 </span>media3 = "1.8.0"
 </pre>
 
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:26</span>: <span class="message">A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.9.4 is available: 2.10.0</span><br /><pre class="errorlines">
-<span class="lineno">  23 </span>kotlinGradlePlugin = "2.3.0-RC"
-<span class="lineno">  24 </span>kotlinxCoroutinesCore = "1.10.2"
-<span class="lineno">  25 </span>lifecycleLivedataKtx = "2.9.4"
-<span class="caretline"><span class="lineno">  26 </span>lifecycleViewmodelKtx = <span class="warning">"2.9.4"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  27 </span>material = "1.14.0-alpha06"
-<span class="lineno">  28 </span>media3 = "1.8.0"
-<span class="lineno">  29 </span>navigationKtx = "2.9.6"
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:28</span>: <span class="message">A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.9.4 is available: 2.10.0</span><br /><pre class="errorlines">
+<span class="lineno">  25 </span>kotlinGradlePlugin = "2.3.0-RC"
+<span class="lineno">  26 </span>kotlinxCoroutinesCore = "1.10.2"
+<span class="lineno">  27 </span>lifecycleLivedataKtx = "2.9.4"
+<span class="caretline"><span class="lineno">  28 </span>lifecycleViewmodelKtx = <span class="warning">"2.9.4"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  29 </span>material = "1.14.0-alpha06"
+<span class="lineno">  30 </span>media3 = "1.8.0"
+<span class="lineno">  31 </span>navigationKtx = "2.9.6"
 </pre>
 
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:27</span>: <span class="message">A newer version of com.google.android.material:material than 1.14.0-alpha06 is available: 1.14.0-alpha07</span><br /><pre class="errorlines">
-<span class="lineno">  24 </span>kotlinxCoroutinesCore = "1.10.2"
-<span class="lineno">  25 </span>lifecycleLivedataKtx = "2.9.4"
-<span class="lineno">  26 </span>lifecycleViewmodelKtx = "2.9.4"
-<span class="caretline"><span class="lineno">  27 </span>material = <span class="warning">"1.14.0-alpha06"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  28 </span>media3 = "1.8.0"
-<span class="lineno">  29 </span>navigationKtx = "2.9.6"
-<span class="lineno">  30 </span>newpipeextractor = "v0.24.8"
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:29</span>: <span class="message">A newer version of com.google.android.material:material than 1.14.0-alpha06 is available: 1.14.0-alpha07</span><br /><pre class="errorlines">
+<span class="lineno">  26 </span>kotlinxCoroutinesCore = "1.10.2"
+<span class="lineno">  27 </span>lifecycleLivedataKtx = "2.9.4"
+<span class="lineno">  28 </span>lifecycleViewmodelKtx = "2.9.4"
+<span class="caretline"><span class="lineno">  29 </span>material = <span class="warning">"1.14.0-alpha06"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  30 </span>media3 = "1.8.0"
+<span class="lineno">  31 </span>navigationKtx = "2.9.6"
+<span class="lineno">  32 </span>newpipeextractor = "v0.24.8"
 </pre>
 
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:46</span>: <span class="message">A newer version of androidx.work:work-runtime than 2.10.5 is available: 2.11.0</span><br /><pre class="errorlines">
-<span class="lineno">  43 </span>torrentserver = "7861970e038b35cd8c6918384e49caf26903e09e"
-<span class="lineno">  44 </span>tvprovider = "1.1.0"
-<span class="lineno">  45 </span>video = "1.0.0"
-<span class="caretline"><span class="lineno">  46 </span>workRuntime = <span class="warning">"2.10.5"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  47 </span>workRuntimeKtx = "2.10.5"
-<span class="lineno">  48 </span>
-<span class="lineno">  49 </span>jvmTarget = "1.8"
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:48</span>: <span class="message">A newer version of androidx.work:work-runtime than 2.10.5 is available: 2.11.0</span><br /><pre class="errorlines">
+<span class="lineno">  45 </span>torrentserver = "7861970e038b35cd8c6918384e49caf26903e09e"
+<span class="lineno">  46 </span>tvprovider = "1.1.0"
+<span class="lineno">  47 </span>video = "1.0.0"
+<span class="caretline"><span class="lineno">  48 </span>workRuntime = <span class="warning">"2.10.5"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  49 </span>workRuntimeKtx = "2.10.5"
+<span class="lineno">  50 </span>
+<span class="lineno">  51 </span>jvmTarget = "1.8"
 </pre>
 
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:47</span>: <span class="message">A newer version of androidx.work:work-runtime-ktx than 2.10.5 is available: 2.11.0</span><br /><pre class="errorlines">
-<span class="lineno">  44 </span>tvprovider = "1.1.0"
-<span class="lineno">  45 </span>video = "1.0.0"
-<span class="lineno">  46 </span>workRuntime = "2.10.5"
-<span class="caretline"><span class="lineno">  47 </span>workRuntimeKtx = <span class="warning">"2.10.5"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  48 </span>
-<span class="lineno">  49 </span>jvmTarget = "1.8"
-<span class="lineno">  50 </span>jdkToolchain = "17"
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:49</span>: <span class="message">A newer version of androidx.work:work-runtime-ktx than 2.10.5 is available: 2.11.0</span><br /><pre class="errorlines">
+<span class="lineno">  46 </span>tvprovider = "1.1.0"
+<span class="lineno">  47 </span>video = "1.0.0"
+<span class="lineno">  48 </span>workRuntime = "2.10.5"
+<span class="caretline"><span class="lineno">  49 </span>workRuntimeKtx = <span class="warning">"2.10.5"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  50 </span>
+<span class="lineno">  51 </span>jvmTarget = "1.8"
+<span class="lineno">  52 </span>jdkToolchain = "17"
 </pre>
 
 </div>
@@ -1951,24 +1953,24 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:9</span>: <span class="message">A newer version of org.conscrypt:conscrypt-android than 2.5.2 is available: 2.5.3</span><br /><pre class="errorlines">
-<span class="lineno">   6 </span>buildkonfigGradlePlugin = "0.17.1"
-<span class="lineno">   7 </span>coil = "3.3.0"
-<span class="lineno">   8 </span>colorpicker = "6b46b49bd5"
-<span class="caretline"><span class="lineno">   9 </span>conscryptAndroid = { strictly = <span class="warning">"2.5.2"</span> } # 2.5.3 crashes everything&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  10 </span>constraintlayout = "2.2.1"
-<span class="lineno">  11 </span>coreKtx = "1.17.0"
-<span class="lineno">  12 </span>desugar_jdk_libs_nio = "2.1.5"
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:11</span>: <span class="message">A newer version of org.conscrypt:conscrypt-android than 2.5.2 is available: 2.5.3</span><br /><pre class="errorlines">
+<span class="lineno">   8 </span>buildkonfigGradlePlugin = "0.17.1"
+<span class="lineno">   9 </span>coil = "3.3.0"
+<span class="lineno">  10 </span>colorpicker = "6b46b49bd5"
+<span class="caretline"><span class="lineno">  11 </span>conscryptAndroid = { strictly = <span class="warning">"2.5.2"</span> } # 2.5.3 crashes everything&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  12 </span>constraintlayout = "2.2.1"
+<span class="lineno">  13 </span>coreKtx = "1.17.0"
+<span class="lineno">  14 </span>desugar_jdk_libs_nio = "2.1.5"
 </pre>
 
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:16</span>: <span class="message">A newer version of com.fasterxml.jackson.module:jackson-module-kotlin than 2.13.1 is available: 2.20.1</span><br /><pre class="errorlines">
-<span class="lineno">  13 </span>dokkaGradlePlugin = "2.1.0"
-<span class="lineno">  14 </span>espressoCore = "3.7.0"
-<span class="lineno">  15 </span>fuzzywuzzy = "1.4.0"
-<span class="caretline"><span class="lineno">  16 </span>jacksonModuleKotlin = { strictly = <span class="warning">"2.13.1"</span> } # Later versions don't support minSdk &lt;26 (Crashes on Android TV's and FireSticks)</span>
-<span class="lineno">  17 </span>json = "20250517"
-<span class="lineno">  18 </span>jsoup = "1.21.2"
-<span class="lineno">  19 </span>junit = "4.13.2"
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:18</span>: <span class="message">A newer version of com.fasterxml.jackson.module:jackson-module-kotlin than 2.13.1 is available: 2.20.1</span><br /><pre class="errorlines">
+<span class="lineno">  15 </span>dokkaGradlePlugin = "2.1.0"
+<span class="lineno">  16 </span>espressoCore = "3.7.0"
+<span class="lineno">  17 </span>fuzzywuzzy = "1.4.0"
+<span class="caretline"><span class="lineno">  18 </span>jacksonModuleKotlin = { strictly = <span class="warning">"2.13.1"</span> } # Later versions don't support minSdk &lt;26 (Crashes on Android TV's and FireSticks)</span>
+<span class="lineno">  19 </span>json = "20250517"
+<span class="lineno">  20 </span>jsoup = "1.21.2"
+<span class="lineno">  21 </span>junit = "4.13.2"
 </pre>
 
 </div>
@@ -2778,14 +2780,14 @@ Dismiss</button>            </div>
 <span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/1eb3fbb684aa7500fdf1053f6994bb4e/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/1eb3fbb684aa7500fdf1053f6994bb4e/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
 <span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/1eb3fbb684aa7500fdf1053f6994bb4e/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/1eb3fbb684aa7500fdf1053f6994bb4e/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
 <span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/1eb3fbb684aa7500fdf1053f6994bb4e/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/1eb3fbb684aa7500fdf1053f6994bb4e/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:62</span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br /><pre class="errorlines">
-<span class="lineno">  59 </span>coil = { module = "io.coil-kt.coil3:coil", version.ref = "coil" }
-<span class="lineno">  60 </span>coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
-<span class="lineno">  61 </span>colorpicker = { module = "com.github.recloudstream:color-picker-android", version.ref = "colorpicker" }
-<span class="caretline"><span class="lineno">  62 </span>conscrypt-android = {<span class="warning"> module = "org.conscrypt:conscrypt-android", version.ref = "conscryptAndroid" }</span></span>
-<span class="lineno">  63 </span>constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
-<span class="lineno">  64 </span>core = { module = "androidx.test:core" }
-<span class="lineno">  65 </span>core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:64</span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br /><pre class="errorlines">
+<span class="lineno">  61 </span>coil = { module = "io.coil-kt.coil3:coil", version.ref = "coil" }
+<span class="lineno">  62 </span>coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
+<span class="lineno">  63 </span>colorpicker = { module = "com.github.recloudstream:color-picker-android", version.ref = "colorpicker" }
+<span class="caretline"><span class="lineno">  64 </span>conscrypt-android = {<span class="warning"> module = "org.conscrypt:conscrypt-android", version.ref = "conscryptAndroid" }</span></span>
+<span class="lineno">  65 </span>constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+<span class="lineno">  66 </span>core = { module = "androidx.test:core" }
+<span class="lineno">  67 </span>core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 </pre>
 
 </div>
