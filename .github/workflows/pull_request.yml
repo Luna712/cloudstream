@@ -36,7 +36,6 @@ jobs:
 
     - name: Deploy Reports to GitHub Pages
       run: |
-        ls app/build/libs/app-sources.jar
         BRANCH_NAME=${GITHUB_REF#refs/heads/}
         TARGET_DIR=gh-pages/$BRANCH_NAME
         mkdir -p "$TARGET_DIR"
