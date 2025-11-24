@@ -18,13 +18,7 @@
    to wrap_content rather than fill_parent or match_parent in the scrolling
    dimension.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt:69: Warning: Field requires API level 23 (current min is 21): android.provider.Settings#ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS [InlinedApi]
-                action =  Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
-                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt:69: Warning: Field requires API level 23 (current min is 21): android.provider.Settings#ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS [InlinedApi]
-                action =  Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
-                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/UIHelper.kt:138: Warning: Field requires API level 30 (current min is 21): android.Manifest.permission#MANAGE_EXTERNAL_STORAGE [InlinedApi]
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/UIHelper.kt:138: Warning: Field requires API level 30 (current min is 23): android.Manifest.permission#MANAGE_EXTERNAL_STORAGE [InlinedApi]
                 Manifest.permission.MANAGE_EXTERNAL_STORAGE
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -65,21 +59,15 @@
    listen to updates, use androidx.core.view.WindowInsetsCompat and related
    APIs.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt:1995: Error: Call requires API level 23 (current min is 21): android.view.View#setOnScrollChangeListener [NewApi]
-            playerControlsScroll.setOnScrollChangeListener { _, _, _, _, _ ->
-                                 ~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/settings_title_top.xml:18: Error: @android:id/list_container requires API level 24 (current min is 21) [NewApi]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/settings_title_top.xml:18: Error: @android:id/list_container requires API level 24 (current min is 23) [NewApi]
             android:id="@android:id/list_container"
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:177: Error: android:windowLightNavigationBar requires API level 27 (current min is 21) [NewApi]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:177: Error: android:windowLightNavigationBar requires API level 27 (current min is 23) [NewApi]
         <item name="android:windowLightNavigationBar">true</item>
               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:203: Error: android:windowLightNavigationBar requires API level 27 (current min is 21) [NewApi]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:203: Error: android:windowLightNavigationBar requires API level 27 (current min is 23) [NewApi]
         <item name="android:windowLightNavigationBar">true</item>
               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:577: Error: android:windowLightStatusBar requires API level 23 (current min is 21) [NewApi]
-        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
-              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    Explanation for issues of type "NewApi":
    This check scans through all the Android API calls in the application and
@@ -122,195 +110,27 @@
    Kotlin uses a better definition of what constitutes a whitespace character
    (Char::isWhitespace) and also results in less bytecode at the call-site.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/account_edit_dialog.xml:53: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                android:foreground="@drawable/outline_drawable_forced_round"
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/account_single.xml:4: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-    android:foreground="?android:attr/selectableItemBackgroundBorderless"
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/account_single.xml:26: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-        android:foreground="@null"
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/download_header_episode.xml:31: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-        android:foreground="?android:attr/selectableItemBackgroundBorderless"
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_downloads.xml:82: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-            android:foreground="@drawable/outline_drawable"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_downloads.xml:347: Warning: Attribute tooltipText is only used in API level 26 and higher (current min is 21) [UnusedAttribute]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_downloads.xml:347: Warning: Attribute tooltipText is only used in API level 26 and higher (current min is 23) [UnusedAttribute]
             android:tooltipText="@string/open_local_video"
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_extensions.xml:68: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-        android:foreground="@drawable/outline_drawable"
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_extensions.xml:221: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-        android:foreground="@drawable/outline_drawable"
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_home_head.xml:66: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                android:foreground="@drawable/rounded_select_ripple"
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_home_head.xml:85: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                        android:foreground="@drawable/rounded_outline"
-                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_home_head.xml:175: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-            android:foreground="@drawable/rounded_select_ripple"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_home_head.xml:194: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                    android:foreground="@drawable/rounded_outline"
-                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_plugin_details.xml:78: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-            android:foreground="?android:attr/selectableItemBackgroundBorderless"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_plugin_details.xml:109: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-            android:foreground="?android:attr/selectableItemBackgroundBorderless"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_plugin_details.xml:139: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-            android:foreground="?android:attr/selectableItemBackgroundBorderless"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_plugin_details.xml:169: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-            android:foreground="?android:attr/selectableItemBackgroundBorderless"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_plugin_details.xml:199: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-            android:foreground="?android:attr/selectableItemBackgroundBorderless"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_plugin_details.xml:229: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-            android:foreground="?android:attr/selectableItemBackgroundBorderless"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_plugin_details.xml:260: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-            android:foreground="?android:attr/selectableItemBackgroundBorderless"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result.xml:335: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                                android:foreground="@drawable/outline_drawable"
-                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result.xml:412: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                                    android:foreground="@drawable/outline_drawable"
-                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_swipe.xml:85: Warning: Attribute tooltipText is only used in API level 26 and higher (current min is 21) [UnusedAttribute]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_swipe.xml:85: Warning: Attribute tooltipText is only used in API level 26 and higher (current min is 23) [UnusedAttribute]
                     android:tooltipText="@string/subscribe_tooltip"
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_swipe.xml:102: Warning: Attribute tooltipText is only used in API level 26 and higher (current min is 21) [UnusedAttribute]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_swipe.xml:102: Warning: Attribute tooltipText is only used in API level 26 and higher (current min is 23) [UnusedAttribute]
                 android:tooltipText="@string/action_add_to_favorites"
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_swipe.xml:119: Warning: Attribute tooltipText is only used in API level 26 and higher (current min is 21) [UnusedAttribute]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_swipe.xml:119: Warning: Attribute tooltipText is only used in API level 26 and higher (current min is 23) [UnusedAttribute]
                     android:tooltipText="@string/result_share"
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_swipe.xml:137: Warning: Attribute tooltipText is only used in API level 26 and higher (current min is 21) [UnusedAttribute]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_swipe.xml:137: Warning: Attribute tooltipText is only used in API level 26 and higher (current min is 23) [UnusedAttribute]
                     android:tooltipText="@string/result_open_in_browser"
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_swipe.xml:155: Warning: Attribute tooltipText is only used in API level 26 and higher (current min is 21) [UnusedAttribute]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_swipe.xml:155: Warning: Attribute tooltipText is only used in API level 26 and higher (current min is 23) [UnusedAttribute]
                     android:tooltipText="@string/result_search_tooltip"
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_swipe.xml:173: Warning: Attribute tooltipText is only used in API level 26 and higher (current min is 21) [UnusedAttribute]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_swipe.xml:173: Warning: Attribute tooltipText is only used in API level 26 and higher (current min is 23) [UnusedAttribute]
                     android:tooltipText="@string/recommendations_tooltip"
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_tv.xml:601: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                        android:foreground="@drawable/outline_drawable"
-                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_tv.xml:906: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                                android:foreground="@drawable/outline_drawable"
-                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/home_result_big_grid.xml:25: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-            android:foreground="?android:attr/selectableItemBackgroundBorderless"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/home_result_grid.xml:24: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-        android:foreground="?android:attr/selectableItemBackgroundBorderless"
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/home_result_grid_expanded.xml:46: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                android:foreground="?android:attr/selectableItemBackgroundBorderless"
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/main_settings.xml:39: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                        android:foreground="@drawable/rounded_outline"
-                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/options_popup_tv.xml:27: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                android:foreground="?android:attr/selectableItemBackgroundBorderless"
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:958: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-        android:foreground="@null"
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_select_source_and_subs.xml:31: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                android:foreground="@drawable/outline_drawable_forced"
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout-port/player_select_source_and_subs.xml:114: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                    android:foreground="@drawable/outline_drawable_forced"
-                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_select_source_and_subs.xml:121: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                        android:foreground="@drawable/outline_drawable_forced"
-                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_select_source_and_subs.xml:138: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                        android:foreground="@drawable/outline_drawable_forced"
-                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_select_tracks.xml:65: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                        android:foreground="?attr/selectableItemBackgroundBorderless"
-                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/rail_footer.xml:26: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-            android:foreground="@drawable/outline_big_20_gray"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_episode.xml:57: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-        android:foreground="?android:attr/selectableItemBackgroundBorderless">
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_episode_large.xml:21: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-        android:foreground="?android:attr/selectableItemBackgroundBorderless"
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_episode_large.xml:43: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                    android:foreground="?android:attr/selectableItemBackgroundBorderless"
-                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/search_result_compact.xml:37: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                    android:foreground="?android:attr/selectableItemBackgroundBorderless"
-                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/search_result_grid.xml:11: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-    android:foreground="@drawable/outline_drawable"
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/search_result_grid.xml:31: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-            android:foreground="?android:attr/selectableItemBackgroundBorderless"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/search_result_grid_expanded.xml:10: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-    android:foreground="@drawable/outline_drawable"
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/search_result_grid_expanded.xml:37: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                android:foreground="?android:attr/selectableItemBackgroundBorderless"
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/search_result_super_compact.xml:34: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                    android:foreground="?android:attr/selectableItemBackgroundBorderless"
-                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/sort_bottom_footer_add_choice.xml:7: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-        android:foreground="@drawable/outline_drawable_forced"
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/sort_bottom_single_choice_color.xml:18: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-        android:foreground="?attr/selectableItemBackgroundBorderless" />
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/sort_bottom_single_choice_double_text.xml:43: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-            android:foreground="@null"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/sort_bottom_single_choice_double_text.xml:51: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-            android:foreground="@null"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/speed_dialog.xml:29: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-            android:foreground="@drawable/outline_drawable"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/speed_dialog.xml:66: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-            android:foreground="@drawable/outline_drawable"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/splash_background.xml:6: Warning: Attribute height is only used in API level 23 and higher (current min is 21) [UnusedAttribute]
-    <item android:width="150dp" android:height="150dp" android:gravity="center" android:drawable="@drawable/ic_launcher_foreground">
-                                ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/splash_background.xml:6: Warning: Attribute width is only used in API level 23 and higher (current min is 21) [UnusedAttribute]
-    <item android:width="150dp" android:height="150dp" android:gravity="center" android:drawable="@drawable/ic_launcher_foreground">
-          ~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:931: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-        android:foreground="@null"
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/video_pause.xml:4: Warning: Attribute height is only used in API level 23 and higher (current min is 21) [UnusedAttribute]
-    <item android:drawable="@drawable/netflix_pause" android:height="70dp" android:width="70dp" android:gravity="center">
-                                                     ~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/video_pause.xml:4: Warning: Attribute width is only used in API level 23 and higher (current min is 21) [UnusedAttribute]
-    <item android:drawable="@drawable/netflix_pause" android:height="70dp" android:width="70dp" android:gravity="center">
-                                                                           ~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/video_play.xml:4: Warning: Attribute height is only used in API level 23 and higher (current min is 21) [UnusedAttribute]
-    <item android:drawable="@drawable/netflix_play" android:height="70dp" android:width="70dp" android:gravity="center">
-                                                    ~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/video_play.xml:4: Warning: Attribute width is only used in API level 23 and higher (current min is 21) [UnusedAttribute]
-    <item android:drawable="@drawable/netflix_play" android:height="70dp" android:width="70dp" android:gravity="center">
-                                                                          ~~~~~~~~~~~~~~~~~~~~
 
    Explanation for issues of type "UnusedAttribute":
    This check finds attributes set in XML files that were introduced in a
@@ -673,7 +493,7 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
    Identifier: androidx.annotation.experimental
    Feedback: https://issuetracker.google.com/issues/new?component=459778
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt:376: Warning: The resource @string/exo_controls_stop_description is marked as private in androidx.media3:media3-ui:1.8.0 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt:376: Warning: The resource @string/exo_controls_stop_description is marked as private in androidx.media3:media3-ui:1.9.0-beta01 [PrivateResource]
                             context.getString(androidx.media3.ui.R.string.exo_controls_stop_description),
                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_category_material.xml:31: Warning: The resource @layout/image_frame is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
@@ -736,10 +556,10 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/material_outline_background.xml:4: Warning: The resource @dimen/mtrl_btn_stroke_size is marked as private in com.google.android.material:material:1.14.0-alpha06 [PrivateResource]
     <stroke android:width="@dimen/mtrl_btn_stroke_size" android:color="@color/mtrl_btn_stroke_color_selector"/>
                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:558: Warning: The resource @style/ExoMediaButton is marked as private in androidx.media3:media3-ui:1.8.0 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:558: Warning: The resource @style/ExoMediaButton is marked as private in androidx.media3:media3-ui:1.9.0-beta01 [PrivateResource]
                     style="@style/ExoMediaButton"
                            ~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:681: Warning: The resource @style/ExoMediaButton is marked as private in androidx.media3:media3-ui:1.8.0 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:681: Warning: The resource @style/ExoMediaButton is marked as private in androidx.media3:media3-ui:1.9.0-beta01 [PrivateResource]
                     style="@style/ExoMediaButton"
                            ~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/anim/pop_enter.xml:5: Warning: The resource @integer/config_navAnimTime is marked as private in androidx.navigation:navigation-ui:2.9.6 [PrivateResource]
@@ -754,7 +574,7 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/anim/pop_exit.xml:16: Warning: The resource @integer/config_navAnimTime is marked as private in androidx.navigation:navigation-ui:2.9.6 [PrivateResource]
             android:duration="@integer/config_navAnimTime"
                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:518: Warning: The resource @style/ExoMediaButton is marked as private in androidx.media3:media3-ui:1.8.0 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:518: Warning: The resource @style/ExoMediaButton is marked as private in androidx.media3:media3-ui:1.9.0-beta01 [PrivateResource]
                 style="@style/ExoMediaButton"
                        ~~~~~~~~~~~~~~~~~~~~~
 
@@ -3850,6 +3670,46 @@ class SSLTrustManager : X509TrustManager {
 
    https://goo.gle/CustomX509TrustManager
 
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/account/AccountAdapter.kt:65: Warning: Unnecessary; SDK_INT is always >= 23 [ObsoleteSdkInt]
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/account/AccountAdapter.kt:117: Warning: Unnecessary; SDK_INT is always >= 23 [ObsoleteSdkInt]
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt:634: Warning: Unnecessary; SDK_INT is always >= 23 [ObsoleteSdkInt]
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt:847: Warning: Unnecessary; SDK_INT is always >= 23 [ObsoleteSdkInt]
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/download/DownloadFragment.kt:226: Warning: Unnecessary; SDK_INT is always >= 23 [ObsoleteSdkInt]
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/extensions/ExtensionsFragment.kt:100: Warning: Unnecessary; SDK_INT is always >= 23 [ObsoleteSdkInt]
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt:262: Warning: Unnecessary; SDK_INT is always >= 23 [ObsoleteSdkInt]
+        val pendingFlags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt:25: Warning: Unnecessary; SDK_INT is always >= 23 [ObsoleteSdkInt]
+        if (SDK_INT >= 23 && context != null) {
+            ~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/RoundedBackgroundColorSpan.kt:63: Warning: Unnecessary; SDK_INT is always >= 23 [ObsoleteSdkInt]
+        val textLayout: StaticLayout = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/library/ViewpagerAdapter.kt:97: Warning: Unnecessary; SDK_INT is always >= 23 [ObsoleteSdkInt]
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "ObsoleteSdkInt":
+   This check flags version checks that are not necessary, because the
+   minSdkVersion (or surrounding known API level) is already at least as high
+   as the version checked for.
+
+   Similarly, it also looks for resources in -vNN folders, such as values-v14
+   where the version qualifier is less than or equal to the minSdkVersion,
+   where the contents should be merged into the best folder.
+
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/VideoDownloadManager.kt:1087: Hint: This initialization lambda ({ 0 }) is unnecessary and is less efficient [UnnecessaryArrayInit]
             LongArray(1) { 0 }
                          ~~~~~
@@ -5292,4 +5152,4 @@ class SSLTrustManager : X509TrustManager {
    the left bitmask. Therefore, you can use gravity="start" rather than
    gravity="left|start".)
 
-749 errors, 791 warnings, 3 hints
+747 errors, 743 warnings, 3 hints
