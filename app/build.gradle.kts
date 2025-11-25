@@ -243,7 +243,7 @@ tasks.register<Jar>("androidSourcesJar") {
 }
 
 tasks.register<Copy>("copyJar") {
-    mustRunAfter(tasks.getByName("assemble"))
+    dependsOn(tasks.getByName("build"))
     from(
         "build/intermediates/compile_app_classes_jar/prereleaseDebug/bundlePrereleaseDebugClassesToCompileJar",
         "../library/build/libs"
