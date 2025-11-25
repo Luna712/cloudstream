@@ -243,6 +243,7 @@ tasks.register<Jar>("androidSourcesJar") {
 }
 
 tasks.register<Copy>("copyJar") {
+    mustRunAfter(tasks.getByName("assemble"))
     from(
         "build/intermediates/compile_app_classes_jar/prereleaseDebug/bundlePrereleaseDebugClassesToCompileJar",
         "../library/build/libs"
@@ -258,7 +259,6 @@ tasks.register<Jar>("makeJar") {
     // Duplicates cause hard to catch errors, better to fail at compile time.
     duplicatesStrategy = DuplicatesStrategy.FAIL
     dependsOn(tasks.getByName("copyJar"))
-    mustRunAfter(tasks.getByName("assemble"))
     from(
         zipTree("build/app-classes/classes.jar"),
         zipTree("build/app-classes/library-jvm.jar")
