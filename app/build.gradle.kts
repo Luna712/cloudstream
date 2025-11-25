@@ -240,7 +240,7 @@ dependencies {
 tasks.register<Jar>("androidSourcesJar") {
     archiveClassifier.set("sources")
     // from(android.sourceSets.getByName("main").java.directories) // Full Sources
-    extensions.findByType<SourceSetContainer>()?.getByName("main")?.java
+    extensions.findByType<SourceSetContainer>()?.getByName("main")?.allJava
         ?.srcDirs?.let { from(it) } ?: error("Could not find srcDirs")
 }
 
