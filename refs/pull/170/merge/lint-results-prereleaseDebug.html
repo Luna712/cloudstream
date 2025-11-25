@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 747 errors, 743 warnings and 3 hints</span>
+      <span class="mdl-layout-title">Lint Report: 749 errors, 790 warnings and 3 hints</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Mon Nov 24 19:57:11 UTC 2025 by AGP (9.0.0-beta02)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Tue Nov 25 21:35:01 UTC 2025 by AGP (9.0.0-beta02)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -188,11 +188,11 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#overview"><i class="material-icons">dashboard</i>Overview</a>
       <a class="mdl-navigation__link" href="#NestedScrolling"><i class="material-icons warning-icon">warning</i>Nested scrolling widgets (1)</a>
       <a class="mdl-navigation__link" href="#ScrollViewSize"><i class="material-icons warning-icon">warning</i>ScrollView size validation (2)</a>
-      <a class="mdl-navigation__link" href="#InlinedApi"><i class="material-icons warning-icon">warning</i>Using inlined constants on older versions (1)</a>
+      <a class="mdl-navigation__link" href="#InlinedApi"><i class="material-icons warning-icon">warning</i>Using inlined constants on older versions (3)</a>
       <a class="mdl-navigation__link" href="#InternalInsetResource"><i class="material-icons warning-icon">warning</i>Using internal inset dimension resource (2)</a>
-      <a class="mdl-navigation__link" href="#NewApi"><i class="material-icons error-icon">error</i>Calling new methods on older versions (3)</a>
+      <a class="mdl-navigation__link" href="#NewApi"><i class="material-icons error-icon">error</i>Calling new methods on older versions (5)</a>
       <a class="mdl-navigation__link" href="#TrimLambda"><i class="material-icons warning-icon">warning</i>Unnecessary lambda with <code>trim()</code> (2)</a>
-      <a class="mdl-navigation__link" href="#UnusedAttribute"><i class="material-icons warning-icon">warning</i>Attribute unused on older versions (7)</a>
+      <a class="mdl-navigation__link" href="#UnusedAttribute"><i class="material-icons warning-icon">warning</i>Attribute unused on older versions (63)</a>
       <a class="mdl-navigation__link" href="#AppBundleLocaleChanges"><i class="material-icons warning-icon">warning</i>App Bundle handling of runtime locale changes (1)</a>
       <a class="mdl-navigation__link" href="#AppLinkWarning"><i class="material-icons warning-icon">warning</i>App Link warning (1)</a>
       <a class="mdl-navigation__link" href="#BatteryLife"><i class="material-icons warning-icon">warning</i>Battery Life Issues (2)</a>
@@ -201,7 +201,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#PictureInPictureIssue"><i class="material-icons warning-icon">warning</i>Picture In Picture best practices not followed (1)</a>
       <a class="mdl-navigation__link" href="#UnspecifiedRegisterReceiverFlag"><i class="material-icons error-icon">error</i>Missing <code>registerReceiver()</code> exported flag (1)</a>
       <a class="mdl-navigation__link" href="#VectorRaster"><i class="material-icons warning-icon">warning</i>Vector Image Generation (15)</a>
-      <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (6)</a>
+      <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (5)</a>
       <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (2)</a>
       <a class="mdl-navigation__link" href="#RestrictedApi"><i class="material-icons error-icon">error</i>Restricted API (10)</a>
       <a class="mdl-navigation__link" href="#UnsafeOptInUsageError"><i class="material-icons error-icon">error</i>Unsafe opt-in usage intended to be error-level severity (22)</a>
@@ -218,7 +218,6 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#SetJavaScriptEnabled"><i class="material-icons warning-icon">warning</i>Using <code>setJavaScriptEnabled</code> (1)</a>
       <a class="mdl-navigation__link" href="#TrustAllX509TrustManager"><i class="material-icons warning-icon">warning</i>Insecure TLS/SSL trust manager (2)</a>
       <a class="mdl-navigation__link" href="#CustomX509TrustManager"><i class="material-icons warning-icon">warning</i>Implements custom TLS trust manager (1)</a>
-      <a class="mdl-navigation__link" href="#ObsoleteSdkInt"><i class="material-icons warning-icon">warning</i>Obsolete SDK_INT Version Check (10)</a>
       <a class="mdl-navigation__link" href="#UnnecessaryArrayInit"><i class="material-icons warning-icon">warning</i>Unnecessary array initialization (1)</a>
       <a class="mdl-navigation__link" href="#UseCompoundDrawables"><i class="material-icons warning-icon">warning</i>Node can be replaced by a <code>TextView</code> with compound drawables (6)</a>
       <a class="mdl-navigation__link" href="#VectorPath"><i class="material-icons warning-icon">warning</i>Long vector paths (1)</a>
@@ -266,19 +265,19 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#ScrollViewSize">ScrollViewSize</a>: ScrollView size validation</td></tr>
 <tr>
-<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">3</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#InlinedApi">InlinedApi</a>: Using inlined constants on older versions</td></tr>
 <tr>
 <td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#InternalInsetResource">InternalInsetResource</a>: Using internal inset dimension resource</td></tr>
 <tr>
-<td class="countColumn">3</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
+<td class="countColumn">5</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
 <a href="#NewApi">NewApi</a>: Calling new methods on older versions</td></tr>
 <tr>
 <td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#TrimLambda">TrimLambda</a>: Unnecessary lambda with <code>trim()</code></td></tr>
 <tr>
-<td class="countColumn">7</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">63</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#UnusedAttribute">UnusedAttribute</a>: Attribute unused on older versions</td></tr>
 <tr>
 <td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
@@ -305,7 +304,7 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">15</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#VectorRaster">VectorRaster</a>: Vector Image Generation</td></tr>
 <tr>
-<td class="countColumn">6</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">5</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#GradleDependency">GradleDependency</a>: Obsolete Gradle Dependency</td></tr>
 <tr>
 <td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
@@ -361,9 +360,6 @@ document.getElementById(id).style.display = 'none';
 <a href="#CustomX509TrustManager">CustomX509TrustManager</a>: Implements custom TLS trust manager</td></tr>
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Performance">Performance</a>
 </td></tr>
-<tr>
-<td class="countColumn">10</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
-<a href="#ObsoleteSdkInt">ObsoleteSdkInt</a>: Obsolete SDK_INT Version Check</td></tr>
 <tr>
 <td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#UnnecessaryArrayInit">UnnecessaryArrayInit</a>: Unnecessary array initialization</td></tr>
@@ -575,7 +571,27 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/UIHelper.kt">../../src/main/java/com/lagradost/cloudstream3/utils/UIHelper.kt</a>:138</span>: <span class="message">Field requires API level 30 (current min is 23): <code>android.Manifest.permission#MANAGE_EXTERNAL_STORAGE</code></span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt">../../src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt</a>:69</span>: <span class="message">Field requires API level 23 (current min is 21): <code>android.provider.Settings#ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS</code></span><br /><pre class="errorlines">
+<span class="lineno"> 66 </span>    private <span class="keyword">fun</span> Context.showRequestIgnoreBatteryOptDialog() {
+<span class="lineno"> 67 </span>        <span class="keyword">try</span> {
+<span class="lineno"> 68 </span>            <span class="keyword">val</span> intent = Intent().apply {
+<span class="caretline"><span class="lineno"> 69 </span>                action =  <span class="warning">Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 70 </span>                data = Uri.parse(<span class="string">"package:$PACKAGE_NAME"</span>)
+<span class="lineno"> 71 </span>            }
+<span class="lineno"> 72 </span>            startActivity(intent)
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt">../../src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt</a>:69</span>: <span class="message">Field requires API level 23 (current min is 21): <code>android.provider.Settings#ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS</code></span><br /><pre class="errorlines">
+<span class="lineno"> 66 </span>    private <span class="keyword">fun</span> Context.showRequestIgnoreBatteryOptDialog() {
+<span class="lineno"> 67 </span>        <span class="keyword">try</span> {
+<span class="lineno"> 68 </span>            <span class="keyword">val</span> intent = Intent().apply {
+<span class="caretline"><span class="lineno"> 69 </span>                action =  <span class="warning">Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 70 </span>                data = Uri.parse(<span class="string">"package:$PACKAGE_NAME"</span>)
+<span class="lineno"> 71 </span>            }
+<span class="lineno"> 72 </span>            startActivity(intent)
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/UIHelper.kt">../../src/main/java/com/lagradost/cloudstream3/utils/UIHelper.kt</a>:138</span>: <span class="message">Field requires API level 30 (current min is 21): <code>android.Manifest.permission#MANAGE_EXTERNAL_STORAGE</code></span><br /><pre class="errorlines">
 <span class="lineno"> 135 </span>            arrayOf(
 <span class="lineno"> 136 </span>                Manifest.permission.WRITE_EXTERNAL_STORAGE,
 <span class="lineno"> 137 </span>                Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -680,7 +696,16 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/res/layout/settings_title_top.xml">../../src/main/res/layout/settings_title_top.xml</a>:18</span>: <span class="message"><code>@android:id/list_container</code> requires API level 24 (current min is 23)</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt</a>:1995</span>: <span class="message">Call requires API level 23 (current min is 21): <code>android.view.View#setOnScrollChangeListener</code></span><br /><pre class="errorlines">
+<span class="lineno"> 1992 </span>                <span class="keyword">return</span><span class="annotation">@setOnTouchListener</span> handleMotionEvent(callView, event)
+<span class="lineno"> 1993 </span>            }
+<span class="lineno"> 1994 </span>
+<span class="caretline"><span class="lineno"> 1995 </span>            playerControlsScroll.<span class="error">setOnScrollChangeListener</span> { _, _, _, _, _ ->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 1996 </span>                autoHide()
+<span class="lineno"> 1997 </span>            }
+</pre>
+
+<span class="location"><a href="../../src/main/res/layout/settings_title_top.xml">../../src/main/res/layout/settings_title_top.xml</a>:18</span>: <span class="message"><code>@android:id/list_container</code> requires API level 24 (current min is 21)</span><br /><pre class="errorlines">
 <span class="lineno"> 15 </span>    <span class="tag">&lt;FrameLayout</span><span class="attribute">
 </span><span class="lineno"> 16 </span><span class="attribute">            </span><span class="prefix">app:</span><span class="attribute">layout_behavior</span>=<span class="value">"@string/appbar_scrolling_view_behavior"</span>
 <span class="lineno"> 17 </span>            <span class="prefix">android:</span><span class="attribute">background</span>=<span class="value">"?attr/primaryBlackBackground"</span>
@@ -689,7 +714,7 @@ Dismiss</button>            </div>
 <span class="lineno"> 20 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span> />
 </pre>
 
-<span class="location"><a href="../../src/main/res/values/styles.xml">../../src/main/res/values/styles.xml</a>:177</span>: <span class="message"><code>android:windowLightNavigationBar</code> requires API level 27 (current min is 23)</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/values/styles.xml">../../src/main/res/values/styles.xml</a>:177</span>: <span class="message"><code>android:windowLightNavigationBar</code> requires API level 27 (current min is 21)</span><br /><pre class="errorlines">
 <span class="lineno">  174 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"black"</span>>@color/white<span class="tag">&lt;/item></span>
 <span class="lineno">  175 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"colorOnPrimary"</span>>@color/blackText<span class="tag">&lt;/item></span>
 <span class="lineno">  176 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"isLightTheme"</span>>true<span class="tag">&lt;/item></span>
@@ -699,7 +724,7 @@ Dismiss</button>            </div>
 <span class="lineno">  180 </span>    <span class="tag">&lt;style</span><span class="attribute"> name</span>=<span class="value">"DraculaMode"</span>>
 </pre>
 
-<span class="location"><a href="../../src/main/res/values/styles.xml">../../src/main/res/values/styles.xml</a>:203</span>: <span class="message"><code>android:windowLightNavigationBar</code> requires API level 27 (current min is 23)</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/values/styles.xml">../../src/main/res/values/styles.xml</a>:203</span>: <span class="message"><code>android:windowLightNavigationBar</code> requires API level 27 (current min is 21)</span><br /><pre class="errorlines">
 <span class="lineno">  200 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"black"</span>>@color/LavenderPrimaryGrayBackground<span class="tag">&lt;/item></span>
 <span class="lineno">  201 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"colorOnPrimary"</span>>@color/LavenderTextColor<span class="tag">&lt;/item></span>
 <span class="lineno">  202 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"isLightTheme"</span>>true<span class="tag">&lt;/item></span>
@@ -707,6 +732,16 @@ Dismiss</button>            </div>
 <span class="lineno">  204 </span>    <span class="tag">&lt;/style></span>
 <span class="lineno">  205 </span>
 <span class="lineno">  206 </span>    <span class="tag">&lt;style</span><span class="attribute"> name</span>=<span class="value">"MonetMode"</span>>
+</pre>
+
+<span class="location"><a href="../../src/main/res/values/styles.xml">../../src/main/res/values/styles.xml</a>:577</span>: <span class="message"><code>android:windowLightStatusBar</code> requires API level 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  574 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"android:windowIsFloating"</span>>false<span class="tag">&lt;/item></span>
+<span class="lineno">  575 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"android:navigationBarColor"</span>>?attr/primaryBlackBackground<span class="tag">&lt;/item></span>
+<span class="lineno">  576 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"android:statusBarColor"</span>>?attr/primaryBlackBackground<span class="tag">&lt;/item></span>
+<span class="caretline"><span class="lineno">  577 </span>        <span class="tag">&lt;item</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"android:windowLightStatusBar"</span></span>>?attr/isLightTheme<span class="tag">&lt;/item></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  578 </span>    <span class="tag">&lt;/style></span>
+<span class="lineno">  579 </span>
+<span class="lineno">  580 </span>    <span class="tag">&lt;style</span><span class="attribute"> name</span>=<span class="value">"DialogHalfFullscreen"</span> <span class="attribute">parent</span>=<span class="value">"AlertDialogCustom"</span>>
 </pre>
 
 </div>
@@ -810,7 +845,55 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/res/layout/fragment_downloads.xml">../../src/main/res/layout/fragment_downloads.xml</a>:347</span>: <span class="message">Attribute <code>tooltipText</code> is only used in API level 26 and higher (current min is 23)</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/layout/account_edit_dialog.xml">../../src/main/res/layout/account_edit_dialog.xml</a>:53</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  50 </span>                <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"center"</span>
+<span class="lineno">  51 </span>                <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@string/preview_background_img_des"</span>
+<span class="lineno">  52 </span>                <span class="prefix">android:</span><span class="attribute">focusable</span>=<span class="value">"true"</span>
+<span class="caretline"><span class="lineno">  53 </span>                <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/outline_drawable_forced_round"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  54 </span>                <span class="prefix">android:</span><span class="attribute">scaleType</span>=<span class="value">"centerCrop"</span>
+<span class="lineno">  55 </span>                <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@drawable/profile_bg_blue"</span> />
+</pre>
+
+<span class="location"><a href="../../src/main/res/layout/account_single.xml">../../src/main/res/layout/account_single.xml</a>:4</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  1 </span><span class="tag">&lt;LinearLayout</span><span class="attribute"> </span><span class="prefix">xmlns:</span><span class="attribute">android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span>
+<span class="lineno">  2 </span>    <span class="prefix">xmlns:</span><span class="attribute">tools</span>=<span class="value">"http://schemas.android.com/tools"</span>
+<span class="lineno">  3 </span>    <span class="prefix">xmlns:</span><span class="attribute">app</span>=<span class="value">"http://schemas.android.com/apk/res-auto"</span>
+<span class="caretline"><span class="lineno">  4 </span>    <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  5 </span>    <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"horizontal"</span>
+<span class="lineno">  6 </span>    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
+<span class="lineno">  7 </span>    <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/account_single.xml">../../src/main/res/layout/account_single.xml</a>:26</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 23 </span>    <span class="tag">&lt;/androidx.cardview.widget.CardView></span>
+<span class="lineno"> 24 </span>
+<span class="lineno"> 25 </span>    <span class="tag">&lt;TextView</span><span class="attribute">
+</span><span class="caretline"><span class="lineno"> 26 </span><span class="attribute">        </span><span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@null"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 27 </span>        <span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/account_name"</span>
+<span class="lineno"> 28 </span>        <span class="prefix">tools:</span><span class="attribute">text</span>=<span class="value">"Account 1"</span>
+<span class="lineno"> 29 </span>        <span class="attribute">style</span>=<span class="value">"@style/SettingsItem"</span> />
+</pre>
+
+<span class="location"><a href="../../src/main/res/layout/download_header_episode.xml">../../src/main/res/layout/download_header_episode.xml</a>:31</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  28 </span>    <span class="tag">&lt;LinearLayout</span><span class="attribute">
+</span><span class="lineno">  29 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  30 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
+<span class="caretline"><span class="lineno">  31 </span>        <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  32 </span>        <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"horizontal"</span>>
+<span class="lineno">  33 </span>        <span class="comment">&lt;!--app:cardCornerRadius="@dimen/roundedImageRadius"--></span>
+<span class="lineno">  34 </span>        <span class="tag">&lt;androidx.cardview.widget.CardView</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/fragment_downloads.xml">../../src/main/res/layout/fragment_downloads.xml</a>:82</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  79 </span>            <span class="prefix">android:</span><span class="attribute">nextFocusRight</span>=<span class="value">"@id/download_stream_button_tv"</span>
+<span class="lineno">  80 </span>            <span class="prefix">android:</span><span class="attribute">nextFocusLeft</span>=<span class="value">"@id/navigation_downloads"</span>
+<span class="lineno">  81 </span>            <span class="prefix">android:</span><span class="attribute">nextFocusDown</span>=<span class="value">"@id/download_list"</span>
+<span class="caretline"><span class="lineno">  82 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/outline_drawable"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  83 </span>            <span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/download_appbar"</span>
+<span class="lineno">  84 </span>            <span class="prefix">android:</span><span class="attribute">baselineAligned</span>=<span class="value">"false"</span>
+<span class="lineno">  85 </span>            <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"horizontal"</span></pre>
+
+<button class="mdl-button mdl-js-button mdl-button--primary" id="UnusedAttributeDivLink" onclick="reveal('UnusedAttributeDiv');" />+ 58 More Occurrences...</button>
+<div id="UnusedAttributeDiv" style="display: none">
+<span class="location"><a href="../../src/main/res/layout/fragment_downloads.xml">../../src/main/res/layout/fragment_downloads.xml</a>:347</span>: <span class="message">Attribute <code>tooltipText</code> is only used in API level 26 and higher (current min is 21)</span><br /><pre class="errorlines">
 <span class="lineno"> 344 </span>            <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@drawable/netflix_play"</span>
 <span class="lineno"> 345 </span>            <span class="prefix">app:</span><span class="attribute">tint</span>=<span class="value">"?attr/textColor"</span>
 <span class="lineno"> 346 </span>            <span class="prefix">android:</span><span class="attribute">layout_marginEnd</span>=<span class="value">"16dp"</span>
@@ -819,7 +902,142 @@ Dismiss</button>            </div>
 <span class="lineno"> 349 </span>            <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@string/open_local_video"</span> />
 </pre>
 
-<span class="location"><a href="../../src/main/res/layout/fragment_result_swipe.xml">../../src/main/res/layout/fragment_result_swipe.xml</a>:85</span>: <span class="message">Attribute <code>tooltipText</code> is only used in API level 26 and higher (current min is 23)</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/layout/fragment_extensions.xml">../../src/main/res/layout/fragment_extensions.xml</a>:68</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  65 </span>        <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"bottom"</span>
+<span class="lineno">  66 </span>        <span class="prefix">android:</span><span class="attribute">background</span>=<span class="value">"?attr/primaryGrayBackground"</span>
+<span class="lineno">  67 </span>        <span class="prefix">android:</span><span class="attribute">focusable</span>=<span class="value">"true"</span>
+<span class="caretline"><span class="lineno">  68 </span>        <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/outline_drawable"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  69 </span>        <span class="prefix">android:</span><span class="attribute">nextFocusRight</span>=<span class="value">"@id/add_repo_button_imageview"</span>
+<span class="lineno">  70 </span>        <span class="prefix">android:</span><span class="attribute">nextFocusUp</span>=<span class="value">"@id/repo_recycler_view"</span>
+<span class="lineno">  71 </span>        <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"horizontal"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/fragment_extensions.xml">../../src/main/res/layout/fragment_extensions.xml</a>:221</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 218 </span>    <span class="tag">&lt;com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton</span><span class="attribute">
+</span><span class="lineno"> 219 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/add_repo_button"</span>
+<span class="lineno"> 220 </span>        <span class="attribute">style</span>=<span class="value">"@style/ExtendedFloatingActionButton"</span>
+<span class="caretline"><span class="lineno"> 221 </span>        <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/outline_drawable"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 222 </span>        <span class="prefix">android:</span><span class="attribute">nextFocusDown</span>=<span class="value">"@id/plugin_storage_appbar"</span>
+<span class="lineno"> 223 </span>        <span class="prefix">android:</span><span class="attribute">text</span>=<span class="value">"@string/add_repository"</span>
+<span class="lineno"> 224 </span>        <span class="prefix">android:</span><span class="attribute">textColor</span>=<span class="value">"?attr/textColor"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/fragment_home_head.xml">../../src/main/res/layout/fragment_home_head.xml</a>:66</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  63 </span>                <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"horizontal"</span>
+<span class="lineno">  64 </span>                <span class="prefix">android:</span><span class="attribute">clickable</span>=<span class="value">"true"</span>
+<span class="lineno">  65 </span>                <span class="prefix">android:</span><span class="attribute">focusable</span>=<span class="value">"true"</span>
+<span class="caretline"><span class="lineno">  66 </span>                <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/rounded_select_ripple"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  67 </span>                <span class="prefix">android:</span><span class="attribute">nextFocusLeft</span>=<span class="value">"@id/home_search"</span>>
+<span class="lineno">  68 </span>
+<span class="lineno">  69 </span>                <span class="tag">&lt;androidx.cardview.widget.CardView</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/fragment_home_head.xml">../../src/main/res/layout/fragment_home_head.xml</a>:85</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  82 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  83 </span>                        <span class="prefix">android:</span><span class="attribute">scaleType</span>=<span class="value">"centerCrop"</span>
+<span class="lineno">  84 </span>                        <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@string/account"</span>
+<span class="caretline"><span class="lineno">  85 </span>                        <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/rounded_outline"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  86 </span>                        <span class="prefix">tools:</span><span class="attribute">src</span>=<span class="value">"@drawable/profile_bg_orange"</span> />
+<span class="lineno">  87 </span>                <span class="tag">&lt;/androidx.cardview.widget.CardView></span>
+<span class="lineno">  88 </span>            <span class="tag">&lt;/LinearLayout></span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/fragment_home_head.xml">../../src/main/res/layout/fragment_home_head.xml</a>:175</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 172 </span>            <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"horizontal"</span>
+<span class="lineno"> 173 </span>            <span class="prefix">android:</span><span class="attribute">clickable</span>=<span class="value">"true"</span>
+<span class="lineno"> 174 </span>            <span class="prefix">android:</span><span class="attribute">focusable</span>=<span class="value">"true"</span>
+<span class="caretline"><span class="lineno"> 175 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/rounded_select_ripple"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 176 </span>            <span class="prefix">android:</span><span class="attribute">nextFocusLeft</span>=<span class="value">"@id/home_search"</span>>
+<span class="lineno"> 177 </span>
+<span class="lineno"> 178 </span>            <span class="tag">&lt;androidx.cardview.widget.CardView</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/fragment_home_head.xml">../../src/main/res/layout/fragment_home_head.xml</a>:194</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 191 </span>                    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="lineno"> 192 </span>                    <span class="prefix">android:</span><span class="attribute">scaleType</span>=<span class="value">"centerCrop"</span>
+<span class="lineno"> 193 </span>                    <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@string/account"</span>
+<span class="caretline"><span class="lineno"> 194 </span>                    <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/rounded_outline"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 195 </span>                    <span class="prefix">tools:</span><span class="attribute">src</span>=<span class="value">"@drawable/profile_bg_orange"</span> />
+<span class="lineno"> 196 </span>            <span class="tag">&lt;/androidx.cardview.widget.CardView></span>
+<span class="lineno"> 197 </span>        <span class="tag">&lt;/LinearLayout></span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/fragment_plugin_details.xml">../../src/main/res/layout/fragment_plugin_details.xml</a>:78</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  75 </span>        <span class="tag">&lt;LinearLayout</span><span class="attribute">
+</span><span class="lineno">  76 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  77 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="caretline"><span class="lineno">  78 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  79 </span>            <span class="prefix">android:</span><span class="attribute">padding</span>=<span class="value">"8dp"</span>>
+<span class="lineno">  80 </span>
+<span class="lineno">  81 </span>            <span class="comment">&lt;!--marquee_forever--></span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/fragment_plugin_details.xml">../../src/main/res/layout/fragment_plugin_details.xml</a>:109</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 106 </span>        <span class="tag">&lt;LinearLayout</span><span class="attribute">
+</span><span class="lineno"> 107 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno"> 108 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="caretline"><span class="lineno"> 109 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 110 </span>            <span class="prefix">android:</span><span class="attribute">padding</span>=<span class="value">"8dp"</span>>
+<span class="lineno"> 111 </span>
+<span class="lineno"> 112 </span>            <span class="comment">&lt;!--marquee_forever--></span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/fragment_plugin_details.xml">../../src/main/res/layout/fragment_plugin_details.xml</a>:139</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 136 </span>        <span class="tag">&lt;LinearLayout</span><span class="attribute">
+</span><span class="lineno"> 137 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno"> 138 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="caretline"><span class="lineno"> 139 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 140 </span>            <span class="prefix">android:</span><span class="attribute">padding</span>=<span class="value">"8dp"</span>>
+<span class="lineno"> 141 </span>
+<span class="lineno"> 142 </span>            <span class="comment">&lt;!--marquee_forever--></span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/fragment_plugin_details.xml">../../src/main/res/layout/fragment_plugin_details.xml</a>:169</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 166 </span>        <span class="tag">&lt;LinearLayout</span><span class="attribute">
+</span><span class="lineno"> 167 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno"> 168 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="caretline"><span class="lineno"> 169 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 170 </span>            <span class="prefix">android:</span><span class="attribute">padding</span>=<span class="value">"8dp"</span>>
+<span class="lineno"> 171 </span>
+<span class="lineno"> 172 </span>            <span class="comment">&lt;!--marquee_forever--></span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/fragment_plugin_details.xml">../../src/main/res/layout/fragment_plugin_details.xml</a>:199</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 196 </span>        <span class="tag">&lt;LinearLayout</span><span class="attribute">
+</span><span class="lineno"> 197 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno"> 198 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="caretline"><span class="lineno"> 199 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 200 </span>            <span class="prefix">android:</span><span class="attribute">padding</span>=<span class="value">"8dp"</span>>
+<span class="lineno"> 201 </span>
+<span class="lineno"> 202 </span>            <span class="comment">&lt;!--marquee_forever--></span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/fragment_plugin_details.xml">../../src/main/res/layout/fragment_plugin_details.xml</a>:229</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 226 </span>        <span class="tag">&lt;LinearLayout</span><span class="attribute">
+</span><span class="lineno"> 227 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno"> 228 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="caretline"><span class="lineno"> 229 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 230 </span>            <span class="prefix">android:</span><span class="attribute">padding</span>=<span class="value">"8dp"</span>>
+<span class="lineno"> 231 </span>
+<span class="lineno"> 232 </span>            <span class="comment">&lt;!--marquee_forever--></span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/fragment_plugin_details.xml">../../src/main/res/layout/fragment_plugin_details.xml</a>:260</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 257 </span>        <span class="tag">&lt;LinearLayout</span><span class="attribute">
+</span><span class="lineno"> 258 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno"> 259 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="caretline"><span class="lineno"> 260 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 261 </span>            <span class="prefix">android:</span><span class="attribute">padding</span>=<span class="value">"8dp"</span>>
+<span class="lineno"> 262 </span>
+<span class="lineno"> 263 </span>            <span class="comment">&lt;!--marquee_forever--></span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/fragment_result.xml">../../src/main/res/layout/fragment_result.xml</a>:335</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 332 </span>                <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"140dp"</span>
+<span class="lineno"> 333 </span>                <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"bottom"</span>
+<span class="lineno"> 334 </span>                <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@string/result_poster_img_des"</span>
+<span class="caretline"><span class="lineno"> 335 </span>                <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/outline_drawable"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 336 </span>                <span class="prefix">android:</span><span class="attribute">scaleType</span>=<span class="value">"centerCrop"</span>
+<span class="lineno"> 337 </span>                <span class="prefix">tools:</span><span class="attribute">src</span>=<span class="value">"@drawable/example_poster"</span> />
+<span class="lineno"> 338 </span>        <span class="tag">&lt;/androidx.cardview.widget.CardView></span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/fragment_result.xml">../../src/main/res/layout/fragment_result.xml</a>:412</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 409 </span>            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno"> 410 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
+<span class="lineno"> 411 </span>            <span class="prefix">android:</span><span class="attribute">ellipsize</span>=<span class="value">"end"</span>
+<span class="caretline"><span class="lineno"> 412 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/outline_drawable"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 413 </span>            <span class="prefix">android:</span><span class="attribute">maxLines</span>=<span class="value">"10"</span>
+<span class="lineno"> 414 </span>            <span class="prefix">android:</span><span class="attribute">nextFocusUp</span>=<span class="value">"@id/result_back"</span>
+<span class="lineno"> 415 </span>            <span class="prefix">android:</span><span class="attribute">nextFocusDown</span>=<span class="value">"@id/result_bookmark_Button"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/fragment_result_swipe.xml">../../src/main/res/layout/fragment_result_swipe.xml</a>:85</span>: <span class="message">Attribute <code>tooltipText</code> is only used in API level 26 and higher (current min is 21)</span><br /><pre class="errorlines">
 <span class="lineno">  82 </span>         <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"25dp"</span>
 <span class="lineno">  83 </span>         <span class="prefix">android:</span><span class="attribute">layout_margin</span>=<span class="value">"5dp"</span>
 <span class="lineno">  84 </span>         <span class="prefix">android:</span><span class="attribute">elevation</span>=<span class="value">"10dp"</span>
@@ -828,7 +1046,7 @@ Dismiss</button>            </div>
 <span class="lineno">  87 </span>         <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@drawable/baseline_notifications_none_24"</span>
 <span class="lineno">  88 </span>         <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"end|center_vertical"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/fragment_result_swipe.xml">../../src/main/res/layout/fragment_result_swipe.xml</a>:102</span>: <span class="message">Attribute <code>tooltipText</code> is only used in API level 26 and higher (current min is 23)</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/layout/fragment_result_swipe.xml">../../src/main/res/layout/fragment_result_swipe.xml</a>:102</span>: <span class="message">Attribute <code>tooltipText</code> is only used in API level 26 and higher (current min is 21)</span><br /><pre class="errorlines">
 <span class="lineno">  99 </span>             <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"25dp"</span>
 <span class="lineno"> 100 </span>             <span class="prefix">android:</span><span class="attribute">layout_margin</span>=<span class="value">"5dp"</span>
 <span class="lineno"> 101 </span>             <span class="prefix">android:</span><span class="attribute">elevation</span>=<span class="value">"10dp"</span>
@@ -837,7 +1055,7 @@ Dismiss</button>            </div>
 <span class="lineno"> 104 </span>             <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@drawable/ic_baseline_favorite_border_24"</span>
 <span class="lineno"> 105 </span>             <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"end|center_vertical"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/fragment_result_swipe.xml">../../src/main/res/layout/fragment_result_swipe.xml</a>:119</span>: <span class="message">Attribute <code>tooltipText</code> is only used in API level 26 and higher (current min is 23)</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/layout/fragment_result_swipe.xml">../../src/main/res/layout/fragment_result_swipe.xml</a>:119</span>: <span class="message">Attribute <code>tooltipText</code> is only used in API level 26 and higher (current min is 21)</span><br /><pre class="errorlines">
 <span class="lineno"> 116 </span>         <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"25dp"</span>
 <span class="lineno"> 117 </span>         <span class="prefix">android:</span><span class="attribute">layout_margin</span>=<span class="value">"5dp"</span>
 <span class="lineno"> 118 </span>         <span class="prefix">android:</span><span class="attribute">elevation</span>=<span class="value">"10dp"</span>
@@ -846,7 +1064,7 @@ Dismiss</button>            </div>
 <span class="lineno"> 121 </span>         <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@drawable/ic_outline_share_24"</span>
 <span class="lineno"> 122 </span>         <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"end|center_vertical"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/fragment_result_swipe.xml">../../src/main/res/layout/fragment_result_swipe.xml</a>:137</span>: <span class="message">Attribute <code>tooltipText</code> is only used in API level 26 and higher (current min is 23)</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/layout/fragment_result_swipe.xml">../../src/main/res/layout/fragment_result_swipe.xml</a>:137</span>: <span class="message">Attribute <code>tooltipText</code> is only used in API level 26 and higher (current min is 21)</span><br /><pre class="errorlines">
 <span class="lineno"> 134 </span>         <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"25dp"</span>
 <span class="lineno"> 135 </span>         <span class="prefix">android:</span><span class="attribute">layout_margin</span>=<span class="value">"5dp"</span>
 <span class="lineno"> 136 </span>         <span class="prefix">android:</span><span class="attribute">elevation</span>=<span class="value">"10dp"</span>
@@ -855,7 +1073,7 @@ Dismiss</button>            </div>
 <span class="lineno"> 139 </span>         <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@drawable/ic_baseline_public_24"</span>
 <span class="lineno"> 140 </span>         <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"end|center_vertical"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/fragment_result_swipe.xml">../../src/main/res/layout/fragment_result_swipe.xml</a>:155</span>: <span class="message">Attribute <code>tooltipText</code> is only used in API level 26 and higher (current min is 23)</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/layout/fragment_result_swipe.xml">../../src/main/res/layout/fragment_result_swipe.xml</a>:155</span>: <span class="message">Attribute <code>tooltipText</code> is only used in API level 26 and higher (current min is 21)</span><br /><pre class="errorlines">
 <span class="lineno"> 152 </span>         <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"30dp"</span>
 <span class="lineno"> 153 </span>         <span class="prefix">android:</span><span class="attribute">layout_margin</span>=<span class="value">"5dp"</span>
 <span class="lineno"> 154 </span>         <span class="prefix">android:</span><span class="attribute">elevation</span>=<span class="value">"10dp"</span>
@@ -864,7 +1082,7 @@ Dismiss</button>            </div>
 <span class="lineno"> 157 </span>         <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@drawable/search_icon"</span>
 <span class="lineno"> 158 </span>         <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"end|center_vertical"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/fragment_result_swipe.xml">../../src/main/res/layout/fragment_result_swipe.xml</a>:173</span>: <span class="message">Attribute <code>tooltipText</code> is only used in API level 26 and higher (current min is 23)</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/layout/fragment_result_swipe.xml">../../src/main/res/layout/fragment_result_swipe.xml</a>:173</span>: <span class="message">Attribute <code>tooltipText</code> is only used in API level 26 and higher (current min is 21)</span><br /><pre class="errorlines">
 <span class="lineno"> 170 </span>         <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"25dp"</span>
 <span class="lineno"> 171 </span>         <span class="prefix">android:</span><span class="attribute">layout_margin</span>=<span class="value">"5dp"</span>
 <span class="lineno"> 172 </span>         <span class="prefix">android:</span><span class="attribute">elevation</span>=<span class="value">"10dp"</span>
@@ -873,6 +1091,215 @@ Dismiss</button>            </div>
 <span class="lineno"> 175 </span>         <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@drawable/baseline_list_alt_24"</span>
 <span class="lineno"> 176 </span>         <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"end|center_vertical"</span></pre>
 
+<span class="location"><a href="../../src/main/res/layout/fragment_result_tv.xml">../../src/main/res/layout/fragment_result_tv.xml</a>:601</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  598 </span>                        <span class="prefix">android:</span><span class="attribute">ellipsize</span>=<span class="value">"end"</span>
+<span class="lineno">  599 </span>                        <span class="prefix">android:</span><span class="attribute">fadingEdgeLength</span>=<span class="value">"30dp"</span>
+<span class="lineno">  600 </span>                        <span class="prefix">android:</span><span class="attribute">focusable</span>=<span class="value">"true"</span>
+<span class="caretline"><span class="lineno">  601 </span>                        <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/outline_drawable"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  602 </span>                        <span class="prefix">android:</span><span class="attribute">maxLines</span>=<span class="value">"7"</span>
+<span class="lineno">  603 </span>                        <span class="prefix">android:</span><span class="attribute">nextFocusUp</span>=<span class="value">"@id/result_play_parent"</span>
+<span class="lineno">  604 </span>                        <span class="prefix">android:</span><span class="attribute">nextFocusDown</span>=<span class="value">"@id/result_cast_items"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/fragment_result_tv.xml">../../src/main/res/layout/fragment_result_tv.xml</a>:906</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  903 </span>                <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"140dp"</span>
+<span class="lineno">  904 </span>                <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"bottom"</span>
+<span class="lineno">  905 </span>                <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@string/result_poster_img_des"</span>
+<span class="caretline"><span class="lineno">  906 </span>                <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/outline_drawable"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  907 </span>                <span class="prefix">android:</span><span class="attribute">scaleType</span>=<span class="value">"centerCrop"</span>
+<span class="lineno">  908 </span>                <span class="prefix">tools:</span><span class="attribute">src</span>=<span class="value">"@drawable/example_poster"</span> />
+<span class="lineno">  909 </span>        <span class="tag">&lt;/androidx.cardview.widget.CardView></span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/home_result_big_grid.xml">../../src/main/res/layout/home_result_big_grid.xml</a>:25</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 22 </span>            <span class="prefix">android:</span><span class="attribute">scaleType</span>=<span class="value">"centerCrop"</span>
+<span class="lineno"> 23 </span>            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno"> 24 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="caretline"><span class="lineno"> 25 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 26 </span>            <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@string/search_poster_img_des"</span> />
+<span class="lineno"> 27 </span>
+<span class="lineno"> 28 </span>    <span class="tag">&lt;TextView</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/home_result_grid.xml">../../src/main/res/layout/home_result_grid.xml</a>:24</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  21 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  22 </span>        <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@string/search_poster_img_des"</span>
+<span class="lineno">  23 </span>        <span class="prefix">android:</span><span class="attribute">duplicateParentState</span>=<span class="value">"true"</span>
+<span class="caretline"><span class="lineno">  24 </span>        <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  25 </span>        <span class="prefix">android:</span><span class="attribute">scaleType</span>=<span class="value">"centerCrop"</span>
+<span class="lineno">  26 </span>        <span class="prefix">tools:</span><span class="attribute">src</span>=<span class="value">"@drawable/example_poster"</span> />
+</pre>
+
+<span class="location"><a href="../../src/main/res/layout/home_result_grid_expanded.xml">../../src/main/res/layout/home_result_grid_expanded.xml</a>:46</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  43 </span>             <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  44 </span>             <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@string/search_poster_img_des"</span>
+<span class="lineno">  45 </span>             <span class="prefix">android:</span><span class="attribute">duplicateParentState</span>=<span class="value">"true"</span>
+<span class="caretline"><span class="lineno">  46 </span>             <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  47 </span>             <span class="prefix">android:</span><span class="attribute">scaleType</span>=<span class="value">"centerCrop"</span>
+<span class="lineno">  48 </span>             <span class="prefix">tools:</span><span class="attribute">src</span>=<span class="value">"@drawable/example_poster"</span> />
+</pre>
+
+<span class="location"><a href="../../src/main/res/layout/main_settings.xml">../../src/main/res/layout/main_settings.xml</a>:39</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  36 </span>                        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  37 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  38 </span>                        <span class="prefix">android:</span><span class="attribute">scaleType</span>=<span class="value">"centerCrop"</span>
+<span class="caretline"><span class="lineno">  39 </span>                        <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/rounded_outline"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  40 </span>                        <span class="prefix">tools:</span><span class="attribute">src</span>=<span class="value">"@drawable/profile_bg_orange"</span>
+<span class="lineno">  41 </span>                        <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@string/account"</span>/>
+</pre>
+
+<span class="location"><a href="../../src/main/res/layout/options_popup_tv.xml">../../src/main/res/layout/options_popup_tv.xml</a>:27</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 24 </span>                <span class="prefix">android:</span><span class="attribute">scaleType</span>=<span class="value">"centerCrop"</span>
+<span class="lineno"> 25 </span>                <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno"> 26 </span>                <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="caretline"><span class="lineno"> 27 </span>                <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 28 </span>                <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@string/search_poster_img_des"</span> />
+<span class="lineno"> 29 </span>    <span class="tag">&lt;/androidx.cardview.widget.CardView></span>
+</pre>
+
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:958</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  955 </span>        <span class="prefix">android:</span><span class="attribute">visibility</span>=<span class="value">"gone"</span>
+<span class="lineno">  956 </span>        <span class="prefix">app:</span><span class="attribute">icon</span>=<span class="value">"@drawable/speedup"</span>
+<span class="lineno">  957 </span>        <span class="prefix">app:</span><span class="attribute">iconTint</span>=<span class="value">"@color/textColor"</span>
+<span class="caretline"><span class="lineno">  958 </span>        <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@null"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  959 </span>        <span class="prefix">android:</span><span class="attribute">backgroundTint</span>=<span class="value">"@color/skipOpTransparent"</span>
+<span class="lineno">  960 </span>        <span class="prefix">tools:</span><span class="attribute">visibility</span>=<span class="value">"visible"</span> />
+<span class="lineno">  961 </span>    <span class="tag">&lt;LinearLayout</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/player_select_source_and_subs.xml">../../src/main/res/layout/player_select_source_and_subs.xml</a>:31</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  28 </span>                <span class="prefix">android:</span><span class="attribute">layout_rowWeight</span>=<span class="value">"1"</span>
+<span class="lineno">  29 </span>                <span class="prefix">android:</span><span class="attribute">layout_marginTop</span>=<span class="value">"10dp"</span>
+<span class="lineno">  30 </span>                <span class="prefix">android:</span><span class="attribute">focusable</span>=<span class="value">"true"</span>
+<span class="caretline"><span class="lineno">  31 </span>                <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/outline_drawable_forced"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  32 </span>                <span class="prefix">android:</span><span class="attribute">gravity</span>=<span class="value">"center_vertical"</span>
+<span class="lineno">  33 </span>                <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"horizontal"</span>>
+</pre>
+
+<span class="location"><a href="../../src/main/res/layout-port/player_select_source_and_subs.xml">../../src/main/res/layout-port/player_select_source_and_subs.xml</a>:114</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 111 </span>                    <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"44dp"</span>
+<span class="lineno"> 112 </span>                    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"44dp"</span>
+<span class="lineno"> 113 </span>                    <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@string/subtitles_settings"</span>
+<span class="caretline"><span class="lineno"> 114 </span>                    <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/outline_drawable_forced"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 115 </span>                    <span class="prefix">android:</span><span class="attribute">padding</span>=<span class="value">"10dp"</span>
+<span class="lineno"> 116 </span>                    <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@drawable/ic_outline_settings_24"</span> />
+<span class="lineno"> 117 </span>            <span class="tag">&lt;/LinearLayout></span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/player_select_source_and_subs.xml">../../src/main/res/layout/player_select_source_and_subs.xml</a>:121</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 118 </span>                    <span class="prefix">android:</span><span class="attribute">layout_toStartOf</span>=<span class="value">"@+id/subtitle_settings_btt"</span>
+<span class="lineno"> 119 </span>                    <span class="prefix">android:</span><span class="attribute">layout_toEndOf</span>=<span class="value">"@id/subtitles_text"</span>
+<span class="lineno"> 120 </span>                    <span class="prefix">android:</span><span class="attribute">focusable</span>=<span class="value">"true"</span>
+<span class="caretline"><span class="lineno"> 121 </span>                    <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/outline_drawable_forced"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 122 </span>                    <span class="prefix">android:</span><span class="attribute">gravity</span>=<span class="value">"start"</span>
+<span class="lineno"> 123 </span>                    <span class="prefix">android:</span><span class="attribute">maxLines</span>=<span class="value">"1"</span>
+<span class="lineno"> 124 </span>                    <span class="prefix">android:</span><span class="attribute">paddingHorizontal</span>=<span class="value">"10dp"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/player_select_source_and_subs.xml">../../src/main/res/layout/player_select_source_and_subs.xml</a>:138</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 135 </span>                   <span class="prefix">android:</span><span class="attribute">layout_centerVertical</span>=<span class="value">"true"</span>
+<span class="lineno"> 136 </span>                   <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"center"</span>
+<span class="lineno"> 137 </span>                   <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@string/subtitles_settings"</span>
+<span class="caretline"><span class="lineno"> 138 </span>                   <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/outline_drawable_forced"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 139 </span>                   <span class="prefix">android:</span><span class="attribute">paddingHorizontal</span>=<span class="value">"10dp"</span>
+<span class="lineno"> 140 </span>                   <span class="prefix">android:</span><span class="attribute">paddingVertical</span>=<span class="value">"10dp"</span>
+<span class="lineno"> 141 </span>                   <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@drawable/ic_outline_settings_24"</span> />
+</pre>
+
+<span class="location"><a href="../../src/main/res/layout/player_select_tracks.xml">../../src/main/res/layout/player_select_tracks.xml</a>:65</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  62 </span>                 <span class="prefix">tools:</span><span class="attribute">ignore</span>=<span class="value">"UseCompoundDrawables"</span>>
+<span class="lineno">  63 </span>
+<span class="lineno">  64 </span>             <span class="tag">&lt;LinearLayout</span><span class="attribute">
+</span><span class="caretline"><span class="lineno">  65 </span><span class="attribute">                     </span><span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  66 </span>                     <span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/subtitles_click_settings"</span>
+<span class="lineno">  67 </span>                     <span class="prefix">android:</span><span class="attribute">layout_rowWeight</span>=<span class="value">"1"</span>
+<span class="lineno">  68 </span>                     <span class="prefix">android:</span><span class="attribute">paddingTop</span>=<span class="value">"10dp"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/rail_footer.xml">../../src/main/res/layout/rail_footer.xml</a>:26</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 23 </span>        <span class="prefix">app:</span><span class="attribute">cardCornerRadius</span>=<span class="value">"18dp"</span>>
+<span class="lineno"> 24 </span>
+<span class="lineno"> 25 </span>        <span class="tag">&lt;ImageView</span><span class="attribute">
+</span><span class="caretline"><span class="lineno"> 26 </span><span class="attribute">            </span><span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/outline_big_20_gray"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 27 </span>            <span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/nav_footer_profile_pic"</span>
+<span class="lineno"> 28 </span>            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno"> 29 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/result_episode.xml">../../src/main/res/layout/result_episode.xml</a>:57</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  54 </span>    <span class="tag">&lt;LinearLayout</span><span class="attribute">
+</span><span class="lineno">  55 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  56 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="caretline"><span class="lineno">  57 </span>        <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  58 </span>
+<span class="lineno">  59 </span>        <span class="tag">&lt;FrameLayout</span><span class="attribute">
+</span><span class="lineno">  60 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/watch_progress_container"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/result_episode_large.xml">../../src/main/res/layout/result_episode_large.xml</a>:21</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  18 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/episode_holder"</span>
+<span class="lineno">  19 </span>        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
+<span class="lineno">  20 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
+<span class="caretline"><span class="lineno">  21 </span>        <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  22 </span>        <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"vertical"</span>
+<span class="lineno">  23 </span>        <span class="prefix">android:</span><span class="attribute">padding</span>=<span class="value">"10dp"</span>>
+</pre>
+
+<span class="location"><a href="../../src/main/res/layout/result_episode_large.xml">../../src/main/res/layout/result_episode_large.xml</a>:43</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  40 </span>         <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  41 </span>         <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@string/episode_poster_img_des"</span>
+<span class="lineno">  42 </span>
+<span class="caretline"><span class="lineno">  43 </span>         <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  44 </span>         <span class="prefix">android:</span><span class="attribute">nextFocusRight</span>=<span class="value">"@id/download_button"</span>
+<span class="lineno">  45 </span>         <span class="prefix">android:</span><span class="attribute">scaleType</span>=<span class="value">"centerCrop"</span>
+<span class="lineno">  46 </span>         <span class="prefix">tools:</span><span class="attribute">src</span>=<span class="value">"@drawable/example_poster"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/search_result_compact.xml">../../src/main/res/layout/search_result_compact.xml</a>:37</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 34 </span>                    <span class="prefix">android:</span><span class="attribute">scaleType</span>=<span class="value">"centerCrop"</span>
+<span class="lineno"> 35 </span>                    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="lineno"> 36 </span>                    <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="caretline"><span class="lineno"> 37 </span>                    <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 38 </span>                    <span class="prefix">tools:</span><span class="attribute">ignore</span>=<span class="value">"RtlHardcoded"</span> />
+<span class="lineno"> 39 </span>        <span class="tag">&lt;/androidx.cardview.widget.CardView></span>
+</pre>
+
+<span class="location"><a href="../../src/main/res/layout/search_result_grid.xml">../../src/main/res/layout/search_result_grid.xml</a>:11</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">   8 </span>
+<span class="lineno">   9 </span>    <span class="prefix">android:</span><span class="attribute">clickable</span>=<span class="value">"true"</span>
+<span class="lineno">  10 </span>    <span class="prefix">android:</span><span class="attribute">focusable</span>=<span class="value">"true"</span>
+<span class="caretline"><span class="lineno">  11 </span>    <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/outline_drawable"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  12 </span>    <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"vertical"</span>>
+<span class="lineno">  13 </span>
+<span class="lineno">  14 </span>    <span class="tag">&lt;androidx.cardview.widget.CardView</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/search_result_grid.xml">../../src/main/res/layout/search_result_grid.xml</a>:31</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  28 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  29 </span>            <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@string/search_poster_img_des"</span>
+<span class="lineno">  30 </span>            <span class="prefix">android:</span><span class="attribute">duplicateParentState</span>=<span class="value">"true"</span>
+<span class="caretline"><span class="lineno">  31 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  32 </span>            <span class="prefix">android:</span><span class="attribute">scaleType</span>=<span class="value">"centerCrop"</span> />
+<span class="lineno">  33 </span>
+<span class="lineno">  34 </span>        <span class="tag">&lt;ImageView</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/search_result_grid_expanded.xml">../../src/main/res/layout/search_result_grid_expanded.xml</a>:10</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">   7 </span>    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
+<span class="lineno">   8 </span>    <span class="prefix">android:</span><span class="attribute">clickable</span>=<span class="value">"true"</span>
+<span class="lineno">   9 </span>    <span class="prefix">android:</span><span class="attribute">focusable</span>=<span class="value">"true"</span>
+<span class="caretline"><span class="lineno">  10 </span>    <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@drawable/outline_drawable"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  11 </span>    <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"vertical"</span>>
+<span class="lineno">  12 </span>
+<span class="lineno">  13 </span>    <span class="tag">&lt;androidx.constraintlayout.widget.ConstraintLayout</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/search_result_grid_expanded.xml">../../src/main/res/layout/search_result_grid_expanded.xml</a>:37</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno">  34 </span>             <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  35 </span>             <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@string/search_poster_img_des"</span>
+<span class="lineno">  36 </span>             <span class="prefix">android:</span><span class="attribute">duplicateParentState</span>=<span class="value">"true"</span>
+<span class="caretline"><span class="lineno">  37 </span>             <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  38 </span>             <span class="prefix">android:</span><span class="attribute">scaleType</span>=<span class="value">"centerCrop"</span>
+<span class="lineno">  39 </span>             <span class="prefix">tools:</span><span class="attribute">src</span>=<span class="value">"@drawable/example_poster"</span> />
+</pre>
+
+<span class="location"><a href="../../src/main/res/layout/search_result_super_compact.xml">../../src/main/res/layout/search_result_super_compact.xml</a>:34</span>: <span class="message">Attribute <code>android:foreground</code> has no effect on API levels lower than 23 (current min is 21)</span><br /><pre class="errorlines">
+<span class="lineno"> 31 </span>                    <span class="prefix">android:</span><span class="attribute">scaleType</span>=<span class="value">"centerCrop"</span>
+<span class="lineno"> 32 </span>                    <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno"> 33 </span>                    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="caretline"><span class="lineno"> 34 </span>                    <span class="warning"><span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"?android:attr/selectableItemBackgroundBorderless"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 35 </span>                    <span class="prefix">tools:</span><span class="attribute">ignore</span>=<span class="value">"RtlHardcoded"</span>
+<span class="lineno"> 36 </span>                    <span class="prefix">android:</span><span class="attribute">contentDescription</span>=<span class="value">"@string/search_poster_img_des"</span> />
+<span class="lineno"> 37 </span>        <span class="tag">&lt;/androidx.cardview.widget.CardView></span></pre>
+
+<br/><b>NOTE: 13 results omitted.</b><br/><br/></div>
 </div>
 <div class="metadata"><div class="explanation" id="explanationUnusedAttribute" style="display: none;">
 This check finds attributes set in XML files that were introduced in a version newer than the oldest version targeted by your application (with the <code>minSdkVersion</code> attribute).<br/>
@@ -1444,50 +1871,40 @@ Dismiss</button>            </div>
 <span class="lineno">  24 </span>juniversalchardet = "2.5.0"
 <span class="lineno">  25 </span>kotlinGradlePlugin = "2.3.0-RC"
 <span class="lineno">  26 </span>kotlinxCoroutinesCore = "1.10.2"
-<span class="caretline"><span class="lineno">  27 </span>lifecycleLivedataKtx = <span class="warning">"2.9.4"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  28 </span>lifecycleViewmodelKtx = "2.9.4"
-<span class="lineno">  29 </span>material = "1.14.0-alpha06"
-<span class="lineno">  30 </span>media3 = "1.9.0-beta01"
+<span class="caretline"><span class="lineno">  27 </span>lifecycleKtx = <span class="warning">"2.9.4"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  28 </span>material = "1.14.0-alpha06"
+<span class="lineno">  29 </span>media3 = "1.8.0"
+<span class="lineno">  30 </span>navigationKtx = "2.9.6"
 </pre>
 
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:28</span>: <span class="message">A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.9.4 is available: 2.10.0</span><br /><pre class="errorlines">
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:27</span>: <span class="message">A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.9.4 is available: 2.10.0</span><br /><pre class="errorlines">
+<span class="lineno">  24 </span>juniversalchardet = "2.5.0"
 <span class="lineno">  25 </span>kotlinGradlePlugin = "2.3.0-RC"
 <span class="lineno">  26 </span>kotlinxCoroutinesCore = "1.10.2"
-<span class="lineno">  27 </span>lifecycleLivedataKtx = "2.9.4"
-<span class="caretline"><span class="lineno">  28 </span>lifecycleViewmodelKtx = <span class="warning">"2.9.4"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  29 </span>material = "1.14.0-alpha06"
-<span class="lineno">  30 </span>media3 = "1.9.0-beta01"
-<span class="lineno">  31 </span>navigationKtx = "2.9.6"
+<span class="caretline"><span class="lineno">  27 </span>lifecycleKtx = <span class="warning">"2.9.4"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  28 </span>material = "1.14.0-alpha06"
+<span class="lineno">  29 </span>media3 = "1.8.0"
+<span class="lineno">  30 </span>navigationKtx = "2.9.6"
 </pre>
 
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:29</span>: <span class="message">A newer version of com.google.android.material:material than 1.14.0-alpha06 is available: 1.14.0-alpha07</span><br /><pre class="errorlines">
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:28</span>: <span class="message">A newer version of com.google.android.material:material than 1.14.0-alpha06 is available: 1.14.0-alpha07</span><br /><pre class="errorlines">
+<span class="lineno">  25 </span>kotlinGradlePlugin = "2.3.0-RC"
 <span class="lineno">  26 </span>kotlinxCoroutinesCore = "1.10.2"
-<span class="lineno">  27 </span>lifecycleLivedataKtx = "2.9.4"
-<span class="lineno">  28 </span>lifecycleViewmodelKtx = "2.9.4"
-<span class="caretline"><span class="lineno">  29 </span>material = <span class="warning">"1.14.0-alpha06"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  30 </span>media3 = "1.9.0-beta01"
-<span class="lineno">  31 </span>navigationKtx = "2.9.6"
-<span class="lineno">  32 </span>newpipeextractor = "v0.24.8"
+<span class="lineno">  27 </span>lifecycleKtx = "2.9.4"
+<span class="caretline"><span class="lineno">  28 </span>material = <span class="warning">"1.14.0-alpha06"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  29 </span>media3 = "1.8.0"
+<span class="lineno">  30 </span>navigationKtx = "2.9.6"
+<span class="lineno">  31 </span>newpipeextractor = "v0.24.8"
 </pre>
 
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:48</span>: <span class="message">A newer version of androidx.work:work-runtime than 2.10.5 is available: 2.11.0</span><br /><pre class="errorlines">
-<span class="lineno">  45 </span>torrentserver = "7861970e038b35cd8c6918384e49caf26903e09e"
-<span class="lineno">  46 </span>tvprovider = "1.1.0"
-<span class="lineno">  47 </span>video = "1.0.0"
-<span class="caretline"><span class="lineno">  48 </span>workRuntime = <span class="warning">"2.10.5"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  49 </span>workRuntimeKtx = "2.10.5"
-<span class="lineno">  50 </span>
-<span class="lineno">  51 </span>jvmTarget = "1.8"
-</pre>
-
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:49</span>: <span class="message">A newer version of androidx.work:work-runtime-ktx than 2.10.5 is available: 2.11.0</span><br /><pre class="errorlines">
-<span class="lineno">  46 </span>tvprovider = "1.1.0"
-<span class="lineno">  47 </span>video = "1.0.0"
-<span class="lineno">  48 </span>workRuntime = "2.10.5"
-<span class="caretline"><span class="lineno">  49 </span>workRuntimeKtx = <span class="warning">"2.10.5"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  50 </span>
-<span class="lineno">  51 </span>jvmTarget = "1.8"
-<span class="lineno">  52 </span>jdkToolchain = "17"
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:47</span>: <span class="message">A newer version of androidx.work:work-runtime-ktx than 2.10.5 is available: 2.11.0</span><br /><pre class="errorlines">
+<span class="lineno">  44 </span>torrentserver = "7861970e038b35cd8c6918384e49caf26903e09e"
+<span class="lineno">  45 </span>tvprovider = "1.1.0"
+<span class="lineno">  46 </span>video = "1.0.0"
+<span class="caretline"><span class="lineno">  47 </span>workRuntimeKtx = <span class="warning">"2.10.5"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  48 </span>
+<span class="lineno">  49 </span>jvmTarget = "1.8"
+<span class="lineno">  50 </span>jdkToolchain = "17"
 </pre>
 
 </div>
@@ -1995,7 +2412,7 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:376</span>: <span class="message">The resource <code>@string/exo_controls_stop_description</code> is marked as private in androidx.media3:media3-ui:1.9.0-beta01</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:376</span>: <span class="message">The resource <code>@string/exo_controls_stop_description</code> is marked as private in androidx.media3:media3-ui:1.8.0</span><br /><pre class="errorlines">
 <span class="lineno">  373 </span>  <span class="keyword">return</span> mutableMapOf(
 <span class="lineno">  374 </span>      STOP_ACTION to NotificationCompat.Action(
 <span class="lineno">  375 </span>          R.drawable.baseline_stop_24,
@@ -2185,7 +2602,7 @@ Dismiss</button>            </div>
 <span class="caretline"><span class="lineno"> 4 </span>    <span class="tag">&lt;stroke</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">width</span>=<span class="value">"</span><span class="warning"><span class="value">@dimen/mtrl_btn_stroke_size</span></span><span class="value">"</span> <span class="prefix">android:</span><span class="attribute">color</span>=<span class="value">"@color/mtrl_btn_stroke_color_selector"</span>/></span>
 <span class="lineno"> 5 </span><span class="tag">&lt;/shape></span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:558</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.9.0-beta01</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:558</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.8.0</span><br /><pre class="errorlines">
 <span class="lineno">  555 </span>
 <span class="lineno">  556 </span>                <span class="tag">&lt;ImageButton</span><span class="attribute">
 </span><span class="lineno">  557 </span><span class="attribute">                    </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@id/exo_repeat_toggle"</span>
@@ -2195,7 +2612,7 @@ Dismiss</button>            </div>
 <span class="lineno">  561 </span>                    <span class="prefix">tools:</span><span class="attribute">ignore</span>=<span class="value">"ContentDescription"</span> />
 </pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:681</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.9.0-beta01</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:681</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.8.0</span><br /><pre class="errorlines">
 <span class="lineno">  678 </span>
 <span class="lineno">  679 </span>                <span class="tag">&lt;ImageButton</span><span class="attribute">
 </span><span class="lineno">  680 </span><span class="attribute">                    </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@id/exo_repeat_toggle"</span>
@@ -2241,7 +2658,7 @@ Dismiss</button>            </div>
 <span class="lineno"> 18 </span>            <span class="prefix">android:</span><span class="attribute">toAlpha</span>=<span class="value">"0.0"</span>/>
 <span class="lineno"> 19 </span><span class="tag">&lt;/set></span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:518</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.9.0-beta01</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:518</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.8.0</span><br /><pre class="errorlines">
 <span class="lineno"> 515 </span>
 <span class="lineno"> 516 </span>            <span class="tag">&lt;ImageButton</span><span class="attribute">
 </span><span class="lineno"> 517 </span><span class="attribute">                </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@id/exo_repeat_toggle"</span>
@@ -2343,24 +2760,24 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/f3c1fca99c52841b98d70e40c1004918/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.2.1/transforms/f3c1fca99c52841b98d70e40c1004918/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/f3c1fca99c52841b98d70e40c1004918/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.2.1/transforms/f3c1fca99c52841b98d70e40c1004918/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/9914d6f706ebc12b79d31c7781e08262/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/9914d6f706ebc12b79d31c7781e08262/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/9914d6f706ebc12b79d31c7781e08262/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/9914d6f706ebc12b79d31c7781e08262/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/9914d6f706ebc12b79d31c7781e08262/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/9914d6f706ebc12b79d31c7781e08262/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/6e00cbebcaf9c36fd4ca9b0de6fc4413/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.2.1/transforms/6e00cbebcaf9c36fd4ca9b0de6fc4413/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/6e00cbebcaf9c36fd4ca9b0de6fc4413/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.2.1/transforms/6e00cbebcaf9c36fd4ca9b0de6fc4413/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/4f973831e1a29bc45d2cabf2df7991c5/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/4f973831e1a29bc45d2cabf2df7991c5/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/4f973831e1a29bc45d2cabf2df7991c5/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/4f973831e1a29bc45d2cabf2df7991c5/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/4f973831e1a29bc45d2cabf2df7991c5/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/4f973831e1a29bc45d2cabf2df7991c5/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
 <button class="mdl-button mdl-js-button mdl-button--primary" id="Aligned16KBDivLink" onclick="reveal('Aligned16KBDiv');" />+ 4 More Occurrences...</button>
 <div id="Aligned16KBDiv" style="display: none">
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/1eb3fbb684aa7500fdf1053f6994bb4e/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/1eb3fbb684aa7500fdf1053f6994bb4e/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/1eb3fbb684aa7500fdf1053f6994bb4e/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/1eb3fbb684aa7500fdf1053f6994bb4e/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/1eb3fbb684aa7500fdf1053f6994bb4e/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/1eb3fbb684aa7500fdf1053f6994bb4e/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:64</span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br /><pre class="errorlines">
-<span class="lineno">  61 </span>coil = { module = "io.coil-kt.coil3:coil", version.ref = "coil" }
-<span class="lineno">  62 </span>coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
-<span class="lineno">  63 </span>colorpicker = { module = "com.github.recloudstream:color-picker-android", version.ref = "colorpicker" }
-<span class="caretline"><span class="lineno">  64 </span>conscrypt-android = {<span class="warning"> module = "org.conscrypt:conscrypt-android", version.ref = "conscryptAndroid" }</span></span>
-<span class="lineno">  65 </span>constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
-<span class="lineno">  66 </span>core = { module = "androidx.test:core" }
-<span class="lineno">  67 </span>core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/18081f1bfff90a2a1241d6ecc36d706f/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/18081f1bfff90a2a1241d6ecc36d706f/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/18081f1bfff90a2a1241d6ecc36d706f/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/18081f1bfff90a2a1241d6ecc36d706f/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/18081f1bfff90a2a1241d6ecc36d706f/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/18081f1bfff90a2a1241d6ecc36d706f/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:62</span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br /><pre class="errorlines">
+<span class="lineno">  59 </span>coil = { module = "io.coil-kt.coil3:coil", version.ref = "coil" }
+<span class="lineno">  60 </span>coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
+<span class="lineno">  61 </span>colorpicker = { module = "com.github.recloudstream:color-picker-android", version.ref = "colorpicker" }
+<span class="caretline"><span class="lineno">  62 </span>conscrypt-android = {<span class="warning"> module = "org.conscrypt:conscrypt-android", version.ref = "conscryptAndroid" }</span></span>
+<span class="lineno">  63 </span>constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+<span class="lineno">  64 </span>core = { module = "androidx.test:core" }
+<span class="lineno">  65 </span>core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
 </pre>
 
 </div>
@@ -3999,144 +4416,7 @@ Dismiss</button>            </div>
             </div>
           </section>
 <a name="Performance"></a>
-<a name="ObsoleteSdkInt"></a>
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="ObsoleteSdkIntCard" style="display: block;">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Obsolete SDK_INT Version Check</h2>
-  </div>
-              <div class="mdl-card__supporting-text">
-<div class="issue">
-<div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/account/AccountAdapter.kt">../../src/main/java/com/lagradost/cloudstream3/ui/account/AccountAdapter.kt</a>:65</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
-<span class="lineno">  62 </span>                        root.requestFocus()
-<span class="lineno">  63 </span>                    }
-<span class="lineno">  64 </span>
-<span class="caretline"><span class="lineno">  65 </span>                    <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  66 </span>                        root.foreground = ContextCompat.getDrawable(
-<span class="lineno">  67 </span>                            root.context,
-<span class="lineno">  68 </span>                            R.drawable.outline_drawable
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/account/AccountAdapter.kt">../../src/main/java/com/lagradost/cloudstream3/ui/account/AccountAdapter.kt</a>:117</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
-<span class="lineno"> 114 </span>                        root.requestFocus()
-<span class="lineno"> 115 </span>                    }
-<span class="lineno"> 116 </span>
-<span class="caretline"><span class="lineno"> 117 </span>                    <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 118 </span>                        root.foreground = ContextCompat.getDrawable(
-<span class="lineno"> 119 </span>                            root.context,
-<span class="lineno"> 120 </span>                            R.drawable.outline_drawable
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt</a>:634</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
-<span class="lineno"> 631 </span>    <span class="keyword">fun</span> Context.isNetworkAvailable(): Boolean {
-<span class="lineno"> 632 </span>        <span class="keyword">val</span> connectivityManager =
-<span class="lineno"> 633 </span>            getSystemService(Context.CONNECTIVITY_SERVICE) <span class="keyword">as</span> ConnectivityManager
-<span class="caretline"><span class="lineno"> 634 </span>        <span class="keyword">return</span> <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 635 </span>            <span class="keyword">val</span> network = connectivityManager.activeNetwork ?: <span class="keyword">return</span> <span class="keyword">false</span>
-<span class="lineno"> 636 </span>            <span class="keyword">val</span> networkCapabilities =
-<span class="lineno"> 637 </span>                connectivityManager.getNetworkCapabilities(network) ?: <span class="keyword">return</span> <span class="keyword">false</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt</a>:847</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
-<span class="lineno"> 844 </span>
-<span class="lineno"> 845 </span>  <span class="keyword">fun</span> Context.isUsingMobileData(): Boolean {
-<span class="lineno"> 846 </span>      <span class="keyword">val</span> connectionManager = getSystemService(Context.CONNECTIVITY_SERVICE) <span class="keyword">as</span> ConnectivityManager
-<span class="caretline"><span class="lineno"> 847 </span>      <span class="keyword">return</span> <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 848 </span>          <span class="keyword">val</span> activeNetwork: Network? = connectionManager.activeNetwork
-<span class="lineno"> 849 </span>          <span class="keyword">val</span> networkCapabilities = connectionManager.getNetworkCapabilities(activeNetwork)
-<span class="lineno"> 850 </span>          networkCapabilities?.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) == <span class="keyword">true</span> &amp;&amp;
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/download/DownloadFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/download/DownloadFragment.kt</a>:226</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
-<span class="lineno"> 223 </span>          steamImageviewHolder.isVisible = isLayout(TV)
-<span class="lineno"> 224 </span>      }
-<span class="lineno"> 225 </span>
-<span class="caretline"><span class="lineno"> 226 </span>      <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 227 </span>          binding.downloadList.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
-<span class="lineno"> 228 </span>              handleScroll(scrollY - oldScrollY)
-<span class="lineno"> 229 </span>          }
-</pre>
-
-<button class="mdl-button mdl-js-button mdl-button--primary" id="ObsoleteSdkIntDivLink" onclick="reveal('ObsoleteSdkIntDiv');" />+ 5 More Occurrences...</button>
-<div id="ObsoleteSdkIntDiv" style="display: none">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/extensions/ExtensionsFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/extensions/ExtensionsFragment.kt</a>:100</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
-<span class="lineno">  97 </span>                    }
-<span class="lineno">  98 </span>                }
-<span class="lineno">  99 </span>
-<span class="caretline"><span class="lineno"> 100 </span>            <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 101 </span>                setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
-<span class="lineno"> 102 </span>                    <span class="keyword">val</span> dy = scrollY - oldScrollY
-<span class="lineno"> 103 </span>                    <span class="keyword">if</span> (dy > <span class="number">0</span>) { <span class="comment">// check for scroll down</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:262</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
-<span class="lineno">  259 </span>    ): PendingIntent {
-<span class="lineno">  260 </span>        <span class="keyword">val</span> intent: Intent = Intent(action).setPackage(context.packageName)
-<span class="lineno">  261 </span>        intent.putExtra(EXTRA_INSTANCE_ID, instanceId)
-<span class="caretline"><span class="lineno">  262 </span>        <span class="keyword">val</span> pendingFlags = <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  263 </span>            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-<span class="lineno">  264 </span>        } <span class="keyword">else</span> PendingIntent.FLAG_UPDATE_CURRENT
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt">../../src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt</a>:25</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
-<span class="lineno"> 22 </span><span class="keyword">object</span> BatteryOptimizationChecker {
-<span class="lineno"> 23 </span>
-<span class="lineno"> 24 </span>    <span class="keyword">fun</span> isAppRestricted(context: Context?): Boolean {
-<span class="caretline"><span class="lineno"> 25 </span>        <span class="keyword">if</span> (<span class="warning">SDK_INT >= <span class="number">23</span></span> &amp;&amp; context != <span class="keyword">null</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 26 </span>            <span class="keyword">val</span> powerManager = context.getSystemService(Context.POWER_SERVICE) <span class="keyword">as</span> PowerManager
-<span class="lineno"> 27 </span>            <span class="keyword">return</span> !powerManager.isIgnoringBatteryOptimizations(context.packageName)
-<span class="lineno"> 28 </span>        }
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/RoundedBackgroundColorSpan.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/RoundedBackgroundColorSpan.kt</a>:63</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
-<span class="lineno">  60 </span>      }
-<span class="lineno">  61 </span>
-<span class="lineno">  62 </span>      <span class="keyword">val</span> width = p.measureText(text, start, end)
-<span class="caretline"><span class="lineno">  63 </span>      <span class="keyword">val</span> textLayout: StaticLayout = <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  64 </span>          StaticLayout.Builder
-<span class="lineno">  65 </span>              .obtain(text, <span class="number">0</span>, text.length, TextPaint(p), width.toInt())
-<span class="lineno">  66 </span>              .setAlignment(alignment)
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/library/ViewpagerAdapter.kt">../../src/main/java/com/lagradost/cloudstream3/ui/library/ViewpagerAdapter.kt</a>:97</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
-<span class="lineno">  94 </span>                <span class="comment">// scrollToPosition(0)</span>
-<span class="lineno">  95 </span>            }
-<span class="lineno">  96 </span>
-<span class="caretline"><span class="lineno">  97 </span>            <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  98 </span>                setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
-<span class="lineno">  99 </span>                    <span class="keyword">val</span> diff = scrollY - oldScrollY
-</pre>
-
-</div>
-</div>
-<div class="metadata"><div class="explanation" id="explanationObsoleteSdkInt" style="display: none;">
-This check flags version checks that are not necessary, because the <code>minSdkVersion</code> (or surrounding known API level) is already at least as high as the version checked for.<br/>
-<br/>
-Similarly, it also looks for resources in <code>-vNN</code> folders, such as <code>values-v14</code> where the version qualifier is less than or equal to the <code>minSdkVersion</code>, where the contents should be merged into the best folder.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
-To suppress this error, use the issue id "ObsoleteSdkInt" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
-<br/></div>
-</div>
-</div>
-<div class="chips">
-<span class="mdl-chip">
-    <span class="mdl-chip__text">ObsoleteSdkInt</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Performance</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Warning</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Priority 6/10</span>
-</span>
-</div>
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationObsoleteSdkIntLink" onclick="reveal('explanationObsoleteSdkInt');">
-Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="ObsoleteSdkIntCardLink" onclick="hideid('ObsoleteSdkIntCard');">
-Dismiss</button>            </div>
-            </div>
-          </section><a name="UnnecessaryArrayInit"></a>
+<a name="UnnecessaryArrayInit"></a>
 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="UnnecessaryArrayInitCard" style="display: block;">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
   <div class="mdl-card__title">
