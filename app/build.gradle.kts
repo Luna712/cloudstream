@@ -239,11 +239,16 @@ dependencies {
 
 tasks.register<Jar>("androidSourcesJar") {
     archiveClassifier.set("sources")
-    from(android.sourceSets.getByName("main").java.directories) // Full Sources
+    // from(android.sourceSets.getByName("main").java.directories) // Full Sources
+    extensions.findByType<SourceSetContainer>()?.getByName("main")?.java
+        ?.srcDirs?.let { from(it) } ?: error("Could not find srcDirs")
 }
 
 tasks.register<Copy>("copyJar") {
-    dependsOn(tasks.getByName("build"))
+    dependsOn(
+        tasks.getByName("build"),
+        tasks.getByName("jvmJar")
+    )
     from(
         "build/intermediates/compile_app_classes_jar/prereleaseDebug/bundlePrereleaseDebugClassesToCompileJar",
         "../library/build/libs"
