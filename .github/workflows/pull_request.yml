@@ -24,9 +24,7 @@ jobs:
         cache-read-only: false
 
     - name: Run Gradle
-      run: |
-        ./gradlew assemblePrerelease build androidSourcesJar --profile
-        ./gradlew makeJar --profile # for classes.jar, has to be done after assemblePrerelease
+      run: ./gradlew assemblePrerelease build androidSourcesJar makeJar --profile
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v5
