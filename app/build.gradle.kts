@@ -269,7 +269,10 @@ tasks.withType<KotlinJvmCompile> {
         jvmTarget.set(javaTarget)
         jvmDefault.set(JvmDefaultMode.ENABLE)
         optIn.add("com.lagradost.cloudstream3.Prerelease")
-        freeCompilerArgs.add("-Xannotation-default-target=param-property")
+        freeCompilerArgs.addAll(
+            "-Xannotation-default-target=param-property",
+            "-Xreturn-value-checker=check"
+        )
     }
 }
 
