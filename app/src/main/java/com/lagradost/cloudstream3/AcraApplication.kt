@@ -20,6 +20,7 @@ class AcraApplication {
 	// also be deprecated at that time.
 	companion object {
 
+		// This can be removed without deprecation after next stable
 		private var _context: WeakReference<Context>? = null
 		/*@Deprecated(
 		    message = "AcraApplication is deprecated, use CloudStreamApp instead",
