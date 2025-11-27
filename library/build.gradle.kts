@@ -39,8 +39,7 @@ kotlin {
     compilerOptions {
         freeCompilerArgs.addAll(
             "-Xexpect-actual-classes",
-            "-Xannotation-default-target=param-property",
-            "-Xreturn-value-checker=check"
+            "-Xannotation-default-target=param-property"
         )
     }
 
