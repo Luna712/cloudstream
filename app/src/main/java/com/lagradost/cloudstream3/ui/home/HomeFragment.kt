@@ -569,6 +569,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
     private val apiChangeClickListener = View.OnClickListener { view ->
         view.context.selectHomepage(currentApiName) { api ->
+            HomeChildItemAdapter.sharedPool.clear()
+            ParentItemAdapter.sharedPool.clear()
             homeViewModel.loadAndCancel(api, forceReload = true, fromUI = true)
         }
         /*val validAPIs = view.context?.filterProviderByPreferredMedia()?.toMutableList() ?: mutableListOf()
