@@ -584,9 +584,7 @@
 \n注意：如果加總達到 10 或更高，則載入該連結時播放器將自動跳過載入！</string>
     <string name="enter_current_pin">輸入目前的 PIN 碼</string>
     <string name="rotate_video_desc">顯示切換畫面方向的按鈕</string>
-    <string name="rotate_video_key">rotate_video_key</string>
     <string name="automatic_plugin_download_mode_title">選擇篩選外掛程式下載的模式</string>
-    <string name="auto_rotate_video_key">auto_rotate_video_key</string>
     <string name="auto_rotate_video">自動旋轉</string>
     <string name="rotate_video">旋轉</string>
     <string name="auto_rotate_video_desc">根據影片方向自動切換畫面方向</string>

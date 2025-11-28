@@ -552,10 +552,8 @@
     <string name="manage_accounts">Керувати обліковими записами</string>
     <string name="edit_account">Редагувати обліковий запис</string>
     <string name="rotate_video_desc">Показувати кнопку перемикання орієнтації екрана</string>
-    <string name="rotate_video_key">rotate_video_key</string>
     <string name="rotate_video">Обернути</string>
     <string name="links_reloaded_toast">Покликання перезавантажено</string>
-    <string name="auto_rotate_video_key">auto_rotate_video_key</string>
     <string name="auto_rotate_video">Автообертання</string>
     <string name="auto_rotate_video_desc">Увімкнути автоматичну зміну орієнтації екрана відповідно до відео</string>
     <string name="speed_setting_summary">Додати налаштування швидкості до програвача</string>

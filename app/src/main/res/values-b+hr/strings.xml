@@ -589,8 +589,6 @@
     <string name="rotate_video_desc">Prikaži gumb za prebacivanje orijentacije zaslona</string>
     <string name="auto_rotate_video_desc">Omogućuje automatsko mijenjanje orijentacije zaslona na temelju orijentacije videa</string>
     <string name="auto_rotate_video">Automatsko rotiranje</string>
-    <string name="rotate_video_key">rotiraj_video_tipka</string>
-    <string name="auto_rotate_video_key">automatski_rotiraj_video_tipka</string>
     <string name="subscribe_tooltip">Obavijest za novu epizodu</string>
     <string name="result_search_tooltip">Traži u drugim proširenjima</string>
     <string name="speed_setting_summary">Dodaje opciju za brzinu u playeru</string>

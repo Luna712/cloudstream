@@ -575,8 +575,6 @@
     <string name="enter_current_pin">حطو الأرقام السرية الحالية</string>
     <string name="audio_tracks">صوت</string>
     <string name="rotate_video_desc">حط كبسة لبرم إتجاه الشاشة</string>
-    <string name="rotate_video_key">rotate_video_key</string>
-    <string name="auto_rotate_video_key">auto_rotate_video_key</string>
     <string name="auto_rotate_video">برم الشاشة أوتوماتيكيًا</string>
     <string name="rotate_video">برومو</string>
     <string name="auto_rotate_video_desc">غير إتجاه الشاشة أوتوماتيكيًا حسب شكل الڤيديو</string>
