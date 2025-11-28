@@ -3034,81 +3034,6 @@ conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = 
    This check looks through the string definitions, and if it finds any words
    that look like likely misspellings, they are flagged.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ro/strings.xml:266: Error: "legal_notice_text" is translated here but not found in default locale [ExtraTranslation]
-    <string name="legal_notice_text">Orice probleme legale privind conținutul acestei aplicații ar trebui să fie rezolvate cu furnizorii și gazdele actuale de fișiere, întrucât noi nu suntem afiliați cu aceștia. În caz de încălcare a drepturilor de autor, vă rugăm să contactați direct părțile responsabile sau site-urile de streaming. Aplicația este destinată exclusiv utilizării educaționale și personale. CloudStream 3 nu găzduiește niciun fel de conținut în aplicație și nu are niciun control asupra conținutului media care este pus sau retras. CloudStream 3 funcționează ca orice alt motor de căutare, cum ar fi Google. CloudStream 3 nu găzduiește, nu încarcă și nu gestionează niciun videoclip, film sau conținut. Pur și simplu navighează, adună și afișează linkuri într-o interfață convenabilă și ușor de utilizat. Pur și simplu, acesta extrage paginile web ale unor terțe părți care sunt accesibile publicului prin intermediul oricărui browser web obișnuit. Este responsabilitatea utilizatorului de a evita orice acțiune care ar putea încălca legile care guvernează locația sa. Utilizați CloudStream 3 pe propria răspundere.</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+sv/strings.xml:470: Error: "auto_rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="auto_rotate_video_key">auto_rotera_video_nyckel</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+uk/strings.xml:555: Error: "rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="rotate_video_key">rotate_video_key</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+uk/strings.xml:558: Error: "auto_rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="auto_rotate_video_key">auto_rotate_video_key</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ru/strings.xml:560: Error: "rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="rotate_video_key">rotate_video_key</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+sv/strings.xml:562: Error: "rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="rotate_video_key">rotera_video_nyckel</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ru/strings.xml:565: Error: "auto_rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="auto_rotate_video_key">auto_rotate_video_key</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+es/strings.xml:572: Error: "rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="rotate_video_key">rotate_video_key</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+es/strings.xml:573: Error: "auto_rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="auto_rotate_video_key">auto_rotate_video_key</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+apc/strings.xml:578: Error: "rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="rotate_video_key">rotate_video_key</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+apc/strings.xml:579: Error: "auto_rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="auto_rotate_video_key">auto_rotate_video_key</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml:587: Error: "rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="rotate_video_key">rotate_video_key</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh+TW/strings.xml:587: Error: "rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="rotate_video_key">rotate_video_key</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml:588: Error: "auto_rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="auto_rotate_video_key">auto_rotate_video_key</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ar/strings.xml:588: Error: "rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="rotate_video_key">تدوير الفيديو</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ar/strings.xml:589: Error: "auto_rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="auto_rotate_video_key">مفتاح تدوير الفيديو التلقائي</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh+TW/strings.xml:589: Error: "auto_rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="auto_rotate_video_key">auto_rotate_video_key</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+cs/strings.xml:590: Error: "rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="rotate_video_key">rotate_video_key</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+cs/strings.xml:591: Error: "auto_rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="auto_rotate_video_key">auto_rotate_video_key</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+hr/strings.xml:592: Error: "rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="rotate_video_key">rotiraj_video_tipka</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+hr/strings.xml:593: Error: "auto_rotate_video_key" is translated here but not found in default locale [ExtraTranslation]
-    <string name="auto_rotate_video_key">automatski_rotiraj_video_tipka</string>
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-   Explanation for issues of type "ExtraTranslation":
-   If a string appears in a specific language translation file, but there is
-   no corresponding string in the default locale, then this string is probably
-   unused. (It's technically possible that your application is only intended
-   to run in a specific locale, but it's still a good idea to provide a
-   fallback.)
-
-   Note that these strings can lead to crashes if the string is looked up on
-   any locale not providing a translation, so it's important to clean them
-   up.
-
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:6: Warning: Formatting %d followed by words ("will"): This should probably be a plural rather than a string [PluralsCandidate]
     <string name="next_episode_format" formatted="true">Episode %d will be released in</string>
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -4623,4 +4548,4 @@ class SSLTrustManager : X509TrustManager {
    the left bitmask. Therefore, you can use gravity="start" rather than
    gravity="left|start".)
 
-771 errors, 550 warnings, 3 hints
+750 errors, 550 warnings, 3 hints

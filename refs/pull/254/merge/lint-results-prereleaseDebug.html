@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 771 errors, 550 warnings and 3 hints</span>
+      <span class="mdl-layout-title">Lint Report: 750 errors, 550 warnings and 3 hints</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Fri Nov 28 20:42:23 UTC 2025 by AGP (9.0.0-beta03)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Fri Nov 28 20:58:50 UTC 2025 by AGP (9.0.0-beta03)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -212,7 +212,6 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#Orientation"><i class="material-icons error-icon">error</i>Missing explicit orientation (2)</a>
       <a class="mdl-navigation__link" href="#MissingTranslation"><i class="material-icons error-icon">error</i>Incomplete translation (706)</a>
       <a class="mdl-navigation__link" href="#Typos"><i class="material-icons warning-icon">warning</i>Spelling error (12)</a>
-      <a class="mdl-navigation__link" href="#ExtraTranslation"><i class="material-icons error-icon">error</i>Extra translation (21)</a>
       <a class="mdl-navigation__link" href="#PluralsCandidate"><i class="material-icons warning-icon">warning</i>Potential Plurals (6)</a>
       <a class="mdl-navigation__link" href="#SetJavaScriptEnabled"><i class="material-icons warning-icon">warning</i>Using <code>setJavaScriptEnabled</code> (1)</a>
       <a class="mdl-navigation__link" href="#TrustAllX509TrustManager"><i class="material-icons warning-icon">warning</i>Insecure TLS/SSL trust manager (2)</a>
@@ -337,9 +336,6 @@ document.getElementById(id).style.display = 'none';
 <tr>
 <td class="countColumn">12</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#Typos">Typos</a>: Spelling error</td></tr>
-<tr>
-<td class="countColumn">21</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
-<a href="#ExtraTranslation">ExtraTranslation</a>: Extra translation</td></tr>
 <tr>
 <td class="countColumn">6</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#PluralsCandidate">PluralsCandidate</a>: Potential Plurals</td></tr>
@@ -3619,240 +3615,6 @@ To suppress this error, use the issue id "Typos" as explained in the <a href="#S
               <div class="mdl-card__actions mdl-card--border">
 <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationTyposLink" onclick="reveal('explanationTypos');">
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="TyposCardLink" onclick="hideid('TyposCard');">
-Dismiss</button>            </div>
-            </div>
-          </section><a name="ExtraTranslation"></a>
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="ExtraTranslationCard" style="display: block;">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Extra translation</h2>
-  </div>
-              <div class="mdl-card__supporting-text">
-<div class="issue">
-<div class="warningslist">
-<span class="location"><a href="../../src/main/res/values-b%2Bro/strings.xml">../../src/main/res/values-b%2Bro/strings.xml</a>:266</span>: <span class="message">"legal_notice_text" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 263 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"resize_fill"</span>>Întindere<span class="tag">&lt;/string></span>
-<span class="lineno"> 264 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"resize_zoom"</span>>Mărire<span class="tag">&lt;/string></span>
-<span class="lineno"> 265 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"legal_notice"</span>>Aviz juridic (declinarea responsabilității și drepturi de autor)<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 266 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"legal_notice_text"</span></span>>Orice probleme legale privind conținutul acestei aplicații ar trebui să fie rezolvate cu furnizorii și gazdele actuale de fișiere, întrucât noi nu suntem afiliați cu aceștia. În caz de încălcare a drepturilor de autor, vă rugăm să contactați direct părțile responsabile sau site-urile de streaming. Aplicația este destinată exclusiv utilizării educaționale și personale. CloudStream 3 nu găzduiește niciun fel de conținut în aplicație și nu are niciun control asupra conținutului media care este pus sau retras. CloudStream 3 funcționează ca orice alt motor de căutare, cum ar fi Google. CloudStream 3 nu găzduiește, nu încarcă și nu gestionează niciun videoclip, film sau conținut. Pur și simplu navighează, adună și afișează linkuri într-o interfață convenabilă și ușor de utilizat. Pur și simplu, acesta extrage paginile web ale unor terțe părți care sunt accesibile publicului prin intermediul oricărui browser web obișnuit. Este responsabilitatea utilizatorului de a evita orice acțiune care ar putea încălca legile care guvernează locația sa. Utilizați CloudStream 3 pe propria răspundere.<span class="tag">&lt;/string></span></span>
-<span class="lineno"> 267 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"category_general"</span>>General<span class="tag">&lt;/string></span>
-<span class="lineno"> 268 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"random_button_settings"</span>>Aleatoriu<span class="tag">&lt;/string></span>
-<span class="lineno"> 269 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"random_button_settings_desc"</span>>Afișează butonul pentru aleatoriu pe Pagina Principală și în Bibliotecă<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Bsv/strings.xml">../../src/main/res/values-b%2Bsv/strings.xml</a>:470</span>: <span class="message">"auto_rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 467 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"edit_account"</span>>Redigera konto<span class="tag">&lt;/string></span>
-<span class="lineno"> 468 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"logged_account"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Loggat in som %s<span class="tag">&lt;/string></span>
-<span class="lineno"> 469 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"skip_startup_account_select_pref"</span>>Hoppa över val av konto vid start<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 470 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"auto_rotate_video_key"</span></span>>auto_rotera_video_nyckel<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 471 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"jsdelivr_proxy_summary"</span>>Gå förbi blockering av rå GitHub-URL:er med jsDelivr. Kan göra att uppdateringar försenas med några dagar.<span class="tag">&lt;/string></span>
-<span class="lineno"> 472 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"pref_category_actions"</span>>Funktion<span class="tag">&lt;/string></span>
-<span class="lineno"> 473 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"preferred_media_settings"</span>>Önskad media<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Buk/strings.xml">../../src/main/res/values-b%2Buk/strings.xml</a>:555</span>: <span class="message">"rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 552 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"manage_accounts"</span>>Керувати обліковими записами<span class="tag">&lt;/string></span>
-<span class="lineno"> 553 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"edit_account"</span>>Редагувати обліковий запис<span class="tag">&lt;/string></span>
-<span class="lineno"> 554 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_desc"</span>>Показувати кнопку перемикання орієнтації екрана<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 555 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"rotate_video_key"</span></span>>rotate_video_key<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 556 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video"</span>>Обернути<span class="tag">&lt;/string></span>
-<span class="lineno"> 557 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"links_reloaded_toast"</span>>Покликання перезавантажено<span class="tag">&lt;/string></span>
-<span class="lineno"> 558 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video_key"</span>>auto_rotate_video_key<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Buk/strings.xml">../../src/main/res/values-b%2Buk/strings.xml</a>:558</span>: <span class="message">"auto_rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 555 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_key"</span>>rotate_video_key<span class="tag">&lt;/string></span>
-<span class="lineno"> 556 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video"</span>>Обернути<span class="tag">&lt;/string></span>
-<span class="lineno"> 557 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"links_reloaded_toast"</span>>Покликання перезавантажено<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 558 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"auto_rotate_video_key"</span></span>>auto_rotate_video_key<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 559 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video"</span>>Автообертання<span class="tag">&lt;/string></span>
-<span class="lineno"> 560 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video_desc"</span>>Увімкнути автоматичну зміну орієнтації екрана відповідно до відео<span class="tag">&lt;/string></span>
-<span class="lineno"> 561 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"speed_setting_summary"</span>>Додати налаштування швидкості до програвача<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Bru/strings.xml">../../src/main/res/values-b%2Bru/strings.xml</a>:560</span>: <span class="message">"rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 557 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"action_add_to_favorites"</span>>Добавить в любимое<span class="tag">&lt;/string></span>
-<span class="lineno"> 558 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video_desc"</span>>Включить автоматическую смену ориентации экрана на основе ориентации видео<span class="tag">&lt;/string></span>
-<span class="lineno"> 559 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video"</span>>Автоповорот<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 560 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"rotate_video_key"</span></span>>rotate_video_key<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 561 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"use_default_account"</span>>Использовать учётную запись по умолчанию<span class="tag">&lt;/string></span>
-<span class="lineno"> 562 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"action_unsubscribe"</span>>Отписаться<span class="tag">&lt;/string></span>
-<span class="lineno"> 563 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"duplicate_replace"</span>>Заменить<span class="tag">&lt;/string></span></pre>
-
-<button class="mdl-button mdl-js-button mdl-button--primary" id="ExtraTranslationDivLink" onclick="reveal('ExtraTranslationDiv');" />+ 16 More Occurrences...</button>
-<div id="ExtraTranslationDiv" style="display: none">
-<span class="location"><a href="../../src/main/res/values-b%2Bsv/strings.xml">../../src/main/res/values-b%2Bsv/strings.xml</a>:562</span>: <span class="message">"rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 559 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"favorite_removed"</span>>%s togs bort från favoriter<span class="tag">&lt;/string></span>
-<span class="lineno"> 560 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"favorite_added"</span>>%s har lagts till i favoriter<span class="tag">&lt;/string></span>
-<span class="lineno"> 561 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"use_default_account"</span>>Använd standard konto<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 562 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"rotate_video_key"</span></span>>rotera_video_nyckel<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 563 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"pin"</span>>PIN-kod<span class="tag">&lt;/string></span>
-<span class="lineno"> 564 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"android_tv_interface_off_seek_settings_summary"</span>>Sök mängden som används när spelaren är dold<span class="tag">&lt;/string></span>
-<span class="lineno"> 565 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"duplicate_message_multiple"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Det verkar som om ett potentiellt duplicerat objekt redan finns i ditt bibliotek:
-</pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Bru/strings.xml">../../src/main/res/values-b%2Bru/strings.xml</a>:565</span>: <span class="message">"auto_rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 562 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"action_unsubscribe"</span>>Отписаться<span class="tag">&lt;/string></span>
-<span class="lineno"> 563 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"duplicate_replace"</span>>Заменить<span class="tag">&lt;/string></span>
-<span class="lineno"> 564 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"enter_current_pin"</span>>Введите текущий ПИН-код<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 565 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"auto_rotate_video_key"</span></span>>auto_rotate_video_key<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 566 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"favorites_list_name"</span>>Любимые<span class="tag">&lt;/string></span>
-<span class="lineno"> 567 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"favorite_added"</span>>%s добавлено в любимые<span class="tag">&lt;/string></span>
-<span class="lineno"> 568 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"enter_pin_with_name"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Введите ПИН-код от %s<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Bes/strings.xml">../../src/main/res/values-b%2Bes/strings.xml</a>:572</span>: <span class="message">"rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 569 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"edit_account"</span>>Editar la cuenta<span class="tag">&lt;/string></span>
-<span class="lineno"> 570 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"links_reloaded_toast"</span>>Enlaces recargados<span class="tag">&lt;/string></span>
-<span class="lineno"> 571 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_desc"</span>>Mostrar un botón para cambiar la orientación de la pantalla<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 572 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"rotate_video_key"</span></span>>rotate_video_key<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 573 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video_key"</span>>auto_rotate_video_key<span class="tag">&lt;/string></span>
-<span class="lineno"> 574 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video"</span>>Giro automático<span class="tag">&lt;/string></span>
-<span class="lineno"> 575 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video"</span>>Girar<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Bes/strings.xml">../../src/main/res/values-b%2Bes/strings.xml</a>:573</span>: <span class="message">"auto_rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 570 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"links_reloaded_toast"</span>>Enlaces recargados<span class="tag">&lt;/string></span>
-<span class="lineno"> 571 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_desc"</span>>Mostrar un botón para cambiar la orientación de la pantalla<span class="tag">&lt;/string></span>
-<span class="lineno"> 572 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_key"</span>>rotate_video_key<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 573 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"auto_rotate_video_key"</span></span>>auto_rotate_video_key<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 574 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video"</span>>Giro automático<span class="tag">&lt;/string></span>
-<span class="lineno"> 575 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video"</span>>Girar<span class="tag">&lt;/string></span>
-<span class="lineno"> 576 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video_desc"</span>>Activar el cambio automático de la orientación de la pantalla en función de la orientación del vídeo<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Bapc/strings.xml">../../src/main/res/values-b%2Bapc/strings.xml</a>:578</span>: <span class="message">"rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 575 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"enter_current_pin"</span>>حطو الأرقام السرية الحالية<span class="tag">&lt;/string></span>
-<span class="lineno"> 576 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"audio_tracks"</span>>صوت<span class="tag">&lt;/string></span>
-<span class="lineno"> 577 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_desc"</span>>حط كبسة لبرم إتجاه الشاشة<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 578 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"rotate_video_key"</span></span>>rotate_video_key<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 579 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video_key"</span>>auto_rotate_video_key<span class="tag">&lt;/string></span>
-<span class="lineno"> 580 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video"</span>>برم الشاشة أوتوماتيكيًا<span class="tag">&lt;/string></span>
-<span class="lineno"> 581 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video"</span>>برومو<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Bapc/strings.xml">../../src/main/res/values-b%2Bapc/strings.xml</a>:579</span>: <span class="message">"auto_rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 576 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"audio_tracks"</span>>صوت<span class="tag">&lt;/string></span>
-<span class="lineno"> 577 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_desc"</span>>حط كبسة لبرم إتجاه الشاشة<span class="tag">&lt;/string></span>
-<span class="lineno"> 578 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_key"</span>>rotate_video_key<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 579 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"auto_rotate_video_key"</span></span>>auto_rotate_video_key<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 580 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video"</span>>برم الشاشة أوتوماتيكيًا<span class="tag">&lt;/string></span>
-<span class="lineno"> 581 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video"</span>>برومو<span class="tag">&lt;/string></span>
-<span class="lineno"> 582 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video_desc"</span>>غير إتجاه الشاشة أوتوماتيكيًا حسب شكل الڤيديو<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Btr/strings.xml">../../src/main/res/values-b%2Btr/strings.xml</a>:587</span>: <span class="message">"rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 584 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"pin"</span>>PIN<span class="tag">&lt;/string></span>
-<span class="lineno"> 585 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"enter_current_pin"</span>>Geçerli PIN\'i Giriniz<span class="tag">&lt;/string></span>
-<span class="lineno"> 586 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_desc"</span>>Ekran yönü için bir geçiş düğmesi göster<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 587 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"rotate_video_key"</span></span>>rotate_video_key<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 588 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video_key"</span>>auto_rotate_video_key<span class="tag">&lt;/string></span>
-<span class="lineno"> 589 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video"</span>>Otomatik döndür<span class="tag">&lt;/string></span>
-<span class="lineno"> 590 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video"</span>>Döndür<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Bzh%2BTW/strings.xml">../../src/main/res/values-b%2Bzh%2BTW/strings.xml</a>:587</span>: <span class="message">"rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 584 </span>\n注意：如果加總達到 10 或更高，則載入該連結時播放器將自動跳過載入！<span class="tag">&lt;/string></span>
-<span class="lineno"> 585 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"enter_current_pin"</span>>輸入目前的 PIN 碼<span class="tag">&lt;/string></span>
-<span class="lineno"> 586 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_desc"</span>>顯示切換畫面方向的按鈕<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 587 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"rotate_video_key"</span></span>>rotate_video_key<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 588 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"automatic_plugin_download_mode_title"</span>>選擇篩選外掛程式下載的模式<span class="tag">&lt;/string></span>
-<span class="lineno"> 589 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video_key"</span>>auto_rotate_video_key<span class="tag">&lt;/string></span>
-<span class="lineno"> 590 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video"</span>>自動旋轉<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Btr/strings.xml">../../src/main/res/values-b%2Btr/strings.xml</a>:588</span>: <span class="message">"auto_rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 585 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"enter_current_pin"</span>>Geçerli PIN\'i Giriniz<span class="tag">&lt;/string></span>
-<span class="lineno"> 586 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_desc"</span>>Ekran yönü için bir geçiş düğmesi göster<span class="tag">&lt;/string></span>
-<span class="lineno"> 587 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_key"</span>>rotate_video_key<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 588 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"auto_rotate_video_key"</span></span>>auto_rotate_video_key<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 589 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video"</span>>Otomatik döndür<span class="tag">&lt;/string></span>
-<span class="lineno"> 590 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video"</span>>Döndür<span class="tag">&lt;/string></span>
-<span class="lineno"> 591 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video_desc"</span>>Video yönüne göre ekran yönünün otomatik olarak değişmesini sağla<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Bar/strings.xml">../../src/main/res/values-b%2Bar/strings.xml</a>:588</span>: <span class="message">"rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 585 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"edit_account"</span>>تعديل الحساب<span class="tag">&lt;/string></span>
-<span class="lineno"> 586 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"links_reloaded_toast"</span>>تم إعادة تحميل الروابط<span class="tag">&lt;/string></span>
-<span class="lineno"> 587 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_desc"</span>>عرض زر تبديل لاتجاه الشاشة<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 588 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"rotate_video_key"</span></span>>تدوير الفيديو<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 589 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video_key"</span>>مفتاح تدوير الفيديو التلقائي<span class="tag">&lt;/string></span>
-<span class="lineno"> 590 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video"</span>>الدوران التلقائي<span class="tag">&lt;/string></span>
-<span class="lineno"> 591 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video"</span>>تدوير<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Bar/strings.xml">../../src/main/res/values-b%2Bar/strings.xml</a>:589</span>: <span class="message">"auto_rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 586 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"links_reloaded_toast"</span>>تم إعادة تحميل الروابط<span class="tag">&lt;/string></span>
-<span class="lineno"> 587 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_desc"</span>>عرض زر تبديل لاتجاه الشاشة<span class="tag">&lt;/string></span>
-<span class="lineno"> 588 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_key"</span>>تدوير الفيديو<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 589 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"auto_rotate_video_key"</span></span>>مفتاح تدوير الفيديو التلقائي<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 590 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video"</span>>الدوران التلقائي<span class="tag">&lt;/string></span>
-<span class="lineno"> 591 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video"</span>>تدوير<span class="tag">&lt;/string></span>
-<span class="lineno"> 592 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video_desc"</span>>تمكين التبديل التلقائي لاتجاه الشاشة بناءً على اتجاه الفيديو<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Bzh%2BTW/strings.xml">../../src/main/res/values-b%2Bzh%2BTW/strings.xml</a>:589</span>: <span class="message">"auto_rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 586 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_desc"</span>>顯示切換畫面方向的按鈕<span class="tag">&lt;/string></span>
-<span class="lineno"> 587 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_key"</span>>rotate_video_key<span class="tag">&lt;/string></span>
-<span class="lineno"> 588 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"automatic_plugin_download_mode_title"</span>>選擇篩選外掛程式下載的模式<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 589 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"auto_rotate_video_key"</span></span>>auto_rotate_video_key<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 590 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video"</span>>自動旋轉<span class="tag">&lt;/string></span>
-<span class="lineno"> 591 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video"</span>>旋轉<span class="tag">&lt;/string></span>
-<span class="lineno"> 592 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video_desc"</span>>根據影片方向自動切換畫面方向<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Bcs/strings.xml">../../src/main/res/values-b%2Bcs/strings.xml</a>:590</span>: <span class="message">"rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 587 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"edit_account"</span>>Upravit účet<span class="tag">&lt;/string></span>
-<span class="lineno"> 588 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"links_reloaded_toast"</span>>Odkazy znovu načteny<span class="tag">&lt;/string></span>
-<span class="lineno"> 589 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_desc"</span>>Zobrazit tlačítko pro přepnutí otočení obrazovky<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 590 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"rotate_video_key"</span></span>>rotate_video_key<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 591 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video_key"</span>>auto_rotate_video_key<span class="tag">&lt;/string></span>
-<span class="lineno"> 592 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video"</span>>Automatické otáčení<span class="tag">&lt;/string></span>
-<span class="lineno"> 593 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video"</span>>Otočení<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Bcs/strings.xml">../../src/main/res/values-b%2Bcs/strings.xml</a>:591</span>: <span class="message">"auto_rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 588 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"links_reloaded_toast"</span>>Odkazy znovu načteny<span class="tag">&lt;/string></span>
-<span class="lineno"> 589 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_desc"</span>>Zobrazit tlačítko pro přepnutí otočení obrazovky<span class="tag">&lt;/string></span>
-<span class="lineno"> 590 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_key"</span>>rotate_video_key<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 591 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"auto_rotate_video_key"</span></span>>auto_rotate_video_key<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 592 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video"</span>>Automatické otáčení<span class="tag">&lt;/string></span>
-<span class="lineno"> 593 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video"</span>>Otočení<span class="tag">&lt;/string></span>
-<span class="lineno"> 594 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video_desc"</span>>Zapnout automatické otáčení obrazovky v závislosti na orientaci videa<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Bhr/strings.xml">../../src/main/res/values-b%2Bhr/strings.xml</a>:592</span>: <span class="message">"rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 589 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_desc"</span>>Prikaži gumb za prebacivanje orijentacije zaslona<span class="tag">&lt;/string></span>
-<span class="lineno"> 590 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video_desc"</span>>Omogućuje automatsko mijenjanje orijentacije zaslona na temelju orijentacije videa<span class="tag">&lt;/string></span>
-<span class="lineno"> 591 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video"</span>>Automatsko rotiranje<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 592 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"rotate_video_key"</span></span>>rotiraj_video_tipka<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 593 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video_key"</span>>automatski_rotiraj_video_tipka<span class="tag">&lt;/string></span>
-<span class="lineno"> 594 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subscribe_tooltip"</span>>Obavijest za novu epizodu<span class="tag">&lt;/string></span>
-<span class="lineno"> 595 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_search_tooltip"</span>>Traži u drugim proširenjima<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Bhr/strings.xml">../../src/main/res/values-b%2Bhr/strings.xml</a>:593</span>: <span class="message">"auto_rotate_video_key" is translated here but not found in default locale</span><br /><pre class="errorlines">
-<span class="lineno"> 590 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video_desc"</span>>Omogućuje automatsko mijenjanje orijentacije zaslona na temelju orijentacije videa<span class="tag">&lt;/string></span>
-<span class="lineno"> 591 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"auto_rotate_video"</span>>Automatsko rotiranje<span class="tag">&lt;/string></span>
-<span class="lineno"> 592 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rotate_video_key"</span>>rotiraj_video_tipka<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 593 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"auto_rotate_video_key"</span></span>>automatski_rotiraj_video_tipka<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 594 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subscribe_tooltip"</span>>Obavijest za novu epizodu<span class="tag">&lt;/string></span>
-<span class="lineno"> 595 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_search_tooltip"</span>>Traži u drugim proširenjima<span class="tag">&lt;/string></span>
-<span class="lineno"> 596 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"speed_setting_summary"</span>>Dodaje opciju za brzinu u playeru<span class="tag">&lt;/string></span></pre>
-
-</div>
-</div>
-<div class="metadata"><div class="explanation" id="explanationExtraTranslation" style="display: none;">
-If a string appears in a specific language translation file, but there is no corresponding string in the default locale, then this string is probably unused. (It's technically possible that your application is only intended to run in a specific locale, but it's still a good idea to provide a fallback.)<br/>
-<br/>
-Note that these strings can lead to crashes if the string is looked up on any locale not providing a translation, so it's important to clean them up.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
-To suppress this error, use the issue id "ExtraTranslation" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
-<br/></div>
-</div>
-</div>
-<div class="chips">
-<span class="mdl-chip">
-    <span class="mdl-chip__text">ExtraTranslation</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Messages</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Correctness</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Fatal</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Priority 6/10</span>
-</span>
-</div>
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationExtraTranslationLink" onclick="reveal('explanationExtraTranslation');">
-Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="ExtraTranslationCardLink" onclick="hideid('ExtraTranslationCard');">
 Dismiss</button>            </div>
             </div>
           </section><a name="PluralsCandidate"></a>
