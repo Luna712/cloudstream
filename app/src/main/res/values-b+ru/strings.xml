@@ -602,7 +602,6 @@
     <string name="next_season_episode_format" formatted="true">Сезон %1$d серия %2$d выйдет</string>
     <string name="episode_upcoming_format" formatted="true">Выйдет %s</string>
     <string name="player_settings_select_cast_device">Выберите устройство для трансляции</string>
-    <string name="hide_player_control_names_key" translatable="false">hide_player_control_names_key</string>
     <string name="downloads_empty">В данный момент скачиваний нет.</string>
     <string name="play_from_beginning_img_des">Играть с самого начала</string>
     <string name="open_local_video">Открыть локальное видео</string>

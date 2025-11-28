@@ -614,7 +614,6 @@
     <string name="cs3wiki">CloudStream Wiki</string>
     <string name="pref_category_accounts">Konton</string>
     <string name="pref_category_security">Säkerhet</string>
-    <string name="hide_player_control_names_key" translatable="false">hide_player_control_names_key</string>
     <string name="dismiss">Avfärda</string>
     <string name="open_downloaded_repo">Öppna databasen</string>
     <string name="device_pin_counter_text">Koden löper ut om %1$dm %2$ds</string>

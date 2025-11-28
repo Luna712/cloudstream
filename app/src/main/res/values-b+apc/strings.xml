@@ -627,7 +627,6 @@
     <string name="dismiss">تجاهل</string>
     <string name="open_downloaded_repo">فتاح الريپو</string>
     <string name="device_pin_url_message">فتاح <b>%s</b> ع تلفونك أو كمپيوترك، وحط الكود اللي فوق</string>
-    <string name="hide_player_control_names_key" translatable="false">hide_player_control_names_key</string>
     <string name="play_from_beginning_img_des">بلشه من الأول</string>
     <string name="test_warning">تحذير</string>
     <string name="open_local_video">فتاح الڤيديو اللي ع جهازك</string>
