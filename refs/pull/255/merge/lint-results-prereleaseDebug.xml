@@ -15472,7 +15472,7 @@
         errorLine1="    &lt;string name=&quot;search_providers_list_key&quot;>search_providers_list&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate.xml"
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml"
             line="4"
             column="13"/>
     </issue>
@@ -15488,7 +15488,7 @@
         errorLine1="    &lt;string name=&quot;fast_forward_button_time_key&quot;>fast_forward_button_time&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate.xml"
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml"
             line="13"
             column="13"/>
     </issue>
@@ -15504,7 +15504,7 @@
         errorLine1="    &lt;string name=&quot;use_system_brightness_key&quot;>use_system_brightness_key&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate.xml"
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml"
             line="28"
             column="13"/>
     </issue>
@@ -15520,7 +15520,7 @@
         errorLine1="    &lt;string name=&quot;app_name_download_path&quot;>Cloudstream&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate.xml"
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml"
             line="52"
             column="13"/>
     </issue>
@@ -15536,7 +15536,7 @@
         errorLine1="    &lt;string name=&quot;log_enabled_key&quot;>log_enabled_key&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate.xml"
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml"
             line="61"
             column="13"/>
     </issue>
@@ -15552,7 +15552,7 @@
         errorLine1="    &lt;string name=&quot;episode_name_format&quot; formatted=&quot;true&quot;>%1$s %2$s&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate.xml"
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml"
             line="107"
             column="13"/>
     </issue>
@@ -15568,7 +15568,7 @@
         errorLine1="    &lt;string name=&quot;year_format&quot; formatted=&quot;true&quot;>%d&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~">
         <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate.xml"
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml"
             line="113"
             column="13"/>
     </issue>
@@ -15584,7 +15584,7 @@
         errorLine1="    &lt;string name=&quot;episode_play_img_des&quot;>@string/play_episode&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate.xml"
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml"
             line="115"
             column="13"/>
     </issue>

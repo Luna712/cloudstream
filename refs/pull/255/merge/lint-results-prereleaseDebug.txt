@@ -3308,28 +3308,28 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values/dimens.xml:9: Warning: The resource R.dimen.card_corner_radius appears to be unused [UnusedResources]
     <dimen name="card_corner_radius">2dp</dimen>
            ~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate.xml:4: Warning: The resource R.string.search_providers_list_key appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml:4: Warning: The resource R.string.search_providers_list_key appears to be unused [UnusedResources]
     <string name="search_providers_list_key">search_providers_list</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate.xml:13: Warning: The resource R.string.fast_forward_button_time_key appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml:13: Warning: The resource R.string.fast_forward_button_time_key appears to be unused [UnusedResources]
     <string name="fast_forward_button_time_key">fast_forward_button_time</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate.xml:28: Warning: The resource R.string.use_system_brightness_key appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml:28: Warning: The resource R.string.use_system_brightness_key appears to be unused [UnusedResources]
     <string name="use_system_brightness_key">use_system_brightness_key</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate.xml:52: Warning: The resource R.string.app_name_download_path appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml:52: Warning: The resource R.string.app_name_download_path appears to be unused [UnusedResources]
     <string name="app_name_download_path">Cloudstream</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate.xml:61: Warning: The resource R.string.log_enabled_key appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml:61: Warning: The resource R.string.log_enabled_key appears to be unused [UnusedResources]
     <string name="log_enabled_key">log_enabled_key</string>
             ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate.xml:107: Warning: The resource R.string.episode_name_format appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml:107: Warning: The resource R.string.episode_name_format appears to be unused [UnusedResources]
     <string name="episode_name_format" formatted="true">%1$s %2$s</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate.xml:113: Warning: The resource R.string.year_format appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml:113: Warning: The resource R.string.year_format appears to be unused [UnusedResources]
     <string name="year_format" formatted="true">%d</string>
             ~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate.xml:115: Warning: The resource R.string.episode_play_img_des appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml:115: Warning: The resource R.string.episode_play_img_des appears to be unused [UnusedResources]
     <string name="episode_play_img_des">@string/play_episode</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/download_button.xml:2: Warning: The resource R.layout.download_button appears to be unused [UnusedResources]
