@@ -120,6 +120,7 @@
     <string name="sort_cancel">@string/cancel</string>
     <string name="default_subtitles">@string/action_default</string>
     <string name="default_account">@string/action_default</string>
+    <string name="subtitles_none">@string/none</string>
     <plurals name="episodes">
         <item quantity="one">@string/episode</item>
         <item quantity="other">@string/episodes</item>
