@@ -2996,9 +2996,6 @@ conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = 
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values/array.xml:331: Warning: "Ok" is usually capitalized as "OK" [Typos]
         <item>Ok</item>
               ~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate.xml:141: Warning: "accessable" is a common misspelling; did you mean "accessible"? [Typos]
-        It merely scrapes 3rd-party websites that are publicly accessable via any regular web browser. It is the
-                                                               ~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pt+BR/strings.xml:110: Warning: "video" is a common misspelling; did you mean "vídeo"? [Typos]
     <string name="provider_info_meta">Metadados não são oferecidas pelo site, o carregamento do video pode falhar se ele não existir no site.</string>
                                                                                                 ~~~~~
@@ -4548,4 +4545,4 @@ class SSLTrustManager : X509TrustManager {
    the left bitmask. Therefore, you can use gravity="start" rather than
    gravity="left|start".)
 
-750 errors, 550 warnings, 3 hints
+750 errors, 549 warnings, 3 hints

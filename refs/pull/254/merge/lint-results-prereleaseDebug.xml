@@ -14336,22 +14336,6 @@
     <issue
         id="Typos"
         severity="Warning"
-        message="&quot;accessable&quot; is a common misspelling; did you mean &quot;accessible&quot;?"
-        category="Correctness:Messages"
-        priority="7"
-        summary="Spelling error"
-        explanation="This check looks through the string definitions, and if it finds any words that look like likely misspellings, they are flagged."
-        errorLine1="        It merely scrapes 3rd-party websites that are publicly accessable via any regular web browser. It is the"
-        errorLine2="                                                               ~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate.xml"
-            line="141"
-            column="64"/>
-    </issue>
-
-    <issue
-        id="Typos"
-        severity="Warning"
         message="&quot;video&quot; is a common misspelling; did you mean &quot;vídeo&quot;?"
         category="Correctness:Messages"
         priority="7"
