@@ -44,7 +44,6 @@ import com.lagradost.cloudstream3.base64Encode
 import com.lagradost.cloudstream3.databinding.FragmentResultBinding
 import com.lagradost.cloudstream3.databinding.FragmentResultSwipeBinding
 import com.lagradost.cloudstream3.databinding.ResultRecommendationsBinding
-import com.lagradost.cloudstream3.databinding.ResultSyncBinding
 import com.lagradost.cloudstream3.mvvm.Resource
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.mvvm.observe
@@ -111,7 +110,6 @@ open class ResultFragmentPhone : FullScreenPlayer() {
     protected var binding: FragmentResultSwipeBinding? = null
     protected var resultBinding: FragmentResultBinding? = null
     protected var recommendationBinding: ResultRecommendationsBinding? = null
-    protected var syncBinding: ResultSyncBinding? = null
 
     override var layout = R.layout.fragment_result_swipe
 
@@ -128,7 +126,6 @@ open class ResultFragmentPhone : FullScreenPlayer() {
         FragmentResultSwipeBinding.bind(root).let { bind ->
             resultBinding = bind.fragmentResult
             recommendationBinding = bind.resultRecommendations
-            syncBinding = bind.resultSync
             binding = bind
         }
 
@@ -246,7 +243,6 @@ open class ResultFragmentPhone : FullScreenPlayer() {
         binding = null
         resultBinding?.resultScroll?.setOnClickListener(null)
         resultBinding = null
-        syncBinding = null
         recommendationBinding = null
         activity?.detachBackPressedCallback(this@ResultFragmentPhone.toString())
         super.onDestroyView()
@@ -924,7 +920,7 @@ open class ResultFragmentPhone : FullScreenPlayer() {
         }
 
         observe(syncModel.synced) { list ->
-            syncBinding?.resultSyncNames?.text =
+            binding?.resultSyncNames?.text =
                 list.filter { it.isSynced && it.hasAccount }.joinToString { it.name }
 
             val newList = list.filter { it.isSynced && it.hasAccount }
@@ -936,11 +932,11 @@ open class ResultFragmentPhone : FullScreenPlayer() {
 
         var currentSyncProgress = 0
         fun setSyncMaxEpisodes(totalEpisodes: Int?) {
-            syncBinding?.resultSyncEpisodes?.max = (totalEpisodes ?: 0) * 1000
+            binding?.resultSyncEpisodes?.max = (totalEpisodes ?: 0) * 1000
 
             safe {
-                val ctx = syncBinding?.resultSyncEpisodes?.context
-                syncBinding?.resultSyncMaxEpisodes?.text =
+                val ctx = binding?.resultSyncEpisodes?.context
+                binding?.resultSyncMaxEpisodes?.text =
                     totalEpisodes?.let { episodes ->
                         ctx?.getString(R.string.sync_total_episodes_some)?.format(episodes)
                     } ?: run {
@@ -952,15 +948,15 @@ open class ResultFragmentPhone : FullScreenPlayer() {
             when (meta) {
                 is Resource.Success -> {
                     val d = meta.value
-                    syncBinding?.resultSyncEpisodes?.progress = currentSyncProgress * 1000
+                    binding?.resultSyncEpisodes?.progress = currentSyncProgress * 1000
                     setSyncMaxEpisodes(d.totalEpisodes)
 
                     viewModel.setMeta(d, syncModel.getSyncs())
                 }
 
                 is Resource.Loading -> {
-                    syncBinding?.resultSyncMaxEpisodes?.text =
-                        syncBinding?.resultSyncMaxEpisodes?.context?.getString(R.string.sync_total_episodes_none)
+                    binding?.resultSyncMaxEpisodes?.text =
+                        binding?.resultSyncMaxEpisodes?.context?.getString(R.string.sync_total_episodes_none)
                 }
 
                 else -> {}
@@ -970,7 +966,7 @@ open class ResultFragmentPhone : FullScreenPlayer() {
 
         observe(syncModel.userData) { status ->
             var closed = false
-            syncBinding?.apply {
+            binding?.apply {
                 when (status) {
                     is Resource.Failure -> {
                         resultSyncLoadingShimmer.stopShimmer()
@@ -1051,7 +1047,7 @@ open class ResultFragmentPhone : FullScreenPlayer() {
                 R.string.type_re_watching
             ).map { ctx.getString(it) }
             arrayAdapter.addAll(items)
-            syncBinding?.apply {
+            binding?.apply {
                 resultSyncCheck.choiceMode = AbsListView.CHOICE_MODE_SINGLE
                 resultSyncCheck.adapter = arrayAdapter
                 setListViewHeightBasedOnItems(resultSyncCheck)
@@ -1081,7 +1077,7 @@ open class ResultFragmentPhone : FullScreenPlayer() {
             }
         }
 
-        syncBinding?.resultSyncSetScore?.setOnClickListener {
+        binding?.resultSyncSetScore?.setOnClickListener {
             syncModel.publishUserData()
         }
 
