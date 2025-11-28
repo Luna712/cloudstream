@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:background="@android:color/holo_blue_light">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.core.widget.ContentLoadingProgressBar
         android:id="@+id/progress_downloaded"
@@ -37,4 +34,4 @@
         android:src="@drawable/ic_baseline_play_arrow_24"
         android:visibility="visible"
         app:tint="?attr/download_icon_color" />
-</FrameLayout>
+</merge>
