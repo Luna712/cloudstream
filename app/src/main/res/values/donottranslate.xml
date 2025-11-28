@@ -89,6 +89,11 @@
     <string name="software_decoding_key">software_decoding_key2</string>
     <string name="manual_update_plugins_key">manual_update_plugins</string>
     <string name="speedup_key">speedup_key</string>
+    <string name="anilist_key">anilist_key</string>
+    <string name="simkl_key">simkl_key</string>
+    <string name="mal_key">mal_key</string>
+    <string name="opensubtitles_key">opensubtitles_key</string>
+    <string name="subdl_key">subdl_key</string>
 
     <!-- FORMAT WILL CAUSE CRASH IF APPLIED WRONG -->
     <string name="extra_info_format" formatted="true">%d %s | %s</string>
