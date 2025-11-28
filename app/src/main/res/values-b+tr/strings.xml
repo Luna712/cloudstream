@@ -304,8 +304,6 @@
     <string name="example_site_name">YeniSiteAdı</string>
     <string name="example_site_url">https://ornek.com</string>
     <string name="example_lang_name">Dil kodu (tr)</string>
-    <!--
-    -->
     <string name="login_format" formatted="true">%1$s %2$s</string>
     <string name="account">hesap</string>
     <string name="logout">Çıkış yap</string>

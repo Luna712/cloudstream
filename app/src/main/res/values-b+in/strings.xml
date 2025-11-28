@@ -268,8 +268,6 @@
     <string name="bottom_title_settings">Lokasi judul poster</string>
     <string name="bottom_title_settings_des">Meletakkan judul di bawah poster</string>
     <!-- account stuff -->
-    <!--
-    -->
     <string name="login_format" formatted="true">%1$s %2$s</string>
     <string name="account">akun</string>
     <string name="logout">Keluar</string>

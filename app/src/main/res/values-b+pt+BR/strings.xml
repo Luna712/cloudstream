@@ -292,8 +292,6 @@
     <string name="example_site_name">NovoNomedoSite</string>
     <string name="example_site_url">https://example.com</string>
     <string name="example_lang_name">Codigo da Língua (bp)</string>
-    <!--
-    -->
     <string name="login_format" formatted="true">%1$s %2$s</string>
     <string name="account">Conta</string>
     <string name="logout">Sair</string>

@@ -305,8 +305,6 @@
     <string name="example_site_name">新網站名稱</string>
     <string name="example_site_url">https://example.com</string>
     <string name="example_lang_name">語言代號 (zh_TW)</string>
-    <!--
-    -->
     <string name="login_format" formatted="true">%1$s %2$s</string>
     <string name="account">帳號</string>
     <string name="logout">登出</string>

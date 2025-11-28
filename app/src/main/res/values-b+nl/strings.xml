@@ -294,8 +294,6 @@
     <string name="example_site_name">MyCoolSite</string>
     <string name="example_site_url">voorbeeld.com</string>
     <string name="example_lang_name">Taalcode (nl)</string>
-    <!--
-    -->
     <string name="login_format" formatted="true">%1$s %2$s</string>
     <string name="account">account</string>
     <string name="logout">Log uit</string>

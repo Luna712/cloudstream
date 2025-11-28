@@ -306,8 +306,6 @@
     <string name="example_site_name">网站名称</string>
     <string name="example_site_url">网站链接</string>
     <string name="example_lang_name">语言代码 (zh)</string>
-    <!--
-    -->
     <string name="login_format" formatted="true">%1$s %2$s</string>
     <string name="account">账户</string>
     <string name="logout">注销</string>

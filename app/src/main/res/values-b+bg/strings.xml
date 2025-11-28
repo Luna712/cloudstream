@@ -298,8 +298,6 @@
     <string name="example_site_name">НовоИмеНаСайт</string>
     <string name="example_site_url">example.com</string>
     <string name="example_lang_name">Езиков код (en)</string>
-    <!--
-    -->
     <string name="login_format" formatted="true">%1$s %2$s</string>
     <string name="account">Акаунт</string>
     <string name="logout">Излизане</string>
