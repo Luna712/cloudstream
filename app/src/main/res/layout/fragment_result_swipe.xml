@@ -205,7 +205,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="start">
 
-                <include layout="@layout/result_sync"/>
+                <include layout="@layout/result_sync" android:id="@+id/result_sync"/>
             </FrameLayout>
 
             <FrameLayout
