@@ -74,7 +74,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:background="?attr/primaryGrayBackground"
+            android:background="?attr/primaryBlackBackground"
             android:focusable="true"
             android:nextFocusRight="@id/download_stream_button_tv"
             android:nextFocusLeft="@id/navigation_downloads"
@@ -88,6 +88,7 @@
 
             <LinearLayout
                 android:id="@+id/download_storage_appbar"
+                android:background="?attr/primaryGrayBackground"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
