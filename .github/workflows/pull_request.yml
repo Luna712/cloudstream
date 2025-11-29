@@ -30,7 +30,11 @@ jobs:
       uses: actions/upload-artifact@v5
       with:
         name: pull-request-build
-        path: "app/build/outputs/apk/prerelease/debug/*.apk"
+        path: |
+          app/build/outputs/apk/prerelease/debug/*.apk
+          app/build/outputs/apk/prerelease/release/*.apk
+          app/build/libs/app-sources.jar
+          app/build/classes.jar
 
     - name: Deploy Reports to GitHub Pages
       run: |
