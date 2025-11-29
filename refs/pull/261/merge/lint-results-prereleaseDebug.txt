@@ -1,22 +1,10 @@
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_sync.xml:156: Warning: The vertically scrolling ScrollView should not contain another vertically scrolling widget (ListView) [NestedScrolling]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_sync.xml:157: Warning: The vertically scrolling ScrollView should not contain another vertically scrolling widget (ListView) [NestedScrolling]
             <ListView
              ~~~~~~~~
 
    Explanation for issues of type "NestedScrolling":
    A scrolling widget such as a ScrollView should not contain any nested
    scrolling widgets since this has various usability issues
-
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/chromecast_subtitle_settings.xml:15: Warning: This LinearLayout should use android:layout_height="wrap_content" [ScrollViewSize]
-            android:layout_height="match_parent"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/subtitle_settings.xml:16: Warning: This LinearLayout should use android:layout_height="wrap_content" [ScrollViewSize]
-            android:layout_height="match_parent"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-   Explanation for issues of type "ScrollViewSize":
-   ScrollView children must set their layout_width or layout_height attributes
-   to wrap_content rather than fill_parent or match_parent in the scrolling
-   dimension.
 
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt:69: Warning: Field requires API level 23 (current min is 21): android.provider.Settings#ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS [InlinedApi]
                 action =  Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
@@ -246,7 +234,7 @@
             android:foreground="@drawable/outline_big_20_gray"
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_episode.xml:57: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-        android:foreground="?android:attr/selectableItemBackgroundBorderless">
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_episode_large.xml:21: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
         android:foreground="?android:attr/selectableItemBackgroundBorderless"
@@ -296,7 +284,7 @@
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/splash_background.xml:6: Warning: Attribute width is only used in API level 23 and higher (current min is 21) [UnusedAttribute]
     <item android:width="150dp" android:height="150dp" android:gravity="center" android:drawable="@drawable/ic_launcher_foreground">
           ~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:931: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:930: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
         android:foreground="@null"
         ~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/video_pause.xml:4: Warning: Attribute height is only used in API level 23 and higher (current min is 21) [UnusedAttribute]
@@ -391,24 +379,6 @@
    same module. Make sure you also call
    existingHandler.uncaughtException(thread, throwable) from your new
    handler.
-
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/empty_layout.xml:7: Warning: Replace the <fragment> tag with FragmentContainerView. [FragmentTagUsage from androidx.fragment]
-    <fragment
-     ~~~~~~~~
-
-   Explanation for issues of type "FragmentTagUsage":
-   FragmentContainerView replaces the <fragment> tag as the preferred         
-          way of adding fragments via XML. Unlike the <fragment> tag,
-   FragmentContainerView                 uses a normal FragmentTransaction
-   under the hood to add the initial fragment,                 allowing
-   further FragmentTransaction operations on the FragmentContainerView        
-           and providing a consistent timing for lifecycle events.
-
-   https://developer.android.com/reference/androidx/fragment/app/FragmentContainerView.html
-
-   Vendor: Android Open Source Project
-   Identifier: androidx.fragment
-   Feedback: https://issuetracker.google.com/issues/new?component=460964
 
 /home/runner/work/cloudstream/cloudstream/app/src/main/AndroidManifest.xml:35: Warning: An activity in this app supports picture-in-picture and the targetSdkVersion is 31 or above; it is therefore strongly recommended to call both setAutoEnterEnabled(true) and setSourceRectHint(...) [PictureInPictureIssue]
     <application
@@ -688,31 +658,31 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_material.xml:60: Warning: The resource @style/PreferenceSummaryTextStyle is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
             style="@style/PreferenceSummaryTextStyle"/>
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:34: Warning: The resource @layout/image_frame is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:35: Warning: The resource @layout/image_frame is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
     <include layout="@layout/image_frame"/>
                      ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:70: Warning: The resource @style/PreferenceSummaryTextStyle is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:72: Warning: The resource @style/PreferenceSummaryTextStyle is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
                 style="@style/PreferenceSummaryTextStyle"/>
                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:102: Warning: The resource @dimen/preference_seekbar_padding_horizontal is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:104: Warning: The resource @dimen/preference_seekbar_padding_horizontal is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
                 android:paddingLeft="@dimen/preference_seekbar_padding_horizontal"
                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:103: Warning: The resource @dimen/preference_seekbar_padding_horizontal is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:105: Warning: The resource @dimen/preference_seekbar_padding_horizontal is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
                 android:paddingStart="@dimen/preference_seekbar_padding_horizontal"
                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:104: Warning: The resource @dimen/preference_seekbar_padding_horizontal is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:106: Warning: The resource @dimen/preference_seekbar_padding_horizontal is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
                 android:paddingRight="@dimen/preference_seekbar_padding_horizontal"
                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:105: Warning: The resource @dimen/preference_seekbar_padding_horizontal is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:107: Warning: The resource @dimen/preference_seekbar_padding_horizontal is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
                 android:paddingEnd="@dimen/preference_seekbar_padding_horizontal"
                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:106: Warning: The resource @dimen/preference_seekbar_padding_vertical is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:108: Warning: The resource @dimen/preference_seekbar_padding_vertical is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
                 android:paddingTop="@dimen/preference_seekbar_padding_vertical"
                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:107: Warning: The resource @dimen/preference_seekbar_padding_vertical is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:109: Warning: The resource @dimen/preference_seekbar_padding_vertical is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
                 android:paddingBottom="@dimen/preference_seekbar_padding_vertical"
                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:115: Warning: The resource @dimen/preference_seekbar_value_minWidth is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:117: Warning: The resource @dimen/preference_seekbar_value_minWidth is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
                 android:minWidth="@dimen/preference_seekbar_value_minWidth"
                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/anim/enter_anim.xml:5: Warning: The resource @integer/config_navAnimTime is marked as private in androidx.navigation:navigation-ui:2.9.6 [PrivateResource]
@@ -736,7 +706,7 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:558: Warning: The resource @style/ExoMediaButton is marked as private in androidx.media3:media3-ui:1.8.0 [PrivateResource]
                     style="@style/ExoMediaButton"
                            ~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:681: Warning: The resource @style/ExoMediaButton is marked as private in androidx.media3:media3-ui:1.8.0 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:680: Warning: The resource @style/ExoMediaButton is marked as private in androidx.media3:media3-ui:1.8.0 [PrivateResource]
                     style="@style/ExoMediaButton"
                            ~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/anim/pop_enter.xml:5: Warning: The resource @integer/config_navAnimTime is marked as private in androidx.navigation:navigation-ui:2.9.6 [PrivateResource]
@@ -751,7 +721,7 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/anim/pop_exit.xml:16: Warning: The resource @integer/config_navAnimTime is marked as private in androidx.navigation:navigation-ui:2.9.6 [PrivateResource]
             android:duration="@integer/config_navAnimTime"
                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:518: Warning: The resource @style/ExoMediaButton is marked as private in androidx.media3:media3-ui:1.8.0 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:517: Warning: The resource @style/ExoMediaButton is marked as private in androidx.media3:media3-ui:1.8.0 [PrivateResource]
                 style="@style/ExoMediaButton"
                        ~~~~~~~~~~~~~~~~~~~~~
 
@@ -817,47 +787,10 @@ conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = 
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/UIHelper.kt:502: Warning: Use of this function is discouraged because resource reflection makes it harder to perform build optimizations and compile-time verification of code. It is much more efficient to retrieve resources by identifier (e.g. R.foo.bar) than by name (e.g. getIdentifier("bar", "foo", null)). [DiscouragedApi]
         val resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
                                    ~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_player.xml:10: Warning: Fixed screen orientations will be ignored in most cases, starting from Android 16. Android is moving toward a model where apps are expected to adapt to various orientations, display sizes, and aspect ratios. [DiscouragedApi]
-    android:screenOrientation="sensorLandscape"
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_player_tv.xml:10: Warning: Fixed screen orientations will be ignored in most cases, starting from Android 16. Android is moving toward a model where apps are expected to adapt to various orientations, display sizes, and aspect ratios. [DiscouragedApi]
-    android:screenOrientation="sensorLandscape"
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_trailer.xml:12: Warning: Fixed screen orientations will be ignored in most cases, starting from Android 16. Android is moving toward a model where apps are expected to adapt to various orientations, display sizes, and aspect ratios. [DiscouragedApi]
-        android:screenOrientation="sensorLandscape"
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:8: Warning: Fixed screen orientations will be ignored in most cases, starting from Android 16. Android is moving toward a model where apps are expected to adapt to various orientations, display sizes, and aspect ratios. [DiscouragedApi]
-    android:screenOrientation="landscape"
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:8: Warning: Fixed screen orientations will be ignored in most cases, starting from Android 16. Android is moving toward a model where apps are expected to adapt to various orientations, display sizes, and aspect ratios. [DiscouragedApi]
-    android:screenOrientation="landscape"
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:8: Warning: Fixed screen orientations will be ignored in most cases, starting from Android 16. Android is moving toward a model where apps are expected to adapt to various orientations, display sizes, and aspect ratios. [DiscouragedApi]
-    android:screenOrientation="landscape"
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    Explanation for issues of type "DiscouragedApi":
    Discouraged APIs are allowed and are not deprecated, but they may be unfit
    for common use (e.g. due to slow performance or subtle behavior).
-
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:179: Error: Wrong orientation? No orientation specified, and the default is horizontal, yet this layout has multiple children where at least one has layout_width="match_parent" [Orientation]
-                <LinearLayout
-                 ~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_episode.xml:54: Error: Wrong orientation? No orientation specified, and the default is horizontal, yet this layout has multiple children where at least one has layout_width="match_parent" [Orientation]
-    <LinearLayout
-     ~~~~~~~~~~~~
-
-   Explanation for issues of type "Orientation":
-   The default orientation of a LinearLayout is horizontal. It's pretty easy
-   to believe that the layout is vertical, add multiple children to it, and
-   wonder why only the first child is visible (when the subsequent children
-   are off screen to the right). This lint rule helps pinpoint this issue by
-   warning whenever a LinearLayout is used with an implicit orientation and
-   multiple children.
-
-   It also checks for empty LinearLayouts without an orientation attribute
-   that also defines an id attribute. This catches the scenarios where
-   children will be added to the LinearLayout dynamically. 
 
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values/array.xml:331: Warning: "Ok" is usually capitalized as "OK" [Typos]
         <item>Ok</item>
@@ -1743,7 +1676,7 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout-port/player_select_source_priority.xml:18: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
         <LinearLayout
          ~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:935: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:934: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
     <LinearLayout
      ~~~~~~~~~~~~
 
@@ -1785,44 +1718,13 @@ class SSLTrustManager : X509TrustManager {
 
    https://android-developers.googleblog.com/2009/03/android-layout-tricks-3-optimize-by.html
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_extensions.xml:61: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
-    <LinearLayout
-     ~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout-port/player_select_source_and_subs.xml:119: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
-            <LinearLayout
-             ~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_select_source_and_subs.xml:155: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
-            <LinearLayout
-             ~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/subtitle_offset.xml:2: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
- ~~~~~~~~~~~~
-
-   Explanation for issues of type "DisableBaselineAlignment":
-   When a LinearLayout is used to distribute the space proportionally between
-   nested layouts, the baseline alignment property should be turned off to
-   make the layout computation faster.
-
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_plugin_details.xml:34: Warning: Use a layout_width of 0dp instead of wrap_content for better performance [InefficientWeight]
-            android:layout_width="wrap_content"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_tv.xml:1052: Warning: Use a layout_height of 0dp instead of wrap_content for better performance [InefficientWeight]
-                android:layout_height="wrap_content"
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-   Explanation for issues of type "InefficientWeight":
-   When only a single widget in a LinearLayout defines a weight, it is more
-   efficient to assign a width/height of 0dp to it since it will absorb all
-   the remaining space anyway. With a declared width/height of 0dp it does not
-   have to measure its own size first.
-
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout-port/player_select_source_and_subs.xml:21: Warning: Nested weights are bad for performance [NestedWeights]
             android:layout_weight="1"
             ~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout-port/player_select_source_and_subs.xml:59: Warning: Nested weights are bad for performance [NestedWeights]
                 android:layout_weight="1"
                 ~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout-port/player_select_source_and_subs.xml:129: Warning: Nested weights are bad for performance [NestedWeights]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout-port/player_select_source_and_subs.xml:130: Warning: Nested weights are bad for performance [NestedWeights]
                     android:layout_weight="1"
                     ~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout-port/player_select_source_priority.xml:50: Warning: Nested weights are bad for performance [NestedWeights]
@@ -2366,7 +2268,7 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:441: Warning: This FrameLayout layout or its LinearLayout parent is unnecessary [UselessParent]
                     <FrameLayout
                      ~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:421: Warning: This FrameLayout layout or its LinearLayout parent is unnecessary [UselessParent]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:420: Warning: This FrameLayout layout or its LinearLayout parent is unnecessary [UselessParent]
                 <FrameLayout
                  ~~~~~~~~~~~
 
@@ -2375,16 +2277,6 @@ class SSLTrustManager : X509TrustManager {
    layout, and does not have a background, can be removed and have its
    children moved directly into the parent for a flatter and more efficient
    layout hierarchy.
-
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/options_popup_tv.xml:9: Warning: This namespace declaration is redundant [RedundantNamespace]
-            xmlns:tools="http://schemas.android.com/tools"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-   Explanation for issues of type "RedundantNamespace":
-   In Android XML documents, only specify the namespace on the root/document
-   element. Namespace declarations elsewhere in the document are typically
-   accidental leftovers from copy/pasting XML from other files or
-   documentation.
 
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result.xml:593: Warning: fragment_result.xml has more than 10 levels, bad for performance [TooDeepLayout]
                                         <ImageView
@@ -2405,10 +2297,10 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:917: Warning: player_custom_layout.xml has more than 80 views, bad for performance [TooManyViews]
                 <ProgressBar
                  ~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:945: Warning: player_custom_layout_tv.xml has more than 80 views, bad for performance [TooManyViews]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:944: Warning: player_custom_layout_tv.xml has more than 80 views, bad for performance [TooManyViews]
                         <com.google.android.material.button.MaterialButton
                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:857: Warning: trailer_custom_layout.xml has more than 80 views, bad for performance [TooManyViews]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:856: Warning: trailer_custom_layout.xml has more than 80 views, bad for performance [TooManyViews]
             <ProgressBar
              ~~~~~~~~~~~
 
@@ -2485,51 +2377,6 @@ class SSLTrustManager : X509TrustManager {
    smaller. However, duplicated icons usually are not intentional and can
    sometimes point to icons that were accidentally overwritten or accidentally
    not updated.
-
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/add_account_input.xml:79: Warning: Missing autofillHints attribute [Autofill]
-        <EditText
-         ~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/add_repo_input.xml:80: Warning: Missing autofillHints attribute [Autofill]
-        <EditText
-         ~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/add_site_input.xml:63: Warning: Missing autofillHints attribute [Autofill]
-        <EditText
-         ~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/bottom_input_dialog.xml:23: Warning: Missing autofillHints attribute [Autofill]
-    <EditText
-     ~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/lock_pin_dialog.xml:9: Warning: Missing autofillHints attribute [Autofill]
-    <EditText
-     ~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_sync.xml:47: Warning: Missing autofillHints attribute [Autofill]
-                <EditText
-                 ~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/stream_input.xml:27: Warning: Missing autofillHints attribute [Autofill]
-        <EditText
-         ~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/stream_input.xml:36: Warning: Missing autofillHints attribute [Autofill]
-        <EditText
-         ~~~~~~~~
-
-   Explanation for issues of type "Autofill":
-   Specify an autofillHints attribute when targeting SDK version 26 or higher
-   or explicitly specify that the view is not important for autofill. Your app
-   can help an autofill service classify the data correctly by providing the
-   meaning of each view that could be autofillable, such as views representing
-   usernames, passwords, credit card fields, email addresses, etc.
-
-   The hints can have any value, but it is recommended to use predefined
-   values like 'username' for a username or 'creditCardNumber' for a credit
-   card number. For a list of all predefined autofill hint constants, see the
-   AUTOFILL_HINT_ constants in the View reference at
-   https://developer.android.com/reference/android/view/View.html.
-
-   You can mark a view unimportant for autofill by specifying an
-   importantForAutofill attribute on that view or a parent view. See
-   https://developer.android.com/reference/android/view/View.html#setImportant
-   ForAutofill(int).
-
-   https://developer.android.com/guide/topics/text/autofill.html
 
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt:173: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
             .setPosterArtUri(Uri.parse(card.posterUrl))
@@ -2801,10 +2648,10 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_extensions.xml:39: Warning: Missing contentDescription attribute on image [ContentDescription]
         <ImageView
          ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_player_tv.xml:75: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_player_tv.xml:74: Warning: Missing contentDescription attribute on image [ContentDescription]
             <ImageView
              ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_player_tv.xml:82: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_player_tv.xml:81: Warning: Missing contentDescription attribute on image [ContentDescription]
             <ImageView
              ~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_plugin_details.xml:59: Warning: Missing contentDescription attribute on image [ContentDescription]
@@ -2846,13 +2693,13 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/home_scroll_view.xml:8: Warning: Missing contentDescription attribute on image [ContentDescription]
     <ImageView
      ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:92: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:91: Warning: Missing contentDescription attribute on image [ContentDescription]
         <ImageView
          ~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:445: Warning: Missing contentDescription attribute on image [ContentDescription]
                         <ImageView
                          ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:205: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:204: Warning: Missing contentDescription attribute on image [ContentDescription]
         <ImageView
          ~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_prioritize_item.xml:17: Warning: Missing contentDescription attribute on image [ContentDescription]
@@ -2873,7 +2720,7 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/repository_item_tv.xml:15: Warning: Missing contentDescription attribute on image [ContentDescription]
     <ImageView
      ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_episode.xml:66: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_episode.xml:67: Warning: Missing contentDescription attribute on image [ContentDescription]
             <ImageView
              ~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_episode_large.xml:58: Warning: Missing contentDescription attribute on image [ContentDescription]
@@ -2885,7 +2732,7 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_sync.xml:37: Warning: Missing contentDescription attribute on image [ContentDescription]
                 <ImageView
                  ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_sync.xml:68: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_sync.xml:69: Warning: Missing contentDescription attribute on image [ContentDescription]
                 <ImageView
                  ~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/search_result_compact.xml:31: Warning: Missing contentDescription attribute on image [ContentDescription]
@@ -2900,16 +2747,16 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/speed_dialog.xml:62: Warning: Missing contentDescription attribute on image [ContentDescription]
         <com.google.android.material.floatingactionbutton.FloatingActionButton
          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:71: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:70: Warning: Missing contentDescription attribute on image [ContentDescription]
         <ImageView
          ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:425: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:424: Warning: Missing contentDescription attribute on image [ContentDescription]
                     <ImageView
                      ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:560: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:559: Warning: Missing contentDescription attribute on image [ContentDescription]
         <ImageView
          ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:686: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:685: Warning: Missing contentDescription attribute on image [ContentDescription]
                 <ImageView
                  ~~~~~~~~~
 
@@ -2931,27 +2778,6 @@ class SSLTrustManager : X509TrustManager {
    the hint.
 
    https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases
-
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:52: Warning: Missing accessibility label: when using android:labelFor, you must also define an android:text or an android:contentDescription [LabelFor]
-                android:labelFor="@id/seekbar"
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout-port/player_select_source_priority.xml:100: Warning: Missing accessibility label: provide either a view with an android:labelFor that references this view or provide an android:hint [LabelFor]
-        <EditText
-         ~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_select_source_priority.xml:140: Warning: Missing accessibility label: provide either a view with an android:labelFor that references this view or provide an android:hint [LabelFor]
-        <EditText
-         ~~~~~~~~
-
-   Explanation for issues of type "LabelFor":
-   Editable text fields should provide an android:hint or, provided your
-   minSdkVersion is at least 17, they may be referenced by a view with a
-   android:labelFor attribute.
-
-   When using android:labelFor, be sure to provide an android:text or an
-   android:contentDescription.
-
-   If your view is labeled but by a label in a different layout which includes
-   this one, just suppress this warning from lint.
 
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ja/strings.xml:24: Error: Found byte-order-mark in the middle of a file [ByteOrderMark]
     <string name="category_account">ア﻿カ﻿ウ﻿ン﻿トとセキュリティ</string>
@@ -3051,7 +2877,7 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_sync.xml:27: Warning: Hardcoded string "MyAnimeList, AniList", should use @string resource [HardcodedText]
                 android:text="MyAnimeList, AniList"
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_sync.xml:115: Warning: Hardcoded string "7/10", should use @string resource [HardcodedText]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_sync.xml:116: Warning: Hardcoded string "7/10", should use @string resource [HardcodedText]
                     android:text="7/10" />
                     ~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/view_test.xml:69: Warning: Hardcoded string "Tests passed", should use @string resource [HardcodedText]
@@ -3117,28 +2943,28 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_material.xml:72: Warning: Redundant attribute paddingRight; already defining paddingEnd with targetSdkVersion 36 [RtlHardcoded]
         android:paddingRight="0dp"
         ~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:25: Warning: Redundant attribute paddingLeft; already defining paddingStart with targetSdkVersion 36 [RtlHardcoded]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:26: Warning: Redundant attribute paddingLeft; already defining paddingStart with targetSdkVersion 36 [RtlHardcoded]
     android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
     ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:27: Warning: Redundant attribute paddingRight; already defining paddingEnd with targetSdkVersion 36 [RtlHardcoded]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:28: Warning: Redundant attribute paddingRight; already defining paddingEnd with targetSdkVersion 36 [RtlHardcoded]
     android:paddingRight="?android:attr/listPreferredItemPaddingRight"
     ~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:64: Warning: Redundant attribute layout_alignLeft; already defining layout_alignStart with targetSdkVersion 36 [RtlHardcoded]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:66: Warning: Redundant attribute layout_alignLeft; already defining layout_alignStart with targetSdkVersion 36 [RtlHardcoded]
                 android:layout_alignLeft="@android:id/title"
                 ~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:82: Warning: Redundant attribute paddingLeft; already defining paddingStart with targetSdkVersion 36 [RtlHardcoded]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:84: Warning: Redundant attribute paddingLeft; already defining paddingStart with targetSdkVersion 36 [RtlHardcoded]
             android:paddingLeft="0dp"
             ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:84: Warning: Redundant attribute paddingRight; already defining paddingEnd with targetSdkVersion 36 [RtlHardcoded]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:86: Warning: Redundant attribute paddingRight; already defining paddingEnd with targetSdkVersion 36 [RtlHardcoded]
             android:paddingRight="16dp"
             ~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:116: Warning: Redundant attribute paddingLeft; already defining paddingStart with targetSdkVersion 36 [RtlHardcoded]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:118: Warning: Redundant attribute paddingLeft; already defining paddingStart with targetSdkVersion 36 [RtlHardcoded]
                 android:paddingLeft="8dp"
                 ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:118: Warning: Redundant attribute paddingRight; already defining paddingEnd with targetSdkVersion 36 [RtlHardcoded]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:120: Warning: Redundant attribute paddingRight; already defining paddingEnd with targetSdkVersion 36 [RtlHardcoded]
                 android:paddingRight="0dp"
                 ~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:122: Warning: Use "end" instead of "right" to ensure correct behavior in right-to-left locales [RtlHardcoded]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:124: Warning: Use "end" instead of "right" to ensure correct behavior in right-to-left locales [RtlHardcoded]
                 android:gravity="right"
                                  ~~~~~
 
@@ -3161,4 +2987,4 @@ class SSLTrustManager : X509TrustManager {
    the left bitmask. Therefore, you can use gravity="start" rather than
    gravity="left|start".)
 
-45 errors, 790 warnings, 3 hints
+43 errors, 763 warnings, 3 hints
