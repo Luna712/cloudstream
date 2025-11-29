@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 749 errors, 788 warnings and 3 hints</span>
+      <span class="mdl-layout-title">Lint Report: 45 errors, 790 warnings and 3 hints</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sat Nov 29 02:01:39 UTC 2025 by AGP (9.0.0-beta03)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sat Nov 29 02:20:10 UTC 2025 by AGP (9.0.0-beta03)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -206,10 +206,10 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#RestrictedApi"><i class="material-icons error-icon">error</i>Restricted API (10)</a>
       <a class="mdl-navigation__link" href="#UnsafeOptInUsageError"><i class="material-icons error-icon">error</i>Unsafe opt-in usage intended to be error-level severity (22)</a>
       <a class="mdl-navigation__link" href="#PrivateResource"><i class="material-icons warning-icon">warning</i>Using private resources (28)</a>
+      <a class="mdl-navigation__link" href="#SwitchIntDef"><i class="material-icons warning-icon">warning</i>Missing @IntDef in Switch (2)</a>
       <a class="mdl-navigation__link" href="#Aligned16KB"><i class="material-icons warning-icon">warning</i>Native library dependency not 16 KB aligned (9)</a>
       <a class="mdl-navigation__link" href="#DiscouragedApi"><i class="material-icons warning-icon">warning</i>Using discouraged APIs (8)</a>
       <a class="mdl-navigation__link" href="#Orientation"><i class="material-icons error-icon">error</i>Missing explicit orientation (2)</a>
-      <a class="mdl-navigation__link" href="#MissingTranslation"><i class="material-icons error-icon">error</i>Incomplete translation (704)</a>
       <a class="mdl-navigation__link" href="#Typos"><i class="material-icons warning-icon">warning</i>Spelling error (11)</a>
       <a class="mdl-navigation__link" href="#Untranslatable"><i class="material-icons warning-icon">warning</i>Translated Untranslatable (240)</a>
       <a class="mdl-navigation__link" href="#ImpliedQuantity"><i class="material-icons error-icon">error</i>Implied Quantities (1)</a>
@@ -318,6 +318,9 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">28</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#PrivateResource">PrivateResource</a>: Using private resources</td></tr>
 <tr>
+<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#SwitchIntDef">SwitchIntDef</a>: Missing @IntDef in Switch</td></tr>
+<tr>
 <td class="countColumn">9</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#Aligned16KB">Aligned16KB</a>: Native library dependency not 16 KB aligned</td></tr>
 <tr>
@@ -328,9 +331,6 @@ document.getElementById(id).style.display = 'none';
 <a href="#Orientation">Orientation</a>: Missing explicit orientation</td></tr>
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Correctness:Messages">Correctness:Messages</a>
 </td></tr>
-<tr>
-<td class="countColumn">704</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
-<a href="#MissingTranslation">MissingTranslation</a>: Incomplete translation</td></tr>
 <tr>
 <td class="countColumn">11</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#Typos">Typos</a>: Spelling error</td></tr>
@@ -450,7 +450,7 @@ document.getElementById(id).style.display = 'none';
 <a href="#RtlHardcoded">RtlHardcoded</a>: Using left/right instead of start/end attributes</td></tr>
 <tr><td></td><td class="categoryColumn"><a href="#ExtraIssues">Included Additional Checks (49)</a>
 </td></tr>
-<tr><td></td><td class="categoryColumn"><a href="#MissingIssues">Disabled Checks (41)</a>
+<tr><td></td><td class="categoryColumn"><a href="#MissingIssues">Disabled Checks (42)</a>
 </td></tr>
 </table>
 <br/>              </div>
@@ -2693,6 +2693,60 @@ To fix this, copy the resource into your own project instead.<br/>To suppress th
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="PrivateResourceCardLink" onclick="hideid('PrivateResourceCard');">
 Dismiss</button>            </div>
             </div>
+          </section><a name="SwitchIntDef"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="SwitchIntDefCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Missing @IntDef in Switch</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/BiometricAuthenticator.kt">../../src/main/java/com/lagradost/cloudstream3/utils/BiometricAuthenticator.kt</a>:107</span>: <span class="message">Switch statement on an <code>int</code> with known associated constant missing case <code>BiometricManager.BIOMETRIC_ERROR_NOT_ENABLED_FOR_APPS</code></span><br /><pre class="errorlines">
+<span class="lineno"> 104 </span>        <span class="keyword">var</span> result = <span class="keyword">false</span>
+<span class="lineno"> 105 </span>
+<span class="lineno"> 106 </span>        <span class="keyword">if</span> (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+<span class="caretline"><span class="lineno"> 107 </span>            <span class="warning"><span class="keyword">when</span></span> (biometricManager?.canAuthenticate(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 108 </span>                DEVICE_CREDENTIAL or BIOMETRIC_STRONG or BIOMETRIC_WEAK
+<span class="lineno"> 109 </span>            )) {
+<span class="lineno"> 110 </span>                BiometricManager.BIOMETRIC_SUCCESS -> result = <span class="keyword">true</span></pre>
+
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/BiometricAuthenticator.kt">../../src/main/java/com/lagradost/cloudstream3/utils/BiometricAuthenticator.kt</a>:120</span>: <span class="message">Switch statement on an <code>int</code> with known associated constant missing case <code>BiometricManager.BIOMETRIC_ERROR_NOT_ENABLED_FOR_APPS</code></span><br /><pre class="errorlines">
+<span class="lineno"> 117 </span>            }
+<span class="lineno"> 118 </span>        } <span class="keyword">else</span> {
+<span class="lineno"> 119 </span>            <span class="annotation">@Suppress</span>(<span class="string">"DEPRECATION"</span>)
+<span class="caretline"><span class="lineno"> 120 </span>            <span class="warning"><span class="keyword">when</span></span> (biometricManager?.canAuthenticate()) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 121 </span>                BiometricManager.BIOMETRIC_SUCCESS -> result = <span class="keyword">true</span>
+<span class="lineno"> 122 </span>                BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> result = <span class="keyword">false</span>
+<span class="lineno"> 123 </span>                BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> result = <span class="keyword">false</span></pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationSwitchIntDef" style="display: none;">
+This check warns if a <code>switch</code> statement does not explicitly include all the values declared by the typedef <code>@IntDef</code> declaration.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "SwitchIntDef" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">SwitchIntDef</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 3/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationSwitchIntDefLink" onclick="reveal('explanationSwitchIntDef');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="SwitchIntDefCardLink" onclick="hideid('SwitchIntDefCard');">
+Dismiss</button>            </div>
+            </div>
           </section><a name="Aligned16KB"></a>
 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="Aligned16KBCard" style="display: block;">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
@@ -2929,495 +2983,7 @@ Dismiss</button>            </div>
             </div>
           </section>
 <a name="Correctness:Messages"></a>
-<a name="MissingTranslation"></a>
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="MissingTranslationCard" style="display: block;">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Incomplete translation</h2>
-  </div>
-              <div class="mdl-card__supporting-text">
-<div class="issue">
-<div class="warningslist">
-<span class="location"><a href="../../src/debug/res/values/strings.xml">../../src/debug/res/values/strings.xml</a>:2</span>: <span class="message">"app_name" is not translated in "fil" (Filipino; Pilipino), "or" (Odia), "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 1 </span><span class="tag">&lt;resources></span>
-<span class="caretline"><span class="lineno"> 2 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"app_name"</span></span>>CloudStream Debug<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 3 </span><span class="tag">&lt;/resources></span></pre>
-
-<span class="location"><a href="../../src/prerelease/res/values/strings.xml">../../src/prerelease/res/values/strings.xml</a>:2</span>: <span class="message">"app_name" is not translated in "fil" (Filipino; Pilipino), "or" (Odia), "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 1 </span><span class="tag">&lt;resources></span>
-<span class="caretline"><span class="lineno"> 2 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"app_name"</span></span>>CloudStream Beta<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 3 </span><span class="tag">&lt;/resources></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:89</span>: <span class="message">"app_dub_sub_episode_text_format" is not translated in "fil" (Filipino; Pilipino) or "nn" (Norwegian Nynorsk)</span><br /><pre class="errorlines">
-<span class="lineno">  86 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rew_text_regular_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>%d<span class="tag">&lt;/string></span>
-<span class="lineno">  87 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rating_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>%s/10.0<span class="tag">&lt;/string></span>
-<span class="lineno">  88 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"year_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>%d<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno">  89 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"app_dub_sub_episode_text_format"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$s Ep %2$d<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  90 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"cast_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Cast: %s<span class="tag">&lt;/string></span>
-<span class="lineno">  91 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Episode %d will be released in<span class="tag">&lt;/string></span>
-<span class="lineno">  92 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_season_episode_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Season %1$d Episode %2$d will be released in<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:90</span>: <span class="message">"cast_format" is not translated in "fil" (Filipino; Pilipino)</span><br /><pre class="errorlines">
-<span class="lineno">  87 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rating_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>%s/10.0<span class="tag">&lt;/string></span>
-<span class="lineno">  88 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"year_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>%d<span class="tag">&lt;/string></span>
-<span class="lineno">  89 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"app_dub_sub_episode_text_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$s Ep %2$d<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno">  90 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"cast_format"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Cast: %s<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  91 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Episode %d will be released in<span class="tag">&lt;/string></span>
-<span class="lineno">  92 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_season_episode_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Season %1$d Episode %2$d will be released in<span class="tag">&lt;/string></span>
-<span class="lineno">  93 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_time_day_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dd %2$dh %3$dm<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:91</span>: <span class="message">"next_episode_format" is not translated in "fil" (Filipino; Pilipino)</span><br /><pre class="errorlines">
-<span class="lineno">  88 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"year_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>%d<span class="tag">&lt;/string></span>
-<span class="lineno">  89 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"app_dub_sub_episode_text_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$s Ep %2$d<span class="tag">&lt;/string></span>
-<span class="lineno">  90 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"cast_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Cast: %s<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno">  91 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"next_episode_format"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Episode %d will be released in<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  92 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_season_episode_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Season %1$d Episode %2$d will be released in<span class="tag">&lt;/string></span>
-<span class="lineno">  93 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_time_day_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dd %2$dh %3$dm<span class="tag">&lt;/string></span>
-<span class="lineno">  94 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_time_hour_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dh %2$dm<span class="tag">&lt;/string></span></pre>
-
-<button class="mdl-button mdl-js-button mdl-button--primary" id="MissingTranslationDivLink" onclick="reveal('MissingTranslationDiv');" />+ 699 More Occurrences...</button>
-<div id="MissingTranslationDiv" style="display: none">
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:92</span>: <span class="message">"next_season_episode_format" is not translated in "fil" (Filipino; Pilipino), "lt" (Lithuanian), "ml" (Malayalam), "af" (Afrikaans), "mt" (Maltese), "eo" (Esperanto), "am" (Amharic), "my" (Burmese), "nn" (Norwegian Nynorsk), "no" (Norwegian), "bn" (Bangla), "so" (Somali), "ars", "kn" (Kannada), "ti" (Tigrinya), "tl" (Tagalog)</span><br /><pre class="errorlines">
-<span class="lineno">  89 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"app_dub_sub_episode_text_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$s Ep %2$d<span class="tag">&lt;/string></span>
-<span class="lineno">  90 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"cast_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Cast: %s<span class="tag">&lt;/string></span>
-<span class="lineno">  91 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Episode %d will be released in<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno">  92 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"next_season_episode_format"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Season %1$d Episode %2$d will be released in<span class="tag">&lt;/string></span></span>
-<span class="lineno">  93 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_time_day_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dd %2$dh %3$dm<span class="tag">&lt;/string></span>
-<span class="lineno">  94 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_time_hour_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dh %2$dm<span class="tag">&lt;/string></span>
-<span class="lineno">  95 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_time_min_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%dm<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:93</span>: <span class="message">"next_episode_time_day_format" is not translated in "fil" (Filipino; Pilipino), "lt" (Lithuanian), "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno">  90 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"cast_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Cast: %s<span class="tag">&lt;/string></span>
-<span class="lineno">  91 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Episode %d will be released in<span class="tag">&lt;/string></span>
-<span class="lineno">  92 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_season_episode_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Season %1$d Episode %2$d will be released in<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno">  93 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"next_episode_time_day_format"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dd %2$dh %3$dm<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  94 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_time_hour_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dh %2$dm<span class="tag">&lt;/string></span>
-<span class="lineno">  95 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_time_min_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%dm<span class="tag">&lt;/string></span>
-<span class="lineno">  96 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_time_left_hour_min_sec_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dh %2$dm %3$ds<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:94</span>: <span class="message">"next_episode_time_hour_format" is not translated in "fil" (Filipino; Pilipino), "lt" (Lithuanian), "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno">  91 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Episode %d will be released in<span class="tag">&lt;/string></span>
-<span class="lineno">  92 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_season_episode_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Season %1$d Episode %2$d will be released in<span class="tag">&lt;/string></span>
-<span class="lineno">  93 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_time_day_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dd %2$dh %3$dm<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno">  94 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"next_episode_time_hour_format"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dh %2$dm<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  95 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_time_min_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%dm<span class="tag">&lt;/string></span>
-<span class="lineno">  96 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_time_left_hour_min_sec_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dh %2$dm %3$ds<span class="tag">&lt;/string></span>
-<span class="lineno">  97 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_time_left_min_sec_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dm %2$ds<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:95</span>: <span class="message">"next_episode_time_min_format" is not translated in "fil" (Filipino; Pilipino), "lt" (Lithuanian), "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno">  92 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_season_episode_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Season %1$d Episode %2$d will be released in<span class="tag">&lt;/string></span>
-<span class="lineno">  93 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_time_day_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dd %2$dh %3$dm<span class="tag">&lt;/string></span>
-<span class="lineno">  94 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_time_hour_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dh %2$dm<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno">  95 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"next_episode_time_min_format"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%dm<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  96 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_time_left_hour_min_sec_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dh %2$dm %3$ds<span class="tag">&lt;/string></span>
-<span class="lineno">  97 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_time_left_min_sec_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dm %2$ds<span class="tag">&lt;/string></span>
-<span class="lineno">  98 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_time_left_sec_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$ds<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:96</span>: <span class="message">"download_time_left_hour_min_sec_format" is not translated in "fil" (Filipino; Pilipino), "lt" (Lithuanian), "hu" (Hungarian), "ur" (Urdu), "ml" (Malayalam), "qt", "af" (Afrikaans), "el" (Greek), "mt" (Maltese), "eo" (Esperanto), "am" (Amharic), "my" (Burmese), "as" (Assamese), "ne" (Nepali), "az" (Azerbaijani), "fa" (Persian), "ro" (Romanian), "nn" (Norwegian Nynorsk), "no" (Norwegian), "bg" (Bulgarian), "bn" (Bangla), "sk" (Slovak), "so" (Somali), "ars", "kn" (Kannada), "sv" (Swedish), "gl" (Galician), "ta" (Tamil), "ti" (Tigrinya), "tl" (Tagalog)</span><br /><pre class="errorlines">
-<span class="lineno">  93 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_time_day_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dd %2$dh %3$dm<span class="tag">&lt;/string></span>
-<span class="lineno">  94 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_time_hour_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dh %2$dm<span class="tag">&lt;/string></span>
-<span class="lineno">  95 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_time_min_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%dm<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno">  96 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"download_time_left_hour_min_sec_format"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dh %2$dm %3$ds<span class="tag">&lt;/string></span></span>
-<span class="lineno">  97 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_time_left_min_sec_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dm %2$ds<span class="tag">&lt;/string></span>
-<span class="lineno">  98 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_time_left_sec_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$ds<span class="tag">&lt;/string></span>
-<span class="lineno">  99 </span>  <span class="comment">&lt;!-- IS NOT NEEDED TO TRANSLATE AS THEY ARE ONLY USED FOR SCREEN READERS AND WONT SHOW UP TO NORMAL USERS --></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:97</span>: <span class="message">"download_time_left_min_sec_format" is not translated in "fil" (Filipino; Pilipino), "lt" (Lithuanian), "hu" (Hungarian), "ur" (Urdu), "ml" (Malayalam), "qt", "af" (Afrikaans), "el" (Greek), "mt" (Maltese), "eo" (Esperanto), "am" (Amharic), "my" (Burmese), "as" (Assamese), "ne" (Nepali), "az" (Azerbaijani), "fa" (Persian), "ro" (Romanian), "nn" (Norwegian Nynorsk), "no" (Norwegian), "bg" (Bulgarian), "bn" (Bangla), "sk" (Slovak), "so" (Somali), "ars", "kn" (Kannada), "or" (Odia), "sv" (Swedish), "gl" (Galician), "ta" (Tamil), "ti" (Tigrinya), "tl" (Tagalog)</span><br /><pre class="errorlines">
-<span class="lineno">  94 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_time_hour_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dh %2$dm<span class="tag">&lt;/string></span>
-<span class="lineno">  95 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_time_min_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%dm<span class="tag">&lt;/string></span>
-<span class="lineno">  96 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_time_left_hour_min_sec_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dh %2$dm %3$ds<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno">  97 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"download_time_left_min_sec_format"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dm %2$ds<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  98 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_time_left_sec_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$ds<span class="tag">&lt;/string></span>
-<span class="lineno">  99 </span>  <span class="comment">&lt;!-- IS NOT NEEDED TO TRANSLATE AS THEY ARE ONLY USED FOR SCREEN READERS AND WONT SHOW UP TO NORMAL USERS --></span>
-<span class="lineno"> 100 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_poster_img_des"</span>>Poster<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:98</span>: <span class="message">"download_time_left_sec_format" is not translated in "fil" (Filipino; Pilipino), "lt" (Lithuanian), "hu" (Hungarian), "ur" (Urdu), "ml" (Malayalam), "qt", "af" (Afrikaans), "el" (Greek), "mt" (Maltese), "eo" (Esperanto), "am" (Amharic), "my" (Burmese), "as" (Assamese), "ne" (Nepali), "az" (Azerbaijani), "fa" (Persian), "ro" (Romanian), "nn" (Norwegian Nynorsk), "no" (Norwegian), "bg" (Bulgarian), "bn" (Bangla), "sk" (Slovak), "so" (Somali), "ars", "kn" (Kannada), "or" (Odia), "sv" (Swedish), "gl" (Galician), "ta" (Tamil), "ti" (Tigrinya), "tl" (Tagalog)</span><br /><pre class="errorlines">
-<span class="lineno">  95 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_time_min_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%dm<span class="tag">&lt;/string></span>
-<span class="lineno">  96 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_time_left_hour_min_sec_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dh %2$dm %3$ds<span class="tag">&lt;/string></span>
-<span class="lineno">  97 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_time_left_min_sec_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dm %2$ds<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno">  98 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"download_time_left_sec_format"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$ds<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  99 </span>  <span class="comment">&lt;!-- IS NOT NEEDED TO TRANSLATE AS THEY ARE ONLY USED FOR SCREEN READERS AND WONT SHOW UP TO NORMAL USERS --></span>
-<span class="lineno"> 100 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_poster_img_des"</span>>Poster<span class="tag">&lt;/string></span>
-<span class="lineno"> 101 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_poster_img_des"</span>>Poster<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:100</span>: <span class="message">"result_poster_img_des" is not translated in "fil" (Filipino; Pilipino), "ars", "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno">  97 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_time_left_min_sec_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$dm %2$ds<span class="tag">&lt;/string></span>
-<span class="lineno">  98 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_time_left_sec_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$ds<span class="tag">&lt;/string></span>
-<span class="lineno">  99 </span>  <span class="comment">&lt;!-- IS NOT NEEDED TO TRANSLATE AS THEY ARE ONLY USED FOR SCREEN READERS AND WONT SHOW UP TO NORMAL USERS --></span>
-<span class="caretline"><span class="lineno"> 100 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"result_poster_img_des"</span></span>>Poster<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 101 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_poster_img_des"</span>>Poster<span class="tag">&lt;/string></span>
-<span class="lineno"> 102 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_poster_img_des"</span>>Episode Poster<span class="tag">&lt;/string></span>
-<span class="lineno"> 103 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"home_main_poster_img_des"</span>>Main Poster<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:101</span>: <span class="message">"search_poster_img_des" is not translated in "fil" (Filipino; Pilipino), "so" (Somali), "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno">  98 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_time_left_sec_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$ds<span class="tag">&lt;/string></span>
-<span class="lineno">  99 </span>  <span class="comment">&lt;!-- IS NOT NEEDED TO TRANSLATE AS THEY ARE ONLY USED FOR SCREEN READERS AND WONT SHOW UP TO NORMAL USERS --></span>
-<span class="lineno"> 100 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_poster_img_des"</span>>Poster<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 101 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"search_poster_img_des"</span></span>>Poster<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 102 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_poster_img_des"</span>>Episode Poster<span class="tag">&lt;/string></span>
-<span class="lineno"> 103 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"home_main_poster_img_des"</span>>Main Poster<span class="tag">&lt;/string></span>
-<span class="lineno"> 104 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"home_next_random_img_des"</span>>Next Random<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:102</span>: <span class="message">"episode_poster_img_des" is not translated in "fil" (Filipino; Pilipino) or "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno">  99 </span>  <span class="comment">&lt;!-- IS NOT NEEDED TO TRANSLATE AS THEY ARE ONLY USED FOR SCREEN READERS AND WONT SHOW UP TO NORMAL USERS --></span>
-<span class="lineno"> 100 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_poster_img_des"</span>>Poster<span class="tag">&lt;/string></span>
-<span class="lineno"> 101 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_poster_img_des"</span>>Poster<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 102 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"episode_poster_img_des"</span></span>>Episode Poster<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 103 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"home_main_poster_img_des"</span>>Main Poster<span class="tag">&lt;/string></span>
-<span class="lineno"> 104 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"home_next_random_img_des"</span>>Next Random<span class="tag">&lt;/string></span>
-<span class="lineno"> 105 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_play_img_des"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>@string/play_episode<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:103</span>: <span class="message">"home_main_poster_img_des" is not translated in "fil" (Filipino; Pilipino) or "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 100 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_poster_img_des"</span>>Poster<span class="tag">&lt;/string></span>
-<span class="lineno"> 101 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_poster_img_des"</span>>Poster<span class="tag">&lt;/string></span>
-<span class="lineno"> 102 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_poster_img_des"</span>>Episode Poster<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 103 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"home_main_poster_img_des"</span></span>>Main Poster<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 104 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"home_next_random_img_des"</span>>Next Random<span class="tag">&lt;/string></span>
-<span class="lineno"> 105 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_play_img_des"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>@string/play_episode<span class="tag">&lt;/string></span>
-<span class="lineno"> 106 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"go_back_img_des"</span>>Go back<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:104</span>: <span class="message">"home_next_random_img_des" is not translated in "fil" (Filipino; Pilipino), "or" (Odia), "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 101 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_poster_img_des"</span>>Poster<span class="tag">&lt;/string></span>
-<span class="lineno"> 102 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_poster_img_des"</span>>Episode Poster<span class="tag">&lt;/string></span>
-<span class="lineno"> 103 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"home_main_poster_img_des"</span>>Main Poster<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 104 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"home_next_random_img_des"</span></span>>Next Random<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 105 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_play_img_des"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>@string/play_episode<span class="tag">&lt;/string></span>
-<span class="lineno"> 106 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"go_back_img_des"</span>>Go back<span class="tag">&lt;/string></span>
-<span class="lineno"> 107 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"play_from_beginning_img_des"</span>>Play from the Beginning<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:106</span>: <span class="message">"go_back_img_des" is not translated in "fil" (Filipino; Pilipino), "or" (Odia), "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 103 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"home_main_poster_img_des"</span>>Main Poster<span class="tag">&lt;/string></span>
-<span class="lineno"> 104 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"home_next_random_img_des"</span>>Next Random<span class="tag">&lt;/string></span>
-<span class="lineno"> 105 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_play_img_des"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>@string/play_episode<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 106 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"go_back_img_des"</span></span>>Go back<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 107 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"play_from_beginning_img_des"</span>>Play from the Beginning<span class="tag">&lt;/string></span>
-<span class="lineno"> 108 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"change_providers_img_des"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>@string/home_change_provider_img_des<span class="tag">&lt;/string></span>
-<span class="lineno"> 109 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"home_change_provider_img_des"</span>>Change Provider<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:107</span>: <span class="message">"play_from_beginning_img_des" is not translated in "fil" (Filipino; Pilipino), "lt" (Lithuanian), "ml" (Malayalam), "af" (Afrikaans), "mt" (Maltese), "eo" (Esperanto), "am" (Amharic), "my" (Burmese), "ne" (Nepali), "nn" (Norwegian Nynorsk), "no" (Norwegian), "bn" (Bangla), "so" (Somali), "ars", "kn" (Kannada), "or" (Odia), "ti" (Tigrinya), "tl" (Tagalog)</span><br /><pre class="errorlines">
-<span class="lineno"> 104 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"home_next_random_img_des"</span>>Next Random<span class="tag">&lt;/string></span>
-<span class="lineno"> 105 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_play_img_des"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>@string/play_episode<span class="tag">&lt;/string></span>
-<span class="lineno"> 106 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"go_back_img_des"</span>>Go back<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 107 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"play_from_beginning_img_des"</span></span>>Play from the Beginning<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 108 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"change_providers_img_des"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>@string/home_change_provider_img_des<span class="tag">&lt;/string></span>
-<span class="lineno"> 109 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"home_change_provider_img_des"</span>>Change Provider<span class="tag">&lt;/string></span>
-<span class="lineno"> 110 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"preview_background_img_des"</span>>Preview Background<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:109</span>: <span class="message">"home_change_provider_img_des" is not translated in "fil" (Filipino; Pilipino) or "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 106 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"go_back_img_des"</span>>Go back<span class="tag">&lt;/string></span>
-<span class="lineno"> 107 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"play_from_beginning_img_des"</span>>Play from the Beginning<span class="tag">&lt;/string></span>
-<span class="lineno"> 108 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"change_providers_img_des"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>@string/home_change_provider_img_des<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 109 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"home_change_provider_img_des"</span></span>>Change Provider<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 110 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"preview_background_img_des"</span>>Preview Background<span class="tag">&lt;/string></span>
-<span class="lineno"> 111 </span>  <span class="comment">&lt;!-- TRANSLATE, BUT DON'T FORGET FORMAT --></span>
-<span class="lineno"> 112 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"player_speed_text_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Speed (%.2fx)<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:110</span>: <span class="message">"preview_background_img_des" is not translated in "fil" (Filipino; Pilipino), "or" (Odia), "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 107 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"play_from_beginning_img_des"</span>>Play from the Beginning<span class="tag">&lt;/string></span>
-<span class="lineno"> 108 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"change_providers_img_des"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>@string/home_change_provider_img_des<span class="tag">&lt;/string></span>
-<span class="lineno"> 109 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"home_change_provider_img_des"</span>>Change Provider<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 110 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"preview_background_img_des"</span></span>>Preview Background<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 111 </span>  <span class="comment">&lt;!-- TRANSLATE, BUT DON'T FORGET FORMAT --></span>
-<span class="lineno"> 112 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"player_speed_text_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Speed (%.2fx)<span class="tag">&lt;/string></span>
-<span class="lineno"> 113 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rated_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Rated: %.1f<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:112</span>: <span class="message">"player_speed_text_format" is not translated in "fil" (Filipino; Pilipino) or "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 109 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"home_change_provider_img_des"</span>>Change Provider<span class="tag">&lt;/string></span>
-<span class="lineno"> 110 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"preview_background_img_des"</span>>Preview Background<span class="tag">&lt;/string></span>
-<span class="lineno"> 111 </span>  <span class="comment">&lt;!-- TRANSLATE, BUT DON'T FORGET FORMAT --></span>
-<span class="caretline"><span class="lineno"> 112 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"player_speed_text_format"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Speed (%.2fx)<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 113 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rated_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Rated: %.1f<span class="tag">&lt;/string></span>
-<span class="lineno"> 114 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"new_update_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>New update found!\n%1$s -&amp;gt; %2$s<span class="tag">&lt;/string></span>
-<span class="lineno"> 115 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"filler"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Filler<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:113</span>: <span class="message">"rated_format" is not translated in "fil" (Filipino; Pilipino), "or" (Odia), "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 110 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"preview_background_img_des"</span>>Preview Background<span class="tag">&lt;/string></span>
-<span class="lineno"> 111 </span>  <span class="comment">&lt;!-- TRANSLATE, BUT DON'T FORGET FORMAT --></span>
-<span class="lineno"> 112 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"player_speed_text_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Speed (%.2fx)<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 113 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"rated_format"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Rated: %.1f<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 114 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"new_update_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>New update found!\n%1$s -&amp;gt; %2$s<span class="tag">&lt;/string></span>
-<span class="lineno"> 115 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"filler"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Filler<span class="tag">&lt;/string></span>
-<span class="lineno"> 116 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"duration_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%d min<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:114</span>: <span class="message">"new_update_format" is not translated in "fil" (Filipino; Pilipino) or "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 111 </span>  <span class="comment">&lt;!-- TRANSLATE, BUT DON'T FORGET FORMAT --></span>
-<span class="lineno"> 112 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"player_speed_text_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Speed (%.2fx)<span class="tag">&lt;/string></span>
-<span class="lineno"> 113 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rated_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Rated: %.1f<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 114 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"new_update_format"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>New update found!\n%1$s -&amp;gt; %2$s<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 115 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"filler"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Filler<span class="tag">&lt;/string></span>
-<span class="lineno"> 116 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"duration_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%d min<span class="tag">&lt;/string></span>
-<span class="lineno"> 117 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"app_name"</span>>CloudStream<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:115</span>: <span class="message">"filler" is not translated in "fil" (Filipino; Pilipino), "lt" (Lithuanian), "az" (Azerbaijani), "or" (Odia), "ti" (Tigrinya), "tl" (Tagalog)</span><br /><pre class="errorlines">
-<span class="lineno"> 112 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"player_speed_text_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Speed (%.2fx)<span class="tag">&lt;/string></span>
-<span class="lineno"> 113 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rated_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Rated: %.1f<span class="tag">&lt;/string></span>
-<span class="lineno"> 114 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"new_update_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>New update found!\n%1$s -&amp;gt; %2$s<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 115 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"filler"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Filler<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 116 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"duration_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%d min<span class="tag">&lt;/string></span>
-<span class="lineno"> 117 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"app_name"</span>>CloudStream<span class="tag">&lt;/string></span>
-<span class="lineno"> 118 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"play_with_app_name"</span>>Play with CloudStream<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:116</span>: <span class="message">"duration_format" is not translated in "fil" (Filipino; Pilipino), "lt" (Lithuanian), "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 113 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rated_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Rated: %.1f<span class="tag">&lt;/string></span>
-<span class="lineno"> 114 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"new_update_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>New update found!\n%1$s -&amp;gt; %2$s<span class="tag">&lt;/string></span>
-<span class="lineno"> 115 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"filler"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Filler<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 116 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"duration_format"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%d min<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 117 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"app_name"</span>>CloudStream<span class="tag">&lt;/string></span>
-<span class="lineno"> 118 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"play_with_app_name"</span>>Play with CloudStream<span class="tag">&lt;/string></span>
-<span class="lineno"> 119 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_home"</span>>Home<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:117</span>: <span class="message">"app_name" is not translated in "fil" (Filipino; Pilipino), "or" (Odia), "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 114 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"new_update_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>New update found!\n%1$s -&amp;gt; %2$s<span class="tag">&lt;/string></span>
-<span class="lineno"> 115 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"filler"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Filler<span class="tag">&lt;/string></span>
-<span class="lineno"> 116 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"duration_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%d min<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 117 </span>  <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"app_name"</span></span>>CloudStream<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 118 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"play_with_app_name"</span>>Play with CloudStream<span class="tag">&lt;/string></span>
-<span class="lineno"> 119 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_home"</span>>Home<span class="tag">&lt;/string></span>
-<span class="lineno"> 120 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_search"</span>>Search<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:118</span>: <span class="message">"play_with_app_name" is not translated in "fil" (Filipino; Pilipino), "or" (Odia), "ti" (Tigrinya), "ckb"</span><br /><pre class="errorlines">
-<span class="lineno"> 115 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"filler"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Filler<span class="tag">&lt;/string></span>
-<span class="lineno"> 116 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"duration_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%d min<span class="tag">&lt;/string></span>
-<span class="lineno"> 117 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"app_name"</span>>CloudStream<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 118 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"play_with_app_name"</span></span>>Play with CloudStream<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 119 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_home"</span>>Home<span class="tag">&lt;/string></span>
-<span class="lineno"> 120 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_search"</span>>Search<span class="tag">&lt;/string></span>
-<span class="lineno"> 121 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_downloads"</span>>Downloads<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:119</span>: <span class="message">"title_home" is not translated in "fil" (Filipino; Pilipino), "lt" (Lithuanian), "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 116 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"duration_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%d min<span class="tag">&lt;/string></span>
-<span class="lineno"> 117 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"app_name"</span>>CloudStream<span class="tag">&lt;/string></span>
-<span class="lineno"> 118 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"play_with_app_name"</span>>Play with CloudStream<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 119 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"title_home"</span></span>>Home<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 120 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_search"</span>>Search<span class="tag">&lt;/string></span>
-<span class="lineno"> 121 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_downloads"</span>>Downloads<span class="tag">&lt;/string></span>
-<span class="lineno"> 122 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_settings"</span>>Settings<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:120</span>: <span class="message">"title_search" is not translated in "fil" (Filipino; Pilipino) or "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 117 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"app_name"</span>>CloudStream<span class="tag">&lt;/string></span>
-<span class="lineno"> 118 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"play_with_app_name"</span>>Play with CloudStream<span class="tag">&lt;/string></span>
-<span class="lineno"> 119 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_home"</span>>Home<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 120 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"title_search"</span></span>>Search<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 121 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_downloads"</span>>Downloads<span class="tag">&lt;/string></span>
-<span class="lineno"> 122 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_settings"</span>>Settings<span class="tag">&lt;/string></span>
-<span class="lineno"> 123 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_hint"</span>>Search…<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:121</span>: <span class="message">"title_downloads" is not translated in "fil" (Filipino; Pilipino), "or" (Odia), "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 118 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"play_with_app_name"</span>>Play with CloudStream<span class="tag">&lt;/string></span>
-<span class="lineno"> 119 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_home"</span>>Home<span class="tag">&lt;/string></span>
-<span class="lineno"> 120 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_search"</span>>Search<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 121 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"title_downloads"</span></span>>Downloads<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 122 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_settings"</span>>Settings<span class="tag">&lt;/string></span>
-<span class="lineno"> 123 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_hint"</span>>Search…<span class="tag">&lt;/string></span>
-<span class="lineno"> 124 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_hint_site"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Search %s…<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:122</span>: <span class="message">"title_settings" is not translated in "fil" (Filipino; Pilipino) or "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 119 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_home"</span>>Home<span class="tag">&lt;/string></span>
-<span class="lineno"> 120 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_search"</span>>Search<span class="tag">&lt;/string></span>
-<span class="lineno"> 121 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_downloads"</span>>Downloads<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 122 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"title_settings"</span></span>>Settings<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 123 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_hint"</span>>Search…<span class="tag">&lt;/string></span>
-<span class="lineno"> 124 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_hint_site"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Search %s…<span class="tag">&lt;/string></span>
-<span class="lineno"> 125 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"speech_recognition_unavailable"</span>>Speech recognition is not available<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:123</span>: <span class="message">"search_hint" is not translated in "fil" (Filipino; Pilipino) or "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 120 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_search"</span>>Search<span class="tag">&lt;/string></span>
-<span class="lineno"> 121 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_downloads"</span>>Downloads<span class="tag">&lt;/string></span>
-<span class="lineno"> 122 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_settings"</span>>Settings<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 123 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"search_hint"</span></span>>Search…<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 124 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_hint_site"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Search %s…<span class="tag">&lt;/string></span>
-<span class="lineno"> 125 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"speech_recognition_unavailable"</span>>Speech recognition is not available<span class="tag">&lt;/string></span>
-<span class="lineno"> 126 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"begin_speaking"</span>>Begin Speaking…<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:124</span>: <span class="message">"search_hint_site" is not translated in "fil" (Filipino; Pilipino), "az" (Azerbaijani), "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 121 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_downloads"</span>>Downloads<span class="tag">&lt;/string></span>
-<span class="lineno"> 122 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_settings"</span>>Settings<span class="tag">&lt;/string></span>
-<span class="lineno"> 123 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_hint"</span>>Search…<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 124 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"search_hint_site"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Search %s…<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 125 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"speech_recognition_unavailable"</span>>Speech recognition is not available<span class="tag">&lt;/string></span>
-<span class="lineno"> 126 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"begin_speaking"</span>>Begin Speaking…<span class="tag">&lt;/string></span>
-<span class="lineno"> 127 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"no_data"</span>>No Data<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:125</span>: <span class="message">"speech_recognition_unavailable" is not translated in "lt" (Lithuanian), "hu" (Hungarian), "ml" (Malayalam), "qt", "af" (Afrikaans), "mt" (Maltese), "eo" (Esperanto), "am" (Amharic), "my" (Burmese), "as" (Assamese), "ne" (Nepali), "az" (Azerbaijani), "fa" (Persian), "nn" (Norwegian Nynorsk), "no" (Norwegian), "bn" (Bangla), "sk" (Slovak), "so" (Somali), "ars", "kn" (Kannada), "or" (Odia), "gl" (Galician), "ti" (Tigrinya), "tl" (Tagalog)</span><br /><pre class="errorlines">
-<span class="lineno"> 122 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"title_settings"</span>>Settings<span class="tag">&lt;/string></span>
-<span class="lineno"> 123 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_hint"</span>>Search…<span class="tag">&lt;/string></span>
-<span class="lineno"> 124 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_hint_site"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Search %s…<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 125 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"speech_recognition_unavailable"</span></span>>Speech recognition is not available<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 126 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"begin_speaking"</span>>Begin Speaking…<span class="tag">&lt;/string></span>
-<span class="lineno"> 127 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"no_data"</span>>No Data<span class="tag">&lt;/string></span>
-<span class="lineno"> 128 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_more_options_des"</span>>More Options<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:126</span>: <span class="message">"begin_speaking" is not translated in "fil" (Filipino; Pilipino), "lt" (Lithuanian), "hu" (Hungarian), "ml" (Malayalam), "qt", "af" (Afrikaans), "mt" (Maltese), "eo" (Esperanto), "am" (Amharic), "my" (Burmese), "as" (Assamese), "ne" (Nepali), "az" (Azerbaijani), "nn" (Norwegian Nynorsk), "no" (Norwegian), "bn" (Bangla), "sk" (Slovak), "so" (Somali), "ars", "kn" (Kannada), "or" (Odia), "gl" (Galician), "ti" (Tigrinya), "tl" (Tagalog)</span><br /><pre class="errorlines">
-<span class="lineno"> 123 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_hint"</span>>Search…<span class="tag">&lt;/string></span>
-<span class="lineno"> 124 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_hint_site"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Search %s…<span class="tag">&lt;/string></span>
-<span class="lineno"> 125 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"speech_recognition_unavailable"</span>>Speech recognition is not available<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 126 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"begin_speaking"</span></span>>Begin Speaking…<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 127 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"no_data"</span>>No Data<span class="tag">&lt;/string></span>
-<span class="lineno"> 128 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_more_options_des"</span>>More Options<span class="tag">&lt;/string></span>
-<span class="lineno"> 129 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode"</span>>Next episode<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:127</span>: <span class="message">"no_data" is not translated in "fil" (Filipino; Pilipino) or "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 124 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_hint_site"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Search %s…<span class="tag">&lt;/string></span>
-<span class="lineno"> 125 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"speech_recognition_unavailable"</span>>Speech recognition is not available<span class="tag">&lt;/string></span>
-<span class="lineno"> 126 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"begin_speaking"</span>>Begin Speaking…<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 127 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"no_data"</span></span>>No Data<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 128 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_more_options_des"</span>>More Options<span class="tag">&lt;/string></span>
-<span class="lineno"> 129 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode"</span>>Next episode<span class="tag">&lt;/string></span>
-<span class="lineno"> 130 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_plot"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>@string/synopsis<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:128</span>: <span class="message">"episode_more_options_des" is not translated in "fil" (Filipino; Pilipino) or "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 125 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"speech_recognition_unavailable"</span>>Speech recognition is not available<span class="tag">&lt;/string></span>
-<span class="lineno"> 126 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"begin_speaking"</span>>Begin Speaking…<span class="tag">&lt;/string></span>
-<span class="lineno"> 127 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"no_data"</span>>No Data<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 128 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"episode_more_options_des"</span></span>>More Options<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 129 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode"</span>>Next episode<span class="tag">&lt;/string></span>
-<span class="lineno"> 130 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_plot"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>@string/synopsis<span class="tag">&lt;/string></span>
-<span class="lineno"> 131 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_tags"</span>>Genres<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:129</span>: <span class="message">"next_episode" is not translated in "fil" (Filipino; Pilipino) or "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 126 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"begin_speaking"</span>>Begin Speaking…<span class="tag">&lt;/string></span>
-<span class="lineno"> 127 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"no_data"</span>>No Data<span class="tag">&lt;/string></span>
-<span class="lineno"> 128 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_more_options_des"</span>>More Options<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 129 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"next_episode"</span></span>>Next episode<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 130 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_plot"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>@string/synopsis<span class="tag">&lt;/string></span>
-<span class="lineno"> 131 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_tags"</span>>Genres<span class="tag">&lt;/string></span>
-<span class="lineno"> 132 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_share"</span>>Share<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:131</span>: <span class="message">"result_tags" is not translated in "fil" (Filipino; Pilipino) or "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 128 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_more_options_des"</span>>More Options<span class="tag">&lt;/string></span>
-<span class="lineno"> 129 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode"</span>>Next episode<span class="tag">&lt;/string></span>
-<span class="lineno"> 130 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_plot"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>@string/synopsis<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 131 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"result_tags"</span></span>>Genres<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 132 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_share"</span>>Share<span class="tag">&lt;/string></span>
-<span class="lineno"> 133 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_open_in_browser"</span>>Open In Browser<span class="tag">&lt;/string></span>
-<span class="lineno"> 134 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"browser"</span>>Browser<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:132</span>: <span class="message">"result_share" is not translated in "fil" (Filipino; Pilipino), "or" (Odia), "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 129 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode"</span>>Next episode<span class="tag">&lt;/string></span>
-<span class="lineno"> 130 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_plot"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>@string/synopsis<span class="tag">&lt;/string></span>
-<span class="lineno"> 131 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_tags"</span>>Genres<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 132 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"result_share"</span></span>>Share<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 133 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_open_in_browser"</span>>Open In Browser<span class="tag">&lt;/string></span>
-<span class="lineno"> 134 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"browser"</span>>Browser<span class="tag">&lt;/string></span>
-<span class="lineno"> 135 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"skip_loading"</span>>Skip Loading<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:133</span>: <span class="message">"result_open_in_browser" is not translated in "or" (Odia) or "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 130 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_plot"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>@string/synopsis<span class="tag">&lt;/string></span>
-<span class="lineno"> 131 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_tags"</span>>Genres<span class="tag">&lt;/string></span>
-<span class="lineno"> 132 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_share"</span>>Share<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 133 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"result_open_in_browser"</span></span>>Open In Browser<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 134 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"browser"</span>>Browser<span class="tag">&lt;/string></span>
-<span class="lineno"> 135 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"skip_loading"</span>>Skip Loading<span class="tag">&lt;/string></span>
-<span class="lineno"> 136 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"loading"</span>>Loading…<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:134</span>: <span class="message">"browser" is not translated in "fil" (Filipino; Pilipino), "nn" (Norwegian Nynorsk), "so" (Somali), "or" (Odia), "ti" (Tigrinya), "tl" (Tagalog)</span><br /><pre class="errorlines">
-<span class="lineno"> 131 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_tags"</span>>Genres<span class="tag">&lt;/string></span>
-<span class="lineno"> 132 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_share"</span>>Share<span class="tag">&lt;/string></span>
-<span class="lineno"> 133 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_open_in_browser"</span>>Open In Browser<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 134 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"browser"</span></span>>Browser<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 135 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"skip_loading"</span>>Skip Loading<span class="tag">&lt;/string></span>
-<span class="lineno"> 136 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"loading"</span>>Loading…<span class="tag">&lt;/string></span>
-<span class="lineno"> 137 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_watching"</span>>Watching<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:135</span>: <span class="message">"skip_loading" is not translated in "fil" (Filipino; Pilipino), "or" (Odia), "ti" (Tigrinya), "ckb"</span><br /><pre class="errorlines">
-<span class="lineno"> 132 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_share"</span>>Share<span class="tag">&lt;/string></span>
-<span class="lineno"> 133 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_open_in_browser"</span>>Open In Browser<span class="tag">&lt;/string></span>
-<span class="lineno"> 134 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"browser"</span>>Browser<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 135 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"skip_loading"</span></span>>Skip Loading<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 136 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"loading"</span>>Loading…<span class="tag">&lt;/string></span>
-<span class="lineno"> 137 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_watching"</span>>Watching<span class="tag">&lt;/string></span>
-<span class="lineno"> 138 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_on_hold"</span>>On-Hold<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:136</span>: <span class="message">"loading" is not translated in "fil" (Filipino; Pilipino), "or" (Odia), "ti" (Tigrinya), "ckb"</span><br /><pre class="errorlines">
-<span class="lineno"> 133 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"result_open_in_browser"</span>>Open In Browser<span class="tag">&lt;/string></span>
-<span class="lineno"> 134 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"browser"</span>>Browser<span class="tag">&lt;/string></span>
-<span class="lineno"> 135 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"skip_loading"</span>>Skip Loading<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 136 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"loading"</span></span>>Loading…<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 137 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_watching"</span>>Watching<span class="tag">&lt;/string></span>
-<span class="lineno"> 138 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_on_hold"</span>>On-Hold<span class="tag">&lt;/string></span>
-<span class="lineno"> 139 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_completed"</span>>Completed<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:137</span>: <span class="message">"type_watching" is not translated in "fil" (Filipino; Pilipino) or "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 134 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"browser"</span>>Browser<span class="tag">&lt;/string></span>
-<span class="lineno"> 135 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"skip_loading"</span>>Skip Loading<span class="tag">&lt;/string></span>
-<span class="lineno"> 136 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"loading"</span>>Loading…<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 137 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"type_watching"</span></span>>Watching<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 138 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_on_hold"</span>>On-Hold<span class="tag">&lt;/string></span>
-<span class="lineno"> 139 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_completed"</span>>Completed<span class="tag">&lt;/string></span>
-<span class="lineno"> 140 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_dropped"</span>>Dropped<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:138</span>: <span class="message">"type_on_hold" is not translated in "fil" (Filipino; Pilipino), "ti" (Tigrinya), "ckb"</span><br /><pre class="errorlines">
-<span class="lineno"> 135 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"skip_loading"</span>>Skip Loading<span class="tag">&lt;/string></span>
-<span class="lineno"> 136 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"loading"</span>>Loading…<span class="tag">&lt;/string></span>
-<span class="lineno"> 137 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_watching"</span>>Watching<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 138 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"type_on_hold"</span></span>>On-Hold<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 139 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_completed"</span>>Completed<span class="tag">&lt;/string></span>
-<span class="lineno"> 140 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_dropped"</span>>Dropped<span class="tag">&lt;/string></span>
-<span class="lineno"> 141 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_plan_to_watch"</span>>Plan to Watch<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:139</span>: <span class="message">"type_completed" is not translated in "fil" (Filipino; Pilipino) or "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 136 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"loading"</span>>Loading…<span class="tag">&lt;/string></span>
-<span class="lineno"> 137 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_watching"</span>>Watching<span class="tag">&lt;/string></span>
-<span class="lineno"> 138 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_on_hold"</span>>On-Hold<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 139 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"type_completed"</span></span>>Completed<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 140 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_dropped"</span>>Dropped<span class="tag">&lt;/string></span>
-<span class="lineno"> 141 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_plan_to_watch"</span>>Plan to Watch<span class="tag">&lt;/string></span>
-<span class="lineno"> 142 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_none"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>@string/none<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:140</span>: <span class="message">"type_dropped" is not translated in "fil" (Filipino; Pilipino), "lt" (Lithuanian), "nn" (Norwegian Nynorsk), "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 137 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_watching"</span>>Watching<span class="tag">&lt;/string></span>
-<span class="lineno"> 138 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_on_hold"</span>>On-Hold<span class="tag">&lt;/string></span>
-<span class="lineno"> 139 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_completed"</span>>Completed<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 140 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"type_dropped"</span></span>>Dropped<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 141 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_plan_to_watch"</span>>Plan to Watch<span class="tag">&lt;/string></span>
-<span class="lineno"> 142 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_none"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>@string/none<span class="tag">&lt;/string></span>
-<span class="lineno"> 143 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_re_watching"</span>>Rewatching<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:141</span>: <span class="message">"type_plan_to_watch" is not translated in "fil" (Filipino; Pilipino) or "ti" (Tigrinya)</span><br /><pre class="errorlines">
-<span class="lineno"> 138 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_on_hold"</span>>On-Hold<span class="tag">&lt;/string></span>
-<span class="lineno"> 139 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_completed"</span>>Completed<span class="tag">&lt;/string></span>
-<span class="lineno"> 140 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_dropped"</span>>Dropped<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 141 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"type_plan_to_watch"</span></span>>Plan to Watch<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 142 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_none"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>@string/none<span class="tag">&lt;/string></span>
-<span class="lineno"> 143 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"type_re_watching"</span>>Rewatching<span class="tag">&lt;/string></span>
-<span class="lineno"> 144 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"play_movie_button"</span>>Play Movie<span class="tag">&lt;/string></span></pre>
-
-<br/><b>NOTE: 654 results omitted.</b><br/><br/></div>
-</div>
-<div class="metadata"><div class="explanation" id="explanationMissingTranslation" style="display: none;">
-If an application has more than one locale, then all the strings declared in one language should also be translated in all other languages.<br/>
-<br/>
-If the string should <b>not</b> be translated, you can add the attribute <code>translatable="false"</code> on the <code>&lt;string></code> element, or you can define all your non-translatable strings in a resource file called <code>donottranslate.xml</code>. Or, you can ignore the issue with a <code>tools:ignore="MissingTranslation"</code> attribute.<br/>
-<br/>
-You can tell lint (and other tools) which language is the default language in your <code>res/values/</code> folder by specifying <code>tools:locale="languageCode"</code> for the root <code>&lt;resources></code> element in your resource file. (The <code>tools</code> prefix refers to the namespace declaration <code>http://schemas.android.com/tools</code>.)<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
-To suppress this error, use the issue id "MissingTranslation" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
-<br/></div>
-</div>
-</div>
-<div class="chips">
-<span class="mdl-chip">
-    <span class="mdl-chip__text">MissingTranslation</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Messages</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Correctness</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Error</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Priority 8/10</span>
-</span>
-</div>
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationMissingTranslationLink" onclick="reveal('explanationMissingTranslation');">
-Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="MissingTranslationCardLink" onclick="hideid('MissingTranslationCard');">
-Dismiss</button>            </div>
-            </div>
-          </section><a name="Typos"></a>
+<a name="Typos"></a>
 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="TyposCard" style="display: block;">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
   <div class="mdl-card__title">
@@ -8820,6 +8386,20 @@ When both member and extension declarations are applicable, the resolution takes
 <div class="metadata">Disabled By: Default<br/>
 <div class="explanation">
 The value of the <code>minSdkVersion</code> property is too low and can be incremented without noticeably reducing the number of supported devices.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
+<div class="id">MissingTranslation<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Command line flag<br/>
+<div class="explanation">
+If an application has more than one locale, then all the strings declared in one language should also be translated in all other languages.<br/>
+<br/>
+If the string should <b>not</b> be translated, you can add the attribute <code>translatable="false"</code> on the <code>&lt;string></code> element, or you can define all your non-translatable strings in a resource file called <code>donottranslate.xml</code>. Or, you can ignore the issue with a <code>tools:ignore="MissingTranslation"</code> attribute.<br/>
+<br/>
+You can tell lint (and other tools) which language is the default language in your <code>res/values/</code> folder by specifying <code>tools:locale="languageCode"</code> for the root <code>&lt;resources></code> element in your resource file. (The <code>tools</code> prefix refers to the namespace declaration <code>http://schemas.android.com/tools</code>.)<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
 <br/>
 <br/></div>
 </div>
