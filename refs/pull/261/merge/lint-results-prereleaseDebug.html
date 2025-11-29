@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 43 errors, 747 warnings and 3 hints</span>
+      <span class="mdl-layout-title">Lint Report: 43 errors, 745 warnings and 3 hints</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sat Nov 29 18:44:22 UTC 2025 by AGP (9.0.0-beta03)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sat Nov 29 18:53:42 UTC 2025 by AGP (9.0.0-beta03)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -234,7 +234,6 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#HardcodedText"><i class="material-icons warning-icon">warning</i>Hardcoded text (17)</a>
       <a class="mdl-navigation__link" href="#RelativeOverlap"><i class="material-icons warning-icon">warning</i>Overlapping items in RelativeLayout (1)</a>
       <a class="mdl-navigation__link" href="#RtlSymmetry"><i class="material-icons warning-icon">warning</i>Padding and margin symmetry (1)</a>
-      <a class="mdl-navigation__link" href="#RtlHardcoded"><i class="material-icons warning-icon">warning</i>Using left/right instead of start/end attributes (2)</a>
     </nav>
   </div>
   <main class="mdl-layout__content">
@@ -411,9 +410,6 @@ document.getElementById(id).style.display = 'none';
 <tr>
 <td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#RtlSymmetry">RtlSymmetry</a>: Padding and margin symmetry</td></tr>
-<tr>
-<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
-<a href="#RtlHardcoded">RtlHardcoded</a>: Using left/right instead of start/end attributes</td></tr>
 <tr><td></td><td class="categoryColumn"><a href="#ExtraIssues">Included Additional Checks (49)</a>
 </td></tr>
 <tr><td></td><td class="categoryColumn"><a href="#MissingIssues">Disabled Checks (42)</a>
@@ -2388,9 +2384,9 @@ Dismiss</button>            </div>
 <span class="lineno"> 108 </span>            <span class="tag">&lt;TextView</span><span class="attribute">
 </span><span class="lineno"> 109 </span><span class="attribute">                </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/seekbar_value"</span>
 <span class="caretline"><span class="lineno"> 110 </span>                <span class="prefix">android:</span><span class="attribute">minWidth</span>=<span class="value">"</span><span class="warning"><span class="value">@dimen/preference_seekbar_value_minWidth</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 111 </span>                <span class="prefix">android:</span><span class="attribute">paddingLeft</span>=<span class="value">"8dp"</span>
-<span class="lineno"> 112 </span>                <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"8dp"</span>
-<span class="lineno"> 113 </span>                <span class="prefix">android:</span><span class="attribute">paddingRight</span>=<span class="value">"0dp"</span></pre>
+<span class="lineno"> 111 </span>                <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"8dp"</span>
+<span class="lineno"> 112 </span>                <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"0dp"</span>
+<span class="lineno"> 113 </span>                <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span></pre>
 
 <span class="location"><a href="../../src/main/res/anim/enter_anim.xml">../../src/main/res/anim/enter_anim.xml</a>:5</span>: <span class="message">The resource <code>@integer/config_navAnimTime</code> is marked as private in androidx.navigation:navigation-ui:2.9.6</span><br /><pre class="errorlines">
 <span class="lineno">  2 </span><span class="tag">&lt;set</span><span class="attribute"> </span><span class="prefix">xmlns:</span><span class="attribute">android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span>>
@@ -6594,67 +6590,6 @@ If you specify padding or margin on the left side of a layout, you should probab
               <div class="mdl-card__actions mdl-card--border">
 <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationRtlSymmetryLink" onclick="reveal('explanationRtlSymmetry');">
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="RtlSymmetryCardLink" onclick="hideid('RtlSymmetryCard');">
-Dismiss</button>            </div>
-            </div>
-          </section><a name="RtlHardcoded"></a>
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="RtlHardcodedCard" style="display: block;">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Using left/right instead of start/end attributes</h2>
-  </div>
-              <div class="mdl-card__supporting-text">
-<div class="issue">
-<div class="warningslist">
-<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:111</span>: <span class="message">Redundant attribute <code>paddingLeft</code>; already defining <code>paddingStart</code> with <code>targetSdkVersion</code> 36</span><br /><pre class="errorlines">
-<span class="lineno"> 108 </span>            <span class="tag">&lt;TextView</span><span class="attribute">
-</span><span class="lineno"> 109 </span><span class="attribute">                </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/seekbar_value"</span>
-<span class="lineno"> 110 </span>                <span class="prefix">android:</span><span class="attribute">minWidth</span>=<span class="value">"@dimen/preference_seekbar_value_minWidth"</span>
-<span class="caretline"><span class="lineno"> 111 </span>                <span class="warning"><span class="prefix">android:</span><span class="attribute">paddingLeft</span></span>=<span class="value">"8dp"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 112 </span>                <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"8dp"</span>
-<span class="lineno"> 113 </span>                <span class="prefix">android:</span><span class="attribute">paddingRight</span>=<span class="value">"0dp"</span>
-<span class="lineno"> 114 </span>                <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"0dp"</span></pre>
-
-<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:113</span>: <span class="message">Redundant attribute <code>paddingRight</code>; already defining <code>paddingEnd</code> with <code>targetSdkVersion</code> 36</span><br /><pre class="errorlines">
-<span class="lineno"> 110 </span>                <span class="prefix">android:</span><span class="attribute">minWidth</span>=<span class="value">"@dimen/preference_seekbar_value_minWidth"</span>
-<span class="lineno"> 111 </span>                <span class="prefix">android:</span><span class="attribute">paddingLeft</span>=<span class="value">"8dp"</span>
-<span class="lineno"> 112 </span>                <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"8dp"</span>
-<span class="caretline"><span class="lineno"> 113 </span>                <span class="warning"><span class="prefix">android:</span><span class="attribute">paddingRight</span></span>=<span class="value">"0dp"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 114 </span>                <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"0dp"</span>
-<span class="lineno"> 115 </span>                <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
-<span class="lineno"> 116 </span>                <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
-
-</div>
-<div class="metadata"><div class="explanation" id="explanationRtlHardcoded" style="display: none;">
-Using <code>Gravity#LEFT</code> and <code>Gravity#RIGHT</code> can lead to problems when a layout is rendered in locales where text flows from right to left. Use <code>Gravity#START</code> and <code>Gravity#END</code> instead. Similarly, in XML <code>gravity</code> and <code>layout_gravity</code> attributes, use <code>start</code> rather than <code>left</code>.<br/>
-<br/>
-For XML attributes such as paddingLeft and <code>layout_marginLeft</code>, use <code>paddingStart</code> and <code>layout_marginStart</code>. <b>NOTE</b>: If your <code>minSdkVersion</code> is less than 17, you should add <b>both</b> the older left/right attributes <b>as well as</b> the new start/end attributes. On older platforms, where RTL is not supported and the start/end attributes are unknown and therefore ignored, you need the older left/right attributes. There is a separate lint check which catches that type of error.<br/>
-<br/>
-(Note: For <code>Gravity#LEFT</code> and <code>Gravity#START</code>, you can use these constants even when targeting older platforms, because the <code>start</code> bitmask is a superset of the <code>left</code> bitmask. Therefore, you can use <code>gravity="start"</code> rather than <code>gravity="left|start"</code>.)<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
-To suppress this error, use the issue id "RtlHardcoded" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
-<br/></div>
-</div>
-</div>
-<div class="chips">
-<span class="mdl-chip">
-    <span class="mdl-chip__text">RtlHardcoded</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Bidirectional Text</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Internationalization</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Warning</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Priority 5/10</span>
-</span>
-</div>
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationRtlHardcodedLink" onclick="reveal('explanationRtlHardcoded');">
-Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="RtlHardcodedCardLink" onclick="hideid('RtlHardcodedCard');">
 Dismiss</button>            </div>
             </div>
           </section>

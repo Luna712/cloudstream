@@ -2913,30 +2913,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:111: Warning: Redundant attribute paddingLeft; already defining paddingStart with targetSdkVersion 36 [RtlHardcoded]
-                android:paddingLeft="8dp"
-                ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:113: Warning: Redundant attribute paddingRight; already defining paddingEnd with targetSdkVersion 36 [RtlHardcoded]
-                android:paddingRight="0dp"
-                ~~~~~~~~~~~~~~~~~~~~
-
-   Explanation for issues of type "RtlHardcoded":
-   Using Gravity#LEFT and Gravity#RIGHT can lead to problems when a layout is
-   rendered in locales where text flows from right to left. Use Gravity#START
-   and Gravity#END instead. Similarly, in XML gravity and layout_gravity
-   attributes, use start rather than left.
-
-   For XML attributes such as paddingLeft and layout_marginLeft, use
-   paddingStart and layout_marginStart. NOTE: If your minSdkVersion is less
-   than 17, you should add both the older left/right attributes as well as the
-   new start/end attributes. On older platforms, where RTL is not supported
-   and the start/end attributes are unknown and therefore ignored, you need
-   the older left/right attributes. There is a separate lint check which
-   catches that type of error.
-
-   (Note: For Gravity#LEFT and Gravity#START, you can use these constants even
-   when targeting older platforms, because the start bitmask is a superset of
-   the left bitmask. Therefore, you can use gravity="start" rather than
-   gravity="left|start".)
-
-43 errors, 747 warnings, 3 hints
+43 errors, 745 warnings, 3 hints
