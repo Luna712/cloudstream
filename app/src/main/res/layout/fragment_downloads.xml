@@ -300,35 +300,41 @@
         android:layout_width="50dp" android:layout_height="50dp">
     </ProgressBar>-->
 
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/download_loading"
-        android:background="?attr/primaryBlackBackground"
+    <LinearLayout
+        android:id="@+id/downloads_loading_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:paddingTop="120dp"
-        app:shimmer_auto_start="true"
-        app:shimmer_base_alpha="0.2"
-        app:shimmer_duration="@integer/loading_time"
-        app:shimmer_highlight_alpha="0.3"
+        android:background="?attr/primaryBlackBackground"
         tools:visibility="gone">
 
-        <LinearLayout
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/download_loading"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/loading_margin"
-            android:layout_marginEnd="@dimen/loading_margin"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="120dp"
+            app:shimmer_auto_start="true"
+            app:shimmer_base_alpha="0.2"
+            app:shimmer_duration="@integer/loading_time"
+            app:shimmer_highlight_alpha="0.3">
 
-            <include layout="@layout/loading_downloads" />
-            <include layout="@layout/loading_downloads" />
-            <include layout="@layout/loading_downloads" />
-            <include layout="@layout/loading_downloads" />
-            <include layout="@layout/loading_downloads" />
-            <include layout="@layout/loading_downloads" />
-        </LinearLayout>
-    </com.facebook.shimmer.ShimmerFrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/loading_margin"
+                android:layout_marginEnd="@dimen/loading_margin"
+                android:orientation="vertical">
+
+                <include layout="@layout/loading_downloads" />
+                <include layout="@layout/loading_downloads" />
+                <include layout="@layout/loading_downloads" />
+                <include layout="@layout/loading_downloads" />
+                <include layout="@layout/loading_downloads" />
+                <include layout="@layout/loading_downloads" />
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
