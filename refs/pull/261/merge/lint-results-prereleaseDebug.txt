@@ -643,46 +643,40 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt:376: Warning: The resource @string/exo_controls_stop_description is marked as private in androidx.media3:media3-ui:1.8.0 [PrivateResource]
                             context.getString(androidx.media3.ui.R.string.exo_controls_stop_description),
                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_category_material.xml:31: Warning: The resource @layout/image_frame is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_category_material.xml:29: Warning: The resource @layout/image_frame is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
     <include layout="@layout/image_frame"/>
                      ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_category_material.xml:46: Warning: The resource @style/PreferenceCategoryTitleTextStyle is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_category_material.xml:44: Warning: The resource @style/PreferenceCategoryTitleTextStyle is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
             style="@style/PreferenceCategoryTitleTextStyle"/>
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_category_material.xml:61: Warning: The resource @style/PreferenceSummaryTextStyle is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_category_material.xml:58: Warning: The resource @style/PreferenceSummaryTextStyle is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
             style="@style/PreferenceSummaryTextStyle"/>
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_material.xml:32: Warning: The resource @layout/image_frame is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_material.xml:30: Warning: The resource @layout/image_frame is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
     <include layout="@layout/image_frame"/>
                      ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_material.xml:60: Warning: The resource @style/PreferenceSummaryTextStyle is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_material.xml:57: Warning: The resource @style/PreferenceSummaryTextStyle is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
             style="@style/PreferenceSummaryTextStyle"/>
                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:35: Warning: The resource @layout/image_frame is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:33: Warning: The resource @layout/image_frame is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
     <include layout="@layout/image_frame"/>
                      ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:72: Warning: The resource @style/PreferenceSummaryTextStyle is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:69: Warning: The resource @style/PreferenceSummaryTextStyle is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
                 style="@style/PreferenceSummaryTextStyle"/>
                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:104: Warning: The resource @dimen/preference_seekbar_padding_horizontal is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
-                android:paddingLeft="@dimen/preference_seekbar_padding_horizontal"
-                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:105: Warning: The resource @dimen/preference_seekbar_padding_horizontal is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:99: Warning: The resource @dimen/preference_seekbar_padding_horizontal is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
                 android:paddingStart="@dimen/preference_seekbar_padding_horizontal"
                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:106: Warning: The resource @dimen/preference_seekbar_padding_horizontal is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
-                android:paddingRight="@dimen/preference_seekbar_padding_horizontal"
-                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:107: Warning: The resource @dimen/preference_seekbar_padding_horizontal is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:100: Warning: The resource @dimen/preference_seekbar_padding_horizontal is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
                 android:paddingEnd="@dimen/preference_seekbar_padding_horizontal"
                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:108: Warning: The resource @dimen/preference_seekbar_padding_vertical is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:101: Warning: The resource @dimen/preference_seekbar_padding_vertical is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
                 android:paddingTop="@dimen/preference_seekbar_padding_vertical"
                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:109: Warning: The resource @dimen/preference_seekbar_padding_vertical is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:102: Warning: The resource @dimen/preference_seekbar_padding_vertical is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
                 android:paddingBottom="@dimen/preference_seekbar_padding_vertical"
                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:117: Warning: The resource @dimen/preference_seekbar_value_minWidth is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:110: Warning: The resource @dimen/preference_seekbar_value_minWidth is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
                 android:minWidth="@dimen/preference_seekbar_value_minWidth"
                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/anim/enter_anim.xml:5: Warning: The resource @integer/config_navAnimTime is marked as private in androidx.navigation:navigation-ui:2.9.6 [PrivateResource]
@@ -2919,54 +2913,12 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_category_material.xml:22: Warning: Redundant attribute paddingLeft; already defining paddingStart with targetSdkVersion 36 [RtlHardcoded]
-    android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
-    ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_category_material.xml:24: Warning: Redundant attribute paddingRight; already defining paddingEnd with targetSdkVersion 36 [RtlHardcoded]
-    android:paddingRight="?android:attr/listPreferredItemPaddingRight"
-    ~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_category_material.xml:55: Warning: Redundant attribute layout_alignLeft; already defining layout_alignStart with targetSdkVersion 36 [RtlHardcoded]
-            android:layout_alignLeft="@android:id/title"
-            ~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_material.xml:24: Warning: Redundant attribute paddingLeft; already defining paddingStart with targetSdkVersion 36 [RtlHardcoded]
-    android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
-    ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_material.xml:26: Warning: Redundant attribute paddingRight; already defining paddingEnd with targetSdkVersion 36 [RtlHardcoded]
-    android:paddingRight="?android:attr/listPreferredItemPaddingRight"
-    ~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_material.xml:54: Warning: Redundant attribute layout_alignLeft; already defining layout_alignStart with targetSdkVersion 36 [RtlHardcoded]
-            android:layout_alignLeft="@android:id/title"
-            ~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_material.xml:70: Warning: Redundant attribute paddingLeft; already defining paddingStart with targetSdkVersion 36 [RtlHardcoded]
-        android:paddingLeft="16dp"
-        ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_material.xml:72: Warning: Redundant attribute paddingRight; already defining paddingEnd with targetSdkVersion 36 [RtlHardcoded]
-        android:paddingRight="0dp"
-        ~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:26: Warning: Redundant attribute paddingLeft; already defining paddingStart with targetSdkVersion 36 [RtlHardcoded]
-    android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
-    ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:28: Warning: Redundant attribute paddingRight; already defining paddingEnd with targetSdkVersion 36 [RtlHardcoded]
-    android:paddingRight="?android:attr/listPreferredItemPaddingRight"
-    ~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:66: Warning: Redundant attribute layout_alignLeft; already defining layout_alignStart with targetSdkVersion 36 [RtlHardcoded]
-                android:layout_alignLeft="@android:id/title"
-                ~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:84: Warning: Redundant attribute paddingLeft; already defining paddingStart with targetSdkVersion 36 [RtlHardcoded]
-            android:paddingLeft="0dp"
-            ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:86: Warning: Redundant attribute paddingRight; already defining paddingEnd with targetSdkVersion 36 [RtlHardcoded]
-            android:paddingRight="16dp"
-            ~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:118: Warning: Redundant attribute paddingLeft; already defining paddingStart with targetSdkVersion 36 [RtlHardcoded]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:111: Warning: Redundant attribute paddingLeft; already defining paddingStart with targetSdkVersion 36 [RtlHardcoded]
                 android:paddingLeft="8dp"
                 ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:120: Warning: Redundant attribute paddingRight; already defining paddingEnd with targetSdkVersion 36 [RtlHardcoded]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:113: Warning: Redundant attribute paddingRight; already defining paddingEnd with targetSdkVersion 36 [RtlHardcoded]
                 android:paddingRight="0dp"
                 ~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_widget_seekbar.xml:124: Warning: Use "end" instead of "right" to ensure correct behavior in right-to-left locales [RtlHardcoded]
-                android:gravity="right"
-                                 ~~~~~
 
    Explanation for issues of type "RtlHardcoded":
    Using Gravity#LEFT and Gravity#RIGHT can lead to problems when a layout is
@@ -2987,4 +2939,4 @@ class SSLTrustManager : X509TrustManager {
    the left bitmask. Therefore, you can use gravity="start" rather than
    gravity="left|start".)
 
-43 errors, 763 warnings, 3 hints
+43 errors, 747 warnings, 3 hints

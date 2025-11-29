@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 43 errors, 763 warnings and 3 hints</span>
+      <span class="mdl-layout-title">Lint Report: 43 errors, 747 warnings and 3 hints</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sat Nov 29 18:28:11 UTC 2025 by AGP (9.0.0-beta03)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sat Nov 29 18:44:22 UTC 2025 by AGP (9.0.0-beta03)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -203,7 +203,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (2)</a>
       <a class="mdl-navigation__link" href="#RestrictedApi"><i class="material-icons error-icon">error</i>Restricted API (10)</a>
       <a class="mdl-navigation__link" href="#UnsafeOptInUsageError"><i class="material-icons error-icon">error</i>Unsafe opt-in usage intended to be error-level severity (22)</a>
-      <a class="mdl-navigation__link" href="#PrivateResource"><i class="material-icons warning-icon">warning</i>Using private resources (28)</a>
+      <a class="mdl-navigation__link" href="#PrivateResource"><i class="material-icons warning-icon">warning</i>Using private resources (26)</a>
       <a class="mdl-navigation__link" href="#SwitchIntDef"><i class="material-icons warning-icon">warning</i>Missing @IntDef in Switch (2)</a>
       <a class="mdl-navigation__link" href="#Aligned16KB"><i class="material-icons warning-icon">warning</i>Native library dependency not 16 KB aligned (9)</a>
       <a class="mdl-navigation__link" href="#DiscouragedApi"><i class="material-icons warning-icon">warning</i>Using discouraged APIs (2)</a>
@@ -234,7 +234,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#HardcodedText"><i class="material-icons warning-icon">warning</i>Hardcoded text (17)</a>
       <a class="mdl-navigation__link" href="#RelativeOverlap"><i class="material-icons warning-icon">warning</i>Overlapping items in RelativeLayout (1)</a>
       <a class="mdl-navigation__link" href="#RtlSymmetry"><i class="material-icons warning-icon">warning</i>Padding and margin symmetry (1)</a>
-      <a class="mdl-navigation__link" href="#RtlHardcoded"><i class="material-icons warning-icon">warning</i>Using left/right instead of start/end attributes (16)</a>
+      <a class="mdl-navigation__link" href="#RtlHardcoded"><i class="material-icons warning-icon">warning</i>Using left/right instead of start/end attributes (2)</a>
     </nav>
   </div>
   <main class="mdl-layout__content">
@@ -301,7 +301,7 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">22</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
 <a href="#UnsafeOptInUsageError">UnsafeOptInUsageError</a>: Unsafe opt-in usage intended to be error-level severity</td></tr>
 <tr>
-<td class="countColumn">28</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">26</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#PrivateResource">PrivateResource</a>: Using private resources</td></tr>
 <tr>
 <td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
@@ -412,7 +412,7 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#RtlSymmetry">RtlSymmetry</a>: Padding and margin symmetry</td></tr>
 <tr>
-<td class="countColumn">16</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#RtlHardcoded">RtlHardcoded</a>: Using left/right instead of start/end attributes</td></tr>
 <tr><td></td><td class="categoryColumn"><a href="#ExtraIssues">Included Additional Checks (49)</a>
 </td></tr>
@@ -2280,135 +2280,117 @@ Dismiss</button>            </div>
 <span class="lineno">  379 </span>  )
 </pre>
 
-<span class="location"><a href="../../src/main/res/layout/custom_preference_category_material.xml">../../src/main/res/layout/custom_preference_category_material.xml</a>:31</span>: <span class="message">The resource <code>@layout/image_frame</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
-<span class="lineno"> 28 </span>    <span class="prefix">android:</span><span class="attribute">layout_marginTop</span>=<span class="value">"16dp"</span>
-<span class="lineno"> 29 </span>    <span class="prefix">android:</span><span class="attribute">gravity</span>=<span class="value">"center_vertical"</span>>
+<span class="location"><a href="../../src/main/res/layout/custom_preference_category_material.xml">../../src/main/res/layout/custom_preference_category_material.xml</a>:29</span>: <span class="message">The resource <code>@layout/image_frame</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
+<span class="lineno"> 26 </span>    <span class="prefix">android:</span><span class="attribute">layout_marginTop</span>=<span class="value">"16dp"</span>
+<span class="lineno"> 27 </span>    <span class="prefix">android:</span><span class="attribute">gravity</span>=<span class="value">"center_vertical"</span>>
+<span class="lineno"> 28 </span>
+<span class="caretline"><span class="lineno"> 29 </span>    <span class="tag">&lt;include</span><span class="attribute"> layout</span>=<span class="value">"</span><span class="warning"><span class="value">@layout/image_frame</span></span><span class="value">"</span>/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno"> 30 </span>
-<span class="caretline"><span class="lineno"> 31 </span>    <span class="tag">&lt;include</span><span class="attribute"> layout</span>=<span class="value">"</span><span class="warning"><span class="value">@layout/image_frame</span></span><span class="value">"</span>/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 32 </span>
-<span class="lineno"> 33 </span>    <span class="tag">&lt;RelativeLayout</span><span class="attribute">
-</span><span class="lineno"> 34 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"0dp"</span></pre>
+<span class="lineno"> 31 </span>    <span class="tag">&lt;RelativeLayout</span><span class="attribute">
+</span><span class="lineno"> 32 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"0dp"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/custom_preference_category_material.xml">../../src/main/res/layout/custom_preference_category_material.xml</a>:46</span>: <span class="message">The resource <code>@style/PreferenceCategoryTitleTextStyle</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
-<span class="lineno"> 43 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
-<span class="lineno"> 44 </span>            <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"start"</span>
-<span class="lineno"> 45 </span>            <span class="prefix">android:</span><span class="attribute">textAlignment</span>=<span class="value">"viewStart"</span>
-<span class="caretline"><span class="lineno"> 46 </span>            <span class="attribute">style</span>=<span class="value">"</span><span class="warning"><span class="value">@style/PreferenceCategoryTitleTextStyle</span></span><span class="value">"</span>/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 47 </span>
-<span class="lineno"> 48 </span>        <span class="tag">&lt;TextView</span><span class="attribute">
-</span><span class="lineno"> 49 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@android:id/summary"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/custom_preference_category_material.xml">../../src/main/res/layout/custom_preference_category_material.xml</a>:44</span>: <span class="message">The resource <code>@style/PreferenceCategoryTitleTextStyle</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
+<span class="lineno"> 41 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
+<span class="lineno"> 42 </span>            <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"start"</span>
+<span class="lineno"> 43 </span>            <span class="prefix">android:</span><span class="attribute">textAlignment</span>=<span class="value">"viewStart"</span>
+<span class="caretline"><span class="lineno"> 44 </span>            <span class="attribute">style</span>=<span class="value">"</span><span class="warning"><span class="value">@style/PreferenceCategoryTitleTextStyle</span></span><span class="value">"</span>/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 45 </span>
+<span class="lineno"> 46 </span>        <span class="tag">&lt;TextView</span><span class="attribute">
+</span><span class="lineno"> 47 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@android:id/summary"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/custom_preference_category_material.xml">../../src/main/res/layout/custom_preference_category_material.xml</a>:61</span>: <span class="message">The resource <code>@style/PreferenceSummaryTextStyle</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
-<span class="lineno"> 58 </span>            <span class="prefix">android:</span><span class="attribute">textAlignment</span>=<span class="value">"viewStart"</span>
-<span class="lineno"> 59 </span>            <span class="prefix">android:</span><span class="attribute">textColor</span>=<span class="value">"?android:attr/textColorSecondary"</span>
-<span class="lineno"> 60 </span>            <span class="prefix">android:</span><span class="attribute">maxLines</span>=<span class="value">"10"</span>
-<span class="caretline"><span class="lineno"> 61 </span>            <span class="attribute">style</span>=<span class="value">"</span><span class="warning"><span class="value">@style/PreferenceSummaryTextStyle</span></span><span class="value">"</span>/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 62 </span>
-<span class="lineno"> 63 </span>    <span class="tag">&lt;/RelativeLayout></span>
-<span class="lineno"> 64 </span><span class="tag">&lt;/LinearLayout></span></pre>
+<span class="location"><a href="../../src/main/res/layout/custom_preference_category_material.xml">../../src/main/res/layout/custom_preference_category_material.xml</a>:58</span>: <span class="message">The resource <code>@style/PreferenceSummaryTextStyle</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
+<span class="lineno"> 55 </span>            <span class="prefix">android:</span><span class="attribute">textAlignment</span>=<span class="value">"viewStart"</span>
+<span class="lineno"> 56 </span>            <span class="prefix">android:</span><span class="attribute">textColor</span>=<span class="value">"?android:attr/textColorSecondary"</span>
+<span class="lineno"> 57 </span>            <span class="prefix">android:</span><span class="attribute">maxLines</span>=<span class="value">"10"</span>
+<span class="caretline"><span class="lineno"> 58 </span>            <span class="attribute">style</span>=<span class="value">"</span><span class="warning"><span class="value">@style/PreferenceSummaryTextStyle</span></span><span class="value">"</span>/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 59 </span>
+<span class="lineno"> 60 </span>    <span class="tag">&lt;/RelativeLayout></span>
+<span class="lineno"> 61 </span><span class="tag">&lt;/LinearLayout></span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/custom_preference_material.xml">../../src/main/res/layout/custom_preference_material.xml</a>:32</span>: <span class="message">The resource <code>@layout/image_frame</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
-<span class="lineno"> 29 </span>    <span class="prefix">android:</span><span class="attribute">clipToPadding</span>=<span class="value">"false"</span>
-<span class="lineno"> 30 </span>    <span class="prefix">android:</span><span class="attribute">baselineAligned</span>=<span class="value">"false"</span>>
+<span class="location"><a href="../../src/main/res/layout/custom_preference_material.xml">../../src/main/res/layout/custom_preference_material.xml</a>:30</span>: <span class="message">The resource <code>@layout/image_frame</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
+<span class="lineno"> 27 </span>    <span class="prefix">android:</span><span class="attribute">clipToPadding</span>=<span class="value">"false"</span>
+<span class="lineno"> 28 </span>    <span class="prefix">android:</span><span class="attribute">baselineAligned</span>=<span class="value">"false"</span>>
+<span class="lineno"> 29 </span>
+<span class="caretline"><span class="lineno"> 30 </span>    <span class="tag">&lt;include</span><span class="attribute"> layout</span>=<span class="value">"</span><span class="warning"><span class="value">@layout/image_frame</span></span><span class="value">"</span>/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno"> 31 </span>
-<span class="caretline"><span class="lineno"> 32 </span>    <span class="tag">&lt;include</span><span class="attribute"> layout</span>=<span class="value">"</span><span class="warning"><span class="value">@layout/image_frame</span></span><span class="value">"</span>/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 33 </span>
-<span class="lineno"> 34 </span>    <span class="tag">&lt;RelativeLayout</span><span class="attribute">
-</span><span class="lineno"> 35 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"0dp"</span></pre>
+<span class="lineno"> 32 </span>    <span class="tag">&lt;RelativeLayout</span><span class="attribute">
+</span><span class="lineno"> 33 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"0dp"</span></pre>
 
-<button class="mdl-button mdl-js-button mdl-button--primary" id="PrivateResourceDivLink" onclick="reveal('PrivateResourceDiv');" />+ 23 More Occurrences...</button>
+<button class="mdl-button mdl-js-button mdl-button--primary" id="PrivateResourceDivLink" onclick="reveal('PrivateResourceDiv');" />+ 21 More Occurrences...</button>
 <div id="PrivateResourceDiv" style="display: none">
-<span class="location"><a href="../../src/main/res/layout/custom_preference_material.xml">../../src/main/res/layout/custom_preference_material.xml</a>:60</span>: <span class="message">The resource <code>@style/PreferenceSummaryTextStyle</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
-<span class="lineno"> 57 </span>            <span class="prefix">android:</span><span class="attribute">textAlignment</span>=<span class="value">"viewStart"</span>
-<span class="lineno"> 58 </span>            <span class="prefix">android:</span><span class="attribute">textColor</span>=<span class="value">"?android:attr/textColorSecondary"</span>
-<span class="lineno"> 59 </span>            <span class="prefix">android:</span><span class="attribute">maxLines</span>=<span class="value">"10"</span>
-<span class="caretline"><span class="lineno"> 60 </span>            <span class="attribute">style</span>=<span class="value">"</span><span class="warning"><span class="value">@style/PreferenceSummaryTextStyle</span></span><span class="value">"</span>/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 61 </span>
-<span class="lineno"> 62 </span>    <span class="tag">&lt;/RelativeLayout></span>
+<span class="location"><a href="../../src/main/res/layout/custom_preference_material.xml">../../src/main/res/layout/custom_preference_material.xml</a>:57</span>: <span class="message">The resource <code>@style/PreferenceSummaryTextStyle</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
+<span class="lineno"> 54 </span>            <span class="prefix">android:</span><span class="attribute">textAlignment</span>=<span class="value">"viewStart"</span>
+<span class="lineno"> 55 </span>            <span class="prefix">android:</span><span class="attribute">textColor</span>=<span class="value">"?android:attr/textColorSecondary"</span>
+<span class="lineno"> 56 </span>            <span class="prefix">android:</span><span class="attribute">maxLines</span>=<span class="value">"10"</span>
+<span class="caretline"><span class="lineno"> 57 </span>            <span class="attribute">style</span>=<span class="value">"</span><span class="warning"><span class="value">@style/PreferenceSummaryTextStyle</span></span><span class="value">"</span>/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 58 </span>
+<span class="lineno"> 59 </span>    <span class="tag">&lt;/RelativeLayout></span>
 </pre>
 
-<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:35</span>: <span class="message">The resource <code>@layout/image_frame</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
-<span class="lineno">  32 </span>    <span class="prefix">android:</span><span class="attribute">clipToPadding</span>=<span class="value">"false"</span>
-<span class="lineno">  33 </span>    <span class="prefix">android:</span><span class="attribute">baselineAligned</span>=<span class="value">"false"</span>>
+<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:33</span>: <span class="message">The resource <code>@layout/image_frame</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
+<span class="lineno">  30 </span>    <span class="prefix">android:</span><span class="attribute">clipToPadding</span>=<span class="value">"false"</span>
+<span class="lineno">  31 </span>    <span class="prefix">android:</span><span class="attribute">baselineAligned</span>=<span class="value">"false"</span>>
+<span class="lineno">  32 </span>
+<span class="caretline"><span class="lineno">  33 </span>    <span class="tag">&lt;include</span><span class="attribute"> layout</span>=<span class="value">"</span><span class="warning"><span class="value">@layout/image_frame</span></span><span class="value">"</span>/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  34 </span>
-<span class="caretline"><span class="lineno">  35 </span>    <span class="tag">&lt;include</span><span class="attribute"> layout</span>=<span class="value">"</span><span class="warning"><span class="value">@layout/image_frame</span></span><span class="value">"</span>/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  36 </span>
-<span class="lineno">  37 </span>    <span class="tag">&lt;LinearLayout</span><span class="attribute">
-</span><span class="lineno">  38 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span></pre>
+<span class="lineno">  35 </span>    <span class="tag">&lt;LinearLayout</span><span class="attribute">
+</span><span class="lineno">  36 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:72</span>: <span class="message">The resource <code>@style/PreferenceSummaryTextStyle</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
-<span class="lineno">  69 </span>                <span class="prefix">android:</span><span class="attribute">textAlignment</span>=<span class="value">"viewStart"</span>
-<span class="lineno">  70 </span>                <span class="prefix">android:</span><span class="attribute">textColor</span>=<span class="value">"?android:attr/textColorSecondary"</span>
-<span class="lineno">  71 </span>                <span class="prefix">android:</span><span class="attribute">maxLines</span>=<span class="value">"4"</span>
-<span class="caretline"><span class="lineno">  72 </span>                <span class="attribute">style</span>=<span class="value">"</span><span class="warning"><span class="value">@style/PreferenceSummaryTextStyle</span></span><span class="value">"</span>/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  73 </span>
-<span class="lineno">  74 </span>        <span class="tag">&lt;/RelativeLayout></span>
+<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:69</span>: <span class="message">The resource <code>@style/PreferenceSummaryTextStyle</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
+<span class="lineno">  66 </span>                <span class="prefix">android:</span><span class="attribute">textAlignment</span>=<span class="value">"viewStart"</span>
+<span class="lineno">  67 </span>                <span class="prefix">android:</span><span class="attribute">textColor</span>=<span class="value">"?android:attr/textColorSecondary"</span>
+<span class="lineno">  68 </span>                <span class="prefix">android:</span><span class="attribute">maxLines</span>=<span class="value">"4"</span>
+<span class="caretline"><span class="lineno">  69 </span>                <span class="attribute">style</span>=<span class="value">"</span><span class="warning"><span class="value">@style/PreferenceSummaryTextStyle</span></span><span class="value">"</span>/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  70 </span>
+<span class="lineno">  71 </span>        <span class="tag">&lt;/RelativeLayout></span>
 </pre>
 
-<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:104</span>: <span class="message">The resource <code>@dimen/preference_seekbar_padding_horizontal</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
-<span class="lineno"> 101 </span>               <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"0dp"</span>
-<span class="lineno"> 102 </span>               <span class="prefix">android:</span><span class="attribute">layout_weight</span>=<span class="value">"1"</span>
-<span class="lineno"> 103 </span>               <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
-<span class="caretline"><span class="lineno"> 104 </span>               <span class="prefix">android:</span><span class="attribute">paddingLeft</span>=<span class="value">"</span><span class="warning"><span class="value">@dimen/preference_seekbar_padding_horizontal</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 105 </span>               <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
-<span class="lineno"> 106 </span>               <span class="prefix">android:</span><span class="attribute">paddingRight</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
-<span class="lineno"> 107 </span>               <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:99</span>: <span class="message">The resource <code>@dimen/preference_seekbar_padding_horizontal</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
+<span class="lineno">  96 </span>               <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"0dp"</span>
+<span class="lineno">  97 </span>               <span class="prefix">android:</span><span class="attribute">layout_weight</span>=<span class="value">"1"</span>
+<span class="lineno">  98 </span>               <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
+<span class="caretline"><span class="lineno">  99 </span>               <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"</span><span class="warning"><span class="value">@dimen/preference_seekbar_padding_horizontal</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 100 </span>               <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
+<span class="lineno"> 101 </span>               <span class="prefix">android:</span><span class="attribute">paddingTop</span>=<span class="value">"@dimen/preference_seekbar_padding_vertical"</span>
+<span class="lineno"> 102 </span>               <span class="prefix">android:</span><span class="attribute">paddingBottom</span>=<span class="value">"@dimen/preference_seekbar_padding_vertical"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:105</span>: <span class="message">The resource <code>@dimen/preference_seekbar_padding_horizontal</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
-<span class="lineno"> 102 </span>               <span class="prefix">android:</span><span class="attribute">layout_weight</span>=<span class="value">"1"</span>
-<span class="lineno"> 103 </span>               <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
-<span class="lineno"> 104 </span>               <span class="prefix">android:</span><span class="attribute">paddingLeft</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
-<span class="caretline"><span class="lineno"> 105 </span>               <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"</span><span class="warning"><span class="value">@dimen/preference_seekbar_padding_horizontal</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 106 </span>               <span class="prefix">android:</span><span class="attribute">paddingRight</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
-<span class="lineno"> 107 </span>               <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
-<span class="lineno"> 108 </span>               <span class="prefix">android:</span><span class="attribute">paddingTop</span>=<span class="value">"@dimen/preference_seekbar_padding_vertical"</span></pre>
-
-<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:106</span>: <span class="message">The resource <code>@dimen/preference_seekbar_padding_horizontal</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
-<span class="lineno"> 103 </span>               <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
-<span class="lineno"> 104 </span>               <span class="prefix">android:</span><span class="attribute">paddingLeft</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
-<span class="lineno"> 105 </span>               <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
-<span class="caretline"><span class="lineno"> 106 </span>               <span class="prefix">android:</span><span class="attribute">paddingRight</span>=<span class="value">"</span><span class="warning"><span class="value">@dimen/preference_seekbar_padding_horizontal</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 107 </span>               <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
-<span class="lineno"> 108 </span>               <span class="prefix">android:</span><span class="attribute">paddingTop</span>=<span class="value">"@dimen/preference_seekbar_padding_vertical"</span>
-<span class="lineno"> 109 </span>               <span class="prefix">android:</span><span class="attribute">paddingBottom</span>=<span class="value">"@dimen/preference_seekbar_padding_vertical"</span></pre>
-
-<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:107</span>: <span class="message">The resource <code>@dimen/preference_seekbar_padding_horizontal</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
-<span class="lineno"> 104 </span>               <span class="prefix">android:</span><span class="attribute">paddingLeft</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
-<span class="lineno"> 105 </span>               <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
-<span class="lineno"> 106 </span>               <span class="prefix">android:</span><span class="attribute">paddingRight</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
-<span class="caretline"><span class="lineno"> 107 </span>               <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"</span><span class="warning"><span class="value">@dimen/preference_seekbar_padding_horizontal</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 108 </span>               <span class="prefix">android:</span><span class="attribute">paddingTop</span>=<span class="value">"@dimen/preference_seekbar_padding_vertical"</span>
-<span class="lineno"> 109 </span>               <span class="prefix">android:</span><span class="attribute">paddingBottom</span>=<span class="value">"@dimen/preference_seekbar_padding_vertical"</span>
-<span class="lineno"> 110 </span>               <span class="prefix">android:</span><span class="attribute">background</span>=<span class="value">"@null"</span>/>
+<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:100</span>: <span class="message">The resource <code>@dimen/preference_seekbar_padding_horizontal</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
+<span class="lineno">  97 </span>               <span class="prefix">android:</span><span class="attribute">layout_weight</span>=<span class="value">"1"</span>
+<span class="lineno">  98 </span>               <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
+<span class="lineno">  99 </span>               <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
+<span class="caretline"><span class="lineno"> 100 </span>               <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"</span><span class="warning"><span class="value">@dimen/preference_seekbar_padding_horizontal</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 101 </span>               <span class="prefix">android:</span><span class="attribute">paddingTop</span>=<span class="value">"@dimen/preference_seekbar_padding_vertical"</span>
+<span class="lineno"> 102 </span>               <span class="prefix">android:</span><span class="attribute">paddingBottom</span>=<span class="value">"@dimen/preference_seekbar_padding_vertical"</span>
+<span class="lineno"> 103 </span>               <span class="prefix">android:</span><span class="attribute">background</span>=<span class="value">"@null"</span>/>
 </pre>
 
-<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:108</span>: <span class="message">The resource <code>@dimen/preference_seekbar_padding_vertical</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
-<span class="lineno"> 105 </span>               <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
-<span class="lineno"> 106 </span>               <span class="prefix">android:</span><span class="attribute">paddingRight</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
-<span class="lineno"> 107 </span>               <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
-<span class="caretline"><span class="lineno"> 108 </span>               <span class="prefix">android:</span><span class="attribute">paddingTop</span>=<span class="value">"</span><span class="warning"><span class="value">@dimen/preference_seekbar_padding_vertical</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 109 </span>               <span class="prefix">android:</span><span class="attribute">paddingBottom</span>=<span class="value">"@dimen/preference_seekbar_padding_vertical"</span>
-<span class="lineno"> 110 </span>               <span class="prefix">android:</span><span class="attribute">background</span>=<span class="value">"@null"</span>/>
+<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:101</span>: <span class="message">The resource <code>@dimen/preference_seekbar_padding_vertical</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
+<span class="lineno">  98 </span>               <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
+<span class="lineno">  99 </span>               <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
+<span class="lineno"> 100 </span>               <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
+<span class="caretline"><span class="lineno"> 101 </span>               <span class="prefix">android:</span><span class="attribute">paddingTop</span>=<span class="value">"</span><span class="warning"><span class="value">@dimen/preference_seekbar_padding_vertical</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 102 </span>               <span class="prefix">android:</span><span class="attribute">paddingBottom</span>=<span class="value">"@dimen/preference_seekbar_padding_vertical"</span>
+<span class="lineno"> 103 </span>               <span class="prefix">android:</span><span class="attribute">background</span>=<span class="value">"@null"</span>/>
 </pre>
 
-<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:109</span>: <span class="message">The resource <code>@dimen/preference_seekbar_padding_vertical</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
-<span class="lineno"> 106 </span>      <span class="prefix">android:</span><span class="attribute">paddingRight</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
-<span class="lineno"> 107 </span>      <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
-<span class="lineno"> 108 </span>      <span class="prefix">android:</span><span class="attribute">paddingTop</span>=<span class="value">"@dimen/preference_seekbar_padding_vertical"</span>
-<span class="caretline"><span class="lineno"> 109 </span>      <span class="prefix">android:</span><span class="attribute">paddingBottom</span>=<span class="value">"</span><span class="warning"><span class="value">@dimen/preference_seekbar_padding_vertical</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 110 </span>      <span class="prefix">android:</span><span class="attribute">background</span>=<span class="value">"@null"</span>/>
-<span class="lineno"> 111 </span>
-<span class="lineno"> 112 </span>  <span class="comment">&lt;!-- If the value is shown, we reserve a minimum width of 36dp to allow for consistent
+<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:102</span>: <span class="message">The resource <code>@dimen/preference_seekbar_padding_vertical</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
+<span class="lineno">  99 </span>      <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
+<span class="lineno"> 100 </span>      <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"@dimen/preference_seekbar_padding_horizontal"</span>
+<span class="lineno"> 101 </span>      <span class="prefix">android:</span><span class="attribute">paddingTop</span>=<span class="value">"@dimen/preference_seekbar_padding_vertical"</span>
+<span class="caretline"><span class="lineno"> 102 </span>      <span class="prefix">android:</span><span class="attribute">paddingBottom</span>=<span class="value">"</span><span class="warning"><span class="value">@dimen/preference_seekbar_padding_vertical</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 103 </span>      <span class="prefix">android:</span><span class="attribute">background</span>=<span class="value">"@null"</span>/>
+<span class="lineno"> 104 </span>
+<span class="lineno"> 105 </span>  <span class="comment">&lt;!-- If the value is shown, we reserve a minimum width of 36dp to allow for consistent
 </span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:117</span>: <span class="message">The resource <code>@dimen/preference_seekbar_value_minWidth</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
-<span class="lineno"> 114 </span><span class="comment">            into the seekbar width. --></span>
-<span class="lineno"> 115 </span>            <span class="tag">&lt;TextView</span><span class="attribute">
-</span><span class="lineno"> 116 </span><span class="attribute">                </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/seekbar_value"</span>
-<span class="caretline"><span class="lineno"> 117 </span>                <span class="prefix">android:</span><span class="attribute">minWidth</span>=<span class="value">"</span><span class="warning"><span class="value">@dimen/preference_seekbar_value_minWidth</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 118 </span>                <span class="prefix">android:</span><span class="attribute">paddingLeft</span>=<span class="value">"8dp"</span>
-<span class="lineno"> 119 </span>                <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"8dp"</span>
-<span class="lineno"> 120 </span>                <span class="prefix">android:</span><span class="attribute">paddingRight</span>=<span class="value">"0dp"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:110</span>: <span class="message">The resource <code>@dimen/preference_seekbar_value_minWidth</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
+<span class="lineno"> 107 </span><span class="comment">            into the seekbar width. --></span>
+<span class="lineno"> 108 </span>            <span class="tag">&lt;TextView</span><span class="attribute">
+</span><span class="lineno"> 109 </span><span class="attribute">                </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/seekbar_value"</span>
+<span class="caretline"><span class="lineno"> 110 </span>                <span class="prefix">android:</span><span class="attribute">minWidth</span>=<span class="value">"</span><span class="warning"><span class="value">@dimen/preference_seekbar_value_minWidth</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 111 </span>                <span class="prefix">android:</span><span class="attribute">paddingLeft</span>=<span class="value">"8dp"</span>
+<span class="lineno"> 112 </span>                <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"8dp"</span>
+<span class="lineno"> 113 </span>                <span class="prefix">android:</span><span class="attribute">paddingRight</span>=<span class="value">"0dp"</span></pre>
 
 <span class="location"><a href="../../src/main/res/anim/enter_anim.xml">../../src/main/res/anim/enter_anim.xml</a>:5</span>: <span class="message">The resource <code>@integer/config_navAnimTime</code> is marked as private in androidx.navigation:navigation-ui:2.9.6</span><br /><pre class="errorlines">
 <span class="lineno">  2 </span><span class="tag">&lt;set</span><span class="attribute"> </span><span class="prefix">xmlns:</span><span class="attribute">android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span>>
@@ -6623,154 +6605,24 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/res/layout/custom_preference_category_material.xml">../../src/main/res/layout/custom_preference_category_material.xml</a>:22</span>: <span class="message">Redundant attribute <code>paddingLeft</code>; already defining <code>paddingStart</code> with <code>targetSdkVersion</code> 36</span><br /><pre class="errorlines">
-<span class="lineno"> 19 </span><span class="attribute">    </span><span class="prefix">xmlns:</span><span class="attribute">android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span>
-<span class="lineno"> 20 </span>    <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
-<span class="lineno"> 21 </span>    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
-<span class="caretline"><span class="lineno"> 22 </span>    <span class="warning"><span class="prefix">android:</span><span class="attribute">paddingLeft</span></span>=<span class="value">"?android:attr/listPreferredItemPaddingLeft"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 23 </span>    <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"?android:attr/listPreferredItemPaddingStart"</span>
-<span class="lineno"> 24 </span>    <span class="prefix">android:</span><span class="attribute">paddingRight</span>=<span class="value">"?android:attr/listPreferredItemPaddingRight"</span>
-<span class="lineno"> 25 </span>    <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"?android:attr/listPreferredItemPaddingEnd"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:111</span>: <span class="message">Redundant attribute <code>paddingLeft</code>; already defining <code>paddingStart</code> with <code>targetSdkVersion</code> 36</span><br /><pre class="errorlines">
+<span class="lineno"> 108 </span>            <span class="tag">&lt;TextView</span><span class="attribute">
+</span><span class="lineno"> 109 </span><span class="attribute">                </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/seekbar_value"</span>
+<span class="lineno"> 110 </span>                <span class="prefix">android:</span><span class="attribute">minWidth</span>=<span class="value">"@dimen/preference_seekbar_value_minWidth"</span>
+<span class="caretline"><span class="lineno"> 111 </span>                <span class="warning"><span class="prefix">android:</span><span class="attribute">paddingLeft</span></span>=<span class="value">"8dp"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 112 </span>                <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"8dp"</span>
+<span class="lineno"> 113 </span>                <span class="prefix">android:</span><span class="attribute">paddingRight</span>=<span class="value">"0dp"</span>
+<span class="lineno"> 114 </span>                <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"0dp"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/custom_preference_category_material.xml">../../src/main/res/layout/custom_preference_category_material.xml</a>:24</span>: <span class="message">Redundant attribute <code>paddingRight</code>; already defining <code>paddingEnd</code> with <code>targetSdkVersion</code> 36</span><br /><pre class="errorlines">
-<span class="lineno"> 21 </span>    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
-<span class="lineno"> 22 </span>    <span class="prefix">android:</span><span class="attribute">paddingLeft</span>=<span class="value">"?android:attr/listPreferredItemPaddingLeft"</span>
-<span class="lineno"> 23 </span>    <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"?android:attr/listPreferredItemPaddingStart"</span>
-<span class="caretline"><span class="lineno"> 24 </span>    <span class="warning"><span class="prefix">android:</span><span class="attribute">paddingRight</span></span>=<span class="value">"?android:attr/listPreferredItemPaddingRight"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 25 </span>    <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"?android:attr/listPreferredItemPaddingEnd"</span>
-<span class="lineno"> 26 </span>    <span class="prefix">android:</span><span class="attribute">background</span>=<span class="value">"@drawable/outline_drawable_less"</span>
-<span class="lineno"> 27 </span>    <span class="prefix">android:</span><span class="attribute">baselineAligned</span>=<span class="value">"false"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:113</span>: <span class="message">Redundant attribute <code>paddingRight</code>; already defining <code>paddingEnd</code> with <code>targetSdkVersion</code> 36</span><br /><pre class="errorlines">
+<span class="lineno"> 110 </span>                <span class="prefix">android:</span><span class="attribute">minWidth</span>=<span class="value">"@dimen/preference_seekbar_value_minWidth"</span>
+<span class="lineno"> 111 </span>                <span class="prefix">android:</span><span class="attribute">paddingLeft</span>=<span class="value">"8dp"</span>
+<span class="lineno"> 112 </span>                <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"8dp"</span>
+<span class="caretline"><span class="lineno"> 113 </span>                <span class="warning"><span class="prefix">android:</span><span class="attribute">paddingRight</span></span>=<span class="value">"0dp"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 114 </span>                <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"0dp"</span>
+<span class="lineno"> 115 </span>                <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
+<span class="lineno"> 116 </span>                <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/custom_preference_category_material.xml">../../src/main/res/layout/custom_preference_category_material.xml</a>:55</span>: <span class="message">Redundant attribute <code>layout_alignLeft</code>; already defining <code>layout_alignStart</code> with <code>targetSdkVersion</code> 36</span><br /><pre class="errorlines">
-<span class="lineno"> 52 </span>            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
-<span class="lineno"> 53 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
-<span class="lineno"> 54 </span>            <span class="prefix">android:</span><span class="attribute">layout_below</span>=<span class="value">"@android:id/title"</span>
-<span class="caretline"><span class="lineno"> 55 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">layout_alignLeft</span></span>=<span class="value">"@android:id/title"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 56 </span>            <span class="prefix">android:</span><span class="attribute">layout_alignStart</span>=<span class="value">"@android:id/title"</span>
-<span class="lineno"> 57 </span>            <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"start"</span>
-<span class="lineno"> 58 </span>            <span class="prefix">android:</span><span class="attribute">textAlignment</span>=<span class="value">"viewStart"</span></pre>
-
-<span class="location"><a href="../../src/main/res/layout/custom_preference_material.xml">../../src/main/res/layout/custom_preference_material.xml</a>:24</span>: <span class="message">Redundant attribute <code>paddingLeft</code>; already defining <code>paddingStart</code> with <code>targetSdkVersion</code> 36</span><br /><pre class="errorlines">
-<span class="lineno"> 21 </span>    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
-<span class="lineno"> 22 </span>    <span class="prefix">android:</span><span class="attribute">minHeight</span>=<span class="value">"?android:attr/listPreferredItemHeightSmall"</span>
-<span class="lineno"> 23 </span>    <span class="prefix">android:</span><span class="attribute">gravity</span>=<span class="value">"center_vertical"</span>
-<span class="caretline"><span class="lineno"> 24 </span>    <span class="warning"><span class="prefix">android:</span><span class="attribute">paddingLeft</span></span>=<span class="value">"?android:attr/listPreferredItemPaddingLeft"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 25 </span>    <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"?android:attr/listPreferredItemPaddingStart"</span>
-<span class="lineno"> 26 </span>    <span class="prefix">android:</span><span class="attribute">paddingRight</span>=<span class="value">"?android:attr/listPreferredItemPaddingRight"</span>
-<span class="lineno"> 27 </span>    <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"?android:attr/listPreferredItemPaddingEnd"</span></pre>
-
-<span class="location"><a href="../../src/main/res/layout/custom_preference_material.xml">../../src/main/res/layout/custom_preference_material.xml</a>:26</span>: <span class="message">Redundant attribute <code>paddingRight</code>; already defining <code>paddingEnd</code> with <code>targetSdkVersion</code> 36</span><br /><pre class="errorlines">
-<span class="lineno"> 23 </span>    <span class="prefix">android:</span><span class="attribute">gravity</span>=<span class="value">"center_vertical"</span>
-<span class="lineno"> 24 </span>    <span class="prefix">android:</span><span class="attribute">paddingLeft</span>=<span class="value">"?android:attr/listPreferredItemPaddingLeft"</span>
-<span class="lineno"> 25 </span>    <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"?android:attr/listPreferredItemPaddingStart"</span>
-<span class="caretline"><span class="lineno"> 26 </span>    <span class="warning"><span class="prefix">android:</span><span class="attribute">paddingRight</span></span>=<span class="value">"?android:attr/listPreferredItemPaddingRight"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 27 </span>    <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"?android:attr/listPreferredItemPaddingEnd"</span>
-<span class="lineno"> 28 </span>    <span class="prefix">android:</span><span class="attribute">background</span>=<span class="value">"?attr/focusBackground"</span>
-<span class="lineno"> 29 </span>    <span class="prefix">android:</span><span class="attribute">clipToPadding</span>=<span class="value">"false"</span></pre>
-
-<button class="mdl-button mdl-js-button mdl-button--primary" id="RtlHardcodedDivLink" onclick="reveal('RtlHardcodedDiv');" />+ 11 More Occurrences...</button>
-<div id="RtlHardcodedDiv" style="display: none">
-<span class="location"><a href="../../src/main/res/layout/custom_preference_material.xml">../../src/main/res/layout/custom_preference_material.xml</a>:54</span>: <span class="message">Redundant attribute <code>layout_alignLeft</code>; already defining <code>layout_alignStart</code> with <code>targetSdkVersion</code> 36</span><br /><pre class="errorlines">
-<span class="lineno"> 51 </span>            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
-<span class="lineno"> 52 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
-<span class="lineno"> 53 </span>            <span class="prefix">android:</span><span class="attribute">layout_below</span>=<span class="value">"@android:id/title"</span>
-<span class="caretline"><span class="lineno"> 54 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">layout_alignLeft</span></span>=<span class="value">"@android:id/title"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 55 </span>            <span class="prefix">android:</span><span class="attribute">layout_alignStart</span>=<span class="value">"@android:id/title"</span>
-<span class="lineno"> 56 </span>            <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"start"</span>
-<span class="lineno"> 57 </span>            <span class="prefix">android:</span><span class="attribute">textAlignment</span>=<span class="value">"viewStart"</span></pre>
-
-<span class="location"><a href="../../src/main/res/layout/custom_preference_material.xml">../../src/main/res/layout/custom_preference_material.xml</a>:70</span>: <span class="message">Redundant attribute <code>paddingLeft</code>; already defining <code>paddingStart</code> with <code>targetSdkVersion</code> 36</span><br /><pre class="errorlines">
-<span class="lineno"> 67 </span>        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
-<span class="lineno"> 68 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
-<span class="lineno"> 69 </span>        <span class="prefix">android:</span><span class="attribute">gravity</span>=<span class="value">"end|center_vertical"</span>
-<span class="caretline"><span class="lineno"> 70 </span>        <span class="warning"><span class="prefix">android:</span><span class="attribute">paddingLeft</span></span>=<span class="value">"16dp"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 71 </span>        <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"16dp"</span>
-<span class="lineno"> 72 </span>        <span class="prefix">android:</span><span class="attribute">paddingRight</span>=<span class="value">"0dp"</span>
-<span class="lineno"> 73 </span>        <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"0dp"</span></pre>
-
-<span class="location"><a href="../../src/main/res/layout/custom_preference_material.xml">../../src/main/res/layout/custom_preference_material.xml</a>:72</span>: <span class="message">Redundant attribute <code>paddingRight</code>; already defining <code>paddingEnd</code> with <code>targetSdkVersion</code> 36</span><br /><pre class="errorlines">
-<span class="lineno"> 69 </span>        <span class="prefix">android:</span><span class="attribute">gravity</span>=<span class="value">"end|center_vertical"</span>
-<span class="lineno"> 70 </span>        <span class="prefix">android:</span><span class="attribute">paddingLeft</span>=<span class="value">"16dp"</span>
-<span class="lineno"> 71 </span>        <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"16dp"</span>
-<span class="caretline"><span class="lineno"> 72 </span>        <span class="warning"><span class="prefix">android:</span><span class="attribute">paddingRight</span></span>=<span class="value">"0dp"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 73 </span>        <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"0dp"</span>
-<span class="lineno"> 74 </span>        <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"vertical"</span>/>
-</pre>
-
-<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:26</span>: <span class="message">Redundant attribute <code>paddingLeft</code>; already defining <code>paddingStart</code> with <code>targetSdkVersion</code> 36</span><br /><pre class="errorlines">
-<span class="lineno">  23 </span>    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
-<span class="lineno">  24 </span>    <span class="prefix">android:</span><span class="attribute">minHeight</span>=<span class="value">"?android:attr/listPreferredItemHeightSmall"</span>
-<span class="lineno">  25 </span>    <span class="prefix">android:</span><span class="attribute">gravity</span>=<span class="value">"center_vertical"</span>
-<span class="caretline"><span class="lineno">  26 </span>    <span class="warning"><span class="prefix">android:</span><span class="attribute">paddingLeft</span></span>=<span class="value">"?android:attr/listPreferredItemPaddingLeft"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  27 </span>    <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"?android:attr/listPreferredItemPaddingStart"</span>
-<span class="lineno">  28 </span>    <span class="prefix">android:</span><span class="attribute">paddingRight</span>=<span class="value">"?android:attr/listPreferredItemPaddingRight"</span>
-<span class="lineno">  29 </span>    <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"?android:attr/listPreferredItemPaddingEnd"</span></pre>
-
-<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:28</span>: <span class="message">Redundant attribute <code>paddingRight</code>; already defining <code>paddingEnd</code> with <code>targetSdkVersion</code> 36</span><br /><pre class="errorlines">
-<span class="lineno">  25 </span>    <span class="prefix">android:</span><span class="attribute">gravity</span>=<span class="value">"center_vertical"</span>
-<span class="lineno">  26 </span>    <span class="prefix">android:</span><span class="attribute">paddingLeft</span>=<span class="value">"?android:attr/listPreferredItemPaddingLeft"</span>
-<span class="lineno">  27 </span>    <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"?android:attr/listPreferredItemPaddingStart"</span>
-<span class="caretline"><span class="lineno">  28 </span>    <span class="warning"><span class="prefix">android:</span><span class="attribute">paddingRight</span></span>=<span class="value">"?android:attr/listPreferredItemPaddingRight"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  29 </span>    <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"?android:attr/listPreferredItemPaddingEnd"</span>
-<span class="lineno">  30 </span>    <span class="prefix">android:</span><span class="attribute">background</span>=<span class="value">"?attr/focusBackground"</span>
-<span class="lineno">  31 </span>    <span class="prefix">android:</span><span class="attribute">clipChildren</span>=<span class="value">"false"</span></pre>
-
-<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:66</span>: <span class="message">Redundant attribute <code>layout_alignLeft</code>; already defining <code>layout_alignStart</code> with <code>targetSdkVersion</code> 36</span><br /><pre class="errorlines">
-<span class="lineno">  63 </span>                <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
-<span class="lineno">  64 </span>                <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
-<span class="lineno">  65 </span>                <span class="prefix">android:</span><span class="attribute">layout_below</span>=<span class="value">"@android:id/title"</span>
-<span class="caretline"><span class="lineno">  66 </span>                <span class="warning"><span class="prefix">android:</span><span class="attribute">layout_alignLeft</span></span>=<span class="value">"@android:id/title"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  67 </span>                <span class="prefix">android:</span><span class="attribute">layout_alignStart</span>=<span class="value">"@android:id/title"</span>
-<span class="lineno">  68 </span>                <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"start"</span>
-<span class="lineno">  69 </span>                <span class="prefix">android:</span><span class="attribute">textAlignment</span>=<span class="value">"viewStart"</span></pre>
-
-<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:84</span>: <span class="message">Redundant attribute <code>paddingLeft</code>; already defining <code>paddingStart</code> with <code>targetSdkVersion</code> 36</span><br /><pre class="errorlines">
-<span class="lineno">  81 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
-<span class="lineno">  82 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
-<span class="lineno">  83 </span>            <span class="prefix">android:</span><span class="attribute">gravity</span>=<span class="value">"center_vertical"</span>
-<span class="caretline"><span class="lineno">  84 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">paddingLeft</span></span>=<span class="value">"0dp"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  85 </span>            <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"0dp"</span>
-<span class="lineno">  86 </span>            <span class="prefix">android:</span><span class="attribute">paddingRight</span>=<span class="value">"16dp"</span>
-<span class="lineno">  87 </span>            <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"16dp"</span></pre>
-
-<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:86</span>: <span class="message">Redundant attribute <code>paddingRight</code>; already defining <code>paddingEnd</code> with <code>targetSdkVersion</code> 36</span><br /><pre class="errorlines">
-<span class="lineno">  83 </span>            <span class="prefix">android:</span><span class="attribute">gravity</span>=<span class="value">"center_vertical"</span>
-<span class="lineno">  84 </span>            <span class="prefix">android:</span><span class="attribute">paddingLeft</span>=<span class="value">"0dp"</span>
-<span class="lineno">  85 </span>            <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"0dp"</span>
-<span class="caretline"><span class="lineno">  86 </span>            <span class="warning"><span class="prefix">android:</span><span class="attribute">paddingRight</span></span>=<span class="value">"16dp"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  87 </span>            <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"16dp"</span>
-<span class="lineno">  88 </span>            <span class="prefix">android:</span><span class="attribute">clipChildren</span>=<span class="value">"false"</span>
-<span class="lineno">  89 </span>            <span class="prefix">android:</span><span class="attribute">clipToPadding</span>=<span class="value">"false"</span>>
-</pre>
-
-<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:118</span>: <span class="message">Redundant attribute <code>paddingLeft</code>; already defining <code>paddingStart</code> with <code>targetSdkVersion</code> 36</span><br /><pre class="errorlines">
-<span class="lineno"> 115 </span>            <span class="tag">&lt;TextView</span><span class="attribute">
-</span><span class="lineno"> 116 </span><span class="attribute">                </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/seekbar_value"</span>
-<span class="lineno"> 117 </span>                <span class="prefix">android:</span><span class="attribute">minWidth</span>=<span class="value">"@dimen/preference_seekbar_value_minWidth"</span>
-<span class="caretline"><span class="lineno"> 118 </span>                <span class="warning"><span class="prefix">android:</span><span class="attribute">paddingLeft</span></span>=<span class="value">"8dp"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 119 </span>                <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"8dp"</span>
-<span class="lineno"> 120 </span>                <span class="prefix">android:</span><span class="attribute">paddingRight</span>=<span class="value">"0dp"</span>
-<span class="lineno"> 121 </span>                <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"0dp"</span></pre>
-
-<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:120</span>: <span class="message">Redundant attribute <code>paddingRight</code>; already defining <code>paddingEnd</code> with <code>targetSdkVersion</code> 36</span><br /><pre class="errorlines">
-<span class="lineno"> 117 </span>                <span class="prefix">android:</span><span class="attribute">minWidth</span>=<span class="value">"@dimen/preference_seekbar_value_minWidth"</span>
-<span class="lineno"> 118 </span>                <span class="prefix">android:</span><span class="attribute">paddingLeft</span>=<span class="value">"8dp"</span>
-<span class="lineno"> 119 </span>                <span class="prefix">android:</span><span class="attribute">paddingStart</span>=<span class="value">"8dp"</span>
-<span class="caretline"><span class="lineno"> 120 </span>                <span class="warning"><span class="prefix">android:</span><span class="attribute">paddingRight</span></span>=<span class="value">"0dp"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 121 </span>                <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"0dp"</span>
-<span class="lineno"> 122 </span>                <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
-<span class="lineno"> 123 </span>                <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
-
-<span class="location"><a href="../../src/main/res/layout/custom_preference_widget_seekbar.xml">../../src/main/res/layout/custom_preference_widget_seekbar.xml</a>:124</span>: <span class="message">Use "<code>end</code>" instead of "<code>right</code>" to ensure correct behavior in right-to-left locales</span><br /><pre class="errorlines">
-<span class="lineno"> 121 </span>                <span class="prefix">android:</span><span class="attribute">paddingEnd</span>=<span class="value">"0dp"</span>
-<span class="lineno"> 122 </span>                <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
-<span class="lineno"> 123 </span>                <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>
-<span class="caretline"><span class="lineno"> 124 </span>                <span class="prefix">android:</span><span class="attribute">gravity</span>=<span class="value">"</span><span class="warning"><span class="value">right</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 125 </span>                <span class="prefix">android:</span><span class="attribute">singleLine</span>=<span class="value">"true"</span>
-<span class="lineno"> 126 </span>                <span class="prefix">android:</span><span class="attribute">textAppearance</span>=<span class="value">"?android:attr/textAppearanceListItem"</span>
-<span class="lineno"> 127 </span>                <span class="prefix">android:</span><span class="attribute">ellipsize</span>=<span class="value">"marquee"</span></pre>
-
-</div>
 </div>
 <div class="metadata"><div class="explanation" id="explanationRtlHardcoded" style="display: none;">
 Using <code>Gravity#LEFT</code> and <code>Gravity#RIGHT</code> can lead to problems when a layout is rendered in locales where text flows from right to left. Use <code>Gravity#START</code> and <code>Gravity#END</code> instead. Similarly, in XML <code>gravity</code> and <code>layout_gravity</code> attributes, use <code>start</code> rather than <code>left</code>.<br/>
