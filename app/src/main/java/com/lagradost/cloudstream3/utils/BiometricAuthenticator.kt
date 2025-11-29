@@ -99,51 +99,56 @@ object BiometricAuthenticator {
         }
     }
 
-    // Authentication occurs only when this is true and device is truly capable.
     private fun isBiometricHardWareAvailable(): Boolean {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) {
-            return when (biometricManager?.canAuthenticate(
-                DEVICE_CREDENTIAL or BIOMETRIC_STRONG or BIOMETRIC_WEAK
-            )) {
-                BiometricManager.BIOMETRIC_SUCCESS -> true
-                BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> false
-                BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> false
-                BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> false
-                BiometricManager.BIOMETRIC_ERROR_NOT_ENABLED_FOR_APPS -> false
-                BiometricManager.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED -> true
-                BiometricManager.BIOMETRIC_ERROR_UNSUPPORTED -> true
-                BiometricManager.BIOMETRIC_STATUS_UNKNOWN -> false
-                else -> false
+        // Authentication occurs only when this is true and device is truly capable.
+        var result = false
+        when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA -> {
+                @SuppressLint("RestrictedApi")
+                when (biometricManager?.canAuthenticate(
+                    DEVICE_CREDENTIAL or BIOMETRIC_STRONG or BIOMETRIC_WEAK
+                )) {
+                    BiometricManager.BIOMETRIC_SUCCESS -> result = true
+                    BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> result = false
+                    BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> result = false
+                    BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> result = false
+                    BiometricManager.BIOMETRIC_ERROR_NOT_ENABLED_FOR_APPS -> result = false
+                    BiometricManager.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED -> result = true
+                    BiometricManager.BIOMETRIC_ERROR_UNSUPPORTED -> result = true
+                    BiometricManager.BIOMETRIC_STATUS_UNKNOWN -> result = false
+                }
+            }
+
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.R -> {
+                // @Suppress("SwitchIntDef")
+                when (biometricManager?.canAuthenticate(
+                    DEVICE_CREDENTIAL or BIOMETRIC_STRONG or BIOMETRIC_WEAK
+                )) {
+                    BiometricManager.BIOMETRIC_SUCCESS -> result = true
+                    BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> result = false
+                    BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> result = false
+                    BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> result = false
+                    BiometricManager.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED -> result = true
+                    BiometricManager.BIOMETRIC_ERROR_UNSUPPORTED -> result = true
+                    BiometricManager.BIOMETRIC_STATUS_UNKNOWN -> result = false
+                }
+            }
+
+            else -> {
+                // @Suppress("DEPRECATION", "SwitchIntDef")
+                when (biometricManager?.canAuthenticate()) {
+                    BiometricManager.BIOMETRIC_SUCCESS -> result = true
+                    BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> result = false
+                    BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> result = false
+                    BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> result = false
+                    BiometricManager.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED -> result = true
+                    BiometricManager.BIOMETRIC_ERROR_UNSUPPORTED -> result = true
+                    BiometricManager.BIOMETRIC_STATUS_UNKNOWN -> result = false
+                }
             }
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            // @Suppress("SwitchIntDef")
-            return when (biometricManager?.canAuthenticate(
-                DEVICE_CREDENTIAL or BIOMETRIC_STRONG or BIOMETRIC_WEAK
-            )) {
-                BiometricManager.BIOMETRIC_SUCCESS -> true
-                BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> false
-                BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> false
-                BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> false
-                BiometricManager.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED -> true
-                BiometricManager.BIOMETRIC_ERROR_UNSUPPORTED -> true
-                BiometricManager.BIOMETRIC_STATUS_UNKNOWN -> false
-                else -> false
-            }
-        }
-
-        // @Suppress("DEPRECATION", "SwitchIntDef")
-        return when (biometricManager?.canAuthenticate()) {
-            BiometricManager.BIOMETRIC_SUCCESS -> true
-            BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> false
-            BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> false
-            BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> false
-            BiometricManager.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED -> true
-            BiometricManager.BIOMETRIC_ERROR_UNSUPPORTED -> true
-            BiometricManager.BIOMETRIC_STATUS_UNKNOWN -> false
-            else -> false
-        }
+        return result
     }
 
     // checks if device is secured i.e has at least some type of lock
