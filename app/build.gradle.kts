@@ -7,8 +7,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.dokka)
-    alias(libs.plugins.kotlin.android)
+    // alias(libs.plugins.dokka)
 }
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
@@ -150,6 +149,7 @@ android {
     lint {
         abortOnError = false
         checkReleaseBuilds = false
+		disable.add("MissingTranslation")
     }
 
     buildFeatures {
@@ -237,7 +237,7 @@ dependencies {
 
 tasks.register<Jar>("androidSourcesJar") {
     archiveClassifier.set("sources")
-    from(android.sourceSets.getByName("main").java.srcDirs) // Full Sources
+    from(android.sourceSets.getByName("main").java.directories) // Full Sources
 }
 
 tasks.register<Copy>("copyJar") {
@@ -274,7 +274,7 @@ tasks.withType<KotlinJvmCompile> {
     }
 }
 
-dokka {
+/*dokka {
     moduleName = "App"
     dokkaSourceSets {
         main {
@@ -291,4 +291,4 @@ dokka {
             }
         }
     }
-}
+}*/
