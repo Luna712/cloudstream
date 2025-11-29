@@ -301,14 +301,13 @@
     </ProgressBar>-->
 
     <LinearLayout
-        android:id="@+id/downloads_loading_overlay"
+        android:id="@+id/download_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?attr/primaryBlackBackground"
         tools:visibility="gone">
 
         <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/download_loading"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
