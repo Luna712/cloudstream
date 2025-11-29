@@ -74,7 +74,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:background="?attr/primaryBlackBackground"
+            android:background="?attr/primaryGrayBackground"
             android:focusable="true"
             android:nextFocusRight="@id/download_stream_button_tv"
             android:nextFocusLeft="@id/navigation_downloads"
@@ -88,7 +88,6 @@
 
             <LinearLayout
                 android:id="@+id/download_storage_appbar"
-                android:background="?attr/primaryGrayBackground"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -303,6 +302,7 @@
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/download_loading"
+        android:background="?attr/primaryBlackBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
