@@ -1746,22 +1746,6 @@
     <issue
         id="RestrictedApi"
         severity="Error"
-        message="BiometricManager.BIOMETRIC_ERROR_NOT_ENABLED_FOR_APPS can only be accessed from within the same library (androidx.biometric:biometric)"
-        category="Correctness"
-        priority="4"
-        summary="Restricted API"
-        explanation="This API has been flagged with a restriction that has not been met.&#xA;&#xA;Examples of API restrictions:&#xA;* Method can only be invoked by a subclass&#xA;* Method can only be accessed from within the same library (defined by the Gradle library group id)&#xA;* Method can only be accessed from tests.&#xA;&#xA;You can add your own API restrictions with the `@RestrictTo` annotation."
-        errorLine1="                BiometricManager.BIOMETRIC_ERROR_NOT_ENABLED_FOR_APPS -> false"
-        errorLine2="                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/BiometricAuthenticator.kt"
-            line="112"
-            column="34"/>
-    </issue>
-
-    <issue
-        id="RestrictedApi"
-        severity="Error"
         message="SearchAutoComplete can only be accessed from within the same library group prefix (referenced groupId=`androidx.appcompat` with prefix androidx from groupId=`CloudStream`)"
         category="Correctness"
         priority="4"
@@ -2713,6 +2697,38 @@
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
             line="518"
             column="24"/>
+    </issue>
+
+    <issue
+        id="SwitchIntDef"
+        severity="Warning"
+        message="Switch statement on an `int` with known associated constant missing case `BiometricManager.BIOMETRIC_ERROR_NOT_ENABLED_FOR_APPS`"
+        category="Correctness"
+        priority="3"
+        summary="Missing @IntDef in Switch"
+        explanation="This check warns if a `switch` statement does not explicitly include all the values declared by the typedef `@IntDef` declaration."
+        errorLine1="                when (biometricManager?.canAuthenticate("
+        errorLine2="                ~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/BiometricAuthenticator.kt"
+            line="125"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="SwitchIntDef"
+        severity="Warning"
+        message="Switch statement on an `int` with known associated constant missing case `BiometricManager.BIOMETRIC_ERROR_NOT_ENABLED_FOR_APPS`"
+        category="Correctness"
+        priority="3"
+        summary="Missing @IntDef in Switch"
+        explanation="This check warns if a `switch` statement does not explicitly include all the values declared by the typedef `@IntDef` declaration."
+        errorLine1="                when (biometricManager?.canAuthenticate()) {"
+        errorLine2="                ~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/BiometricAuthenticator.kt"
+            line="140"
+            column="17"/>
     </issue>
 
     <issue
