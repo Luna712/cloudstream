@@ -113,6 +113,7 @@ object BiometricAuthenticator {
                 BiometricManager.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED -> true
                 BiometricManager.BIOMETRIC_ERROR_UNSUPPORTED -> true
                 BiometricManager.BIOMETRIC_STATUS_UNKNOWN -> false
+                else -> false
             }
         }
 
@@ -128,6 +129,7 @@ object BiometricAuthenticator {
                 BiometricManager.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED -> true
                 BiometricManager.BIOMETRIC_ERROR_UNSUPPORTED -> true
                 BiometricManager.BIOMETRIC_STATUS_UNKNOWN -> false
+                else -> false
             }
         }
 
@@ -140,6 +142,7 @@ object BiometricAuthenticator {
             BiometricManager.BIOMETRIC_ERROR_SECURITY_UPDATE_REQUIRED -> true
             BiometricManager.BIOMETRIC_ERROR_UNSUPPORTED -> true
             BiometricManager.BIOMETRIC_STATUS_UNKNOWN -> false
+            else -> false
         }
     }
 
