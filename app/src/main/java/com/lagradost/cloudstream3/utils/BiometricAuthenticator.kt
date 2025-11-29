@@ -121,7 +121,7 @@ object BiometricAuthenticator {
             }
 
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.R -> {
-                // @Suppress("SwitchIntDef")
+                @Suppress("SwitchIntDef")
                 when (biometricManager?.canAuthenticate(
                     DEVICE_CREDENTIAL or BIOMETRIC_STRONG or BIOMETRIC_WEAK
                 )) {
@@ -136,7 +136,7 @@ object BiometricAuthenticator {
             }
 
             else -> {
-                // @Suppress("DEPRECATION", "SwitchIntDef")
+                @Suppress("DEPRECATION", "SwitchIntDef")
                 when (biometricManager?.canAuthenticate()) {
                     BiometricManager.BIOMETRIC_SUCCESS -> result = true
                     BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> result = false
