@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream3.utils
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.KeyguardManager
 import android.content.Context
