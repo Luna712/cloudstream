@@ -276,6 +276,7 @@
             android:id="@+id/download_loading"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingTop="20dp"
             app:shimmer_auto_start="true"
             app:shimmer_base_alpha="0.2"
             app:shimmer_duration="@integer/loading_time"
