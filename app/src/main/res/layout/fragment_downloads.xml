@@ -269,6 +269,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?attr/primaryBlackBackground"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <com.facebook.shimmer.ShimmerFrameLayout
@@ -276,7 +277,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="120dp"
-            android:background="?attr/primaryBlackBackground"
             app:shimmer_auto_start="true"
             app:shimmer_base_alpha="0.2"
             app:shimmer_duration="@integer/loading_time"
@@ -304,7 +304,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="100dp"
-            android:background="?attr/primaryBlackBackground"
             android:clipToPadding="false"
             android:descendantFocusability="afterDescendants"
             android:nextFocusUp="@id/download_appbar"
