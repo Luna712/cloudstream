@@ -305,6 +305,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?attr/primaryBlackBackground"
+        android:paddingTop="120dp"
         tools:visibility="gone">
 
         <com.facebook.shimmer.ShimmerFrameLayout
@@ -312,7 +313,6 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:orientation="vertical"
-            android:paddingTop="120dp"
             app:shimmer_auto_start="true"
             app:shimmer_base_alpha="0.2"
             app:shimmer_duration="@integer/loading_time"
