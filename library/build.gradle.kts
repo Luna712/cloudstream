@@ -1,16 +1,16 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.codingfeline.buildkonfig.compiler.FieldSpec
-// import org.jetbrains.dokka.gradle.engine.parameters.KotlinPlatform
-// import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
+import org.jetbrains.dokka.gradle.engine.parameters.KotlinPlatform
+import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
-    // id("maven-publish") // Gradle core plugin
+    id("maven-publish") // Gradle core plugin
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.multiplatform.library)
     alias(libs.plugins.buildkonfig)
-    // alias(libs.plugins.dokka)
+    alias(libs.plugins.dokka)
 }
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
@@ -90,15 +90,19 @@ buildkonfig {
     }
 }
 
-/*publishing {
+tasks.named("assemble") {
+    dependsOn("generateBuildKonfig")
+}
+
+publishing {
     publications {
         withType<MavenPublication> {
             groupId = "com.lagradost.api"
         }
     }
-}*/
+}
 
-/*dokka {
+dokka {
     moduleName = "Library"
     dokkaSourceSets {
         configureEach {
@@ -115,4 +119,4 @@ buildkonfig {
             }
         }
     }
-}*/
+}
