@@ -90,10 +90,6 @@ buildkonfig {
     }
 }
 
-tasks.named("assemble") {
-    dependsOn("generateBuildKonfig")
-}
-
 publishing {
     publications {
         withType<MavenPublication> {
