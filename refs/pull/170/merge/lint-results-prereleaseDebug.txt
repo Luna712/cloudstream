@@ -761,17 +761,6 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
 
    To fix this, copy the resource into your own project instead.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/BiometricAuthenticator.kt:107: Warning: Switch statement on an int with known associated constant missing case BiometricManager.BIOMETRIC_ERROR_NOT_ENABLED_FOR_APPS [SwitchIntDef]
-            when (biometricManager?.canAuthenticate(
-            ~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/BiometricAuthenticator.kt:120: Warning: Switch statement on an int with known associated constant missing case BiometricManager.BIOMETRIC_ERROR_NOT_ENABLED_FOR_APPS [SwitchIntDef]
-            when (biometricManager?.canAuthenticate()) {
-            ~~~~
-
-   Explanation for issues of type "SwitchIntDef":
-   This check warns if a switch statement does not explicitly include all the
-   values declared by the typedef @IntDef declaration.
-
 /home/runner/.gradle/caches/9.2.1/transforms/8ea5df35b2491753aca6af659a9663cb/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
 /home/runner/.gradle/caches/9.2.1/transforms/8ea5df35b2491753aca6af659a9663cb/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
 /home/runner/.gradle/caches/9.2.1/transforms/48bad2eebf13f3a21443a27325883499/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
@@ -3161,4 +3150,4 @@ class SSLTrustManager : X509TrustManager {
    the left bitmask. Therefore, you can use gravity="start" rather than
    gravity="left|start".)
 
-45 errors, 790 warnings, 3 hints
+45 errors, 788 warnings, 3 hints

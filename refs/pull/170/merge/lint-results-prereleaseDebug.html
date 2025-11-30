@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 45 errors, 790 warnings and 3 hints</span>
+      <span class="mdl-layout-title">Lint Report: 45 errors, 788 warnings and 3 hints</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sun Nov 30 19:35:42 UTC 2025 by AGP (9.0.0-beta03)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sun Nov 30 19:51:55 UTC 2025 by AGP (9.0.0-beta03)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -206,7 +206,6 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#RestrictedApi"><i class="material-icons error-icon">error</i>Restricted API (10)</a>
       <a class="mdl-navigation__link" href="#UnsafeOptInUsageError"><i class="material-icons error-icon">error</i>Unsafe opt-in usage intended to be error-level severity (22)</a>
       <a class="mdl-navigation__link" href="#PrivateResource"><i class="material-icons warning-icon">warning</i>Using private resources (28)</a>
-      <a class="mdl-navigation__link" href="#SwitchIntDef"><i class="material-icons warning-icon">warning</i>Missing @IntDef in Switch (2)</a>
       <a class="mdl-navigation__link" href="#Aligned16KB"><i class="material-icons warning-icon">warning</i>Native library dependency not 16 KB aligned (9)</a>
       <a class="mdl-navigation__link" href="#DiscouragedApi"><i class="material-icons warning-icon">warning</i>Using discouraged APIs (8)</a>
       <a class="mdl-navigation__link" href="#Orientation"><i class="material-icons error-icon">error</i>Missing explicit orientation (2)</a>
@@ -317,9 +316,6 @@ document.getElementById(id).style.display = 'none';
 <tr>
 <td class="countColumn">28</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#PrivateResource">PrivateResource</a>: Using private resources</td></tr>
-<tr>
-<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
-<a href="#SwitchIntDef">SwitchIntDef</a>: Missing @IntDef in Switch</td></tr>
 <tr>
 <td class="countColumn">9</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#Aligned16KB">Aligned16KB</a>: Native library dependency not 16 KB aligned</td></tr>
@@ -2691,60 +2687,6 @@ To fix this, copy the resource into your own project instead.<br/>To suppress th
               <div class="mdl-card__actions mdl-card--border">
 <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationPrivateResourceLink" onclick="reveal('explanationPrivateResource');">
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="PrivateResourceCardLink" onclick="hideid('PrivateResourceCard');">
-Dismiss</button>            </div>
-            </div>
-          </section><a name="SwitchIntDef"></a>
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="SwitchIntDefCard" style="display: block;">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Missing @IntDef in Switch</h2>
-  </div>
-              <div class="mdl-card__supporting-text">
-<div class="issue">
-<div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/BiometricAuthenticator.kt">../../src/main/java/com/lagradost/cloudstream3/utils/BiometricAuthenticator.kt</a>:107</span>: <span class="message">Switch statement on an <code>int</code> with known associated constant missing case <code>BiometricManager.BIOMETRIC_ERROR_NOT_ENABLED_FOR_APPS</code></span><br /><pre class="errorlines">
-<span class="lineno"> 104 </span>        <span class="keyword">var</span> result = <span class="keyword">false</span>
-<span class="lineno"> 105 </span>
-<span class="lineno"> 106 </span>        <span class="keyword">if</span> (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-<span class="caretline"><span class="lineno"> 107 </span>            <span class="warning"><span class="keyword">when</span></span> (biometricManager?.canAuthenticate(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 108 </span>                DEVICE_CREDENTIAL or BIOMETRIC_STRONG or BIOMETRIC_WEAK
-<span class="lineno"> 109 </span>            )) {
-<span class="lineno"> 110 </span>                BiometricManager.BIOMETRIC_SUCCESS -> result = <span class="keyword">true</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/BiometricAuthenticator.kt">../../src/main/java/com/lagradost/cloudstream3/utils/BiometricAuthenticator.kt</a>:120</span>: <span class="message">Switch statement on an <code>int</code> with known associated constant missing case <code>BiometricManager.BIOMETRIC_ERROR_NOT_ENABLED_FOR_APPS</code></span><br /><pre class="errorlines">
-<span class="lineno"> 117 </span>            }
-<span class="lineno"> 118 </span>        } <span class="keyword">else</span> {
-<span class="lineno"> 119 </span>            <span class="annotation">@Suppress</span>(<span class="string">"DEPRECATION"</span>)
-<span class="caretline"><span class="lineno"> 120 </span>            <span class="warning"><span class="keyword">when</span></span> (biometricManager?.canAuthenticate()) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 121 </span>                BiometricManager.BIOMETRIC_SUCCESS -> result = <span class="keyword">true</span>
-<span class="lineno"> 122 </span>                BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> result = <span class="keyword">false</span>
-<span class="lineno"> 123 </span>                BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> result = <span class="keyword">false</span></pre>
-
-</div>
-<div class="metadata"><div class="explanation" id="explanationSwitchIntDef" style="display: none;">
-This check warns if a <code>switch</code> statement does not explicitly include all the values declared by the typedef <code>@IntDef</code> declaration.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
-To suppress this error, use the issue id "SwitchIntDef" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
-<br/></div>
-</div>
-</div>
-<div class="chips">
-<span class="mdl-chip">
-    <span class="mdl-chip__text">SwitchIntDef</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Correctness</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Warning</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Priority 3/10</span>
-</span>
-</div>
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationSwitchIntDefLink" onclick="reveal('explanationSwitchIntDef');">
-Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="SwitchIntDefCardLink" onclick="hideid('SwitchIntDefCard');">
 Dismiss</button>            </div>
             </div>
           </section><a name="Aligned16KB"></a>
