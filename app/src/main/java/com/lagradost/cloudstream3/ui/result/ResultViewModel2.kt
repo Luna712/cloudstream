@@ -2826,6 +2826,7 @@ class ResultViewModel2 : ViewModel() {
                             name = loadResponse.name,
                             poster = loadResponse.posterUrl,
                             plot = loadResponse.plot,
+                            score = loadResponse.score,
                             id = mainId,
                             cacheTime = System.currentTimeMillis(),
                         )
