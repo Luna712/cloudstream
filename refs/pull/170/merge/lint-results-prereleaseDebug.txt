@@ -137,7 +137,7 @@
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_downloads.xml:82: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
             android:foreground="@drawable/outline_drawable"
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_downloads.xml:347: Warning: Attribute tooltipText is only used in API level 26 and higher (current min is 21) [UnusedAttribute]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_downloads.xml:341: Warning: Attribute tooltipText is only used in API level 26 and higher (current min is 21) [UnusedAttribute]
             android:tooltipText="@string/open_local_video"
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_extensions.xml:68: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
