@@ -300,18 +300,18 @@
         android:layout_width="50dp" android:layout_height="50dp">
     </ProgressBar>-->
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/download_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?attr/primaryBlackBackground"
-        android:paddingTop="120dp"
         tools:visibility="gone">
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:paddingTop="120dp"
             android:orientation="vertical"
             app:shimmer_auto_start="true"
             app:shimmer_base_alpha="0.2"
@@ -333,7 +333,7 @@
                 <include layout="@layout/loading_downloads" />
             </LinearLayout>
         </com.facebook.shimmer.ShimmerFrameLayout>
-    </LinearLayout>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
