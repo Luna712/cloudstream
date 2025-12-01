@@ -87,7 +87,7 @@ androidComponents {
     onVariants { variant ->
         variant.sources.java?.addGeneratedSourceDirectory(
             generateGitInfo,
-            TaskBasedDirectoryProperty(generateGitInfo, gitInfoDir))
+            TaskBasedDirectoryProperty(generateGitInfo, gitInfoDir)
         )
     }
 }
