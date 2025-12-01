@@ -18,35 +18,29 @@ fun getGitCommitHash(): String {
     return ""
 }
 
-project.tasks.register("generateGitInfo") {
+tasks.register("generateGitInfo") {
 	val outputDirectory = project.layout.projectDirectory.dir("src/main/java/com/lagradost/cloudstream3")
 	outputs.dir(outputDirectory)
 
-	val hash = project.provider {
-		try {
-			val headFile = file("${project.rootDir}/.git/HEAD")
-
+	doLast {
+		val headFile = file("${project.rootDir}/.git/HEAD")
+		val hash = try {
 			if (headFile.exists()) {
 				val headContent = headFile.readText().trim()
 				if (headContent.startsWith("ref:")) {
 					val refPath = headContent.substring(5)
 					val commitFile = file("${project.rootDir}/.git/$refPath")
-					if (commitFile.exists()) commitFile.readText().trim() else ""
+					if (commitFile.exists()) commitFile.readText().trim()
+					else ""
 				} else headContent
-			} else {
-				""
-			}.take(7)
-		} catch (_: Throwable) {
-			""
-		}
-	}
+			} else ""
+		}.take(7)
 
-	doLast {
 		outputDirectory.file("GitInfo.kt").asFile.writeText(
 			"""
 			package com.lagradost.cloudstream3
-            object GitInfo {
-				const val HASH = "${hash.get()}"
+			object GitInfo {
+				const val HASH = "$hash"
 			}
 			""".trimIndent()
 		)
