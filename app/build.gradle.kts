@@ -51,7 +51,8 @@ val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
 val generateGitInfo = tasks.register("generateGitInfo") {
     val outputDir: DirectoryProperty = objects.directoryProperty()
-    outputDir.set(layout.buildDirectory.dir("generated/gitInfo"))
+    val rootDir = project.rootDir
+    outputDir.set(layout.buildDirectory.dir("generated"))
     outputs.dir(outputDir)
 
     // Make the DirectoryProperty accessible from the task
@@ -59,21 +60,24 @@ val generateGitInfo = tasks.register("generateGitInfo") {
 
     doLast {
         val hash = try {
-            val headFile = file(".git/HEAD")
-            val fullHash = if (headFile.exists()) {
-                val content = headFile.readText().trim()
-                if (content.startsWith("ref:")) {
-                    val ref = content.removePrefix("ref:").trim()
-                    val commitFile = file(".git/$ref")
-                    if (commitFile.exists()) commitFile.readText().trim() else ""
-                } else content
-            } else ""
-            fullHash.take(7)
-        } catch (_: Throwable) { "" }
+            val headFile = File(rootDir, ".git/HEAD")
 
-        val outFile = outputDir.get().file("GitInfo.kt").asFile
-        outFile.parentFile.mkdirs()
-        outFile.writeText(
+            // Read the commit hash from .git/HEAD
+            if (headFile.exists()) {
+                val headContent = headFile.readText().trim()
+                if (headContent.startsWith("ref:")) {
+                    val refPath = headContent.substring(5) // e.g., refs/heads/main
+                    val commitFile = File(rootDir, ".git/$refPath")
+                    if (commitFile.exists()) commitFile.readText().trim() else ""
+                } else headContent // If it's a detached HEAD (commit hash directly)
+            } else {
+                "" // If .git/HEAD doesn't exist
+            }.take(7) // Return the short commit hash
+        } catch (_: Throwable) {
+            "" // Just return an empty string if any exception occurs
+        }
+
+        outputDir.file("GitInfo.kt").asFile.writeText(
             """
             package com.lagradost.cloudstream3
 
