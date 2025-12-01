@@ -156,7 +156,7 @@ androidComponents.onVariants { variant ->
 		mergeTask.dependsOn(generateGitHash)
 
 		mergeTask.doLast {
-			val assetsDir = it.outputs.files.singleFile
+			val assetsDir = mergeTask.outputs.files.singleFile
 			val outFile = File(assetsDir, "git-hash.txt")
 			outputFile.get().asFile.copyTo(outFile, overwrite = true)
 		}
