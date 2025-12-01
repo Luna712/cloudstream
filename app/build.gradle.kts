@@ -85,7 +85,7 @@ androidComponents {
     onVariants { variant ->
         variant.sources.java?.addGeneratedSourceDirectory(
             generateGitInfo,
-            generateGitInfo.flatMap { it.layout.outputDirectory }
+            generateGitInfo.outputDir
         )
     }
 }
