@@ -53,7 +53,7 @@ val generatorTask = project.tasks.register("generator") {
     }
 }
 
-kotlin.sourceSets.getByName("main").generatedKotlin.srcDir(generatorTask)
+android.sourceSets.getByName("main").java.srcDir(generatorTask)
 
 android {
     @Suppress("UnstableApiUsage")
