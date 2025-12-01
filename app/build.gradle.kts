@@ -87,19 +87,8 @@ androidComponents {
     onVariants { variant ->
         variant.sources.java?.addGeneratedSourceDirectory(
             generateGitInfo,
-            TaskBasedDirectoryProperty(generateGitInfo, gitInfoDir)
+            gitInfoDir
         )
-    }
-}
-
-class TaskBasedDirectoryProperty(
-    private val task: TaskProvider<*>,
-    private val dirProvider: Provider<Directory>
-) : (Task) -> DirectoryProperty {
-    override fun invoke(t: Task): DirectoryProperty {
-        return t.project.objects.directoryProperty().apply {
-            set(dirProvider)
-        }
     }
 }
 
