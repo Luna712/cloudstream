@@ -49,31 +49,25 @@ val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
     }
 }*/
 
-val gitInfoDir = layout.buildDirectory.dir("generated/source/gitInfo")
-
 val generateGitInfo by tasks.registering {
-    outputs.dir(gitInfoDir)
+    val outputDir = layout.buildDirectory.dir("generated/source/gitInfo")
+    outputs.dir(outputDir)
 
     doLast {
-        val root = rootDir
         val hash = try {
-            val headFile = File(root, ".git/HEAD")
+            val headFile = file(".git/HEAD")
             val fullHash = if (headFile.exists()) {
-                val headContent = headFile.readText().trim()
-                if (headContent.startsWith("ref:")) {
-                    val refPath = headContent.removePrefix("ref:").trim()
-                    val commitFile = File(root, ".git/$refPath")
+                val content = headFile.readText().trim()
+                if (content.startsWith("ref:")) {
+                    val ref = content.removePrefix("ref:").trim()
+                    val commitFile = file(".git/$ref")
                     if (commitFile.exists()) commitFile.readText().trim() else ""
-                } else {
-                    headContent // detached HEAD contains commit directly
-                }
+                } else content
             } else ""
             fullHash.take(7)
-        } catch (_: Throwable) {
-            ""
-        }
+        } catch (_: Throwable) { "" }
 
-        val outFile = gitInfoDir.get().file("GitInfo.kt").asFile
+        val outFile = outputDir.get().file("GitInfo.kt").asFile
         outFile.parentFile.mkdirs()
         outFile.writeText(
             """
@@ -83,6 +77,15 @@ val generateGitInfo by tasks.registering {
                 const val HASH = "$hash"
             }
             """.trimIndent()
+        )
+    }
+}
+
+androidComponents {
+    onVariants { variant ->
+        variant.sources.java?.addGeneratedSourceDirectory(
+            generateGitInfo.flatMap { it.layout.outputDirectory },
+            generateGitInfo
         )
     }
 }
@@ -210,15 +213,6 @@ android {
     }
 
     namespace = "com.lagradost.cloudstream3"
-}
-
-androidComponents {
-    onVariants { variant ->
-        variant.sources.java?.addGeneratedSourceDirectory(
-            gitInfoDir,
-            generateGitInfo
-        )
-    }
 }
 
 dependencies {
