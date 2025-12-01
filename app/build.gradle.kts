@@ -14,42 +14,7 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
-/*tasks.register("generateGitInfo") {
-    val outputDirectory = project.layout.projectDirectory.dir("src/main/java/com/lagradost/cloudstream3")
-    val rootDir = project.rootDir
-    outputs.dir(outputDirectory)
-
-    doLast {
-        val hash = try {
-            val headFile = File(rootDir, ".git/HEAD")
-
-            // Read the commit hash from .git/HEAD
-            if (headFile.exists()) {
-                val headContent = headFile.readText().trim()
-                if (headContent.startsWith("ref:")) {
-                    val refPath = headContent.substring(5) // e.g., refs/heads/main
-                    val commitFile = File(rootDir, ".git/$refPath")
-                    if (commitFile.exists()) commitFile.readText().trim() else ""
-                } else headContent // If it's a detached HEAD (commit hash directly)
-            } else {
-                "" // If .git/HEAD doesn't exist
-            }.take(7) // Return the short commit hash
-        } catch (_: Throwable) {
-            "" // Just return an empty string if any exception occurs
-        }
-
-        outputDirectory.file("GitInfo.kt").asFile.writeText(
-            """
-            package com.lagradost.cloudstream3
-            object GitInfo {
-                const val HASH = "$hash"
-            }
-            """.trimIndent()
-        )
-    }
-}*/
-
-val generateGitInfo = tasks.register("generateGitInfo") {
+/* val generateGitInfo = tasks.register("generateGitInfo") {
     val outputDir: DirectoryProperty = objects.directoryProperty()
     val rootDir = project.rootDir
     outputDir.set(layout.buildDirectory.dir("generated/gitInfo"))
@@ -100,6 +65,34 @@ androidComponents {
             }
         )
     }
+} */
+
+val generateGitHashTxt = tasks.register("generateGitHashTxt") {
+	doLast {
+		val root = project.rootDir
+		val headFile = File(root, ".git/HEAD")
+		val hash = try {
+			val head = headFile.readText().trim()
+			if (head.startsWith("ref:")) {
+				val ref = head.removePrefix("ref: ").trim()
+				File(root, ".git/$ref").readText().trim()
+			} else head
+		} catch (_: Throwable) {
+			""
+		}
+
+		val outFile = layout.buildDirectory.file("generated/git/hash.txt").get().asFile
+		outFile.parentFile.mkdirs()
+		outFile.writeText(hash)
+	}
+}
+
+androidComponents.onVariants { variant ->
+	variant.artifacts.use(generateGitHashTxt)
+		.wiredWithFiles(
+			{ generateGitHashTxt.get().outputs.files.singleFile },
+			{ out -> out }
+		)
 }
 
 android {
@@ -303,7 +296,6 @@ dependencies {
 }
 
 tasks.register<Jar>("androidSourcesJar") {
-    // dependsOn("generateGitInfo")
     archiveClassifier.set("sources")
     from(android.sourceSets.getByName("main").java.directories) // Full Sources
 }
@@ -334,7 +326,7 @@ tasks.register<Jar>("makeJar") {
 }
 
 tasks.withType<KotlinJvmCompile> {
-    dependsOn(generateGitInfo)
+    // dependsOn(generateGitInfo)
     compilerOptions {
         jvmTarget.set(javaTarget)
         jvmDefault.set(JvmDefaultMode.ENABLE)
