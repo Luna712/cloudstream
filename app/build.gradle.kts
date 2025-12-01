@@ -77,7 +77,8 @@ val generateGitInfo = tasks.register("generateGitInfo") {
             "" // Just return an empty string if any exception occurs
         }
 
-        outputDir.file("GitInfo.kt").asFile.writeText(
+        outputDir.mkdirs()
+        outputDir.file("GitInfo.kt").writeText(
             """
             package com.lagradost.cloudstream3
 
