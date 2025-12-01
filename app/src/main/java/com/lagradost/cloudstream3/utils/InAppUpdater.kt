@@ -180,7 +180,7 @@ class InAppUpdater {
 
             Log.d(LOG_TAG, "Fetched GitHub tag: ${tagResponse.githubObject.sha.take(7)}")
 
-            val shouldUpdate = GitInfo.HASH != tagResponse.githubObject.sha.trim().take(7)
+            val shouldUpdate = GitInfo.hash(this) != tagResponse.githubObject.sha.trim().take(7)
 
             return if (foundAsset != null) {
                 Update(
