@@ -49,9 +49,10 @@ val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
     }
 }*/
 
-val generateGitInfo by tasks.registering {
-    val outputDir: DirectoryProperty = objects.directoryProperty()
-    outputDir.set(layout.buildDirectory.dir("generated/gitInfo"))
+val gitInfoDir = File(buildDir, "generated/source/gitInfo")
+
+val generateGitInfo = tasks.register("generateGitInfo") {
+    val outputDir = gitInfoDir
     outputs.dir(outputDir)
 
     doLast {
@@ -86,8 +87,19 @@ androidComponents {
     onVariants { variant ->
         variant.sources.java?.addGeneratedSourceDirectory(
             generateGitInfo,
-            layout.buildDirectory.dir("generated/gitInfo").get()
+            TaskBasedDirectoryProperty(generateGitInfo, gitInfoDir)
         )
+    }
+}
+
+class TaskBasedDirectoryProperty(
+    private val task: TaskProvider<*>,
+    private val dirProvider: Provider<Directory>
+) : (Task) -> DirectoryProperty {
+    override fun invoke(t: Task): DirectoryProperty {
+        return t.project.objects.directoryProperty().apply {
+            set(dirProvider)
+        }
     }
 }
 
