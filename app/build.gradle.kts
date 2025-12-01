@@ -50,7 +50,8 @@ val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 }*/
 
 val generateGitInfo by tasks.registering {
-    val outputDir: DirectoryProperty = layout.buildDirectory.dir("generated/gitInfo")
+    val outputDir: DirectoryProperty = objects.directoryProperty()
+    outputDir.set(layout.buildDirectory.dir("generated/gitInfo"))
     outputs.dir(outputDir)
 
     doLast {
@@ -85,7 +86,7 @@ androidComponents {
     onVariants { variant ->
         variant.sources.java?.addGeneratedSourceDirectory(
             generateGitInfo,
-            { task -> task.layout.buildDirectory.dir("generated/gitInfo") }
+            { task -> task.outputs.files.singleDirectory }
         )
     }
 }
