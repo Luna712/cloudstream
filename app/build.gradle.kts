@@ -67,32 +67,37 @@ androidComponents {
     }
 } */
 
-val generateGitHashTxt = tasks.register("generateGitHashTxt") {
-	doLast {
-		val root = project.rootDir
-		val headFile = File(root, ".git/HEAD")
-		val hash = try {
-			val head = headFile.readText().trim()
-			if (head.startsWith("ref:")) {
-				val ref = head.removePrefix("ref: ").trim()
-				File(root, ".git/$ref").readText().trim()
-			} else head
-		} catch (_: Throwable) {
-			""
-		}
-
-		val outFile = layout.buildDirectory.file("generated/git/hash.txt").get().asFile
-		outFile.parentFile.mkdirs()
-		outFile.writeText(hash)
-	}
-}
-
 androidComponents.onVariants { variant ->
-	variant.artifacts.use(generateGitHashTxt)
+	val taskName = "generate${variant.name.capitalize()}GitHash"
+	val outputFile = layout.buildDirectory
+		.file("generated/git/${variant.name}/git-hash.txt")
+
+	val generateGitHash = tasks.register(taskName) {
+		outputs.file(outputFile)
+
+		doLast {
+			val head = file(".git/HEAD")
+			val hash = if (head.exists()) {
+				val ref = head.readText().trim()
+				if (ref.startsWith("ref:")) {
+					val path = ".git/" + ref.removePrefix("ref:").trim()
+					file(path).takeIf { it.exists() }?.readText()?.trim()
+				} else ref
+			} else "unknown"
+
+			outputFile.get().asFile.apply {
+				parentFile.mkdirs()
+				writeText(hash ?: "unknown")
+			}
+		}
+	}
+
+	variant.artifacts.use(generateGitHash)
 		.wiredWithFiles(
-			{ generateGitHashTxt.get().outputs.files.singleFile },
-			{ out -> out }
+			{ outputFile },
+			{ it }
 		)
+		.toAppendTo(gitInfo)
 }
 
 android {
