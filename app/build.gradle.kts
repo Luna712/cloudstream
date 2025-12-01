@@ -14,7 +14,7 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
-tasks.register("generateGitInfo") {
+/*tasks.register("generateGitInfo") {
     val outputDirectory = project.layout.projectDirectory.dir("src/main/java/com/lagradost/cloudstream3")
     val rootDir = project.rootDir
     outputs.dir(outputDirectory)
@@ -46,6 +46,51 @@ tasks.register("generateGitInfo") {
             }
             """.trimIndent()
         )
+    }
+}*/
+
+val gitInfoDir = layout.buildDirectory.dir("generated/source/gitInfo")
+
+val generateGitInfo by tasks.registering {
+    outputs.dir(gitInfoDir)
+
+    doLast {
+        val root = rootDir
+        val hash = try {
+            val headFile = File(root, ".git/HEAD")
+            val fullHash = if (headFile.exists()) {
+                val headContent = headFile.readText().trim()
+                if (headContent.startsWith("ref:")) {
+                    val refPath = headContent.removePrefix("ref:").trim()
+                    val commitFile = File(root, ".git/$refPath")
+                    if (commitFile.exists()) commitFile.readText().trim() else ""
+                } else {
+                    headContent // detached HEAD contains commit directly
+                }
+            } else ""
+            fullHash.take(7)
+        } catch (_: Throwable) {
+            ""
+        }
+
+        val outFile = gitInfoDir.get().file("GitInfo.kt").asFile
+        outFile.parentFile.mkdirs()
+        outFile.writeText(
+            """
+            package com.lagradost.cloudstream3
+
+            object GitInfo {
+                const val HASH = "$hash"
+            }
+            """.trimIndent()
+        )
+    }
+}
+
+kotlin {
+    sourceSets {
+        val main by getting
+        main.kotlin.srcDir(gitInfoDir)
     }
 }
 
