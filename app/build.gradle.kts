@@ -153,7 +153,7 @@ androidComponents.onVariants { variant ->
 
 	val mergeAssetsTaskName = "merge${variantNameCapitalized}Assets"
 	tasks.findByName(mergeAssetsTaskName)?.let { mergeTask ->
-		mergeTask.configure {
+		(mergeTask as Task).configure {
 			dependsOn(generateGitHash)
 
 			doLast {
