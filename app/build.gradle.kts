@@ -84,8 +84,8 @@ val generateGitInfo by tasks.registering {
 androidComponents {
     onVariants { variant ->
         variant.sources.java?.addGeneratedSourceDirectory(
-            generateGitInfo.flatMap { it.layout.outputDirectory },
-            generateGitInfo
+            generateGitInfo,
+            generateGitInfo.flatMap { it.layout.outputDirectory }
         )
     }
 }
