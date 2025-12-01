@@ -49,7 +49,7 @@ val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
     }
 }*/
 
-val gitInfoDir = layout.buildDirectory.dir("generated/gitInfo")
+/*val gitInfoDir = layout.buildDirectory.dir("generated/gitInfo")
 
 val generateGitInfo = tasks.register("generateGitInfo") {
     val outputDir = gitInfoDir
@@ -100,6 +100,55 @@ class TaskBasedDirectoryProperty(
         return t.project.objects.directoryProperty().apply {
             set(dirProvider)
         }
+    }
+}*/
+
+val gitInfoDir: Provider<Directory> = layout.buildDirectory.dir("generated/gitInfo")
+
+val generateGitInfo = tasks.register("generateGitInfo") {
+    val outputDir: DirectoryProperty = objects.directoryProperty()
+    outputDir.set(gitInfoDir)
+    outputs.dir(outputDir)
+
+    // Make the DirectoryProperty accessible from the task
+    extensions.add("outputDir", outputDir)
+
+    doLast {
+        val hash = try {
+            val headFile = file(".git/HEAD")
+            val fullHash = if (headFile.exists()) {
+                val content = headFile.readText().trim()
+                if (content.startsWith("ref:")) {
+                    val ref = content.removePrefix("ref:").trim()
+                    val commitFile = file(".git/$ref")
+                    if (commitFile.exists()) commitFile.readText().trim() else ""
+                } else content
+            } else ""
+            fullHash.take(7)
+        } catch (_: Throwable) { "" }
+
+        val outFile = outputDir.get().file("GitInfo.kt").asFile
+        outFile.parentFile.mkdirs()
+        outFile.writeText(
+            """
+            package com.lagradost.cloudstream3
+
+            object GitInfo {
+                const val HASH = "$hash"
+            }
+            """.trimIndent()
+        )
+    }
+}
+
+androidComponents {
+    onVariants { variant ->
+        variant.sources.java?.addGeneratedSourceDirectory(
+            generateGitInfo,
+            wiredWith = { task ->
+                (task.extensions.getByName("outputDir") as DirectoryProperty)
+            }
+        )
     }
 }
 
