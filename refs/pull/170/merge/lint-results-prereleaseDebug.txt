@@ -105,23 +105,6 @@
    Similarly, you can use tools:targetApi="11" in an XML file to indicate that
    the element will only be inflated in an adequate context.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt:185: Hint: The lambda argument ({ c -> c.isWhitespace() }) is unnecessary [TrimLambda]
-                    .trim { c -> c.isWhitespace() }
-                          ~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt:189: Hint: The lambda argument ({ c -> c.isWhitespace() }) is unnecessary [TrimLambda]
-                            .trim { c -> c.isWhitespace() }
-                                  ~~~~~~~~~~~~~~~~~~~~~~~~~
-
-   Explanation for issues of type "TrimLambda":
-   The Kotlin standard library trim() call takes an optional lambda to specify
-   which characters are considered whitespace.
-
-   When converting Java code to Kotlin code, the converter will convert calls
-   for Java's s.trim() into s.trim() { it <= ' ' }. This preserves the exact
-   semantics of the Java code, but is likely not what you want: the default in
-   Kotlin uses a better definition of what constitutes a whitespace character
-   (Char::isWhitespace) and also results in less bytecode at the call-site.
-
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/account_edit_dialog.xml:53: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
                 android:foreground="@drawable/outline_drawable_forced_round"
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2553,10 +2536,10 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/HeaderViewDecoration.kt:15: Warning: Use the KTX extension function Canvas.withSave instead? [UseKtx]
                 c.save()
                 ~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt:321: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt:314: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
                                             settingsManager.edit()
                                             ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt:360: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt:353: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
                                         settingsManager.edit().putString(
                                         ~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/MainActivity.kt:346: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
@@ -3150,4 +3133,4 @@ class SSLTrustManager : X509TrustManager {
    the left bitmask. Therefore, you can use gravity="start" rather than
    gravity="left|start".)
 
-45 errors, 788 warnings, 3 hints
+45 errors, 788 warnings, 1 hint

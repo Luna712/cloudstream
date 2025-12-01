@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 45 errors, 788 warnings and 3 hints</span>
+      <span class="mdl-layout-title">Lint Report: 45 errors, 788 warnings and 1 hint</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Mon Dec 01 19:36:32 UTC 2025 by AGP (9.0.0-beta03)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Mon Dec 01 19:48:06 UTC 2025 by AGP (9.0.0-beta03)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -191,7 +191,6 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#InlinedApi"><i class="material-icons warning-icon">warning</i>Using inlined constants on older versions (3)</a>
       <a class="mdl-navigation__link" href="#InternalInsetResource"><i class="material-icons warning-icon">warning</i>Using internal inset dimension resource (2)</a>
       <a class="mdl-navigation__link" href="#NewApi"><i class="material-icons error-icon">error</i>Calling new methods on older versions (5)</a>
-      <a class="mdl-navigation__link" href="#TrimLambda"><i class="material-icons warning-icon">warning</i>Unnecessary lambda with <code>trim()</code> (2)</a>
       <a class="mdl-navigation__link" href="#UnusedAttribute"><i class="material-icons warning-icon">warning</i>Attribute unused on older versions (63)</a>
       <a class="mdl-navigation__link" href="#AppBundleLocaleChanges"><i class="material-icons warning-icon">warning</i>App Bundle handling of runtime locale changes (1)</a>
       <a class="mdl-navigation__link" href="#AppLinkWarning"><i class="material-icons warning-icon">warning</i>App Link warning (1)</a>
@@ -271,9 +270,6 @@ document.getElementById(id).style.display = 'none';
 <tr>
 <td class="countColumn">5</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
 <a href="#NewApi">NewApi</a>: Calling new methods on older versions</td></tr>
-<tr>
-<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
-<a href="#TrimLambda">TrimLambda</a>: Unnecessary lambda with <code>trim()</code></td></tr>
 <tr>
 <td class="countColumn">63</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#UnusedAttribute">UnusedAttribute</a>: Attribute unused on older versions</td></tr>
@@ -769,63 +765,6 @@ To suppress this error, use the issue id "NewApi" as explained in the <a href="#
               <div class="mdl-card__actions mdl-card--border">
 <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationNewApiLink" onclick="reveal('explanationNewApi');">
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="NewApiCardLink" onclick="hideid('NewApiCard');">
-Dismiss</button>            </div>
-            </div>
-          </section><a name="TrimLambda"></a>
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="TrimLambdaCard" style="display: block;">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Unnecessary lambda with trim()</h2>
-  </div>
-              <div class="mdl-card__supporting-text">
-<div class="issue">
-<div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:185</span>: <span class="message">The lambda argument (<code>{ c -> c.isWhitespace() }</code>) is unnecessary</span><br /><pre class="errorlines">
-<span class="lineno"> 182 </span>
-<span class="lineno"> 183 </span>            <span class="keyword">val</span> shouldUpdate =
-<span class="lineno"> 184 </span>                (getString(R.string.commit_hash)
-<span class="caretline"><span class="lineno"> 185 </span>                    .trim <span class="warning">{ c -> c.isWhitespace() }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 186 </span>                    .take(<span class="number">7</span>)
-<span class="lineno"> 187 </span>                        !=
-<span class="lineno"> 188 </span>                        tagResponse.githubObject.sha
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:189</span>: <span class="message">The lambda argument (<code>{ c -> c.isWhitespace() }</code>) is unnecessary</span><br /><pre class="errorlines">
-<span class="lineno"> 186 </span>                    .take(<span class="number">7</span>)
-<span class="lineno"> 187 </span>                        !=
-<span class="lineno"> 188 </span>                        tagResponse.githubObject.sha
-<span class="caretline"><span class="lineno"> 189 </span>                            .trim <span class="warning">{ c -> c.isWhitespace() }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 190 </span>                            .take(<span class="number">7</span>))
-<span class="lineno"> 191 </span>
-<span class="lineno"> 192 </span>            <span class="keyword">return</span> <span class="keyword">if</span> (foundAsset != <span class="keyword">null</span>) {
-</pre>
-
-</div>
-<div class="metadata"><div class="explanation" id="explanationTrimLambda" style="display: none;">
-The Kotlin standard library <code>trim()</code> call takes an optional lambda to specify which characters are considered whitespace.<br/>
-<br/>
-When converting Java code to Kotlin code, the converter will convert calls for Java's <code>s.trim()</code> into <code>s.trim() { it &lt;= ' ' }</code>. This preserves the exact semantics of the Java code, but is likely not what you want: the default in Kotlin uses a better definition of what constitutes a whitespace character (<code>Char::isWhitespace</code>) and also results in less bytecode at the call-site.<br/>To suppress this error, use the issue id "TrimLambda" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
-<br/></div>
-</div>
-</div>
-<div class="chips">
-<span class="mdl-chip">
-    <span class="mdl-chip__text">TrimLambda</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Correctness</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Hint</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Priority 6/10</span>
-</span>
-</div>
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationTrimLambdaLink" onclick="reveal('explanationTrimLambda');">
-Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="TrimLambdaCardLink" onclick="hideid('TrimLambdaCard');">
 Dismiss</button>            </div>
             </div>
           </section><a name="UnusedAttribute"></a>
@@ -5705,24 +5644,24 @@ Dismiss</button>            </div>
 <span class="lineno"> 18 </span>                c.translate(<span class="number">0f</span>, top.toFloat())
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:321</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 318 </span>      ) == -<span class="number">1</span>
-<span class="lineno"> 319 </span>  ) {
-<span class="lineno"> 320 </span>      <span class="keyword">if</span> (isMiUi()) <span class="comment">// Set to legacy if using miui</span>
-<span class="caretline"><span class="lineno"> 321 </span>          <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 322 </span>              .putInt(getString(R.string.apk_installer_key), <span class="number">1</span>)
-<span class="lineno"> 323 </span>              .apply()
-<span class="lineno"> 324 </span>  }
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:314</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
+<span class="lineno"> 311 </span>      ) == -<span class="number">1</span>
+<span class="lineno"> 312 </span>  ) {
+<span class="lineno"> 313 </span>      <span class="keyword">if</span> (isMiUi()) <span class="comment">// Set to legacy if using miui</span>
+<span class="caretline"><span class="lineno"> 314 </span>          <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 315 </span>              .putInt(getString(R.string.apk_installer_key), <span class="number">1</span>)
+<span class="lineno"> 316 </span>              .apply()
+<span class="lineno"> 317 </span>  }
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:360</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 357 </span>
-<span class="lineno"> 358 </span>              <span class="keyword">if</span> (checkAutoUpdate) {
-<span class="lineno"> 359 </span>                  setNeutralButton(R.string.skip_update) { _, _ ->
-<span class="caretline"><span class="lineno"> 360 </span>                      <span class="warning">settingsManager.edit()</span>.putString(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 361 </span>                          getString(R.string.skip_update_key),
-<span class="lineno"> 362 </span>                          update.updateNodeId ?: <span class="string">""</span>
-<span class="lineno"> 363 </span>                      ).apply()
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:353</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
+<span class="lineno"> 350 </span>
+<span class="lineno"> 351 </span>              <span class="keyword">if</span> (checkAutoUpdate) {
+<span class="lineno"> 352 </span>                  setNeutralButton(R.string.skip_update) { _, _ ->
+<span class="caretline"><span class="lineno"> 353 </span>                      <span class="warning">settingsManager.edit()</span>.putString(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 354 </span>                          getString(R.string.skip_update_key),
+<span class="lineno"> 355 </span>                          update.updateNodeId ?: <span class="string">""</span>
+<span class="lineno"> 356 </span>                      ).apply()
 </pre>
 
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/MainActivity.kt">../../src/main/java/com/lagradost/cloudstream3/MainActivity.kt</a>:346</span>: <span class="message">Use the KTX extension function <code>String.toUri</code> instead?</span><br /><pre class="errorlines">
