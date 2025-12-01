@@ -76,6 +76,7 @@ androidComponents.onVariants { variant ->
 	val taskName = "generate${variant.name.replaceFirstChar { it.uppercase() }}GitHash"
 
 	val outputFile = objects.fileProperty()
+    val rootDir = project.rootDir
 	outputFile.set(
 		layout.buildDirectory.file("generated/git/${variant.name}/git-hash.txt")
 	)
@@ -84,14 +85,23 @@ androidComponents.onVariants { variant ->
 		outputs.file(outputFile)
 
 		doLast {
-			val head = file(".git/HEAD")
-			val hash = if (head.exists()) {
-				val ref = head.readText().trim()
-				if (ref.startsWith("ref:")) {
-					val path = ".git/" + ref.removePrefix("ref:").trim()
-					file(path).takeIf { it.exists() }?.readText()?.trim()
-				} else ref
-			} else "unknown"
+			val hash = try {
+                val headFile = File(rootDir, ".git/HEAD")
+
+                // Read the commit hash from .git/HEAD
+                if (headFile.exists()) {
+                    val headContent = headFile.readText().trim()
+                    if (headContent.startsWith("ref:")) {
+                        val refPath = headContent.substring(5) // e.g., refs/heads/main
+                        val commitFile = File(rootDir, ".git/$refPath")
+                        if (commitFile.exists()) commitFile.readText().trim() else ""
+                    } else headContent // If it's a detached HEAD (commit hash directly)
+                } else {
+                    "" // If .git/HEAD doesn't exist
+                }.take(7) // Return the short commit hash
+            } catch (_: Throwable) {
+                "" // Just return an empty string if any exception occurs
+            }
 
 			outputFile.get().asFile.apply {
 				parentFile.mkdirs()
