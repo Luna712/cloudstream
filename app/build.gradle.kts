@@ -49,10 +49,8 @@ val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
     }
 }*/
 
-val gitInfoDir = layout.buildDirectory.dir("generated/gitInfo")
-
 val generateGitInfo by tasks.registering {
-    val outputDir = gitInfoDir
+    val outputDir: DirectoryProperty = layout.buildDirectory.dir("generated/gitInfo")
     outputs.dir(outputDir)
 
     doLast {
