@@ -105,7 +105,7 @@ androidComponents.onVariants { variant ->
 		}
 	}
 
-    val mergeAssetsTaskName = "merge${variantNameCapitalized}Assets"
+    val mergeAssetsTaskName = "merge${variant.name.replaceFirstChar { it.uppercase() }}Assets"
 	tasks.named(mergeAssetsTaskName).configure {
 		dependsOn(generateGitHash)
 
