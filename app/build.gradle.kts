@@ -87,13 +87,6 @@ val generateGitInfo by tasks.registering {
     }
 }
 
-kotlin {
-    sourceSets {
-        val main by getting
-        main.kotlin.srcDir(gitInfoDir)
-    }
-}
-
 android {
     @Suppress("UnstableApiUsage")
     testOptions {
@@ -116,6 +109,12 @@ android {
     }
 
     compileSdk = libs.versions.compileSdk.get().toInt()
+
+    sourceSets {
+        getByName("main") {
+            kotlin.srcDir(gitInfoDir)
+        }
+    }
 
     defaultConfig {
         applicationId = "com.lagradost.cloudstream3"
@@ -295,7 +294,7 @@ dependencies {
 }
 
 tasks.register<Jar>("androidSourcesJar") {
-    dependsOn("generateGitInfo")
+    // dependsOn("generateGitInfo")
     archiveClassifier.set("sources")
     from(android.sourceSets.getByName("main").java.directories) // Full Sources
 }
@@ -326,7 +325,7 @@ tasks.register<Jar>("makeJar") {
 }
 
 tasks.withType<KotlinJvmCompile> {
-    dependsOn("generateGitInfo")
+    dependsOn(generateGitInfo)
     compilerOptions {
         jvmTarget.set(javaTarget)
         jvmDefault.set(JvmDefaultMode.ENABLE)
