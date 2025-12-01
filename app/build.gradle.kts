@@ -214,7 +214,10 @@ android {
 
 androidComponents {
     onVariants { variant ->
-        variant.sources.java?.addGeneratedSourceDirectory(gitInfoDir)
+        variant.sources.java?.addGeneratedSourceDirectory(
+            gitInfoDir,
+            generateGitInfo
+        )
     }
 }
 
