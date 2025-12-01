@@ -25,7 +25,7 @@ kotlin {
         compileSdk = libs.versions.compileSdk.get().toInt()
         minSdk = libs.versions.minSdk.get().toInt()
 
-        withJava()
+        // withJava()
         compilerOptions {
             jvmTarget.set(javaTarget)
         }
