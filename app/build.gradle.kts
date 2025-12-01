@@ -173,6 +173,10 @@ android {
     namespace = "com.lagradost.cloudstream3"
 }
 
+tasks.named("preBuild") {
+    dependsOn("generateGitInfo")
+}
+
 dependencies {
     // Testing
     testImplementation(libs.junit)
