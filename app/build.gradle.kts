@@ -67,10 +67,18 @@ androidComponents {
     }
 } */
 
+val gitInfo = configurations.create("gitInfo") {
+	isCanBeConsumed = true
+	isCanBeResolved = false
+}
+
 androidComponents.onVariants { variant ->
-	val taskName = "generate${variant.name.capitalize()}GitHash"
-	val outputFile = layout.buildDirectory
-		.file("generated/git/${variant.name}/git-hash.txt")
+	val taskName = "generate${variant.name.replaceFirstChar { it.uppercase() }}GitHash"
+
+	val outputFile = objects.fileProperty()
+	outputFile.set(
+		layout.buildDirectory.file("generated/git/${variant.name}/git-hash.txt")
+	)
 
 	val generateGitHash = tasks.register(taskName) {
 		outputs.file(outputFile)
@@ -92,13 +100,9 @@ androidComponents.onVariants { variant ->
 		}
 	}
 
-	variant.artifacts.use(generateGitHash)
-		.wiredWithFiles(
-			{ outputFile },
-			{ it }
-		)
-		.toAppendTo(gitInfo)
+	artifacts.add("gitInfo", generateGitHash.flatMap { outputFile })
 }
+
 
 android {
     @Suppress("UnstableApiUsage")
