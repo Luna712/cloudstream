@@ -153,14 +153,12 @@ androidComponents.onVariants { variant ->
 
 	val mergeAssetsTaskName = "merge${variantNameCapitalized}Assets"
 	tasks.findByName(mergeAssetsTaskName)?.let { mergeTask ->
-		(mergeTask as Task).configure {
-			dependsOn(generateGitHash)
+		mergeTask.dependsOn(generateGitHash)
 
-			doLast {
-				val assetsDir = outputs.files.singleFile
-				val outFile = File(assetsDir, "git-hash.txt")
-				outputFile.get().asFile.copyTo(outFile, overwrite = true)
-			}
+		mergeTask.doLast {
+			val assetsDir = it.outputs.files.singleFile
+			val outFile = File(assetsDir, "git-hash.txt")
+			outputFile.get().asFile.copyTo(outFile, overwrite = true)
 		}
 	}
 }
