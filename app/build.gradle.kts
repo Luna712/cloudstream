@@ -20,18 +20,19 @@ fun getGitCommitHash(): String {
 
 tasks.register("generateGitInfo") {
     val outputDirectory = project.layout.projectDirectory.dir("src/main/java/com/lagradost/cloudstream3")
+    val rootDir = project.rootDir
     outputs.dir(outputDirectory)
 
     doLast {
         val hash = try {
-            val headFile = file("${project.rootDir}/.git/HEAD")
+            val headFile = File(rootDir, ".git/HEAD")
 
             // Read the commit hash from .git/HEAD
             if (headFile.exists()) {
                 val headContent = headFile.readText().trim()
                 if (headContent.startsWith("ref:")) {
                     val refPath = headContent.substring(5) // e.g., refs/heads/main
-                    val commitFile = file("${project.rootDir}/.git/$refPath")
+                    val commitFile = File(rootDir, ".git/$refPath")
                     if (commitFile.exists()) commitFile.readText().trim() else ""
                 } else headContent // If it's a detached HEAD (commit hash directly)
             } else {
