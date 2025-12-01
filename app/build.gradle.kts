@@ -52,7 +52,7 @@ val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 val generateGitInfo = tasks.register("generateGitInfo") {
     val outputDir: DirectoryProperty = objects.directoryProperty()
     val rootDir = project.rootDir
-    outputDir.set(layout.buildDirectory.dir("generated"))
+    outputDir.set(layout.buildDirectory.dir("generated/gitInfo"))
     outputs.dir(outputDir)
 
     // Make the DirectoryProperty accessible from the task
@@ -77,8 +77,9 @@ val generateGitInfo = tasks.register("generateGitInfo") {
             "" // Just return an empty string if any exception occurs
         }
 
-        outputDir.mkdirs()
-        outputDir.file("GitInfo.kt").writeText(
+        val outFile = outputDir.get().file("GitInfo.kt").asFile
+        outFile.parentFile.mkdirs()
+        outFile.writeText(
             """
             package com.lagradost.cloudstream3
 
