@@ -15,7 +15,7 @@ val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
 tasks.register("generateGitInfo") {
-    val outputDirectory = project.layout.projectDirectory.dir("src/main/res/values")
+    val outputDirectory = project.layout.projectDirectory.dir("src/main/java/com/lagradost/cloudstream3")
     val rootDir = project.rootDir
     outputs.dir(outputDirectory)
 
@@ -38,11 +38,12 @@ tasks.register("generateGitInfo") {
             "" // Just return an empty string if any exception occurs
         }
 
-        outputDirectory.file("donottranslate-git.xml").asFile.writeText(
+        outputDirectory.file("GitInfo.kt").asFile.writeText(
             """
-            <resources>
-                <string name="commit_hash">$hash</string>
-            </resources>
+            package com.lagradost.cloudstream3
+            object GitInfo {
+                const val HASH = "$hash"
+            }
             """.trimIndent()
         )
     }
@@ -173,10 +174,6 @@ android {
     namespace = "com.lagradost.cloudstream3"
 }
 
-tasks.named("preBuild") {
-    dependsOn("generateGitInfo")
-}
-
 dependencies {
     // Testing
     testImplementation(libs.junit)
@@ -253,7 +250,7 @@ dependencies {
 }
 
 tasks.register<Jar>("androidSourcesJar") {
-    // dependsOn("generateGitInfo")
+    dependsOn("generateGitInfo")
     archiveClassifier.set("sources")
     from(android.sourceSets.getByName("main").java.directories) // Full Sources
 }
@@ -284,7 +281,7 @@ tasks.register<Jar>("makeJar") {
 }
 
 tasks.withType<KotlinJvmCompile> {
-    // dependsOn("generateGitInfo")
+    dependsOn("generateGitInfo")
     compilerOptions {
         jvmTarget.set(javaTarget)
         jvmDefault.set(JvmDefaultMode.ENABLE)
