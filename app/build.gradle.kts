@@ -67,11 +67,6 @@ androidComponents {
     }
 } */
 
-val gitInfo = configurations.create("gitInfo") {
-	isCanBeConsumed = true
-	isCanBeResolved = false
-}
-
 androidComponents.onVariants { variant ->
 	val taskName = "generate${variant.name.replaceFirstChar { it.uppercase() }}GitHash"
 
@@ -110,7 +105,16 @@ androidComponents.onVariants { variant ->
 		}
 	}
 
-	artifacts.add("gitInfo", generateGitHash.flatMap { outputFile })
+    val mergeAssetsTaskName = "merge${variantNameCapitalized}Assets"
+	tasks.named(mergeAssetsTaskName).configure {
+		dependsOn(generateGitHash)
+
+		doLast {
+			val assetsDir = outputs.files.singleFile
+			val outFile = File(assetsDir, "git-hash.txt")
+			outputFile.get().asFile.copyTo(outFile, overwrite = true)
+		}
+	}
 }
 
 
