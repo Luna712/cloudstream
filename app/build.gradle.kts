@@ -18,7 +18,7 @@ fun getGitCommitHash(): String {
     return ""
 }
 
-val generatorTask = project.tasks.register("generator") {
+/*val generatorTask = project.tasks.register("generator") {
     val outputDirectory = project.layout.projectDirectory.dir("src/main/kotlinGen")
     outputs.dir(outputDirectory)
     val hash = project.provider {
@@ -53,7 +53,42 @@ val generatorTask = project.tasks.register("generator") {
     }
 }
 
-android.sourceSets.getByName("main").java.srcDir(generatorTask)
+android.sourceSets.getByName("main").java.srcDir(generatorTask)*/
+val generatorTask = project.tasks.register("generator") {
+	val outputDirectory = project.layout.projectDirectory.dir("src/main/java/com/lagradost/cloudstream3")
+
+	outputs.dir(outputDirectory)
+
+	val hash = project.provider {
+		try {
+			val headFile = file("${project.rootDir}/.git/HEAD")
+
+			if (headFile.exists()) {
+				val headContent = headFile.readText().trim()
+				if (headContent.startsWith("ref:")) {
+					val refPath = headContent.substring(5)
+					val commitFile = file("${project.rootDir}/.git/$refPath")
+					if (commitFile.exists()) commitFile.readText().trim() else ""
+				} else headContent
+			} else {
+				""
+			}.take(7)
+		} catch (_: Throwable) {
+			""
+		}
+	}
+
+	doLast {
+		outputDirectory.file("GitInfo.kt").asFile.writeText(
+			"""
+			package com.lagradost.cloudstream3
+            object GitInfo {
+				const val HASH = "${hash.get()}"
+			}
+			""".trimIndent()
+		)
+	}
+}
 
 android {
     @Suppress("UnstableApiUsage")
