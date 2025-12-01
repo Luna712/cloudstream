@@ -214,8 +214,7 @@ android {
 
 androidComponents {
     onVariants { variant ->
-        // Register the generated folder for this variant
-        variant.sources.java?.addGeneratedDirectory(gitInfoDir)
+        variant.sources.java?.addGeneratedSourceDirectory(gitInfoDir)
     }
 }
 
