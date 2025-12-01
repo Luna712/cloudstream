@@ -110,10 +110,9 @@ android {
 
     compileSdk = libs.versions.compileSdk.get().toInt()
 
-    sourceSets {
-        getByName("main") {
-            kotlin.srcDir(gitInfoDir)
-        }
+    applicationVariants.all { variant ->
+        val javaDir = gitInfoDir.get().asFile
+        variant.registerJavaGeneratingTask(generateGitInfo.get(), javaDir)
     }
 
     defaultConfig {
