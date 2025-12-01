@@ -19,32 +19,37 @@ fun getGitCommitHash(): String {
 }
 
 tasks.register("generateGitInfo") {
-	val outputDirectory = project.layout.projectDirectory.dir("src/main/java/com/lagradost/cloudstream3")
-	outputs.dir(outputDirectory)
+    val outputDirectory = project.layout.projectDirectory.dir("src/main/java/com/lagradost/cloudstream3")
+    outputs.dir(outputDirectory)
 
-	doLast {
-		val headFile = file("${project.rootDir}/.git/HEAD")
-		val hash = try {
-			if (headFile.exists()) {
-				val headContent = headFile.readText().trim()
-				if (headContent.startsWith("ref:")) {
-					val refPath = headContent.substring(5)
-					val commitFile = file("${project.rootDir}/.git/$refPath")
-					if (commitFile.exists()) commitFile.readText().trim()
-					else ""
-				} else headContent
-			} else ""
-		}.take(7)
+    doLast {
+        val hash = try {
+            val headFile = file("${project.rootDir}/.git/HEAD")
 
-		outputDirectory.file("GitInfo.kt").asFile.writeText(
-			"""
-			package com.lagradost.cloudstream3
-			object GitInfo {
-				const val HASH = "$hash"
-			}
-			""".trimIndent()
-		)
-	}
+            // Read the commit hash from .git/HEAD
+            if (headFile.exists()) {
+                val headContent = headFile.readText().trim()
+                if (headContent.startsWith("ref:")) {
+                    val refPath = headContent.substring(5) // e.g., refs/heads/main
+                    val commitFile = file("${project.rootDir}/.git/$refPath")
+                    if (commitFile.exists()) commitFile.readText().trim() else ""
+                } else headContent // If it's a detached HEAD (commit hash directly)
+            } else {
+                "" // If .git/HEAD doesn't exist
+            }.take(7) // Return the short commit hash
+        } catch (_: Throwable) {
+            "" // Just return an empty string if any exception occurs
+        }
+
+        outputDirectory.file("GitInfo.kt").asFile.writeText(
+            """
+            package com.lagradost.cloudstream3
+            object GitInfo {
+                const val HASH = "$hash"
+            }
+            """.trimIndent()
+        )
+    }
 }
 
 android {
@@ -152,11 +157,11 @@ android {
     }
 
     java {
-	    // Use Java 17 toolchain even if a higher JDK runs the build.
+        // Use Java 17 toolchain even if a higher JDK runs the build.
         // We still use Java 8 for now which higher JDKs have deprecated.
-	    toolchain {
-		    languageVersion.set(JavaLanguageVersion.of(libs.versions.jdkToolchain.get()))
-    	}
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(libs.versions.jdkToolchain.get()))
+        }
     }
 
     lint {
