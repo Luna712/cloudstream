@@ -110,11 +110,6 @@ android {
 
     compileSdk = libs.versions.compileSdk.get().toInt()
 
-    applicationVariants.all { variant ->
-        val javaDir = gitInfoDir.get().asFile
-        variant.registerJavaGeneratingTask(generateGitInfo.get(), javaDir)
-    }
-
     defaultConfig {
         applicationId = "com.lagradost.cloudstream3"
         minSdk = libs.versions.minSdk.get().toInt()
@@ -215,6 +210,13 @@ android {
     }
 
     namespace = "com.lagradost.cloudstream3"
+}
+
+androidComponents {
+    onVariants { variant ->
+        // Register the generated folder for this variant
+        variant.sources.java?.addGeneratedDirectory(gitInfoDir)
+    }
 }
 
 dependencies {
