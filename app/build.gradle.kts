@@ -67,7 +67,7 @@ androidComponents {
     }
 } */
 
-androidComponents.onVariants { variant ->
+/*androidComponents.onVariants { variant ->
 	val taskName = "generate${variant.name.replaceFirstChar { it.uppercase() }}GitHash"
 
 	val outputFile = objects.fileProperty()
@@ -115,8 +115,55 @@ androidComponents.onVariants { variant ->
 			outputFile.get().asFile.copyTo(outFile, overwrite = true)
 		}
 	}
-}
+}*/
 
+androidComponents.onVariants { variant ->
+	val variantNameCapitalized = variant.name.replaceFirstChar { it.uppercase() }
+
+	val taskName = "generate${variantNameCapitalized}GitHash"
+
+	val outputFile = objects.fileProperty()
+	val rootDir = project.rootDir
+	outputFile.set(layout.buildDirectory.file("generated/git/${variant.name}/git-hash.txt"))
+
+	val generateGitHash = tasks.register(taskName) {
+		outputs.file(outputFile)
+
+		doLast {
+			val hash = try {
+				val headFile = File(rootDir, ".git/HEAD")
+				if (headFile.exists()) {
+					val headContent = headFile.readText().trim()
+					if (headContent.startsWith("ref:")) {
+						val refPath = headContent.substring(5)
+						val commitFile = File(rootDir, ".git/$refPath")
+						if (commitFile.exists()) commitFile.readText().trim() else ""
+					} else headContent
+				} else ""
+			} catch (_: Throwable) {
+				""
+			}.take(7)
+
+			outputFile.get().asFile.apply {
+				parentFile.mkdirs()
+				writeText(hash.ifBlank { "unknown" })
+			}
+		}
+	}
+
+	val mergeAssetsTaskName = "merge${variantNameCapitalized}Assets"
+	tasks.findByName(mergeAssetsTaskName)?.let { mergeTask ->
+		mergeTask.configure {
+			dependsOn(generateGitHash)
+
+			doLast {
+				val assetsDir = outputs.files.singleFile
+				val outFile = File(assetsDir, "git-hash.txt")
+				outputFile.get().asFile.copyTo(outFile, overwrite = true)
+			}
+		}
+	}
+}
 
 android {
     @Suppress("UnstableApiUsage")
