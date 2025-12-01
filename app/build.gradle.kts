@@ -86,7 +86,7 @@ androidComponents {
     onVariants { variant ->
         variant.sources.java?.addGeneratedSourceDirectory(
             generateGitInfo,
-            { task -> task.outputDir }
+            layout.buildDirectory.dir("generated/gitInfo").get()
         )
     }
 }
