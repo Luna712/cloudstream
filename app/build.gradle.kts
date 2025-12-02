@@ -22,22 +22,23 @@ val generateGitHash = tasks.register("generateGitHash") {
 
     doLast {
         val hash = try {
+            // Read the commit hash from .git/HEAD
             val headFile = File(rootDir, ".git/HEAD")
             if (headFile.exists()) {
                 val headContent = headFile.readText().trim()
                 if (headContent.startsWith("ref:")) {
-                    val refPath = headContent.substring(5)
+                    val refPath = headContent.substring(5) // e.g., refs/heads/main
                     val commitFile = File(rootDir, ".git/$refPath")
                     if (commitFile.exists()) commitFile.readText().trim() else ""
-                } else headContent
-            } else ""
+                } else headContent // If it's a detached HEAD (commit hash directly)
+            } else "" // If .git/HEAD doesn't exist
         } catch (_: Throwable) {
-            ""
-        }.take(7)
+            "" // Just set to an empty string if any exception occurs
+        }.take(7) // Get the short commit hash
 
         val outFile = gitHashDir.get().file("git-hash.txt").asFile
         outFile.parentFile.mkdirs()
-        outFile.writeText(hash.ifBlank { "unknown" })
+        outFile.writeText(hash)
     }
 }
 
