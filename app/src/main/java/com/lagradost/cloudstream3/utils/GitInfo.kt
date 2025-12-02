@@ -9,7 +9,8 @@ import android.content.Context
  * configuration cache support.
  */
 object GitInfo {
-    fun Context.currentCommitHash(): String {
+    fun Context?.currentCommitHash(): String {
+        if (this == null) return "unknown"
         return try {
             assets.open("git-hash.txt")
                 .bufferedReader()
