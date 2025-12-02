@@ -56,13 +56,23 @@ tasks.withType<MergeSourceSetFolders> {
     }
 }
 
-/*androidComponents {
+androidComponents {
     beforeVariants { variant ->
-        if (variant.buildType == "debug" && variant.flavorName != "prerelease") {
-            variant.enable = false
+        when {
+            // Only use prereleaseDebug, and disable prereleaseRelease builds
+            variant.flavorName == "prerelease" && variant.buildType != "debug" -> variant.enable = false
+
+            // Only use stableRelease, and disable stableDebug builds
+            variant.flavorName == "stable" && variant.buildType != "release" -> variant.enable = false
+
+            // Disable any debug builds that are NOT prerelease (e.g., stableDebug)
+            variant.buildType == "debug" && variant.flavorName != "prerelease" -> variant.enable = false
+
+            // Disable any release builds that are NOT stable (e.g., prereleaseRelease)
+            variant.buildType == "release" && variant.flavorName != "stable" -> variant.enable = false
         }
     }
-}*/
+}
 
 android {
     @Suppress("UnstableApiUsage")
@@ -133,7 +143,6 @@ android {
         debug {
             isDebuggable = true
             applicationIdSuffix = ".debug"
-            matchingFallbacks.add("prerelease")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
