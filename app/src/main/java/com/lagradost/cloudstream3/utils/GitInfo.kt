@@ -9,16 +9,12 @@ import android.content.Context
  * configuration cache support.
  */
 object GitInfo {
-    fun Context?.currentCommitHash(): String {
-        if (this == null) return "unknown"
-        return try {
-            assets.open("git-hash.txt")
-                .bufferedReader()
-                .readText()
-                .trim()
-        } catch (_: Exception) {
-            // Fallback if something went wrong.
-            "unknown"
-        }
+    fun Context.currentCommitHash(): String = try {
+        assets.open("git-hash.txt")
+            .bufferedReader()
+            .readText()
+            .trim()
+    } catch (_: Exception) {
+        ""
     }
 }
