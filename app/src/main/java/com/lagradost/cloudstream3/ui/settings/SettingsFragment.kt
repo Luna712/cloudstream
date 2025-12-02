@@ -248,7 +248,7 @@ class SettingsFragment : BaseFragment<MainSettingsBinding>(
         }
 
         val appVersion = getString(R.string.app_version)
-        val commitHash = activity.currentCommitHash()
+        val commitHash = activity?.currentCommitHash() ?: ""
         val buildTimestamp = SimpleDateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG,
             Locale.getDefault()
         ).apply { timeZone = TimeZone.getTimeZone("UTC")
