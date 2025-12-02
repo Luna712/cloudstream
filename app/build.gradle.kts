@@ -15,7 +15,7 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
-val generateGitHash = tasks.register("generateGitHash") {
+tasks.register("generateGitHash") {
     val gitHashDir = layout.buildDirectory.dir("generated/git")
     val rootDir = project.rootDir
     outputs.dir(gitHashDir)
@@ -44,7 +44,7 @@ val generateGitHash = tasks.register("generateGitHash") {
 
 tasks.withType<MergeSourceSetFolders> {
     if (name.contains("Assets", ignoreCase = true)) {
-        dependsOn(generateGitHash)
+        dependsOn("generateGitHash")
         val gitHashDir = layout.buildDirectory.dir("generated/git")
 
         doLast {
