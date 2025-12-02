@@ -132,10 +132,11 @@ android {
             } else {
                 logger.warn("No prerelease signing config!")
             }
+            versionNameSuffix = "-PRE"
             buildConfigField(
                 "String",
                 "APP_VERSION",
-                "${defaultConfig.versionName}-PRE"
+                "${defaultConfig.versionName}-$versionNameSuffix"
             )
             versionCode = (System.currentTimeMillis() / 60000).toInt()
         }
