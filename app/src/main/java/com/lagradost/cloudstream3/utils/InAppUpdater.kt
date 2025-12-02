@@ -272,8 +272,6 @@ class InAppUpdater {
                             } // Sanitized because it looks cluttered
 
                             builder.setMessage(sanitizedChangelog)
-
-                            val context = this
                             builder.apply {
                                 setPositiveButton(R.string.update) { _, _ ->
                                     // Forcefully start any delayed installations
@@ -294,31 +292,31 @@ class InAppUpdater {
                                         }
                                     }
 
-                                    val currentInstaller =
-                                        settingsManager.getInt(
-                                            getString(R.string.apk_installer_key),
-                                            0
-                                        )
+                                    val currentInstaller = settingsManager.getInt(
+                                        getString(R.string.apk_installer_key),
+                                        0
+                                    )
 
                                     when (currentInstaller) {
                                         // New method
                                         0 -> {
                                             val intent = PackageInstallerService.Companion.getIntent(
-                                                context,
+                                                this@runAutoUpdate,
                                                 update.updateURL
                                             )
-                                            ContextCompat.startForegroundService(context, intent)
+                                            ContextCompat.startForegroundService(this@runAutoUpdate, intent)
                                         }
                                         // Legacy
                                         1 -> {
                                             ioSafe {
-                                                if (!downloadUpdate(update.updateURL))
+                                                if (!downloadUpdate(update.updateURL)) {
                                                     runOnUiThread {
                                                         showToast(
                                                             R.string.download_failed,
                                                             Toast.LENGTH_LONG
                                                         )
                                                     }
+                                                }
                                             }
                                         }
                                     }
