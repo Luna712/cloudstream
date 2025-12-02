@@ -249,12 +249,12 @@ dependencies {
 
     implementation(project(":library") {
         // There does not seem to be a good way of getting the android flavor.
-        val isDebug = gradle.startParameter.taskRequests
-            .flatMap { it.args }
-            .any { it.contains("Debug") }
-gradle.startParameter.taskRequests.forEach { task ->
-    println("Task request args($isDebug): ${task.args}")
-}
+        val isDebug = gradle.startParameter.taskRequests.any { task ->
+            task.args.any { arg ->
+                arg.contains("debug", true)
+            }
+        }
+        println("$isDebug")
 
         this.extra.set("isDebug", isDebug)
     })
