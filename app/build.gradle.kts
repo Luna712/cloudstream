@@ -68,8 +68,8 @@ androidComponents {
     }
 } */
 
-val gitHashDir = layout.buildDirectory.dir("generated/git")
 val generateGitHash = tasks.register("generateGitHash") {
+    val gitHashDir = layout.buildDirectory.dir("generated/git")
     val rootDir = project.rootDir
     outputs.dir(gitHashDir)
 
@@ -100,6 +100,7 @@ tasks.withType<MergeSourceSetFolders> {
         name.contains("merge", ignoreCase = true)
     ) {
         dependsOn(generateGitHash)
+        val gitHashDir = layout.buildDirectory.dir("generated/git")
 
         doLast {
             val assetsDir = outputs.files.singleFile
