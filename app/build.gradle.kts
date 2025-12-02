@@ -163,8 +163,8 @@ androidComponents {
 	}
 }*/
 
+val gitHashFile = layout.buildDirectory.file("generated/git/git-hash.txt")
 val generateGitHash = tasks.register("generateGitHash") {
-    val gitHashFile = layout.buildDirectory.file("generated/git/git-hash.txt")
     val rootDir = project.rootDir
 	outputs.file(gitHashFile)
 
