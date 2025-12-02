@@ -249,7 +249,7 @@ dependencies {
 
     implementation(project(":library") {
         // There does not seem to be a good way of getting the android flavor.
-        val isDebug = gradle.startParameter.taskRequests.any { task ->
+        val isDebug = gradle.startParameter.taskRequests.any { taskRequest ->
             (taskRequest.task?.path?.contains("debug", true) == true) ||
             taskRequest.args.any { arg -> arg.contains("debug", true) }
         }
