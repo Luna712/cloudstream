@@ -8,7 +8,7 @@ plugins {
 }
 
 allprojects {
-    extra.set("isDebug"] = gradle.startParameter.taskRequests.any { task ->
+    extra("isDebug"] = gradle.startParameter.taskRequests.any { task ->
         task.args.any { arg ->
             arg.contains("debug", ignoreCase = true)
         }
