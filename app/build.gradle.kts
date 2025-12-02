@@ -252,6 +252,9 @@ dependencies {
         val isDebug = gradle.startParameter.taskRequests
             .flatMap { it.args }
             .any { it.contains("Debug") }
+gradle.startParameter.taskRequests.forEach { task ->
+    println("Task request args($isDebug): ${task.args}")
+}
 
         this.extra.set("isDebug", isDebug)
     })
