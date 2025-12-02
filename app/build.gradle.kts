@@ -56,6 +56,14 @@ tasks.withType<MergeSourceSetFolders> {
     }
 }
 
+androidComponents {
+    beforeVariants { variant ->
+        if (variant.buildType == "debug" && variant.flavorName != "prerelease") {
+            variant.enable = false
+        }
+    }
+}
+
 android {
     @Suppress("UnstableApiUsage")
     testOptions {
