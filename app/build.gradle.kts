@@ -286,7 +286,6 @@ tasks.register<Jar>("makeJar") {
 }
 
 tasks.withType<KotlinJvmCompile> {
-    // dependsOn(generateGitInfo)
     compilerOptions {
         jvmTarget.set(javaTarget)
         jvmDefault.set(JvmDefaultMode.ENABLE)
