@@ -11031,7 +11031,7 @@
         errorLine2="                                            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt"
-            line="314"
+            line="315"
             column="45"/>
     </issue>
 
@@ -11047,7 +11047,7 @@
         errorLine2="                                        ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt"
-            line="353"
+            line="354"
             column="41"/>
     </issue>
 
