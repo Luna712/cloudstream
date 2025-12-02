@@ -72,7 +72,7 @@ buildkonfig {
     exposeObjectWithName = "BuildConfig"
 
     defaultConfigs {
-        println(kotlin.runCatching { extra.get("isDebug") }.getOrNull().toString())
+        println(kotlin.runCatching { this.extra.get("isDebug") }.getOrNull().toString())
         val isDebug = kotlin.runCatching { extra.get("isDebug") }.getOrNull() == true
         if (isDebug) {
             logger.quiet("Compiling library with debug flag")
