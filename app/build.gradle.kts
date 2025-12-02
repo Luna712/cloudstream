@@ -180,9 +180,6 @@ android {
 
     namespace = "com.lagradost.cloudstream3"
 }
-gradle.startParameter.taskRequests.forEach { task ->
-    println("Task request args: ${task.args}")
-}
 
 dependencies {
     // Testing
@@ -254,7 +251,6 @@ dependencies {
                 arg.contains("debug", true)
             }
         }
-        println("$isDebug")
 
         this.extra.set("isDebug", isDebug)
     })
