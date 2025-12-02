@@ -15,59 +15,6 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
-/* val generateGitInfo = tasks.register("generateGitInfo") {
-    val outputDir: DirectoryProperty = objects.directoryProperty()
-    val rootDir = project.rootDir
-    outputDir.set(layout.buildDirectory.dir("generated/gitInfo"))
-    outputs.dir(outputDir)
-
-    // Make the DirectoryProperty accessible from the task
-    extensions.add("outputDir", outputDir)
-
-    doLast {
-        val hash = try {
-            val headFile = File(rootDir, ".git/HEAD")
-
-            // Read the commit hash from .git/HEAD
-            if (headFile.exists()) {
-                val headContent = headFile.readText().trim()
-                if (headContent.startsWith("ref:")) {
-                    val refPath = headContent.substring(5) // e.g., refs/heads/main
-                    val commitFile = File(rootDir, ".git/$refPath")
-                    if (commitFile.exists()) commitFile.readText().trim() else ""
-                } else headContent // If it's a detached HEAD (commit hash directly)
-            } else {
-                "" // If .git/HEAD doesn't exist
-            }.take(7) // Return the short commit hash
-        } catch (_: Throwable) {
-            "" // Just return an empty string if any exception occurs
-        }
-
-        val outFile = outputDir.get().file("GitInfo.kt").asFile
-        outFile.parentFile.mkdirs()
-        outFile.writeText(
-            """
-            package com.lagradost.cloudstream3
-
-            object GitInfo {
-                const val HASH = "$hash"
-            }
-            """.trimIndent()
-        )
-    }
-}
-
-androidComponents {
-    onVariants { variant ->
-        variant.sources.java?.addGeneratedSourceDirectory(
-            generateGitInfo,
-            { task ->
-                (task.extensions.getByName("outputDir") as DirectoryProperty)
-            }
-        )
-    }
-} */
-
 val generateGitHash = tasks.register("generateGitHash") {
     val gitHashDir = layout.buildDirectory.dir("generated/git")
     val rootDir = project.rootDir
@@ -95,10 +42,7 @@ val generateGitHash = tasks.register("generateGitHash") {
 }
 
 tasks.withType<MergeSourceSetFolders> {
-    if (
-        name.contains("Assets", ignoreCase = true) &&
-        name.contains("merge", ignoreCase = true)
-    ) {
+    if (name.contains("Assets", ignoreCase = true)) {
         dependsOn(generateGitHash)
         val gitHashDir = layout.buildDirectory.dir("generated/git")
 
