@@ -31,7 +31,6 @@ import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
 
-
 class InAppUpdater {
     companion object {
         private const val GITHUB_USER_NAME = "recloudstream"
@@ -77,7 +76,8 @@ class InAppUpdater {
         private suspend fun Activity.getAppUpdate(): Update {
             return try {
                 val settingsManager = PreferenceManager.getDefaultSharedPreferences(this)
-                if (settingsManager.getBoolean(
+                if (
+                    settingsManager.getBoolean(
                         getString(R.string.prerelease_update_key),
                         resources.getBoolean(R.bool.is_prerelease)
                     )
@@ -95,56 +95,44 @@ class InAppUpdater {
         private suspend fun Activity.getReleaseUpdate(): Update {
             val url = "https://api.github.com/repos/$GITHUB_USER_NAME/$GITHUB_REPO/releases"
             val headers = mapOf("Accept" to "application/vnd.github.v3+json")
-            val response =
-                parseJson<List<GithubRelease>>(
-                    app.get(
-                        url,
-                        headers = headers
-                    ).text
-                )
+            val response = parseJson<List<GithubRelease>>(
+                app.get(url, headers = headers).text
+            )
 
             val versionRegex = Regex("""(.*?((\d+)\.(\d+)\.(\d+))\.apk)""")
             val versionRegexLocal = Regex("""(.*?((\d+)\.(\d+)\.(\d+)).*)""")
-            /*
-            val releases = response.map { it.assets }.flatten()
-                .filter { it.content_type == "application/vnd.android.package-archive" }
-            val found =
-                releases.sortedWith(compareBy {
-                    versionRegex.find(it.name)?.groupValues?.get(2)
-                }).toList().lastOrNull()*/
-            val foundList =
-                response.filter { rel ->
-                    !rel.prerelease
-                }.sortedWith(compareBy { release ->
-                    release.assets.firstOrNull { it.contentType == "application/vnd.android.package-archive" }?.name?.let { it1 ->
-                            versionRegex.find(
-                                it1
-                            )?.groupValues?.let {
-                                it[3].toInt() * 100_000_000 + it[4].toInt() * 10_000 + it[5].toInt()
-                            }
-                        }
-                }).toList()
+            val foundList = response.filter { rel ->
+                !rel.prerelease
+            }.sortedWith(compareBy { release ->
+                release.assets.firstOrNull { it.contentType == "application/vnd.android.package-archive" }?.name?.let { it1 ->
+                    versionRegex.find(
+                        it1
+                    )?.groupValues?.let {
+                        it[3].toInt() * 100_000_000 + it[4].toInt() * 10_000 + it[5].toInt()
+                    }
+                }
+            }).toList()
+
             val found = foundList.lastOrNull()
             val foundAsset = found?.assets?.getOrNull(0)
             val currentVersion = packageName?.let {
-                packageManager.getPackageInfo(
-                    it,
-                    0
-                )
+                packageManager.getPackageInfo(it, 0)
             }
 
             foundAsset?.name?.let { assetName ->
                 val foundVersion = versionRegex.find(assetName)
                 val shouldUpdate =
-                    if (foundAsset.browserDownloadUrl != "" && foundVersion != null) currentVersion?.versionName?.let { versionName ->
-                        versionRegexLocal.find(versionName)?.groupValues?.let {
-                            it[3].toInt() * 100_000_000 + it[4].toInt() * 10_000 + it[5].toInt()
-                        }
-                    }?.compareTo(
-                        foundVersion.groupValues.let {
-                            it[3].toInt() * 100_000_000 + it[4].toInt() * 10_000 + it[5].toInt()
-                        }
-                    )!! < 0 else false
+                    if (foundAsset.browserDownloadUrl != "" && foundVersion != null) {
+                        currentVersion?.versionName?.let { versionName ->
+                            versionRegexLocal.find(versionName)?.groupValues?.let {
+                                it[3].toInt() * 100_000_000 + it[4].toInt() * 10_000 + it[5].toInt()
+                            }
+                        }?.compareTo(
+                            foundVersion.groupValues.let {
+                                it[3].toInt() * 100_000_000 + it[4].toInt() * 10_000 + it[5].toInt()
+                            }
+                        )!! < 0
+                    } else false
                 return if (foundVersion != null) {
                     Update(
                         shouldUpdate,
@@ -153,49 +141,42 @@ class InAppUpdater {
                         found.body,
                         found.nodeId
                     )
-                } else {
-                    Update(false, null, null, null, null)
-                }
+                } else Update(false, null, null, null, null)
             }
+
             return Update(false, null, null, null, null)
         }
 
         private suspend fun Activity.getPreReleaseUpdate(): Update {
-            val tagUrl =
-                "https://api.github.com/repos/$GITHUB_USER_NAME/$GITHUB_REPO/git/ref/tags/pre-release"
+            val tagUrl = "https://api.github.com/repos/$GITHUB_USER_NAME/$GITHUB_REPO/git/ref/tags/pre-release"
             val releaseUrl = "https://api.github.com/repos/$GITHUB_USER_NAME/$GITHUB_REPO/releases"
             val headers = mapOf("Accept" to "application/vnd.github.v3+json")
-            val response =
-                parseJson<List<GithubRelease>>(app.get(releaseUrl, headers = headers).text)
+            val response = parseJson<List<GithubRelease>>(
+                app.get(releaseUrl, headers = headers).text
+            )
 
-            val found =
-                response.lastOrNull { rel ->
-                    rel.prerelease || rel.tagName == "pre-release"
-                }
+            val found = response.lastOrNull { rel ->
+                rel.prerelease || rel.tagName == "pre-release"
+            }
+
             val foundAsset = found?.assets?.filter { it ->
                 it.contentType == "application/vnd.android.package-archive"
             }?.getOrNull(0)
 
-            val tagResponse =
-                parseJson<GithubTag>(app.get(tagUrl, headers = headers).text)
-
-            Log.d(LOG_TAG, "Fetched GitHub tag: ${tagResponse.githubObject.sha.take(7)}")
-
-            val shouldUpdate = currentCommitHash() != tagResponse.githubObject.sha.trim().take(7)
-
             return if (foundAsset != null) {
+                val tagResponse = parseJson<GithubTag>(app.get(tagUrl, headers = headers).text)
+                val updateCommitHash = tagResponse.githubObject.sha.trim().take(7)
+                Log.d(LOG_TAG, "Fetched GitHub tag: $updateCommitHash")
+
                 Update(
-                    shouldUpdate,
+                    currentCommitHash() != updateCommitHash,
                     foundAsset.browserDownloadUrl,
-                    tagResponse.githubObject.sha.take(10),
+                    updateCommitHash,
                     found.body,
                     found.nodeId
                 )
-            } else {
-                Update(false, null, null, null, null)
-            }
+            } else Update(false, null, null, null, null)
         }
-
 
         private val updateLock = Mutex()
 
@@ -208,9 +189,7 @@ class InAppUpdater {
                 // Delete all old updates
                 this.cacheDir.listFiles()?.filter {
                     it.name.startsWith(appUpdateName) && it.extension == appUpdateSuffix
-                }?.forEach {
-                    deleteFileOnExit(it)
-                }
+                }?.forEach { deleteFileOnExit(it) }
 
                 val downloadedFile = File.createTempFile(appUpdateName, ".$appUpdateSuffix")
                 val sink: BufferedSink = downloadedFile.sink().buffer()
@@ -220,8 +199,10 @@ class InAppUpdater {
                     sink.close()
                     openApk(this, Uri.fromFile(downloadedFile))
                 }
+
                 return true
             } catch (e: Exception) {
+                logError(e)
                 return false
             }
         }
@@ -259,13 +240,11 @@ class InAppUpdater {
                 )
             ) {
                 val update = getAppUpdate()
-                if (
-                    update.shouldUpdate &&
-                        update.updateURL != null) {
-
+                if (update.shouldUpdate && update.updateURL != null) {
                     // Check if update should be skipped
-                    val updateNodeId =
-                        settingsManager.getString(getString(R.string.skip_update_key), "")
+                    val updateNodeId = settingsManager.getString(
+                        getString(R.string.skip_update_key), ""
+                    )
 
                     // Skips the update if its an automatic update and the update is skipped
                     // This allows updating manually
@@ -276,10 +255,7 @@ class InAppUpdater {
                     runOnUiThread {
                         try {
                             val currentVersion = packageName?.let {
-                                packageManager.getPackageInfo(
-                                    it,
-                                    0
-                                )
+                                packageManager.getPackageInfo(it, 0)
                             }
 
                             val builder = AlertDialog.Builder(this, R.style.AlertDialogCustom)
@@ -311,10 +287,11 @@ class InAppUpdater {
                                             -1
                                         ) == -1
                                     ) {
-                                        if (isMiUi()) // Set to legacy if using miui
+                                        if (isMiUi()) { // Set to legacy if using miui
                                             settingsManager.edit()
                                                 .putInt(getString(R.string.apk_installer_key), 1)
                                                 .apply()
+                                        }
                                     }
 
                                     val currentInstaller =
@@ -380,7 +357,7 @@ class InAppUpdater {
                 BufferedReader(InputStreamReader(p.inputStream), 1024).use {
                     it.readLine()
                 }
-            } catch (ex: IOException) {
+            } catch (_: IOException) {
                 null
             }
         }
