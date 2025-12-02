@@ -1,4 +1,5 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import com.android.build.gradle.tasks.MergeSourceSetFolders
 import org.jetbrains.dokka.gradle.engine.parameters.KotlinPlatform
 import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
 import org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode
@@ -70,39 +71,43 @@ androidComponents {
 val gitHashDir = layout.buildDirectory.dir("generated/git")
 val generateGitHash = tasks.register("generateGitHash") {
     val rootDir = project.rootDir
-	outputs.dir(gitHashDir)
+    outputs.dir(gitHashDir)
 
-	doLast {
-		val headFile = File(rootDir, ".git/HEAD")
-		val hash = try {
-			if (headFile.exists()) {
-				val headContent = headFile.readText().trim()
-				if (headContent.startsWith("ref:")) {
-					val refPath = headContent.substring(5)
-					val commitFile = File(rootDir, ".git/$refPath")
-					if (commitFile.exists()) commitFile.readText().trim() else ""
-				} else headContent
-			} else ""
-		} catch (_: Throwable) {
-			""
-		}.take(7)
+    doLast {
+        val hash = try {
+            val headFile = File(rootDir, ".git/HEAD")
+            if (headFile.exists()) {
+                val headContent = headFile.readText().trim()
+                if (headContent.startsWith("ref:")) {
+                    val refPath = headContent.substring(5)
+                    val commitFile = File(rootDir, ".git/$refPath")
+                    if (commitFile.exists()) commitFile.readText().trim() else ""
+                } else headContent
+            } else ""
+        } catch (_: Throwable) {
+            ""
+        }.take(7)
 
         val outFile = gitHashDir.get().file("git-hash.txt").asFile
         outFile.parentFile.mkdirs()
         outFile.writeText(hash.ifBlank { "unknown" })
-	}
+    }
 }
 
-tasks.withType<com.android.build.gradle.tasks.MergeSourceSetFolders> {
-	if (name.contains("Assets", ignoreCase = true)) {
-		dependsOn(generateGitHash)
+tasks.withType<MergeSourceSetFolders> {
+    if (
+        name.contains("Assets", ignoreCase = true) &&
+        name.contains("merge", ignoreCase = true)
+    ) {
+        dependsOn(generateGitHash)
 
-		doLast {
-			val assetsDir = outputs.files.singleFile
-			val outFile = File(assetsDir, "git-hash.txt")
-			gitHashDir.get().file("git-hash.txt").asFile.copyTo(outFile, overwrite = true)
-		}
-	}
+        doLast {
+            val assetsDir = outputs.files.singleFile
+            val gitHashFile = gitHashDir.get().file("git-hash.txt").asFile
+            val outFile = File(assetsDir, "git-hash.txt")
+            gitHashFile.copyTo(outFile, overwrite = true)
+        }
+    }
 }
 
 android {
