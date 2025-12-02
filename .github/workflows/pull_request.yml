@@ -1,4 +1,3 @@
-
 name: Artifact Build
 
 on: [pull_request]
