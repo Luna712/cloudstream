@@ -125,7 +125,7 @@ android {
         create("prerelease") {
             dimension = "state"
             resValue("bool", "is_prerelease", "true")
-            // buildConfigField("boolean", "BETA", "true")
+            buildConfigField("boolean", "BETA", "true")
             applicationIdSuffix = ".prerelease"
             if (signingConfigs.names.contains("prerelease")) {
                 signingConfig = signingConfigs.getByName("prerelease")
@@ -133,11 +133,11 @@ android {
                 logger.warn("No prerelease signing config!")
             }
             versionNameSuffix = "-PRE"
-            buildConfigField(
+            /*buildConfigField(
                 "String",
                 "APP_VERSION",
                 "\"${defaultConfig.versionName}$versionNameSuffix\""
-            )
+            )*/
             versionCode = (System.currentTimeMillis() / 60000).toInt()
         }
     }
