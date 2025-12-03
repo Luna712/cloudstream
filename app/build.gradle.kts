@@ -33,7 +33,8 @@ tasks.register("generateGitHash") {
                     if (commitFile.exists()) commitFile.readText().trim() else ""
                 } else headContent // If it's a detached HEAD (commit hash directly)
             } else "" // If .git/HEAD doesn't exist
-        } catch (_: Throwable) {
+        } catch (t: Throwable) {
+            logger.error("Failed to retrieve git commit hash: ${t.message}")
             "" // Just set to an empty string if any exception occurs
         }.take(7) // Get the short commit hash
 
