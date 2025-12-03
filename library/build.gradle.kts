@@ -28,6 +28,7 @@ kotlin {
         compilerOptions {
             jvmTarget.set(javaTarget)
         }
+
         lint {
             targetSdk = libs.versions.targetSdk.get().toInt()
         }
