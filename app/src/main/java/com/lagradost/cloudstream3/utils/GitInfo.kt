@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.utils
 
 import android.content.Context
+import com.lagradost.cloudstream3.mvvm.logError
 
 /**
  * Simple helper to get the short commit hash from assets.
@@ -14,7 +15,8 @@ object GitInfo {
             .bufferedReader()
             .readText()
             .trim()
-    } catch (_: Exception) {
+    } catch (e: Exception) {
+        logError(e)
         ""
     }
 }
