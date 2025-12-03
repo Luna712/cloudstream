@@ -295,10 +295,6 @@ tasks.withType<KotlinJvmCompile> {
     }
 }
 
-tasks.named("preBuild") {
-    dependsOn(":library:assemble", ":library:jvmJar", ":library:build")
-}
-
 /*dokka {
     moduleName = "App"
     dokkaSourceSets {
