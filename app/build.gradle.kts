@@ -40,13 +40,11 @@ tasks.withType<MergeSourceSetFolders> {
     if (name.contains("Assets", ignoreCase = true)) {
         dependsOn("generateGitHash")
         val gitHashDir = layout.buildDirectory.dir("generated/git")
-        val gitHashFile = gitHashDir.map { it.file("git-hash.txt") }.get()
-        inputs.file(gitHashFile)
 
         doLast {
-            // val gitHashFile = gitHashDir.get().file("git-hash.txt").asFile
+            val gitHashFile = gitHashDir.get().file("git-hash.txt").asFile
             val assetsDir = outputs.files.singleFile
-            gitHashFile.asFile.copyTo(File(assetsDir, "git-hash.txt"), overwrite = true)
+            gitHashFile.copyTo(File(assetsDir, "git-hash.txt"), overwrite = true)
         }
     }
 }
