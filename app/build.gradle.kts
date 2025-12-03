@@ -287,13 +287,16 @@ tasks.register<Jar>("makeJar") {
 }
 
 tasks.withType<KotlinJvmCompile> {
-    dependsOn(":library:jvmJar")
     compilerOptions {
         jvmTarget.set(javaTarget)
         jvmDefault.set(JvmDefaultMode.ENABLE)
         optIn.add("com.lagradost.cloudstream3.Prerelease")
         freeCompilerArgs.add("-Xannotation-default-target=param-property")
     }
+}
+
+tasks.named("assemble") {
+    dependsOn(":library:assemble", ":library:jvmJar", ":library:build")
 }
 
 /*dokka {
