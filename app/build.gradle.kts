@@ -295,7 +295,7 @@ tasks.withType<KotlinJvmCompile> {
     }
 }
 
-tasks.named("assemble") {
+tasks.named("preBuild") {
     dependsOn(":library:assemble", ":library:jvmJar", ":library:build")
 }
 
