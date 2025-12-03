@@ -97,10 +97,6 @@ publishing {
     }
 }
 
-tasks.named("assemble") {
-    dependsOn("jvmJar")
-}
-
 dokka {
     moduleName = "Library"
     dokkaSourceSets {
