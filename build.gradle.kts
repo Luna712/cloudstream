@@ -14,3 +14,34 @@ allprojects {
         failOnNoDiscoveredTests = false
     }
 }
+gradle.projectsEvaluated {
+println("Scanning for 'archives' usage...")
+
+allprojects.forEach { project ->
+    project.configurations.matching { it.name == "archives" }.forEach { config ->
+        println("Project: ${project.path} has 'archives' configuration")
+        config.allDependencies.forEach { dep ->
+            println("  Dependency: $dep")
+        }
+        config.allArtifacts.forEach { artifact ->
+            println("  Artifact: ${artifact.file}")
+        }
+    }
+}
+
+println("Checking tasks attaching to archives...")
+allprojects.forEach { project ->
+    project.tasks.forEach { task ->
+        task.outputs.files.files.forEach { file ->
+            if (file.exists()) {
+                val artifactsUsingArchives = project.configurations.matching { it.name == "archives" }
+                    .flatMap { it.allArtifacts }.map { it.file }
+                if (file in artifactsUsingArchives) {
+                    println("Task ${task.path} outputs ${file} -> attached to 'archives'")
+                }
+            }
+        }
+    }
+}
+}
+
