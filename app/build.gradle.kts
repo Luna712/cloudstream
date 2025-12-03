@@ -20,21 +20,18 @@ tasks.register("generateGitHash") {
     val rootDir = project.rootDir
     outputs.dir(gitHashDir)
 
+    val provider = providers.exec {
+        executable("git")
+        args("rev-parse", "--short", "HEAD")
+    }
+
     doLast {
         val hash = try {
-            // Read the commit hash from .git/HEAD
-            val headFile = File(rootDir, ".git/HEAD")
-            if (headFile.exists()) {
-                val headContent = headFile.readText().trim()
-                if (headContent.startsWith("ref:")) {
-                    val refPath = headContent.substring(5) // e.g., refs/heads/main
-                    val commitFile = File(rootDir, ".git/$refPath")
-                    if (commitFile.exists()) commitFile.readText().trim() else ""
-                } else headContent // If it's a detached HEAD (commit hash directly)
-            } else "" // If .git/HEAD doesn't exist
-        } catch (_: Throwable) {
+            provider.standardOutput.asText.get().trim()
+        } catch (e: Exception) {
+            logger.error("Failed to retrieve git commit hash", e)
             "" // Just set to an empty string if any exception occurs
-        }.take(7) // Get the short commit hash
+        }
 
         val outFile = gitHashDir.get().file("git-hash.txt").asFile
         outFile.parentFile.mkdirs()
