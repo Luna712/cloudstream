@@ -19,16 +19,14 @@ tasks.register("generateGitHash") {
     val gitHashDir = layout.buildDirectory.dir("generated/git")
     outputs.dir(gitHashDir)
 
-    inputs.file("$rootDir/.git/HEAD")
-    val execProvider = providers.exec {
-        commandLine("git", "rev-parse", "--short", "HEAD")
-    }
+    val execProvider = providers.exec { commandLine("git", "rev-parse", "--short", "HEAD") }
+    inputs.property("gitHash", execProvider)
 
     doLast {
         val hash = try {
             execProvider.standardOutput.asText.get().trim()
         } catch (e: Exception) {
-            logger.error("Failed to retrieve git commit hash", e)
+            logger.error("Failed to retrieve git commit hash: ${e.message}")
             "" // Just set to an empty string if any exception occurs
         }
 
