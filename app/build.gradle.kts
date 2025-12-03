@@ -287,7 +287,7 @@ tasks.register<Jar>("makeJar") {
 }
 
 tasks.withType<KotlinJvmCompile> {
-    dependsOn(":library:assemble")
+    dependsOn(":library:jvmJar")
     compilerOptions {
         jvmTarget.set(javaTarget)
         jvmDefault.set(JvmDefaultMode.ENABLE)
