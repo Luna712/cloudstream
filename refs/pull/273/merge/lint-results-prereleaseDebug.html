@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 45 errors, 789 warnings and 1 hint</span>
+      <span class="mdl-layout-title">Lint Report: 45 errors, 790 warnings and 1 hint</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Dec 03 18:01:59 UTC 2025 by AGP (9.0.0-beta03)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Dec 03 18:15:41 UTC 2025 by AGP (9.0.0-beta03)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -200,7 +200,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#PictureInPictureIssue"><i class="material-icons warning-icon">warning</i>Picture In Picture best practices not followed (1)</a>
       <a class="mdl-navigation__link" href="#UnspecifiedRegisterReceiverFlag"><i class="material-icons error-icon">error</i>Missing <code>registerReceiver()</code> exported flag (1)</a>
       <a class="mdl-navigation__link" href="#VectorRaster"><i class="material-icons warning-icon">warning</i>Vector Image Generation (15)</a>
-      <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (5)</a>
+      <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (6)</a>
       <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (3)</a>
       <a class="mdl-navigation__link" href="#RestrictedApi"><i class="material-icons error-icon">error</i>Restricted API (10)</a>
       <a class="mdl-navigation__link" href="#UnsafeOptInUsageError"><i class="material-icons error-icon">error</i>Unsafe opt-in usage intended to be error-level severity (22)</a>
@@ -298,7 +298,7 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">15</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#VectorRaster">VectorRaster</a>: Vector Image Generation</td></tr>
 <tr>
-<td class="countColumn">5</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">6</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#GradleDependency">GradleDependency</a>: Obsolete Gradle Dependency</td></tr>
 <tr>
 <td class="countColumn">3</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
@@ -1788,7 +1788,7 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:4</span>: <span class="message">A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.0</span><br /><pre class="errorlines">
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:4</span>: <span class="message">A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.1</span><br /><pre class="errorlines">
 <span class="lineno">   1 </span># https://docs.gradle.org/current/userguide/plugins.html#sec:version_catalog_plugin_application
 <span class="lineno">   2 </span># https://docs.gradle.org/current/userguide/dependency_versions.html#sec:strict-version
 <span class="lineno">   3 </span>[versions]
@@ -1826,6 +1826,16 @@ Dismiss</button>            </div>
 <span class="lineno">  29 </span>media3 = "1.8.0"
 <span class="lineno">  30 </span>navigationKtx = "2.9.6"
 <span class="lineno">  31 </span>newpipeextractor = "v0.24.8"
+</pre>
+
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:42</span>: <span class="message">A newer version of androidx.swiperefreshlayout:swiperefreshlayout than 1.1.0 is available: 1.2.0</span><br /><pre class="errorlines">
+<span class="lineno">  39 </span>rhino = "1.8.0"
+<span class="lineno">  40 </span>safefile = "0.0.8"
+<span class="lineno">  41 </span>shimmer = "0.5.0"
+<span class="caretline"><span class="lineno">  42 </span>swiperefreshlayout = <span class="warning">"1.1.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  43 </span>tmdbJava = "2.13.0"
+<span class="lineno">  44 </span>torrentserver = "7861970e038b35cd8c6918384e49caf26903e09e"
+<span class="lineno">  45 </span>tvprovider = "1.1.0"
 </pre>
 
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:47</span>: <span class="message">A newer version of androidx.work:work-runtime-ktx than 2.10.5 is available: 2.11.0</span><br /><pre class="errorlines">

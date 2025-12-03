@@ -481,7 +481,7 @@
    You should manually check whether the generated output is acceptable for
    those older devices.
 
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:4: Warning: A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.0 [GradleDependency]
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:4: Warning: A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.1 [GradleDependency]
 activityKtx = "1.11.0"
               ~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:27: Warning: A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.9.4 is available: 2.10.0 [GradleDependency]
@@ -493,6 +493,9 @@ lifecycleKtx = "2.9.4"
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:28: Warning: A newer version of com.google.android.material:material than 1.14.0-alpha06 is available: 1.14.0-alpha07 [GradleDependency]
 material = "1.14.0-alpha06"
            ~~~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:42: Warning: A newer version of androidx.swiperefreshlayout:swiperefreshlayout than 1.1.0 is available: 1.2.0 [GradleDependency]
+swiperefreshlayout = "1.1.0"
+                     ~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:47: Warning: A newer version of androidx.work:work-runtime-ktx than 2.10.5 is available: 2.11.0 [GradleDependency]
 workRuntimeKtx = "2.10.5"
                  ~~~~~~~~
@@ -3136,4 +3139,4 @@ class SSLTrustManager : X509TrustManager {
    the left bitmask. Therefore, you can use gravity="start" rather than
    gravity="left|start".)
 
-45 errors, 789 warnings, 1 hint
+45 errors, 790 warnings, 1 hint

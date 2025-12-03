@@ -1602,7 +1602,7 @@
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.0"
+        message="A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.1"
         category="Correctness"
         priority="4"
         summary="Obsolete Gradle Dependency"
@@ -1661,6 +1661,22 @@
             file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
             line="28"
             column="12"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.swiperefreshlayout:swiperefreshlayout than 1.1.0 is available: 1.2.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="swiperefreshlayout = &quot;1.1.0&quot;"
+        errorLine2="                     ~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="42"
+            column="22"/>
     </issue>
 
     <issue
