@@ -18,8 +18,10 @@ val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 tasks.register("generateGitHash") {
     val gitHashDir = layout.buildDirectory.dir("generated/git")
     outputs.dir(gitHashDir)
+
+    inputs.file("$rootDir/.git/HEAD")
     val execProvider = providers.exec {
-        commandLine("gitno", "rev-parse", "--short", "HEAD")
+        commandLine("git", "rev-parse", "--short", "HEAD")
     }
 
     doLast {
@@ -44,8 +46,7 @@ tasks.withType<MergeSourceSetFolders> {
         doLast {
             val gitHashFile = gitHashDir.get().file("git-hash.txt").asFile
             val assetsDir = outputs.files.singleFile
-            val outFile = File(assetsDir, "git-hash.txt")
-            gitHashFile.copyTo(outFile, overwrite = true)
+            gitHashFile.copyTo(File(assetsDir, "git-hash.txt"), overwrite = true)
         }
     }
 }
