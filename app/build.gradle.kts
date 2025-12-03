@@ -18,14 +18,13 @@ val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 tasks.register("generateGitHash") {
     val gitHashDir = layout.buildDirectory.dir("generated/git")
     outputs.dir(gitHashDir)
-
-    val provider = providers.exec {
-        commandLine("git", "rev-parse", "--short", "HEAD")
+    val execProvider = providers.exec {
+        commandLine("gitno", "rev-parse", "--short", "HEAD")
     }
 
     doLast {
         val hash = try {
-            provider.standardOutput.asText.get().trim()
+            execProvider.standardOutput.asText.get().trim()
         } catch (e: Exception) {
             logger.error("Failed to retrieve git commit hash", e)
             "" // Just set to an empty string if any exception occurs
@@ -43,8 +42,8 @@ tasks.withType<MergeSourceSetFolders> {
         val gitHashDir = layout.buildDirectory.dir("generated/git")
 
         doLast {
-            val assetsDir = outputs.files.singleFile
             val gitHashFile = gitHashDir.get().file("git-hash.txt").asFile
+            val assetsDir = outputs.files.singleFile
             val outFile = File(assetsDir, "git-hash.txt")
             gitHashFile.copyTo(outFile, overwrite = true)
         }
