@@ -18,9 +18,10 @@ val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 tasks.register("generateGitHash") {
     val gitHashDir = layout.buildDirectory.dir("generated/git")
     outputs.dir(gitHashDir)
-
-    val execProvider = providers.exec { commandLine("git", "rev-parse", "--short", "HEAD") }
-    inputs.property("gitHash", execProvider)
+    inputs.file(File(rootDir, ".git/HEAD"))
+    val execProvider = providers.exec {
+        commandLine("git", "rev-parse", "--short", "HEAD")
+    }
 
     doLast {
         val hash = try {
