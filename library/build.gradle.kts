@@ -71,6 +71,11 @@ buildkonfig {
             FieldSpec.Type.STRING,
             "MDL_API_KEY", (System.getenv("MDL_API_KEY") ?: localProperties["mdl.key"]).toString()
         )
+        buildConfigField(
+            FieldSpec.Type.STRING,
+            "SIMKL_CLIENT_ID",
+            (System.getenv("SIMKL_CLIENT_ID") ?: localProperties["simkl.id"]).toString()
+        )
     }
 }
 
