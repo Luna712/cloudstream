@@ -9,6 +9,7 @@ plugins {
     id("maven-publish") // Gradle core plugin
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
+    alias(libs.plugins.android.lint)
     alias(libs.plugins.buildkonfig)
     alias(libs.plugins.dokka)
 }
