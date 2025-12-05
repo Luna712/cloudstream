@@ -27,7 +27,6 @@ kotlin {
         minSdk = libs.versions.minSdk.get().toInt()
 
         compilerOptions {
-            isCoreLibraryDesugaringEnabled = true
             jvmTarget.set(javaTarget)
         }
 
@@ -62,10 +61,6 @@ kotlin {
             implementation(libs.tmdb.java) // TMDB API v3 Wrapper Made with RetroFit
         }
     }
-}
-
-dependencies {
-    coreLibraryDesugaring(libs.desugar.jdk.libs.nio) // NIO Flavor Needed for NewPipeExtractor
 }
 
 tasks.withType<KotlinJvmCompile> {
