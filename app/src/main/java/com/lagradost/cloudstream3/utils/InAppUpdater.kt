@@ -39,14 +39,14 @@ object InAppUpdater {
 
     private const val LOG_TAG = "InAppUpdater"
 
-    data class GithubAsset(
+    private data class GithubAsset(
         @JsonProperty("name") val name: String,
         @JsonProperty("size") val size: Int, // Size in bytes
         @JsonProperty("browser_download_url") val browserDownloadUrl: String,
         @JsonProperty("content_type") val contentType: String, // application/vnd.android.package-archive
     )
 
-    data class GithubRelease(
+    private data class GithubRelease(
         @JsonProperty("tag_name") val tagName: String, // Version code
         @JsonProperty("body") val body: String, // Description
         @JsonProperty("assets") val assets: List<GithubAsset>,
@@ -55,17 +55,17 @@ object InAppUpdater {
         @JsonProperty("node_id") val nodeId: String,
     )
 
-    data class GithubObject(
+    private data class GithubObject(
         @JsonProperty("sha") val sha: String, // SHA-256 hash
         @JsonProperty("type") val type: String,
         @JsonProperty("url") val url: String,
     )
 
-    data class GithubTag(
+    private data class GithubTag(
         @JsonProperty("object") val githubObject: GithubObject,
     )
 
-    data class Update(
+    private data class Update(
         @JsonProperty("shouldUpdate") val shouldUpdate: Boolean,
         @JsonProperty("updateURL") val updateURL: String?,
         @JsonProperty("updateVersion") val updateVersion: String?,
