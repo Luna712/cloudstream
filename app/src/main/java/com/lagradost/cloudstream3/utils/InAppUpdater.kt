@@ -50,7 +50,7 @@ class InAppUpdater {
             @JsonProperty("assets") val assets: List<GithubAsset>,
             @JsonProperty("target_commitish") val targetCommitish: String, // Branch
             @JsonProperty("prerelease") val prerelease: Boolean,
-            @JsonProperty("node_id") val nodeId: String
+            @JsonProperty("node_id") val nodeId: String,
         )
 
         data class GithubObject(
@@ -68,7 +68,7 @@ class InAppUpdater {
             @JsonProperty("updateURL") val updateURL: String?,
             @JsonProperty("updateVersion") val updateVersion: String?,
             @JsonProperty("changelog") val changelog: String?,
-            @JsonProperty("updateNodeId") val updateNodeId: String?
+            @JsonProperty("updateNodeId") val updateNodeId: String?,
         )
 
         private suspend fun Activity.getAppUpdate(): Update {
