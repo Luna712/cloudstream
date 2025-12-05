@@ -86,7 +86,6 @@ android {
         versionCode = 67
         versionName = "4.6.1"
 
-        resValue("string", "app_version", "${defaultConfig.versionName}${versionNameSuffix ?: ""}")
         resValue("bool", "is_prerelease", "false")
 
         manifestPlaceholders["target_sdk_version"] = libs.versions.targetSdk.get()
@@ -98,6 +97,11 @@ android {
             "long",
             "BUILD_DATE",
             "${System.currentTimeMillis()}"
+        )
+        buildConfigField(
+            "String",
+            "APP_VERSION",
+            "\"$versionName\""
         )
         buildConfigField(
             "String",
@@ -141,7 +145,6 @@ android {
         create("prerelease") {
             dimension = "state"
             resValue("bool", "is_prerelease", "true")
-            buildConfigField("boolean", "BETA", "true")
             applicationIdSuffix = ".prerelease"
             if (signingConfigs.names.contains("prerelease")) {
                 signingConfig = signingConfigs.getByName("prerelease")
@@ -149,6 +152,11 @@ android {
                 logger.warn("No prerelease signing config!")
             }
             versionNameSuffix = "-PRE"
+            buildConfigField(
+                "String",
+                "APP_VERSION",
+                "\"${defaultConfig.versionName}$versionNameSuffix\""
+            )
             versionCode = (System.currentTimeMillis() / 60000).toInt()
         }
     }
@@ -194,6 +202,7 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.activity.ktx)
     implementation(libs.appcompat)
+    implementation(libs.fragment.ktx)
     implementation(libs.bundles.lifecycle)
     implementation(libs.bundles.navigation)
 
