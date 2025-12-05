@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 43 errors, 742 warnings and 1 hint</span>
+      <span class="mdl-layout-title">Lint Report: 43 errors, 742 warnings and 3 hints</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Fri Dec 05 21:58:04 UTC 2025 by AGP (9.0.0-beta03)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Fri Dec 05 23:35:10 UTC 2025 by AGP (8.13.1)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -190,6 +190,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#InlinedApi"><i class="material-icons warning-icon">warning</i>Using inlined constants on older versions (3)</a>
       <a class="mdl-navigation__link" href="#InternalInsetResource"><i class="material-icons warning-icon">warning</i>Using internal inset dimension resource (2)</a>
       <a class="mdl-navigation__link" href="#NewApi"><i class="material-icons error-icon">error</i>Calling new methods on older versions (5)</a>
+      <a class="mdl-navigation__link" href="#TrimLambda"><i class="material-icons warning-icon">warning</i>Unnecessary lambda with <code>trim()</code> (2)</a>
       <a class="mdl-navigation__link" href="#UnusedAttribute"><i class="material-icons warning-icon">warning</i>Attribute unused on older versions (63)</a>
       <a class="mdl-navigation__link" href="#AppBundleLocaleChanges"><i class="material-icons warning-icon">warning</i>App Bundle handling of runtime locale changes (1)</a>
       <a class="mdl-navigation__link" href="#AppLinkWarning"><i class="material-icons warning-icon">warning</i>App Link warning (1)</a>
@@ -258,6 +259,9 @@ document.getElementById(id).style.display = 'none';
 <tr>
 <td class="countColumn">5</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
 <a href="#NewApi">NewApi</a>: Calling new methods on older versions</td></tr>
+<tr>
+<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#TrimLambda">TrimLambda</a>: Unnecessary lambda with <code>trim()</code></td></tr>
 <tr>
 <td class="countColumn">63</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#UnusedAttribute">UnusedAttribute</a>: Attribute unused on older versions</td></tr>
@@ -673,6 +677,63 @@ To suppress this error, use the issue id "NewApi" as explained in the <a href="#
               <div class="mdl-card__actions mdl-card--border">
 <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationNewApiLink" onclick="reveal('explanationNewApi');">
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="NewApiCardLink" onclick="hideid('NewApiCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="TrimLambda"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="TrimLambdaCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Unnecessary lambda with trim()</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:185</span>: <span class="message">The lambda argument (<code>{ c -> c.isWhitespace() }</code>) is unnecessary</span><br /><pre class="errorlines">
+<span class="lineno"> 182 </span>
+<span class="lineno"> 183 </span>            <span class="keyword">val</span> shouldUpdate =
+<span class="lineno"> 184 </span>                (getString(R.string.commit_hash)
+<span class="caretline"><span class="lineno"> 185 </span>                    .trim <span class="warning">{ c -> c.isWhitespace() }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 186 </span>                    .take(<span class="number">7</span>)
+<span class="lineno"> 187 </span>                        !=
+<span class="lineno"> 188 </span>                        tagResponse.githubObject.sha
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:189</span>: <span class="message">The lambda argument (<code>{ c -> c.isWhitespace() }</code>) is unnecessary</span><br /><pre class="errorlines">
+<span class="lineno"> 186 </span>                    .take(<span class="number">7</span>)
+<span class="lineno"> 187 </span>                        !=
+<span class="lineno"> 188 </span>                        tagResponse.githubObject.sha
+<span class="caretline"><span class="lineno"> 189 </span>                            .trim <span class="warning">{ c -> c.isWhitespace() }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 190 </span>                            .take(<span class="number">7</span>))
+<span class="lineno"> 191 </span>
+<span class="lineno"> 192 </span>            <span class="keyword">return</span> <span class="keyword">if</span> (foundAsset != <span class="keyword">null</span>) {
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationTrimLambda" style="display: none;">
+The Kotlin standard library <code>trim()</code> call takes an optional lambda to specify which characters are considered whitespace.<br/>
+<br/>
+When converting Java code to Kotlin code, the converter will convert calls for Java's <code>s.trim()</code> into <code>s.trim() { it &lt;= ' ' }</code>. This preserves the exact semantics of the Java code, but is likely not what you want: the default in Kotlin uses a better definition of what constitutes a whitespace character (<code>Char::isWhitespace</code>) and also results in less bytecode at the call-site.<br/>To suppress this error, use the issue id "TrimLambda" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">TrimLambda</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Hint</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 6/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationTrimLambdaLink" onclick="reveal('explanationTrimLambda');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="TrimLambdaCardLink" onclick="hideid('TrimLambdaCard');">
 Dismiss</button>            </div>
             </div>
           </section><a name="UnusedAttribute"></a>
@@ -1651,14 +1712,14 @@ Dismiss</button>            </div>
 <span class="lineno">   2 </span># https://docs.gradle.org/current/userguide/dependency_versions.html#sec:strict-version
 <span class="lineno">   3 </span>[versions]
 <span class="caretline"><span class="lineno">   4 </span>activityKtx = <span class="warning">"1.11.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">   5 </span>androidGradlePlugin = "9.0.0-beta03"
+<span class="lineno">   5 </span>androidGradlePlugin = "8.13.1"
 <span class="lineno">   6 </span>appcompat = "1.7.1"
 <span class="lineno">   7 </span>biometric = "1.4.0-alpha04"
 </pre>
 
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:28</span>: <span class="message">A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.9.4 is available: 2.10.0</span><br /><pre class="errorlines">
 <span class="lineno">  25 </span>juniversalchardet = "2.5.0"
-<span class="lineno">  26 </span>kotlinGradlePlugin = "2.3.0-RC2"
+<span class="lineno">  26 </span>kotlinGradlePlugin = "2.2.21"
 <span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
 <span class="caretline"><span class="lineno">  28 </span>lifecycleKtx = <span class="warning">"2.9.4"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  29 </span>material = "1.14.0-alpha07"
@@ -1668,7 +1729,7 @@ Dismiss</button>            </div>
 
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:28</span>: <span class="message">A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.9.4 is available: 2.10.0</span><br /><pre class="errorlines">
 <span class="lineno">  25 </span>juniversalchardet = "2.5.0"
-<span class="lineno">  26 </span>kotlinGradlePlugin = "2.3.0-RC2"
+<span class="lineno">  26 </span>kotlinGradlePlugin = "2.2.21"
 <span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
 <span class="caretline"><span class="lineno">  28 </span>lifecycleKtx = <span class="warning">"2.9.4"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  29 </span>material = "1.14.0-alpha07"
@@ -2195,7 +2256,7 @@ Dismiss</button>            </div>
 <span class="lineno">  373 </span>  <span class="keyword">return</span> mutableMapOf(
 <span class="lineno">  374 </span>      STOP_ACTION to NotificationCompat.Action(
 <span class="lineno">  375 </span>          R.drawable.baseline_stop_24,
-<span class="caretline"><span class="lineno">  376 </span>          context.getString(<span class="warning">androidx.media3.ui.R.string.exo_controls_stop_description</span>),</span>
+<span class="caretline"><span class="lineno">  376 </span>          context.getString(androidx.media3.ui.R.string.<span class="warning">exo_controls_stop_description</span>),</span>
 <span class="lineno">  377 </span>          createBroadcastIntent(STOP_ACTION, context, instanceId)
 <span class="lineno">  378 </span>      )
 <span class="lineno">  379 </span>  )
@@ -2467,16 +2528,16 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/537ea89b79fe5dc7c08ccc909f693eaf/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.2.1/transforms/537ea89b79fe5dc7c08ccc909f693eaf/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/537ea89b79fe5dc7c08ccc909f693eaf/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.2.1/transforms/537ea89b79fe5dc7c08ccc909f693eaf/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/6327bbaf9deb0b801c4b1eb2dd4cd05c/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/6327bbaf9deb0b801c4b1eb2dd4cd05c/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/6327bbaf9deb0b801c4b1eb2dd4cd05c/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/6327bbaf9deb0b801c4b1eb2dd4cd05c/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/6327bbaf9deb0b801c4b1eb2dd4cd05c/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/6327bbaf9deb0b801c4b1eb2dd4cd05c/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/7afc42204e592e2b042ed1441b0e2939/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.2.1/transforms/7afc42204e592e2b042ed1441b0e2939/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/7afc42204e592e2b042ed1441b0e2939/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.2.1/transforms/7afc42204e592e2b042ed1441b0e2939/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/f30b549a43ae4b46363dc67809dc2ef0/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/f30b549a43ae4b46363dc67809dc2ef0/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/f30b549a43ae4b46363dc67809dc2ef0/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/f30b549a43ae4b46363dc67809dc2ef0/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/f30b549a43ae4b46363dc67809dc2ef0/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/f30b549a43ae4b46363dc67809dc2ef0/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
 <button class="mdl-button mdl-js-button mdl-button--primary" id="Aligned16KBDivLink" onclick="reveal('Aligned16KBDiv');" />+ 4 More Occurrences...</button>
 <div id="Aligned16KBDiv" style="display: none">
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/bbe4cd15910b1c41b72ea4a27c2a405b/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/bbe4cd15910b1c41b72ea4a27c2a405b/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/bbe4cd15910b1c41b72ea4a27c2a405b/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/bbe4cd15910b1c41b72ea4a27c2a405b/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/bbe4cd15910b1c41b72ea4a27c2a405b/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/bbe4cd15910b1c41b72ea4a27c2a405b/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/72751b92d06d10da123af4cc8148e735/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/72751b92d06d10da123af4cc8148e735/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/72751b92d06d10da123af4cc8148e735/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/72751b92d06d10da123af4cc8148e735/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/72751b92d06d10da123af4cc8148e735/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/72751b92d06d10da123af4cc8148e735/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:62</span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br /><pre class="errorlines">
 <span class="lineno">  59 </span>coil = { module = "io.coil-kt.coil3:coil", version.ref = "coil" }
 <span class="lineno">  60 </span>coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
@@ -5074,24 +5135,24 @@ Dismiss</button>            </div>
 <span class="lineno"> 18 </span>                c.translate(<span class="number">0f</span>, top.toFloat())
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:315</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 312 </span>      ) == -<span class="number">1</span>
-<span class="lineno"> 313 </span>  ) {
-<span class="lineno"> 314 </span>      <span class="keyword">if</span> (isMiUi()) <span class="comment">// Set to legacy if using miui</span>
-<span class="caretline"><span class="lineno"> 315 </span>          <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 316 </span>              .putInt(getString(R.string.apk_installer_key), <span class="number">1</span>)
-<span class="lineno"> 317 </span>              .apply()
-<span class="lineno"> 318 </span>  }
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:321</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
+<span class="lineno"> 318 </span>      ) == -<span class="number">1</span>
+<span class="lineno"> 319 </span>  ) {
+<span class="lineno"> 320 </span>      <span class="keyword">if</span> (isMiUi()) <span class="comment">// Set to legacy if using miui</span>
+<span class="caretline"><span class="lineno"> 321 </span>          <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 322 </span>              .putInt(getString(R.string.apk_installer_key), <span class="number">1</span>)
+<span class="lineno"> 323 </span>              .apply()
+<span class="lineno"> 324 </span>  }
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:354</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 351 </span>
-<span class="lineno"> 352 </span>              <span class="keyword">if</span> (checkAutoUpdate) {
-<span class="lineno"> 353 </span>                  setNeutralButton(R.string.skip_update) { _, _ ->
-<span class="caretline"><span class="lineno"> 354 </span>                      <span class="warning">settingsManager.edit()</span>.putString(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 355 </span>                          getString(R.string.skip_update_key),
-<span class="lineno"> 356 </span>                          update.updateNodeId ?: <span class="string">""</span>
-<span class="lineno"> 357 </span>                      ).apply()
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:360</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
+<span class="lineno"> 357 </span>
+<span class="lineno"> 358 </span>              <span class="keyword">if</span> (checkAutoUpdate) {
+<span class="lineno"> 359 </span>                  setNeutralButton(R.string.skip_update) { _, _ ->
+<span class="caretline"><span class="lineno"> 360 </span>                      <span class="warning">settingsManager.edit()</span>.putString(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 361 </span>                          getString(R.string.skip_update_key),
+<span class="lineno"> 362 </span>                          update.updateNodeId ?: <span class="string">""</span>
+<span class="lineno"> 363 </span>                      ).apply()
 </pre>
 
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/MainActivity.kt">../../src/main/java/com/lagradost/cloudstream3/MainActivity.kt</a>:346</span>: <span class="message">Use the KTX extension function <code>String.toUri</code> instead?</span><br /><pre class="errorlines">
@@ -7613,7 +7674,7 @@ A private inner class which is accessed from the outer class will force the comp
 </div>
 <div class="metadata">Disabled By: Default<br/>
 <div class="explanation">
-Ensures that a method which expects to be called on a specific thread, is actually called from that thread. For example, calls on methods in widgets should always be made on the UI thread. This new issue subsumes <code>WrongThreadInterprocedural</code>, accompanied by a check aiming to be more reliable and scalable.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/guide/components/processes-and-threads.html#Threads">https://developer.android.com/guide/components/processes-and-threads.html#Threads</a>
+Ensures that a method which expects to be called on a specific thread, is actually called from that thread. For example, calls on methods in widgets should always be made on the UI thread.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/guide/components/processes-and-threads.html#Threads">https://developer.android.com/guide/components/processes-and-threads.html#Threads</a>
 </div><br/>
 <br/></div>
 </div>
