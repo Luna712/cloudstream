@@ -37,39 +37,26 @@ object InAppUpdater {
 
     private const val LOG_TAG = "InAppUpdater"
 
-    // === IN APP UPDATER ===
     data class GithubAsset(
         @JsonProperty("name") val name: String,
-        @JsonProperty("size") val size: Int, // Size bytes
-        @JsonProperty("browser_download_url") val browserDownloadUrl: String, // download link
+        @JsonProperty("size") val size: Int, // Size in bytes
+        @JsonProperty("browser_download_url") val browserDownloadUrl: String,
         @JsonProperty("content_type") val contentType: String, // application/vnd.android.package-archive
     )
 
     data class GithubRelease(
         @JsonProperty("tag_name") val tagName: String, // Version code
-        @JsonProperty("body") val body: String, // Desc
+        @JsonProperty("body") val body: String, // Description
         @JsonProperty("assets") val assets: List<GithubAsset>,
-        @JsonProperty("target_commitish") val targetCommitish: String, // branch
+        @JsonProperty("target_commitish") val targetCommitish: String, // Branch
         @JsonProperty("prerelease") val prerelease: Boolean,
-        @JsonProperty("node_id") val nodeId: String //Node Id
+        @JsonProperty("node_id") val nodeId: String
     )
 
     data class GithubObject(
-        @JsonProperty("sha") val sha: String, // sha 256 hash
-        @JsonProperty("type") val type: String, // object type
+        @JsonProperty("sha") val sha: String, // SHA-256 hash
+        @JsonProperty("type") val type: String,
         @JsonProperty("url") val url: String,
-    )
-
-    data class GithubTag(
-        @JsonProperty("object") val githubObject: GithubObject,
-    )
-
-    data class Update(
-        @JsonProperty("shouldUpdate") val shouldUpdate: Boolean,
-        @JsonProperty("updateURL") val updateURL: String?,
-        @JsonProperty("updateVersion") val updateVersion: String?,
-        @JsonProperty("changelog") val changelog: String?,
-        @JsonProperty("updateNodeId") val updateNodeId: String?
     )
 
     private suspend fun Activity.getAppUpdate(): Update {
@@ -82,9 +69,7 @@ object InAppUpdater {
                 )
             ) {
                 getPreReleaseUpdate()
-            } else {
-                getReleaseUpdate()
-            }
+            } else getReleaseUpdate()
         } catch (e: Exception) {
             Log.e(LOG_TAG, Log.getStackTraceString(e))
             Update(false, null, null, null, null)
@@ -278,7 +263,8 @@ object InAppUpdater {
                                 showToast(R.string.download_started, Toast.LENGTH_LONG)
 
                                 // Check if the setting hasn't been changed
-                                if (settingsManager.getInt(
+                                if (
+                                    settingsManager.getInt(
                                         getString(R.string.apk_installer_key),
                                         -1
                                     ) == -1
