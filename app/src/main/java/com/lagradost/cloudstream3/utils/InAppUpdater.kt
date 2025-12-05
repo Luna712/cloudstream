@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.BuildConfig
@@ -284,9 +285,9 @@ class InAppUpdater {
                                         ) == -1
                                     ) {
                                         if (isMiUi()) { // Set to legacy if using miui
-                                            settingsManager.edit()
-                                                .putInt(getString(R.string.apk_installer_key), 1)
-                                                .apply()
+                                            settingsManager.edit {
+                                                putInt(getString(R.string.apk_installer_key), 1)
+                                            }
                                         }
                                     }
 
@@ -324,10 +325,12 @@ class InAppUpdater {
 
                                 if (checkAutoUpdate) {
                                     setNeutralButton(R.string.skip_update) { _, _ ->
-                                        settingsManager.edit().putString(
-                                            getString(R.string.skip_update_key),
-                                            update.updateNodeId ?: ""
-                                        ).apply()
+                                        settingsManager.edit {
+                                            putString(
+                                                getString(R.string.skip_update_key),
+                                                update.updateNodeId ?: ""
+                                            )
+                                        }
                                     }
                                 }
                             }
