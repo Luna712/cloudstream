@@ -59,6 +59,18 @@ object InAppUpdater {
         @JsonProperty("url") val url: String,
     )
 
+    data class GithubTag(
+        @JsonProperty("object") val githubObject: GithubObject,
+    )
+
+    data class Update(
+        @JsonProperty("shouldUpdate") val shouldUpdate: Boolean,
+        @JsonProperty("updateURL") val updateURL: String?,
+        @JsonProperty("updateVersion") val updateVersion: String?,
+        @JsonProperty("changelog") val changelog: String?,
+        @JsonProperty("updateNodeId") val updateNodeId: String?
+    )
+
     private suspend fun Activity.getAppUpdate(): Update {
         return try {
             val settingsManager = PreferenceManager.getDefaultSharedPreferences(this)
