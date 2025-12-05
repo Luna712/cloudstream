@@ -284,7 +284,8 @@ class InAppUpdater {
                                             -1
                                         ) == -1
                                     ) {
-                                        if (isMiUi()) { // Set to legacy if using miui
+                                        // Set to legacy installer if using MIUI
+                                        if (isMiUi()) {
                                             settingsManager.edit {
                                                 putInt(getString(R.string.apk_installer_key), 1)
                                             }
