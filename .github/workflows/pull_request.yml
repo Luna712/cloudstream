@@ -25,7 +25,7 @@ jobs:
 
     - name: Run Gradle
       run: |
-        ./gradlew lint library
+        ./gradlew :library:lint
         ./gradlew assemblePrerelease build androidSourcesJar makeJar
 
     - name: Upload Artifact
