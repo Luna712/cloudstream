@@ -1600,22 +1600,6 @@
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of androidx.swiperefreshlayout:swiperefreshlayout than 1.1.0 is available: 1.2.0"
-        category="Correctness"
-        priority="4"
-        summary="Obsolete Gradle Dependency"
-        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
-        errorLine1="swiperefreshlayout = &quot;1.1.0&quot;"
-        errorLine2="                     ~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
-            line="43"
-            column="22"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        severity="Warning"
         message="A newer version of androidx.work:work-runtime-ktx than 2.10.5 is available: 2.11.0"
         category="Correctness"
         priority="4"
@@ -1625,7 +1609,7 @@
         errorLine2="                 ~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
-            line="48"
+            line="47"
             column="18"/>
     </issue>
 
@@ -1659,22 +1643,6 @@
             file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
             line="19"
             column="36"/>
-    </issue>
-
-    <issue
-        id="NewerVersionAvailable"
-        severity="Warning"
-        message="A newer version of org.mozilla:rhino than 1.8.0 is available: 1.8.1"
-        category="Correctness"
-        priority="4"
-        summary="Newer Library Versions Available"
-        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
-        errorLine1="rhino = &quot;1.8.0&quot;"
-        errorLine2="        ~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
-            line="40"
-            column="9"/>
     </issue>
 
     <issue
@@ -2612,7 +2580,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/16edd290b2374dfc0b958cabe29bc6ed/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
+            file="/home/runner/.gradle/caches/9.2.1/transforms/e3eb67854edb4772309e0f8de9f91f66/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
     </issue>
 
     <issue
@@ -2626,7 +2594,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/16edd290b2374dfc0b958cabe29bc6ed/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
+            file="/home/runner/.gradle/caches/9.2.1/transforms/e3eb67854edb4772309e0f8de9f91f66/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
     </issue>
 
     <issue
@@ -2640,7 +2608,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/8cbe967c5160ebfea68fdcfc2e30de89/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
+            file="/home/runner/.gradle/caches/9.2.1/transforms/29b8bc9f5e3727214f1fc8c3f9d842d9/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
     </issue>
 
     <issue
@@ -2654,7 +2622,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/8cbe967c5160ebfea68fdcfc2e30de89/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
+            file="/home/runner/.gradle/caches/9.2.1/transforms/29b8bc9f5e3727214f1fc8c3f9d842d9/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
     </issue>
 
     <issue
@@ -2668,7 +2636,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/8cbe967c5160ebfea68fdcfc2e30de89/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
+            file="/home/runner/.gradle/caches/9.2.1/transforms/29b8bc9f5e3727214f1fc8c3f9d842d9/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
     </issue>
 
     <issue
@@ -2682,7 +2650,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/a73bbb21772a94ae710489e9993af939/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so"/>
+            file="/home/runner/.gradle/caches/9.2.1/transforms/8507a02331cd44f81ec9dd36ddfaf787/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so"/>
     </issue>
 
     <issue
@@ -2696,7 +2664,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/a73bbb21772a94ae710489e9993af939/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so"/>
+            file="/home/runner/.gradle/caches/9.2.1/transforms/8507a02331cd44f81ec9dd36ddfaf787/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so"/>
     </issue>
 
     <issue
@@ -2710,7 +2678,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/a73bbb21772a94ae710489e9993af939/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so"/>
+            file="/home/runner/.gradle/caches/9.2.1/transforms/8507a02331cd44f81ec9dd36ddfaf787/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so"/>
     </issue>
 
     <issue
@@ -2727,7 +2695,7 @@
         errorLine2="                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
-            line="63"
+            line="62"
             column="22"/>
     </issue>
 
