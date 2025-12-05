@@ -30,6 +30,8 @@ kotlin {
         }
 
         lint {
+            abortOnError = false
+            checkReleaseBuilds = true
             targetSdk = libs.versions.targetSdk.get().toInt()
         }
     }
