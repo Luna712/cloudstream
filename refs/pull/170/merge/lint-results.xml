@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 9.0.0-beta03">
+
+    <issue
+        id="TrulyRandom"
+        severity="Warning"
+        message="Potentially insecure random numbers on Android 4.3 and older. Read https://android-developers.blogspot.com/2013/08/some-securerandom-thoughts.html for more info."
+        category="Security"
+        priority="9"
+        summary="Weak RNG"
+        explanation="Key generation, signing, encryption, and random number generation may not receive cryptographically strong values due to improper initialization of the underlying PRNG on Android 4.3 and below.&#xA;&#xA;If your application relies on cryptographically secure random number generation you should apply the workaround described in https://android-developers.blogspot.com/2013/08/some-securerandom-thoughts.html .&#xA;&#xA;This lint rule is mostly informational; it does not accurately detect whether cryptographically secure RNG is required, or whether the workaround has already been applied. After reading the blog entry and updating your code if necessary, you can disable this lint issue."
+        url="https://goo.gle/TrulyRandom"
+        urls="https://goo.gle/TrulyRandom,https://android-developers.blogspot.com/2013/08/some-securerandom-thoughts.html">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/library/build/classes/kotlin/jvm/main/com/lagradost/cloudstream3/extractors/helper/CryptoJS.class"/>
+    </issue>
+
+</issues>
