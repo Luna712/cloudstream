@@ -165,7 +165,7 @@ class InAppUpdater {
                 Log.d(LOG_TAG, "Fetched GitHub tag: $updateCommitHash")
 
                 Update(
-                    currentCommitHash() != updateCommitHash,
+                    getString(R.string.commit_hash) != updateCommitHash,
                     foundAsset.browserDownloadUrl,
                     updateCommitHash,
                     found.body,
