@@ -43,6 +43,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
+import androidx.core.content.withStyledAttributes
 import androidx.core.graphics.alpha
 import androidx.core.graphics.blue
 import androidx.core.graphics.green
@@ -301,16 +302,15 @@ object UIHelper {
 
     @ColorInt
     fun Context.getResourceColor(@AttrRes resource: Int, alphaFactor: Float = 1f): Int {
-        val typedArray = obtainStyledAttributes(intArrayOf(resource))
-        val color = typedArray.getColor(0, 0)
-        typedArray.recycle()
+        withStyledAttributes(attrs = intArrayOf(resource)) {
+            val color = getColor(0, 0)
+            if (alphaFactor < 1f) {
+                val alpha = (color.alpha * alphaFactor).roundToInt()
+                return Color.argb(alpha, color.red, color.green, color.blue)
+            }
 
-        if (alphaFactor < 1f) {
-            val alpha = (color.alpha * alphaFactor).roundToInt()
-            return Color.argb(alpha, color.red, color.green, color.blue)
+            return color
         }
-
-        return color
     }
 
     var createPaletteAsyncCache: HashMap<String, Palette> = hashMapOf()
@@ -336,10 +336,9 @@ object UIHelper {
     }
 
     fun Context.colorFromAttribute(attribute: Int): Int {
-        val attributes = obtainStyledAttributes(intArrayOf(attribute))
-        val color = attributes.getColor(0, 0)
-        attributes.recycle()
-        return color
+        withStyledAttributes(attrs = intArrayOf(attribute)) {
+            return getColor(0, 0)
+        }
     }
 
     fun Activity.hideSystemUI() {

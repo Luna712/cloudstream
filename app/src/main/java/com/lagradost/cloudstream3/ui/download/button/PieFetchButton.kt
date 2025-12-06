@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.MainThread
 import androidx.core.content.ContextCompat
+import androidx.core.content.withStyledAttributes
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.removeKey
@@ -63,7 +64,7 @@ open class PieFetchButton(context: Context, attributeSet: AttributeSet) :
     open fun onInflate() {}
 
     init {
-        context.obtainStyledAttributes(attributeSet, R.styleable.PieFetchButton, 0, 0).apply {
+        context.withStyledAttributes(attributeSet, R.styleable.PieFetchButton, 0, 0) {
             try {
                 inflate(
                     overrideLayout ?: getResourceId(
@@ -72,6 +73,7 @@ open class PieFetchButton(context: Context, attributeSet: AttributeSet) :
                     )
                 )
             } catch (e: Exception) {
+                recycle() // Manually call recycle first to avoid memory leaks
                 Log.e(
                     "PieFetchButton", "Error inflating PieFetchButton, " +
                             "check that you have declared the required aria2c attrs: aria2c_icon_scale aria2c_icon_color aria2c_outline_color aria2c_fill_color"
@@ -135,8 +137,6 @@ open class PieFetchButton(context: Context, attributeSet: AttributeSet) :
             )
 
             progressBar.progressDrawable = ContextCompat.getDrawable(context, progressDrawable)
-
-            recycle()
         }
         resetView()
         onInflate()
