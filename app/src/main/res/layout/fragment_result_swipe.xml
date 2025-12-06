@@ -243,16 +243,15 @@
                     style="@style/ExtendedFloatingActionButton"
                     tools:ignore="ContentDescription" />
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/cast_mini_controller"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:defaultNavHost="false"
-                android:name="com.lagradost.cloudstream3.ui.MyMiniControllerFragment"
-                app:customCastBackgroundColor="?attr/primaryBlackBackground"
-                app:castControlButtons="@array/cast_mini_controller_control_buttons" />
-
+            <fragment
+                    app:customCastBackgroundColor="?attr/primaryBlackBackground"
+                    app:castControlButtons="@array/cast_mini_controller_control_buttons"
+                    android:id="@+id/cast_mini_controller"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    class="com.lagradost.cloudstream3.ui.MyMiniControllerFragment"
+                    tools:ignore="FragmentTagUsage" />
         </LinearLayout>
     </FrameLayout>
 </LinearLayout>
