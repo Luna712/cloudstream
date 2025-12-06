@@ -315,12 +315,10 @@ object UIHelper {
         return color
     }
 
+    @ColorInt
     fun adjustAlpha(@ColorInt color: Int, factor: Float): Int {
-        val alpha = (Color.alpha(color) * factor).roundToInt()
-        val red = Color.red(color)
-        val green = Color.green(color)
-        val blue = Color.blue(color)
-        return Color.argb(alpha, red, green, blue)
+        val alpha = (color.alpha * factor).roundToInt()
+        return Color.argb(alpha, color.red, color.green, color.blue)
     }
 
     var createPaletteAsyncCache: HashMap<String, Palette> = hashMapOf()
