@@ -302,15 +302,25 @@ object UIHelper {
 
     @ColorInt
     fun Context.getResourceColor(@AttrRes resource: Int, alphaFactor: Float = 1f): Int {
-        withStyledAttributes(attrs = intArrayOf(resource)) {
-            val color = getColor(0, 0)
-            if (alphaFactor < 1f) {
-                val alpha = (color.alpha * alphaFactor).roundToInt()
-                return@getResourceColor Color.argb(alpha, color.red, color.green, color.blue)
-            }
+        val color = colorFromAttribute(resource)
+        return if (alphaFactor < 1f) adjustAlpha(color, alphaFactor) else color
+    }
 
-            return@getResourceColor color
+    @ColorInt
+    fun Context.colorFromAttribute(@AttrRes attribute: Int): Int {
+        var color = 0
+        withStyledAttributes(attrs = intArrayOf(attribute)) {
+            color = getColor(0, 0)
         }
+        return color
+    }
+
+    fun adjustAlpha(@ColorInt color: Int, factor: Float): Int {
+        val alpha = (Color.alpha(color) * factor).roundToInt()
+        val red = Color.red(color)
+        val green = Color.green(color)
+        val blue = Color.blue(color)
+        return Color.argb(alpha, red, green, blue)
     }
 
     var createPaletteAsyncCache: HashMap<String, Palette> = hashMapOf()
@@ -324,20 +334,6 @@ object UIHelper {
                 createPaletteAsyncCache[url] = palette
                 callback(palette)
             }
-        }
-    }
-
-    fun adjustAlpha(@ColorInt color: Int, factor: Float): Int {
-        val alpha = (Color.alpha(color) * factor).roundToInt()
-        val red = Color.red(color)
-        val green = Color.green(color)
-        val blue = Color.blue(color)
-        return Color.argb(alpha, red, green, blue)
-    }
-
-    fun Context.colorFromAttribute(attribute: Int): Int {
-        withStyledAttributes(attrs = intArrayOf(attribute)) {
-            return getColor(0, 0)
         }
     }
 
