@@ -93,23 +93,6 @@
    Similarly, you can use tools:targetApi="11" in an XML file to indicate that
    the element will only be inflated in an adequate context.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt:185: Hint: The lambda argument ({ c -> c.isWhitespace() }) is unnecessary [TrimLambda]
-                    .trim { c -> c.isWhitespace() }
-                          ~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt:189: Hint: The lambda argument ({ c -> c.isWhitespace() }) is unnecessary [TrimLambda]
-                            .trim { c -> c.isWhitespace() }
-                                  ~~~~~~~~~~~~~~~~~~~~~~~~~
-
-   Explanation for issues of type "TrimLambda":
-   The Kotlin standard library trim() call takes an optional lambda to specify
-   which characters are considered whitespace.
-
-   When converting Java code to Kotlin code, the converter will convert calls
-   for Java's s.trim() into s.trim() { it <= ' ' }. This preserves the exact
-   semantics of the Java code, but is likely not what you want: the default in
-   Kotlin uses a better definition of what constitutes a whitespace character
-   (Char::isWhitespace) and also results in less bytecode at the call-site.
-
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/account_edit_dialog.xml:53: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
                 android:foreground="@drawable/outline_drawable_forced_round"
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -567,10 +550,10 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt:296: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
             playerBinding?.exoProgress?.isEnabled = isShowing // Prevent accidental clicks/drags
                                         ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/MainActivity.kt:352: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/MainActivity.kt:353: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
                             GeneratorPlayer.newInstance(
                             ~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/MainActivity.kt:352: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/MainActivity.kt:353: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
                             GeneratorPlayer.newInstance(
                                             ~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/OfflinePlaybackHelper.kt:18: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
@@ -639,7 +622,7 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
 
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt:376: Warning: The resource @string/exo_controls_stop_description is marked as private in androidx.media3:media3-ui:1.8.0 [PrivateResource]
                             context.getString(androidx.media3.ui.R.string.exo_controls_stop_description),
-                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_category_material.xml:29: Warning: The resource @layout/image_frame is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
     <include layout="@layout/image_frame"/>
                      ~~~~~~~~~~~~~~~~~~~
@@ -722,14 +705,14 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
 
    To fix this, copy the resource into your own project instead.
 
-/home/runner/.gradle/caches/9.2.1/transforms/7afc42204e592e2b042ed1441b0e2939/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/7afc42204e592e2b042ed1441b0e2939/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/f30b549a43ae4b46363dc67809dc2ef0/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/f30b549a43ae4b46363dc67809dc2ef0/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/f30b549a43ae4b46363dc67809dc2ef0/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/72751b92d06d10da123af4cc8148e735/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so: Warning: The native library arm64-v8a/libquickjs.so (from app.cash.quickjs:quickjs-android:0.9.2) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/72751b92d06d10da123af4cc8148e735/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so: Warning: The native library arm64-v8a/libquickjs.so (from app.cash.quickjs:quickjs-android:0.9.2) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/72751b92d06d10da123af4cc8148e735/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so: Warning: The native library arm64-v8a/libquickjs.so (from app.cash.quickjs:quickjs-android:0.9.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/537ea89b79fe5dc7c08ccc909f693eaf/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/537ea89b79fe5dc7c08ccc909f693eaf/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/6327bbaf9deb0b801c4b1eb2dd4cd05c/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/6327bbaf9deb0b801c4b1eb2dd4cd05c/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/6327bbaf9deb0b801c4b1eb2dd4cd05c/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/bbe4cd15910b1c41b72ea4a27c2a405b/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so: Warning: The native library arm64-v8a/libquickjs.so (from app.cash.quickjs:quickjs-android:0.9.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/bbe4cd15910b1c41b72ea4a27c2a405b/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so: Warning: The native library arm64-v8a/libquickjs.so (from app.cash.quickjs:quickjs-android:0.9.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/bbe4cd15910b1c41b72ea4a27c2a405b/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so: Warning: The native library arm64-v8a/libquickjs.so (from app.cash.quickjs:quickjs-android:0.9.2) is not 16 KB aligned [Aligned16KB]
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:62: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
 conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = "conscryptAndroid" }
                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2391,18 +2374,15 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/HeaderViewDecoration.kt:15: Warning: Use the KTX extension function Canvas.withSave instead? [UseKtx]
                 c.save()
                 ~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt:321: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt:315: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
                                             settingsManager.edit()
                                             ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt:360: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt:354: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
                                         settingsManager.edit().putString(
                                         ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/MainActivity.kt:346: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/MainActivity.kt:347: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
                         val uri = Uri.parse(str)
                                   ~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/MainActivity.kt:683: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                    settingsManager.edit().putInt(getString(R.string.confirm_exit_key), 1).commit()
-                    ~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/actions/temp/MpvKtPackage.kt:48: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
             setDataAndType(Uri.parse(link.url), "video/*")
                            ~~~~~~~~~~~~~~~~~~~
@@ -2415,114 +2395,12 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/actions/temp/PlayInBrowserAction.kt:36: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
         i.data = Uri.parse(link.url)
                  ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt:49: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                    settingsManager.edit()
-                    ~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt:70: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
                 data = Uri.parse("package:$PACKAGE_NAME")
                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt:70: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
                 data = Uri.parse("package:$PACKAGE_NAME")
                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsGeneral.kt:159: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-            PreferenceManager.getDefaultSharedPreferences(context).edit()
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsGeneral.kt:188: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                    settingsManager.edit().putString(getString(R.string.locale_key), langTagIETF).apply()
-                    ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsGeneral.kt:319: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                settingsManager.edit().putInt(getString(R.string.dns_pref), prefValues[it]).apply()
-                ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsGeneral.kt:374: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                    settingsManager.edit()
-                    ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsGeneral.kt:400: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                        settingsManager.edit().putInt(
-                        ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt:67: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                settingsManager.edit()
-                ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt:85: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                settingsManager.edit()
-                ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt:103: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                settingsManager.edit()
-                ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt:121: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                settingsManager.edit()
-                ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt:148: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                settingsManager.edit().putInt(getString(R.string.quality_pref_key), prefValues[it])
-                ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt:172: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                settingsManager.edit().putInt(getString(R.string.quality_pref_mobile_data_key), prefValues[it])
-                ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt:196: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                settingsManager.edit().putString(getString(R.string.player_default_key), prefValues[it]).apply()
-                ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt:224: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                settingsManager.edit()
-                ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt:243: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                settingsManager.edit()
-                ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsProviders.kt:52: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                    settingsManager.edit().putStringSet(
-                    ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsProviders.kt:95: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                settingsManager.edit().putStringSet(
-                ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsProviders.kt:123: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                    settingsManager.edit().putStringSet(
-                    ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUI.kt:85: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                val edit = settingsManager.edit()
-                           ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUI.kt:111: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                        settingsManager.edit()
-                        ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUI.kt:155: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                    settingsManager.edit()
-                    ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUI.kt:192: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                    settingsManager.edit()
-                    ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUI.kt:217: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                settingsManager.edit().putStringSet(
-                ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUI.kt:238: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                    settingsManager.edit()
-                    ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUpdates.kt:62: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-            PreferenceManager.getDefaultSharedPreferences(context).edit()
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUpdates.kt:91: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                settingsManager.edit()
-                ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUpdates.kt:133: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                    settingsManager.edit()
-                    ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUpdates.kt:215: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                    settingsManager.edit()
-                    ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUpdates.kt:255: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                settingsManager.edit()
-                ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/setup/SetupFragmentLanguage.kt:65: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                    settingsManager.edit().putString(getString(R.string.locale_key), langTagIETF)
-                    ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/setup/SetupFragmentLayout.kt:47: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                    settingsManager.edit()
-                    ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/setup/SetupFragmentMedia.kt:56: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                        settingsManager.edit()
-                        ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/setup/SetupFragmentProviderLanguage.kt:61: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                    settingsManager.edit().putStringSet(
-                    ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:639: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
-                    PreferenceManager.getDefaultSharedPreferences(ctx)
-                    ^
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/testing/TestView.kt:62: Warning: Use the KTX extension function Context.withStyledAttributes instead? [UseKtx]
             val typedArray = context.obtainStyledAttributes(it, R.styleable.TestView)
                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2899,4 +2777,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-43 errors, 742 warnings, 3 hints
+43 errors, 707 warnings, 1 hint

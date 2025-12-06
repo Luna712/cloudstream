@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 43 errors, 742 warnings and 3 hints</span>
+      <span class="mdl-layout-title">Lint Report: 43 errors, 707 warnings and 1 hint</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Fri Dec 05 23:35:10 UTC 2025 by AGP (8.13.1)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sat Dec 06 17:45:13 UTC 2025 by AGP (9.0.0-beta03)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -190,7 +190,6 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#InlinedApi"><i class="material-icons warning-icon">warning</i>Using inlined constants on older versions (3)</a>
       <a class="mdl-navigation__link" href="#InternalInsetResource"><i class="material-icons warning-icon">warning</i>Using internal inset dimension resource (2)</a>
       <a class="mdl-navigation__link" href="#NewApi"><i class="material-icons error-icon">error</i>Calling new methods on older versions (5)</a>
-      <a class="mdl-navigation__link" href="#TrimLambda"><i class="material-icons warning-icon">warning</i>Unnecessary lambda with <code>trim()</code> (2)</a>
       <a class="mdl-navigation__link" href="#UnusedAttribute"><i class="material-icons warning-icon">warning</i>Attribute unused on older versions (63)</a>
       <a class="mdl-navigation__link" href="#AppBundleLocaleChanges"><i class="material-icons warning-icon">warning</i>App Bundle handling of runtime locale changes (1)</a>
       <a class="mdl-navigation__link" href="#AppLinkWarning"><i class="material-icons warning-icon">warning</i>App Link warning (1)</a>
@@ -226,7 +225,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#TypographyEllipsis"><i class="material-icons warning-icon">warning</i>Ellipsis string can be replaced with ellipsis character (5)</a>
       <a class="mdl-navigation__link" href="#IconLocation"><i class="material-icons warning-icon">warning</i>Image defined in density-independent drawable folder (10)</a>
       <a class="mdl-navigation__link" href="#IconDuplicates"><i class="material-icons warning-icon">warning</i>Duplicated icons under different names (15)</a>
-      <a class="mdl-navigation__link" href="#UseKtx"><i class="material-icons warning-icon">warning</i>Use KTX extension function (62)</a>
+      <a class="mdl-navigation__link" href="#UseKtx"><i class="material-icons warning-icon">warning</i>Use KTX extension function (27)</a>
       <a class="mdl-navigation__link" href="#ContentDescription"><i class="material-icons warning-icon">warning</i>Image without <code>contentDescription</code> (46)</a>
       <a class="mdl-navigation__link" href="#ByteOrderMark"><i class="material-icons error-icon">error</i>Byte order mark inside files (4)</a>
       <a class="mdl-navigation__link" href="#SetTextI18n"><i class="material-icons warning-icon">warning</i>TextView Internationalization (6)</a>
@@ -259,9 +258,6 @@ document.getElementById(id).style.display = 'none';
 <tr>
 <td class="countColumn">5</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
 <a href="#NewApi">NewApi</a>: Calling new methods on older versions</td></tr>
-<tr>
-<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
-<a href="#TrimLambda">TrimLambda</a>: Unnecessary lambda with <code>trim()</code></td></tr>
 <tr>
 <td class="countColumn">63</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#UnusedAttribute">UnusedAttribute</a>: Attribute unused on older versions</td></tr>
@@ -380,7 +376,7 @@ document.getElementById(id).style.display = 'none';
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Productivity">Productivity</a>
 </td></tr>
 <tr>
-<td class="countColumn">62</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">27</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#UseKtx">UseKtx</a>: Use KTX extension function</td></tr>
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Accessibility">Accessibility</a>
 </td></tr>
@@ -677,63 +673,6 @@ To suppress this error, use the issue id "NewApi" as explained in the <a href="#
               <div class="mdl-card__actions mdl-card--border">
 <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationNewApiLink" onclick="reveal('explanationNewApi');">
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="NewApiCardLink" onclick="hideid('NewApiCard');">
-Dismiss</button>            </div>
-            </div>
-          </section><a name="TrimLambda"></a>
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="TrimLambdaCard" style="display: block;">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Unnecessary lambda with trim()</h2>
-  </div>
-              <div class="mdl-card__supporting-text">
-<div class="issue">
-<div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:185</span>: <span class="message">The lambda argument (<code>{ c -> c.isWhitespace() }</code>) is unnecessary</span><br /><pre class="errorlines">
-<span class="lineno"> 182 </span>
-<span class="lineno"> 183 </span>            <span class="keyword">val</span> shouldUpdate =
-<span class="lineno"> 184 </span>                (getString(R.string.commit_hash)
-<span class="caretline"><span class="lineno"> 185 </span>                    .trim <span class="warning">{ c -> c.isWhitespace() }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 186 </span>                    .take(<span class="number">7</span>)
-<span class="lineno"> 187 </span>                        !=
-<span class="lineno"> 188 </span>                        tagResponse.githubObject.sha
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:189</span>: <span class="message">The lambda argument (<code>{ c -> c.isWhitespace() }</code>) is unnecessary</span><br /><pre class="errorlines">
-<span class="lineno"> 186 </span>                    .take(<span class="number">7</span>)
-<span class="lineno"> 187 </span>                        !=
-<span class="lineno"> 188 </span>                        tagResponse.githubObject.sha
-<span class="caretline"><span class="lineno"> 189 </span>                            .trim <span class="warning">{ c -> c.isWhitespace() }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 190 </span>                            .take(<span class="number">7</span>))
-<span class="lineno"> 191 </span>
-<span class="lineno"> 192 </span>            <span class="keyword">return</span> <span class="keyword">if</span> (foundAsset != <span class="keyword">null</span>) {
-</pre>
-
-</div>
-<div class="metadata"><div class="explanation" id="explanationTrimLambda" style="display: none;">
-The Kotlin standard library <code>trim()</code> call takes an optional lambda to specify which characters are considered whitespace.<br/>
-<br/>
-When converting Java code to Kotlin code, the converter will convert calls for Java's <code>s.trim()</code> into <code>s.trim() { it &lt;= ' ' }</code>. This preserves the exact semantics of the Java code, but is likely not what you want: the default in Kotlin uses a better definition of what constitutes a whitespace character (<code>Char::isWhitespace</code>) and also results in less bytecode at the call-site.<br/>To suppress this error, use the issue id "TrimLambda" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
-<br/></div>
-</div>
-</div>
-<div class="chips">
-<span class="mdl-chip">
-    <span class="mdl-chip__text">TrimLambda</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Correctness</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Hint</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Priority 6/10</span>
-</span>
-</div>
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationTrimLambdaLink" onclick="reveal('explanationTrimLambda');">
-Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="TrimLambdaCardLink" onclick="hideid('TrimLambdaCard');">
 Dismiss</button>            </div>
             </div>
           </section><a name="UnusedAttribute"></a>
@@ -1712,14 +1651,14 @@ Dismiss</button>            </div>
 <span class="lineno">   2 </span># https://docs.gradle.org/current/userguide/dependency_versions.html#sec:strict-version
 <span class="lineno">   3 </span>[versions]
 <span class="caretline"><span class="lineno">   4 </span>activityKtx = <span class="warning">"1.11.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">   5 </span>androidGradlePlugin = "8.13.1"
+<span class="lineno">   5 </span>androidGradlePlugin = "9.0.0-beta03"
 <span class="lineno">   6 </span>appcompat = "1.7.1"
 <span class="lineno">   7 </span>biometric = "1.4.0-alpha04"
 </pre>
 
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:28</span>: <span class="message">A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.9.4 is available: 2.10.0</span><br /><pre class="errorlines">
 <span class="lineno">  25 </span>juniversalchardet = "2.5.0"
-<span class="lineno">  26 </span>kotlinGradlePlugin = "2.2.21"
+<span class="lineno">  26 </span>kotlinGradlePlugin = "2.3.0-RC2"
 <span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
 <span class="caretline"><span class="lineno">  28 </span>lifecycleKtx = <span class="warning">"2.9.4"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  29 </span>material = "1.14.0-alpha07"
@@ -1729,7 +1668,7 @@ Dismiss</button>            </div>
 
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:28</span>: <span class="message">A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.9.4 is available: 2.10.0</span><br /><pre class="errorlines">
 <span class="lineno">  25 </span>juniversalchardet = "2.5.0"
-<span class="lineno">  26 </span>kotlinGradlePlugin = "2.2.21"
+<span class="lineno">  26 </span>kotlinGradlePlugin = "2.3.0-RC2"
 <span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
 <span class="caretline"><span class="lineno">  28 </span>lifecycleKtx = <span class="warning">"2.9.4"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  29 </span>material = "1.14.0-alpha07"
@@ -2053,24 +1992,24 @@ Dismiss</button>            </div>
 <span class="lineno">  299 </span>      <span class="keyword">if</span> (isShowing) {
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/MainActivity.kt">../../src/main/java/com/lagradost/cloudstream3/MainActivity.kt</a>:352</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  349 </span>
-<span class="lineno">  350 </span>                        navigate(
-<span class="lineno">  351 </span>                            R.id.global_to_navigation_player,
-<span class="caretline"><span class="lineno">  352 </span>                            <span class="error">GeneratorPlayer</span>.newInstance(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  353 </span>                                LinkGenerator(
-<span class="lineno">  354 </span>                                    listOf(BasicLink(url, name)),
-<span class="lineno">  355 </span>                                    extract = <span class="keyword">true</span>,
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/MainActivity.kt">../../src/main/java/com/lagradost/cloudstream3/MainActivity.kt</a>:353</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  350 </span>
+<span class="lineno">  351 </span>                        navigate(
+<span class="lineno">  352 </span>                            R.id.global_to_navigation_player,
+<span class="caretline"><span class="lineno">  353 </span>                            <span class="error">GeneratorPlayer</span>.newInstance(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  354 </span>                                LinkGenerator(
+<span class="lineno">  355 </span>                                    listOf(BasicLink(url, name)),
+<span class="lineno">  356 </span>                                    extract = <span class="keyword">true</span>,
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/MainActivity.kt">../../src/main/java/com/lagradost/cloudstream3/MainActivity.kt</a>:352</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  349 </span>
-<span class="lineno">  350 </span>                        navigate(
-<span class="lineno">  351 </span>                            R.id.global_to_navigation_player,
-<span class="caretline"><span class="lineno">  352 </span>                            GeneratorPlayer.<span class="error">newInstance</span>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  353 </span>                                LinkGenerator(
-<span class="lineno">  354 </span>                                    listOf(BasicLink(url, name)),
-<span class="lineno">  355 </span>                                    extract = <span class="keyword">true</span>,
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/MainActivity.kt">../../src/main/java/com/lagradost/cloudstream3/MainActivity.kt</a>:353</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  350 </span>
+<span class="lineno">  351 </span>                        navigate(
+<span class="lineno">  352 </span>                            R.id.global_to_navigation_player,
+<span class="caretline"><span class="lineno">  353 </span>                            GeneratorPlayer.<span class="error">newInstance</span>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  354 </span>                                LinkGenerator(
+<span class="lineno">  355 </span>                                    listOf(BasicLink(url, name)),
+<span class="lineno">  356 </span>                                    extract = <span class="keyword">true</span>,
 </pre>
 
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/OfflinePlaybackHelper.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/OfflinePlaybackHelper.kt</a>:18</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
@@ -2256,7 +2195,7 @@ Dismiss</button>            </div>
 <span class="lineno">  373 </span>  <span class="keyword">return</span> mutableMapOf(
 <span class="lineno">  374 </span>      STOP_ACTION to NotificationCompat.Action(
 <span class="lineno">  375 </span>          R.drawable.baseline_stop_24,
-<span class="caretline"><span class="lineno">  376 </span>          context.getString(androidx.media3.ui.R.string.<span class="warning">exo_controls_stop_description</span>),</span>
+<span class="caretline"><span class="lineno">  376 </span>          context.getString(<span class="warning">androidx.media3.ui.R.string.exo_controls_stop_description</span>),</span>
 <span class="lineno">  377 </span>          createBroadcastIntent(STOP_ACTION, context, instanceId)
 <span class="lineno">  378 </span>      )
 <span class="lineno">  379 </span>  )
@@ -2528,16 +2467,16 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/7afc42204e592e2b042ed1441b0e2939/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.2.1/transforms/7afc42204e592e2b042ed1441b0e2939/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/7afc42204e592e2b042ed1441b0e2939/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.2.1/transforms/7afc42204e592e2b042ed1441b0e2939/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/f30b549a43ae4b46363dc67809dc2ef0/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/f30b549a43ae4b46363dc67809dc2ef0/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/f30b549a43ae4b46363dc67809dc2ef0/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/f30b549a43ae4b46363dc67809dc2ef0/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/f30b549a43ae4b46363dc67809dc2ef0/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/f30b549a43ae4b46363dc67809dc2ef0/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/537ea89b79fe5dc7c08ccc909f693eaf/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.2.1/transforms/537ea89b79fe5dc7c08ccc909f693eaf/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/537ea89b79fe5dc7c08ccc909f693eaf/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.2.1/transforms/537ea89b79fe5dc7c08ccc909f693eaf/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/6327bbaf9deb0b801c4b1eb2dd4cd05c/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/6327bbaf9deb0b801c4b1eb2dd4cd05c/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/6327bbaf9deb0b801c4b1eb2dd4cd05c/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/6327bbaf9deb0b801c4b1eb2dd4cd05c/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/6327bbaf9deb0b801c4b1eb2dd4cd05c/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/6327bbaf9deb0b801c4b1eb2dd4cd05c/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
 <button class="mdl-button mdl-js-button mdl-button--primary" id="Aligned16KBDivLink" onclick="reveal('Aligned16KBDiv');" />+ 4 More Occurrences...</button>
 <div id="Aligned16KBDiv" style="display: none">
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/72751b92d06d10da123af4cc8148e735/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/72751b92d06d10da123af4cc8148e735/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/72751b92d06d10da123af4cc8148e735/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/72751b92d06d10da123af4cc8148e735/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/72751b92d06d10da123af4cc8148e735/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/72751b92d06d10da123af4cc8148e735/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/bbe4cd15910b1c41b72ea4a27c2a405b/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/bbe4cd15910b1c41b72ea4a27c2a405b/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/bbe4cd15910b1c41b72ea4a27c2a405b/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/bbe4cd15910b1c41b72ea4a27c2a405b/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/bbe4cd15910b1c41b72ea4a27c2a405b/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/bbe4cd15910b1c41b72ea4a27c2a405b/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:62</span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br /><pre class="errorlines">
 <span class="lineno">  59 </span>coil = { module = "io.coil-kt.coil3:coil", version.ref = "coil" }
 <span class="lineno">  60 </span>coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
@@ -5074,7 +5013,7 @@ Dismiss</button>            </div>
 <span class="lineno">  46 </span>
 <span class="lineno">  47 </span>        <span class="keyword">var</span> subIndex = <span class="number">0</span></pre>
 
-<button class="mdl-button mdl-js-button mdl-button--primary" id="UseKtxDivLink" onclick="reveal('UseKtxDiv');" />+ 57 More Occurrences...</button>
+<button class="mdl-button mdl-js-button mdl-button--primary" id="UseKtxDivLink" onclick="reveal('UseKtxDiv');" />+ 22 More Occurrences...</button>
 <div id="UseKtxDiv" style="display: none">
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/CommonActivity.kt">../../src/main/java/com/lagradost/cloudstream3/CommonActivity.kt</a>:425</span>: <span class="message">Use the KTX extension function <code>ViewGroup.isNotEmpty</code> instead?</span><br /><pre class="errorlines">
 <span class="lineno"> 422 </span>    private <span class="keyword">fun</span> View.hasContent(): Boolean {
@@ -5135,43 +5074,34 @@ Dismiss</button>            </div>
 <span class="lineno"> 18 </span>                c.translate(<span class="number">0f</span>, top.toFloat())
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:321</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 318 </span>      ) == -<span class="number">1</span>
-<span class="lineno"> 319 </span>  ) {
-<span class="lineno"> 320 </span>      <span class="keyword">if</span> (isMiUi()) <span class="comment">// Set to legacy if using miui</span>
-<span class="caretline"><span class="lineno"> 321 </span>          <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 322 </span>              .putInt(getString(R.string.apk_installer_key), <span class="number">1</span>)
-<span class="lineno"> 323 </span>              .apply()
-<span class="lineno"> 324 </span>  }
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:315</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
+<span class="lineno"> 312 </span>      ) == -<span class="number">1</span>
+<span class="lineno"> 313 </span>  ) {
+<span class="lineno"> 314 </span>      <span class="keyword">if</span> (isMiUi()) <span class="comment">// Set to legacy if using miui</span>
+<span class="caretline"><span class="lineno"> 315 </span>          <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 316 </span>              .putInt(getString(R.string.apk_installer_key), <span class="number">1</span>)
+<span class="lineno"> 317 </span>              .apply()
+<span class="lineno"> 318 </span>  }
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:360</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 357 </span>
-<span class="lineno"> 358 </span>              <span class="keyword">if</span> (checkAutoUpdate) {
-<span class="lineno"> 359 </span>                  setNeutralButton(R.string.skip_update) { _, _ ->
-<span class="caretline"><span class="lineno"> 360 </span>                      <span class="warning">settingsManager.edit()</span>.putString(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 361 </span>                          getString(R.string.skip_update_key),
-<span class="lineno"> 362 </span>                          update.updateNodeId ?: <span class="string">""</span>
-<span class="lineno"> 363 </span>                      ).apply()
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:354</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
+<span class="lineno"> 351 </span>
+<span class="lineno"> 352 </span>              <span class="keyword">if</span> (checkAutoUpdate) {
+<span class="lineno"> 353 </span>                  setNeutralButton(R.string.skip_update) { _, _ ->
+<span class="caretline"><span class="lineno"> 354 </span>                      <span class="warning">settingsManager.edit()</span>.putString(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 355 </span>                          getString(R.string.skip_update_key),
+<span class="lineno"> 356 </span>                          update.updateNodeId ?: <span class="string">""</span>
+<span class="lineno"> 357 </span>                      ).apply()
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/MainActivity.kt">../../src/main/java/com/lagradost/cloudstream3/MainActivity.kt</a>:346</span>: <span class="message">Use the KTX extension function <code>String.toUri</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno">  343 </span>      activity?.findViewById&lt;NavigationRailView>(R.id.nav_rail_view)?.selectedItemId =
-<span class="lineno">  344 </span>          R.id.navigation_search
-<span class="lineno">  345 </span>  } <span class="keyword">else</span> <span class="keyword">if</span> (safeURI(str)?.scheme == APP_STRING_PLAYER) {
-<span class="caretline"><span class="lineno">  346 </span>      <span class="keyword">val</span> uri = <span class="warning">Uri.parse(str)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  347 </span>      <span class="keyword">val</span> name = uri.getQueryParameter(<span class="string">"name"</span>)
-<span class="lineno">  348 </span>      <span class="keyword">val</span> url = URLDecoder.decode(uri.authority, <span class="string">"UTF-8"</span>)
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/MainActivity.kt">../../src/main/java/com/lagradost/cloudstream3/MainActivity.kt</a>:347</span>: <span class="message">Use the KTX extension function <code>String.toUri</code> instead?</span><br /><pre class="errorlines">
+<span class="lineno">  344 </span>      activity?.findViewById&lt;NavigationRailView>(R.id.nav_rail_view)?.selectedItemId =
+<span class="lineno">  345 </span>          R.id.navigation_search
+<span class="lineno">  346 </span>  } <span class="keyword">else</span> <span class="keyword">if</span> (safeURI(str)?.scheme == APP_STRING_PLAYER) {
+<span class="caretline"><span class="lineno">  347 </span>      <span class="keyword">val</span> uri = <span class="warning">Uri.parse(str)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  348 </span>      <span class="keyword">val</span> name = uri.getQueryParameter(<span class="string">"name"</span>)
+<span class="lineno">  349 </span>      <span class="keyword">val</span> url = URLDecoder.decode(uri.authority, <span class="string">"UTF-8"</span>)
 </pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/MainActivity.kt">../../src/main/java/com/lagradost/cloudstream3/MainActivity.kt</a>:683</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno">  680 </span>  .setNegativeButton(R.string.no) { _, _ -> <span class="comment">/*NO-OP*/</span> }
-<span class="lineno">  681 </span>  .setPositiveButton(R.string.yes) { _, _ ->
-<span class="lineno">  682 </span>      <span class="keyword">if</span> (dontShowAgainCheck.isChecked) {
-<span class="caretline"><span class="lineno">  683 </span>          <span class="warning">settingsManager.edit()</span>.putInt(getString(R.string.confirm_exit_key), <span class="number">1</span>).commit()&nbsp;</span>
-<span class="lineno">  684 </span>      }
-<span class="lineno">  685 </span>      <span class="comment">// finish() causes a bug on some TVs where player</span>
-<span class="lineno">  686 </span>      <span class="comment">// may keep playing after closing the app.</span></pre>
 
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/actions/temp/MpvKtPackage.kt">../../src/main/java/com/lagradost/cloudstream3/actions/temp/MpvKtPackage.kt</a>:48</span>: <span class="message">Use the KTX extension function <code>String.toUri</code> instead?</span><br /><pre class="errorlines">
 <span class="lineno"> 45 </span>
@@ -5210,16 +5140,6 @@ Dismiss</button>            </div>
 <span class="lineno"> 38 </span>    }
 <span class="lineno"> 39 </span>}</pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt">../../src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt</a>:49</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 46 </span>   .setMessage(R.string.battery_dialog_message)
-<span class="lineno"> 47 </span>   .setPositiveButton(R.string.ok) { _, _ -> showRequestIgnoreBatteryOptDialog() }
-<span class="lineno"> 48 </span>   .setNegativeButton(R.string.cancel) { _, _ ->
-<span class="caretline"><span class="lineno"> 49 </span>       <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 50 </span>           .putBoolean(getString(R.string.battery_optimisation_key), <span class="keyword">false</span>)
-<span class="lineno"> 51 </span>           .apply()
-<span class="lineno"> 52 </span>   }
-</pre>
-
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt">../../src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt</a>:70</span>: <span class="message">Use the KTX extension function <code>String.toUri</code> instead?</span><br /><pre class="errorlines">
 <span class="lineno"> 67 </span>        <span class="keyword">try</span> {
 <span class="lineno"> 68 </span>            <span class="keyword">val</span> intent = Intent().apply {
@@ -5240,284 +5160,75 @@ Dismiss</button>            </div>
 <span class="lineno"> 73 </span>        } catch (t: Throwable) {
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsGeneral.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsGeneral.kt</a>:159</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 156 </span>    private <span class="keyword">val</span> pathPicker = getChooseFolderLauncher { uri, path ->
-<span class="lineno"> 157 </span>        <span class="keyword">val</span> context = context ?: CloudStreamApp.context ?: <span class="keyword">return</span><span class="annotation">@getChooseFolderLauncher</span>
-<span class="lineno"> 158 </span>        (path ?: uri.toString()).let {
-<span class="caretline"><span class="lineno"> 159 </span>            <span class="warning">PreferenceManager.getDefaultSharedPreferences(context).edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 160 </span>                .putString(getString(R.string.download_path_key), uri.toString())
-<span class="lineno"> 161 </span>                .putString(getString(R.string.download_path_key_visual), it)
-<span class="lineno"> 162 </span>                .apply()
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/testing/TestView.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/testing/TestView.kt</a>:62</span>: <span class="message">Use the KTX extension function <code>Context.withStyledAttributes</code> instead?</span><br /><pre class="errorlines">
+<span class="lineno">  59 </span>        playPauseButton = findViewById(R.id.tests_play_pause)
+<span class="lineno">  60 </span>
+<span class="lineno">  61 </span>        attrs?.let {
+<span class="caretline"><span class="lineno">  62 </span>            <span class="keyword">val</span> typedArray = <span class="warning">context.obtainStyledAttributes(it, R.styleable.TestView)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  63 </span>            <span class="keyword">val</span> headerText = typedArray.getString(R.styleable.TestView_header_text)
+<span class="lineno">  64 </span>            mainSectionHeader?.text = headerText
+<span class="lineno">  65 </span>            typedArray.recycle()
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsGeneral.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsGeneral.kt</a>:188</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 185 </span>  <span class="keyword">try</span> {
-<span class="lineno"> 186 </span>      <span class="keyword">val</span> langTagIETF = languageTagsIETF[selectedLangIndex]
-<span class="lineno"> 187 </span>      CommonActivity.setLocale(activity, langTagIETF)
-<span class="caretline"><span class="lineno"> 188 </span>      <span class="warning">settingsManager.edit()</span>.putString(getString(R.string.locale_key), langTagIETF).apply()</span>
-<span class="lineno"> 189 </span>      activity?.recreate()
-<span class="lineno"> 190 </span>  } catch (e: Exception) {
-<span class="lineno"> 191 </span>      logError(e)
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt</a>:87</span>: <span class="message">Use the KTX extension function <code>String.toUri</code> instead?</span><br /><pre class="errorlines">
+<span class="lineno">  84 </span>       }
+<span class="lineno">  85 </span>       .setContentId(item.url)
+<span class="lineno">  86 </span>       .setType(TvContractCompat.PreviewPrograms.TYPE_MOVIE)
+<span class="caretline"><span class="lineno">  87 </span>       .setIntentUri(<span class="warning">Uri.parse(csshareUri)</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  88 </span>       .setPosterArtAspectRatio(TvContractCompat.PreviewPrograms.ASPECT_RATIO_2_3)
+<span class="lineno">  89 </span>
+<span class="lineno">  90 </span>   <span class="comment">// Validate poster URL before setting</span></pre>
+
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt</a>:92</span>: <span class="message">Use the KTX extension function <code>String.toUri</code> instead?</span><br /><pre class="errorlines">
+<span class="lineno">  89 </span>
+<span class="lineno">  90 </span>                <span class="comment">// Validate poster URL before setting</span>
+<span class="lineno">  91 </span>                <span class="keyword">if</span> (!poster.isNullOrBlank() &amp;&amp; poster.startsWith(<span class="string">"http"</span>)) {
+<span class="caretline"><span class="lineno">  92 </span>                    builder.setPosterArtUri(<span class="warning">Uri.parse(poster)</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  93 </span>
+<span class="lineno">  94 </span>                }
+<span class="lineno">  95 </span>                <span class="keyword">val</span> program = builder.build()
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsGeneral.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsGeneral.kt</a>:319</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 316 </span>      getString(R.string.dns_pref),
-<span class="lineno"> 317 </span>      <span class="keyword">true</span>,
-<span class="lineno"> 318 </span>      {}) {
-<span class="caretline"><span class="lineno"> 319 </span>      <span class="warning">settingsManager.edit()</span>.putInt(getString(R.string.dns_pref), prefValues[it]).apply()&nbsp;</span>
-<span class="lineno"> 320 </span>      (context ?: CloudStreamApp.context)?.let { ctx -> app.initClient(ctx) }
-<span class="lineno"> 321 </span>  }
-<span class="lineno"> 322 </span>  <span class="keyword">return</span><span class="annotation">@setOnPreferenceClickListener</span> <span class="keyword">true</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsGeneral.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsGeneral.kt</a>:374</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 371 </span>        <span class="comment">// Sets both visual and actual paths.</span>
-<span class="lineno"> 372 </span>        <span class="comment">// key = used path</span>
-<span class="lineno"> 373 </span>        <span class="comment">// visual = visual path</span>
-<span class="caretline"><span class="lineno"> 374 </span>        <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 375 </span>            .putString(getString(R.string.download_path_key), dirs[it])
-<span class="lineno"> 376 </span>            .putString(getString(R.string.download_path_key_visual), dirs[it])
-<span class="lineno"> 377 </span>            .apply()
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt</a>:138</span>: <span class="message">Use the KTX extension function <code>String.toUri</code> instead?</span><br /><pre class="errorlines">
+<span class="lineno"> 135 </span>
+<span class="lineno"> 136 </span>   <span class="keyword">fun</span> createTvChannel(context: Context) {
+<span class="lineno"> 137 </span>       <span class="keyword">val</span> componentName = ComponentName(context, MainActivity::<span class="keyword">class</span>.java)
+<span class="caretline"><span class="lineno"> 138 </span>       <span class="keyword">val</span> iconUri = <span class="warning">Uri.parse(<span class="string">"android.resource://${</span>context.packageName<span class="string">}/mipmap/ic_launcher"</span>)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 139 </span>       <span class="keyword">val</span> inputId = TvContractCompat.buildInputId(componentName)
+<span class="lineno"> 140 </span>       <span class="keyword">val</span> channel = Channel.Builder()
+<span class="lineno"> 141 </span>           .setType(TvContractCompat.Channels.TYPE_PREVIEW)
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsGeneral.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsGeneral.kt</a>:400</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 397 </span>  <span class="keyword">if</span> (beneneCount%<span class="number">20</span> == <span class="number">0</span>) {
-<span class="lineno"> 398 </span>      activity?.navigate(R.id.action_navigation_settings_general_to_easterEggMonkeFragment)
-<span class="lineno"> 399 </span>  }
-<span class="caretline"><span class="lineno"> 400 </span>  <span class="warning">settingsManager.edit()</span>.putInt(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 401 </span>      getString(R.string.benene_count),
-<span class="lineno"> 402 </span>      beneneCount
-<span class="lineno"> 403 </span>  ).apply()
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt</a>:145</span>: <span class="message">Use the KTX extension function <code>String.toUri</code> instead?</span><br /><pre class="errorlines">
+<span class="lineno"> 142 </span>            .setAppLinkIconUri(iconUri)
+<span class="lineno"> 143 </span>            .setDisplayName(context.getString(R.string.app_name))
+<span class="lineno"> 144 </span>            .setAppLinkIntent(Intent(Intent.ACTION_VIEW).apply {
+<span class="caretline"><span class="lineno"> 145 </span>                data = <span class="warning">Uri.parse(<span class="string">"cloudstreamapp://open"</span>)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 146 </span>            })
+<span class="lineno"> 147 </span>            .setInputId(inputId)
+<span class="lineno"> 148 </span>            .build()
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt</a>:67</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno">  64 </span>              getString(R.string.video_buffer_length_settings),
-<span class="lineno">  65 </span>              <span class="keyword">true</span>,
-<span class="lineno">  66 </span>              {}) {
-<span class="caretline"><span class="lineno">  67 </span>              <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  68 </span>                  .putInt(getString(R.string.video_buffer_length_key), prefValues[it])
-<span class="lineno">  69 </span>                  .apply()
-<span class="lineno">  70 </span>          }
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt</a>:145</span>: <span class="message">Use the KTX extension function <code>String.toUri</code> instead?</span><br /><pre class="errorlines">
+<span class="lineno"> 142 </span>            .setAppLinkIconUri(iconUri)
+<span class="lineno"> 143 </span>            .setDisplayName(context.getString(R.string.app_name))
+<span class="lineno"> 144 </span>            .setAppLinkIntent(Intent(Intent.ACTION_VIEW).apply {
+<span class="caretline"><span class="lineno"> 145 </span>                data = <span class="warning">Uri.parse(<span class="string">"cloudstreamapp://open"</span>)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 146 </span>            })
+<span class="lineno"> 147 </span>            .setInputId(inputId)
+<span class="lineno"> 148 </span>            .build()
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt</a>:85</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno">  82 </span>               getString(R.string.limit_title),
-<span class="lineno">  83 </span>               <span class="keyword">true</span>,
-<span class="lineno">  84 </span>               {}) {
-<span class="caretline"><span class="lineno">  85 </span>               <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  86 </span>                   .putInt(getString(R.string.prefer_limit_title_key), prefValues[it])
-<span class="lineno">  87 </span>                   .apply()
-<span class="lineno">  88 </span>           }
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/actions/temp/WebVideoCastPackage.kt">../../src/main/java/com/lagradost/cloudstream3/actions/temp/WebVideoCastPackage.kt</a>:41</span>: <span class="message">Use the KTX extension function <code>String.toUri</code> instead?</span><br /><pre class="errorlines">
+<span class="lineno"> 38 </span>        <span class="keyword">val</span> link = result.links[index ?: <span class="number">0</span>]
+<span class="lineno"> 39 </span>
+<span class="lineno"> 40 </span>        intent.apply {
+<span class="caretline"><span class="lineno"> 41 </span>            setDataAndType(<span class="warning">Uri.parse(link.url)</span>, <span class="string">"video/*"</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 42 </span>
+<span class="lineno"> 43 </span>            <span class="keyword">val</span> title = video.name ?: video.headerName
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt</a>:103</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 100 </span>                getString(R.string.software_decoding),
-<span class="lineno"> 101 </span>                <span class="keyword">true</span>,
-<span class="lineno"> 102 </span>                {}) {
-<span class="caretline"><span class="lineno"> 103 </span>                <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 104 </span>                    .putInt(getString(R.string.software_decoding_key), prefValues[it])
-<span class="lineno"> 105 </span>                    .apply()
-<span class="lineno"> 106 </span>            }
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt</a>:121</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 118 </span>           getString(R.string.limit_title_rez),
-<span class="lineno"> 119 </span>           <span class="keyword">true</span>,
-<span class="lineno"> 120 </span>           {}) {
-<span class="caretline"><span class="lineno"> 121 </span>           <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 122 </span>               .putInt(getString(R.string.prefer_limit_title_rez_key), prefValues[it])
-<span class="lineno"> 123 </span>               .apply()
-<span class="lineno"> 124 </span>       }
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt</a>:148</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 145 </span>      getString(R.string.watch_quality_pref),
-<span class="lineno"> 146 </span>      <span class="keyword">true</span>,
-<span class="lineno"> 147 </span>      {}) {
-<span class="caretline"><span class="lineno"> 148 </span>      <span class="warning">settingsManager.edit()</span>.putInt(getString(R.string.quality_pref_key), prefValues[it])&nbsp;</span>
-<span class="lineno"> 149 </span>          .apply()
-<span class="lineno"> 150 </span>  }
-<span class="lineno"> 151 </span>  <span class="keyword">return</span><span class="annotation">@setOnPreferenceClickListener</span> <span class="keyword">true</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt</a>:172</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 169 </span>      getString(R.string.watch_quality_pref_data),
-<span class="lineno"> 170 </span>      <span class="keyword">true</span>,
-<span class="lineno"> 171 </span>      {}) {
-<span class="caretline"><span class="lineno"> 172 </span>      <span class="warning">settingsManager.edit()</span>.putInt(getString(R.string.quality_pref_mobile_data_key), prefValues[it])</span>
-<span class="lineno"> 173 </span>          .apply()
-<span class="lineno"> 174 </span>  }
-<span class="lineno"> 175 </span>  <span class="keyword">return</span><span class="annotation">@setOnPreferenceClickListener</span> <span class="keyword">true</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt</a>:196</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 193 </span>          getString(R.string.player_pref),
-<span class="lineno"> 194 </span>          <span class="keyword">true</span>,
-<span class="lineno"> 195 </span>          {}) {
-<span class="caretline"><span class="lineno"> 196 </span>          <span class="warning">settingsManager.edit()</span>.putString(getString(R.string.player_default_key), prefValues[it]).apply()</span>
-<span class="lineno"> 197 </span>      }
-<span class="lineno"> 198 </span>      <span class="keyword">return</span><span class="annotation">@setOnPreferenceClickListener</span> <span class="keyword">true</span>
-<span class="lineno"> 199 </span>  }
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt</a>:224</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 221 </span>                getString(R.string.video_buffer_disk_settings),
-<span class="lineno"> 222 </span>                <span class="keyword">true</span>,
-<span class="lineno"> 223 </span>                {}) {
-<span class="caretline"><span class="lineno"> 224 </span>                <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 225 </span>                    .putInt(getString(R.string.video_buffer_disk_key), prefValues[it])
-<span class="lineno"> 226 </span>                    .apply()
-<span class="lineno"> 227 </span>            }
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsPlayer.kt</a>:243</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 240 </span>                getString(R.string.video_buffer_size_settings),
-<span class="lineno"> 241 </span>                <span class="keyword">true</span>,
-<span class="lineno"> 242 </span>                {}) {
-<span class="caretline"><span class="lineno"> 243 </span>                <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 244 </span>                    .putInt(getString(R.string.video_buffer_size_key), prefValues[it])
-<span class="lineno"> 245 </span>                    .apply()
-<span class="lineno"> 246 </span>            }
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsProviders.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsProviders.kt</a>:52</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno">  49 </span>  {}) { selectedList ->
-<span class="lineno">  50 </span>  APIRepository.dubStatusActive = selectedList.map { dublist[it] }.toHashSet()
-<span class="lineno">  51 </span>
-<span class="caretline"><span class="lineno">  52 </span>  <span class="warning">settingsManager.edit()</span>.putStringSet(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  53 </span>      <span class="keyword">this</span>.getString(R.string.display_sub_key),
-<span class="lineno">  54 </span>      selectedList.map { names[it] }.toMutableSet()
-<span class="lineno">  55 </span>  ).apply()
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsProviders.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsProviders.kt</a>:95</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno">  92 </span>                currentList,
-<span class="lineno">  93 </span>                getString(R.string.preferred_media_settings),
-<span class="lineno">  94 </span>                {}) { selectedList ->
-<span class="caretline"><span class="lineno">  95 </span>                <span class="warning">settingsManager.edit()</span>.putStringSet(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  96 </span>                    <span class="keyword">this</span>.getString(R.string.prefer_media_type_key),
-<span class="lineno">  97 </span>                    selectedList.map { it.toString() }.toMutableSet()
-<span class="lineno">  98 </span>                ).apply()
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsProviders.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsProviders.kt</a>:123</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 120 </span>                   currentIndexList,
-<span class="lineno"> 121 </span>                   getString(R.string.provider_lang_settings),
-<span class="lineno"> 122 </span>                   {}) { selectedList ->
-<span class="caretline"><span class="lineno"> 123 </span>                   <span class="warning">settingsManager.edit()</span>.putStringSet(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 124 </span>                       <span class="keyword">this</span>.getString(R.string.provider_lang_key),
-<span class="lineno"> 125 </span>                       selectedList.map { languagesTagName[it].first }.toSet()
-<span class="lineno"> 126 </span>                   ).apply()
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUI.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUI.kt</a>:85</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno">  82 </span>                prefValues,
-<span class="lineno">  83 </span>                getString(R.string.poster_ui_settings),
-<span class="lineno">  84 </span>                {}) { list ->
-<span class="caretline"><span class="lineno">  85 </span>                <span class="keyword">val</span> edit = <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  86 </span>                <span class="keyword">for</span> ((i, key) <span class="keyword">in</span> keys.withIndex()) {
-<span class="lineno">  87 </span>                    edit.putBoolean(key, list.contains(i))
-<span class="lineno">  88 </span>                }
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUI.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUI.kt</a>:111</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 108 </span>           dismissCallback = {},
-<span class="lineno"> 109 </span>           callback = {
-<span class="lineno"> 110 </span>               <span class="keyword">try</span> {
-<span class="caretline"><span class="lineno"> 111 </span>                   <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 112 </span>                       .putInt(getString(R.string.app_layout_key), prefValues[it])
-<span class="lineno"> 113 </span>                       .apply()
-<span class="lineno"> 114 </span>                   context?.updateTv()
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUI.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUI.kt</a>:155</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 152 </span>             <span class="keyword">true</span>,
-<span class="lineno"> 153 </span>             {}) {
-<span class="lineno"> 154 </span>             <span class="keyword">try</span> {
-<span class="caretline"><span class="lineno"> 155 </span>                 <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 156 </span>                     .putString(getString(R.string.app_theme_key), prefValues[it])
-<span class="lineno"> 157 </span>                     .apply()
-<span class="lineno"> 158 </span>                 activity?.recreate()
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUI.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUI.kt</a>:192</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 189 </span>         <span class="keyword">true</span>,
-<span class="lineno"> 190 </span>         {}) {
-<span class="lineno"> 191 </span>         <span class="keyword">try</span> {
-<span class="caretline"><span class="lineno"> 192 </span>             <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 193 </span>                 .putString(getString(R.string.primary_color_key), prefValues[it])
-<span class="lineno"> 194 </span>                 .apply()
-<span class="lineno"> 195 </span>             activity?.recreate()
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUI.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUI.kt</a>:217</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 214 </span>                currentList,
-<span class="lineno"> 215 </span>                getString(R.string.pref_filter_search_quality),
-<span class="lineno"> 216 </span>                {}) { selectedList ->
-<span class="caretline"><span class="lineno"> 217 </span>                <span class="warning">settingsManager.edit()</span>.putStringSet(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 218 </span>                    <span class="keyword">this</span>.getString(R.string.pref_filter_search_quality_key),
-<span class="lineno"> 219 </span>                    selectedList.map { it.toString() }.toMutableSet()
-<span class="lineno"> 220 </span>                ).apply()
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUI.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUI.kt</a>:238</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 235 </span>  showApply = <span class="keyword">true</span>,
-<span class="lineno"> 236 </span>  dismissCallback = {},
-<span class="lineno"> 237 </span>  callback = { selectedOption ->
-<span class="caretline"><span class="lineno"> 238 </span>      <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 239 </span>          .putInt(getString(R.string.confirm_exit_key), prefValues[selectedOption])
-<span class="lineno"> 240 </span>          .apply()
-<span class="lineno"> 241 </span>  }
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUpdates.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUpdates.kt</a>:62</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno">  59 </span>    private <span class="keyword">val</span> pathPicker = getChooseFolderLauncher { uri, path ->
-<span class="lineno">  60 </span>        <span class="keyword">val</span> context = context ?: CloudStreamApp.context ?: <span class="keyword">return</span><span class="annotation">@getChooseFolderLauncher</span>
-<span class="lineno">  61 </span>        (path ?: uri.toString()).let {
-<span class="caretline"><span class="lineno">  62 </span>            <span class="warning">PreferenceManager.getDefaultSharedPreferences(context).edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  63 </span>                .putString(getString(R.string.backup_path_key), uri.toString())
-<span class="lineno">  64 </span>                .putString(getString(R.string.backup_dir_key), it)
-<span class="lineno">  65 </span>                .apply()
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUpdates.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUpdates.kt</a>:91</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno">  88 </span>  getString(R.string.backup_frequency),
-<span class="lineno">  89 </span>  <span class="keyword">true</span>,
-<span class="lineno">  90 </span>  {}) { index ->
-<span class="caretline"><span class="lineno">  91 </span>  <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  92 </span>      .putInt(getString(R.string.automatic_backup_key), prefValues[index]).apply()
-<span class="lineno">  93 </span>  BackupWorkManager.enqueuePeriodicWork(
-<span class="lineno">  94 </span>      context ?: CloudStreamApp.context,
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUpdates.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUpdates.kt</a>:133</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 130 </span>                 <span class="comment">// Sets both visual and actual paths.</span>
-<span class="lineno"> 131 </span>                 <span class="comment">// path = used uri</span>
-<span class="lineno"> 132 </span>                 <span class="comment">// dir = dir path</span>
-<span class="caretline"><span class="lineno"> 133 </span>                 <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 134 </span>                     .putString(getString(R.string.backup_path_key), dirs[it])
-<span class="lineno"> 135 </span>                     .putString(getString(R.string.backup_dir_key), dirs[it])
-<span class="lineno"> 136 </span>                     .apply()
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUpdates.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUpdates.kt</a>:215</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 212 </span>           <span class="keyword">true</span>,
-<span class="lineno"> 213 </span>           {}) { num ->
-<span class="lineno"> 214 </span>           <span class="keyword">try</span> {
-<span class="caretline"><span class="lineno"> 215 </span>               <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 216 </span>                   .putInt(getString(R.string.apk_installer_key), prefValues[num])
-<span class="lineno"> 217 </span>                   .apply()
-<span class="lineno"> 218 </span>           } catch (e: Exception) {
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUpdates.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/SettingsUpdates.kt</a>:255</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 252 </span>      getString(R.string.automatic_plugin_download_mode_title),
-<span class="lineno"> 253 </span>      <span class="keyword">true</span>,
-<span class="lineno"> 254 </span>      {}) { num ->
-<span class="caretline"><span class="lineno"> 255 </span>      <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 256 </span>          .putInt(getString(R.string.auto_download_plugins_key), prefValues[num]).apply()
-<span class="lineno"> 257 </span>      (context ?: CloudStreamApp.context)?.let { ctx -> app.initClient(ctx) }
-<span class="lineno"> 258 </span>  }
-</pre>
-
-<br/><b>NOTE: 12 results omitted.</b><br/><br/></div>
+</div>
 </div>
 <div class="metadata"><div class="explanation" id="explanationUseKtx" style="display: none;">
 The Android KTX libraries decorates the Android platform SDK as well as various libraries with more convenient extension functions available from Kotlin, allowing you to use default parameters, named parameters, and more.<br/><br/>
@@ -7674,7 +7385,7 @@ A private inner class which is accessed from the outer class will force the comp
 </div>
 <div class="metadata">Disabled By: Default<br/>
 <div class="explanation">
-Ensures that a method which expects to be called on a specific thread, is actually called from that thread. For example, calls on methods in widgets should always be made on the UI thread.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/guide/components/processes-and-threads.html#Threads">https://developer.android.com/guide/components/processes-and-threads.html#Threads</a>
+Ensures that a method which expects to be called on a specific thread, is actually called from that thread. For example, calls on methods in widgets should always be made on the UI thread. This new issue subsumes <code>WrongThreadInterprocedural</code>, accompanied by a check aiming to be more reliable and scalable.<br/><div class="moreinfo">More info: <a href="https://developer.android.com/guide/components/processes-and-threads.html#Threads">https://developer.android.com/guide/components/processes-and-threads.html#Threads</a>
 </div><br/>
 <br/></div>
 </div>
