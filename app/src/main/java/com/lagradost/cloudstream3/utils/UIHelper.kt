@@ -306,10 +306,10 @@ object UIHelper {
             val color = getColor(0, 0)
             if (alphaFactor < 1f) {
                 val alpha = (color.alpha * alphaFactor).roundToInt()
-                return Color.argb(alpha, color.red, color.green, color.blue)
+                return@getResourceColor Color.argb(alpha, color.red, color.green, color.blue)
             }
 
-            return color
+            return@getResourceColor color
         }
     }
 
