@@ -170,7 +170,7 @@ object AppContextUtils {
             )
             .setWatchNextType(TvContractCompat.WatchNextPrograms.WATCH_NEXT_TYPE_CONTINUE)
             .setTitle(title)
-            .setPosterArtUri(card.posterUrl.toUri())
+            .setPosterArtUri(card.posterUrl?.toUri())
             .setIntentUri((card.id?.let {
                 "$APP_STRING_RESUME_WATCHING://$it"
             } ?: card.url).toUri())
