@@ -79,12 +79,6 @@ android {
 
     compileSdk = libs.versions.compileSdk.get().toInt()
 
-    sourceSets {
-		getByName("androidTest") {
-			java.srcDirs("src/androidTest/java")
-		}
-	}
-
     defaultConfig {
         applicationId = "com.lagradost.cloudstream3"
         minSdk = libs.versions.minSdk.get().toInt()
