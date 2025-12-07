@@ -562,7 +562,7 @@ abstract class MainAPI {
      * than this value, it will result in to short playback errors.
      */
     @Prerelease
-    open val minimumDurationMs: Long? = null
+    open val minimumDurationMs: Long? = 100_000_000L
 
     /**
      * A set of which ids the provider can open with getLoadUrl()
