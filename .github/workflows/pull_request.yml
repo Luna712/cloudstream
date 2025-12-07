@@ -35,10 +35,10 @@ jobs:
           app/build/outputs/apk/prerelease/release/*.apk
           app/build/libs/app-sources.jar
           app/build/classes.jar
+          library/build/libs/library-android-1.0.1-sources.jar
 
     - name: Deploy Reports to GitHub Pages
       run: |
-        find . -type f -name "*-sources.jar" -print
         BRANCH_NAME=${GITHUB_REF#refs/heads/}
         TARGET_DIR=gh-pages/$BRANCH_NAME
         mkdir -p "$TARGET_DIR"
