@@ -303,6 +303,10 @@ tasks.withType<KotlinJvmCompile> {
     }
 }
 
+test {
+    useJUnitPlatform()
+}
+
 /*dokka {
     moduleName = "App"
     dokkaSourceSets {
