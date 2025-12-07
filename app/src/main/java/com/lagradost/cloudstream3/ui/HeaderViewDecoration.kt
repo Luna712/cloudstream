@@ -3,6 +3,7 @@ package com.lagradost.cloudstream3.ui
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.view.View
+import androidx.core.graphics.withTranslation
 import androidx.recyclerview.widget.RecyclerView
 
 class HeaderViewDecoration(private val customView: View) : RecyclerView.ItemDecoration() {
@@ -12,12 +13,11 @@ class HeaderViewDecoration(private val customView: View) : RecyclerView.ItemDeco
         for (i in 0 until parent.childCount) {
             val view = parent.getChildAt(i)
             if (parent.getChildAdapterPosition(view) == 0) {
-                c.save()
                 val height = customView.measuredHeight
                 val top = view.top - height
-                c.translate(0f, top.toFloat())
-                customView.draw(c)
-                c.restore()
+                c.withTranslation(0f, top.toFloat()) {
+                    customView.draw(c)
+                }
                 break
             }
         }
