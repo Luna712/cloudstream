@@ -774,12 +774,12 @@ object VideoDownloadManager {
                 notify()
             }
 
-        fun onDelete() {
+        fun onDelete(context: Context) {
             bytesDownloaded = 0
             hlsWrittenProgress = 0
             hlsProgress = 0
             if (id != null)
-                downloadDeleteEvent(id)
+                deleteFileAndUpdateSettings(context, id)
 
             //internalType = DownloadType.IsStopped
             notify()
@@ -1212,7 +1212,7 @@ object VideoDownloadManager {
             // too short file, treat it as a invalid link
             if (items.totalLength != null && items.totalLength < minimumSize) {
                 fileStream.closeQuietly()
-                metadata.onDelete()
+                metadata.onDelete(context)
                 stream.delete()
                 return@withContext DOWNLOAD_INVALID_INPUT
             }
@@ -1371,7 +1371,7 @@ object VideoDownloadManager {
             if (metadata.type == DownloadType.IsStopped) {
                 // we need to close before delete
                 fileStream.closeQuietly()
-                metadata.onDelete()
+                metadata.onDelete(context)
                 stream.delete()
                 return@withContext DOWNLOAD_STOPPED
             }
@@ -1381,7 +1381,7 @@ object VideoDownloadManager {
             if (metadata.bytesDownloaded < minimumSize) {
                 // we need to close before delete
                 fileStream.closeQuietly()
-                metadata.onDelete()
+                metadata.onDelete(context)
                 stream.delete()
                 return@withContext DOWNLOAD_INVALID_INPUT
             }
@@ -1589,7 +1589,7 @@ object VideoDownloadManager {
             if (metadata.type == DownloadType.IsStopped) {
                 // we need to close before delete
                 fileStream.closeQuietly()
-                metadata.onDelete()
+                metadata.onDelete(context)
                 stream.delete()
                 return@withContext DOWNLOAD_STOPPED
             }
