@@ -16,7 +16,7 @@ class HeaderViewDecoration(private val customView: View) : RecyclerView.ItemDeco
                 val height = customView.measuredHeight
                 val top = view.top - height
                 c.withTranslation(0f, top.toFloat()) {
-                    customView.draw(c)
+                    customView.draw(this)
                 }
                 break
             }
@@ -35,8 +35,6 @@ class HeaderViewDecoration(private val customView: View) : RecyclerView.ItemDeco
                 View.MeasureSpec.makeMeasureSpec(parent.measuredHeight, View.MeasureSpec.AT_MOST)
             )
             outRect.set(0, customView.measuredHeight, 0, 0)
-        } else {
-            outRect.setEmpty()
-        }
+        } else outRect.setEmpty()
     }
 }
