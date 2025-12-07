@@ -2,7 +2,7 @@ package com.lagradost.cloudstream3.utils
 
 import android.content.Context
 import com.lagradost.api.Log
-import com.lagradost.cloudstream3.utils.VideoDownloadManager.getFolder
+import com.lagradost.cloudstream3.utils.VideoDownloadManager.basePathToFile
 import com.lagradost.safefile.SafeFile
 
 object SubtitleUtils {
@@ -60,3 +60,4 @@ object SubtitleUtils {
     }
 
 }
+
