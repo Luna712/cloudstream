@@ -303,7 +303,7 @@ tasks.withType<KotlinJvmCompile> {
     }
 }
 
-test {
+tasks.test {
     useJUnitPlatform()
 }
 
