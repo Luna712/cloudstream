@@ -35,6 +35,7 @@ jobs:
           app/build/outputs/apk/prerelease/release/*.apk
           app/build/libs/app-sources.jar
           app/build/classes.jar
+          library/build/libs/library-sources.jar
 
     - name: Deploy Reports to GitHub Pages
       run: |
