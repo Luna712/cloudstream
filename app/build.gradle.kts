@@ -79,6 +79,12 @@ android {
 
     compileSdk = libs.versions.compileSdk.get().toInt()
 
+    sourceSets {
+		getByName("androidTest") {
+			java.srcDirs("src/androidTest/java")
+		}
+	}
+
     defaultConfig {
         applicationId = "com.lagradost.cloudstream3"
         minSdk = libs.versions.minSdk.get().toInt()
@@ -301,12 +307,6 @@ tasks.withType<KotlinJvmCompile> {
         optIn.add("com.lagradost.cloudstream3.Prerelease")
         freeCompilerArgs.add("-Xannotation-default-target=param-property")
     }
-}
-
-val test by testing.suites.existing(JvmTestSuite::class)
-tasks.register<Test>("otherTest") {
-    testClassesDirs = files(test.map { it.sources.output.classesDirs })
-    classpath = files(test.map { it.sources.runtimeClasspath })
 }
 
 /*dokka {
