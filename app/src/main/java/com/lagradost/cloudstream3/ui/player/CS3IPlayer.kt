@@ -1582,8 +1582,8 @@ class CS3IPlayer : IPlayer {
                 duration < minimumDurationMs &&
                 // Concatenated sources (non 1 periodCount) bypasses the invalid check as exoPlayer.duration gives only the current period
                 // If you can get the total time that'd be better, but this is already niche.
-                exoPlayer.currentTimeline?.periodCount == 1 &&
-                exoPlayer.isCurrentMediaItemLive != true
+                exoPlayer?.currentTimeline?.periodCount == 1 &&
+                exoPlayer?.isCurrentMediaItemLive != true
             } ?: false
         } else false
 
