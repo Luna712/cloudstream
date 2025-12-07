@@ -21,7 +21,7 @@ object SubtitleUtils {
         getFolder(context, relative, info.basePath)?.forEach { (name, uri) ->
             if (isMatchingSubtitle(name, display, cleanDisplay)) {
                 val subtitleFile = SafeFile.fromUri(context, uri)
-                if (subtitleFile == null || subtitleFile.deleteOrThrow() != true) {
+                if (subtitleFile == null || subtitleFile.delete() != true) {
                     Log.e("SubtitleDeletion", "Failed to delete subtitle file: ${subtitleFile?.name()}")
                 }
             }
@@ -53,5 +53,4 @@ object SubtitleUtils {
     fun cleanDisplayName(name: String): String {
         return name.substringBeforeLast('.').trim()
     }
-
 }
