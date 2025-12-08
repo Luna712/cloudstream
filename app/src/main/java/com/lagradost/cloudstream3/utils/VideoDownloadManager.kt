@@ -1934,10 +1934,12 @@ object VideoDownloadManager {
         downloadEvent.invoke(id to DownloadActionType.Stop)
         downloadProgressEvent.invoke(Triple(id, 0, 0))
         downloadStatusEvent.invoke(id to DownloadType.IsStopped)
-        downloadDeleteEvent.invoke(id)
 
         val isFileDeleted = file?.delete() == true || file?.exists() == false
-        if (isFileDeleted) deleteMatchingSubtitles(context, info)
+        if (isFileDeleted) {
+            downloadDeleteEvent.invoke(id)
+            deleteMatchingSubtitles(context, info)
+        }
 
         return isFileDeleted
     }
