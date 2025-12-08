@@ -24,6 +24,7 @@ import com.lagradost.cloudstream3.utils.DataStore.getKeys
 import com.lagradost.cloudstream3.utils.ResourceLiveData
 import com.lagradost.cloudstream3.utils.VideoDownloadHelper
 import com.lagradost.cloudstream3.utils.VideoDownloadManager.deleteFilesAndUpdateSettings
+import com.lagradost.cloudstream3.utils.VideoDownloadManager.downloadDeleteEvent
 import com.lagradost.cloudstream3.utils.VideoDownloadManager.getDownloadFileInfoAndUpdateSettings
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -110,7 +111,6 @@ class DownloadViewModel : ViewModel() {
         val totalSelectedBytes = selectedItemsList.sumOf { it.totalBytes }
         _selectedBytes.postValue(totalSelectedBytes)
     }
-
 
     fun updateHeaderList(context: Context) = viewModelScope.launchSafe {
         // Do not push loading as it interrupts the UI
@@ -460,4 +460,17 @@ class DownloadViewModel : ViewModel() {
         val names: List<String>,
         val parentName: String?
     )
+
+    private fun downloadDeleteEvent(id: Int) {
+        removeItems(setOf(id))
+    }
+
+    init {
+        downloadDeleteEvent += ::downloadDeleteEvent
+    }
+
+    override fun onCleared() {
+        downloadDeleteEvent -= ::downloadDeleteEvent
+        super.onCleared()
+    }
 }
