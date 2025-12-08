@@ -284,7 +284,7 @@ class DownloadViewModel : ViewModel() {
         val selectedItemsList = getSelectedItemsData().orEmpty()
         val deleteData = processSelectedItems(context, selectedItemsList)
         val message = buildDeleteMessage(context, deleteData)
-        showDeleteConfirmationDialog(context, message, deleteData.ids, deleteData.parentIds)
+        showDeleteConfirmationDialog(context, message, deleteData.ids)
     }
 
     fun handleSingleDelete(
@@ -294,7 +294,7 @@ class DownloadViewModel : ViewModel() {
         val itemData = getItemDataFromId(itemId)
         val deleteData = processSelectedItems(context, itemData)
         val message = buildDeleteMessage(context, deleteData)
-        showDeleteConfirmationDialog(context, message, deleteData.ids, deleteData.parentIds)
+        showDeleteConfirmationDialog(context, message, deleteData.ids)
     }
 
     private fun processSelectedItems(
@@ -303,9 +303,7 @@ class DownloadViewModel : ViewModel() {
     ): DeleteData {
         val names = mutableListOf<String>()
         val seriesNames = mutableListOf<String>()
-
         val ids = mutableSetOf<Int>()
-        val parentIds = mutableSetOf<Int>()
 
         var parentName: String? = null
 
@@ -322,7 +320,6 @@ class DownloadViewModel : ViewModel() {
                             .filter { it.parentId == item.data.id }
                             .map { it.id }
                         ids.addAll(episodes)
-                        parentIds.add(item.data.id)
 
                         val episodeInfo = "${item.data.name} (${item.totalDownloads} ${
                             context.resources.getQuantityString(
@@ -355,7 +352,7 @@ class DownloadViewModel : ViewModel() {
             }
         }
 
-        return DeleteData(ids, parentIds, seriesNames, names, parentName)
+        return DeleteData(ids, seriesNames, names, parentName)
     }
 
     private fun buildDeleteMessage(
@@ -397,8 +394,7 @@ class DownloadViewModel : ViewModel() {
     private fun showDeleteConfirmationDialog(
         context: Context,
         message: String,
-        ids: Set<Int>,
-        parentIds: Set<Int>
+        ids: Set<Int>
     ) {
         val builder = AlertDialog.Builder(context)
         val dialogClickListener =
@@ -407,12 +403,7 @@ class DownloadViewModel : ViewModel() {
                     DialogInterface.BUTTON_POSITIVE -> {
                         viewModelScope.launchSafe {
                             setIsMultiDeleteState(false)
-                            deleteFilesAndUpdateSettings(context, ids, this) { successfulIds ->
-                                // We always remove parent because if we are deleting from here
-                                // and we have it as non-empty, it was triggered on
-                                // parent header card
-                                removeItems(successfulIds + parentIds)
-                            }
+                            deleteFilesAndUpdateSettings(context, ids, this)
                         }
                     }
 
@@ -455,7 +446,6 @@ class DownloadViewModel : ViewModel() {
 
     private data class DeleteData(
         val ids: Set<Int>,
-        val parentIds: Set<Int>,
         val seriesNames: List<String>,
         val names: List<String>,
         val parentName: String?
