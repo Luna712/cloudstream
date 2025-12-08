@@ -311,15 +311,15 @@ class DownloadViewModel : ViewModel() {
             when (item) {
                 is VisualDownloadCached.Header -> {
                     if (item.data.type.isEpisodeBased()) {
-                        val episodes = context.getKeys(DOWNLOAD_EPISODE_CACHE)
+                        /*val episodes = context.getKeys(DOWNLOAD_EPISODE_CACHE)
                             .mapNotNull {
                                 context.getKey<VideoDownloadHelper.DownloadEpisodeCached>(
                                     it
                                 )
                             }
                             .filter { it.parentId == item.data.id }
-                            .map { it.id }
-                        ids.addAll(episodes)
+                            .map { it.id }*/
+                        ids.add(item.data.id)
 
                         val episodeInfo = "${item.data.name} (${item.totalDownloads} ${
                             context.resources.getQuantityString(
