@@ -1583,11 +1583,11 @@ class CS3IPlayer : IPlayer {
                     && exoPlayer?.isCurrentMediaItemLive != true
         } ?: false
 
-        if (invalid) {
-            releasePlayer(saveTime = false)
-            event(ErrorEvent(InvalidFileException("Too short playback")))
-            return
-        }
+        // if (invalid) {
+            // releasePlayer(saveTime = false)
+            // event(ErrorEvent(InvalidFileException("Too short playback")))
+            // return
+        // }
 
         setPreferredSubtitles(currentSubtitles)
         val format = exoPlayer?.videoFormat
