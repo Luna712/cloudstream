@@ -451,6 +451,20 @@
    You should manually check whether the generated output is acceptable for
    those older devices.
 
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:5: Warning: A newer version of com.android.application than 9.0.0-beta03 is available: 9.0.0-beta04 [AndroidGradlePluginVersion]
+androidGradlePlugin = "9.0.0-beta03"
+                      ~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:5: Warning: A newer version of com.android.kotlin.multiplatform.library than 9.0.0-beta03 is available: 9.0.0-beta04 [AndroidGradlePluginVersion]
+androidGradlePlugin = "9.0.0-beta03"
+                      ~~~~~~~~~~~~~~
+
+   Explanation for issues of type "AndroidGradlePluginVersion":
+   This detector looks for usage of the Android Gradle Plugin where the
+   version you are using is not the current stable release. Using older
+   versions is fine, and there are cases where you deliberately want to stick
+   with an older version. However, you may simply not be aware that a more
+   recent version is available, and that is what this lint check helps find.
+
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:4: Warning: A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.1 [GradleDependency]
 activityKtx = "1.11.0"
               ~~~~~~~~
@@ -2777,4 +2791,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-43 errors, 707 warnings, 1 hint
+43 errors, 709 warnings, 1 hint

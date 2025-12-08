@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 43 errors, 707 warnings and 1 hint</span>
+      <span class="mdl-layout-title">Lint Report: 43 errors, 709 warnings and 1 hint</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sun Dec 07 23:26:57 UTC 2025 by AGP (9.0.0-beta03)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Mon Dec 08 18:04:01 UTC 2025 by AGP (9.0.0-beta03)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -198,6 +198,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#PictureInPictureIssue"><i class="material-icons warning-icon">warning</i>Picture In Picture best practices not followed (1)</a>
       <a class="mdl-navigation__link" href="#UnspecifiedRegisterReceiverFlag"><i class="material-icons error-icon">error</i>Missing <code>registerReceiver()</code> exported flag (1)</a>
       <a class="mdl-navigation__link" href="#VectorRaster"><i class="material-icons warning-icon">warning</i>Vector Image Generation (15)</a>
+      <a class="mdl-navigation__link" href="#AndroidGradlePluginVersion"><i class="material-icons warning-icon">warning</i>Obsolete Android Gradle Plugin Version (2)</a>
       <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (4)</a>
       <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (2)</a>
       <a class="mdl-navigation__link" href="#RestrictedApi"><i class="material-icons error-icon">error</i>Restricted API (10)</a>
@@ -282,6 +283,9 @@ document.getElementById(id).style.display = 'none';
 <tr>
 <td class="countColumn">15</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#VectorRaster">VectorRaster</a>: Vector Image Generation</td></tr>
+<tr>
+<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#AndroidGradlePluginVersion">AndroidGradlePluginVersion</a>: Obsolete Android Gradle Plugin Version</td></tr>
 <tr>
 <td class="countColumn">4</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#GradleDependency">GradleDependency</a>: Obsolete Gradle Dependency</td></tr>
@@ -1635,6 +1639,62 @@ However, there are some limitations to this raster image generation, and this li
               <div class="mdl-card__actions mdl-card--border">
 <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationVectorRasterLink" onclick="reveal('explanationVectorRaster');">
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="VectorRasterCardLink" onclick="hideid('VectorRasterCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="AndroidGradlePluginVersion"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="AndroidGradlePluginVersionCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Obsolete Android Gradle Plugin Version</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:5</span>: <span class="message">A newer version of com.android.application than 9.0.0-beta03 is available: 9.0.0-beta04</span><br /><pre class="errorlines">
+<span class="lineno">   2 </span># https://docs.gradle.org/current/userguide/dependency_versions.html#sec:strict-version
+<span class="lineno">   3 </span>[versions]
+<span class="lineno">   4 </span>activityKtx = "1.11.0"
+<span class="caretline"><span class="lineno">   5 </span>androidGradlePlugin = <span class="warning">"9.0.0-beta03"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">   6 </span>appcompat = "1.7.1"
+<span class="lineno">   7 </span>biometric = "1.4.0-alpha04"
+<span class="lineno">   8 </span>buildkonfigGradlePlugin = "0.17.1"
+</pre>
+
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:5</span>: <span class="message">A newer version of com.android.kotlin.multiplatform.library than 9.0.0-beta03 is available: 9.0.0-beta04</span><br /><pre class="errorlines">
+<span class="lineno">   2 </span># https://docs.gradle.org/current/userguide/dependency_versions.html#sec:strict-version
+<span class="lineno">   3 </span>[versions]
+<span class="lineno">   4 </span>activityKtx = "1.11.0"
+<span class="caretline"><span class="lineno">   5 </span>androidGradlePlugin = <span class="warning">"9.0.0-beta03"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">   6 </span>appcompat = "1.7.1"
+<span class="lineno">   7 </span>biometric = "1.4.0-alpha04"
+<span class="lineno">   8 </span>buildkonfigGradlePlugin = "0.17.1"
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationAndroidGradlePluginVersion" style="display: none;">
+This detector looks for usage of the Android Gradle Plugin where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "AndroidGradlePluginVersion" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">AndroidGradlePluginVersion</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 4/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationAndroidGradlePluginVersionLink" onclick="reveal('explanationAndroidGradlePluginVersion');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="AndroidGradlePluginVersionCardLink" onclick="hideid('AndroidGradlePluginVersionCard');">
 Dismiss</button>            </div>
             </div>
           </section><a name="GradleDependency"></a>
