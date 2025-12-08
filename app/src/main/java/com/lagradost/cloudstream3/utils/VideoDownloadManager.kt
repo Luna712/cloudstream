@@ -1213,7 +1213,6 @@ object VideoDownloadManager {
             if (items.totalLength != null && items.totalLength < minimumSize) {
                 fileStream.closeQuietly()
                 metadata.onDelete(context)
-                stream.delete()
                 return@withContext DOWNLOAD_INVALID_INPUT
             }
 
@@ -1372,7 +1371,6 @@ object VideoDownloadManager {
                 // we need to close before delete
                 fileStream.closeQuietly()
                 metadata.onDelete(context)
-                stream.delete()
                 return@withContext DOWNLOAD_STOPPED
             }
 
@@ -1382,7 +1380,6 @@ object VideoDownloadManager {
                 // we need to close before delete
                 fileStream.closeQuietly()
                 metadata.onDelete(context)
-                stream.delete()
                 return@withContext DOWNLOAD_INVALID_INPUT
             }
 
@@ -1590,7 +1587,6 @@ object VideoDownloadManager {
                 // we need to close before delete
                 fileStream.closeQuietly()
                 metadata.onDelete(context)
-                stream.delete()
                 return@withContext DOWNLOAD_STOPPED
             }
 
