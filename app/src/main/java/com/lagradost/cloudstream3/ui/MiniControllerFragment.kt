@@ -10,8 +10,8 @@ import android.widget.RelativeLayout
 import androidx.core.content.withStyledAttributes
 import com.google.android.gms.cast.framework.media.widget.MiniControllerFragment
 import com.lagradost.cloudstream3.R
-import com.lagradost.cloudstream3.utils.UIHelper.adjustAlpha
-import com.lagradost.cloudstream3.utils.UIHelper.colorFromAttribute
+import com.lagradost.cloudstream3.mvvm.logError
+import com.lagradost.cloudstream3.utils.UIHelper.getResourceColor
 import com.lagradost.cloudstream3.utils.UIHelper.toPx
 
 
@@ -47,10 +47,7 @@ class MyMiniControllerFragment : MiniControllerFragment() {
 
             context?.let { ctx ->
                 progressBar?.setBackgroundColor(
-                    adjustAlpha(
-                        ctx.colorFromAttribute(R.attr.colorPrimary),
-                        0.35f
-                    )
+                    ctx.getResourceColor(R.attr.colorPrimary, 0.35f)
                 )
                 val params = RelativeLayout.LayoutParams(
                     RelativeLayout.LayoutParams.MATCH_PARENT,
@@ -65,7 +62,7 @@ class MyMiniControllerFragment : MiniControllerFragment() {
             val child = containerAll?.getChildAt(0)
             child?.alpha = 0f // REMOVE GRADIENT
         } catch (e: Exception) {
-            // JUST IN CASE
+            logError(e)
         }
     }
 }
