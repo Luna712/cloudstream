@@ -1,13 +1,13 @@
-/home/runner/work/cloudstream/cloudstream/library/src/commonMain/kotlin/com/lagradost/cloudstream3/extractors/helper/CryptoJSHelper.kt:54: Error: Call requires API level 26, or core library desugaring (current min is 21): java.util.Base64#getEncoder [NewApi]
+/home/runner/work/cloudstream/cloudstream/library/src/commonMain/kotlin/com/lagradost/cloudstream3/extractors/helper/CryptoJSHelper.kt:54: Error: Call requires API level 26, or core library desugaring (current min is 23): java.util.Base64#getEncoder [NewApi]
         val bEncode = Base64.getEncoder().encode(b)
                              ~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/library/src/commonMain/kotlin/com/lagradost/cloudstream3/extractors/helper/CryptoJSHelper.kt:54: Error: Call requires API level 26, or core library desugaring (current min is 21): java.util.Base64.Encoder#encode [NewApi]
+/home/runner/work/cloudstream/cloudstream/library/src/commonMain/kotlin/com/lagradost/cloudstream3/extractors/helper/CryptoJSHelper.kt:54: Error: Call requires API level 26, or core library desugaring (current min is 23): java.util.Base64.Encoder#encode [NewApi]
         val bEncode = Base64.getEncoder().encode(b)
                                           ~~~~~~
-/home/runner/work/cloudstream/cloudstream/library/src/commonMain/kotlin/com/lagradost/cloudstream3/extractors/helper/CryptoJSHelper.kt:65: Error: Call requires API level 26, or core library desugaring (current min is 21): java.util.Base64#getDecoder [NewApi]
+/home/runner/work/cloudstream/cloudstream/library/src/commonMain/kotlin/com/lagradost/cloudstream3/extractors/helper/CryptoJSHelper.kt:65: Error: Call requires API level 26, or core library desugaring (current min is 23): java.util.Base64#getDecoder [NewApi]
         val ctBytes         = Base64.getDecoder().decode(cipherText.toByteArray())
                                      ~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/library/src/commonMain/kotlin/com/lagradost/cloudstream3/extractors/helper/CryptoJSHelper.kt:65: Error: Call requires API level 26, or core library desugaring (current min is 21): java.util.Base64.Decoder#decode [NewApi]
+/home/runner/work/cloudstream/cloudstream/library/src/commonMain/kotlin/com/lagradost/cloudstream3/extractors/helper/CryptoJSHelper.kt:65: Error: Call requires API level 26, or core library desugaring (current min is 23): java.util.Base64.Decoder#decode [NewApi]
         val ctBytes         = Base64.getDecoder().decode(cipherText.toByteArray())
                                                   ~~~~~~
 
