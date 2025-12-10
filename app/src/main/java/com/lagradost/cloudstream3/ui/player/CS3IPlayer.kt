@@ -120,7 +120,7 @@ const val toleranceBeforeUs = 300_000L
  */
 const val toleranceAfterUs = 300_000L
 
-@OptIn(UnstableApi::class)
+// @OptIn(UnstableApi::class)
 class CS3IPlayer : IPlayer {
     private var playerListener: Player.Listener? = null
     private var isPlaying = false

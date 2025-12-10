@@ -63,7 +63,7 @@ data class SubtitleData(
     }
 }
 
-@OptIn(UnstableApi::class)
+// @OptIn(UnstableApi::class)
 class PlayerSubtitleHelper {
     private var activeSubtitles: Set<SubtitleData> = emptySet()
     private var allSubtitles: Set<SubtitleData> = emptySet()

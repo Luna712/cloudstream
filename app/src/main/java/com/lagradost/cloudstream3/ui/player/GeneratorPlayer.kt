@@ -266,12 +266,12 @@ class GeneratorPlayer : FullScreenPlayer() {
         return PendingIntent.getBroadcast(context, instanceId, intent, pendingFlags)
     }
 
-    @OptIn(UnstableApi::class)
-    @UnstableApi
+    // @OptIn(UnstableApi::class)
+    // @UnstableApi
     private var cachedPlayerNotificationManager: PlayerNotificationManager? = null
 
-    @OptIn(UnstableApi::class)
-    @UnstableApi
+    // @OptIn(UnstableApi::class)
+    // @UnstableApi
     private fun getMediaNotification(context: Context): PlayerNotificationManager {
         val cache = cachedPlayerNotificationManager
         if (cache != null) return cache
@@ -876,7 +876,7 @@ class GeneratorPlayer : FullScreenPlayer() {
         //dialog.subtitles_search_year?.setText(currentTempMeta.year)
     }
 
-    @OptIn(UnstableApi::class)
+    // @OptIn(UnstableApi::class)
     private fun openSubPicker() {
         try {
             subsPathPicker.launch(

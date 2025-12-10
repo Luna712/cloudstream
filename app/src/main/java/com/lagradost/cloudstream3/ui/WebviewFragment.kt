@@ -28,7 +28,7 @@ class WebviewFragment : BaseFragment<FragmentWebviewBinding>(
         }
 
         binding.webView.webViewClient = object : WebViewClient() {
-            @OptIn(UnstableApi::class)
+            // @OptIn(UnstableApi::class)
             override fun shouldOverrideUrlLoading(
                 view: WebView?,
                 request: WebResourceRequest?
