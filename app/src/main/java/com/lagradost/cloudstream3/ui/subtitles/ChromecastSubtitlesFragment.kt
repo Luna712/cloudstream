@@ -10,7 +10,9 @@ import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.OptIn
 import androidx.media3.common.text.Cue
+import androidx.media3.common.util.UnstableApi
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.google.android.gms.cast.TextTrackStyle.EDGE_TYPE_DEPRESSED
 import com.google.android.gms.cast.TextTrackStyle.EDGE_TYPE_DROP_SHADOW
@@ -49,7 +51,8 @@ data class SaveChromeCaptionStyle(
     @JsonProperty("fontScale") var fontScale: Float = 1.05f,
     @JsonProperty("windowColor") var windowColor: Int = Color.TRANSPARENT,
 )
-@androidx.annotation.OptIn(androidx.media3.common.util.UnstableApi::class)
+
+// @OptIn(UnstableApi::class)
 class ChromecastSubtitlesFragment : BaseFragment<ChromecastSubtitleSettingsBinding>(
     BaseFragment.BindingCreator.Inflate(ChromecastSubtitleSettingsBinding::inflate)
 ) {
