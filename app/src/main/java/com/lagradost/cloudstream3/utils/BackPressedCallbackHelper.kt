@@ -37,8 +37,8 @@ object BackPressedCallbackHelper {
             enabledChangedListeners += listener
         }
 
-        fun startPredictiveBack(event: BackEvent) {}
-        fun progressPredictiveBack(event: BackEvent) {}
+        fun startPredictiveBack(event: BackPressedCallbackHelper.BackEvent) {}
+        fun progressPredictiveBack(event: BackPressedCallbackHelper.BackEvent) {}
         fun cancelPredictiveBack() {}
         fun back() {}
     }
@@ -117,3 +117,4 @@ object BackPressedCallbackHelper {
         if (callbackMap.isEmpty()) backPressedCallbacks.remove(this)
     }
 }
+
