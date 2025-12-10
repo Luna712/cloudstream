@@ -76,11 +76,11 @@ const val NEXT_WATCH_EPISODE_PERCENTAGE = 90
 // when the player should sync the progress of "watched", TODO MAKE SETTING
 const val UPDATE_SYNC_PROGRESS_PERCENTAGE = 80
 
+@OptIn(UnstableApi::class)
 abstract class AbstractPlayerFragment(
     var player: IPlayer = CS3IPlayer()
 ) : Fragment() {
     var resizeMode: Int = 0
-    @OptIn(UnstableApi::class)
     var subView: SubtitleView? = null
     protected open var hasPipModeSupport = true
 
