@@ -52,7 +52,6 @@ data class SaveChromeCaptionStyle(
     @JsonProperty("windowColor") var windowColor: Int = Color.TRANSPARENT,
 )
 
-// @OptIn(UnstableApi::class)
 class ChromecastSubtitlesFragment : BaseFragment<ChromecastSubtitleSettingsBinding>(
     BaseFragment.BindingCreator.Inflate(ChromecastSubtitleSettingsBinding::inflate)
 ) {
@@ -333,6 +332,8 @@ class ChromecastSubtitlesFragment : BaseFragment<ChromecastSubtitleSettingsBindi
             //it.context.fromSaveToStyle(state)
             activity?.popCurrentPage()
         }
+
+        @OptIn(UnstableApi::class)
         binding.subtitleText.apply {
             setCues(
                 listOf(
