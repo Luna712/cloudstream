@@ -132,7 +132,7 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-@UnstableApi
+// @UnstableApi
 class GeneratorPlayer : FullScreenPlayer() {
     companion object {
         const val NOTIFICATION_ID = 2326
