@@ -35,6 +35,7 @@ import java.lang.ref.WeakReference
 import java.util.Locale
 import kotlin.concurrent.thread
 import kotlin.system.exitProcess
+import androidx.fragment.app.FragmentManager
 
 class ExceptionHandler(
     val errorFile: File,
@@ -73,6 +74,8 @@ class CloudStreamApp : Application(), SingletonImageLoader.Factory {
         // If we want to initialize Coil as early as possible, maybe when
         // loading an image or GIF in a splash screen activity.
         // buildImageLoader(applicationContext)
+
+        FragmentManager.enablePredictiveBack(true)
 
         ExceptionHandler(filesDir.resolve("last_error")) {
             val intent = context!!.packageManager.getLaunchIntentForPackage(context!!.packageName)
