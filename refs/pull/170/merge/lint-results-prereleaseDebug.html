@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 284 errors, 707 warnings and 1 hint</span>
+      <span class="mdl-layout-title">Lint Report: 346 errors, 707 warnings and 1 hint</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Dec 10 17:20:42 UTC 2025 by AGP (9.0.0-beta04)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Dec 10 17:24:27 UTC 2025 by AGP (9.0.0-beta04)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -201,7 +201,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (4)</a>
       <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (2)</a>
       <a class="mdl-navigation__link" href="#RestrictedApi"><i class="material-icons error-icon">error</i>Restricted API (10)</a>
-      <a class="mdl-navigation__link" href="#UnsafeOptInUsageError"><i class="material-icons error-icon">error</i>Unsafe opt-in usage intended to be error-level severity (263)</a>
+      <a class="mdl-navigation__link" href="#UnsafeOptInUsageError"><i class="material-icons error-icon">error</i>Unsafe opt-in usage intended to be error-level severity (325)</a>
       <a class="mdl-navigation__link" href="#PrivateResource"><i class="material-icons warning-icon">warning</i>Using private resources (26)</a>
       <a class="mdl-navigation__link" href="#Aligned16KB"><i class="material-icons warning-icon">warning</i>Native library dependency not 16 KB aligned (9)</a>
       <a class="mdl-navigation__link" href="#DiscouragedApi"><i class="material-icons warning-icon">warning</i>Using discouraged APIs (2)</a>
@@ -292,7 +292,7 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">10</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
 <a href="#RestrictedApi">RestrictedApi</a>: Restricted API</td></tr>
 <tr>
-<td class="countColumn">263</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
+<td class="countColumn">325</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
 <a href="#UnsafeOptInUsageError">UnsafeOptInUsageError</a>: Unsafe opt-in usage intended to be error-level severity</td></tr>
 <tr>
 <td class="countColumn">26</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
@@ -1933,7 +1933,7 @@ Dismiss</button>            </div>
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a></span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br />
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a></span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br />
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a></span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br />
-<button class="mdl-button mdl-js-button mdl-button--primary" id="UnsafeOptInUsageErrorDivLink" onclick="reveal('UnsafeOptInUsageErrorDiv');" />+ 258 More Occurrences...</button>
+<button class="mdl-button mdl-js-button mdl-button--primary" id="UnsafeOptInUsageErrorDivLink" onclick="reveal('UnsafeOptInUsageErrorDiv');" />+ 320 More Occurrences...</button>
 <div id="UnsafeOptInUsageErrorDiv" style="display: none">
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:261</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
 <span class="lineno">  258 </span>      <span class="keyword">return</span> <span class="keyword">this</span>.replace(Regex(<span class="string">"""^\d+:"""</span>), <span class="string">""</span>)
@@ -2369,7 +2369,7 @@ Dismiss</button>            </div>
 <span class="lineno">  878 </span>        }
 </pre>
 
-<br/><b>NOTE: 213 results omitted.</b><br/><br/></div>
+<br/><b>NOTE: 275 results omitted.</b><br/><br/></div>
 </div>
 <div class="metadata"><div class="explanation" id="explanationUnsafeOptInUsageError" style="display: none;">
 This API has been flagged as opt-in with error-level severity.<br/>
