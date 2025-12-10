@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 57 errors, 707 warnings and 1 hint</span>
+      <span class="mdl-layout-title">Lint Report: 26 errors, 707 warnings and 1 hint</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Dec 10 18:05:16 UTC 2025 by AGP (9.0.0-beta04)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Dec 10 18:10:26 UTC 2025 by AGP (9.0.0-beta04)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -201,7 +201,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (4)</a>
       <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (2)</a>
       <a class="mdl-navigation__link" href="#RestrictedApi"><i class="material-icons error-icon">error</i>Restricted API (10)</a>
-      <a class="mdl-navigation__link" href="#UnsafeOptInUsageError"><i class="material-icons error-icon">error</i>Unsafe opt-in usage intended to be error-level severity (36)</a>
+      <a class="mdl-navigation__link" href="#UnsafeOptInUsageError"><i class="material-icons error-icon">error</i>Unsafe opt-in usage intended to be error-level severity (5)</a>
       <a class="mdl-navigation__link" href="#PrivateResource"><i class="material-icons warning-icon">warning</i>Using private resources (26)</a>
       <a class="mdl-navigation__link" href="#Aligned16KB"><i class="material-icons warning-icon">warning</i>Native library dependency not 16 KB aligned (9)</a>
       <a class="mdl-navigation__link" href="#DiscouragedApi"><i class="material-icons warning-icon">warning</i>Using discouraged APIs (2)</a>
@@ -292,7 +292,7 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">10</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
 <a href="#RestrictedApi">RestrictedApi</a>: Restricted API</td></tr>
 <tr>
-<td class="countColumn">36</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
+<td class="countColumn">5</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
 <a href="#UnsafeOptInUsageError">UnsafeOptInUsageError</a>: Unsafe opt-in usage intended to be error-level severity</td></tr>
 <tr>
 <td class="countColumn">26</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
@@ -1920,351 +1920,56 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/PlayerSubtitleHelper.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/PlayerSubtitleHelper.kt</a></span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br />
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/PlayerSubtitleHelper.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/PlayerSubtitleHelper.kt</a>:83</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  80 </span>        allSubtitles = list
-<span class="lineno">  81 </span>    }
-<span class="lineno">  82 </span>
-<span class="caretline"><span class="lineno">  83 </span>    <span class="keyword">var</span> subtitleView: <span class="error">SubtitleView?</span> = <span class="keyword">null</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  84 </span>
-<span class="lineno">  85 </span>    companion <span class="keyword">object</span> {
-<span class="lineno">  86 </span>        <span class="keyword">fun</span> String.toSubtitleMimeType(): String {
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt</a>:337</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno"> 334 </span>            activity?.popCurrentPage()
+<span class="lineno"> 335 </span>        }
+<span class="lineno"> 336 </span>        binding.subtitleText.apply {
+<span class="caretline"><span class="lineno"> 337 </span>            <span class="error">setCues</span>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 338 </span>                listOf(
+<span class="lineno"> 339 </span>                    Cue.Builder()
+<span class="lineno"> 340 </span>                        .setTextSize(
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/PlayerSubtitleHelper.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/PlayerSubtitleHelper.kt</a>:124</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 121 </span>      setSubtitleViewStyle(subtitleView, style, <span class="keyword">true</span>)
-<span class="lineno"> 122 </span>  }
-<span class="lineno"> 123 </span>
-<span class="caretline"><span class="lineno"> 124 </span>  <span class="keyword">fun</span> initSubtitles(subView: <span class="error">SubtitleView?</span>, subHolder: FrameLayout?, style: SaveCaptionStyle?) {&nbsp;&nbsp;</span>
-<span class="lineno"> 125 </span>      subtitleView = subView
-<span class="lineno"> 126 </span>      subView?.let { sView ->
-<span class="lineno"> 127 </span>          (sView.parent <span class="keyword">as</span> ViewGroup?)?.removeView(sView)
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt</a>:339</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno"> 336 </span>        binding.subtitleText.apply {
+<span class="lineno"> 337 </span>            setCues(
+<span class="lineno"> 338 </span>                listOf(
+<span class="caretline"><span class="lineno"> 339 </span>                    Cue.<span class="error">Builder</span>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 340 </span>                        .setTextSize(
+<span class="lineno"> 341 </span>                            getPixels(TypedValue.COMPLEX_UNIT_SP, <span class="number">25.0f</span>).toFloat(),
+<span class="lineno"> 342 </span>                            Cue.TEXT_SIZE_TYPE_ABSOLUTE
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/PlayerSubtitleHelper.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/PlayerSubtitleHelper.kt</a>:126</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 123 </span>
-<span class="lineno"> 124 </span>  <span class="keyword">fun</span> initSubtitles(subView: SubtitleView?, subHolder: FrameLayout?, style: SaveCaptionStyle?) {
-<span class="lineno"> 125 </span>      subtitleView = subView
-<span class="caretline"><span class="lineno"> 126 </span>      subView?.let { <span class="error">sView</span> ->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 127 </span>          (sView.parent <span class="keyword">as</span> ViewGroup?)?.removeView(sView)
-<span class="lineno"> 128 </span>          subHolder?.addView(sView)
-<span class="lineno"> 129 </span>      }
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt</a>:340</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno"> 337 </span>            setCues(
+<span class="lineno"> 338 </span>                listOf(
+<span class="lineno"> 339 </span>                    Cue.Builder()
+<span class="caretline"><span class="lineno"> 340 </span>                        .<span class="error">setTextSize</span>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 341 </span>                            getPixels(TypedValue.COMPLEX_UNIT_SP, <span class="number">25.0f</span>).toFloat(),
+<span class="lineno"> 342 </span>                            Cue.TEXT_SIZE_TYPE_ABSOLUTE
+<span class="lineno"> 343 </span>                        )
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:67</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  64 </span>    <span class="annotation">@JsonProperty</span>(<span class="string">"foregroundColor"</span>) <span class="keyword">var</span> foregroundColor: Int,
-<span class="lineno">  65 </span>    <span class="annotation">@JsonProperty</span>(<span class="string">"backgroundColor"</span>) <span class="keyword">var</span> backgroundColor: Int,
-<span class="lineno">  66 </span>    <span class="annotation">@JsonProperty</span>(<span class="string">"windowColor"</span>) <span class="keyword">var</span> windowColor: Int,
-<span class="caretline"><span class="lineno">  67 </span>    <span class="annotation">@JsonProperty</span>(<span class="string">"edgeType"</span>) <span class="keyword">var</span> edgeType: <span class="annotation">@</span><span class="error"><span class="annotation">CaptionStyleCompat</span>.EdgeType</span> Int,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  68 </span>    <span class="annotation">@JsonProperty</span>(<span class="string">"edgeColor"</span>) <span class="keyword">var</span> edgeColor: Int,
-<span class="lineno">  69 </span>    <span class="annotation">@FontRes</span>
-<span class="lineno">  70 </span>    <span class="annotation">@JsonProperty</span>(<span class="string">"typeface"</span>) <span class="keyword">var</span> typeface: Int?,
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt</a>:344</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno"> 341 </span>                            getPixels(TypedValue.COMPLEX_UNIT_SP, <span class="number">25.0f</span>).toFloat(),
+<span class="lineno"> 342 </span>                            Cue.TEXT_SIZE_TYPE_ABSOLUTE
+<span class="lineno"> 343 </span>                        )
+<span class="caretline"><span class="lineno"> 344 </span>                        .<span class="error">setText</span>(context.getString(R.string.subtitles_example_text))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 345 </span>                        .build()
+<span class="lineno"> 346 </span>                )
+<span class="lineno"> 347 </span>            )
 </pre>
 
-<button class="mdl-button mdl-js-button mdl-button--primary" id="UnsafeOptInUsageErrorDivLink" onclick="reveal('UnsafeOptInUsageErrorDiv');" />+ 31 More Occurrences...</button>
-<div id="UnsafeOptInUsageErrorDiv" style="display: none">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:103</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 100 </span>        private <span class="keyword">val</span> captionRegex = Regex(<span class="string">"""(-\s?|)[\[({][\S\s]*?[])}]\s*"""</span>)
-<span class="lineno"> 101 </span>
-<span class="lineno"> 102 </span>        <span class="keyword">fun</span> setSubtitleViewStyle(
-<span class="caretline"><span class="lineno"> 103 </span>            view: <span class="error">SubtitleView?</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 104 </span>            data: SaveCaptionStyle,
-<span class="lineno"> 105 </span>            applyElevation: Boolean
-<span class="lineno"> 106 </span>        ) {
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt</a>:345</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno"> 342 </span>                            Cue.TEXT_SIZE_TYPE_ABSOLUTE
+<span class="lineno"> 343 </span>                        )
+<span class="lineno"> 344 </span>                        .setText(context.getString(R.string.subtitles_example_text))
+<span class="caretline"><span class="lineno"> 345 </span>                        .<span class="error">build</span>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 346 </span>                )
+<span class="lineno"> 347 </span>            )
+<span class="lineno"> 348 </span>        }
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:109</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 106 </span>        ) {
-<span class="lineno"> 107 </span>            <span class="keyword">if</span> (view == <span class="keyword">null</span>) <span class="keyword">return</span>
-<span class="lineno"> 108 </span>            <span class="keyword">val</span> ctx = view.context ?: <span class="keyword">return</span>
-<span class="caretline"><span class="lineno"> 109 </span>            <span class="keyword">val</span> <span class="error">style</span> = ctx.fromSaveToStyle(data)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 110 </span>            view.setStyle(style)
-<span class="lineno"> 111 </span>
-<span class="lineno"> 112 </span>            <span class="keyword">if</span> (applyElevation) {
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:110</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 107 </span>            <span class="keyword">if</span> (view == <span class="keyword">null</span>) <span class="keyword">return</span>
-<span class="lineno"> 108 </span>            <span class="keyword">val</span> ctx = view.context ?: <span class="keyword">return</span>
-<span class="lineno"> 109 </span>            <span class="keyword">val</span> style = ctx.fromSaveToStyle(data)
-<span class="caretline"><span class="lineno"> 110 </span>            view.<span class="error">setStyle</span>(style)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 111 </span>
-<span class="lineno"> 112 </span>            <span class="keyword">if</span> (applyElevation) {
-<span class="lineno"> 113 </span>                view.setPadding(
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:120</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 117 </span>
-<span class="lineno"> 118 </span>  <span class="comment">// we default to 25sp, this is needed as RoundedBackgroundColorSpan breaks on override sizes</span>
-<span class="lineno"> 119 </span>  <span class="keyword">val</span> size = data.fixedTextSize ?: <span class="number">25.0f</span>
-<span class="caretline"><span class="lineno"> 120 </span>  view.<span class="error">setFixedTextSize</span>(TypedValue.COMPLEX_UNIT_SP, size)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 121 </span>  view.setBottomPaddingFraction(<span class="number">0.0f</span>)
-<span class="lineno"> 122 </span>  <span class="comment">/*if (size != null) {
-</span><span class="lineno"> 123 </span><span class="comment">      view.setFixedTextSize(TypedValue.COMPLEX_UNIT_SP, size)
-</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:121</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 118 </span>  <span class="comment">// we default to 25sp, this is needed as RoundedBackgroundColorSpan breaks on override sizes</span>
-<span class="lineno"> 119 </span>  <span class="keyword">val</span> size = data.fixedTextSize ?: <span class="number">25.0f</span>
-<span class="lineno"> 120 </span>  view.setFixedTextSize(TypedValue.COMPLEX_UNIT_SP, size)
-<span class="caretline"><span class="lineno"> 121 </span>  view.<span class="error">setBottomPaddingFraction</span>(<span class="number">0.0f</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 122 </span>  <span class="comment">/*if (size != null) {
-</span><span class="lineno"> 123 </span><span class="comment">      view.setFixedTextSize(TypedValue.COMPLEX_UNIT_SP, size)
-</span><span class="lineno"> 124 </span><span class="comment">  } else {
-</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:129</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 126 </span><span class="comment">            }*/</span>
-<span class="lineno"> 127 </span>        }
-<span class="lineno"> 128 </span>
-<span class="caretline"><span class="lineno"> 129 </span>        <span class="keyword">fun</span> Cue.<span class="error">Builder</span>.applyStyle(style: SaveCaptionStyle): Cue.Builder {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 130 </span>            <span class="keyword">val</span> edgeSize = style.edgeSize
-<span class="lineno"> 131 </span>
-<span class="lineno"> 132 </span>            <span class="comment">/*
-</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:129</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 126 </span><span class="comment">            }*/</span>
-<span class="lineno"> 127 </span>        }
-<span class="lineno"> 128 </span>
-<span class="caretline"><span class="lineno"> 129 </span>        <span class="keyword">fun</span> Cue.Builder.applyStyle(style: SaveCaptionStyle): <span class="error">Cue.Builder</span> {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 130 </span>            <span class="keyword">val</span> edgeSize = style.edgeSize
-<span class="lineno"> 131 </span>
-<span class="lineno"> 132 </span>            <span class="comment">/*
-</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:146</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 143 </span>
-<span class="lineno"> 144 </span>            <span class="comment">// 1. remove any subtitle size set by the subtitle file (like ass)</span>
-<span class="lineno"> 145 </span>            <span class="comment">// instead we use the inherit size of the subtitle view</span>
-<span class="caretline"><span class="lineno"> 146 </span>            <span class="error">setTextSize</span>(Cue.DIMEN_UNSET, Cue.TYPE_UNSET)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 147 </span>
-<span class="lineno"> 148 </span>            <span class="comment">// 2. apply edge</span>
-<span class="lineno"> 149 </span>            text?.let { text ->
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:149</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 146 </span>            setTextSize(Cue.DIMEN_UNSET, Cue.TYPE_UNSET)
-<span class="lineno"> 147 </span>
-<span class="lineno"> 148 </span>            <span class="comment">// 2. apply edge</span>
-<span class="caretline"><span class="lineno"> 149 </span>            <span class="error">text</span>?.let { text ->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 150 </span>                <span class="keyword">val</span> customSpan = SpannableString.valueOf(text)
-<span class="lineno"> 151 </span>                <span class="keyword">if</span> (edgeSize != <span class="keyword">null</span>) {
-<span class="lineno"> 152 </span>                    customSpan.setSpan(
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:157</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 154 </span>                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-<span class="lineno"> 155 </span>                    )
-<span class="lineno"> 156 </span>                }
-<span class="caretline"><span class="lineno"> 157 </span>                <span class="error">setText</span>(customSpan)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 158 </span>            }
-<span class="lineno"> 159 </span>
-<span class="lineno"> 160 </span>            <span class="comment">// 3. apply bold + italic</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:161</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 158 </span>            }
-<span class="lineno"> 159 </span>
-<span class="lineno"> 160 </span>            <span class="comment">// 3. apply bold + italic</span>
-<span class="caretline"><span class="lineno"> 161 </span>            <span class="error">text</span>?.let { text ->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 162 </span>                <span class="keyword">val</span> customSpan = SpannableString.valueOf(text)
-<span class="lineno"> 163 </span>
-<span class="lineno"> 164 </span>                <span class="keyword">val</span> typeface = <span class="keyword">when</span> (style.bold to style.italic) {
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:180</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 177 </span>                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-<span class="lineno"> 178 </span>                    )
-<span class="lineno"> 179 </span>                }
-<span class="caretline"><span class="lineno"> 180 </span>                <span class="error">setText</span>(customSpan)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 181 </span>            }
-<span class="lineno"> 182 </span>
-<span class="lineno"> 183 </span>            <span class="comment">// 4. apply radius</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:184</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 181 </span>            }
-<span class="lineno"> 182 </span>
-<span class="lineno"> 183 </span>            <span class="comment">// 4. apply radius</span>
-<span class="caretline"><span class="lineno"> 184 </span>            <span class="error">text</span>?.let { text ->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 185 </span>                <span class="keyword">val</span> customSpan = SpannableString.valueOf(text)
-<span class="lineno"> 186 </span>                <span class="keyword">val</span> radius = style.backgroundRadius
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:191</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 188 </span>               <span class="keyword">if</span> (radius != <span class="keyword">null</span> &amp;&amp; style.backgroundColor != Color.TRANSPARENT) {
-<span class="lineno"> 189 </span>                   <span class="keyword">val</span> styleSpan = RoundedBackgroundColorSpan(
-<span class="lineno"> 190 </span>                       style.backgroundColor,
-<span class="caretline"><span class="lineno"> 191 </span>                       <span class="keyword">this</span>.<span class="error">textAlignment</span> ?: Layout.Alignment.ALIGN_CENTER,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 192 </span>                       <span class="number">2.0F</span> + radius * <span class="number">0.5f</span>,
-<span class="lineno"> 193 </span>                       radius
-<span class="lineno"> 194 </span>                   )
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:200</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 197 </span>                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-<span class="lineno"> 198 </span>                    )
-<span class="lineno"> 199 </span>                }
-<span class="caretline"><span class="lineno"> 200 </span>                <span class="error">setText</span>(customSpan)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 201 </span>            }
-<span class="lineno"> 202 </span>
-<span class="lineno"> 203 </span>            <span class="comment">// 5. remove captions</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:204</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 201 </span>            }
-<span class="lineno"> 202 </span>
-<span class="lineno"> 203 </span>            <span class="comment">// 5. remove captions</span>
-<span class="caretline"><span class="lineno"> 204 </span>            <span class="error">text</span>?.let { text ->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 205 </span>                <span class="keyword">if</span> (style.removeCaptions) {
-<span class="lineno"> 206 </span>                    setText(text.replace(captionRegex, <span class="string">""</span>))
-<span class="lineno"> 207 </span>                }
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:206</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 203 </span>            <span class="comment">// 5. remove captions</span>
-<span class="lineno"> 204 </span>            text?.let { text ->
-<span class="lineno"> 205 </span>                <span class="keyword">if</span> (style.removeCaptions) {
-<span class="caretline"><span class="lineno"> 206 </span>                    <span class="error">setText</span>(text.replace(captionRegex, <span class="string">""</span>))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 207 </span>                }
-<span class="lineno"> 208 </span>            }
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:214</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 211 </span>            <span class="keyword">return</span> <span class="keyword">this</span>.setSubtitleAlignment(style.alignment)
-<span class="lineno"> 212 </span>        }
-<span class="lineno"> 213 </span>
-<span class="caretline"><span class="lineno"> 214 </span>        private <span class="keyword">fun</span> Context.fromSaveToStyle(data: SaveCaptionStyle): <span class="error">CaptionStyleCompat</span> {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 215 </span>            <span class="keyword">return</span> CaptionStyleCompat(
-<span class="lineno"> 216 </span>                data.foregroundColor,
-<span class="lineno"> 217 </span>                <span class="comment">// we actually override with a custom span when backgroundRadius != null</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:215</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 212 </span>   }
-<span class="lineno"> 213 </span>
-<span class="lineno"> 214 </span>   private <span class="keyword">fun</span> Context.fromSaveToStyle(data: SaveCaptionStyle): CaptionStyleCompat {
-<span class="caretline"><span class="lineno"> 215 </span>       <span class="keyword">return</span> <span class="error">CaptionStyleCompat</span>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 216 </span>           data.foregroundColor,
-<span class="lineno"> 217 </span>           <span class="comment">// we actually override with a custom span when backgroundRadius != null</span>
-<span class="lineno"> 218 </span>           <span class="keyword">if</span> (data.backgroundRadius == <span class="keyword">null</span>) data.backgroundColor <span class="keyword">else</span> Color.TRANSPARENT,
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:268</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 265 </span>                foregroundColor = getDefColor(<span class="number">0</span>),
-<span class="lineno"> 266 </span>                backgroundColor = getDefColor(<span class="number">2</span>),
-<span class="lineno"> 267 </span>                windowColor = getDefColor(<span class="number">3</span>),
-<span class="caretline"><span class="lineno"> 268 </span>                edgeType = CaptionStyleCompat.<span class="error">EDGE_TYPE_OUTLINE</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 269 </span>                edgeColor = getDefColor(<span class="number">1</span>),
-<span class="lineno"> 270 </span>                typeface = <span class="keyword">null</span>,
-<span class="lineno"> 271 </span>                typefaceFilePath = <span class="keyword">null</span>,
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:333</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 330 </span>  <span class="keyword">val</span> fixedText = SpannableString.valueOf(<span class="keyword">if</span> (state.upperCase) text.uppercase() <span class="keyword">else</span> text)
-<span class="lineno"> 331 </span>  setSubtitleViewStyle(binding?.subtitleText, state, <span class="keyword">false</span>)
-<span class="lineno"> 332 </span>
-<span class="caretline"><span class="lineno"> 333 </span>  binding?.subtitleText?.<span class="error">setCues</span>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 334 </span>      listOf(
-<span class="lineno"> 335 </span>          Cue.Builder()
-<span class="lineno"> 336 </span>              .setText(fixedText)
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:335</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 332 </span>
-<span class="lineno"> 333 </span>        binding?.subtitleText?.setCues(
-<span class="lineno"> 334 </span>            listOf(
-<span class="caretline"><span class="lineno"> 335 </span>                Cue.<span class="error">Builder</span>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 336 </span>                    .setText(fixedText)
-<span class="lineno"> 337 </span>                    .applyStyle(state)
-<span class="lineno"> 338 </span>                    .build()
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:336</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 333 </span>        binding?.subtitleText?.setCues(
-<span class="lineno"> 334 </span>            listOf(
-<span class="lineno"> 335 </span>                Cue.Builder()
-<span class="caretline"><span class="lineno"> 336 </span>                    .<span class="error">setText</span>(fixedText)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 337 </span>                    .applyStyle(state)
-<span class="lineno"> 338 </span>                    .build()
-<span class="lineno"> 339 </span>            )
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:338</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 335 </span>                Cue.Builder()
-<span class="lineno"> 336 </span>                    .setText(fixedText)
-<span class="lineno"> 337 </span>                    .applyStyle(state)
-<span class="caretline"><span class="lineno"> 338 </span>                    .<span class="error">build</span>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 339 </span>            )
-<span class="lineno"> 340 </span>        )
-<span class="lineno"> 341 </span>    }
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:520</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 517 </span>            subsEdgeType.setFocusableInTv()
-<span class="lineno"> 518 </span>            subsEdgeType.setOnClickListener { textView ->
-<span class="lineno"> 519 </span>                <span class="keyword">val</span> edgeTypes = listOf(
-<span class="caretline"><span class="lineno"> 520 </span>                    CaptionStyleCompat.<span class="error">EDGE_TYPE_NONE</span> to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 521 </span>                            textView.context.getString(R.string.subtitles_none),
-<span class="lineno"> 522 </span>                    CaptionStyleCompat.EDGE_TYPE_OUTLINE to
-<span class="lineno"> 523 </span>                            textView.context.getString(R.string.subtitles_outline),
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:522</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 519 </span>             <span class="keyword">val</span> edgeTypes = listOf(
-<span class="lineno"> 520 </span>                 CaptionStyleCompat.EDGE_TYPE_NONE to
-<span class="lineno"> 521 </span>                         textView.context.getString(R.string.subtitles_none),
-<span class="caretline"><span class="lineno"> 522 </span>                 CaptionStyleCompat.<span class="error">EDGE_TYPE_OUTLINE</span> to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 523 </span>                         textView.context.getString(R.string.subtitles_outline),
-<span class="lineno"> 524 </span>                 CaptionStyleCompat.EDGE_TYPE_DEPRESSED to
-<span class="lineno"> 525 </span>                         textView.context.getString(R.string.subtitles_depressed),
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:524</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 521 </span>                     textView.context.getString(R.string.subtitles_none),
-<span class="lineno"> 522 </span>             CaptionStyleCompat.EDGE_TYPE_OUTLINE to
-<span class="lineno"> 523 </span>                     textView.context.getString(R.string.subtitles_outline),
-<span class="caretline"><span class="lineno"> 524 </span>             CaptionStyleCompat.<span class="error">EDGE_TYPE_DEPRESSED</span> to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 525 </span>                     textView.context.getString(R.string.subtitles_depressed),
-<span class="lineno"> 526 </span>             CaptionStyleCompat.EDGE_TYPE_DROP_SHADOW to
-<span class="lineno"> 527 </span>                     textView.context.getString(R.string.subtitles_shadow),
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:526</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 523 </span>                     textView.context.getString(R.string.subtitles_outline),
-<span class="lineno"> 524 </span>             CaptionStyleCompat.EDGE_TYPE_DEPRESSED to
-<span class="lineno"> 525 </span>                     textView.context.getString(R.string.subtitles_depressed),
-<span class="caretline"><span class="lineno"> 526 </span>             CaptionStyleCompat.<span class="error">EDGE_TYPE_DROP_SHADOW</span> to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 527 </span>                     textView.context.getString(R.string.subtitles_shadow),
-<span class="lineno"> 528 </span>             CaptionStyleCompat.EDGE_TYPE_RAISED to
-<span class="lineno"> 529 </span>                     textView.context.getString(R.string.subtitles_raised),
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:528</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 525 </span>                         textView.context.getString(R.string.subtitles_depressed),
-<span class="lineno"> 526 </span>                 CaptionStyleCompat.EDGE_TYPE_DROP_SHADOW to
-<span class="lineno"> 527 </span>                         textView.context.getString(R.string.subtitles_shadow),
-<span class="caretline"><span class="lineno"> 528 </span>                 CaptionStyleCompat.<span class="error">EDGE_TYPE_RAISED</span> to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 529 </span>                         textView.context.getString(R.string.subtitles_raised),
-<span class="lineno"> 530 </span>             )
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:546</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 543 </span>            }
-<span class="lineno"> 544 </span>
-<span class="lineno"> 545 </span>            subsEdgeType.setOnLongClickListener {
-<span class="caretline"><span class="lineno"> 546 </span>                <span class="error">state.edgeType</span> = CaptionStyleCompat.EDGE_TYPE_OUTLINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 547 </span>                it.context.updateState()
-<span class="lineno"> 548 </span>                showToast(R.string.subs_default_reset_toast, Toast.LENGTH_SHORT)
-<span class="lineno"> 549 </span>                <span class="keyword">return</span><span class="annotation">@setOnLongClickListener</span> <span class="keyword">true</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt</a>:546</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 543 </span>            }
-<span class="lineno"> 544 </span>
-<span class="lineno"> 545 </span>            subsEdgeType.setOnLongClickListener {
-<span class="caretline"><span class="lineno"> 546 </span>                state.edgeType = CaptionStyleCompat.<span class="error">EDGE_TYPE_OUTLINE</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 547 </span>                it.context.updateState()
-<span class="lineno"> 548 </span>                showToast(R.string.subs_default_reset_toast, Toast.LENGTH_SHORT)
-<span class="lineno"> 549 </span>                <span class="keyword">return</span><span class="annotation">@setOnLongClickListener</span> <span class="keyword">true</span></pre>
-
-</div>
 </div>
 <div class="metadata"><div class="explanation" id="explanationUnsafeOptInUsageError" style="display: none;">
 This API has been flagged as opt-in with error-level severity.<br/>
@@ -3513,13 +3218,13 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/WebviewFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/WebviewFragment.kt</a>:50</span>: <span class="message">Using <code>setJavaScriptEnabled</code> can introduce XSS vulnerabilities into your application, review carefully</span><br /><pre class="errorlines">
-<span class="lineno"> 47 </span>            WebViewResolver.webViewUserAgent = settings.userAgentString
-<span class="lineno"> 48 </span>
-<span class="lineno"> 49 </span>            addJavascriptInterface(RepoApi(activity), <span class="string">"RepoApi"</span>)
-<span class="caretline"><span class="lineno"> 50 </span>            <span class="warning">settings.javaScriptEnabled = <span class="keyword">true</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 51 </span>            settings.userAgentString = USER_AGENT
-<span class="lineno"> 52 </span>            settings.domStorageEnabled = <span class="keyword">true</span>
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/WebviewFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/WebviewFragment.kt</a>:48</span>: <span class="message">Using <code>setJavaScriptEnabled</code> can introduce XSS vulnerabilities into your application, review carefully</span><br /><pre class="errorlines">
+<span class="lineno"> 45 </span>            WebViewResolver.webViewUserAgent = settings.userAgentString
+<span class="lineno"> 46 </span>
+<span class="lineno"> 47 </span>            addJavascriptInterface(RepoApi(activity), <span class="string">"RepoApi"</span>)
+<span class="caretline"><span class="lineno"> 48 </span>            <span class="warning">settings.javaScriptEnabled = <span class="keyword">true</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 49 </span>            settings.userAgentString = USER_AGENT
+<span class="lineno"> 50 </span>            settings.domStorageEnabled = <span class="keyword">true</span>
 </pre>
 
 </div>

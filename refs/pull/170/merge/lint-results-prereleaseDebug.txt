@@ -528,112 +528,21 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
 
    You can add your own API restrictions with the @RestrictTo annotation.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/PlayerSubtitleHelper.kt: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/PlayerSubtitleHelper.kt:83: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-    var subtitleView: SubtitleView? = null
-                      ~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/PlayerSubtitleHelper.kt:124: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-    fun initSubtitles(subView: SubtitleView?, subHolder: FrameLayout?, style: SaveCaptionStyle?) {
-                               ~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/PlayerSubtitleHelper.kt:126: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-        subView?.let { sView ->
-                       ~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:67: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-    @JsonProperty("edgeType") var edgeType: @CaptionStyleCompat.EdgeType Int,
-                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:103: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-            view: SubtitleView?,
-                  ~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:109: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-            val style = ctx.fromSaveToStyle(data)
-                ~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:110: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-            view.setStyle(style)
-                 ~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:120: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-            view.setFixedTextSize(TypedValue.COMPLEX_UNIT_SP, size)
-                 ~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:121: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-            view.setBottomPaddingFraction(0.0f)
-                 ~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:129: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-        fun Cue.Builder.applyStyle(style: SaveCaptionStyle): Cue.Builder {
-                ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:129: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-        fun Cue.Builder.applyStyle(style: SaveCaptionStyle): Cue.Builder {
-                                                             ~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:146: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-            setTextSize(Cue.DIMEN_UNSET, Cue.TYPE_UNSET)
-            ~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:149: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-            text?.let { text ->
-            ~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:157: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                setText(customSpan)
-                ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:161: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-            text?.let { text ->
-            ~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:180: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                setText(customSpan)
-                ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:184: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-            text?.let { text ->
-            ~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:191: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                        this.textAlignment ?: Layout.Alignment.ALIGN_CENTER,
-                             ~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:200: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                setText(customSpan)
-                ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:204: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-            text?.let { text ->
-            ~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:206: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                    setText(text.replace(captionRegex, ""))
-                    ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:214: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-        private fun Context.fromSaveToStyle(data: SaveCaptionStyle): CaptionStyleCompat {
-                                                                     ~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:215: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-            return CaptionStyleCompat(
-                   ~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:268: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                edgeType = CaptionStyleCompat.EDGE_TYPE_OUTLINE,
-                                              ~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:333: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-        binding?.subtitleText?.setCues(
-                               ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:335: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                Cue.Builder()
-                    ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:336: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                    .setText(fixedText)
-                     ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:338: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                    .build()
-                     ~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:520: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                    CaptionStyleCompat.EDGE_TYPE_NONE to
-                                       ~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:522: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                    CaptionStyleCompat.EDGE_TYPE_OUTLINE to
-                                       ~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:524: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                    CaptionStyleCompat.EDGE_TYPE_DEPRESSED to
-                                       ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:526: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                    CaptionStyleCompat.EDGE_TYPE_DROP_SHADOW to
-                                       ~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:528: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                    CaptionStyleCompat.EDGE_TYPE_RAISED to
-                                       ~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:546: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                state.edgeType = CaptionStyleCompat.EDGE_TYPE_OUTLINE
-                ~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/SubtitlesFragment.kt:546: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                state.edgeType = CaptionStyleCompat.EDGE_TYPE_OUTLINE
-                                                    ~~~~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt:337: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
+            setCues(
+            ~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt:339: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
+                    Cue.Builder()
+                        ~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt:340: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
+                        .setTextSize(
+                         ~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt:344: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
+                        .setText(context.getString(R.string.subtitles_example_text))
+                         ~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt:345: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
+                        .build()
+                         ~~~~~
 
    Explanation for issues of type "UnsafeOptInUsageError":
    This API has been flagged as opt-in with error-level severity.
@@ -1622,7 +1531,7 @@ conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = 
 
    https://developer.android.com/guide/topics/resources/string-resource.html#Plurals
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/WebviewFragment.kt:50: Warning: Using setJavaScriptEnabled can introduce XSS vulnerabilities into your application, review carefully [SetJavaScriptEnabled]
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/WebviewFragment.kt:48: Warning: Using setJavaScriptEnabled can introduce XSS vulnerabilities into your application, review carefully [SetJavaScriptEnabled]
             settings.javaScriptEnabled = true
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -2819,4 +2728,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-57 errors, 707 warnings, 1 hint
+26 errors, 707 warnings, 1 hint
