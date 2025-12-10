@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 110 errors, 707 warnings and 1 hint</span>
+      <span class="mdl-layout-title">Lint Report: 108 errors, 707 warnings and 1 hint</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Dec 10 17:33:41 UTC 2025 by AGP (9.0.0-beta04)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Dec 10 17:44:45 UTC 2025 by AGP (9.0.0-beta04)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -201,7 +201,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (4)</a>
       <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (2)</a>
       <a class="mdl-navigation__link" href="#RestrictedApi"><i class="material-icons error-icon">error</i>Restricted API (10)</a>
-      <a class="mdl-navigation__link" href="#UnsafeOptInUsageError"><i class="material-icons error-icon">error</i>Unsafe opt-in usage intended to be error-level severity (89)</a>
+      <a class="mdl-navigation__link" href="#UnsafeOptInUsageError"><i class="material-icons error-icon">error</i>Unsafe opt-in usage intended to be error-level severity (87)</a>
       <a class="mdl-navigation__link" href="#PrivateResource"><i class="material-icons warning-icon">warning</i>Using private resources (26)</a>
       <a class="mdl-navigation__link" href="#Aligned16KB"><i class="material-icons warning-icon">warning</i>Native library dependency not 16 KB aligned (9)</a>
       <a class="mdl-navigation__link" href="#DiscouragedApi"><i class="material-icons warning-icon">warning</i>Using discouraged APIs (2)</a>
@@ -292,7 +292,7 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">10</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
 <a href="#RestrictedApi">RestrictedApi</a>: Restricted API</td></tr>
 <tr>
-<td class="countColumn">89</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
+<td class="countColumn">87</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
 <a href="#UnsafeOptInUsageError">UnsafeOptInUsageError</a>: Unsafe opt-in usage intended to be error-level severity</td></tr>
 <tr>
 <td class="countColumn">26</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
@@ -1423,14 +1423,14 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/AbstractPlayerFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/AbstractPlayerFragment.kt</a>:228</span>: <span class="message"><code>pipReceiver</code> is missing <code>RECEIVER_EXPORTED</code> or <code>RECEIVER_NOT_EXPORTED</code> flag for unprotected broadcasts registered for media_control</span><br /><pre class="errorlines">
-<span class="lineno"> 225 </span>    filter.addAction(ACTION_MEDIA_CONTROL)
-<span class="lineno"> 226 </span>    <span class="keyword">if</span> (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-<span class="lineno"> 227 </span>        activity?.registerReceiver(pipReceiver, filter, Context.RECEIVER_EXPORTED)
-<span class="caretline"><span class="lineno"> 228 </span>    } <span class="keyword">else</span> <span class="error">activity?.registerReceiver(pipReceiver, filter)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 229 </span>    <span class="keyword">val</span> isPlaying = player.getIsPlaying()
-<span class="lineno"> 230 </span>    <span class="keyword">val</span> isPlayingValue =
-<span class="lineno"> 231 </span>        <span class="keyword">if</span> (isPlaying) CSPlayerLoading.IsPlaying <span class="keyword">else</span> CSPlayerLoading.IsPaused
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/AbstractPlayerFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/AbstractPlayerFragment.kt</a>:231</span>: <span class="message"><code>pipReceiver</code> is missing <code>RECEIVER_EXPORTED</code> or <code>RECEIVER_NOT_EXPORTED</code> flag for unprotected broadcasts registered for media_control</span><br /><pre class="errorlines">
+<span class="lineno"> 228 </span>    filter.addAction(ACTION_MEDIA_CONTROL)
+<span class="lineno"> 229 </span>    <span class="keyword">if</span> (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+<span class="lineno"> 230 </span>        activity?.registerReceiver(pipReceiver, filter, Context.RECEIVER_EXPORTED)
+<span class="caretline"><span class="lineno"> 231 </span>    } <span class="keyword">else</span> <span class="error">activity?.registerReceiver(pipReceiver, filter)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 232 </span>    <span class="keyword">val</span> isPlaying = player.getIsPlaying()
+<span class="lineno"> 233 </span>    <span class="keyword">val</span> isPlayingValue =
+<span class="lineno"> 234 </span>        <span class="keyword">if</span> (isPlaying) CSPlayerLoading.IsPlaying <span class="keyword">else</span> CSPlayerLoading.IsPaused
 </pre>
 
 </div>
@@ -1921,24 +1921,14 @@ Dismiss</button>            </div>
 <div class="issue">
 <div class="warningslist">
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/AbstractPlayerFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/AbstractPlayerFragment.kt</a></span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br />
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/AbstractPlayerFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/AbstractPlayerFragment.kt</a>:81</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  78 </span>    <span class="keyword">var</span> player: IPlayer = CS3IPlayer()
-<span class="lineno">  79 </span>) : Fragment() {
-<span class="lineno">  80 </span>    <span class="keyword">var</span> resizeMode: Int = <span class="number">0</span>
-<span class="caretline"><span class="lineno">  81 </span>    <span class="keyword">var</span> subView: <span class="error">SubtitleView?</span> = <span class="keyword">null</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  82 </span>    protected open <span class="keyword">var</span> hasPipModeSupport = <span class="keyword">true</span>
-<span class="lineno">  83 </span>
-<span class="lineno">  84 </span>    <span class="keyword">var</span> playerPausePlayHolderHolder: FrameLayout? = <span class="keyword">null</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt</a></span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br />
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt</a>:278</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  275 </span>     <span class="comment">// Post here as bottomPlayerBar is gone the first frame => bottomPlayerBar.height = 0</span>
-<span class="lineno">  276 </span>     playerBinding?.bottomPlayerBar?.post {
-<span class="lineno">  277 </span>         <span class="comment">// @OptIn(UnstableApi::class)</span>
-<span class="caretline"><span class="lineno">  278 </span>         <span class="keyword">val</span> <span class="error">sView</span> = subView ?: <span class="keyword">return</span><span class="annotation">@post</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  279 </span>         <span class="keyword">val</span> sStyle = CustomDecoder.style
-<span class="lineno">  280 </span>         <span class="keyword">val</span> binding = playerBinding ?: <span class="keyword">return</span><span class="annotation">@post</span>
-</pre>
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/AbstractPlayerFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/AbstractPlayerFragment.kt</a>:84</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  81 </span>) : Fragment() {
+<span class="lineno">  82 </span>    <span class="keyword">var</span> resizeMode: Int = <span class="number">0</span>
+<span class="lineno">  83 </span>    <span class="annotation">@OptIn</span>(UnstableApi::<span class="keyword">class</span>)
+<span class="caretline"><span class="lineno">  84 </span>    <span class="keyword">var</span> subView: <span class="error">SubtitleView?</span> = <span class="keyword">null</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  85 </span>    protected open <span class="keyword">var</span> hasPipModeSupport = <span class="keyword">true</span>
+<span class="lineno">  86 </span>
+<span class="lineno">  87 </span>    <span class="keyword">var</span> playerPausePlayHolderHolder: FrameLayout? = <span class="keyword">null</span></pre>
 
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt</a>:296</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
 <span class="lineno">  293 </span>
@@ -1950,8 +1940,6 @@ Dismiss</button>            </div>
 <span class="lineno">  299 </span>      <span class="keyword">if</span> (isShowing) {
 </pre>
 
-<button class="mdl-button mdl-js-button mdl-button--primary" id="UnsafeOptInUsageErrorDivLink" onclick="reveal('UnsafeOptInUsageErrorDiv');" />+ 84 More Occurrences...</button>
-<div id="UnsafeOptInUsageErrorDiv" style="display: none">
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt</a>:385</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
 <span class="lineno">  382 </span>    override <span class="keyword">fun</span> subtitlesChanged() {
 <span class="lineno">  383 </span>        <span class="keyword">val</span> tracks = player.getVideoTracks()
@@ -1972,6 +1960,8 @@ Dismiss</button>            </div>
 <span class="lineno"> 1583 </span>                       loudnessEnhancer = LoudnessEnhancer(audioSessionId).apply {
 </pre>
 
+<button class="mdl-button mdl-js-button mdl-button--primary" id="UnsafeOptInUsageErrorDivLink" onclick="reveal('UnsafeOptInUsageErrorDiv');" />+ 82 More Occurrences...</button>
+<div id="UnsafeOptInUsageErrorDiv" style="display: none">
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a></span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br />
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a></span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br />
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:261</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
@@ -2373,7 +2363,27 @@ Dismiss</button>            </div>
 <span class="lineno">  447 </span>                }
 </pre>
 
-<br/><b>NOTE: 39 results omitted.</b><br/><br/></div>
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:445</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  442 </span>            <span class="keyword">val</span> ctx = context ?: <span class="keyword">return</span>
+<span class="lineno">  443 </span>            getMediaNotification(ctx).apply {
+<span class="lineno">  444 </span>                setPlayer(player)
+<span class="caretline"><span class="lineno">  445 </span>                mMediaSession?.<span class="error">platformToken</span>?.let {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  446 </span>                    setMediaSessionToken(it)
+<span class="lineno">  447 </span>                }
+<span class="lineno">  448 </span>            }
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:446</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  443 </span>            getMediaNotification(ctx).apply {
+<span class="lineno">  444 </span>                setPlayer(player)
+<span class="lineno">  445 </span>                mMediaSession?.platformToken?.let {
+<span class="caretline"><span class="lineno">  446 </span>                    <span class="error">setMediaSessionToken</span>(it)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  447 </span>                }
+<span class="lineno">  448 </span>            }
+<span class="lineno">  449 </span>        }
+</pre>
+
+<br/><b>NOTE: 37 results omitted.</b><br/><br/></div>
 </div>
 <div class="metadata"><div class="explanation" id="explanationUnsafeOptInUsageError" style="display: none;">
 This API has been flagged as opt-in with error-level severity.<br/>
