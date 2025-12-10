@@ -37,8 +37,8 @@ object BackPressedCallbackHelper {
             enabledChangedListeners += listener
         }
 
-        fun startPredictiveBack(event: BackPressedCallbackHelper.BackEvent) {}
-        fun progressPredictiveBack(event: BackPressedCallbackHelper.BackEvent) {}
+        fun startPredictiveBack(event: BackEvent) {}
+        fun progressPredictiveBack(event: BackEvent) {}
         fun cancelPredictiveBack() {}
         fun back() {}
     }
@@ -83,8 +83,8 @@ object BackPressedCallbackHelper {
                 dispatcher.cancelPredictiveBack()
             }
 
-            private fun BackEventCompat.toBackEvent(): BackEvent =
-                BackEvent(
+            private fun BackEventCompat.toBackEvent(): BackPressedCallbackHelper.BackEvent =
+                BackPressedCallbackHelper.BackEvent(
                     progress = progress,
                     swipeEdge = when (swipeEdge) {
                         BackEventCompat.EDGE_LEFT -> BackEvent.SwipeEdge.LEFT
@@ -117,4 +117,5 @@ object BackPressedCallbackHelper {
         if (callbackMap.isEmpty()) backPressedCallbacks.remove(this)
     }
 }
+
 
