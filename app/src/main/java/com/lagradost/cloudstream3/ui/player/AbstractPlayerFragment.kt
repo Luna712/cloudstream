@@ -20,11 +20,13 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.LayoutRes
+import androidx.annotation.OptIn
 import androidx.annotation.StringRes
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.media3.common.PlaybackException
+import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.MediaSession
 import androidx.media3.ui.AspectRatioFrameLayout
@@ -78,6 +80,7 @@ abstract class AbstractPlayerFragment(
     var player: IPlayer = CS3IPlayer()
 ) : Fragment() {
     var resizeMode: Int = 0
+    @OptIn(UnstableApi::class)
     var subView: SubtitleView? = null
     protected open var hasPipModeSupport = true
 
