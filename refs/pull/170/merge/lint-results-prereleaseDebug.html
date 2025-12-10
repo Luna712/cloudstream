@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 26 errors, 707 warnings and 1 hint</span>
+      <span class="mdl-layout-title">Lint Report: 21 errors, 707 warnings and 1 hint</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Dec 10 18:10:26 UTC 2025 by AGP (9.0.0-beta04)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Dec 10 18:45:24 UTC 2025 by AGP (9.0.0-beta04)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -201,7 +201,6 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (4)</a>
       <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (2)</a>
       <a class="mdl-navigation__link" href="#RestrictedApi"><i class="material-icons error-icon">error</i>Restricted API (10)</a>
-      <a class="mdl-navigation__link" href="#UnsafeOptInUsageError"><i class="material-icons error-icon">error</i>Unsafe opt-in usage intended to be error-level severity (5)</a>
       <a class="mdl-navigation__link" href="#PrivateResource"><i class="material-icons warning-icon">warning</i>Using private resources (26)</a>
       <a class="mdl-navigation__link" href="#Aligned16KB"><i class="material-icons warning-icon">warning</i>Native library dependency not 16 KB aligned (9)</a>
       <a class="mdl-navigation__link" href="#DiscouragedApi"><i class="material-icons warning-icon">warning</i>Using discouraged APIs (2)</a>
@@ -291,9 +290,6 @@ document.getElementById(id).style.display = 'none';
 <tr>
 <td class="countColumn">10</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
 <a href="#RestrictedApi">RestrictedApi</a>: Restricted API</td></tr>
-<tr>
-<td class="countColumn">5</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
-<a href="#UnsafeOptInUsageError">UnsafeOptInUsageError</a>: Unsafe opt-in usage intended to be error-level severity</td></tr>
 <tr>
 <td class="countColumn">26</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#PrivateResource">PrivateResource</a>: Using private resources</td></tr>
@@ -1909,114 +1905,6 @@ You can add your own API restrictions with the <code>@RestrictTo</code> annotati
               <div class="mdl-card__actions mdl-card--border">
 <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationRestrictedApiLink" onclick="reveal('explanationRestrictedApi');">
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="RestrictedApiCardLink" onclick="hideid('RestrictedApiCard');">
-Dismiss</button>            </div>
-            </div>
-          </section><a name="UnsafeOptInUsageError"></a>
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="UnsafeOptInUsageErrorCard" style="display: block;">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Unsafe opt-in usage intended to be error-level severity</h2>
-  </div>
-              <div class="mdl-card__supporting-text">
-<div class="issue">
-<div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt</a>:337</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 334 </span>            activity?.popCurrentPage()
-<span class="lineno"> 335 </span>        }
-<span class="lineno"> 336 </span>        binding.subtitleText.apply {
-<span class="caretline"><span class="lineno"> 337 </span>            <span class="error">setCues</span>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 338 </span>                listOf(
-<span class="lineno"> 339 </span>                    Cue.Builder()
-<span class="lineno"> 340 </span>                        .setTextSize(
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt</a>:339</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 336 </span>        binding.subtitleText.apply {
-<span class="lineno"> 337 </span>            setCues(
-<span class="lineno"> 338 </span>                listOf(
-<span class="caretline"><span class="lineno"> 339 </span>                    Cue.<span class="error">Builder</span>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 340 </span>                        .setTextSize(
-<span class="lineno"> 341 </span>                            getPixels(TypedValue.COMPLEX_UNIT_SP, <span class="number">25.0f</span>).toFloat(),
-<span class="lineno"> 342 </span>                            Cue.TEXT_SIZE_TYPE_ABSOLUTE
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt</a>:340</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 337 </span>            setCues(
-<span class="lineno"> 338 </span>                listOf(
-<span class="lineno"> 339 </span>                    Cue.Builder()
-<span class="caretline"><span class="lineno"> 340 </span>                        .<span class="error">setTextSize</span>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 341 </span>                            getPixels(TypedValue.COMPLEX_UNIT_SP, <span class="number">25.0f</span>).toFloat(),
-<span class="lineno"> 342 </span>                            Cue.TEXT_SIZE_TYPE_ABSOLUTE
-<span class="lineno"> 343 </span>                        )
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt</a>:344</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 341 </span>                            getPixels(TypedValue.COMPLEX_UNIT_SP, <span class="number">25.0f</span>).toFloat(),
-<span class="lineno"> 342 </span>                            Cue.TEXT_SIZE_TYPE_ABSOLUTE
-<span class="lineno"> 343 </span>                        )
-<span class="caretline"><span class="lineno"> 344 </span>                        .<span class="error">setText</span>(context.getString(R.string.subtitles_example_text))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 345 </span>                        .build()
-<span class="lineno"> 346 </span>                )
-<span class="lineno"> 347 </span>            )
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt</a>:345</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 342 </span>                            Cue.TEXT_SIZE_TYPE_ABSOLUTE
-<span class="lineno"> 343 </span>                        )
-<span class="lineno"> 344 </span>                        .setText(context.getString(R.string.subtitles_example_text))
-<span class="caretline"><span class="lineno"> 345 </span>                        .<span class="error">build</span>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 346 </span>                )
-<span class="lineno"> 347 </span>            )
-<span class="lineno"> 348 </span>        }
-</pre>
-
-</div>
-<div class="metadata"><div class="explanation" id="explanationUnsafeOptInUsageError" style="display: none;">
-This API has been flagged as opt-in with error-level severity.<br/>
-<br/>
-Any declaration annotated with this marker is considered part of an unstable or<br/>
-otherwise non-standard API surface and its call sites should accept the opt-in<br/>
-aspect of it by using the <code>@OptIn</code> annotation, using the marker annotation --<br/>
-effectively causing further propagation of the opt-in aspect -- or configuring<br/>
-the <code>UnsafeOptInUsageError</code> check's options for project-wide opt-in.<br/>
-<br/>
-To configure project-wide opt-in, specify the <code>opt-in</code> option value in <code>lint.xml</code><br/>
-as a comma-delimited list of opted-in annotations:<br/>
-
-<pre>
-&lt;lint>
-    &lt;issue id="UnsafeOptInUsageError">
-        &lt;option name="opt-in" value="com.foo.ExperimentalBarAnnotation" />
-    &lt;/issue>
-&lt;/lint>
-</pre>
-<br/>To suppress this error, use the issue id "UnsafeOptInUsageError" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
-<br/></div>
-</div>
-</div>
-<div class="vendor">
-Vendor: Android Open Source Project<br/>
-Identifier: androidx.annotation.experimental<br/>
-Feedback: <a href="https://issuetracker.google.com/issues/new?component=459778">https://issuetracker.google.com/issues/new?component=459778</a><br/>
-</div>
-<div class="chips">
-<span class="mdl-chip">
-    <span class="mdl-chip__text">UnsafeOptInUsageError</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Correctness</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Error</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Priority 4/10</span>
-</span>
-</div>
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationUnsafeOptInUsageErrorLink" onclick="reveal('explanationUnsafeOptInUsageError');">
-Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="UnsafeOptInUsageErrorCardLink" onclick="hideid('UnsafeOptInUsageErrorCard');">
 Dismiss</button>            </div>
             </div>
           </section><a name="PrivateResource"></a>

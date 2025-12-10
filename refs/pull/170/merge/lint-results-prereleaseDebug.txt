@@ -528,49 +528,6 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
 
    You can add your own API restrictions with the @RestrictTo annotation.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt:337: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-            setCues(
-            ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt:339: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                    Cue.Builder()
-                        ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt:340: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                        .setTextSize(
-                         ~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt:344: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                        .setText(context.getString(R.string.subtitles_example_text))
-                         ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/subtitles/ChromecastSubtitlesFragment.kt:345: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.UnstableApi or @OptIn(markerClass = androidx.media3.common.util.UnstableApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                        .build()
-                         ~~~~~
-
-   Explanation for issues of type "UnsafeOptInUsageError":
-   This API has been flagged as opt-in with error-level severity.
-
-   Any declaration annotated with this marker is considered part of an
-   unstable or
-   otherwise non-standard API surface and its call sites should accept the
-   opt-in
-   aspect of it by using the @OptIn annotation, using the marker annotation
-   --
-   effectively causing further propagation of the opt-in aspect -- or
-   configuring
-   the UnsafeOptInUsageError check's options for project-wide opt-in.
-
-   To configure project-wide opt-in, specify the opt-in option value in
-   lint.xml
-   as a comma-delimited list of opted-in annotations:
-
-   <lint>
-       <issue id="UnsafeOptInUsageError">
-           <option name="opt-in" value="com.foo.ExperimentalBarAnnotation" />
-       </issue>
-   </lint>
-
-   Vendor: Android Open Source Project
-   Identifier: androidx.annotation.experimental
-   Feedback: https://issuetracker.google.com/issues/new?component=459778
-
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt:372: Warning: The resource @string/exo_controls_stop_description is marked as private in androidx.media3:media3-ui:1.8.0 [PrivateResource]
                             context.getString(androidx.media3.ui.R.string.exo_controls_stop_description),
                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2728,4 +2685,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-26 errors, 707 warnings, 1 hint
+21 errors, 707 warnings, 1 hint
