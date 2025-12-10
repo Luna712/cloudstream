@@ -28,6 +28,48 @@ object BackPressedCallbackHelper {
         }
     }
 
+    private class Dispatcher(private val targetView: View) {
+        var predictiveActive = false
+
+        fun startPredictiveBack(event: BackEvent) {
+            predictiveActive = true
+            targetView.translationX = 0f
+            targetView.alpha = 1f
+        }
+
+        fun progressPredictiveBack(event: BackEvent) {
+            val progress = min(1f, max(0f, event.progress))
+            targetView.translationX = targetView.width * progress
+            targetView.alpha = 1f - progress * 0.5f
+        }
+
+        fun cancelPredictiveBack() {
+            predictiveActive = false
+            targetView.animate().translationX(0f).alpha(1f).setDuration(200).start()
+        }
+
+        fun toBackEvent(backEventCompat: BackEventCompat): BackEvent =
+            BackEvent(
+                progress = backEventCompat.progress,
+                swipeEdge = when (backEventCompat.swipeEdge) {
+                    BackEventCompat.EDGE_LEFT -> BackEvent.SwipeEdge.LEFT
+                    BackEventCompat.EDGE_RIGHT -> BackEvent.SwipeEdge.RIGHT
+                    else -> BackEvent.SwipeEdge.UNKNOWN
+                },
+                touchX = backEventCompat.touchX,
+                touchY = backEventCompat.touchY
+            )
+    }
+
+    data class BackEvent(
+        val progress: Float,
+        val swipeEdge: SwipeEdge,
+        val touchX: Float,
+        val touchY: Float
+    ) {
+        enum class SwipeEdge { LEFT, RIGHT, UNKNOWN }
+    }
+
     fun ComponentActivity.attachBackPressedCallback(
         id: String,
         rootView: View? = null,
@@ -37,32 +79,22 @@ object BackPressedCallbackHelper {
         if (callbackMap.containsKey(id)) return
 
         val targetView = rootView ?: window.decorView
+        val dispatcher = Dispatcher(targetView)
 
         val cb = object : OnBackPressedCallback(true) {
-            private var predictiveActive = false
-
             override fun handleOnBackStarted(backEvent: BackEventCompat) {
-                predictiveActive = true
-                targetView.translationX = 0f
-                targetView.alpha = 1f
+                dispatcher.startPredictiveBack(dispatcher.toBackEvent(backEvent))
             }
 
             override fun handleOnBackProgressed(backEvent: BackEventCompat) {
-                if (!predictiveActive) predictiveActive = true
-                val progress = min(1f, max(0f, backEvent?.progress ?: 0f))
-                targetView.translationX = targetView.width * progress
-                targetView.alpha = 1f - progress * 0.5f
+                dispatcher.progressPredictiveBack(dispatcher.toBackEvent(backEvent))
             }
 
             override fun handleOnBackCancelled() {
-                if (!predictiveActive) return
-                predictiveActive = false
-                targetView.animate().translationX(0f).alpha(1f).setDuration(200).start()
+                dispatcher.cancelPredictiveBack()
             }
 
             override fun handleOnBackPressed() {
-                if (!predictiveActive) return
-                predictiveActive = false
                 callback(CallbackHelper(this@attachBackPressedCallback, this))
             }
         }
