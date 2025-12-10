@@ -333,8 +333,8 @@ class ChromecastSubtitlesFragment : BaseFragment<ChromecastSubtitleSettingsBindi
             activity?.popCurrentPage()
         }
 
-        @OptIn(UnstableApi::class)
         binding.subtitleText.apply {
+            @OptIn(UnstableApi::class)
             setCues(
                 listOf(
                     Cue.Builder()
