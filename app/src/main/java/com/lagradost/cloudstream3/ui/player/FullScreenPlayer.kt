@@ -103,7 +103,7 @@ const val DOUBLE_TAB_PAUSE_PERCENTAGE = 0.15        // in both directions
 private const val SUBTITLE_DELAY_BUNDLE_KEY = "subtitle_delay"
 
 // All the UI Logic for the player
-// @OptIn(UnstableApi::class)
+@OptIn(UnstableApi::class)
 open class FullScreenPlayer : AbstractPlayerFragment() {
     private var isVerticalOrientation: Boolean = false
     protected open var lockRotation = true
