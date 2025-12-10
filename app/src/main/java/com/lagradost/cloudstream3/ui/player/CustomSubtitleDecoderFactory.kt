@@ -35,8 +35,8 @@ import java.nio.charset.Charset
 /**
  * @param fallbackFormat used to create a decoder based on mimetype if the subtitle string is not
  * enough to identify the subtitle format.
- **/
-@UnstableApi
+ */
+// @UnstableApi
 class CustomDecoder(private val fallbackFormat: Format?) : SubtitleParser {
     companion object {
         fun updateForcedEncoding(context: Context) {
@@ -363,7 +363,7 @@ class CustomDecoder(private val fallbackFormat: Format?) : SubtitleParser {
 }
 
 /** See https://github.com/google/ExoPlayer/blob/release-v2/library/core/src/main/java/com/google/android/exoplayer2/text/SubtitleDecoderFactory.java */
-@OptIn(UnstableApi::class)
+// @OptIn(UnstableApi::class)
 class CustomSubtitleDecoderFactory : SubtitleDecoderFactory {
 
     override fun supportsFormat(format: Format): Boolean {
@@ -404,7 +404,7 @@ class CustomSubtitleDecoderFactory : SubtitleDecoderFactory {
     }
 }
 
-@OptIn(UnstableApi::class)
+// @OptIn(UnstableApi::class)
 /** We need to convert the newer SubtitleParser to an older SubtitleDecoder */
 class DelegatingSubtitleDecoder(name: String, private val parser: SubtitleParser) :
     SimpleSubtitleDecoder(name) {
