@@ -1,9 +1,9 @@
 package com.lagradost.cloudstream3.utils
 
 import android.view.View
+import androidx.activity.BackEventCompat
 import androidx.activity.ComponentActivity
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.BackEventCompat
 import java.util.WeakHashMap
 import kotlin.math.max
 import kotlin.math.min
@@ -63,10 +63,7 @@ object BackPressedCallbackHelper {
             override fun handleOnBackPressed() {
                 if (!predictiveActive) return
                 predictiveActive = false
-                targetView.animate().translationX(targetView.width.toFloat())
-                    .alpha(0f).setDuration(200).withEndAction {
-                        CallbackHelper(this@attachBackPressedCallback, this).callback()
-                    }.start()
+                callback(CallbackHelper(this@attachBackPressedCallback, this))
             }
         }
 
