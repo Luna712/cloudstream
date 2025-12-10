@@ -1,9 +1,12 @@
 package com.lagradost.cloudstream3.utils
 
+import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.BackEventCompat
 import java.util.WeakHashMap
+import kotlin.math.max
+import kotlin.math.min
 
 object BackPressedCallbackHelper {
 
@@ -27,36 +30,48 @@ object BackPressedCallbackHelper {
 
     fun ComponentActivity.attachBackPressedCallback(
         id: String,
-        callback: CallbackHelper.(event: BackEventCompat?) -> Unit
+        rootView: View? = null,
+        callback: CallbackHelper.() -> Unit
     ) {
         val callbackMap = backPressedCallbacks.getOrPut(this) { mutableMapOf() }
         if (callbackMap.containsKey(id)) return
 
-        val newCallback = object : OnBackPressedCallback(true) {
+        val targetView = rootView ?: window.decorView
+
+        val cb = object : OnBackPressedCallback(true) {
+            private var predictiveActive = false
 
             override fun handleOnBackStarted(backEvent: BackEventCompat) {
-                CallbackHelper(this@attachBackPressedCallback, this)
-                    .callback(backEvent)
+                predictiveActive = true
+                targetView.translationX = 0f
+                targetView.alpha = 1f
             }
 
             override fun handleOnBackProgressed(backEvent: BackEventCompat) {
-                CallbackHelper(this@attachBackPressedCallback, this)
-                    .callback(backEvent)
+                if (!predictiveActive) predictiveActive = true
+                val progress = min(1f, max(0f, backEvent?.progress ?: 0f))
+                targetView.translationX = targetView.width * progress
+                targetView.alpha = 1f - progress * 0.5f
             }
 
             override fun handleOnBackCancelled() {
-                CallbackHelper(this@attachBackPressedCallback, this)
-                    .callback(null)
+                if (!predictiveActive) return
+                predictiveActive = false
+                targetView.animate().translationX(0f).alpha(1f).setDuration(200).start()
             }
 
             override fun handleOnBackPressed() {
-                CallbackHelper(this@attachBackPressedCallback, this)
-                    .callback(null)
+                if (!predictiveActive) return
+                predictiveActive = false
+                targetView.animate().translationX(targetView.width.toFloat())
+                    .alpha(0f).setDuration(200).withEndAction {
+                        CallbackHelper(this@attachBackPressedCallback, this).callback()
+                    }.start()
             }
         }
 
-        callbackMap[id] = newCallback
-        onBackPressedDispatcher.addCallback(this, newCallback)
+        callbackMap[id] = cb
+        onBackPressedDispatcher.addCallback(this, cb)
     }
 
     fun ComponentActivity.disableBackPressedCallback(id: String) {
@@ -73,9 +88,6 @@ object BackPressedCallbackHelper {
             callback.isEnabled = false
             callbackMap.remove(id)
         }
-
-        if (callbackMap.isEmpty()) {
-            backPressedCallbacks.remove(this)
-        }
+        if (callbackMap.isEmpty()) backPressedCallbacks.remove(this)
     }
 }
