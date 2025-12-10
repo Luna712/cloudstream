@@ -1,33 +1,24 @@
 package com.lagradost.cloudstream3.utils
 
-import android.os.Build
-import android.window.OnBackInvokedCallback
-import android.window.OnBackInvokedDispatcher
 import androidx.activity.ComponentActivity
 import androidx.activity.OnBackPressedCallback
 import java.util.WeakHashMap
 
 object BackPressedCallbackHelper {
-
-    private val callbacks =
-        WeakHashMap<ComponentActivity, MutableMap<String, Any>>() // holds *either* callback type
+    private val backPressedCallbacks = WeakHashMap<ComponentActivity, MutableMap<String, OnBackPressedCallback>>()
 
     class CallbackHelper(
         private val activity: ComponentActivity,
-        private val backPressed: OnBackPressedCallback?
+        private val callback: OnBackPressedCallback
     ) {
         fun runDefault() {
-            if (backPressed != null) {
-                val wasEnabled = backPressed.isEnabled
-                backPressed.isEnabled = false
-                try {
-                    activity.onBackPressedDispatcher.onBackPressed()
-                } finally {
-                    backPressed.isEnabled = wasEnabled
-                }
+            val wasEnabled = callback.isEnabled
+            callback.isEnabled = false
+            try {
+                activity.onBackPressedDispatcher.onBackPressed()
+            } finally {
+                callback.isEnabled = wasEnabled
             }
-            // For 33+, the system automatically runs default behavior
-            // once our callback doesn't consume the back gesture.
         }
     }
 
@@ -35,56 +26,46 @@ object BackPressedCallbackHelper {
         id: String,
         callback: CallbackHelper.() -> Unit
     ) {
-        val map = callbacks.getOrPut(this) { mutableMapOf() }
-        if (map.containsKey(id)) return
+        val callbackMap = backPressedCallbacks.getOrPut(this) { mutableMapOf() }
+        if (callbackMap.containsKey(id)) return
 
-        if (Build.VERSION.SDK_INT >= 33) {
-            val cb = OnBackInvokedCallback {
-                CallbackHelper(this, null).callback()
-            }
-            onBackInvokedDispatcher.registerOnBackInvokedCallback(
-                OnBackInvokedDispatcher.PRIORITY_DEFAULT,
-                cb
-            )
-            map[id] = cb
-        } else {
-            val cb = object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    CallbackHelper(this@attachBackPressedCallback, this).callback()
+        val newCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackStarted() {
+                val wasEnabled = this.isEnabled
+                this.isEnabled = false
+                try {
+                    this@attachBackPressedCallback.onBackPressedDispatcher.onBackStarted()
+                } finally {
+                    this.isEnabled = wasEnabled
                 }
             }
-            onBackPressedDispatcher.addCallback(this, cb)
-            map[id] = cb
+
+            override fun handleOnBackPressed() {
+                CallbackHelper(this@attachBackPressedCallback, this).callback()
+            }
         }
+
+        callbackMap[id] = newCallback
+        onBackPressedDispatcher.addCallback(this, newCallback)
     }
 
-    fun ComponentActivity.disableBackPressedCallback(id: String) {
-        val cb = callbacks[this]?.get(id) ?: return
-        if (cb is OnBackPressedCallback) {
-            cb.isEnabled = false
-        }
+    fun ComponentActivity.disableBackPressedCallback(id : String) {
+        backPressedCallbacks[this]?.get(id)?.isEnabled = false
     }
 
-    fun ComponentActivity.enableBackPressedCallback(id: String) {
-        val cb = callbacks[this]?.get(id) ?: return
-        if (cb is OnBackPressedCallback) {
-            cb.isEnabled = true
-        }
+    fun ComponentActivity.enableBackPressedCallback(id : String) {
+        backPressedCallbacks[this]?.get(id)?.isEnabled = true
     }
 
     fun ComponentActivity.detachBackPressedCallback(id: String) {
-        val map = callbacks[this] ?: return
-        val cb = map[id] ?: return
-
-        if (Build.VERSION.SDK_INT >= 33 && cb is OnBackInvokedCallback) {
-            onBackInvokedDispatcher.unregisterOnBackInvokedCallback(cb)
-        } else if (cb is OnBackPressedCallback) {
-            cb.isEnabled = false
+        val callbackMap = backPressedCallbacks[this] ?: return
+        callbackMap[id]?.let { callback ->
+            callback.isEnabled = false
+            callbackMap.remove(id)
         }
 
-        map.remove(id)
-        if (map.isEmpty()) {
-            callbacks.remove(this)
+        if (callbackMap.isEmpty()) {
+            backPressedCallbacks.remove(this)
         }
     }
 }
