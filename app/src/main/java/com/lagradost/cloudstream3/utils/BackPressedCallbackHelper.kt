@@ -2,10 +2,13 @@ package com.lagradost.cloudstream3.utils
 
 import androidx.activity.ComponentActivity
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.BackEventCompat
 import java.util.WeakHashMap
 
 object BackPressedCallbackHelper {
-    private val backPressedCallbacks = WeakHashMap<ComponentActivity, MutableMap<String, OnBackPressedCallback>>()
+
+    private val backPressedCallbacks =
+        WeakHashMap<ComponentActivity, MutableMap<String, OnBackPressedCallback>>()
 
     class CallbackHelper(
         private val activity: ComponentActivity,
@@ -24,24 +27,31 @@ object BackPressedCallbackHelper {
 
     fun ComponentActivity.attachBackPressedCallback(
         id: String,
-        callback: CallbackHelper.() -> Unit
+        callback: CallbackHelper.(event: BackEventCompat?) -> Unit
     ) {
         val callbackMap = backPressedCallbacks.getOrPut(this) { mutableMapOf() }
         if (callbackMap.containsKey(id)) return
 
         val newCallback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackStarted() {
-                val wasEnabled = this.isEnabled
-                this.isEnabled = false
-                try {
-                    this@attachBackPressedCallback.onBackPressedDispatcher.onBackStarted()
-                } finally {
-                    this.isEnabled = wasEnabled
-                }
+
+            override fun handleOnBackStarted(backEvent: BackEventCompat) {
+                CallbackHelper(this@attachBackPressedCallback, this)
+                    .callback(backEvent)
+            }
+
+            override fun handleOnBackProgressed(backEvent: BackEventCompat) {
+                CallbackHelper(this@attachBackPressedCallback, this)
+                    .callback(backEvent)
+            }
+
+            override fun handleOnBackCancelled() {
+                CallbackHelper(this@attachBackPressedCallback, this)
+                    .callback(null)
             }
 
             override fun handleOnBackPressed() {
-                CallbackHelper(this@attachBackPressedCallback, this).callback()
+                CallbackHelper(this@attachBackPressedCallback, this)
+                    .callback(null)
             }
         }
 
@@ -49,11 +59,11 @@ object BackPressedCallbackHelper {
         onBackPressedDispatcher.addCallback(this, newCallback)
     }
 
-    fun ComponentActivity.disableBackPressedCallback(id : String) {
+    fun ComponentActivity.disableBackPressedCallback(id: String) {
         backPressedCallbacks[this]?.get(id)?.isEnabled = false
     }
 
-    fun ComponentActivity.enableBackPressedCallback(id : String) {
+    fun ComponentActivity.enableBackPressedCallback(id: String) {
         backPressedCallbacks[this]?.get(id)?.isEnabled = true
     }
 
