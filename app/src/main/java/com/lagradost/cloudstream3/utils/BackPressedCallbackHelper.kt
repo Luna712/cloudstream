@@ -1,12 +1,9 @@
 package com.lagradost.cloudstream3.utils
 
-import android.view.View
 import androidx.activity.BackEventCompat
 import androidx.activity.ComponentActivity
 import androidx.activity.OnBackPressedCallback
 import java.util.WeakHashMap
-import kotlin.math.max
-import kotlin.math.min
 
 object BackPressedCallbackHelper {
 
@@ -28,37 +25,22 @@ object BackPressedCallbackHelper {
         }
     }
 
-    private class Dispatcher(private val targetView: View) {
-        var predictiveActive = false
+    private class Dispatcher {
+        private val enabledChangedListeners = mutableListOf<(Boolean) -> Unit>()
+        var isEnabled: Boolean = true
+            set(value) {
+                field = value
+                enabledChangedListeners.forEach { it(value) }
+            }
 
-        fun startPredictiveBack(event: BackEvent) {
-            predictiveActive = true
-            targetView.translationX = 0f
-            targetView.alpha = 1f
+        fun addEnabledChangedListener(listener: (Boolean) -> Unit) {
+            enabledChangedListeners += listener
         }
 
-        fun progressPredictiveBack(event: BackEvent) {
-            val progress = min(1f, max(0f, event.progress))
-            targetView.translationX = targetView.width * progress
-            targetView.alpha = 1f - progress * 0.5f
-        }
-
-        fun cancelPredictiveBack() {
-            predictiveActive = false
-            targetView.animate().translationX(0f).alpha(1f).setDuration(200).start()
-        }
-
-        fun toBackEvent(backEventCompat: BackEventCompat): BackEvent =
-            BackEvent(
-                progress = backEventCompat.progress,
-                swipeEdge = when (backEventCompat.swipeEdge) {
-                    BackEventCompat.EDGE_LEFT -> BackEvent.SwipeEdge.LEFT
-                    BackEventCompat.EDGE_RIGHT -> BackEvent.SwipeEdge.RIGHT
-                    else -> BackEvent.SwipeEdge.UNKNOWN
-                },
-                touchX = backEventCompat.touchX,
-                touchY = backEventCompat.touchY
-            )
+        fun startPredictiveBack(event: BackEvent) {}
+        fun progressPredictiveBack(event: BackEvent) {}
+        fun cancelPredictiveBack() {}
+        fun back() {}
     }
 
     data class BackEvent(
@@ -72,31 +54,46 @@ object BackPressedCallbackHelper {
 
     fun ComponentActivity.attachBackPressedCallback(
         id: String,
-        rootView: View? = null,
         callback: CallbackHelper.() -> Unit
     ) {
         val callbackMap = backPressedCallbacks.getOrPut(this) { mutableMapOf() }
         if (callbackMap.containsKey(id)) return
 
-        val targetView = rootView ?: window.decorView
-        val dispatcher = Dispatcher(targetView)
+        val dispatcher = Dispatcher()
 
-        val cb = object : OnBackPressedCallback(true) {
+        val cb = object : OnBackPressedCallback(dispatcher.isEnabled) {
+
+            init {
+                dispatcher.addEnabledChangedListener { isEnabled = it }
+            }
+
+            override fun handleOnBackPressed() {
+                callback(CallbackHelper(this@attachBackPressedCallback, this))
+            }
+
             override fun handleOnBackStarted(backEvent: BackEventCompat) {
-                dispatcher.startPredictiveBack(dispatcher.toBackEvent(backEvent))
+                dispatcher.startPredictiveBack(backEvent.toBackEvent())
             }
 
             override fun handleOnBackProgressed(backEvent: BackEventCompat) {
-                dispatcher.progressPredictiveBack(dispatcher.toBackEvent(backEvent))
+                dispatcher.progressPredictiveBack(backEvent.toBackEvent())
             }
 
             override fun handleOnBackCancelled() {
                 dispatcher.cancelPredictiveBack()
             }
 
-            override fun handleOnBackPressed() {
-                callback(CallbackHelper(this@attachBackPressedCallback, this))
-            }
+            private fun BackEventCompat.toBackEvent(): BackEvent =
+                BackEvent(
+                    progress = progress,
+                    swipeEdge = when (swipeEdge) {
+                        BackEventCompat.EDGE_LEFT -> BackEvent.SwipeEdge.LEFT
+                        BackEventCompat.EDGE_RIGHT -> BackEvent.SwipeEdge.RIGHT
+                        else -> BackEvent.SwipeEdge.UNKNOWN
+                    },
+                    touchX = touchX,
+                    touchY = touchY
+                )
         }
 
         callbackMap[id] = cb
