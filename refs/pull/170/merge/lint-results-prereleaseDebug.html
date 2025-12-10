@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 346 errors, 707 warnings and 1 hint</span>
+      <span class="mdl-layout-title">Lint Report: 110 errors, 707 warnings and 1 hint</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Dec 10 17:24:27 UTC 2025 by AGP (9.0.0-beta04)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Dec 10 17:33:41 UTC 2025 by AGP (9.0.0-beta04)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -201,7 +201,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (4)</a>
       <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (2)</a>
       <a class="mdl-navigation__link" href="#RestrictedApi"><i class="material-icons error-icon">error</i>Restricted API (10)</a>
-      <a class="mdl-navigation__link" href="#UnsafeOptInUsageError"><i class="material-icons error-icon">error</i>Unsafe opt-in usage intended to be error-level severity (325)</a>
+      <a class="mdl-navigation__link" href="#UnsafeOptInUsageError"><i class="material-icons error-icon">error</i>Unsafe opt-in usage intended to be error-level severity (89)</a>
       <a class="mdl-navigation__link" href="#PrivateResource"><i class="material-icons warning-icon">warning</i>Using private resources (26)</a>
       <a class="mdl-navigation__link" href="#Aligned16KB"><i class="material-icons warning-icon">warning</i>Native library dependency not 16 KB aligned (9)</a>
       <a class="mdl-navigation__link" href="#DiscouragedApi"><i class="material-icons warning-icon">warning</i>Using discouraged APIs (2)</a>
@@ -292,7 +292,7 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">10</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
 <a href="#RestrictedApi">RestrictedApi</a>: Restricted API</td></tr>
 <tr>
-<td class="countColumn">325</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
+<td class="countColumn">89</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
 <a href="#UnsafeOptInUsageError">UnsafeOptInUsageError</a>: Unsafe opt-in usage intended to be error-level severity</td></tr>
 <tr>
 <td class="countColumn">26</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
@@ -1930,446 +1930,450 @@ Dismiss</button>            </div>
 <span class="lineno">  83 </span>
 <span class="lineno">  84 </span>    <span class="keyword">var</span> playerPausePlayHolderHolder: FrameLayout? = <span class="keyword">null</span></pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a></span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br />
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a></span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br />
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a></span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br />
-<button class="mdl-button mdl-js-button mdl-button--primary" id="UnsafeOptInUsageErrorDivLink" onclick="reveal('UnsafeOptInUsageErrorDiv');" />+ 320 More Occurrences...</button>
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt</a></span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br />
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt</a>:278</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  275 </span>     <span class="comment">// Post here as bottomPlayerBar is gone the first frame => bottomPlayerBar.height = 0</span>
+<span class="lineno">  276 </span>     playerBinding?.bottomPlayerBar?.post {
+<span class="lineno">  277 </span>         <span class="comment">// @OptIn(UnstableApi::class)</span>
+<span class="caretline"><span class="lineno">  278 </span>         <span class="keyword">val</span> <span class="error">sView</span> = subView ?: <span class="keyword">return</span><span class="annotation">@post</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  279 </span>         <span class="keyword">val</span> sStyle = CustomDecoder.style
+<span class="lineno">  280 </span>         <span class="keyword">val</span> binding = playerBinding ?: <span class="keyword">return</span><span class="annotation">@post</span>
+</pre>
+
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt</a>:296</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  293 </span>
+<span class="lineno">  294 </span>  protected <span class="keyword">fun</span> animateLayoutChanges() {
+<span class="lineno">  295 </span>      <span class="keyword">if</span> (isLayout(PHONE)) { <span class="comment">// isEnabled also disables the onKeyDown</span>
+<span class="caretline"><span class="lineno">  296 </span>          playerBinding?.exoProgress?.<span class="error">isEnabled</span> = isShowing <span class="comment">// Prevent accidental clicks/drags</span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  297 </span>      }
+<span class="lineno">  298 </span>
+<span class="lineno">  299 </span>      <span class="keyword">if</span> (isShowing) {
+</pre>
+
+<button class="mdl-button mdl-js-button mdl-button--primary" id="UnsafeOptInUsageErrorDivLink" onclick="reveal('UnsafeOptInUsageErrorDiv');" />+ 84 More Occurrences...</button>
 <div id="UnsafeOptInUsageErrorDiv" style="display: none">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:261</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  258 </span>      <span class="keyword">return</span> <span class="keyword">this</span>.replace(Regex(<span class="string">"""^\d+:"""</span>), <span class="string">""</span>)
-<span class="lineno">  259 </span>  }
-<span class="lineno">  260 </span>
-<span class="caretline"><span class="lineno">  261 </span>  <span class="keyword">fun</span> initSubtitles(subView: <span class="error">SubtitleView?</span>, subHolder: FrameLayout?, style: SaveCaptionStyle?) {&nbsp;&nbsp;</span>
-<span class="lineno">  262 </span>      subtitleHelper.initSubtitles(subView, subHolder, style)
-<span class="lineno">  263 </span>  }
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt</a>:385</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  382 </span>    override <span class="keyword">fun</span> subtitlesChanged() {
+<span class="lineno">  383 </span>        <span class="keyword">val</span> tracks = player.getVideoTracks()
+<span class="lineno">  384 </span>        <span class="keyword">val</span> isBuiltinSubtitles = tracks.currentTextTracks.all { track ->
+<span class="caretline"><span class="lineno">  385 </span>            track.mimeType == MimeTypes.<span class="error">APPLICATION_MEDIA3_CUES</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  386 </span>        }
+<span class="lineno">  387 </span>        <span class="comment">// Subtitle offset is not possible on built-in media3 tracks</span>
+<span class="lineno">  388 </span>        playerBinding?.playerSubtitleOffsetBtt?.isGone =
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:344</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  341 </span>  <span class="comment">// 4. Filters to find the first audio track with the same id as the audio track we are looking for</span>
-<span class="lineno">  342 </span>  <span class="comment">// 5. Returns the media group and the index of the audio track in the group</span>
-<span class="lineno">  343 </span>  <span class="keyword">return</span> <span class="keyword">this</span>.firstNotNullOfOrNull { group ->
-<span class="caretline"><span class="lineno">  344 </span>      (<span class="number">0</span> until group.mediaTrackGroup.<span class="error">length</span>).map {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  345 </span>          group.getTrackFormat(it) to it
-<span class="lineno">  346 </span>      }.firstOrNull {
-<span class="lineno">  347 </span>          <span class="comment">// The format id system is "trackNumber:trackID"</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:424</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  421 </span>    }
-<span class="lineno">  422 </span>
-<span class="lineno">  423 </span>    private <span class="keyword">fun</span> Tracks.Group.getFormats(): List&lt;Pair&lt;Format, Int>> {
-<span class="caretline"><span class="lineno">  424 </span>        <span class="keyword">return</span> (<span class="number">0</span> until <span class="keyword">this</span>.mediaTrackGroup.<span class="error">length</span>).mapNotNull { i ->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  425 </span>            <span class="keyword">if</span> (<span class="keyword">this</span>.isSupported)
-<span class="lineno">  426 </span>                <span class="keyword">this</span>.mediaTrackGroup.getFormat(i) to i
-<span class="lineno">  427 </span>            <span class="keyword">else</span> <span class="keyword">null</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:426</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  423 </span>    private <span class="keyword">fun</span> Tracks.Group.getFormats(): List&lt;Pair&lt;Format, Int>> {
-<span class="lineno">  424 </span>        <span class="keyword">return</span> (<span class="number">0</span> until <span class="keyword">this</span>.mediaTrackGroup.length).mapNotNull { i ->
-<span class="lineno">  425 </span>            <span class="keyword">if</span> (<span class="keyword">this</span>.isSupported)
-<span class="caretline"><span class="lineno">  426 </span>                <span class="keyword">this</span>.mediaTrackGroup.<span class="error">getFormat</span>(i) to i&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  427 </span>            <span class="keyword">else</span> <span class="keyword">null</span>
-<span class="lineno">  428 </span>        }
-<span class="lineno">  429 </span>    }
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt</a>:1580</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno"> 1577 </span>           <span class="keyword">if</span> (currentEnhancer != <span class="keyword">null</span>) {
+<span class="lineno"> 1578 </span>               currentEnhancer.setTargetGain(boostFactor)
+<span class="lineno"> 1579 </span>           } <span class="keyword">else</span> {
+<span class="caretline"><span class="lineno"> 1580 </span>               <span class="keyword">val</span> audioSessionId = (playerView?.player <span class="keyword">as</span>? ExoPlayer)?.<span class="error">audioSessionId</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 1581 </span>               <span class="keyword">if</span> (audioSessionId != <span class="keyword">null</span> &amp;&amp; audioSessionId != AudioManager.ERROR) {
+<span class="lineno"> 1582 </span>                   <span class="keyword">try</span> {
+<span class="lineno"> 1583 </span>                       loudnessEnhancer = LoudnessEnhancer(audioSessionId).apply {
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:474</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  471 </span>        }
-<span class="lineno">  472 </span>
-<span class="lineno">  473 </span>        <span class="keyword">return</span> CurrentTracks(
-<span class="caretline"><span class="lineno">  474 </span>            exoPlayer?.<span class="error">videoFormat</span>?.toVideoTrack(),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  475 </span>            exoPlayer?.audioFormat?.toAudioTrack(),
-<span class="lineno">  476 </span>            currentTextTracks,
-<span class="lineno">  477 </span>            videoTracks,
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a></span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br />
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a></span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br />
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:261</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  258 </span>        instanceId: Int
+<span class="lineno">  259 </span>    ): PendingIntent {
+<span class="lineno">  260 </span>        <span class="keyword">val</span> intent: Intent = Intent(action).setPackage(context.packageName)
+<span class="caretline"><span class="lineno">  261 </span>        intent.putExtra(<span class="error">EXTRA_INSTANCE_ID</span>, instanceId)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  262 </span>        <span class="keyword">val</span> pendingFlags = <span class="keyword">if</span> (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+<span class="lineno">  263 </span>            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+<span class="lineno">  264 </span>        } <span class="keyword">else</span> PendingIntent.FLAG_UPDATE_CURRENT
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:475</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  472 </span>
-<span class="lineno">  473 </span>        <span class="keyword">return</span> CurrentTracks(
-<span class="lineno">  474 </span>            exoPlayer?.videoFormat?.toVideoTrack(),
-<span class="caretline"><span class="lineno">  475 </span>            exoPlayer?.<span class="error">audioFormat</span>?.toAudioTrack(),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  476 </span>            currentTextTracks,
-<span class="lineno">  477 </span>            videoTracks,
-<span class="lineno">  478 </span>            audioTracks,
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:271</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  268 </span>
+<span class="lineno">  269 </span>    <span class="comment">// @OptIn(UnstableApi::class)</span>
+<span class="lineno">  270 </span>    <span class="comment">// @UnstableApi</span>
+<span class="caretline"><span class="lineno">  271 </span>    private <span class="keyword">var</span> cachedPlayerNotificationManager: <span class="error">PlayerNotificationManager?</span> = <span class="keyword">null</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  272 </span>
+<span class="lineno">  273 </span>    <span class="comment">// @OptIn(UnstableApi::class)</span>
+<span class="lineno">  274 </span>    <span class="comment">// @UnstableApi</span></pre>
+
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:275</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  272 </span>
+<span class="lineno">  273 </span>    <span class="comment">// @OptIn(UnstableApi::class)</span>
+<span class="lineno">  274 </span>    <span class="comment">// @UnstableApi</span>
+<span class="caretline"><span class="lineno">  275 </span>    private <span class="keyword">fun</span> getMediaNotification(context: Context): <span class="error">PlayerNotificationManager</span> {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  276 </span>        <span class="keyword">val</span> cache = cachedPlayerNotificationManager
+<span class="lineno">  277 </span>        <span class="keyword">if</span> (cache != <span class="keyword">null</span>) <span class="keyword">return</span> cache
+<span class="lineno">  278 </span>        <span class="keyword">return</span> PlayerNotificationManager.Builder(
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:494</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  491 </span>           exoPlayer?.currentTracks?.groups?.filter { it.type == TRACK_TYPE_TEXT }
-<span class="lineno">  492 </span>               ?.getTrack(id)
-<span class="lineno">  493 </span>
-<span class="caretline"><span class="lineno">  494 </span>       <span class="keyword">return</span> (exoPlayer?.<span class="error">trackSelector</span> <span class="keyword">as</span>? DefaultTrackSelector?)?.let { trackSelector ->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  495 </span>           <span class="keyword">if</span> (subtitle == <span class="keyword">null</span>) {
-<span class="lineno">  496 </span>               trackSelector.setParameters(
-<span class="lineno">  497 </span>                   trackSelector.buildUponParameters()
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:276</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  273 </span>    <span class="comment">// @OptIn(UnstableApi::class)</span>
+<span class="lineno">  274 </span>    <span class="comment">// @UnstableApi</span>
+<span class="lineno">  275 </span>    private <span class="keyword">fun</span> getMediaNotification(context: Context): PlayerNotificationManager {
+<span class="caretline"><span class="lineno">  276 </span>        <span class="keyword">val</span> <span class="error">cache</span> = cachedPlayerNotificationManager&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  277 </span>        <span class="keyword">if</span> (cache != <span class="keyword">null</span>) <span class="keyword">return</span> cache
+<span class="lineno">  278 </span>        <span class="keyword">return</span> PlayerNotificationManager.Builder(
+<span class="lineno">  279 </span>            context,
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:494</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  491 </span>           exoPlayer?.currentTracks?.groups?.filter { it.type == TRACK_TYPE_TEXT }
-<span class="lineno">  492 </span>               ?.getTrack(id)
-<span class="lineno">  493 </span>
-<span class="caretline"><span class="lineno">  494 </span>       <span class="keyword">return</span> (exoPlayer?.trackSelector <span class="keyword">as</span>? <span class="error">DefaultTrackSelector?</span>)?.let { trackSelector ->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  495 </span>           <span class="keyword">if</span> (subtitle == <span class="keyword">null</span>) {
-<span class="lineno">  496 </span>               trackSelector.setParameters(
-<span class="lineno">  497 </span>                   trackSelector.buildUponParameters()
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:278</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  275 </span>    private <span class="keyword">fun</span> getMediaNotification(context: Context): PlayerNotificationManager {
+<span class="lineno">  276 </span>        <span class="keyword">val</span> cache = cachedPlayerNotificationManager
+<span class="lineno">  277 </span>        <span class="keyword">if</span> (cache != <span class="keyword">null</span>) <span class="keyword">return</span> cache
+<span class="caretline"><span class="lineno">  278 </span>        <span class="keyword">return</span> PlayerNotificationManager.<span class="error">Builder</span>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  279 </span>            context,
+<span class="lineno">  280 </span>            NOTIFICATION_ID,
+<span class="lineno">  281 </span>            CHANNEL_ID.toString()
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:494</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  491 </span>           exoPlayer?.currentTracks?.groups?.filter { it.type == TRACK_TYPE_TEXT }
-<span class="lineno">  492 </span>               ?.getTrack(id)
-<span class="lineno">  493 </span>
-<span class="caretline"><span class="lineno">  494 </span>       <span class="keyword">return</span> (exoPlayer?.trackSelector <span class="keyword">as</span>? DefaultTrackSelector?)?.let { <span class="error">trackSelector</span> ->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  495 </span>           <span class="keyword">if</span> (subtitle == <span class="keyword">null</span>) {
-<span class="lineno">  496 </span>               trackSelector.setParameters(
-<span class="lineno">  497 </span>                   trackSelector.buildUponParameters()
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:283</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  280 </span>        NOTIFICATION_ID,
+<span class="lineno">  281 </span>        CHANNEL_ID.toString()
+<span class="lineno">  282 </span>    )
+<span class="caretline"><span class="lineno">  283 </span>        .<span class="error">setChannelNameResourceId</span>(R.string.player_notification_channel_name)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  284 </span>        .setChannelDescriptionResourceId(R.string.player_notification_channel_description)
+<span class="lineno">  285 </span>        .setMediaDescriptionAdapter(<span class="keyword">object</span> : MediaDescriptionAdapter {
+<span class="lineno">  286 </span>            override <span class="keyword">fun</span> getCurrentContentTitle(player: Player): CharSequence {
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:496</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  493 </span>
-<span class="lineno">  494 </span>       <span class="keyword">return</span> (exoPlayer?.trackSelector <span class="keyword">as</span>? DefaultTrackSelector?)?.let { trackSelector ->
-<span class="lineno">  495 </span>           <span class="keyword">if</span> (subtitle == <span class="keyword">null</span>) {
-<span class="caretline"><span class="lineno">  496 </span>               trackSelector.<span class="error">setParameters</span>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  497 </span>                   trackSelector.buildUponParameters()
-<span class="lineno">  498 </span>                       .setTrackTypeDisabled(TRACK_TYPE_TEXT, <span class="keyword">true</span>)
-<span class="lineno">  499 </span>                       .clearOverridesOfType(TRACK_TYPE_TEXT)
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:284</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  281 </span>        CHANNEL_ID.toString()
+<span class="lineno">  282 </span>    )
+<span class="lineno">  283 </span>        .setChannelNameResourceId(R.string.player_notification_channel_name)
+<span class="caretline"><span class="lineno">  284 </span>        .<span class="error">setChannelDescriptionResourceId</span>(R.string.player_notification_channel_description)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  285 </span>        .setMediaDescriptionAdapter(<span class="keyword">object</span> : MediaDescriptionAdapter {
+<span class="lineno">  286 </span>            override <span class="keyword">fun</span> getCurrentContentTitle(player: Player): CharSequence {
+<span class="lineno">  287 </span>                <span class="keyword">return</span> <span class="keyword">when</span> (<span class="keyword">val</span> meta = currentMeta) {
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:497</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  494 </span>       <span class="keyword">return</span> (exoPlayer?.trackSelector <span class="keyword">as</span>? DefaultTrackSelector?)?.let { trackSelector ->
-<span class="lineno">  495 </span>           <span class="keyword">if</span> (subtitle == <span class="keyword">null</span>) {
-<span class="lineno">  496 </span>               trackSelector.setParameters(
-<span class="caretline"><span class="lineno">  497 </span>                   trackSelector.<span class="error">buildUponParameters</span>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  498 </span>                       .setTrackTypeDisabled(TRACK_TYPE_TEXT, <span class="keyword">true</span>)
-<span class="lineno">  499 </span>                       .clearOverridesOfType(TRACK_TYPE_TEXT)
-<span class="lineno">  500 </span>               )
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:285</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  282 </span>    )
+<span class="lineno">  283 </span>        .setChannelNameResourceId(R.string.player_notification_channel_name)
+<span class="lineno">  284 </span>        .setChannelDescriptionResourceId(R.string.player_notification_channel_description)
+<span class="caretline"><span class="lineno">  285 </span>        .<span class="error">setMediaDescriptionAdapter</span>(<span class="keyword">object</span> : MediaDescriptionAdapter {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  286 </span>            override <span class="keyword">fun</span> getCurrentContentTitle(player: Player): CharSequence {
+<span class="lineno">  287 </span>                <span class="keyword">return</span> <span class="keyword">when</span> (<span class="keyword">val</span> meta = currentMeta) {
+<span class="lineno">  288 </span>                    <span class="keyword">is</span> ResultEpisode -> {
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:498</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  495 </span>            <span class="keyword">if</span> (subtitle == <span class="keyword">null</span>) {
-<span class="lineno">  496 </span>                trackSelector.setParameters(
-<span class="lineno">  497 </span>                    trackSelector.buildUponParameters()
-<span class="caretline"><span class="lineno">  498 </span>                        .<span class="error">setTrackTypeDisabled</span>(TRACK_TYPE_TEXT, <span class="keyword">true</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  499 </span>                        .clearOverridesOfType(TRACK_TYPE_TEXT)
-<span class="lineno">  500 </span>                )
-<span class="lineno">  501 </span>            } <span class="keyword">else</span> {
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:286</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  283 </span>    .setChannelNameResourceId(R.string.player_notification_channel_name)
+<span class="lineno">  284 </span>    .setChannelDescriptionResourceId(R.string.player_notification_channel_description)
+<span class="lineno">  285 </span>    .setMediaDescriptionAdapter(<span class="keyword">object</span> : MediaDescriptionAdapter {
+<span class="caretline"><span class="lineno">  286 </span>        override <span class="keyword">fun</span> <span class="error">getCurrentContentTitle</span>(player: Player): CharSequence {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  287 </span>            <span class="keyword">return</span> <span class="keyword">when</span> (<span class="keyword">val</span> meta = currentMeta) {
+<span class="lineno">  288 </span>                <span class="keyword">is</span> ResultEpisode -> {
+<span class="lineno">  289 </span>                    meta.headerName
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:499</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  496 </span>                trackSelector.setParameters(
-<span class="lineno">  497 </span>                    trackSelector.buildUponParameters()
-<span class="lineno">  498 </span>                        .setTrackTypeDisabled(TRACK_TYPE_TEXT, <span class="keyword">true</span>)
-<span class="caretline"><span class="lineno">  499 </span>                        .<span class="error">clearOverridesOfType</span>(TRACK_TYPE_TEXT)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  500 </span>                )
-<span class="lineno">  501 </span>            } <span class="keyword">else</span> {
-<span class="lineno">  502 </span>                <span class="keyword">when</span> (subtitleHelper.subtitleStatus(subtitle)) {
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:300</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  297 </span>         } ?: <span class="string">"Unknown"</span>
+<span class="lineno">  298 </span>     }
+<span class="lineno">  299 </span>
+<span class="caretline"><span class="lineno">  300 </span>     override <span class="keyword">fun</span> <span class="error">createCurrentContentIntent</span>(player: Player): PendingIntent? {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  301 </span>         <span class="comment">// Open the app without creating a new task to resume playback seamlessly</span>
+<span class="lineno">  302 </span>         <span class="keyword">return</span> PendingIntentCompat.getActivity(
+<span class="lineno">  303 </span>             context,
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:511</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  508 </span>                    SubtitleStatus.IS_ACTIVE -> {
-<span class="lineno">  509 </span>                        Log.i(TAG, <span class="string">"setPreferredSubtitles IS_ACTIVE"</span>)
-<span class="lineno">  510 </span>
-<span class="caretline"><span class="lineno">  511 </span>                        trackSelector.<span class="error">setParameters</span>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  512 </span>                            trackSelector.buildUponParameters()
-<span class="lineno">  513 </span>                                .apply {
-<span class="lineno">  514 </span>                                    <span class="keyword">val</span> track = getTextTrack(subtitle.getId())
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:311</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  308 </span>                   )
+<span class="lineno">  309 </span>               }
+<span class="lineno">  310 </span>
+<span class="caretline"><span class="lineno">  311 </span>               override <span class="keyword">fun</span> <span class="error">getCurrentContentText</span>(player: Player): CharSequence? {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  312 </span>                   <span class="keyword">return</span> <span class="keyword">when</span> (<span class="keyword">val</span> meta = currentMeta) {
+<span class="lineno">  313 </span>                       <span class="keyword">is</span> ResultEpisode -> {
+<span class="lineno">  314 </span>                           meta.name
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:512</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  509 </span>                    Log.i(TAG, <span class="string">"setPreferredSubtitles IS_ACTIVE"</span>)
-<span class="lineno">  510 </span>
-<span class="lineno">  511 </span>                    trackSelector.setParameters(
-<span class="caretline"><span class="lineno">  512 </span>                        trackSelector.<span class="error">buildUponParameters</span>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  513 </span>                            .apply {
-<span class="lineno">  514 </span>                                <span class="keyword">val</span> track = getTextTrack(subtitle.getId())
-<span class="lineno">  515 </span>                                <span class="keyword">if</span> (track != <span class="keyword">null</span>) {
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:329</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  326 </span>                    }
+<span class="lineno">  327 </span>                }
+<span class="lineno">  328 </span>
+<span class="caretline"><span class="lineno">  329 </span>                override <span class="keyword">fun</span> <span class="error">getCurrentLargeIcon</span>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  330 </span>                    player: Player,
+<span class="lineno">  331 </span>                    callback: PlayerNotificationManager.BitmapCallback
+<span class="lineno">  332 </span>                ): Bitmap? {
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:516</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  513 </span>              .apply {
-<span class="lineno">  514 </span>                  <span class="keyword">val</span> track = getTextTrack(subtitle.getId())
-<span class="lineno">  515 </span>                  <span class="keyword">if</span> (track != <span class="keyword">null</span>) {
-<span class="caretline"><span class="lineno">  516 </span>                      <span class="error">setTrackTypeDisabled</span>(TRACK_TYPE_TEXT, <span class="keyword">false</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  517 </span>                      setOverrideForType(
-<span class="lineno">  518 </span>                          TrackSelectionOverride(
-<span class="lineno">  519 </span>                              track.first,
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:331</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  328 </span>
+<span class="lineno">  329 </span>                override <span class="keyword">fun</span> getCurrentLargeIcon(
+<span class="lineno">  330 </span>                    player: Player,
+<span class="caretline"><span class="lineno">  331 </span>                    callback: <span class="error">PlayerNotificationManager.BitmapCallback</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  332 </span>                ): Bitmap? {
+<span class="lineno">  333 </span>                    ioSafe {
+<span class="lineno">  334 </span>                        <span class="keyword">val</span> url = <span class="keyword">when</span> (<span class="keyword">val</span> meta = currentMeta) {
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:517</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  514 </span>              <span class="keyword">val</span> track = getTextTrack(subtitle.getId())
-<span class="lineno">  515 </span>              <span class="keyword">if</span> (track != <span class="keyword">null</span>) {
-<span class="lineno">  516 </span>                  setTrackTypeDisabled(TRACK_TYPE_TEXT, <span class="keyword">false</span>)
-<span class="caretline"><span class="lineno">  517 </span>                  <span class="error">setOverrideForType</span>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  518 </span>                      TrackSelectionOverride(
-<span class="lineno">  519 </span>                          track.first,
-<span class="lineno">  520 </span>                          track.second
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:345</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  342 </span>                    <span class="keyword">if</span> (url != <span class="keyword">null</span>) {
+<span class="lineno">  343 </span>                        <span class="keyword">val</span> urlBitmap = context.getImageBitmapFromUrl(url)
+<span class="lineno">  344 </span>                        <span class="keyword">if</span> (urlBitmap != <span class="keyword">null</span>) {
+<span class="caretline"><span class="lineno">  345 </span>                            callback.<span class="error">onBitmap</span>(urlBitmap)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  346 </span>                            <span class="keyword">return</span><span class="annotation">@ioSafe</span>
+<span class="lineno">  347 </span>                        }
+<span class="lineno">  348 </span>                    }
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:550</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  547 </span>  override <span class="keyword">fun</span> setSubtitleOffset(offset: Long) {
-<span class="lineno">  548 </span>      currentSubtitleOffset = offset
-<span class="lineno">  549 </span>      CustomDecoder.subtitleOffset = offset
-<span class="caretline"><span class="lineno">  550 </span>      <span class="keyword">if</span> (currentTextRenderer?.<span class="error">state</span> == STATE_ENABLED || currentTextRenderer?.state == STATE_STARTED) {</span>
-<span class="lineno">  551 </span>          exoPlayer?.currentPosition?.let { pos ->
-<span class="lineno">  552 </span>              <span class="comment">// This seems to properly refresh all subtitles</span>
-<span class="lineno">  553 </span>              <span class="comment">// It needs to be done as all subtitle cues with timings are pre-processed</span></pre>
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:357</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  354 </span>                                delay(<span class="number">1000L</span>)
+<span class="lineno">  355 </span>                                <span class="keyword">continue</span>
+<span class="lineno">  356 </span>                            }
+<span class="caretline"><span class="lineno">  357 </span>                            callback.<span class="error">onBitmap</span>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  358 </span>                                preview
+<span class="lineno">  359 </span>                            )
+<span class="lineno">  360 </span>                            <span class="keyword">break</span></pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:550</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  547 </span>  override <span class="keyword">fun</span> setSubtitleOffset(offset: Long) {
-<span class="lineno">  548 </span>      currentSubtitleOffset = offset
-<span class="lineno">  549 </span>      CustomDecoder.subtitleOffset = offset
-<span class="caretline"><span class="lineno">  550 </span>      <span class="keyword">if</span> (currentTextRenderer?.state == <span class="error">STATE_ENABLED</span> || currentTextRenderer?.state == STATE_STARTED) {</span>
-<span class="lineno">  551 </span>          exoPlayer?.currentPosition?.let { pos ->
-<span class="lineno">  552 </span>              <span class="comment">// This seems to properly refresh all subtitles</span>
-<span class="lineno">  553 </span>              <span class="comment">// It needs to be done as all subtitle cues with timings are pre-processed</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:550</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  547 </span>  override <span class="keyword">fun</span> setSubtitleOffset(offset: Long) {
-<span class="lineno">  548 </span>      currentSubtitleOffset = offset
-<span class="lineno">  549 </span>      CustomDecoder.subtitleOffset = offset
-<span class="caretline"><span class="lineno">  550 </span>      <span class="keyword">if</span> (currentTextRenderer?.state == STATE_ENABLED || currentTextRenderer?.<span class="error">state</span> == STATE_STARTED) {</span>
-<span class="lineno">  551 </span>          exoPlayer?.currentPosition?.let { pos ->
-<span class="lineno">  552 </span>              <span class="comment">// This seems to properly refresh all subtitles</span>
-<span class="lineno">  553 </span>              <span class="comment">// It needs to be done as all subtitle cues with timings are pre-processed</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:550</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  547 </span>  override <span class="keyword">fun</span> setSubtitleOffset(offset: Long) {
-<span class="lineno">  548 </span>      currentSubtitleOffset = offset
-<span class="lineno">  549 </span>      CustomDecoder.subtitleOffset = offset
-<span class="caretline"><span class="lineno">  550 </span>      <span class="keyword">if</span> (currentTextRenderer?.state == STATE_ENABLED || currentTextRenderer?.state == <span class="error">STATE_STARTED</span>) {</span>
-<span class="lineno">  551 </span>          exoPlayer?.currentPosition?.let { pos ->
-<span class="lineno">  552 </span>              <span class="comment">// This seems to properly refresh all subtitles</span>
-<span class="lineno">  553 </span>              <span class="comment">// It needs to be done as all subtitle cues with timings are pre-processed</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:554</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  551 </span>            exoPlayer?.currentPosition?.let { pos ->
-<span class="lineno">  552 </span>                <span class="comment">// This seems to properly refresh all subtitles</span>
-<span class="lineno">  553 </span>                <span class="comment">// It needs to be done as all subtitle cues with timings are pre-processed</span>
-<span class="caretline"><span class="lineno">  554 </span>                currentTextRenderer?.<span class="error">resetPosition</span>(pos)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  555 </span>            }
-<span class="lineno">  556 </span>        }
-<span class="lineno">  557 </span>    }
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:367</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  364 </span>          <span class="comment">// return null as we want to use the callback</span>
+<span class="lineno">  365 </span>          <span class="keyword">return</span> <span class="keyword">null</span>
+<span class="lineno">  366 </span>      }
+<span class="caretline"><span class="lineno">  367 </span>  }).<span class="error">setCustomActionReceiver</span>(<span class="keyword">object</span> : PlayerNotificationManager.CustomActionReceiver {&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  368 </span>      <span class="comment">// we have to use a custom action for stop if we want to exit the player instead of just stopping playback</span>
+<span class="lineno">  369 </span>      override <span class="keyword">fun</span> createCustomActions(
+<span class="lineno">  370 </span>          context: Context,
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:576</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  573 </span>    }
-<span class="lineno">  574 </span>
-<span class="lineno">  575 </span>    override <span class="keyword">fun</span> getAspectRatio(): Rational? {
-<span class="caretline"><span class="lineno">  576 </span>        <span class="keyword">return</span> exoPlayer?.<span class="error">videoFormat</span>?.let { format ->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  577 </span>            Rational(format.width, format.height)
-<span class="lineno">  578 </span>        }
-<span class="lineno">  579 </span>    }
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:369</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  366 </span>      }
+<span class="lineno">  367 </span>  }).setCustomActionReceiver(<span class="keyword">object</span> : PlayerNotificationManager.CustomActionReceiver {
+<span class="lineno">  368 </span>      <span class="comment">// we have to use a custom action for stop if we want to exit the player instead of just stopping playback</span>
+<span class="caretline"><span class="lineno">  369 </span>      override <span class="keyword">fun</span> <span class="error">createCustomActions</span>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  370 </span>          context: Context,
+<span class="lineno">  371 </span>          instanceId: Int
+<span class="lineno">  372 </span>      ): MutableMap&lt;String, NotificationCompat.Action> {
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:739</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  736 </span>            field = value
-<span class="lineno">  737 </span>        }
-<span class="lineno">  738 </span>
-<span class="caretline"><span class="lineno">  739 </span>    private <span class="keyword">var</span> simpleCache: <span class="error">SimpleCache?</span> = <span class="keyword">null</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  740 </span>    private <span class="keyword">fun</span> createOnlineSource(headers: Map&lt;String, String>): HttpDataSource.Factory {
-<span class="lineno">  741 </span>        <span class="keyword">val</span> source = OkHttpDataSource.Factory(app.baseClient).setUserAgent(USER_AGENT)
-<span class="lineno">  742 </span>        <span class="keyword">return</span> source.apply {
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:382</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  379 </span>                  )
+<span class="lineno">  380 </span>              }
+<span class="lineno">  381 </span>
+<span class="caretline"><span class="lineno">  382 </span>              override <span class="keyword">fun</span> <span class="error">getCustomActions</span>(player: Player): MutableList&lt;String> {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  383 </span>                  <span class="keyword">return</span> mutableListOf(STOP_ACTION)
+<span class="lineno">  384 </span>              }
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:743</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  740 </span>    private <span class="keyword">fun</span> createOnlineSource(headers: Map&lt;String, String>): HttpDataSource.Factory {
-<span class="lineno">  741 </span>        <span class="keyword">val</span> source = OkHttpDataSource.Factory(app.baseClient).setUserAgent(USER_AGENT)
-<span class="lineno">  742 </span>        <span class="keyword">return</span> source.apply {
-<span class="caretline"><span class="lineno">  743 </span>            <span class="error">setDefaultRequestProperties</span>(headers)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  744 </span>        }
-<span class="lineno">  745 </span>    }
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:386</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  383 </span>         <span class="keyword">return</span> mutableListOf(STOP_ACTION)
+<span class="lineno">  384 </span>     }
+<span class="lineno">  385 </span>
+<span class="caretline"><span class="lineno">  386 </span>     override <span class="keyword">fun</span> <span class="error">onCustomAction</span>(player: Player, action: String, intent: Intent) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  387 </span>         <span class="keyword">when</span> (action) {
+<span class="lineno">  388 </span>             STOP_ACTION -> {
+<span class="lineno">  389 </span>                 exitFullscreen()
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:796</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  793 </span>      Log.d(TAG, <span class="string">"Using DefaultHttpDataSource for $link"</span>)
-<span class="lineno">  794 </span>      DefaultHttpDataSource.Factory() <span class="comment">//TODO USE app.baseClient</span>
-<span class="lineno">  795 </span>          .setUserAgent(userAgent ?: USER_AGENT)
-<span class="caretline"><span class="lineno">  796 </span>          .<span class="error">setAllowCrossProtocolRedirects</span>(<span class="keyword">true</span>) <span class="comment">// https://stackoverflow.com/questions/69040127/error-code-io-bad-http-status-exoplayer-android</span></span>
-<span class="lineno">  797 </span>  } <span class="keyword">else</span> {
-<span class="lineno">  798 </span>      Log.d(TAG, <span class="string">"Using CronetDataSource for $link"</span>)
-<span class="lineno">  799 </span>      CronetDataSource.Factory(engine, Executors.newSingleThreadExecutor())
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:396</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  393 </span>                    }
+<span class="lineno">  394 </span>                }
+<span class="lineno">  395 </span>            })
+<span class="caretline"><span class="lineno">  396 </span>            .<span class="error">setPlayActionIconResourceId</span>(R.drawable.ic_baseline_play_arrow_24)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  397 </span>            .setPauseActionIconResourceId(R.drawable.netflix_pause)
+<span class="lineno">  398 </span>            .setSmallIconResourceId(R.drawable.baseline_headphones_24)
+<span class="lineno">  399 </span>            .setStopActionIconResourceId(R.drawable.baseline_stop_24)
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:801</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  798 </span>         Log.d(TAG, <span class="string">"Using CronetDataSource for $link"</span>)
-<span class="lineno">  799 </span>         CronetDataSource.Factory(engine, Executors.newSingleThreadExecutor())
-<span class="lineno">  800 </span>             .setUserAgent(userAgent ?: USER_AGENT)
-<span class="caretline"><span class="lineno">  801 </span>             .<span class="error">setConnectionTimeoutMs</span>(CRONET_TIMEOUT_MS)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  802 </span>             .setReadTimeoutMs(CRONET_TIMEOUT_MS)
-<span class="lineno">  803 </span>             .setResetTimeoutOnRedirects(<span class="keyword">true</span>)
-<span class="lineno">  804 </span>             .setHandleSetCookieRequests(<span class="keyword">true</span>)
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:397</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  394 </span>                }
+<span class="lineno">  395 </span>            })
+<span class="lineno">  396 </span>            .setPlayActionIconResourceId(R.drawable.ic_baseline_play_arrow_24)
+<span class="caretline"><span class="lineno">  397 </span>            .<span class="error">setPauseActionIconResourceId</span>(R.drawable.netflix_pause)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  398 </span>            .setSmallIconResourceId(R.drawable.baseline_headphones_24)
+<span class="lineno">  399 </span>            .setStopActionIconResourceId(R.drawable.baseline_stop_24)
+<span class="lineno">  400 </span>            .setRewindActionIconResourceId(R.drawable.go_back_30)
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:802</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  799 </span>             CronetDataSource.Factory(engine, Executors.newSingleThreadExecutor())
-<span class="lineno">  800 </span>                 .setUserAgent(userAgent ?: USER_AGENT)
-<span class="lineno">  801 </span>                 .setConnectionTimeoutMs(CRONET_TIMEOUT_MS)
-<span class="caretline"><span class="lineno">  802 </span>                 .<span class="error">setReadTimeoutMs</span>(CRONET_TIMEOUT_MS)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  803 </span>                 .setResetTimeoutOnRedirects(<span class="keyword">true</span>)
-<span class="lineno">  804 </span>                 .setHandleSetCookieRequests(<span class="keyword">true</span>)
-<span class="lineno">  805 </span>         }
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:398</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  395 </span>            })
+<span class="lineno">  396 </span>            .setPlayActionIconResourceId(R.drawable.ic_baseline_play_arrow_24)
+<span class="lineno">  397 </span>            .setPauseActionIconResourceId(R.drawable.netflix_pause)
+<span class="caretline"><span class="lineno">  398 </span>            .<span class="error">setSmallIconResourceId</span>(R.drawable.baseline_headphones_24)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  399 </span>            .setStopActionIconResourceId(R.drawable.baseline_stop_24)
+<span class="lineno">  400 </span>            .setRewindActionIconResourceId(R.drawable.go_back_30)
+<span class="lineno">  401 </span>            .setFastForwardActionIconResourceId(R.drawable.go_forward_30)
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:803</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  800 </span>                        .setUserAgent(userAgent ?: USER_AGENT)
-<span class="lineno">  801 </span>                        .setConnectionTimeoutMs(CRONET_TIMEOUT_MS)
-<span class="lineno">  802 </span>                        .setReadTimeoutMs(CRONET_TIMEOUT_MS)
-<span class="caretline"><span class="lineno">  803 </span>                        .<span class="error">setResetTimeoutOnRedirects</span>(<span class="keyword">true</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  804 </span>                        .setHandleSetCookieRequests(<span class="keyword">true</span>)
-<span class="lineno">  805 </span>                }
-<span class="lineno">  806 </span>            } <span class="keyword">else</span> {
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:399</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  396 </span>            .setPlayActionIconResourceId(R.drawable.ic_baseline_play_arrow_24)
+<span class="lineno">  397 </span>            .setPauseActionIconResourceId(R.drawable.netflix_pause)
+<span class="lineno">  398 </span>            .setSmallIconResourceId(R.drawable.baseline_headphones_24)
+<span class="caretline"><span class="lineno">  399 </span>            .<span class="error">setStopActionIconResourceId</span>(R.drawable.baseline_stop_24)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  400 </span>            .setRewindActionIconResourceId(R.drawable.go_back_30)
+<span class="lineno">  401 </span>            .setFastForwardActionIconResourceId(R.drawable.go_forward_30)
+<span class="lineno">  402 </span>            .setNextActionIconResourceId(R.drawable.ic_baseline_skip_next_24)
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:804</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  801 </span>                        .setConnectionTimeoutMs(CRONET_TIMEOUT_MS)
-<span class="lineno">  802 </span>                        .setReadTimeoutMs(CRONET_TIMEOUT_MS)
-<span class="lineno">  803 </span>                        .setResetTimeoutOnRedirects(<span class="keyword">true</span>)
-<span class="caretline"><span class="lineno">  804 </span>                        .<span class="error">setHandleSetCookieRequests</span>(<span class="keyword">true</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  805 </span>                }
-<span class="lineno">  806 </span>            } <span class="keyword">else</span> {
-<span class="lineno">  807 </span>                Log.d(TAG, <span class="string">"Using OkHttpDataSource for $link"</span>)
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:400</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  397 </span>            .setPauseActionIconResourceId(R.drawable.netflix_pause)
+<span class="lineno">  398 </span>            .setSmallIconResourceId(R.drawable.baseline_headphones_24)
+<span class="lineno">  399 </span>            .setStopActionIconResourceId(R.drawable.baseline_stop_24)
+<span class="caretline"><span class="lineno">  400 </span>            .<span class="error">setRewindActionIconResourceId</span>(R.drawable.go_back_30)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  401 </span>            .setFastForwardActionIconResourceId(R.drawable.go_forward_30)
+<span class="lineno">  402 </span>            .setNextActionIconResourceId(R.drawable.ic_baseline_skip_next_24)
+<span class="lineno">  403 </span>            .setPreviousActionIconResourceId(R.drawable.baseline_skip_previous_24)
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:827</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  824 </span>      ) + refererMap + link.headers <span class="comment">// Adds the headers from the provider, e.g Authorization</span>
-<span class="lineno">  825 </span>
-<span class="lineno">  826 </span>      <span class="keyword">return</span> source.apply {
-<span class="caretline"><span class="lineno">  827 </span>          <span class="error">setDefaultRequestProperties</span>(headers)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  828 </span>      }
-<span class="lineno">  829 </span>  }
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:401</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  398 </span>            .setSmallIconResourceId(R.drawable.baseline_headphones_24)
+<span class="lineno">  399 </span>            .setStopActionIconResourceId(R.drawable.baseline_stop_24)
+<span class="lineno">  400 </span>            .setRewindActionIconResourceId(R.drawable.go_back_30)
+<span class="caretline"><span class="lineno">  401 </span>            .<span class="error">setFastForwardActionIconResourceId</span>(R.drawable.go_forward_30)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  402 </span>            .setNextActionIconResourceId(R.drawable.ic_baseline_skip_next_24)
+<span class="lineno">  403 </span>            .setPreviousActionIconResourceId(R.drawable.baseline_skip_previous_24)
+<span class="lineno">  404 </span>            .build().apply {
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:838</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  835 </span>            )
-<span class="lineno">  836 </span>        }
-<span class="lineno">  837 </span>
-<span class="caretline"><span class="lineno">  838 </span>        private <span class="keyword">fun</span> getCache(context: Context, cacheSize: Long): <span class="error">SimpleCache?</span> {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  839 </span>            <span class="keyword">return</span> <span class="keyword">try</span> {
-<span class="lineno">  840 </span>                <span class="keyword">val</span> databaseProvider = StandaloneDatabaseProvider(context)
-<span class="lineno">  841 </span>                SimpleCache(
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:402</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  399 </span>            .setStopActionIconResourceId(R.drawable.baseline_stop_24)
+<span class="lineno">  400 </span>            .setRewindActionIconResourceId(R.drawable.go_back_30)
+<span class="lineno">  401 </span>            .setFastForwardActionIconResourceId(R.drawable.go_forward_30)
+<span class="caretline"><span class="lineno">  402 </span>            .<span class="error">setNextActionIconResourceId</span>(R.drawable.ic_baseline_skip_next_24)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  403 </span>            .setPreviousActionIconResourceId(R.drawable.baseline_skip_previous_24)
+<span class="lineno">  404 </span>            .build().apply {
+<span class="lineno">  405 </span>                setColorized(<span class="keyword">true</span>) <span class="comment">// Color</span></pre>
+
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:403</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  400 </span>            .setRewindActionIconResourceId(R.drawable.go_back_30)
+<span class="lineno">  401 </span>            .setFastForwardActionIconResourceId(R.drawable.go_forward_30)
+<span class="lineno">  402 </span>            .setNextActionIconResourceId(R.drawable.ic_baseline_skip_next_24)
+<span class="caretline"><span class="lineno">  403 </span>            .<span class="error">setPreviousActionIconResourceId</span>(R.drawable.baseline_skip_previous_24)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  404 </span>            .build().apply {
+<span class="lineno">  405 </span>                setColorized(<span class="keyword">true</span>) <span class="comment">// Color</span>
+<span class="lineno">  406 </span>                setUseChronometer(<span class="keyword">true</span>) <span class="comment">// Seekbar</span></pre>
+
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:404</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  401 </span>            .setFastForwardActionIconResourceId(R.drawable.go_forward_30)
+<span class="lineno">  402 </span>            .setNextActionIconResourceId(R.drawable.ic_baseline_skip_next_24)
+<span class="lineno">  403 </span>            .setPreviousActionIconResourceId(R.drawable.baseline_skip_previous_24)
+<span class="caretline"><span class="lineno">  404 </span>            .<span class="error">build</span>().apply {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  405 </span>                setColorized(<span class="keyword">true</span>) <span class="comment">// Color</span>
+<span class="lineno">  406 </span>                setUseChronometer(<span class="keyword">true</span>) <span class="comment">// Seekbar</span>
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:840</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  837 </span>
-<span class="lineno">  838 </span>        private <span class="keyword">fun</span> getCache(context: Context, cacheSize: Long): SimpleCache? {
-<span class="lineno">  839 </span>            <span class="keyword">return</span> <span class="keyword">try</span> {
-<span class="caretline"><span class="lineno">  840 </span>                <span class="keyword">val</span> <span class="error">databaseProvider</span> = StandaloneDatabaseProvider(context)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  841 </span>                SimpleCache(
-<span class="lineno">  842 </span>                    File(
-<span class="lineno">  843 </span>                        context.cacheDir, <span class="string">"exoplayer"</span></pre>
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:405</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  402 </span>            .setNextActionIconResourceId(R.drawable.ic_baseline_skip_next_24)
+<span class="lineno">  403 </span>            .setPreviousActionIconResourceId(R.drawable.baseline_skip_previous_24)
+<span class="lineno">  404 </span>            .build().apply {
+<span class="caretline"><span class="lineno">  405 </span>                <span class="error">setColorized</span>(<span class="keyword">true</span>) <span class="comment">// Color</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  406 </span>                setUseChronometer(<span class="keyword">true</span>) <span class="comment">// Seekbar</span>
+<span class="lineno">  407 </span>
+<span class="lineno">  408 </span>                <span class="comment">// Don't show the prev episode button</span></pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:840</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  837 </span>
-<span class="lineno">  838 </span>        private <span class="keyword">fun</span> getCache(context: Context, cacheSize: Long): SimpleCache? {
-<span class="lineno">  839 </span>            <span class="keyword">return</span> <span class="keyword">try</span> {
-<span class="caretline"><span class="lineno">  840 </span>                <span class="keyword">val</span> databaseProvider = <span class="error">StandaloneDatabaseProvider</span>(context)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  841 </span>                SimpleCache(
-<span class="lineno">  842 </span>                    File(
-<span class="lineno">  843 </span>                        context.cacheDir, <span class="string">"exoplayer"</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:841</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  838 </span>        private <span class="keyword">fun</span> getCache(context: Context, cacheSize: Long): SimpleCache? {
-<span class="lineno">  839 </span>            <span class="keyword">return</span> <span class="keyword">try</span> {
-<span class="lineno">  840 </span>                <span class="keyword">val</span> databaseProvider = StandaloneDatabaseProvider(context)
-<span class="caretline"><span class="lineno">  841 </span>                <span class="error">SimpleCache</span>(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  842 </span>                    File(
-<span class="lineno">  843 </span>                        context.cacheDir, <span class="string">"exoplayer"</span>
-<span class="lineno">  844 </span>                    ).also { deleteFileOnExit(it) }, <span class="comment">// Ensures always fresh file</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:845</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  842 </span>                    File(
-<span class="lineno">  843 </span>                        context.cacheDir, <span class="string">"exoplayer"</span>
-<span class="lineno">  844 </span>                    ).also { deleteFileOnExit(it) }, <span class="comment">// Ensures always fresh file</span>
-<span class="caretline"><span class="lineno">  845 </span>                    <span class="error">LeastRecentlyUsedCacheEvictor</span>(cacheSize),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  846 </span>                    databaseProvider
-<span class="lineno">  847 </span>                )
-<span class="lineno">  848 </span>            } catch (e: Exception) {
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:406</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  403 </span>            .setPreviousActionIconResourceId(R.drawable.baseline_skip_previous_24)
+<span class="lineno">  404 </span>            .build().apply {
+<span class="lineno">  405 </span>                setColorized(<span class="keyword">true</span>) <span class="comment">// Color</span>
+<span class="caretline"><span class="lineno">  406 </span>                <span class="error">setUseChronometer</span>(<span class="keyword">true</span>) <span class="comment">// Seekbar</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  407 </span>
+<span class="lineno">  408 </span>                <span class="comment">// Don't show the prev episode button</span>
+<span class="lineno">  409 </span>                setUsePreviousAction(<span class="keyword">false</span>)
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:869</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  866 </span>         <span class="keyword">return</span> getMediaItemBuilder(mimeType).setUri(url).build()
-<span class="lineno">  867 </span>     }
-<span class="lineno">  868 </span>
-<span class="caretline"><span class="lineno">  869 </span>     private <span class="keyword">fun</span> getTrackSelector(context: Context, maxVideoHeight: Int?): <span class="error">TrackSelector</span> {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  870 </span>         <span class="keyword">val</span> trackSelector = DefaultTrackSelector(context)
-<span class="lineno">  871 </span>         trackSelector.parameters = trackSelector.buildUponParameters()
-<span class="lineno">  872 </span>             <span class="comment">// This will not force higher quality videos to fail</span></pre>
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:409</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  406 </span>                setUseChronometer(<span class="keyword">true</span>) <span class="comment">// Seekbar</span>
+<span class="lineno">  407 </span>
+<span class="lineno">  408 </span>                <span class="comment">// Don't show the prev episode button</span>
+<span class="caretline"><span class="lineno">  409 </span>                <span class="error">setUsePreviousAction</span>(<span class="keyword">false</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  410 </span>                setUsePreviousActionInCompactView(<span class="keyword">false</span>)
+<span class="lineno">  411 </span>
+<span class="lineno">  412 </span>                <span class="comment">// Don't show the next episode button</span></pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:870</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  867 </span>     }
-<span class="lineno">  868 </span>
-<span class="lineno">  869 </span>     private <span class="keyword">fun</span> getTrackSelector(context: Context, maxVideoHeight: Int?): TrackSelector {
-<span class="caretline"><span class="lineno">  870 </span>         <span class="keyword">val</span> <span class="error">trackSelector</span> = DefaultTrackSelector(context)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  871 </span>         trackSelector.parameters = trackSelector.buildUponParameters()
-<span class="lineno">  872 </span>             <span class="comment">// This will not force higher quality videos to fail</span>
-<span class="lineno">  873 </span>             <span class="comment">// but will make the m3u8 pick the correct preferred</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:870</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  867 </span>     }
-<span class="lineno">  868 </span>
-<span class="lineno">  869 </span>     private <span class="keyword">fun</span> getTrackSelector(context: Context, maxVideoHeight: Int?): TrackSelector {
-<span class="caretline"><span class="lineno">  870 </span>         <span class="keyword">val</span> trackSelector = <span class="error">DefaultTrackSelector</span>(context)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  871 </span>         trackSelector.parameters = trackSelector.buildUponParameters()
-<span class="lineno">  872 </span>             <span class="comment">// This will not force higher quality videos to fail</span>
-<span class="lineno">  873 </span>             <span class="comment">// but will make the m3u8 pick the correct preferred</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:871</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  868 </span>
-<span class="lineno">  869 </span>     private <span class="keyword">fun</span> getTrackSelector(context: Context, maxVideoHeight: Int?): TrackSelector {
-<span class="lineno">  870 </span>         <span class="keyword">val</span> trackSelector = DefaultTrackSelector(context)
-<span class="caretline"><span class="lineno">  871 </span>         <span class="error">trackSelector.parameters</span> = trackSelector.buildUponParameters()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  872 </span>             <span class="comment">// This will not force higher quality videos to fail</span>
-<span class="lineno">  873 </span>             <span class="comment">// but will make the m3u8 pick the correct preferred</span>
-<span class="lineno">  874 </span>             .setMaxVideoSize(Int.MAX_VALUE, maxVideoHeight ?: Int.MAX_VALUE)
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:410</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  407 </span>
+<span class="lineno">  408 </span>                <span class="comment">// Don't show the prev episode button</span>
+<span class="lineno">  409 </span>                setUsePreviousAction(<span class="keyword">false</span>)
+<span class="caretline"><span class="lineno">  410 </span>                <span class="error">setUsePreviousActionInCompactView</span>(<span class="keyword">false</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  411 </span>
+<span class="lineno">  412 </span>                <span class="comment">// Don't show the next episode button</span>
+<span class="lineno">  413 </span>                setUseNextAction(<span class="keyword">false</span>)
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:871</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  868 </span>
-<span class="lineno">  869 </span>     private <span class="keyword">fun</span> getTrackSelector(context: Context, maxVideoHeight: Int?): TrackSelector {
-<span class="lineno">  870 </span>         <span class="keyword">val</span> trackSelector = DefaultTrackSelector(context)
-<span class="caretline"><span class="lineno">  871 </span>         trackSelector.<span class="error">parameters</span> = trackSelector.buildUponParameters()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  872 </span>             <span class="comment">// This will not force higher quality videos to fail</span>
-<span class="lineno">  873 </span>             <span class="comment">// but will make the m3u8 pick the correct preferred</span>
-<span class="lineno">  874 </span>             .setMaxVideoSize(Int.MAX_VALUE, maxVideoHeight ?: Int.MAX_VALUE)
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:413</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  410 </span>                setUsePreviousActionInCompactView(<span class="keyword">false</span>)
+<span class="lineno">  411 </span>
+<span class="lineno">  412 </span>                <span class="comment">// Don't show the next episode button</span>
+<span class="caretline"><span class="lineno">  413 </span>                <span class="error">setUseNextAction</span>(<span class="keyword">false</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  414 </span>                setUseNextActionInCompactView(<span class="keyword">false</span>)
+<span class="lineno">  415 </span>
+<span class="lineno">  416 </span>                <span class="comment">// Show the skip 30s in both modes</span></pre>
+
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:414</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  411 </span>
+<span class="lineno">  412 </span>                <span class="comment">// Don't show the next episode button</span>
+<span class="lineno">  413 </span>                setUseNextAction(<span class="keyword">false</span>)
+<span class="caretline"><span class="lineno">  414 </span>                <span class="error">setUseNextActionInCompactView</span>(<span class="keyword">false</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  415 </span>
+<span class="lineno">  416 </span>                <span class="comment">// Show the skip 30s in both modes</span>
+<span class="lineno">  417 </span>                setUseFastForwardAction(<span class="keyword">true</span>)
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:871</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  868 </span>
-<span class="lineno">  869 </span>     private <span class="keyword">fun</span> getTrackSelector(context: Context, maxVideoHeight: Int?): TrackSelector {
-<span class="lineno">  870 </span>         <span class="keyword">val</span> trackSelector = DefaultTrackSelector(context)
-<span class="caretline"><span class="lineno">  871 </span>         trackSelector.parameters = trackSelector.<span class="error">buildUponParameters</span>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  872 </span>             <span class="comment">// This will not force higher quality videos to fail</span>
-<span class="lineno">  873 </span>             <span class="comment">// but will make the m3u8 pick the correct preferred</span>
-<span class="lineno">  874 </span>             .setMaxVideoSize(Int.MAX_VALUE, maxVideoHeight ?: Int.MAX_VALUE)
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:417</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  414 </span>                setUseNextActionInCompactView(<span class="keyword">false</span>)
+<span class="lineno">  415 </span>
+<span class="lineno">  416 </span>                <span class="comment">// Show the skip 30s in both modes</span>
+<span class="caretline"><span class="lineno">  417 </span>                <span class="error">setUseFastForwardAction</span>(<span class="keyword">true</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  418 </span>                setUseFastForwardActionInCompactView(<span class="keyword">true</span>)
+<span class="lineno">  419 </span>
+<span class="lineno">  420 </span>                <span class="comment">// Only show rewind in expanded</span></pre>
+
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:418</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  415 </span>
+<span class="lineno">  416 </span>                <span class="comment">// Show the skip 30s in both modes</span>
+<span class="lineno">  417 </span>                setUseFastForwardAction(<span class="keyword">true</span>)
+<span class="caretline"><span class="lineno">  418 </span>                <span class="error">setUseFastForwardActionInCompactView</span>(<span class="keyword">true</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  419 </span>
+<span class="lineno">  420 </span>                <span class="comment">// Only show rewind in expanded</span>
+<span class="lineno">  421 </span>                setUseRewindAction(<span class="keyword">true</span>)
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:874</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  871 </span>            trackSelector.parameters = trackSelector.buildUponParameters()
-<span class="lineno">  872 </span>                <span class="comment">// This will not force higher quality videos to fail</span>
-<span class="lineno">  873 </span>                <span class="comment">// but will make the m3u8 pick the correct preferred</span>
-<span class="caretline"><span class="lineno">  874 </span>                .<span class="error">setMaxVideoSize</span>(Int.MAX_VALUE, maxVideoHeight ?: Int.MAX_VALUE)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  875 </span>                .setPreferredAudioLanguage(<span class="keyword">null</span>)
-<span class="lineno">  876 </span>                .build()
-<span class="lineno">  877 </span>            <span class="keyword">return</span> trackSelector
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:421</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  418 </span>                setUseFastForwardActionInCompactView(<span class="keyword">true</span>)
+<span class="lineno">  419 </span>
+<span class="lineno">  420 </span>                <span class="comment">// Only show rewind in expanded</span>
+<span class="caretline"><span class="lineno">  421 </span>                <span class="error">setUseRewindAction</span>(<span class="keyword">true</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  422 </span>                setUseFastForwardActionInCompactView(<span class="keyword">false</span>)
+<span class="lineno">  423 </span>
+<span class="lineno">  424 </span>                <span class="comment">// Use custom stop action</span></pre>
+
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:422</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  419 </span>
+<span class="lineno">  420 </span>                <span class="comment">// Only show rewind in expanded</span>
+<span class="lineno">  421 </span>                setUseRewindAction(<span class="keyword">true</span>)
+<span class="caretline"><span class="lineno">  422 </span>                <span class="error">setUseFastForwardActionInCompactView</span>(<span class="keyword">false</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  423 </span>
+<span class="lineno">  424 </span>                <span class="comment">// Use custom stop action</span>
+<span class="lineno">  425 </span>                setUseStopAction(<span class="keyword">false</span>)
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:875</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  872 </span>                <span class="comment">// This will not force higher quality videos to fail</span>
-<span class="lineno">  873 </span>                <span class="comment">// but will make the m3u8 pick the correct preferred</span>
-<span class="lineno">  874 </span>                .setMaxVideoSize(Int.MAX_VALUE, maxVideoHeight ?: Int.MAX_VALUE)
-<span class="caretline"><span class="lineno">  875 </span>                .<span class="error">setPreferredAudioLanguage</span>(<span class="keyword">null</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  876 </span>                .build()
-<span class="lineno">  877 </span>            <span class="keyword">return</span> trackSelector
-<span class="lineno">  878 </span>        }
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:425</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  422 </span>                setUseFastForwardActionInCompactView(<span class="keyword">false</span>)
+<span class="lineno">  423 </span>
+<span class="lineno">  424 </span>                <span class="comment">// Use custom stop action</span>
+<span class="caretline"><span class="lineno">  425 </span>                <span class="error">setUseStopAction</span>(<span class="keyword">false</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  426 </span>            }
+<span class="lineno">  427 </span>            .also { cachedPlayerNotificationManager = it }
+<span class="lineno">  428 </span>    }
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:876</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno">  873 </span>                <span class="comment">// but will make the m3u8 pick the correct preferred</span>
-<span class="lineno">  874 </span>                .setMaxVideoSize(Int.MAX_VALUE, maxVideoHeight ?: Int.MAX_VALUE)
-<span class="lineno">  875 </span>                .setPreferredAudioLanguage(<span class="keyword">null</span>)
-<span class="caretline"><span class="lineno">  876 </span>                .<span class="error">build</span>()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  877 </span>            <span class="keyword">return</span> trackSelector
-<span class="lineno">  878 </span>        }
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:435</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  432 </span>
+<span class="lineno">  433 </span>        <span class="comment">// Cancel the notification when released</span>
+<span class="lineno">  434 </span>        <span class="keyword">if</span> (player == <span class="keyword">null</span>) {
+<span class="caretline"><span class="lineno">  435 </span>            cachedPlayerNotificationManager?.<span class="error">setPlayer</span>(<span class="keyword">null</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  436 </span>            cachedPlayerNotificationManager = <span class="keyword">null</span>
+<span class="lineno">  437 </span>            <span class="keyword">return</span>
+<span class="lineno">  438 </span>        }
 </pre>
 
-<br/><b>NOTE: 275 results omitted.</b><br/><br/></div>
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:444</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.UnstableApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.UnstableApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno">  441 </span>        <span class="keyword">if</span> (player <span class="keyword">is</span> ExoPlayer) {
+<span class="lineno">  442 </span>            <span class="keyword">val</span> ctx = context ?: <span class="keyword">return</span>
+<span class="lineno">  443 </span>            getMediaNotification(ctx).apply {
+<span class="caretline"><span class="lineno">  444 </span>                <span class="error">setPlayer</span>(player)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  445 </span>                mMediaSession?.platformToken?.let {
+<span class="lineno">  446 </span>                    setMediaSessionToken(it)
+<span class="lineno">  447 </span>                }
+</pre>
+
+<br/><b>NOTE: 39 results omitted.</b><br/><br/></div>
 </div>
 <div class="metadata"><div class="explanation" id="explanationUnsafeOptInUsageError" style="display: none;">
 This API has been flagged as opt-in with error-level severity.<br/>
