@@ -60,7 +60,7 @@ const val SUBTITLE_KEY = "subtitle_settings"
 const val SUBTITLE_AUTO_SELECT_KEY = "subs_auto_select"
 const val SUBTITLE_DOWNLOAD_KEY = "subs_auto_download"
 
-data class SaveCaptionStyle constructor(
+data class SaveCaptionStyle(
     @JsonProperty("foregroundColor") var foregroundColor: Int,
     @JsonProperty("backgroundColor") var backgroundColor: Int,
     @JsonProperty("windowColor") var windowColor: Int,
