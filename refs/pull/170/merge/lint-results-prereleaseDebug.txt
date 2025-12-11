@@ -56,9 +56,6 @@
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt:1993: Error: Call requires API level 23 (current min is 21): android.view.View#setOnScrollChangeListener [NewApi]
             playerControlsScroll.setOnScrollChangeListener { _, _, _, _, _ ->
                                  ~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/settings_title_top.xml:18: Error: @android:id/list_container requires API level 24 (current min is 21) [NewApi]
-            android:id="@android:id/list_container"
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:177: Error: android:windowLightNavigationBar requires API level 27 (current min is 21) [NewApi]
         <item name="android:windowLightNavigationBar">true</item>
               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -376,23 +373,6 @@
 
    https://developer.android.com/develop/ui/views/picture-in-picture#smoother-transition
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/AbstractPlayerFragment.kt:231: Error: pipReceiver is missing RECEIVER_EXPORTED or RECEIVER_NOT_EXPORTED flag for unprotected broadcasts registered for media_control [UnspecifiedRegisterReceiverFlag]
-                } else activity?.registerReceiver(pipReceiver, filter)
-                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-   Explanation for issues of type "UnspecifiedRegisterReceiverFlag":
-   In Android U, all receivers registering for non-system broadcasts are
-   required to include a flag indicating the receiver's exported state. Apps
-   registering for non-system broadcasts should use the
-   ContextCompat#registerReceiver APIs with flags set to either
-   RECEIVER_EXPORTED or RECEIVER_NOT_EXPORTED.
-
-   If you are not expecting broadcasts from other apps on the device, register
-   your receiver with RECEIVER_NOT_EXPORTED to protect your receiver on all
-   platform releases.
-
-   https://developer.android.com/reference/androidx/core/content/ContextCompat#registerReceiver(android.content.Context,android.content.BroadcastReceiver,android.content.IntentFilter,int)
-
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/baseline_grid_view_24.xml:6: Warning: Resource references will not work correctly in images generated for this vector icon for API < 24; check generated icon to make sure it looks acceptable [VectorRaster]
         android:tint="?attr/white">
                       ~~~~~~~~~~~
@@ -451,9 +431,29 @@
    You should manually check whether the generated output is acceptable for
    those older devices.
 
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:5: Warning: A newer version of com.android.application than 9.0.0-beta04 is available: 9.0.0-beta05 [AndroidGradlePluginVersion]
+androidGradlePlugin = "9.0.0-beta04"
+                      ~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:5: Warning: A newer version of com.android.kotlin.multiplatform.library than 9.0.0-beta04 is available: 9.0.0-beta05 [AndroidGradlePluginVersion]
+androidGradlePlugin = "9.0.0-beta04"
+                      ~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:5: Warning: A newer version of com.android.lint than 9.0.0-beta04 is available: 9.0.0-beta05 [AndroidGradlePluginVersion]
+androidGradlePlugin = "9.0.0-beta04"
+                      ~~~~~~~~~~~~~~
+
+   Explanation for issues of type "AndroidGradlePluginVersion":
+   This detector looks for usage of the Android Gradle Plugin where the
+   version you are using is not the current stable release. Using older
+   versions is fine, and there are cases where you deliberately want to stick
+   with an older version. However, you may simply not be aware that a more
+   recent version is available, and that is what this lint check helps find.
+
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:4: Warning: A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.1 [GradleDependency]
 activityKtx = "1.11.0"
               ~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:5: Warning: A newer version of androidx.databinding:viewbinding than 9.0.0-beta04 is available: 9.0.0-beta05 [GradleDependency]
+androidGradlePlugin = "9.0.0-beta04"
+                      ~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:28: Warning: A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.9.4 is available: 2.10.0 [GradleDependency]
 lifecycleKtx = "2.9.4"
                ~~~~~~~
@@ -486,9 +486,6 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
    MavenCentral dependency, and connects to the library every time, which
    makes it more flexible but also much slower.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/CommonActivity.kt:659: Error: SearchAutoComplete can only be accessed from within the same library group prefix (referenced groupId=androidx.appcompat with prefix androidx from groupId=CloudStream) [RestrictedApi]
-                (act.currentFocus is SearchView || act.currentFocus is SearchView.SearchAutoComplete)
-                                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt:78: Error: Builder.setTitle can only be called from within the same library (androidx.tvprovider:tvprovider) [RestrictedApi]
                     .setTitle(item.name)
                      ~~~~~~~~
@@ -505,7 +502,7 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
                     .setType(TvContractCompat.PreviewPrograms.TYPE_MOVIE)
                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt:87: Error: Builder.setIntentUri can only be called from within the same library (androidx.tvprovider:tvprovider) [RestrictedApi]
-                    .setIntentUri(Uri.parse(csshareUri))
+                    .setIntentUri(csshareUri.toUri())
                      ~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt:88: Error: Builder.setPosterArtAspectRatio can only be called from within the same library (androidx.tvprovider:tvprovider) [RestrictedApi]
                     .setPosterArtAspectRatio(TvContractCompat.PreviewPrograms.ASPECT_RATIO_2_3)
@@ -514,7 +511,7 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
                     .setPosterArtAspectRatio(TvContractCompat.PreviewPrograms.ASPECT_RATIO_2_3)
                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt:92: Error: Builder.setPosterArtUri can only be called from within the same library (androidx.tvprovider:tvprovider) [RestrictedApi]
-                    builder.setPosterArtUri(Uri.parse(poster))
+                    builder.setPosterArtUri(poster.toUri())
                             ~~~~~~~~~~~~~~~
 
    Explanation for issues of type "RestrictedApi":
@@ -2249,21 +2246,6 @@ class SSLTrustManager : X509TrustManager {
    sometimes point to icons that were accidentally overwritten or accidentally
    not updated.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt:173: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
-            .setPosterArtUri(Uri.parse(card.posterUrl))
-                             ~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt:174: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
-            .setIntentUri(Uri.parse(card.id?.let {
-                          ^
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt:606: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
-            intent.data = Uri.parse(url)
-                          ~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt:606: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
-            intent.data = Uri.parse(url)
-                          ~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/CastHelper.kt:44: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
-            movieMetadata.addImage(WebImage(Uri.parse(srcPoster)))
-                                            ~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/CommonActivity.kt:425: Warning: Use the KTX extension function ViewGroup.isNotEmpty instead? [UseKtx]
             is ViewGroup -> this.childCount > 0
                             ~~~~~~~~~~~~~~~~~~~
@@ -2288,48 +2270,9 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt:354: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
                                         settingsManager.edit().putString(
                                         ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/MainActivity.kt:347: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
-                        val uri = Uri.parse(str)
-                                  ~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/actions/temp/MpvKtPackage.kt:48: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
-            setDataAndType(Uri.parse(link.url), "video/*")
-                           ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/actions/temp/MpvPackage.kt:47: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
-                setDataAndType(Uri.parse(result.links.getOrNull(index)?.url ?: return), "video/*")
-                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/actions/temp/PlayInBrowserAction.kt:36: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
-        i.data = Uri.parse(link.url)
-                 ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/actions/temp/PlayInBrowserAction.kt:36: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
-        i.data = Uri.parse(link.url)
-                 ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt:70: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
-                data = Uri.parse("package:$PACKAGE_NAME")
-                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt:70: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
-                data = Uri.parse("package:$PACKAGE_NAME")
-                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/testing/TestView.kt:62: Warning: Use the KTX extension function Context.withStyledAttributes instead? [UseKtx]
             val typedArray = context.obtainStyledAttributes(it, R.styleable.TestView)
                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt:87: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
-                    .setIntentUri(Uri.parse(csshareUri))
-                                  ~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt:92: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
-                    builder.setPosterArtUri(Uri.parse(poster))
-                                            ~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt:138: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
-        val iconUri = Uri.parse("android.resource://${context.packageName}/mipmap/ic_launcher")
-                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt:145: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
-                data = Uri.parse("cloudstreamapp://open")
-                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt:145: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
-                data = Uri.parse("cloudstreamapp://open")
-                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/actions/temp/WebVideoCastPackage.kt:41: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
-            setDataAndType(Uri.parse(link.url), "video/*")
-                           ~~~~~~~~~~~~~~~~~~~
 
    Explanation for issues of type "UseKtx":
    The Android KTX libraries decorates the Android platform SDK as well as
@@ -2685,4 +2628,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-21 errors, 707 warnings, 1 hint
+18 errors, 693 warnings, 1 hint
