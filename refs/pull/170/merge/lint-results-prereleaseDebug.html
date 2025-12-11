@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 18 errors, 693 warnings and 1 hint</span>
+      <span class="mdl-layout-title">Lint Report: 18 errors, 690 warnings and 1 hint</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Thu Dec 11 17:10:21 UTC 2025 by AGP (9.0.0-beta04)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Thu Dec 11 17:38:18 UTC 2025 by AGP (9.0.0-beta04)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -224,7 +224,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#TypographyEllipsis"><i class="material-icons warning-icon">warning</i>Ellipsis string can be replaced with ellipsis character (5)</a>
       <a class="mdl-navigation__link" href="#IconLocation"><i class="material-icons warning-icon">warning</i>Image defined in density-independent drawable folder (10)</a>
       <a class="mdl-navigation__link" href="#IconDuplicates"><i class="material-icons warning-icon">warning</i>Duplicated icons under different names (15)</a>
-      <a class="mdl-navigation__link" href="#UseKtx"><i class="material-icons warning-icon">warning</i>Use KTX extension function (9)</a>
+      <a class="mdl-navigation__link" href="#UseKtx"><i class="material-icons warning-icon">warning</i>Use KTX extension function (6)</a>
       <a class="mdl-navigation__link" href="#ContentDescription"><i class="material-icons warning-icon">warning</i>Image without <code>contentDescription</code> (46)</a>
       <a class="mdl-navigation__link" href="#ByteOrderMark"><i class="material-icons error-icon">error</i>Byte order mark inside files (4)</a>
       <a class="mdl-navigation__link" href="#SetTextI18n"><i class="material-icons warning-icon">warning</i>TextView Internationalization (6)</a>
@@ -372,7 +372,7 @@ document.getElementById(id).style.display = 'none';
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Productivity">Productivity</a>
 </td></tr>
 <tr>
-<td class="countColumn">9</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">6</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#UseKtx">UseKtx</a>: Use KTX extension function</td></tr>
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Accessibility">Accessibility</a>
 </td></tr>
@@ -1166,14 +1166,14 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/CommonActivity.kt">../../src/main/java/com/lagradost/cloudstream3/CommonActivity.kt</a>:214</span>: <span class="message">Found dynamic locale changes, but did not find corresponding Play Core library calls for downloading languages and splitting by language is not disabled in the <code>bundle</code> configuration</span><br /><pre class="errorlines">
-<span class="lineno"> 211 </span>        <span class="keyword">val</span> resources: Resources = context.resources
-<span class="lineno"> 212 </span>        <span class="keyword">val</span> config = resources.configuration
-<span class="lineno"> 213 </span>        Locale.setDefault(locale)
-<span class="caretline"><span class="lineno"> 214 </span>        <span class="warning">config.setLocale(locale)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 215 </span>
-<span class="lineno"> 216 </span>        <span class="keyword">if</span> (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-<span class="lineno"> 217 </span>            context.createConfigurationContext(config)
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/CommonActivity.kt">../../src/main/java/com/lagradost/cloudstream3/CommonActivity.kt</a>:215</span>: <span class="message">Found dynamic locale changes, but did not find corresponding Play Core library calls for downloading languages and splitting by language is not disabled in the <code>bundle</code> configuration</span><br /><pre class="errorlines">
+<span class="lineno"> 212 </span>        <span class="keyword">val</span> resources: Resources = context.resources
+<span class="lineno"> 213 </span>        <span class="keyword">val</span> config = resources.configuration
+<span class="lineno"> 214 </span>        Locale.setDefault(locale)
+<span class="caretline"><span class="lineno"> 215 </span>        <span class="warning">config.setLocale(locale)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 216 </span>
+<span class="lineno"> 217 </span>        <span class="keyword">if</span> (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+<span class="lineno"> 218 </span>            context.createConfigurationContext(config)
 </pre>
 
 </div>
@@ -4700,25 +4700,6 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/CommonActivity.kt">../../src/main/java/com/lagradost/cloudstream3/CommonActivity.kt</a>:425</span>: <span class="message">Use the KTX extension function <code>ViewGroup.isNotEmpty</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 422 </span>    private <span class="keyword">fun</span> View.hasContent(): Boolean {
-<span class="lineno"> 423 </span>        <span class="keyword">return</span> isShown &amp;&amp; <span class="keyword">when</span> (<span class="keyword">this</span>) {
-<span class="lineno"> 424 </span>            <span class="comment">//is RecyclerView -> this.childCount > 0</span>
-<span class="caretline"><span class="lineno"> 425 </span>            <span class="keyword">is</span> ViewGroup -> <span class="warning"><span class="keyword">this</span>.childCount > <span class="number">0</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 426 </span>            <span class="keyword">else</span> -> <span class="keyword">true</span>
-<span class="lineno"> 427 </span>        }
-<span class="lineno"> 428 </span>    }
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/CommonActivity.kt">../../src/main/java/com/lagradost/cloudstream3/CommonActivity.kt</a>:455</span>: <span class="message">Use the KTX extension function <code>ViewGroup.isNotEmpty</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 452 </span>  <span class="comment">// if cant focus but visible then break and let android decide</span>
-<span class="lineno"> 453 </span>  <span class="comment">// the exception if is the view is a parent and has children that wants focus</span>
-<span class="lineno"> 454 </span>  <span class="keyword">val</span> hasChildrenThatWantsFocus = (next <span class="keyword">as</span>? ViewGroup)?.let { parent ->
-<span class="caretline"><span class="lineno"> 455 </span>      parent.descendantFocusability == ViewGroup.FOCUS_AFTER_DESCENDANTS &amp;&amp; <span class="warning">parent.childCount > <span class="number">0</span></span></span>
-<span class="lineno"> 456 </span>  } ?: <span class="keyword">false</span>
-<span class="lineno"> 457 </span>  <span class="keyword">if</span> (!next.isFocusable &amp;&amp; shown &amp;&amp; !hasChildrenThatWantsFocus) <span class="keyword">return</span> <span class="keyword">null</span>
-</pre>
-
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/CustomRecyclerViews.kt">../../src/main/java/com/lagradost/cloudstream3/ui/CustomRecyclerViews.kt</a>:158</span>: <span class="message">Use the KTX extension function <code>Context.withStyledAttributes</code> instead?</span><br /><pre class="errorlines">
 <span class="lineno"> 155 </span>    init {
 <span class="lineno"> 156 </span>        <span class="keyword">if</span> (attrs != <span class="keyword">null</span>) {
@@ -4747,18 +4728,6 @@ Dismiss</button>            </div>
 <span class="lineno"> 108 </span>       spacing = <span class="number">0</span><span class="comment">//t.getDimensionPixelSize(R.styleable.FlowLayout_Layout_itemSpacing, 0);</span>
 <span class="lineno"> 109 </span>       t.recycle()
 <span class="lineno"> 110 </span>   }
-</pre>
-
-<button class="mdl-button mdl-js-button mdl-button--primary" id="UseKtxDivLink" onclick="reveal('UseKtxDiv');" />+ 4 More Occurrences...</button>
-<div id="UseKtxDiv" style="display: none">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/HeaderViewDecoration.kt">../../src/main/java/com/lagradost/cloudstream3/ui/HeaderViewDecoration.kt</a>:15</span>: <span class="message">Use the KTX extension function <code>Canvas.withSave</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 12 </span>        <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">0</span> until parent.childCount) {
-<span class="lineno"> 13 </span>            <span class="keyword">val</span> view = parent.getChildAt(i)
-<span class="lineno"> 14 </span>            <span class="keyword">if</span> (parent.getChildAdapterPosition(view) == <span class="number">0</span>) {
-<span class="caretline"><span class="lineno"> 15 </span>                <span class="warning">c.save()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 16 </span>                <span class="keyword">val</span> height = customView.measuredHeight
-<span class="lineno"> 17 </span>                <span class="keyword">val</span> top = view.top - height
-<span class="lineno"> 18 </span>                c.translate(<span class="number">0f</span>, top.toFloat())
 </pre>
 
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:315</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
@@ -4791,7 +4760,6 @@ Dismiss</button>            </div>
 <span class="lineno">  65 </span>            typedArray.recycle()
 </pre>
 
-</div>
 </div>
 <div class="metadata"><div class="explanation" id="explanationUseKtx" style="display: none;">
 The Android KTX libraries decorates the Android platform SDK as well as various libraries with more convenient extension functions available from Kotlin, allowing you to use default parameters, named parameters, and more.<br/><br/>

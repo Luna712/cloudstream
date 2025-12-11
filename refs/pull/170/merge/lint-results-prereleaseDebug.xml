@@ -1183,7 +1183,7 @@
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/CommonActivity.kt"
-            line="214"
+            line="215"
             column="9"/>
     </issue>
 
@@ -10030,38 +10030,6 @@
     <issue
         id="UseKtx"
         severity="Warning"
-        message="Use the KTX extension function `ViewGroup.isNotEmpty` instead?"
-        category="Productivity"
-        priority="6"
-        summary="Use KTX extension function"
-        explanation="The Android KTX libraries decorates the Android platform SDK as well as various libraries with more convenient extension functions available from Kotlin, allowing you to use default parameters, named parameters, and more."
-        errorLine1="            is ViewGroup -> this.childCount > 0"
-        errorLine2="                            ~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/CommonActivity.kt"
-            line="425"
-            column="29"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        severity="Warning"
-        message="Use the KTX extension function `ViewGroup.isNotEmpty` instead?"
-        category="Productivity"
-        priority="6"
-        summary="Use KTX extension function"
-        explanation="The Android KTX libraries decorates the Android platform SDK as well as various libraries with more convenient extension functions available from Kotlin, allowing you to use default parameters, named parameters, and more."
-        errorLine1="            parent.descendantFocusability == ViewGroup.FOCUS_AFTER_DESCENDANTS &amp;&amp; parent.childCount > 0"
-        errorLine2="                                                                                  ~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/CommonActivity.kt"
-            line="455"
-            column="83"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        severity="Warning"
         message="Use the KTX extension function `Context.withStyledAttributes` instead?"
         category="Productivity"
         priority="6"
@@ -10105,22 +10073,6 @@
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/widget/FlowLayout.kt"
             line="107"
             column="21"/>
-    </issue>
-
-    <issue
-        id="UseKtx"
-        severity="Warning"
-        message="Use the KTX extension function `Canvas.withSave` instead?"
-        category="Productivity"
-        priority="6"
-        summary="Use KTX extension function"
-        explanation="The Android KTX libraries decorates the Android platform SDK as well as various libraries with more convenient extension functions available from Kotlin, allowing you to use default parameters, named parameters, and more."
-        errorLine1="                c.save()"
-        errorLine2="                ~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/HeaderViewDecoration.kt"
-            line="15"
-            column="17"/>
     </issue>
 
     <issue

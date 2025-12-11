@@ -297,7 +297,7 @@
    can be unused too, such as the new <tag> element in layouts introduced in
    API 21.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/CommonActivity.kt:214: Warning: Found dynamic locale changes, but did not find corresponding Play Core library calls for downloading languages and splitting by language is not disabled in the bundle configuration [AppBundleLocaleChanges]
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/CommonActivity.kt:215: Warning: Found dynamic locale changes, but did not find corresponding Play Core library calls for downloading languages and splitting by language is not disabled in the bundle configuration [AppBundleLocaleChanges]
         config.setLocale(locale)
         ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -2246,12 +2246,6 @@ class SSLTrustManager : X509TrustManager {
    sometimes point to icons that were accidentally overwritten or accidentally
    not updated.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/CommonActivity.kt:425: Warning: Use the KTX extension function ViewGroup.isNotEmpty instead? [UseKtx]
-            is ViewGroup -> this.childCount > 0
-                            ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/CommonActivity.kt:455: Warning: Use the KTX extension function ViewGroup.isNotEmpty instead? [UseKtx]
-            parent.descendantFocusability == ViewGroup.FOCUS_AFTER_DESCENDANTS && parent.childCount > 0
-                                                                                  ~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/CustomRecyclerViews.kt:158: Warning: Use the KTX extension function Context.withStyledAttributes instead? [UseKtx]
             val array = context.obtainStyledAttributes(attrs, attrsArray)
                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2261,9 +2255,6 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/widget/FlowLayout.kt:107: Warning: Use the KTX extension function Context.withStyledAttributes instead? [UseKtx]
             val t = c.obtainStyledAttributes(attrs, R.styleable.FlowLayout_Layout)
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/HeaderViewDecoration.kt:15: Warning: Use the KTX extension function Canvas.withSave instead? [UseKtx]
-                c.save()
-                ~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt:315: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
                                             settingsManager.edit()
                                             ~~~~~~~~~~~~~~~~~~~~~~
@@ -2628,4 +2619,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-18 errors, 693 warnings, 1 hint
+18 errors, 690 warnings, 1 hint
