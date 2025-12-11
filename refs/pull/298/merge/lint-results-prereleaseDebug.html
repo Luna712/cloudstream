@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 18 errors, 690 warnings and 1 hint</span>
+      <span class="mdl-layout-title">Lint Report: 17 errors, 690 warnings and 1 hint</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Thu Dec 11 17:38:18 UTC 2025 by AGP (9.0.0-beta04)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Thu Dec 11 19:36:57 UTC 2025 by AGP (9.0.0-beta04)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -189,7 +189,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#NestedScrolling"><i class="material-icons warning-icon">warning</i>Nested scrolling widgets (1)</a>
       <a class="mdl-navigation__link" href="#InlinedApi"><i class="material-icons warning-icon">warning</i>Using inlined constants on older versions (3)</a>
       <a class="mdl-navigation__link" href="#InternalInsetResource"><i class="material-icons warning-icon">warning</i>Using internal inset dimension resource (2)</a>
-      <a class="mdl-navigation__link" href="#NewApi"><i class="material-icons error-icon">error</i>Calling new methods on older versions (4)</a>
+      <a class="mdl-navigation__link" href="#NewApi"><i class="material-icons error-icon">error</i>Calling new methods on older versions (3)</a>
       <a class="mdl-navigation__link" href="#UnusedAttribute"><i class="material-icons warning-icon">warning</i>Attribute unused on older versions (63)</a>
       <a class="mdl-navigation__link" href="#AppBundleLocaleChanges"><i class="material-icons warning-icon">warning</i>App Bundle handling of runtime locale changes (1)</a>
       <a class="mdl-navigation__link" href="#AppLinkWarning"><i class="material-icons warning-icon">warning</i>App Link warning (1)</a>
@@ -255,7 +255,7 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#InternalInsetResource">InternalInsetResource</a>: Using internal inset dimension resource</td></tr>
 <tr>
-<td class="countColumn">4</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
+<td class="countColumn">3</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
 <a href="#NewApi">NewApi</a>: Calling new methods on older versions</td></tr>
 <tr>
 <td class="countColumn">63</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
@@ -588,15 +588,6 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt</a>:1993</span>: <span class="message">Call requires API level 23 (current min is 21): <code>android.view.View#setOnScrollChangeListener</code></span><br /><pre class="errorlines">
-<span class="lineno"> 1990 </span>                <span class="keyword">return</span><span class="annotation">@setOnTouchListener</span> handleMotionEvent(callView, event)
-<span class="lineno"> 1991 </span>            }
-<span class="lineno"> 1992 </span>
-<span class="caretline"><span class="lineno"> 1993 </span>            playerControlsScroll.<span class="error">setOnScrollChangeListener</span> { _, _, _, _, _ ->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 1994 </span>                autoHide()
-<span class="lineno"> 1995 </span>            }
-</pre>
-
 <span class="location"><a href="../../src/main/res/values/styles.xml">../../src/main/res/values/styles.xml</a>:177</span>: <span class="message"><code>android:windowLightNavigationBar</code> requires API level 27 (current min is 21)</span><br /><pre class="errorlines">
 <span class="lineno">  174 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"black"</span>>@color/white<span class="tag">&lt;/item></span>
 <span class="lineno">  175 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"colorOnPrimary"</span>>@color/blackText<span class="tag">&lt;/item></span>

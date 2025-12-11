@@ -53,9 +53,6 @@
    listen to updates, use androidx.core.view.WindowInsetsCompat and related
    APIs.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt:1993: Error: Call requires API level 23 (current min is 21): android.view.View#setOnScrollChangeListener [NewApi]
-            playerControlsScroll.setOnScrollChangeListener { _, _, _, _, _ ->
-                                 ~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:177: Error: android:windowLightNavigationBar requires API level 27 (current min is 21) [NewApi]
         <item name="android:windowLightNavigationBar">true</item>
               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2619,4 +2616,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-18 errors, 690 warnings, 1 hint
+17 errors, 690 warnings, 1 hint
