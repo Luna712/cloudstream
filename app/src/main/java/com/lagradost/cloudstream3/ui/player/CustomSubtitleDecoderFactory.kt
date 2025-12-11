@@ -392,7 +392,7 @@ class CustomSubtitleDecoderFactory : SubtitleDecoderFactory {
     /**
      * Decoders created here persists across reset()
      * Do not save state in the decoder which you want to reset (e.g subtitle offset)
-     **/
+     */
     override fun createDecoder(format: Format): SubtitleDecoder {
         val parser = CustomDecoder(format)
         // Allow garbage collection if player releases the decoder
