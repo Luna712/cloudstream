@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream3
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.PictureInPictureParams
 import android.content.Context
@@ -656,7 +657,10 @@ object CommonActivity {
                 return true
             }
 
-            if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER && currentFocus is SearchView) {
+            @SuppressLint("RestrictedApi")
+            if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER &&
+                (act.currentFocus is SearchView || act.currentFocus is SearchView.SearchAutoComplete)
+            ) {
                 showInputMethod(currentFocus.findFocus())
             }
 
