@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 5 errors, 688 warnings and 1 hint</span>
+      <span class="mdl-layout-title">Lint Report: 5 errors, 684 warnings and 1 hint</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Thu Dec 11 20:13:37 UTC 2025 by AGP (9.0.0-beta04)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Thu Dec 11 20:42:08 UTC 2025 by AGP (9.0.0-beta05)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -196,8 +196,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#DefaultUncaughtExceptionDelegation"><i class="material-icons warning-icon">warning</i>Missing default uncaught exception handler delegation (1)</a>
       <a class="mdl-navigation__link" href="#PictureInPictureIssue"><i class="material-icons warning-icon">warning</i>Picture In Picture best practices not followed (1)</a>
       <a class="mdl-navigation__link" href="#VectorRaster"><i class="material-icons warning-icon">warning</i>Vector Image Generation (15)</a>
-      <a class="mdl-navigation__link" href="#AndroidGradlePluginVersion"><i class="material-icons warning-icon">warning</i>Obsolete Android Gradle Plugin Version (3)</a>
-      <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (5)</a>
+      <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (4)</a>
       <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (2)</a>
       <a class="mdl-navigation__link" href="#PrivateResource"><i class="material-icons warning-icon">warning</i>Using private resources (26)</a>
       <a class="mdl-navigation__link" href="#Aligned16KB"><i class="material-icons warning-icon">warning</i>Native library dependency not 16 KB aligned (9)</a>
@@ -274,10 +273,7 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">15</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#VectorRaster">VectorRaster</a>: Vector Image Generation</td></tr>
 <tr>
-<td class="countColumn">3</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
-<a href="#AndroidGradlePluginVersion">AndroidGradlePluginVersion</a>: Obsolete Android Gradle Plugin Version</td></tr>
-<tr>
-<td class="countColumn">5</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">4</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#GradleDependency">GradleDependency</a>: Obsolete Gradle Dependency</td></tr>
 <tr>
 <td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
@@ -1485,72 +1481,6 @@ However, there are some limitations to this raster image generation, and this li
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="VectorRasterCardLink" onclick="hideid('VectorRasterCard');">
 Dismiss</button>            </div>
             </div>
-          </section><a name="AndroidGradlePluginVersion"></a>
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="AndroidGradlePluginVersionCard" style="display: block;">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Obsolete Android Gradle Plugin Version</h2>
-  </div>
-              <div class="mdl-card__supporting-text">
-<div class="issue">
-<div class="warningslist">
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:5</span>: <span class="message">A newer version of com.android.application than 9.0.0-beta04 is available: 9.0.0-beta05</span><br /><pre class="errorlines">
-<span class="lineno">   2 </span># https://docs.gradle.org/current/userguide/dependency_versions.html#sec:strict-version
-<span class="lineno">   3 </span>[versions]
-<span class="lineno">   4 </span>activityKtx = "1.11.0"
-<span class="caretline"><span class="lineno">   5 </span>androidGradlePlugin = <span class="warning">"9.0.0-beta04"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">   6 </span>appcompat = "1.7.1"
-<span class="lineno">   7 </span>biometric = "1.4.0-alpha04"
-<span class="lineno">   8 </span>buildkonfigGradlePlugin = "0.17.1"
-</pre>
-
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:5</span>: <span class="message">A newer version of com.android.kotlin.multiplatform.library than 9.0.0-beta04 is available: 9.0.0-beta05</span><br /><pre class="errorlines">
-<span class="lineno">   2 </span># https://docs.gradle.org/current/userguide/dependency_versions.html#sec:strict-version
-<span class="lineno">   3 </span>[versions]
-<span class="lineno">   4 </span>activityKtx = "1.11.0"
-<span class="caretline"><span class="lineno">   5 </span>androidGradlePlugin = <span class="warning">"9.0.0-beta04"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">   6 </span>appcompat = "1.7.1"
-<span class="lineno">   7 </span>biometric = "1.4.0-alpha04"
-<span class="lineno">   8 </span>buildkonfigGradlePlugin = "0.17.1"
-</pre>
-
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:5</span>: <span class="message">A newer version of com.android.lint than 9.0.0-beta04 is available: 9.0.0-beta05</span><br /><pre class="errorlines">
-<span class="lineno">   2 </span># https://docs.gradle.org/current/userguide/dependency_versions.html#sec:strict-version
-<span class="lineno">   3 </span>[versions]
-<span class="lineno">   4 </span>activityKtx = "1.11.0"
-<span class="caretline"><span class="lineno">   5 </span>androidGradlePlugin = <span class="warning">"9.0.0-beta04"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">   6 </span>appcompat = "1.7.1"
-<span class="lineno">   7 </span>biometric = "1.4.0-alpha04"
-<span class="lineno">   8 </span>buildkonfigGradlePlugin = "0.17.1"
-</pre>
-
-</div>
-<div class="metadata"><div class="explanation" id="explanationAndroidGradlePluginVersion" style="display: none;">
-This detector looks for usage of the Android Gradle Plugin where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
-To suppress this error, use the issue id "AndroidGradlePluginVersion" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
-<br/></div>
-</div>
-</div>
-<div class="chips">
-<span class="mdl-chip">
-    <span class="mdl-chip__text">AndroidGradlePluginVersion</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Correctness</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Warning</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Priority 4/10</span>
-</span>
-</div>
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationAndroidGradlePluginVersionLink" onclick="reveal('explanationAndroidGradlePluginVersion');">
-Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="AndroidGradlePluginVersionCardLink" onclick="hideid('AndroidGradlePluginVersionCard');">
-Dismiss</button>            </div>
-            </div>
           </section><a name="GradleDependency"></a>
 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="GradleDependencyCard" style="display: block;">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
@@ -1565,19 +1495,9 @@ Dismiss</button>            </div>
 <span class="lineno">   2 </span># https://docs.gradle.org/current/userguide/dependency_versions.html#sec:strict-version
 <span class="lineno">   3 </span>[versions]
 <span class="caretline"><span class="lineno">   4 </span>activityKtx = <span class="warning">"1.11.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">   5 </span>androidGradlePlugin = "9.0.0-beta04"
+<span class="lineno">   5 </span>androidGradlePlugin = "9.0.0-beta05"
 <span class="lineno">   6 </span>appcompat = "1.7.1"
 <span class="lineno">   7 </span>biometric = "1.4.0-alpha04"
-</pre>
-
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:5</span>: <span class="message">A newer version of androidx.databinding:viewbinding than 9.0.0-beta04 is available: 9.0.0-beta05</span><br /><pre class="errorlines">
-<span class="lineno">   2 </span># https://docs.gradle.org/current/userguide/dependency_versions.html#sec:strict-version
-<span class="lineno">   3 </span>[versions]
-<span class="lineno">   4 </span>activityKtx = "1.11.0"
-<span class="caretline"><span class="lineno">   5 </span>androidGradlePlugin = <span class="warning">"9.0.0-beta04"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">   6 </span>appcompat = "1.7.1"
-<span class="lineno">   7 </span>biometric = "1.4.0-alpha04"
-<span class="lineno">   8 </span>buildkonfigGradlePlugin = "0.17.1"
 </pre>
 
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:28</span>: <span class="message">A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.9.4 is available: 2.10.0</span><br /><pre class="errorlines">
@@ -1978,16 +1898,16 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/47de18f7cbc64850a19c8ee08f36b916/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.2.1/transforms/47de18f7cbc64850a19c8ee08f36b916/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/47de18f7cbc64850a19c8ee08f36b916/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.2.1/transforms/47de18f7cbc64850a19c8ee08f36b916/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/6678aa12373189601650f6987c3403be/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/6678aa12373189601650f6987c3403be/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/6678aa12373189601650f6987c3403be/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/6678aa12373189601650f6987c3403be/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/6678aa12373189601650f6987c3403be/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/6678aa12373189601650f6987c3403be/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/9418f81410d1ba932b425703ba76d6ca/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.2.1/transforms/9418f81410d1ba932b425703ba76d6ca/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/9418f81410d1ba932b425703ba76d6ca/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.2.1/transforms/9418f81410d1ba932b425703ba76d6ca/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/6896384b7ee95e707d6041972a87b989/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/6896384b7ee95e707d6041972a87b989/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/6896384b7ee95e707d6041972a87b989/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/6896384b7ee95e707d6041972a87b989/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/6896384b7ee95e707d6041972a87b989/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.2.1/transforms/6896384b7ee95e707d6041972a87b989/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
 <button class="mdl-button mdl-js-button mdl-button--primary" id="Aligned16KBDivLink" onclick="reveal('Aligned16KBDiv');" />+ 4 More Occurrences...</button>
 <div id="Aligned16KBDiv" style="display: none">
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/ee38794b753be2d1c5deded5591a065d/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/ee38794b753be2d1c5deded5591a065d/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/ee38794b753be2d1c5deded5591a065d/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/ee38794b753be2d1c5deded5591a065d/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/ee38794b753be2d1c5deded5591a065d/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/ee38794b753be2d1c5deded5591a065d/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/850dc222a93a1cfada717f749642de73/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/850dc222a93a1cfada717f749642de73/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/850dc222a93a1cfada717f749642de73/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/850dc222a93a1cfada717f749642de73/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.2.1/transforms/850dc222a93a1cfada717f749642de73/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so">../../../../../../.gradle/caches/9.2.1/transforms/850dc222a93a1cfada717f749642de73/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so</a></span>: <span class="message">The native library <code>arm64-v8a/libquickjs.so</code> (from <code>app.cash.quickjs:quickjs-android:0.9.2</code>) is not 16 KB aligned</span><br />
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:63</span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br /><pre class="errorlines">
 <span class="lineno">  60 </span>coil = { module = "io.coil-kt.coil3:coil", version.ref = "coil" }
 <span class="lineno">  61 </span>coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }

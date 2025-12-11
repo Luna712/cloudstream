@@ -394,29 +394,9 @@
    You should manually check whether the generated output is acceptable for
    those older devices.
 
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:5: Warning: A newer version of com.android.application than 9.0.0-beta04 is available: 9.0.0-beta05 [AndroidGradlePluginVersion]
-androidGradlePlugin = "9.0.0-beta04"
-                      ~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:5: Warning: A newer version of com.android.kotlin.multiplatform.library than 9.0.0-beta04 is available: 9.0.0-beta05 [AndroidGradlePluginVersion]
-androidGradlePlugin = "9.0.0-beta04"
-                      ~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:5: Warning: A newer version of com.android.lint than 9.0.0-beta04 is available: 9.0.0-beta05 [AndroidGradlePluginVersion]
-androidGradlePlugin = "9.0.0-beta04"
-                      ~~~~~~~~~~~~~~
-
-   Explanation for issues of type "AndroidGradlePluginVersion":
-   This detector looks for usage of the Android Gradle Plugin where the
-   version you are using is not the current stable release. Using older
-   versions is fine, and there are cases where you deliberately want to stick
-   with an older version. However, you may simply not be aware that a more
-   recent version is available, and that is what this lint check helps find.
-
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:4: Warning: A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.1 [GradleDependency]
 activityKtx = "1.11.0"
               ~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:5: Warning: A newer version of androidx.databinding:viewbinding than 9.0.0-beta04 is available: 9.0.0-beta05 [GradleDependency]
-androidGradlePlugin = "9.0.0-beta04"
-                      ~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:28: Warning: A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.9.4 is available: 2.10.0 [GradleDependency]
 lifecycleKtx = "2.9.4"
                ~~~~~~~
@@ -534,14 +514,14 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
 
    To fix this, copy the resource into your own project instead.
 
-/home/runner/.gradle/caches/9.2.1/transforms/47de18f7cbc64850a19c8ee08f36b916/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/47de18f7cbc64850a19c8ee08f36b916/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/6678aa12373189601650f6987c3403be/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/6678aa12373189601650f6987c3403be/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/6678aa12373189601650f6987c3403be/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/ee38794b753be2d1c5deded5591a065d/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so: Warning: The native library arm64-v8a/libquickjs.so (from app.cash.quickjs:quickjs-android:0.9.2) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/ee38794b753be2d1c5deded5591a065d/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so: Warning: The native library arm64-v8a/libquickjs.so (from app.cash.quickjs:quickjs-android:0.9.2) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/ee38794b753be2d1c5deded5591a065d/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so: Warning: The native library arm64-v8a/libquickjs.so (from app.cash.quickjs:quickjs-android:0.9.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/9418f81410d1ba932b425703ba76d6ca/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/9418f81410d1ba932b425703ba76d6ca/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/6896384b7ee95e707d6041972a87b989/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/6896384b7ee95e707d6041972a87b989/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/6896384b7ee95e707d6041972a87b989/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/850dc222a93a1cfada717f749642de73/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so: Warning: The native library arm64-v8a/libquickjs.so (from app.cash.quickjs:quickjs-android:0.9.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/850dc222a93a1cfada717f749642de73/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so: Warning: The native library arm64-v8a/libquickjs.so (from app.cash.quickjs:quickjs-android:0.9.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/850dc222a93a1cfada717f749642de73/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so: Warning: The native library arm64-v8a/libquickjs.so (from app.cash.quickjs:quickjs-android:0.9.2) is not 16 KB aligned [Aligned16KB]
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:63: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
 conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = "conscryptAndroid" }
                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2537,4 +2517,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-5 errors, 688 warnings, 1 hint
+5 errors, 684 warnings, 1 hint
