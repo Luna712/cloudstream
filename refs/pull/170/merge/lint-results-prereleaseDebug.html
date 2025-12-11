@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 17 errors, 690 warnings and 1 hint</span>
+      <span class="mdl-layout-title">Lint Report: 8 errors, 688 warnings and 1 hint</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Thu Dec 11 19:38:54 UTC 2025 by AGP (9.0.0-beta04)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Thu Dec 11 20:06:27 UTC 2025 by AGP (9.0.0-beta04)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -200,7 +200,6 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#AndroidGradlePluginVersion"><i class="material-icons warning-icon">warning</i>Obsolete Android Gradle Plugin Version (3)</a>
       <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (5)</a>
       <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (2)</a>
-      <a class="mdl-navigation__link" href="#RestrictedApi"><i class="material-icons error-icon">error</i>Restricted API (9)</a>
       <a class="mdl-navigation__link" href="#PrivateResource"><i class="material-icons warning-icon">warning</i>Using private resources (26)</a>
       <a class="mdl-navigation__link" href="#Aligned16KB"><i class="material-icons warning-icon">warning</i>Native library dependency not 16 KB aligned (9)</a>
       <a class="mdl-navigation__link" href="#DiscouragedApi"><i class="material-icons warning-icon">warning</i>Using discouraged APIs (2)</a>
@@ -224,7 +223,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#TypographyEllipsis"><i class="material-icons warning-icon">warning</i>Ellipsis string can be replaced with ellipsis character (5)</a>
       <a class="mdl-navigation__link" href="#IconLocation"><i class="material-icons warning-icon">warning</i>Image defined in density-independent drawable folder (10)</a>
       <a class="mdl-navigation__link" href="#IconDuplicates"><i class="material-icons warning-icon">warning</i>Duplicated icons under different names (15)</a>
-      <a class="mdl-navigation__link" href="#UseKtx"><i class="material-icons warning-icon">warning</i>Use KTX extension function (6)</a>
+      <a class="mdl-navigation__link" href="#UseKtx"><i class="material-icons warning-icon">warning</i>Use KTX extension function (4)</a>
       <a class="mdl-navigation__link" href="#ContentDescription"><i class="material-icons warning-icon">warning</i>Image without <code>contentDescription</code> (46)</a>
       <a class="mdl-navigation__link" href="#ByteOrderMark"><i class="material-icons error-icon">error</i>Byte order mark inside files (4)</a>
       <a class="mdl-navigation__link" href="#SetTextI18n"><i class="material-icons warning-icon">warning</i>TextView Internationalization (6)</a>
@@ -287,9 +286,6 @@ document.getElementById(id).style.display = 'none';
 <tr>
 <td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#NewerVersionAvailable">NewerVersionAvailable</a>: Newer Library Versions Available</td></tr>
-<tr>
-<td class="countColumn">9</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
-<a href="#RestrictedApi">RestrictedApi</a>: Restricted API</td></tr>
 <tr>
 <td class="countColumn">26</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#PrivateResource">PrivateResource</a>: Using private resources</td></tr>
@@ -372,7 +368,7 @@ document.getElementById(id).style.display = 'none';
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Productivity">Productivity</a>
 </td></tr>
 <tr>
-<td class="countColumn">6</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">4</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#UseKtx">UseKtx</a>: Use KTX extension function</td></tr>
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Accessibility">Accessibility</a>
 </td></tr>
@@ -1773,138 +1769,6 @@ To suppress this error, use the issue id "NewerVersionAvailable" as explained in
               <div class="mdl-card__actions mdl-card--border">
 <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationNewerVersionAvailableLink" onclick="reveal('explanationNewerVersionAvailable');">
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="NewerVersionAvailableCardLink" onclick="hideid('NewerVersionAvailableCard');">
-Dismiss</button>            </div>
-            </div>
-          </section><a name="RestrictedApi"></a>
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="RestrictedApiCard" style="display: block;">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Restricted API</h2>
-  </div>
-              <div class="mdl-card__supporting-text">
-<div class="issue">
-<div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt</a>:78</span>: <span class="message">Builder.setTitle can only be called from within the same library (androidx.tvprovider:tvprovider)</span><br /><pre class="errorlines">
-<span class="lineno">  75 </span>             <span class="keyword">val</span> poster=item.posterUrl
-<span class="lineno">  76 </span>             <span class="keyword">val</span> builder = PreviewProgram.Builder()
-<span class="lineno">  77 </span>                 .setChannelId(channelId)
-<span class="caretline"><span class="lineno">  78 </span>                 .<span class="error">setTitle</span>(item.name)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  79 </span>                 .apply {
-<span class="lineno">  80 </span>                     <span class="keyword">val</span> scoreText = item.score?.toStringNull(<span class="number">0.1</span>, <span class="number">10</span>, <span class="number">1</span>)?.let {
-<span class="lineno">  81 </span>                         <span class="string">" - "</span> + txt(R.string.rating_format, it).asString(context)
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt</a>:83</span>: <span class="message">Builder.setDescription can only be called from within the same library (androidx.tvprovider:tvprovider)</span><br /><pre class="errorlines">
-<span class="lineno">  80 </span>                 <span class="keyword">val</span> scoreText = item.score?.toStringNull(<span class="number">0.1</span>, <span class="number">10</span>, <span class="number">1</span>)?.let {
-<span class="lineno">  81 </span>                     <span class="string">" - "</span> + txt(R.string.rating_format, it).asString(context)
-<span class="lineno">  82 </span>                 } ?: <span class="string">""</span>
-<span class="caretline"><span class="lineno">  83 </span>                 <span class="error">setDescription</span>(<span class="string">"${</span>item.apiName<span class="string">}$scoreText"</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  84 </span>             }
-<span class="lineno">  85 </span>             .setContentId(item.url)
-<span class="lineno">  86 </span>             .setType(TvContractCompat.PreviewPrograms.TYPE_MOVIE)
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt</a>:85</span>: <span class="message">Builder.setContentId can only be called from within the same library (androidx.tvprovider:tvprovider)</span><br /><pre class="errorlines">
-<span class="lineno">  82 </span>       } ?: <span class="string">""</span>
-<span class="lineno">  83 </span>       setDescription(<span class="string">"${</span>item.apiName<span class="string">}$scoreText"</span>)
-<span class="lineno">  84 </span>   }
-<span class="caretline"><span class="lineno">  85 </span>   .<span class="error">setContentId</span>(item.url)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  86 </span>   .setType(TvContractCompat.PreviewPrograms.TYPE_MOVIE)
-<span class="lineno">  87 </span>   .setIntentUri(csshareUri.toUri())
-<span class="lineno">  88 </span>   .setPosterArtAspectRatio(TvContractCompat.PreviewPrograms.ASPECT_RATIO_2_3)
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt</a>:86</span>: <span class="message">Builder.setType can only be called from within the same library (androidx.tvprovider:tvprovider)</span><br /><pre class="errorlines">
-<span class="lineno">  83 </span>       setDescription(<span class="string">"${</span>item.apiName<span class="string">}$scoreText"</span>)
-<span class="lineno">  84 </span>   }
-<span class="lineno">  85 </span>   .setContentId(item.url)
-<span class="caretline"><span class="lineno">  86 </span>   .<span class="error">setType</span>(TvContractCompat.PreviewPrograms.TYPE_MOVIE)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  87 </span>   .setIntentUri(csshareUri.toUri())
-<span class="lineno">  88 </span>   .setPosterArtAspectRatio(TvContractCompat.PreviewPrograms.ASPECT_RATIO_2_3)
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt</a>:86</span>: <span class="message">Builder.setType can only be called from within the same library (androidx.tvprovider:tvprovider)</span><br /><pre class="errorlines">
-<span class="lineno">  83 </span>       setDescription(<span class="string">"${</span>item.apiName<span class="string">}$scoreText"</span>)
-<span class="lineno">  84 </span>   }
-<span class="lineno">  85 </span>   .setContentId(item.url)
-<span class="caretline"><span class="lineno">  86 </span>   .setType(<span class="error">TvContractCompat.PreviewPrograms.TYPE_MOVIE</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  87 </span>   .setIntentUri(csshareUri.toUri())
-<span class="lineno">  88 </span>   .setPosterArtAspectRatio(TvContractCompat.PreviewPrograms.ASPECT_RATIO_2_3)
-</pre>
-
-<button class="mdl-button mdl-js-button mdl-button--primary" id="RestrictedApiDivLink" onclick="reveal('RestrictedApiDiv');" />+ 4 More Occurrences...</button>
-<div id="RestrictedApiDiv" style="display: none">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt</a>:87</span>: <span class="message">Builder.setIntentUri can only be called from within the same library (androidx.tvprovider:tvprovider)</span><br /><pre class="errorlines">
-<span class="lineno">  84 </span>       }
-<span class="lineno">  85 </span>       .setContentId(item.url)
-<span class="lineno">  86 </span>       .setType(TvContractCompat.PreviewPrograms.TYPE_MOVIE)
-<span class="caretline"><span class="lineno">  87 </span>       .<span class="error">setIntentUri</span>(csshareUri.toUri())&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  88 </span>       .setPosterArtAspectRatio(TvContractCompat.PreviewPrograms.ASPECT_RATIO_2_3)
-<span class="lineno">  89 </span>
-<span class="lineno">  90 </span>   <span class="comment">// Validate poster URL before setting</span></pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt</a>:88</span>: <span class="message">Builder.setPosterArtAspectRatio can only be called from within the same library (androidx.tvprovider:tvprovider)</span><br /><pre class="errorlines">
-<span class="lineno">  85 </span>       .setContentId(item.url)
-<span class="lineno">  86 </span>       .setType(TvContractCompat.PreviewPrograms.TYPE_MOVIE)
-<span class="lineno">  87 </span>       .setIntentUri(csshareUri.toUri())
-<span class="caretline"><span class="lineno">  88 </span>       .<span class="error">setPosterArtAspectRatio</span>(TvContractCompat.PreviewPrograms.ASPECT_RATIO_2_3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  89 </span>
-<span class="lineno">  90 </span>   <span class="comment">// Validate poster URL before setting</span>
-<span class="lineno">  91 </span>   <span class="keyword">if</span> (!poster.isNullOrBlank() &amp;&amp; poster.startsWith(<span class="string">"http"</span>)) {
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt</a>:88</span>: <span class="message">Builder.setPosterArtAspectRatio can only be called from within the same library (androidx.tvprovider:tvprovider)</span><br /><pre class="errorlines">
-<span class="lineno">  85 </span>       .setContentId(item.url)
-<span class="lineno">  86 </span>       .setType(TvContractCompat.PreviewPrograms.TYPE_MOVIE)
-<span class="lineno">  87 </span>       .setIntentUri(csshareUri.toUri())
-<span class="caretline"><span class="lineno">  88 </span>       .setPosterArtAspectRatio(<span class="error">TvContractCompat.PreviewPrograms.ASPECT_RATIO_2_3</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  89 </span>
-<span class="lineno">  90 </span>   <span class="comment">// Validate poster URL before setting</span>
-<span class="lineno">  91 </span>   <span class="keyword">if</span> (!poster.isNullOrBlank() &amp;&amp; poster.startsWith(<span class="string">"http"</span>)) {
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/TvChannelUtils.kt</a>:92</span>: <span class="message">Builder.setPosterArtUri can only be called from within the same library (androidx.tvprovider:tvprovider)</span><br /><pre class="errorlines">
-<span class="lineno">  89 </span>
-<span class="lineno">  90 </span>                <span class="comment">// Validate poster URL before setting</span>
-<span class="lineno">  91 </span>                <span class="keyword">if</span> (!poster.isNullOrBlank() &amp;&amp; poster.startsWith(<span class="string">"http"</span>)) {
-<span class="caretline"><span class="lineno">  92 </span>                    builder.<span class="error">setPosterArtUri</span>(poster.toUri())&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  93 </span>
-<span class="lineno">  94 </span>                }
-<span class="lineno">  95 </span>                <span class="keyword">val</span> program = builder.build()
-</pre>
-
-</div>
-</div>
-<div class="metadata"><div class="explanation" id="explanationRestrictedApi" style="display: none;">
-This API has been flagged with a restriction that has not been met.<br/>
-<br/>
-Examples of API restrictions:<br/>
-* Method can only be invoked by a subclass<br/>
-* Method can only be accessed from within the same library (defined by the Gradle library group id)<br/>
-* Method can only be accessed from tests.<br/>
-<br/>
-You can add your own API restrictions with the <code>@RestrictTo</code> annotation.<br/>To suppress this error, use the issue id "RestrictedApi" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
-<br/></div>
-</div>
-</div>
-<div class="chips">
-<span class="mdl-chip">
-    <span class="mdl-chip__text">RestrictedApi</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Correctness</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Error</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Priority 4/10</span>
-</span>
-</div>
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationRestrictedApiLink" onclick="reveal('explanationRestrictedApi');">
-Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="RestrictedApiCardLink" onclick="hideid('RestrictedApiCard');">
 Dismiss</button>            </div>
             </div>
           </section><a name="PrivateResource"></a>
@@ -4719,26 +4583,6 @@ Dismiss</button>            </div>
 <span class="lineno"> 108 </span>       spacing = <span class="number">0</span><span class="comment">//t.getDimensionPixelSize(R.styleable.FlowLayout_Layout_itemSpacing, 0);</span>
 <span class="lineno"> 109 </span>       t.recycle()
 <span class="lineno"> 110 </span>   }
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:315</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 312 </span>      ) == -<span class="number">1</span>
-<span class="lineno"> 313 </span>  ) {
-<span class="lineno"> 314 </span>      <span class="keyword">if</span> (isMiUi()) <span class="comment">// Set to legacy if using miui</span>
-<span class="caretline"><span class="lineno"> 315 </span>          <span class="warning">settingsManager.edit()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 316 </span>              .putInt(getString(R.string.apk_installer_key), <span class="number">1</span>)
-<span class="lineno"> 317 </span>              .apply()
-<span class="lineno"> 318 </span>  }
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt">../../src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt</a>:354</span>: <span class="message">Use the KTX extension function <code>SharedPreferences.edit</code> instead?</span><br /><pre class="errorlines">
-<span class="lineno"> 351 </span>
-<span class="lineno"> 352 </span>              <span class="keyword">if</span> (checkAutoUpdate) {
-<span class="lineno"> 353 </span>                  setNeutralButton(R.string.skip_update) { _, _ ->
-<span class="caretline"><span class="lineno"> 354 </span>                      <span class="warning">settingsManager.edit()</span>.putString(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 355 </span>                          getString(R.string.skip_update_key),
-<span class="lineno"> 356 </span>                          update.updateNodeId ?: <span class="string">""</span>
-<span class="lineno"> 357 </span>                      ).apply()
 </pre>
 
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/settings/testing/TestView.kt">../../src/main/java/com/lagradost/cloudstream3/ui/settings/testing/TestView.kt</a>:62</span>: <span class="message">Use the KTX extension function <code>Context.withStyledAttributes</code> instead?</span><br /><pre class="errorlines">
