@@ -661,7 +661,7 @@ object CommonActivity {
             if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER &&
                 (act.currentFocus is SearchView || act.currentFocus is SearchView.SearchAutoComplete)
             ) {
-                showInputMethod(act.currentFocus.findFocus())
+                showInputMethod(act.currentFocus?.findFocus())
             }
 
             //println("Keycode: $keyCode")
