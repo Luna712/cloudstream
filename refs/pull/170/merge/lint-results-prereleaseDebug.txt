@@ -53,40 +53,6 @@
    listen to updates, use androidx.core.view.WindowInsetsCompat and related
    APIs.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:177: Error: android:windowLightNavigationBar requires API level 27 (current min is 21) [NewApi]
-        <item name="android:windowLightNavigationBar">true</item>
-              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:203: Error: android:windowLightNavigationBar requires API level 27 (current min is 21) [NewApi]
-        <item name="android:windowLightNavigationBar">true</item>
-              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:577: Error: android:windowLightStatusBar requires API level 23 (current min is 21) [NewApi]
-        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
-              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-   Explanation for issues of type "NewApi":
-   This check scans through all the Android API calls in the application and
-   warns about any calls that are not available on all versions targeted by
-   this application (according to its minimum SDK attribute in the manifest).
-
-   If you really want to use this API and don't need to support older devices
-   just set the minSdkVersion in your build.gradle or AndroidManifest.xml
-   files.
-
-   If your code is deliberately accessing newer APIs, and you have ensured
-   (e.g. with conditional execution) that this code will only ever be called
-   on a supported platform, then you can annotate your class or method with
-   the @TargetApi annotation specifying the local minimum SDK to apply, such
-   as @TargetApi(11), such that this check considers 11 rather than your
-   manifest file's minimum SDK as the required API level.
-
-   If you are deliberately setting android: attributes in style definitions,
-   make sure you place this in a values-vNN folder in order to avoid running
-   into runtime conflicts on certain devices where manufacturers have added
-   custom attributes whose ids conflict with the new ones on later platforms.
-
-   Similarly, you can use tools:targetApi="11" in an XML file to indicate that
-   the element will only be inflated in an adequate context.
-
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/account_edit_dialog.xml:53: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
                 android:foreground="@drawable/outline_drawable_forced_round"
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2571,4 +2537,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-8 errors, 688 warnings, 1 hint
+5 errors, 688 warnings, 1 hint

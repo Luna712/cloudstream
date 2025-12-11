@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 8 errors, 688 warnings and 1 hint</span>
+      <span class="mdl-layout-title">Lint Report: 5 errors, 688 warnings and 1 hint</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Thu Dec 11 20:06:27 UTC 2025 by AGP (9.0.0-beta04)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Thu Dec 11 20:13:37 UTC 2025 by AGP (9.0.0-beta04)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -189,7 +189,6 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#NestedScrolling"><i class="material-icons warning-icon">warning</i>Nested scrolling widgets (1)</a>
       <a class="mdl-navigation__link" href="#InlinedApi"><i class="material-icons warning-icon">warning</i>Using inlined constants on older versions (3)</a>
       <a class="mdl-navigation__link" href="#InternalInsetResource"><i class="material-icons warning-icon">warning</i>Using internal inset dimension resource (2)</a>
-      <a class="mdl-navigation__link" href="#NewApi"><i class="material-icons error-icon">error</i>Calling new methods on older versions (3)</a>
       <a class="mdl-navigation__link" href="#UnusedAttribute"><i class="material-icons warning-icon">warning</i>Attribute unused on older versions (63)</a>
       <a class="mdl-navigation__link" href="#AppBundleLocaleChanges"><i class="material-icons warning-icon">warning</i>App Bundle handling of runtime locale changes (1)</a>
       <a class="mdl-navigation__link" href="#AppLinkWarning"><i class="material-icons warning-icon">warning</i>App Link warning (1)</a>
@@ -253,9 +252,6 @@ document.getElementById(id).style.display = 'none';
 <tr>
 <td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#InternalInsetResource">InternalInsetResource</a>: Using internal inset dimension resource</td></tr>
-<tr>
-<td class="countColumn">3</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
-<a href="#NewApi">NewApi</a>: Calling new methods on older versions</td></tr>
 <tr>
 <td class="countColumn">63</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#UnusedAttribute">UnusedAttribute</a>: Attribute unused on older versions</td></tr>
@@ -573,80 +569,6 @@ The internal inset dimension resources are not a supported way to retrieve the r
               <div class="mdl-card__actions mdl-card--border">
 <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationInternalInsetResourceLink" onclick="reveal('explanationInternalInsetResource');">
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="InternalInsetResourceCardLink" onclick="hideid('InternalInsetResourceCard');">
-Dismiss</button>            </div>
-            </div>
-          </section><a name="NewApi"></a>
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="NewApiCard" style="display: block;">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Calling new methods on older versions</h2>
-  </div>
-              <div class="mdl-card__supporting-text">
-<div class="issue">
-<div class="warningslist">
-<span class="location"><a href="../../src/main/res/values/styles.xml">../../src/main/res/values/styles.xml</a>:177</span>: <span class="message"><code>android:windowLightNavigationBar</code> requires API level 27 (current min is 21)</span><br /><pre class="errorlines">
-<span class="lineno">  174 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"black"</span>>@color/white<span class="tag">&lt;/item></span>
-<span class="lineno">  175 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"colorOnPrimary"</span>>@color/blackText<span class="tag">&lt;/item></span>
-<span class="lineno">  176 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"isLightTheme"</span>>true<span class="tag">&lt;/item></span>
-<span class="caretline"><span class="lineno">  177 </span>        <span class="tag">&lt;item</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"android:windowLightNavigationBar"</span></span>>true<span class="tag">&lt;/item></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  178 </span>    <span class="tag">&lt;/style></span>
-<span class="lineno">  179 </span>
-<span class="lineno">  180 </span>    <span class="tag">&lt;style</span><span class="attribute"> name</span>=<span class="value">"DraculaMode"</span>>
-</pre>
-
-<span class="location"><a href="../../src/main/res/values/styles.xml">../../src/main/res/values/styles.xml</a>:203</span>: <span class="message"><code>android:windowLightNavigationBar</code> requires API level 27 (current min is 21)</span><br /><pre class="errorlines">
-<span class="lineno">  200 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"black"</span>>@color/LavenderPrimaryGrayBackground<span class="tag">&lt;/item></span>
-<span class="lineno">  201 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"colorOnPrimary"</span>>@color/LavenderTextColor<span class="tag">&lt;/item></span>
-<span class="lineno">  202 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"isLightTheme"</span>>true<span class="tag">&lt;/item></span>
-<span class="caretline"><span class="lineno">  203 </span>        <span class="tag">&lt;item</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"android:windowLightNavigationBar"</span></span>>true<span class="tag">&lt;/item></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  204 </span>    <span class="tag">&lt;/style></span>
-<span class="lineno">  205 </span>
-<span class="lineno">  206 </span>    <span class="tag">&lt;style</span><span class="attribute"> name</span>=<span class="value">"MonetMode"</span>>
-</pre>
-
-<span class="location"><a href="../../src/main/res/values/styles.xml">../../src/main/res/values/styles.xml</a>:577</span>: <span class="message"><code>android:windowLightStatusBar</code> requires API level 23 (current min is 21)</span><br /><pre class="errorlines">
-<span class="lineno">  574 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"android:windowIsFloating"</span>>false<span class="tag">&lt;/item></span>
-<span class="lineno">  575 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"android:navigationBarColor"</span>>?attr/primaryBlackBackground<span class="tag">&lt;/item></span>
-<span class="lineno">  576 </span>        <span class="tag">&lt;item</span><span class="attribute"> name</span>=<span class="value">"android:statusBarColor"</span>>?attr/primaryBlackBackground<span class="tag">&lt;/item></span>
-<span class="caretline"><span class="lineno">  577 </span>        <span class="tag">&lt;item</span><span class="attribute"> </span><span class="error"><span class="attribute">name</span>=<span class="value">"android:windowLightStatusBar"</span></span>>?attr/isLightTheme<span class="tag">&lt;/item></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  578 </span>    <span class="tag">&lt;/style></span>
-<span class="lineno">  579 </span>
-<span class="lineno">  580 </span>    <span class="tag">&lt;style</span><span class="attribute"> name</span>=<span class="value">"DialogHalfFullscreen"</span> <span class="attribute">parent</span>=<span class="value">"AlertDialogCustom"</span>>
-</pre>
-
-</div>
-<div class="metadata"><div class="explanation" id="explanationNewApi" style="display: none;">
-This check scans through all the Android API calls in the application and warns about any calls that are not available on <b>all</b> versions targeted by this application (according to its minimum SDK attribute in the manifest).<br/>
-<br/>
-If you really want to use this API and don't need to support older devices just set the <code>minSdkVersion</code> in your <code>build.gradle</code> or <code>AndroidManifest.xml</code> files.<br/>
-<br/>
-If your code is <b>deliberately</b> accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the <code>@TargetApi</code> annotation specifying the local minimum SDK to apply, such as <code>@TargetApi(11)</code>, such that this check considers 11 rather than your manifest file's minimum SDK as the required API level.<br/>
-<br/>
-If you are deliberately setting <code>android:</code> attributes in style definitions, make sure you place this in a <code>values-v</code><i>NN</i> folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.<br/>
-<br/>
-Similarly, you can use tools:targetApi="11" in an XML file to indicate that the element will only be inflated in an adequate context.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
-To suppress this error, use the issue id "NewApi" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
-<br/></div>
-</div>
-</div>
-<div class="chips">
-<span class="mdl-chip">
-    <span class="mdl-chip__text">NewApi</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Correctness</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Error</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Priority 6/10</span>
-</span>
-</div>
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationNewApiLink" onclick="reveal('explanationNewApi');">
-Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="NewApiCardLink" onclick="hideid('NewApiCard');">
 Dismiss</button>            </div>
             </div>
           </section><a name="UnusedAttribute"></a>
