@@ -70,7 +70,7 @@ android {
             val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
             // if (prereleaseStoreFile != null) {
-                storeFile = file(prereleaseStoreFile)
+                storeFile = prereleaseStoreFile?.let { file(it) }
                 storePassword = System.getenv("SIGNING_STORE_PASSWORD")
                 keyAlias = System.getenv("SIGNING_KEY_ALIAS")
                 keyPassword = System.getenv("SIGNING_KEY_PASSWORD")
