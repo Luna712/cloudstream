@@ -225,7 +225,7 @@ object InAppUpdater {
         }
     }
 
-    fun Context.installPreReleaseIfNeeded() {
+    fun Activity.installPreReleaseIfNeeded() {
         ioSafe {
             val isInstalled = try {
                 packageManager.getPackageInfo(PRERELEASE_PACKAGE_NAME, 0)
