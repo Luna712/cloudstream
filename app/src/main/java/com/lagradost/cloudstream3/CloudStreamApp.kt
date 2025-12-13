@@ -83,12 +83,13 @@ class CloudStreamApp : Application(), SingletonImageLoader.Factory {
             exceptionHandler = it
             Thread.setDefaultUncaughtExceptionHandler(it)
         }
+
+        isDebug = BuildConfig.DEBUG
     }
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         context = base
-        isDebug = BuildConfig.DEBUG
         // This can be removed without deprecation after next stable
         AcraApplication.context = context
     }
