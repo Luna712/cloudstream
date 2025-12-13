@@ -245,9 +245,12 @@ class SettingsUpdates : BasePreferenceFragmentCompat() {
             }
         }
         
-        getPref(R.string.install_prerelease_key)?.setOnPreferenceClickListener {
-            activity?.installPreReleaseIfNeeded()
-            return@setOnPreferenceClickListener true
+        getPref(R.string.install_prerelease_key)?.let { pref ->
+            pref.isVisible = BuildConfig.DEBUG // TEMP
+            pref.setOnPreferenceClickListener {
+                activity?.installPreReleaseIfNeeded()
+                return@setOnPreferenceClickListener true
+            }
         }
 
         getPref(R.string.auto_download_plugins_key)?.setOnPreferenceClickListener {
