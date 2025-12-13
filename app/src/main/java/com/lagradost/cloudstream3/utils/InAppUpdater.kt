@@ -76,12 +76,12 @@ object InAppUpdater {
         @JsonProperty("updateNodeId") val updateNodeId: String?,
     )
 
-    private suspend fun Activity.getAppUpdate(): Update {
+    private suspend fun Activity.getAppUpdate(installPrerelease: Boolean): Update {
         return try {
             when {
                 // No updates on debug version
                 BuildConfig.DEBUG -> Update(false, null, null, null, null)
-                BuildConfig.FLAVOR == "prerelease" -> getPreReleaseUpdate()
+                BuildConfig.FLAVOR == "prerelease" || installPrerelease -> getPreReleaseUpdate()
                 else -> getReleaseUpdate()
             }
         } catch (e: Exception) {
@@ -255,14 +255,17 @@ object InAppUpdater {
     /**
      * @param checkAutoUpdate if the update check was launched automatically
      */
-    suspend fun Activity.runAutoUpdate(checkAutoUpdate: Boolean = true, install PreRelease: Boolean = false): Boolean {
+    suspend fun Activity.runAutoUpdate(
+        checkAutoUpdate: Boolean = true,
+        installPrerelease: Boolean = false
+    ): Boolean {
         val settingsManager = PreferenceManager.getDefaultSharedPreferences(this)
         if (!checkAutoUpdate || settingsManager.getBoolean(
                 getString(R.string.auto_update_key),
                 true
             )
         ) {
-            val update = getAppUpdate()
+            val update = getAppUpdate(installPrerelease)
             if (update.shouldUpdate && update.updateURL != null) {
                 // Check if update should be skipped
                 val updateNodeId = settingsManager.getString(
