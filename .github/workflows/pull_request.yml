@@ -13,16 +13,67 @@ jobs:
       with:
         distribution: temurin
         java-version: 17
-        cache: gradle
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v5
+      with:
+        cache-encryption-key: ${{ secrets.GRADLE_ENCRYPTION_KEY }}
+        cache-read-only: false
+
     - name: Run Gradle
-      run: ./gradlew assemblePrereleaseDebug
+      run: ./gradlew assemblePrerelease build androidSourcesJar makeJar
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v5
       with:
         name: pull-request-build
-        path: "app/build/outputs/apk/prerelease/debug/*.apk"
+        path: |
+          app/build/outputs/apk/prerelease/debug/*.apk
+          app/build/outputs/apk/prerelease/release/*.apk
+          app/build/libs/app-sources.jar
+          app/build/classes.jar
+          library/build/libs/library-*-sources.jar
+
+    - name: Deploy Reports to GitHub Pages
+      run: |
+        BRANCH_NAME=${GITHUB_REF#refs/heads/}
+        TARGET_DIR=gh-pages/$BRANCH_NAME
+        mkdir -p "$TARGET_DIR"
+        if [ -d "build/reports" ]; then
+          cp -r build/reports/. "$TARGET_DIR/"
+        fi
+        for REPORT_DIR in */build/reports; do
+          if [ -d "$REPORT_DIR" ]; then
+            cp -r "$REPORT_DIR/." "$TARGET_DIR/"
+          fi
+        done
+        INDEX_FILE="$TARGET_DIR/index.html"
+        echo "<!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset='UTF-8'>
+            <title>Reports for $BRANCH_NAME</title>
+          </head>
+          <body>
+            <h1>Reports for branch $BRANCH_NAME</h1>
+            <ul>" > "$INDEX_FILE"
+        find "$TARGET_DIR" -type f -name "*.html" | while read FILE; do
+          REL_PATH="${FILE#$TARGET_DIR/}"
+          echo "    <li><a href=\"$REL_PATH\">$REL_PATH</a></li>" >> "$INDEX_FILE"
+        done
+        echo "  </ul>
+          </body>
+        </html>" >> "$INDEX_FILE"
+      shell: bash
+
+    - name: Push to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./gh-pages
+        user_name: "github-actions"
+        user_email: "github-actions@github.com"
+        commit_message: "Update reports for ${{ github.ref_name }} [ci skip]"
