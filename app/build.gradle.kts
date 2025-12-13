@@ -65,16 +65,15 @@ android {
     }
 
     signingConfigs {
-        create("prerelease") {
-            val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
-            val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
-
-            // if (prereleaseStoreFile != null) {
-                storeFile = prereleaseStoreFile?.let { file(it) }
+        val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
+        val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
+        if (prereleaseStoreFile != null) {
+            create("prerelease") {
+                storeFile = file(prereleaseStoreFile)
                 storePassword = System.getenv("SIGNING_STORE_PASSWORD")
                 keyAlias = System.getenv("SIGNING_KEY_ALIAS")
                 keyPassword = System.getenv("SIGNING_KEY_PASSWORD")
-            // }
+            }
         }
     }
 
