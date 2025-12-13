@@ -38,7 +38,7 @@ object InAppUpdater {
     private const val GITHUB_USER_NAME = "recloudstream"
     private const val GITHUB_REPO = "cloudstream"
 
-    private const val PRERELEASE_PACKAGE_NAME = "com.lagradost.cloudstream3.prerelease"
+    private const val PRERELEASE_PACKAGE_NAME = "com.lagradost.cloudstream3.prerelease_test"
     private const val LOG_TAG = "InAppUpdater"
 
     private data class GithubAsset(
