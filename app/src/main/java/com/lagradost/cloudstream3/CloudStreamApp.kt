@@ -21,7 +21,7 @@ import com.lagradost.cloudstream3.ui.settings.Globals.EMULATOR
 import com.lagradost.cloudstream3.ui.settings.Globals.TV
 import com.lagradost.cloudstream3.ui.settings.Globals.isLayout
 import com.lagradost.cloudstream3.utils.AppContextUtils.openBrowser
-import com.lagradost.cloudstream3.utils.AppUtils.isDebug
+import com.lagradost.cloudstream3.utils.AppDebug
 import com.lagradost.cloudstream3.utils.Coroutines.runOnMainThread
 import com.lagradost.cloudstream3.utils.DataStore.getKey
 import com.lagradost.cloudstream3.utils.DataStore.getKeys
@@ -84,7 +84,7 @@ class CloudStreamApp : Application(), SingletonImageLoader.Factory {
             Thread.setDefaultUncaughtExceptionHandler(it)
         }
 
-        isDebug = BuildConfig.DEBUG
+        AppDebug.isDebug = BuildConfig.DEBUG
     }
 
     override fun attachBaseContext(base: Context?) {
