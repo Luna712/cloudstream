@@ -65,11 +65,11 @@ android {
     }
 
     signingConfigs {
-        val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
-        val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
-        if (prereleaseStoreFile != null) {
+        if (System.getenv("SIGNING_STORE_PASSWORD") != null) {
             create("prerelease") {
-                storeFile = file(prereleaseStoreFile)
+                val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
+                val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
+                storeFile = prereleaseStoreFile?.let { file(it) }
                 storePassword = System.getenv("SIGNING_STORE_PASSWORD")
                 keyAlias = System.getenv("SIGNING_KEY_ALIAS")
                 keyPassword = System.getenv("SIGNING_KEY_PASSWORD")
