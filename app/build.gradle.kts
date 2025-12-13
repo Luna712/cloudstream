@@ -12,8 +12,6 @@ plugins {
 }
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
-val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
-val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
 tasks.register("generateGitHash") {
     val gitHashDir = layout.buildDirectory.dir("generated/git")
@@ -67,8 +65,11 @@ android {
     }
 
     signingConfigs {
-        if (prereleaseStoreFile != null) {
-            create("prerelease") {
+        create("prerelease") {
+            val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
+            val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
+
+            if (prereleaseStoreFile != null) {
                 storeFile = file(prereleaseStoreFile)
                 storePassword = System.getenv("SIGNING_STORE_PASSWORD")
                 keyAlias = System.getenv("SIGNING_KEY_ALIAS")
