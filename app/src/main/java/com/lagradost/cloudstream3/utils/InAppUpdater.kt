@@ -238,9 +238,7 @@ object InAppUpdater {
                 runOnUiThread {
                     showToast("Prerelease is already installed")
                 }
-            }
-
-            runAutoUpdate(false, true)
+            } else runAutoUpdate(false, true)
         }
     }
 
