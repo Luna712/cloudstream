@@ -8,6 +8,7 @@
     <string name="auto_update_plugins_key" translatable="false">auto_update_plugins</string>
     <string name="auto_download_plugins_key" translatable="false">auto_download_plugins_key2</string>
     <string name="skip_update_key" translatable="false">skip_update_key</string>
+    <string name="install_prerelease_key" translatable="false">install_prerelease_key</string>
     <string name="manual_check_update_key" translatable="false">manual_check_update</string>
     <string name="fast_forward_button_time_key" translatable="false">fast_forward_button_time</string>
     <string name="benene_count" translatable="false">benene_count</string>
