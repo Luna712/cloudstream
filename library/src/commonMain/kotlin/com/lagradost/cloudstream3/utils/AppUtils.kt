@@ -5,6 +5,10 @@ import com.lagradost.cloudstream3.mapper
 import java.io.Reader
 
 object AppUtils {
+
+	@Volatile
+	var isDebug: Boolean = false
+
     /** Any object as json string */
     fun Any.toJson(): String {
         if (this is String) return this
