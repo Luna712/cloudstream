@@ -1,6 +1,6 @@
 package com.lagradost.cloudstream3.utils
 
-import com.lagradost.cloudstream3.Prerelease
+import com.lagradost.cloudstream3.InternalAPI
 
 @InternalAPI
 object AppDebug {
