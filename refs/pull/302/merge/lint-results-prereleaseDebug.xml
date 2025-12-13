@@ -2169,7 +2169,7 @@
         errorLine2="                                                                           ~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pt/strings.xml"
-            line="246"
+            line="244"
             column="76"/>
     </issue>
 
@@ -2185,7 +2185,7 @@
         errorLine2="                                                   ~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pt/strings.xml"
-            line="477"
+            line="475"
             column="52"/>
     </issue>
 
@@ -2201,7 +2201,7 @@
         errorLine2="                                                                                                                            ~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pt/strings.xml"
-            line="489"
+            line="487"
             column="125"/>
     </issue>
 
@@ -2217,7 +2217,7 @@
         errorLine2="                                                                                                                             ~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pt/strings.xml"
-            line="490"
+            line="488"
             column="126"/>
     </issue>
 
@@ -2233,7 +2233,7 @@
         errorLine2="                           ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pt+BR/strings.xml"
-            line="525"
+            line="523"
             column="28"/>
     </issue>
 
@@ -2249,7 +2249,7 @@
         errorLine2="                                        ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pt+BR/strings.xml"
-            line="526"
+            line="524"
             column="41"/>
     </issue>
 
@@ -2265,7 +2265,7 @@
         errorLine2="                                          ~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pt+BR/strings.xml"
-            line="537"
+            line="535"
             column="43"/>
     </issue>
 
@@ -2281,7 +2281,7 @@
         errorLine2="                                         ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+es/strings.xml"
-            line="551"
+            line="549"
             column="42"/>
     </issue>
 
@@ -2297,7 +2297,7 @@
         errorLine2="                                     ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+es/strings.xml"
-            line="555"
+            line="553"
             column="38"/>
     </issue>
 
@@ -3200,6 +3200,22 @@
     <issue
         id="Untranslatable"
         severity="Warning"
+        message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;qt&quot; here"
+        category="Correctness:Messages"
+        priority="6"
+        summary="Translated Untranslatable"
+        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
+        errorLine1="    &lt;string name=&quot;episodes&quot;>ahhh ooooo&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+qt/strings.xml"
+            line="111"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="Untranslatable"
+        severity="Warning"
         message="The resource string &quot;hide_player_control_names_key&quot; is marked as translatable=&quot;false&quot;, but is translated to &quot;am&quot; (Amharic) here"
         category="Correctness:Messages"
         priority="6"
@@ -3211,6 +3227,22 @@
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+am/strings.xml"
             line="111"
             column="50"/>
+    </issue>
+
+    <issue
+        id="Untranslatable"
+        severity="Warning"
+        message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;ml&quot; (Malayalam) here"
+        category="Correctness:Messages"
+        priority="6"
+        summary="Translated Untranslatable"
+        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
+        errorLine1="    &lt;string name=&quot;episodes&quot;>എപ്പിസോഡുകൾ&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ml/strings.xml"
+            line="112"
+            column="13"/>
     </issue>
 
     <issue
@@ -3232,38 +3264,6 @@
     <issue
         id="Untranslatable"
         severity="Warning"
-        message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;qt&quot; here"
-        category="Correctness:Messages"
-        priority="6"
-        summary="Translated Untranslatable"
-        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
-        errorLine1="    &lt;string name=&quot;episodes&quot;>ahhh ooooo&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+qt/strings.xml"
-            line="113"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="Untranslatable"
-        severity="Warning"
-        message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;ml&quot; (Malayalam) here"
-        category="Correctness:Messages"
-        priority="6"
-        summary="Translated Untranslatable"
-        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
-        errorLine1="    &lt;string name=&quot;episodes&quot;>എപ്പിസോഡുകൾ&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ml/strings.xml"
-            line="114"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="Untranslatable"
-        severity="Warning"
         message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;sv&quot; (Swedish) here"
         category="Correctness:Messages"
         priority="6"
@@ -3273,7 +3273,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+sv/strings.xml"
-            line="116"
+            line="114"
             column="13"/>
     </issue>
 
@@ -3289,7 +3289,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ars/strings.xml"
-            line="120"
+            line="118"
             column="13"/>
     </issue>
 
@@ -3305,7 +3305,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+mk/strings.xml"
-            line="123"
+            line="121"
             column="13"/>
     </issue>
 
@@ -3323,6 +3323,22 @@
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+mt/strings.xml"
             line="125"
             column="50"/>
+    </issue>
+
+    <issue
+        id="Untranslatable"
+        severity="Warning"
+        message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;no&quot; (Norwegian) here"
+        category="Correctness:Messages"
+        priority="6"
+        summary="Translated Untranslatable"
+        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
+        errorLine1="    &lt;string name=&quot;episodes&quot;>Episoder&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+no/strings.xml"
+            line="130"
+            column="13"/>
     </issue>
 
     <issue
@@ -3360,22 +3376,6 @@
     <issue
         id="Untranslatable"
         severity="Warning"
-        message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;no&quot; (Norwegian) here"
-        category="Correctness:Messages"
-        priority="6"
-        summary="Translated Untranslatable"
-        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
-        errorLine1="    &lt;string name=&quot;episodes&quot;>Episoder&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+no/strings.xml"
-            line="132"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="Untranslatable"
-        severity="Warning"
         message="The resource string &quot;hide_player_control_names_key&quot; is marked as translatable=&quot;false&quot;, but is translated to &quot;kn&quot; (Kannada) here"
         category="Correctness:Messages"
         priority="6"
@@ -3401,7 +3401,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tl/strings.xml"
-            line="135"
+            line="133"
             column="13"/>
     </issue>
 
@@ -3417,7 +3417,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+iw/strings.xml"
-            line="137"
+            line="135"
             column="13"/>
     </issue>
 
@@ -3433,7 +3433,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+el/strings.xml"
-            line="143"
+            line="141"
             column="13"/>
     </issue>
 
@@ -3481,7 +3481,23 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ko/strings.xml"
-            line="158"
+            line="156"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="Untranslatable"
+        severity="Warning"
+        message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;apc&quot; here"
+        category="Correctness:Messages"
+        priority="6"
+        summary="Translated Untranslatable"
+        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
+        errorLine1="    &lt;string name=&quot;episodes&quot;>حلقات&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+apc/strings.xml"
+            line="157"
             column="13"/>
     </issue>
 
@@ -3504,22 +3520,6 @@
     <issue
         id="Untranslatable"
         severity="Warning"
-        message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;apc&quot; here"
-        category="Correctness:Messages"
-        priority="6"
-        summary="Translated Untranslatable"
-        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
-        errorLine1="    &lt;string name=&quot;episodes&quot;>حلقات&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+apc/strings.xml"
-            line="159"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="Untranslatable"
-        severity="Warning"
         message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;in&quot; (Indonesian) here"
         category="Correctness:Messages"
         priority="6"
@@ -3529,7 +3529,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+in/strings.xml"
-            line="163"
+            line="161"
             column="13"/>
     </issue>
 
@@ -3545,6 +3545,22 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+uk/strings.xml"
+            line="163"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="Untranslatable"
+        severity="Warning"
+        message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;cs&quot; (Czech) here"
+        category="Correctness:Messages"
+        priority="6"
+        summary="Translated Untranslatable"
+        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
+        errorLine1="    &lt;string name=&quot;episodes&quot;>Epizody&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+cs/strings.xml"
             line="164"
             column="13"/>
     </issue>
@@ -3568,16 +3584,16 @@
     <issue
         id="Untranslatable"
         severity="Warning"
-        message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;cs&quot; (Czech) here"
+        message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;pl&quot; (Polish) here"
         category="Correctness:Messages"
         priority="6"
         summary="Translated Untranslatable"
         explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
-        errorLine1="    &lt;string name=&quot;episodes&quot;>Epizody&lt;/string>"
+        errorLine1="    &lt;string name=&quot;episodes&quot;>Odcinki&lt;/string>"
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+cs/strings.xml"
-            line="166"
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pl/strings.xml"
+            line="167"
             column="13"/>
     </issue>
 
@@ -3593,23 +3609,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ru/strings.xml"
-            line="168"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="Untranslatable"
-        severity="Warning"
-        message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;pl&quot; (Polish) here"
-        category="Correctness:Messages"
-        priority="6"
-        summary="Translated Untranslatable"
-        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
-        errorLine1="    &lt;string name=&quot;episodes&quot;>Odcinki&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pl/strings.xml"
-            line="169"
+            line="167"
             column="13"/>
     </issue>
 
@@ -3625,7 +3625,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ar/strings.xml"
-            line="170"
+            line="168"
             column="13"/>
     </issue>
 
@@ -3641,7 +3641,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ro/strings.xml"
-            line="171"
+            line="169"
             column="13"/>
     </issue>
 
@@ -3657,7 +3657,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pt/strings.xml"
-            line="172"
+            line="170"
             column="13"/>
     </issue>
 
@@ -3673,7 +3673,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+nl/strings.xml"
-            line="174"
+            line="172"
             column="13"/>
     </issue>
 
@@ -3689,7 +3689,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pt+BR/strings.xml"
-            line="174"
+            line="172"
             column="13"/>
     </issue>
 
@@ -3705,7 +3705,39 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+bg/strings.xml"
-            line="175"
+            line="173"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="Untranslatable"
+        severity="Warning"
+        message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;it&quot; (Italian) here"
+        category="Correctness:Messages"
+        priority="6"
+        summary="Translated Untranslatable"
+        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
+        errorLine1="    &lt;string name=&quot;episodes&quot;>Episodi&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+it/strings.xml"
+            line="176"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="Untranslatable"
+        severity="Warning"
+        message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;vi&quot; (Vietnamese) here"
+        category="Correctness:Messages"
+        priority="6"
+        summary="Translated Untranslatable"
+        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
+        errorLine1="    &lt;string name=&quot;episodes&quot;>Tập&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+vi/strings.xml"
+            line="176"
             column="13"/>
     </issue>
 
@@ -3728,38 +3760,6 @@
     <issue
         id="Untranslatable"
         severity="Warning"
-        message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;it&quot; (Italian) here"
-        category="Correctness:Messages"
-        priority="6"
-        summary="Translated Untranslatable"
-        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
-        errorLine1="    &lt;string name=&quot;episodes&quot;>Episodi&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+it/strings.xml"
-            line="178"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="Untranslatable"
-        severity="Warning"
-        message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;vi&quot; (Vietnamese) here"
-        category="Correctness:Messages"
-        priority="6"
-        summary="Translated Untranslatable"
-        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
-        errorLine1="    &lt;string name=&quot;episodes&quot;>Tập&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+vi/strings.xml"
-            line="178"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="Untranslatable"
-        severity="Warning"
         message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;so&quot; (Somali) here"
         category="Correctness:Messages"
         priority="6"
@@ -3769,7 +3769,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+so/strings.xml"
-            line="179"
+            line="177"
             column="13"/>
     </issue>
 
@@ -3785,23 +3785,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+de/strings.xml"
-            line="180"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="Untranslatable"
-        severity="Warning"
-        message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;lv&quot; (Latvian) here"
-        category="Correctness:Messages"
-        priority="6"
-        summary="Translated Untranslatable"
-        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
-        errorLine1="    &lt;string name=&quot;episodes&quot;>Epizodes&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+lv/strings.xml"
-            line="181"
+            line="178"
             column="13"/>
     </issue>
 
@@ -3817,7 +3801,39 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ur/strings.xml"
-            line="181"
+            line="179"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="Untranslatable"
+        severity="Warning"
+        message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;lv&quot; (Latvian) here"
+        category="Correctness:Messages"
+        priority="6"
+        summary="Translated Untranslatable"
+        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
+        errorLine1="    &lt;string name=&quot;episodes&quot;>Epizodes&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+lv/strings.xml"
+            line="180"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="Untranslatable"
+        severity="Warning"
+        message="The resource string &quot;legal_notice&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;qt&quot; here"
+        category="Correctness:Messages"
+        priority="6"
+        summary="Translated Untranslatable"
+        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
+        errorLine1="    &lt;string name=&quot;legal_notice&quot;>ah huu oouhhau aoaoaaohoo ha&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+qt/strings.xml"
+            line="180"
             column="13"/>
     </issue>
 
@@ -3840,22 +3856,6 @@
     <issue
         id="Untranslatable"
         severity="Warning"
-        message="The resource string &quot;legal_notice&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;qt&quot; here"
-        category="Correctness:Messages"
-        priority="6"
-        summary="Translated Untranslatable"
-        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
-        errorLine1="    &lt;string name=&quot;legal_notice&quot;>ah huu oouhhau aoaoaaohoo ha&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+qt/strings.xml"
-            line="182"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="Untranslatable"
-        severity="Warning"
         message="The resource string &quot;episodes&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;hr&quot; (Croatian) here"
         category="Correctness:Messages"
         priority="6"
@@ -3865,7 +3865,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+hr/strings.xml"
-            line="187"
+            line="185"
             column="13"/>
     </issue>
 
@@ -3881,7 +3881,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml"
-            line="192"
+            line="190"
             column="13"/>
     </issue>
 
@@ -3897,7 +3897,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh+TW/strings.xml"
-            line="192"
+            line="190"
             column="13"/>
     </issue>
 
@@ -3913,7 +3913,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh/strings.xml"
-            line="193"
+            line="191"
             column="13"/>
     </issue>
 
@@ -3961,7 +3961,7 @@
         errorLine2="                                ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+no/strings.xml"
-            line="197"
+            line="195"
             column="33"/>
     </issue>
 
@@ -3977,7 +3977,7 @@
         errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+no/strings.xml"
-            line="198"
+            line="196"
             column="38"/>
     </issue>
 
@@ -3993,7 +3993,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+hi/strings.xml"
-            line="206"
+            line="205"
             column="50"/>
     </issue>
 
@@ -4025,7 +4025,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+bn/strings.xml"
-            line="219"
+            line="217"
             column="13"/>
     </issue>
 
@@ -4057,7 +4057,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+as/strings.xml"
-            line="239"
+            line="238"
             column="13"/>
     </issue>
 
@@ -4073,24 +4073,8 @@
         errorLine2="                               ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ar/strings.xml"
-            line="240"
+            line="238"
             column="32"/>
-    </issue>
-
-    <issue
-        id="Untranslatable"
-        severity="Warning"
-        message="The resource string &quot;legal_notice&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;ru&quot; (Russian) here"
-        category="Correctness:Messages"
-        priority="6"
-        summary="Translated Untranslatable"
-        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
-        errorLine1="    &lt;string name=&quot;legal_notice&quot;>Оговорка&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ru/strings.xml"
-            line="241"
-            column="13"/>
     </issue>
 
     <issue
@@ -4105,8 +4089,24 @@
         errorLine2="                                ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ar/strings.xml"
-            line="241"
+            line="239"
             column="33"/>
+    </issue>
+
+    <issue
+        id="Untranslatable"
+        severity="Warning"
+        message="The resource string &quot;legal_notice&quot; has been marked as translatable=&quot;false&quot; elsewhere (usually in the `values` folder), but is translated to &quot;ru&quot; (Russian) here"
+        category="Correctness:Messages"
+        priority="6"
+        summary="Translated Untranslatable"
+        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
+        errorLine1="    &lt;string name=&quot;legal_notice&quot;>Оговорка&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ru/strings.xml"
+            line="240"
+            column="13"/>
     </issue>
 
     <issue
@@ -4121,7 +4121,7 @@
         errorLine2="                                ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ar/strings.xml"
-            line="242"
+            line="240"
             column="33"/>
     </issue>
 
@@ -4137,7 +4137,7 @@
         errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ar/strings.xml"
-            line="243"
+            line="241"
             column="35"/>
     </issue>
 
@@ -4153,7 +4153,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+qt/strings.xml"
-            line="244"
+            line="242"
             column="50"/>
     </issue>
 
@@ -4169,7 +4169,23 @@
         errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+in/strings.xml"
-            line="255"
+            line="253"
+            column="38"/>
+    </issue>
+
+    <issue
+        id="Untranslatable"
+        severity="Warning"
+        message="The resource string &quot;legal_notice_text&quot; is marked as translatable=&quot;false&quot;, but is translated to &quot;cs&quot; (Czech) here"
+        category="Correctness:Messages"
+        priority="6"
+        summary="Translated Untranslatable"
+        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
+        errorLine1="    &lt;string name=&quot;legal_notice_text&quot; translatable=&quot;false&quot;>Jakékoli právní otázky týkající se obsahu této aplikace je třeba řešit se samotnými hostiteli a poskytovateli souborů, protože s nimi nejsme nijak spojeni. V případě porušení autorských práv se obraťte přímo na odpovědné strany nebo na webové stránky, na kterých se streamování odehrává. Aplikace je určena výhradně pro vzdělávací a osobní účely. CloudStream 3 v aplikaci nehostuje žádný obsah a nemá žádnou kontrolu nad tím, jaká média jsou v aplikaci umístěna nebo odstraněna. CloudStream 3 funguje jako jakýkoli jiný vyhledávač, například Google. Služba CloudStream 3 nehostuje, nenahrává ani nespravuje žádná videa, filmy ani obsah. Pouze vyhledává, agreguje a zobrazuje odkazy v pohodlném, uživatelsky přívětivém rozhraní. Pouze shromažďuje webové stránky třetích stran, které jsou veřejně přístupné prostřednictvím jakéhokoli běžného webového prohlížeče. Je odpovědností uživatele, aby se vyvaroval jakýchkoli akcí, které by mohly porušovat zákony platné v jeho lokalitě. Použijte CloudStream 3 na vlastní nebezpečí.&lt;/string>"
+        errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+cs/strings.xml"
+            line="256"
             column="38"/>
     </issue>
 
@@ -4192,22 +4208,6 @@
     <issue
         id="Untranslatable"
         severity="Warning"
-        message="The resource string &quot;legal_notice_text&quot; is marked as translatable=&quot;false&quot;, but is translated to &quot;cs&quot; (Czech) here"
-        category="Correctness:Messages"
-        priority="6"
-        summary="Translated Untranslatable"
-        explanation="Strings can be marked with `translatable=false` to indicate that they are not intended to be translated, but are present in the resource file for other purposes (for example for non-display strings that should vary by some other configuration qualifier such as screen size or API level).&#xA;&#xA;There are cases where translators accidentally translate these strings anyway, and lint will flag these occurrences with this lint check."
-        errorLine1="    &lt;string name=&quot;legal_notice_text&quot; translatable=&quot;false&quot;>Jakékoli právní otázky týkající se obsahu této aplikace je třeba řešit se samotnými hostiteli a poskytovateli souborů, protože s nimi nejsme nijak spojeni. V případě porušení autorských práv se obraťte přímo na odpovědné strany nebo na webové stránky, na kterých se streamování odehrává. Aplikace je určena výhradně pro vzdělávací a osobní účely. CloudStream 3 v aplikaci nehostuje žádný obsah a nemá žádnou kontrolu nad tím, jaká média jsou v aplikaci umístěna nebo odstraněna. CloudStream 3 funguje jako jakýkoli jiný vyhledávač, například Google. Služba CloudStream 3 nehostuje, nenahrává ani nespravuje žádná videa, filmy ani obsah. Pouze vyhledává, agreguje a zobrazuje odkazy v pohodlném, uživatelsky přívětivém rozhraní. Pouze shromažďuje webové stránky třetích stran, které jsou veřejně přístupné prostřednictvím jakéhokoli běžného webového prohlížeče. Je odpovědností uživatele, aby se vyvaroval jakýchkoli akcí, které by mohly porušovat zákony platné v jeho lokalitě. Použijte CloudStream 3 na vlastní nebezpečí.&lt;/string>"
-        errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+cs/strings.xml"
-            line="258"
-            column="38"/>
-    </issue>
-
-    <issue
-        id="Untranslatable"
-        severity="Warning"
         message="The resource string &quot;hide_player_control_names_key&quot; is marked as translatable=&quot;false&quot;, but is translated to &quot;tl&quot; (Tagalog) here"
         category="Correctness:Messages"
         priority="6"
@@ -4217,7 +4217,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tl/strings.xml"
-            line="262"
+            line="260"
             column="50"/>
     </issue>
 
@@ -4233,7 +4233,7 @@
         errorLine2="                               ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml"
-            line="263"
+            line="261"
             column="32"/>
     </issue>
 
@@ -4249,7 +4249,7 @@
         errorLine2="                                ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml"
-            line="264"
+            line="262"
             column="33"/>
     </issue>
 
@@ -4265,7 +4265,7 @@
         errorLine2="                               ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh+TW/strings.xml"
-            line="264"
+            line="262"
             column="32"/>
     </issue>
 
@@ -4281,7 +4281,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pt/strings.xml"
-            line="265"
+            line="263"
             column="13"/>
     </issue>
 
@@ -4297,7 +4297,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ro/strings.xml"
-            line="265"
+            line="263"
             column="13"/>
     </issue>
 
@@ -4313,7 +4313,7 @@
         errorLine2="                                ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh+TW/strings.xml"
-            line="265"
+            line="263"
             column="33"/>
     </issue>
 
@@ -4329,7 +4329,7 @@
         errorLine2="                               ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh/strings.xml"
-            line="265"
+            line="263"
             column="32"/>
     </issue>
 
@@ -4345,7 +4345,7 @@
         errorLine2="                                ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml"
-            line="265"
+            line="263"
             column="33"/>
     </issue>
 
@@ -4361,7 +4361,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ro/strings.xml"
-            line="266"
+            line="264"
             column="13"/>
     </issue>
 
@@ -4377,7 +4377,7 @@
         errorLine2="                                ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh/strings.xml"
-            line="266"
+            line="264"
             column="33"/>
     </issue>
 
@@ -4393,7 +4393,7 @@
         errorLine2="                                ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh+TW/strings.xml"
-            line="266"
+            line="264"
             column="33"/>
     </issue>
 
@@ -4409,7 +4409,7 @@
         errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml"
-            line="266"
+            line="264"
             column="35"/>
     </issue>
 
@@ -4425,7 +4425,7 @@
         errorLine2="                                ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh/strings.xml"
-            line="267"
+            line="265"
             column="33"/>
     </issue>
 
@@ -4441,7 +4441,7 @@
         errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh+TW/strings.xml"
-            line="267"
+            line="265"
             column="35"/>
     </issue>
 
@@ -4457,7 +4457,7 @@
         errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh/strings.xml"
-            line="268"
+            line="266"
             column="35"/>
     </issue>
 
@@ -4473,7 +4473,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pl/strings.xml"
-            line="269"
+            line="267"
             column="13"/>
     </issue>
 
@@ -4489,7 +4489,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+so/strings.xml"
-            line="269"
+            line="267"
             column="13"/>
     </issue>
 
@@ -4505,7 +4505,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pt+BR/strings.xml"
-            line="270"
+            line="268"
             column="13"/>
     </issue>
 
@@ -4521,7 +4521,7 @@
         errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pt+BR/strings.xml"
-            line="271"
+            line="269"
             column="38"/>
     </issue>
 
@@ -4537,7 +4537,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ur/strings.xml"
-            line="274"
+            line="272"
             column="13"/>
     </issue>
 
@@ -4553,7 +4553,7 @@
         errorLine2="                                    ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ar/strings.xml"
-            line="275"
+            line="273"
             column="37"/>
     </issue>
 
@@ -4569,7 +4569,7 @@
         errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ar/strings.xml"
-            line="276"
+            line="274"
             column="38"/>
     </issue>
 
@@ -4585,7 +4585,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ml/strings.xml"
-            line="277"
+            line="275"
             column="50"/>
     </issue>
 
@@ -4601,7 +4601,7 @@
         errorLine2="                             ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+gl/strings.xml"
-            line="279"
+            line="277"
             column="30"/>
     </issue>
 
@@ -4617,7 +4617,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+vi/strings.xml"
-            line="280"
+            line="278"
             column="13"/>
     </issue>
 
@@ -4633,7 +4633,7 @@
         errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+hr/strings.xml"
-            line="290"
+            line="288"
             column="38"/>
     </issue>
 
@@ -4649,7 +4649,7 @@
         errorLine2="                               ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ar/strings.xml"
-            line="296"
+            line="294"
             column="32"/>
     </issue>
 
@@ -4665,7 +4665,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml"
-            line="297"
+            line="295"
             column="13"/>
     </issue>
 
@@ -4681,7 +4681,7 @@
         errorLine2="                           ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ar/strings.xml"
-            line="297"
+            line="295"
             column="28"/>
     </issue>
 
@@ -4697,7 +4697,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh+TW/strings.xml"
-            line="298"
+            line="296"
             column="13"/>
     </issue>
 
@@ -4713,7 +4713,7 @@
         errorLine2="                                    ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml"
-            line="298"
+            line="296"
             column="37"/>
     </issue>
 
@@ -4729,7 +4729,7 @@
         errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ar/strings.xml"
-            line="298"
+            line="296"
             column="38"/>
     </issue>
 
@@ -4745,7 +4745,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh/strings.xml"
-            line="299"
+            line="297"
             column="13"/>
     </issue>
 
@@ -4761,7 +4761,7 @@
         errorLine2="                                    ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh+TW/strings.xml"
-            line="299"
+            line="297"
             column="37"/>
     </issue>
 
@@ -4777,7 +4777,7 @@
         errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml"
-            line="299"
+            line="297"
             column="38"/>
     </issue>
 
@@ -4793,7 +4793,7 @@
         errorLine2="                             ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ar/strings.xml"
-            line="299"
+            line="297"
             column="30"/>
     </issue>
 
@@ -4809,7 +4809,7 @@
         errorLine2="                                    ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh/strings.xml"
-            line="300"
+            line="298"
             column="37"/>
     </issue>
 
@@ -4825,7 +4825,7 @@
         errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh+TW/strings.xml"
-            line="300"
+            line="298"
             column="38"/>
     </issue>
 
@@ -4841,7 +4841,7 @@
         errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh/strings.xml"
-            line="301"
+            line="299"
             column="38"/>
     </issue>
 
@@ -4857,7 +4857,7 @@
         errorLine2="                             ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+hi/strings.xml"
-            line="316"
+            line="315"
             column="30"/>
     </issue>
 
@@ -4873,7 +4873,7 @@
         errorLine2="                               ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml"
-            line="319"
+            line="317"
             column="32"/>
     </issue>
 
@@ -4889,7 +4889,7 @@
         errorLine2="                               ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh+TW/strings.xml"
-            line="320"
+            line="318"
             column="32"/>
     </issue>
 
@@ -4905,7 +4905,7 @@
         errorLine2="                           ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml"
-            line="320"
+            line="318"
             column="28"/>
     </issue>
 
@@ -4921,7 +4921,7 @@
         errorLine2="                               ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh/strings.xml"
-            line="321"
+            line="319"
             column="32"/>
     </issue>
 
@@ -4937,7 +4937,7 @@
         errorLine2="                           ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh+TW/strings.xml"
-            line="321"
+            line="319"
             column="28"/>
     </issue>
 
@@ -4953,7 +4953,7 @@
         errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml"
-            line="321"
+            line="319"
             column="38"/>
     </issue>
 
@@ -4969,7 +4969,7 @@
         errorLine2="                           ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh/strings.xml"
-            line="322"
+            line="320"
             column="28"/>
     </issue>
 
@@ -4985,7 +4985,7 @@
         errorLine2="                             ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml"
-            line="322"
+            line="320"
             column="30"/>
     </issue>
 
@@ -5001,7 +5001,7 @@
         errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh+TW/strings.xml"
-            line="322"
+            line="320"
             column="38"/>
     </issue>
 
@@ -5017,7 +5017,7 @@
         errorLine2="                             ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh+TW/strings.xml"
-            line="323"
+            line="321"
             column="30"/>
     </issue>
 
@@ -5033,7 +5033,7 @@
         errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh/strings.xml"
-            line="323"
+            line="321"
             column="38"/>
     </issue>
 
@@ -5049,7 +5049,7 @@
         errorLine2="                             ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh/strings.xml"
-            line="324"
+            line="322"
             column="30"/>
     </issue>
 
@@ -5065,7 +5065,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+sk/strings.xml"
-            line="335"
+            line="333"
             column="13"/>
     </issue>
 
@@ -5081,7 +5081,7 @@
         errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ar/strings.xml"
-            line="337"
+            line="335"
             column="35"/>
     </issue>
 
@@ -5097,7 +5097,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+sv/strings.xml"
-            line="338"
+            line="336"
             column="13"/>
     </issue>
 
@@ -5113,7 +5113,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+sk/strings.xml"
-            line="344"
+            line="342"
             column="13"/>
     </issue>
 
@@ -5129,7 +5129,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+uk/strings.xml"
-            line="347"
+            line="345"
             column="13"/>
     </issue>
 
@@ -5145,7 +5145,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ars/strings.xml"
-            line="349"
+            line="347"
             column="50"/>
     </issue>
 
@@ -5161,7 +5161,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+bn/strings.xml"
-            line="356"
+            line="354"
             column="50"/>
     </issue>
 
@@ -5177,7 +5177,7 @@
         errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml"
-            line="360"
+            line="358"
             column="35"/>
     </issue>
 
@@ -5193,7 +5193,7 @@
         errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh+TW/strings.xml"
-            line="361"
+            line="359"
             column="35"/>
     </issue>
 
@@ -5209,7 +5209,7 @@
         errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh/strings.xml"
-            line="362"
+            line="360"
             column="35"/>
     </issue>
 
@@ -5225,7 +5225,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+sk/strings.xml"
-            line="374"
+            line="372"
             column="50"/>
     </issue>
 
@@ -5241,7 +5241,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ta/strings.xml"
-            line="414"
+            line="412"
             column="13"/>
     </issue>
 
@@ -5257,7 +5257,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ta/strings.xml"
-            line="443"
+            line="441"
             column="13"/>
     </issue>
 
@@ -5273,7 +5273,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+sv/strings.xml"
-            line="470"
+            line="468"
             column="13"/>
     </issue>
 
@@ -5289,7 +5289,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+so/strings.xml"
-            line="477"
+            line="475"
             column="50"/>
     </issue>
 
@@ -5305,7 +5305,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+lv/strings.xml"
-            line="519"
+            line="517"
             column="50"/>
     </issue>
 
@@ -5321,7 +5321,7 @@
         errorLine2="                             ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ms/strings.xml"
-            line="521"
+            line="519"
             column="30"/>
     </issue>
 
@@ -5337,7 +5337,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+no/strings.xml"
-            line="530"
+            line="528"
             column="50"/>
     </issue>
 
@@ -5353,7 +5353,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+iw/strings.xml"
-            line="542"
+            line="540"
             column="50"/>
     </issue>
 
@@ -5369,7 +5369,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+my/strings.xml"
-            line="542"
+            line="540"
             column="50"/>
     </issue>
 
@@ -5385,7 +5385,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+uk/strings.xml"
-            line="555"
+            line="553"
             column="13"/>
     </issue>
 
@@ -5401,7 +5401,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+uk/strings.xml"
-            line="558"
+            line="556"
             column="13"/>
     </issue>
 
@@ -5417,7 +5417,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ru/strings.xml"
-            line="560"
+            line="558"
             column="13"/>
     </issue>
 
@@ -5433,7 +5433,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+sv/strings.xml"
-            line="562"
+            line="560"
             column="13"/>
     </issue>
 
@@ -5449,7 +5449,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ru/strings.xml"
-            line="565"
+            line="563"
             column="13"/>
     </issue>
 
@@ -5465,7 +5465,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+es/strings.xml"
-            line="572"
+            line="570"
             column="13"/>
     </issue>
 
@@ -5481,7 +5481,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+es/strings.xml"
-            line="573"
+            line="571"
             column="13"/>
     </issue>
 
@@ -5497,7 +5497,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+apc/strings.xml"
-            line="578"
+            line="576"
             column="13"/>
     </issue>
 
@@ -5513,7 +5513,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+apc/strings.xml"
-            line="579"
+            line="577"
             column="13"/>
     </issue>
 
@@ -5529,7 +5529,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ta/strings.xml"
-            line="581"
+            line="579"
             column="50"/>
     </issue>
 
@@ -5545,7 +5545,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+hu/strings.xml"
-            line="584"
+            line="582"
             column="50"/>
     </issue>
 
@@ -5561,7 +5561,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+bg/strings.xml"
-            line="593"
+            line="591"
             column="50"/>
     </issue>
 
@@ -5577,7 +5577,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+mk/strings.xml"
-            line="598"
+            line="596"
             column="50"/>
     </issue>
 
@@ -5593,7 +5593,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+nl/strings.xml"
-            line="599"
+            line="597"
             column="50"/>
     </issue>
 
@@ -5609,7 +5609,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+cs/strings.xml"
-            line="599"
+            line="597"
             column="13"/>
     </issue>
 
@@ -5625,7 +5625,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+cs/strings.xml"
-            line="600"
+            line="598"
             column="13"/>
     </issue>
 
@@ -5641,7 +5641,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+hr/strings.xml"
-            line="602"
+            line="600"
             column="13"/>
     </issue>
 
@@ -5657,7 +5657,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+hr/strings.xml"
-            line="603"
+            line="601"
             column="13"/>
     </issue>
 
@@ -5673,7 +5673,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ru/strings.xml"
-            line="605"
+            line="603"
             column="50"/>
     </issue>
 
@@ -5689,7 +5689,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+uk/strings.xml"
-            line="605"
+            line="603"
             column="50"/>
     </issue>
 
@@ -5705,7 +5705,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+de/strings.xml"
-            line="607"
+            line="605"
             column="50"/>
     </issue>
 
@@ -5721,7 +5721,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ar/strings.xml"
-            line="607"
+            line="605"
             column="13"/>
     </issue>
 
@@ -5737,7 +5737,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ar/strings.xml"
-            line="608"
+            line="606"
             column="13"/>
     </issue>
 
@@ -5753,7 +5753,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ur/strings.xml"
-            line="609"
+            line="607"
             column="50"/>
     </issue>
 
@@ -5769,7 +5769,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+fr/strings.xml"
-            line="611"
+            line="609"
             column="50"/>
     </issue>
 
@@ -5785,7 +5785,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pt/strings.xml"
-            line="611"
+            line="609"
             column="50"/>
     </issue>
 
@@ -5801,7 +5801,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+as/strings.xml"
-            line="612"
+            line="610"
             column="50"/>
     </issue>
 
@@ -5817,7 +5817,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+el/strings.xml"
-            line="616"
+            line="614"
             column="50"/>
     </issue>
 
@@ -5833,7 +5833,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+sv/strings.xml"
-            line="617"
+            line="615"
             column="50"/>
     </issue>
 
@@ -5849,7 +5849,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml"
-            line="619"
+            line="617"
             column="13"/>
     </issue>
 
@@ -5865,7 +5865,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh+TW/strings.xml"
-            line="619"
+            line="617"
             column="13"/>
     </issue>
 
@@ -5881,7 +5881,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml"
-            line="620"
+            line="618"
             column="13"/>
     </issue>
 
@@ -5897,7 +5897,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh+TW/strings.xml"
-            line="621"
+            line="619"
             column="13"/>
     </issue>
 
@@ -5913,7 +5913,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+es/strings.xml"
-            line="622"
+            line="620"
             column="50"/>
     </issue>
 
@@ -5929,7 +5929,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ko/strings.xml"
-            line="625"
+            line="623"
             column="50"/>
     </issue>
 
@@ -5945,7 +5945,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pl/strings.xml"
-            line="626"
+            line="624"
             column="50"/>
     </issue>
 
@@ -5961,7 +5961,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+apc/strings.xml"
-            line="630"
+            line="628"
             column="50"/>
     </issue>
 
@@ -5977,7 +5977,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ro/strings.xml"
-            line="632"
+            line="630"
             column="50"/>
     </issue>
 
@@ -5993,7 +5993,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+vi/strings.xml"
-            line="635"
+            line="633"
             column="50"/>
     </issue>
 
@@ -6009,7 +6009,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+in/strings.xml"
-            line="637"
+            line="635"
             column="50"/>
     </issue>
 
@@ -6025,7 +6025,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+hr/strings.xml"
-            line="641"
+            line="639"
             column="50"/>
     </issue>
 
@@ -6041,7 +6041,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+it/strings.xml"
-            line="645"
+            line="643"
             column="50"/>
     </issue>
 
@@ -6057,7 +6057,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pt+BR/strings.xml"
-            line="645"
+            line="643"
             column="50"/>
     </issue>
 
@@ -6073,7 +6073,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+cs/strings.xml"
-            line="649"
+            line="647"
             column="50"/>
     </issue>
 
@@ -6089,7 +6089,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ar/strings.xml"
-            line="657"
+            line="655"
             column="50"/>
     </issue>
 
@@ -6105,7 +6105,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh/strings.xml"
-            line="659"
+            line="657"
             column="50"/>
     </issue>
 
@@ -6121,7 +6121,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+zh+TW/strings.xml"
-            line="661"
+            line="659"
             column="50"/>
     </issue>
 
@@ -6137,7 +6137,7 @@
         errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml"
-            line="669"
+            line="667"
             column="50"/>
     </issue>
 
@@ -6155,7 +6155,7 @@
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+hi/strings.xml"
-            line="317"
+            line="316"
             column="9"/>
     </issue>
 
@@ -6173,7 +6173,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="91"
+            line="90"
             column="5"/>
     </issue>
 
@@ -6191,7 +6191,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="92"
+            line="91"
             column="5"/>
     </issue>
 
@@ -6209,7 +6209,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="213"
+            line="212"
             column="5"/>
     </issue>
 
@@ -6227,7 +6227,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="646"
+            line="643"
             column="5"/>
     </issue>
 
@@ -6245,7 +6245,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="744"
+            line="741"
             column="5"/>
     </issue>
 
@@ -6263,7 +6263,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="857"
+            line="854"
             column="5"/>
     </issue>
 
@@ -7951,7 +7951,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="13"
+            line="12"
             column="13"/>
     </issue>
 
@@ -7967,7 +7967,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="28"
+            line="27"
             column="13"/>
     </issue>
 
@@ -7983,7 +7983,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="52"
+            line="51"
             column="13"/>
     </issue>
 
@@ -7999,7 +7999,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="61"
+            line="60"
             column="13"/>
     </issue>
 
@@ -8015,7 +8015,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="82"
+            line="81"
             column="13"/>
     </issue>
 
@@ -8031,7 +8031,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="88"
+            line="87"
             column="13"/>
     </issue>
 
@@ -8047,7 +8047,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="103"
+            line="102"
             column="13"/>
     </issue>
 
@@ -8063,7 +8063,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="104"
+            line="103"
             column="13"/>
     </issue>
 
@@ -8079,7 +8079,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="105"
+            line="104"
             column="13"/>
     </issue>
 
@@ -8095,7 +8095,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="107"
+            line="106"
             column="13"/>
     </issue>
 
@@ -8111,7 +8111,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="116"
+            line="115"
             column="13"/>
     </issue>
 
@@ -8127,7 +8127,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="128"
+            line="127"
             column="13"/>
     </issue>
 
@@ -8143,7 +8143,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="154"
+            line="153"
             column="13"/>
     </issue>
 
@@ -8159,7 +8159,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="173"
+            line="172"
             column="13"/>
     </issue>
 
@@ -8175,7 +8175,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="186"
+            line="185"
             column="13"/>
     </issue>
 
@@ -8191,7 +8191,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="187"
+            line="186"
             column="13"/>
     </issue>
 
@@ -8207,7 +8207,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="188"
+            line="187"
             column="13"/>
     </issue>
 
@@ -8223,7 +8223,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="201"
+            line="200"
             column="13"/>
     </issue>
 
@@ -8239,7 +8239,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="211"
+            line="210"
             column="13"/>
     </issue>
 
@@ -8255,7 +8255,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="212"
+            line="211"
             column="13"/>
     </issue>
 
@@ -8271,7 +8271,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="254"
+            line="253"
             column="13"/>
     </issue>
 
@@ -8287,7 +8287,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="255"
+            line="254"
             column="13"/>
     </issue>
 
@@ -8303,7 +8303,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="263"
+            line="262"
             column="13"/>
     </issue>
 
@@ -8319,7 +8319,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="272"
+            line="271"
             column="13"/>
     </issue>
 
@@ -8335,7 +8335,7 @@
         errorLine2="            ~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="292"
+            line="289"
             column="13"/>
     </issue>
 
@@ -8351,7 +8351,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="299"
+            line="296"
             column="13"/>
     </issue>
 
@@ -8367,7 +8367,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="324"
+            line="321"
             column="13"/>
     </issue>
 
@@ -8383,7 +8383,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="331"
+            line="328"
             column="13"/>
     </issue>
 
@@ -8399,7 +8399,7 @@
         errorLine2="            ~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="335"
+            line="332"
             column="13"/>
     </issue>
 
@@ -8415,7 +8415,7 @@
         errorLine2="            ~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="337"
+            line="334"
             column="13"/>
     </issue>
 
@@ -8431,7 +8431,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="338"
+            line="335"
             column="13"/>
     </issue>
 
@@ -8447,7 +8447,7 @@
         errorLine2="            ~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="339"
+            line="336"
             column="13"/>
     </issue>
 
@@ -8463,7 +8463,7 @@
         errorLine2="            ~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="341"
+            line="338"
             column="13"/>
     </issue>
 
@@ -8479,7 +8479,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="388"
+            line="385"
             column="13"/>
     </issue>
 
@@ -8495,7 +8495,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="391"
+            line="388"
             column="13"/>
     </issue>
 
@@ -8511,7 +8511,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="442"
+            line="439"
             column="13"/>
     </issue>
 
@@ -8527,7 +8527,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="512"
+            line="509"
             column="13"/>
     </issue>
 
@@ -8543,7 +8543,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="528"
+            line="525"
             column="13"/>
     </issue>
 
@@ -8559,7 +8559,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="537"
+            line="534"
             column="13"/>
     </issue>
 
@@ -8575,7 +8575,7 @@
         errorLine2="            ~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="550"
+            line="547"
             column="13"/>
     </issue>
 
@@ -8591,7 +8591,7 @@
         errorLine2="            ~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="551"
+            line="548"
             column="13"/>
     </issue>
 
@@ -8607,7 +8607,7 @@
         errorLine2="            ~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="611"
+            line="608"
             column="13"/>
     </issue>
 
@@ -8623,7 +8623,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="650"
+            line="647"
             column="13"/>
     </issue>
 
@@ -8639,7 +8639,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="651"
+            line="648"
             column="13"/>
     </issue>
 
@@ -8655,7 +8655,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="664"
+            line="661"
             column="13"/>
     </issue>
 
@@ -8671,7 +8671,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="687"
+            line="684"
             column="13"/>
     </issue>
 
@@ -8687,7 +8687,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="772"
+            line="769"
             column="13"/>
     </issue>
 
@@ -9365,7 +9365,7 @@
         errorLine2="                                                                 ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+qt/strings.xml"
-            line="197"
+            line="195"
             column="66"/>
     </issue>
 
@@ -9383,7 +9383,7 @@
         errorLine2="                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ars/strings.xml"
-            line="329"
+            line="327"
             column="37"/>
     </issue>
 
@@ -9401,7 +9401,7 @@
         errorLine2="                                      ^">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+so/strings.xml"
-            line="432"
+            line="430"
             column="39"/>
     </issue>
 
