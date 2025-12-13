@@ -24,7 +24,6 @@ import com.lagradost.cloudstream3.services.PackageInstallerService
 import com.lagradost.cloudstream3.utils.AppContextUtils.setDefaultFocus
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
-import com.lagradost.cloudstream3.utils.Coroutines.main
 import java.io.BufferedReader
 import java.io.File
 import java.io.InputStreamReader
@@ -236,19 +235,12 @@ object InAppUpdater {
             }
 
             if (isInstalled) {
-                main {
+                runOnUiThread {
                     showToast("Prerelease is already installed")
                 }
             }
 
-            try {
-                runAutoUpdate(false, true)
-            } catch (e: Exception) {
-                logError(e)
-                main {
-                    showToast("Failed to install prerelease")
-                }
-            }
+            runAutoUpdate(false, true)
         }
     }
 
