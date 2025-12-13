@@ -255,7 +255,7 @@ object InAppUpdater {
     /**
      * @param checkAutoUpdate if the update check was launched automatically
      */
-    suspend fun Activity.runAutoUpdate(checkAutoUpdate: Boolean = true,: Boolean {
+    suspend fun Activity.runAutoUpdate(checkAutoUpdate: Boolean = true, install PreRelease: Boolean = false): Boolean {
         val settingsManager = PreferenceManager.getDefaultSharedPreferences(this)
         if (!checkAutoUpdate || settingsManager.getBoolean(
                 getString(R.string.auto_update_key),
