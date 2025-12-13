@@ -65,7 +65,7 @@ android {
     }
 
     signingConfigs {
-        if (System.getenv("SIGNING_STORE_PASSWORD") != null) {
+        if (System.getenv("SIGNING_KEY_ALIAS") != null) {
             create("prerelease") {
                 val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
                 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
