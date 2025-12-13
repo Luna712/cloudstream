@@ -3,7 +3,7 @@ package com.lagradost.cloudstream3.utils
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
+import android.content.pm.PackageManager.NameNotFoundException
 import android.net.Uri
 import android.text.TextUtils
 import android.util.Log
@@ -228,20 +228,10 @@ object InAppUpdater {
     fun Context.installPreReleaseIfNeeded() {
         ioSafe {
             val packageName = "com.lagradost.cloudstream3.Prerelease"
-            val pm = packageManager
-
             val isInstalled = try {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    pm.getPackageInfo(
-                        packageName,
-                        PackageManager.PackageInfoFlags.of(0)
-                    )
-                } else {
-                    @Suppress("DEPRECATION")
-                    pm.getPackageInfo(packageName, 0)
-                }
+                packageManager.getPackageInfo(packageName, 0)
                 true
-            } catch (_: PackageManager.NameNotFoundException) {
+            } catch (_: NameNotFoundException) {
                 false
             }
 
