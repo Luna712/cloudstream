@@ -236,7 +236,7 @@ object InAppUpdater {
 
             if (isInstalled) {
                 runOnUiThread {
-                    showToast("Prerelease is already installed")
+                    showToast(R.string.prerelease_already_installed)
                 }
             } else runAutoUpdate(false, true)
         }
