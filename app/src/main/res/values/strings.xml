@@ -283,7 +283,7 @@
     <string name="updates_settings">Show app updates</string>
     <string name="updates_settings_des">Automatically search for new updates after starting the app.</string>
     <string name="redo_setup_process">Redo setup process</string>
-	<string name="install_prerelease">Install Pre-release Version</string>
+	<string name="install_prerelease">Install pre-release version</string>
 	<string name="prerelease_already_installed">Pre-release is already installed.</string>
 	<string name="prerelease_install_failed">Failed to install pre-release.</string>
     <string name="apk_installer_settings">APK Installer</string>
