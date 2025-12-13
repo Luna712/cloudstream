@@ -79,7 +79,7 @@ object InAppUpdater {
         return try {
             when {
                 // No updates on debug version
-                BuildConfig.DEBUG -> Update(false, null, null, null, null)
+                // BuildConfig.DEBUG -> Update(false, null, null, null, null)
                 BuildConfig.FLAVOR == "prerelease" || installPrerelease -> getPreReleaseUpdate()
                 else -> getReleaseUpdate()
             }
