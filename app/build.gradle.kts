@@ -65,10 +65,13 @@ android {
     }
 
     signingConfigs {
+        // We just use SIGNING_KEY_ALIAS here since it's fixed and won't change so won't
+        // kill the configuration cache.
         if (System.getenv("SIGNING_KEY_ALIAS") != null) {
             create("prerelease") {
                 val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
                 val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
+
                 storeFile = prereleaseStoreFile?.let { file(it) }
                 storePassword = System.getenv("SIGNING_STORE_PASSWORD")
                 keyAlias = System.getenv("SIGNING_KEY_ALIAS")
