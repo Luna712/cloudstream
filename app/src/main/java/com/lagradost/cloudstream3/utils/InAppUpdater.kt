@@ -238,7 +238,11 @@ object InAppUpdater {
                 runOnUiThread {
                     showToast(R.string.prerelease_already_installed)
                 }
-            } else runAutoUpdate(false, true)
+            } else if (runAutoUpdate(false, true) == false) {
+                runOnUiThread {
+                    showToast(R.string.prerelease_install_failed)
+                }
+            }
         }
     }
 
