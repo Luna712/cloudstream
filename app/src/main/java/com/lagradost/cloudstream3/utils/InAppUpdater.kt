@@ -39,6 +39,7 @@ object InAppUpdater {
     private const val GITHUB_USER_NAME = "recloudstream"
     private const val GITHUB_REPO = "cloudstream"
 
+    private const val PRERELEASE_PACKAGE_NAME = "com.lagradost.cloudstream3.prerelease"
     private const val LOG_TAG = "InAppUpdater"
 
     private data class GithubAsset(
@@ -227,9 +228,8 @@ object InAppUpdater {
 
     fun Context.installPreReleaseIfNeeded() {
         ioSafe {
-            val packageName = "com.lagradost.cloudstream3.Prerelease"
             val isInstalled = try {
-                packageManager.getPackageInfo(packageName, 0)
+                packageManager.getPackageInfo(PRERELEASE_PACKAGE_NAME, 0)
                 true
             } catch (_: NameNotFoundException) {
                 false
@@ -241,8 +241,8 @@ object InAppUpdater {
                 }
             }
 
-            return try {
-                getPreReleaseUpdate()
+            try {
+                runAutoUpdate(false, true)
             } catch (e: Exception) {
                 logError(e)
                 main {
@@ -255,7 +255,7 @@ object InAppUpdater {
     /**
      * @param checkAutoUpdate if the update check was launched automatically
      */
-    suspend fun Activity.runAutoUpdate(checkAutoUpdate: Boolean = true): Boolean {
+    suspend fun Activity.runAutoUpdate(checkAutoUpdate: Boolean = true,: Boolean {
         val settingsManager = PreferenceManager.getDefaultSharedPreferences(this)
         if (!checkAutoUpdate || settingsManager.getBoolean(
                 getString(R.string.auto_update_key),
