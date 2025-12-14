@@ -116,6 +116,18 @@ object SingleSelectionHelper {
         val applyHolder = binding.applyBttHolder
 
         listView.isNestedScrollingEnabled = true
+        listView.setOnScrollListener(object : AbsListView.OnScrollListener {
+            override fun onScrollStateChanged(view: AbsListView?, scrollState: Int) {}
+            override fun onScroll(
+                view: AbsListView?,
+                firstVisibleItem: Int,
+                visibleItemCount: Int,
+                totalItemCount: Int
+            ) {
+                val canScrollUp = listView.canScrollVertically(-1)
+                behavior.isDraggable = !canScrollUp
+            }
+        })
 
         applyHolder.isVisible = realShowApply
         if (!realShowApply) {
