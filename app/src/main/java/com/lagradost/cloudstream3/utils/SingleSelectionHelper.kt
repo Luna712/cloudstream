@@ -116,7 +116,7 @@ object SingleSelectionHelper {
         val cancelButton = binding.cancelBtt
         val applyHolder = binding.applyBttHolder
 
-        listView.setOnTouchListener { v, event ->
+        listView.setOnTouchListener { view, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     /**
@@ -124,7 +124,7 @@ object SingleSelectionHelper {
                      * not to intercept touch events. This ensures the ListView handles vertical scroll gestures
                      * smoothly without accidentally triggering a parent swipe or collapsing the BottomSheet.
                      */
-                    v.parent.requestDisallowInterceptTouchEvent(true)
+                    view.parent.requestDisallowInterceptTouchEvent(true)
                 }
                 MotionEvent.ACTION_UP -> {
                     /**
@@ -132,12 +132,12 @@ object SingleSelectionHelper {
                      * This is important for restoring normal gesture handling outside of active ListView scrolling,
                      * like dragging the BottomSheet from the top once the scroll ends.
                      */
-                    v.parent.requestDisallowInterceptTouchEvent(false)
+                    view.parent.requestDisallowInterceptTouchEvent(false)
                 }
             }
 
             // Let the ListView handle the touch event normally.
-            v.onTouchEvent(event)
+            view.onTouchEvent(event)
             true
         }
 
