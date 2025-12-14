@@ -116,7 +116,7 @@ object SingleSelectionHelper {
         val cancelButton = binding.cancelBtt
         val applyHolder = binding.applyBttHolder
 
-        /* listView.setOnTouchListener { view, event ->
+        listView.setOnTouchListener { view, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     /**
@@ -139,7 +139,7 @@ object SingleSelectionHelper {
             // Let the ListView handle the touch event normally.
             view.onTouchEvent(event)
             true
-        } */
+        }
 
         applyHolder.isVisible = realShowApply
         if (!realShowApply) {
