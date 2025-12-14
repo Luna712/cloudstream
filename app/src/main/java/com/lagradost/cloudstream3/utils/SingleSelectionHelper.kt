@@ -117,20 +117,32 @@ object SingleSelectionHelper {
         val applyHolder = binding.applyBttHolder
 
         listView.isNestedScrollingEnabled = true
-        val bottomSheetBehavior = (dialog as? BottomSheetDialog)?.let { sheet ->
-            sheet.findViewById<View>(
-                com.google.android.material.R.id.design_bottom_sheet
-            )?.let { bottomSheet ->
-                BottomSheetBehavior.from(bottomSheet)
-            }
-        }
+        val bottomSheetBehavior = (dialog as? BottomSheetDialog)
+            ?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+            ?.let(BottomSheetBehavior::from)
 
         listView.addOnScrollListener(object : AbsListView.OnScrollListener {
             override fun onScrollStateChanged(view: AbsListView?, scrollState: Int) {
                 if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+                    /**
+                     * Prevent the BottomSheet from collapsing while the user is scrolling the list.
+                     * Collapsing mid-scroll is interpreted as an accidental dismissal and is extremely
+                     * frustrating UX, especially for long lists where upward scroll gestures are common.
+                     *
+                     * BottomSheetBehavior does not track where a touch gesture begins, only whether the
+                     * content can currently scroll. By locking the draggable state at gesture start,
+                     * we ensure the sheet only collapses when the user intentionally swipes from the top.
+                     */
                     bottomSheetBehavior?.isDraggable = !listView.canScrollVertically(-1)
                 }
             }
+
+            override fun onScroll(
+                view: AbsListView?,
+                firstVisibleItem: Int,
+                visibleItemCount: Int,
+                totalItemCount: Int
+            ) {}
         })
 
         applyHolder.isVisible = realShowApply
