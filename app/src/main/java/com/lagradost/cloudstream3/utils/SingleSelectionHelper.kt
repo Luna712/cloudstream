@@ -119,9 +119,9 @@ object SingleSelectionHelper {
         listView.isNestedScrollingEnabled = true
         val bottomSheetBehavior = (dialog as? BottomSheetDialog)
             ?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
-            ?.let(BottomSheetBehavior::from)
+            ?.let(BottomSheetBehavior::from(it))
 
-        listView.addOnScrollListener(object : AbsListView.OnScrollListener {
+        listView.setOnScrollListener(object : AbsListView.OnScrollListener {
             override fun onScrollStateChanged(view: AbsListView?, scrollState: Int) {
                 if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
                     /**
