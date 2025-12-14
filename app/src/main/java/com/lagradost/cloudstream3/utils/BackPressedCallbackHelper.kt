@@ -6,7 +6,9 @@ import java.lang.ref.WeakReference
 import java.util.WeakHashMap
 
 object BackPressedCallbackHelper {
-    private val backPressedCallbacks = WeakHashMap<ComponentActivity, MutableMap<String, OnBackPressedCallback>>()
+
+    private val backPressedCallbacks =
+        WeakHashMap<ComponentActivity, MutableMap<String, OnBackPressedCallback>>()
 
     class CallbackHelper(
         private val activityRef: WeakReference<ComponentActivity>,
