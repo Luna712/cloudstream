@@ -15,6 +15,7 @@ import androidx.core.view.isVisible
 import androidx.core.view.marginLeft
 import androidx.core.view.marginRight
 import androidx.core.view.marginTop
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.databinding.BottomInputDialogBinding
@@ -116,6 +117,14 @@ object SingleSelectionHelper {
         val applyHolder = binding.applyBttHolder
 
         listView.isNestedScrollingEnabled = true
+        val bottomSheetBehavior = (dialog as? BottomSheetDialog)?.let { sheet ->
+            sheet.findViewById<View>(
+                com.google.android.material.R.id.design_bottom_sheet
+            )?.let { bottomSheet ->
+                BottomSheetBehavior.from(bottomSheet)
+            }
+        }
+
         listView.setOnScrollListener(object : AbsListView.OnScrollListener {
             override fun onScrollStateChanged(view: AbsListView?, scrollState: Int) {}
             override fun onScroll(
@@ -124,8 +133,8 @@ object SingleSelectionHelper {
                 visibleItemCount: Int,
                 totalItemCount: Int
             ) {
-                val canScrollUp = listView.canScrollVertically(-1)
-                behavior.isDraggable = !canScrollUp
+                bottomSheetBehavior.isDraggable =
+                    !listView.canScrollVertically(-1)
             }
         })
 
