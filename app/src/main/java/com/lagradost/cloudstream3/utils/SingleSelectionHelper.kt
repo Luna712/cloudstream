@@ -133,7 +133,7 @@ object SingleSelectionHelper {
                 visibleItemCount: Int,
                 totalItemCount: Int
             ) {
-                bottomSheetBehavior.isDraggable =
+                bottomSheetBehavior?.isDraggable =
                     !listView.canScrollVertically(-1)
             }
         })
