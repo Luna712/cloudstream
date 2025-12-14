@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Dialog
 import android.text.Spanned
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.widget.AbsListView
 import android.widget.ArrayAdapter
@@ -116,7 +117,7 @@ object SingleSelectionHelper {
         val cancelButton = binding.cancelBtt
         val applyHolder = binding.applyBttHolder
 
-        listView.isNestedScrollingEnabled = true
+        /*listView.isNestedScrollingEnabled = true
         val bottomSheetBehavior = (dialog as? BottomSheetDialog)
             ?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
             ?.let(BottomSheetBehavior<View>::from)
@@ -143,7 +144,21 @@ object SingleSelectionHelper {
                 visibleItemCount: Int,
                 totalItemCount: Int
             ) {}
-        })
+        })*/
+
+        listView.setOnTouchListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    v.parent.requestDisallowInterceptTouchEvent(true)
+                }
+                MotionEvent.ACTION_UP -> {
+                    v.parent.requestDisallowInterceptTouchEvent(false)
+                }
+            }
+
+            v.onTouchEvent(event)
+            true
+        }
 
         applyHolder.isVisible = realShowApply
         if (!realShowApply) {
