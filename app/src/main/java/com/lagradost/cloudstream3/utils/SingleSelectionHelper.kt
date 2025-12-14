@@ -119,29 +119,33 @@ object SingleSelectionHelper {
 
         if (isLayout(PHONE or EMULATOR) && (dialog is BottomSheetDialog)) {
             binding.dragHandle.isVisible = true
-            listView.setOnTouchListener { view, event ->
-                when (event.action) {
-                    MotionEvent.ACTION_DOWN -> {
-                        /**
-                         * When the user touches the ListView, tell the parent not to intercept touch events.
-                         * This ensures the ListView handles vertical scroll gestures smoothly without
-                         * accidentally collapsing the BottomSheet.
-                         */
-                        view.parent.requestDisallowInterceptTouchEvent(true)
+            // Only override touch if ListView is scrollable
+            val canScrollVertically = listView.canScrollVertically(-1) || listView.canScrollVertically(1)
+            if (canScrollVertically) {
+                listView.setOnTouchListener { view, event ->
+                    when (event.action) {
+                        MotionEvent.ACTION_DOWN -> {
+                            /**
+                             * When the user touches the ListView, tell the parent not to intercept touch events.
+                             * This ensures the ListView handles vertical scroll gestures smoothly without
+                             * accidentally collapsing the BottomSheet.
+                             */
+                            view.parent.requestDisallowInterceptTouchEvent(true)
+                        }
+                        MotionEvent.ACTION_UP -> {
+                            /**
+                             * When the user lifts their finger, allow the parent to intercept touch events again.
+                             * This is important for restoring normal gesture handling outside of active ListView scrolling,
+                             * like dragging the BottomSheet from the top once the scroll ends.
+                             */
+                            view.parent.requestDisallowInterceptTouchEvent(false)
+                        }
                     }
-                    MotionEvent.ACTION_UP -> {
-                        /**
-                         * When the user lifts their finger, allow the parent to intercept touch events again.
-                         * This is important for restoring normal gesture handling outside of active ListView scrolling,
-                         * like dragging the BottomSheet from the top once the scroll ends.
-                         */
-                        view.parent.requestDisallowInterceptTouchEvent(false)
-                    }
-                }
 
-                // Let the ListView handle the touch event normally.
-                view.onTouchEvent(event)
-                true
+                    // Let the ListView handle the touch event normally.
+                    view.onTouchEvent(event)
+                    true
+                }
             }
         }
 
