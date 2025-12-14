@@ -120,9 +120,9 @@ object SingleSelectionHelper {
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     /**
-                     * When the user touches the ListView, tell the parent (e.g., NestedScrollView or BottomSheet)
-                     * not to intercept touch events. This ensures the ListView handles vertical scroll gestures
-                     * smoothly without accidentally triggering a parent swipe or collapsing the BottomSheet.
+                     * When the user touches the ListView, tell the parent not to intercept touch events.
+                     * This ensures the ListView handles vertical scroll gestures smoothly without
+                     * accidentally collapsing the BottomSheet.
                      */
                     view.parent.requestDisallowInterceptTouchEvent(true)
                 }
