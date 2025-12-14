@@ -538,6 +538,7 @@
 
     <style name="AlertDialogCustom" parent="Theme.AlertDialog">
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
         <item name="android:textColor">?attr/textColor</item>
         <item name="android:textColorPrimary">?attr/textColor</item>
         <!--<item name="android:background">@color/darkBackground</item>-->
