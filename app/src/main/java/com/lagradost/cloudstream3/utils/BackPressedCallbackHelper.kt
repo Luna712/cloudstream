@@ -41,7 +41,7 @@ object BackPressedCallbackHelper {
 
         callbackMap[id] = newCallback
         onBackPressedDispatcher.addCallback(this, newCallback)
-     
+    }
 
     fun ComponentActivity.disableBackPressedCallback(id : String) {
         backPressedCallbacks[this]?.get(id)?.isEnabled = false
@@ -62,6 +62,4 @@ object BackPressedCallbackHelper {
             backPressedCallbacks.remove(this)
         }
     }
-
 }
-
