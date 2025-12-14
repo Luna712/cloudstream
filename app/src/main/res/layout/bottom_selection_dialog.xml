@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+    android:orientation="vertical">
 
     <com.google.android.material.bottomsheet.BottomSheetDragHandleView
         android:layout_width="match_parent"
@@ -22,9 +20,6 @@
         android:textStyle="bold"
         android:textSize="20sp"
         android:textColor="?attr/textColor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:text="Test" />
 
     <ListView
@@ -38,21 +33,16 @@
         android:requiresFadingEdge="vertical"
         android:nextFocusRight="@id/cancel_btt"
         android:nextFocusLeft="@id/apply_btt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text1"
         tools:listitem="@layout/sort_bottom_single_choice" />
 
     <LinearLayout
         android:id="@+id/apply_btt_holder"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_marginTop="-60dp"
         android:layout_gravity="bottom"
         android:gravity="bottom|end"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/listview1">
+        android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/apply_btt"
