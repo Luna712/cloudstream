@@ -117,7 +117,7 @@ object SingleSelectionHelper {
         val cancelButton = binding.cancelBtt
         val applyHolder = binding.applyBttHolder
 
-        if (isLayout(PHONE or EMULATOR)) {
+        if (isLayout(PHONE or EMULATOR) && (dialog is BottomSheetDialog)) {
             binding.dragHandle.isVisible = true
             listView.setOnTouchListener { view, event ->
                 when (event.action) {
