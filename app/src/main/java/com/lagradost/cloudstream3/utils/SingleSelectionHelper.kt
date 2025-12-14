@@ -116,7 +116,7 @@ object SingleSelectionHelper {
         val cancelButton = binding.cancelBtt
         val applyHolder = binding.applyBttHolder
 
-        listView.isNestedScrollingEnabled = true
+        // listView.isNestedScrollingEnabled = true
         val bottomSheetBehavior = (dialog as? BottomSheetDialog)
             ?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
             ?.let(BottomSheetBehavior<View>::from)
