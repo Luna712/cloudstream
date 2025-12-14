@@ -9,7 +9,8 @@
 
     <com.google.android.material.bottomsheet.BottomSheetDragHandleView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
 
     <TextView
         android:id="@+id/text1"
@@ -46,10 +47,12 @@
         android:id="@+id/apply_btt_holder"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="-60dp"
         android:layout_gravity="bottom"
         android:gravity="bottom|end"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/listview1">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/apply_btt"
