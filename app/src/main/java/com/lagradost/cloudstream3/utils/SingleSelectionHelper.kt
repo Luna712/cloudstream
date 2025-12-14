@@ -128,17 +128,9 @@ object SingleSelectionHelper {
         listView.setOnScrollListener(object : AbsListView.OnScrollListener {
             override fun onScrollStateChanged(view: AbsListView?, scrollState: Int) {
                 if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
-                    bottomSheetBehavior?.isDraggable =
-                        !listView.canScrollVertically(-1)
+                    bottomSheetBehavior?.isDraggable = !listView.canScrollVertically(-1)
                 }
             }
-
-            override fun onScroll(
-                view: AbsListView?,
-                firstVisibleItem: Int,
-                visibleItemCount: Int,
-                totalItemCount: Int
-            ) {}
         })
 
         applyHolder.isVisible = realShowApply
