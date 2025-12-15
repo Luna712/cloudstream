@@ -130,11 +130,7 @@ object SingleSelectionHelper {
             var lockExpanded = false
             behavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
                 override fun onStateChanged(bottomSheet: View, newState: Int) {
-                    if (lockExpanded && newState == BottomSheetBehavior.STATE_COLLAPSED) {
-                        behavior?.state = BottomSheetBehavior.STATE_EXPANDED
-                    }
-
-                    if (lockExpanded && newState == BottomSheetBehavior.STATE_HIDDEN) {
+                    if (lockExpanded) {
                         behavior?.state = BottomSheetBehavior.STATE_EXPANDED
                     }
                 }
