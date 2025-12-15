@@ -7,8 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    app:behavior_fitToContents="true"
-    app:behavior_skipCollapsed="true"
+    app:behavior_fitToContents="false"
     app:behavior_peekHeight="0dp">
 
     <FrameLayout
