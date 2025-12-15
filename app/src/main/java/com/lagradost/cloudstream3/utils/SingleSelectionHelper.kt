@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Dialog
 import android.text.Spanned
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.widget.AbsListView
 import android.widget.ArrayAdapter
@@ -123,30 +124,32 @@ object SingleSelectionHelper {
                 ?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
                 ?.let(BottomSheetBehavior<View>::from)
 
-            listView.setOnScrollListener(object : AbsListView.OnScrollListener {
-                override fun onScrollStateChanged(view: AbsListView?, scrollState: Int) {
-                    if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+            listView.setOnTouchListener { view, event ->
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
                         /**
-                         * Prevent the BottomSheet from collapsing while the user is scrolling the list.
-                         * Collapsing mid-scroll is interpreted as an accidental dismissal and is extremely
-                         * frustrating UX, especially for long lists where upward scroll gestures are common.
-                         *
-                         * BottomSheetBehavior does not track where a touch gesture begins, only whether the
-                         * content can currently scroll. By locking the draggable state at gesture start,
-                         * we ensure the sheet only collapses when the user intentionally swipes from the top.
+                         * When the user touches the ListView, tell the parent not to intercept touch events.
+                         * This ensures the ListView handles vertical scroll gestures smoothly without
+                         * accidentally collapsing the BottomSheet.
                          */
-                        val canScrollVertically = listView.canScrollVertically(-1) || listView.canScrollVertically(1)
+                        // Only disallow intercept touch for parent if ListView is scrollable.
+                        val canScrollVertically = view.canScrollVertically(-1) || view.canScrollVertically(1)
                         bottomSheetBehavior?.isHideable = !canScrollVertically
-                    } else bottomSheetBehavior?.isHideable = true
+                    }
+                    MotionEvent.ACTION_UP -> {
+                        /**
+                         * When the user lifts their finger, allow the parent to intercept touch events again.
+                         * This is important for restoring normal gesture handling outside of active ListView scrolling,
+                         * like dragging the BottomSheet from the top once the scroll ends.
+                         */
+                        bottomSheetBehavior?.isHideable = true
+                    }
                 }
 
-                override fun onScroll(
-                    view: AbsListView?,
-                    firstVisibleItem: Int,
-                    visibleItemCount: Int,
-                    totalItemCount: Int
-                ) {}
-            })
+                // Let the ListView handle the touch event normally.
+                view.onTouchEvent(event)
+                true
+            }
         }
 
         applyHolder.isVisible = realShowApply
