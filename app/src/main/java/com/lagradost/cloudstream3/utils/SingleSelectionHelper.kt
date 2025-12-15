@@ -119,12 +119,14 @@ object SingleSelectionHelper {
         val applyHolder = binding.applyBttHolder
 
         if (isLayout(PHONE or EMULATOR) && (dialog is BottomSheetDialog)) {
-            fun canScrollVertically(view: AbsListView): Boolean {
-                if (view.isEmpty()) return false
-                val isOnTop = view.firstVisiblePosition != 0 || view.getChildAt(0).top != 0
-                val isAllItemsVisible = isOnTop && view.lastVisiblePosition == view.childCount
-
-                return isOnTop || isAllItemsVisible
+            fun canScrollInDirection(list: AbsListView, direction: Int): Boolean {
+                if (list.isEmpty()) return false
+                return when {
+                    direction < 0 -> list.firstVisiblePosition != 0 || list.getChildAt(0).top != 0
+                    direction > 0 -> list.lastVisiblePosition < list.count - 1 ||
+                        list.getChildAt(list.childCount - 1).bottom > list.height
+                    else -> false
+                }
             }
 
             binding.dragHandle.isVisible = true
@@ -137,7 +139,13 @@ object SingleSelectionHelper {
                          * This ensures the ListView handles vertical scroll gestures smoothly without
                          * accidentally collapsing the BottomSheet.
                          */
-                        view.parent.requestDisallowInterceptTouchEvent(canScrollVertically(list))
+                        val dy = event.y - (event.getHistoricalY(0) ?: event.y)
+                        val disallow = when {
+                            dy < 0 && canScrollInDirection(list, 1) -> true  // swiping up
+                            dy > 0 && canScrollInDirection(list, -1) -> true // swiping down
+                            else -> false
+                        }
+                        view.parent.requestDisallowInterceptTouchEvent(disallow)
                     }
                     MotionEvent.ACTION_UP -> {
                         /**
