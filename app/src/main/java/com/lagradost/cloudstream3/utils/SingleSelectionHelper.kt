@@ -121,8 +121,8 @@ object SingleSelectionHelper {
         if (isLayout(PHONE or EMULATOR) && dialog is BottomSheetDialog) {
             binding.dragHandle.isVisible = true
             listView.isNestedScrollingEnabled = true
-            val bottomSheetBehavior = (dialog as? BottomSheetDialog)
-                ?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+            val bottomSheetBehavior = dialog
+                .findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
                 ?.let(BottomSheetBehavior<View>::from)
 
             listView.setOnTouchListener { view, event ->
