@@ -120,37 +120,33 @@ object SingleSelectionHelper {
 
         if (isLayout(PHONE or EMULATOR) && dialog is BottomSheetDialog) {
             binding.dragHandle.isVisible = true
-            val behavior = (dialog as? BottomSheetDialog)
+            listView.isNestedScrollingEnabled = true
+            val bottomSheetBehavior = (dialog as? BottomSheetDialog)
                 ?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
                 ?.let(BottomSheetBehavior<View>::from)
-
-            // We do this to prevent unexpected collapsing of the BottomSheet while
-            // scroll is still in progress.
-            /*val defaultHideable = behavior?.isHideable ?: false
-            var lockExpanded = false*/
-            /*behavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
-                override fun onStateChanged(bottomSheet: View, newState: Int) {
-                    if (lockExpanded) {
-                        behavior?.state = BottomSheetBehavior.STATE_EXPANDED
-                    }
-                }
-
-                override fun onSlide(bottomSheet: View, slideOffset: Float) {}
-            })*/
 
             listView.setOnTouchListener { view, event ->
                 when (event.actionMasked) {
                     MotionEvent.ACTION_DOWN -> {
                         val canScroll = view.canScrollVertically(-1) || view.canScrollVertically(1)
-                        val isExpanded = canScroll && behavior?.state == BottomSheetBehavior.STATE_EXPANDED
-                        if (isExpanded) behavior?.isDraggable = false else if (canScroll) behavior?.isHideable = false
+                        val isExpanded = bottomSheetBehavior?.state == BottomSheetBehavior.STATE_EXPANDED
+                        if (isExpanded && canScroll) {
+                            // If it's already expanded then don't collapse while
+                            // ListView is scrolling.
+                            bottomSheetBehavior?.isDraggable = false
+                        } else if (canScroll) {
+                            // If ListView is currently scrolling but not expanded,
+                            // which means it's in collapsed state, don't hide it
+                            // while scrolling is in progress.
+                            bottomSheetBehavior?.isHideable = false
+                        }
                     }
 
                     MotionEvent.ACTION_UP,
                     MotionEvent.ACTION_CANCEL -> {
-                        // lockExpanded = false
-                        behavior?.isDraggable = true
-                        behavior?.isHideable = true
+                        // Restore states
+                        bottomSheetBehavior?.isDraggable = true
+                        bottomSheetBehavior?.isHideable = true
                     }
                 }
 
