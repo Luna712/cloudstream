@@ -126,16 +126,16 @@ object SingleSelectionHelper {
 
             // We do this to prevent unexpected collapsing of the BottomSheet while
             // scroll is still in progress.
-            val defaultHideable = behavior.isHideable
+            val defaultHideable = behavior?.isHideable ?: false
             var lockExpanded = false
-            behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            behavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
                 override fun onStateChanged(bottomSheet: View, newState: Int) {
                     if (lockExpanded && newState == BottomSheetBehavior.STATE_COLLAPSED) {
-                        behavior.state = BottomSheetBehavior.STATE_EXPANDED
+                        behavior?.state = BottomSheetBehavior.STATE_EXPANDED
                     }
 
                     if (lockExpanded && newState == BottomSheetBehavior.STATE_HIDDEN) {
-                        behavior.state = BottomSheetBehavior.STATE_EXPANDED
+                        behavior?.state = BottomSheetBehavior.STATE_EXPANDED
                     }
                 }
 
@@ -146,14 +146,14 @@ object SingleSelectionHelper {
                 when (event.actionMasked) {
                     MotionEvent.ACTION_DOWN -> {
                         val canScroll = view.canScrollVertically(-1) || view.canScrollVertically(1)
-                        lockExpanded = canScroll && behavior.state == BottomSheetBehavior.STATE_EXPANDED
-                        if (canScroll) behavior.isHideable = false
+                        lockExpanded = canScroll && behavior?.state == BottomSheetBehavior.STATE_EXPANDED
+                        if (canScroll) behavior?.isHideable = false
                     }
 
                     MotionEvent.ACTION_UP,
                     MotionEvent.ACTION_CANCEL -> {
                         lockExpanded = false
-                        behavior.isHideable = defaultHideable
+                        behavior?.isHideable = defaultHideable
                     }
                 }
 
