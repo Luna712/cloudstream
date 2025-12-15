@@ -126,9 +126,9 @@ object SingleSelectionHelper {
 
             // We do this to prevent unexpected collapsing of the BottomSheet while
             // scroll is still in progress.
-            val defaultHideable = behavior?.isHideable ?: false
-            var lockExpanded = false
-            behavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            /*val defaultHideable = behavior?.isHideable ?: false
+            var lockExpanded = false*/
+            /*behavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
                 override fun onStateChanged(bottomSheet: View, newState: Int) {
                     if (lockExpanded) {
                         behavior?.state = BottomSheetBehavior.STATE_EXPANDED
@@ -136,20 +136,21 @@ object SingleSelectionHelper {
                 }
 
                 override fun onSlide(bottomSheet: View, slideOffset: Float) {}
-            })
+            })*/
 
             listView.setOnTouchListener { view, event ->
                 when (event.actionMasked) {
                     MotionEvent.ACTION_DOWN -> {
                         val canScroll = view.canScrollVertically(-1) || view.canScrollVertically(1)
-                        lockExpanded = canScroll && behavior?.state == BottomSheetBehavior.STATE_EXPANDED
-                        if (canScroll) behavior?.isHideable = false
+                        val isExpanded = canScroll && behavior?.state == BottomSheetBehavior.STATE_EXPANDED
+                        if (isExpanded) behavior?.isDragable = false else if (canScroll) behavior?.isHideable = false
                     }
 
                     MotionEvent.ACTION_UP,
                     MotionEvent.ACTION_CANCEL -> {
-                        lockExpanded = false
-                        behavior?.isHideable = defaultHideable
+                        // lockExpanded = false
+                        behavior?.isDragable = true
+                        behavior?.isHideable = true
                     }
                 }
 
