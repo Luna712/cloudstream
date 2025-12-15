@@ -97,9 +97,7 @@ object SingleSelectionHelper {
         //}
     }
 
-    class BottomSelectionDialogHelper(private val activity: Activity?) {
-
-    fun Axtivity?showDialog(
+    fun Activity?.showDialog(
         binding: BottomSelectionDialogBinding,
         dialog: Dialog,
         items: List<String>,
@@ -138,7 +136,6 @@ object SingleSelectionHelper {
                         if (dy < 0 && canScrollUp(list)) {
                             view.parent.requestDisallowInterceptTouchEvent(true)
                         }
-                        // Swipe down: do nothing, let parent handle expansion
                     }
                     MotionEvent.ACTION_UP -> {
                         /**
@@ -155,9 +152,6 @@ object SingleSelectionHelper {
                 true
             }
         }
-    }
-}
-
 
         applyHolder.isVisible = realShowApply
         if (!realShowApply) {
