@@ -118,34 +118,39 @@ object SingleSelectionHelper {
         val applyHolder = binding.applyBttHolder
 
         if (isLayout(PHONE or EMULATOR) && (dialog is BottomSheetDialog)) {
-            binding.dragHandle.isVisible = true
-            listView.setOnTouchListener { view, event ->
-                when (event.action) {
-                    MotionEvent.ACTION_DOWN -> {
-                        /**
-                         * When the user touches the ListView, tell the parent not to intercept touch events.
-                         * This ensures the ListView handles vertical scroll gestures smoothly without
-                         * accidentally collapsing the BottomSheet.
-                         */
-                        // Only disallow intercept touch for parent if ListView is scrollable.
-                        val canScrollVertically = view.canScrollVertically(-1) || view.canScrollVertically(1)
-                        view.parent.requestDisallowInterceptTouchEvent(canScrollVertically)
-                    }
-                    MotionEvent.ACTION_UP -> {
-                        /**
-                         * When the user lifts their finger, allow the parent to intercept touch events again.
-                         * This is important for restoring normal gesture handling outside of active ListView scrolling,
-                         * like dragging the BottomSheet from the top once the scroll ends.
-                         */
-                        view.parent.requestDisallowInterceptTouchEvent(false)
-                    }
-                }
+	binding.dragHandle.isVisible = true
 
-                // Let the ListView handle the touch event normally.
-                view.onTouchEvent(event)
-                true
-            }
-        }
+	var lastY = 0f
+
+	listView.setOnTouchListener { view, event ->
+		when (event.action) {
+			MotionEvent.ACTION_DOWN -> {
+				lastY = event.y
+				view.parent.requestDisallowInterceptTouchEvent(false)
+			}
+
+			MotionEvent.ACTION_MOVE -> {
+				val dy = event.y - lastY
+
+				val scrollingUp = dy < 0
+				val canScrollUp = view.canScrollVertically(-1)
+
+				view.parent.requestDisallowInterceptTouchEvent(
+					scrollingUp && canScrollUp
+				)
+			}
+
+			MotionEvent.ACTION_UP,
+			MotionEvent.ACTION_CANCEL -> {
+				view.parent.requestDisallowInterceptTouchEvent(false)
+			}
+		}
+
+		view.onTouchEvent(event)
+		true
+	}
+}
+
 
         applyHolder.isVisible = realShowApply
         if (!realShowApply) {
