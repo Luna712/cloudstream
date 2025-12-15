@@ -16,6 +16,7 @@ import androidx.core.view.isVisible
 import androidx.core.view.marginLeft
 import androidx.core.view.marginRight
 import androidx.core.view.marginTop
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.databinding.BottomInputDialogBinding
@@ -119,6 +120,11 @@ object SingleSelectionHelper {
 
         if (isLayout(PHONE or EMULATOR) && (dialog is BottomSheetDialog)) {
 			binding.dragHandle.isVisible = true
+			val bottomSheetBehavior = (dialog as? BottomSheetDialog)
+                ?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+                ?.let(BottomSheetBehavior<View>::from)
+
+			bottomSheetBehavior?.isDraggableOnNestedScroll = false
 		}
 
         applyHolder.isVisible = realShowApply
