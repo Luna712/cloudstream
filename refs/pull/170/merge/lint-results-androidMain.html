@@ -179,7 +179,7 @@ document.getElementById(id).style.display = 'none';
     <div class="mdl-layout__header-row">
       <span class="mdl-layout-title">Lint Report: 5 errors, 12 warnings and 2 hints</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sun Dec 14 00:38:05 UTC 2025 by AGP (9.0.0-beta05)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Mon Dec 15 18:25:28 UTC 2025 by AGP (9.0.0-beta05)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -315,14 +315,14 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/commonMain/kotlin/com/lagradost/cloudstream3/MainAPI.kt">../../src/commonMain/kotlin/com/lagradost/cloudstream3/MainAPI.kt</a>:2476</span>: <span class="message">To get local formatting use <code>getDateInstance()</code>, <code>getDateTimeInstance()</code>, or <code>getTimeInstance()</code>, or use <code>new SimpleDateFormat(String template, Locale locale)</code> with for example <code>Locale.US</code> for ASCII dates.</span><br /><pre class="errorlines">
-<span class="lineno"> 2473 </span>
-<span class="lineno"> 2474 </span><span class="keyword">fun</span> Episode.addDate(date: String?, format: String = <span class="string">"yyyy-MM-dd"</span>) {
-<span class="lineno"> 2475 </span>    <span class="keyword">try</span> {
-<span class="caretline"><span class="lineno"> 2476 </span>        <span class="keyword">this</span>.date = <span class="warning">SimpleDateFormat(format)</span>.parse(date ?: <span class="keyword">return</span>)?.time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 2477 </span>    } catch (e: Exception) {
-<span class="lineno"> 2478 </span>        logError(e)
-<span class="lineno"> 2479 </span>    }
+<span class="location"><a href="../../src/commonMain/kotlin/com/lagradost/cloudstream3/MainAPI.kt">../../src/commonMain/kotlin/com/lagradost/cloudstream3/MainAPI.kt</a>:2505</span>: <span class="message">To get local formatting use <code>getDateInstance()</code>, <code>getDateTimeInstance()</code>, or <code>getTimeInstance()</code>, or use <code>new SimpleDateFormat(String template, Locale locale)</code> with for example <code>Locale.US</code> for ASCII dates.</span><br /><pre class="errorlines">
+<span class="lineno"> 2502 </span>
+<span class="lineno"> 2503 </span><span class="keyword">fun</span> Episode.addDate(date: String?, format: String = <span class="string">"yyyy-MM-dd"</span>) {
+<span class="lineno"> 2504 </span>    <span class="keyword">try</span> {
+<span class="caretline"><span class="lineno"> 2505 </span>        <span class="keyword">this</span>.date = <span class="warning">SimpleDateFormat(format)</span>.parse(date ?: <span class="keyword">return</span>)?.time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 2506 </span>    } catch (e: Exception) {
+<span class="lineno"> 2507 </span>        logError(e)
+<span class="lineno"> 2508 </span>    }
 </pre>
 
 </div>

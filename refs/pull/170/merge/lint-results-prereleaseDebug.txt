@@ -1163,7 +1163,7 @@ conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = 
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+so/strings.xml:477: Warning: The resource string "hide_player_control_names_key" is marked as translatable="false", but is translated to "so" (Somali) here [Untranslatable]
     <string name="hide_player_control_names_key" translatable="false">hide_player_control_names_key</string>
                                                  ~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+lv/strings.xml:519: Warning: The resource string "hide_player_control_names_key" is marked as translatable="false", but is translated to "lv" (Latvian) here [Untranslatable]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+lv/strings.xml:514: Warning: The resource string "hide_player_control_names_key" is marked as translatable="false", but is translated to "lv" (Latvian) here [Untranslatable]
     <string name="hide_player_control_names_key" translatable="false">hide_player_control_names_key</string>
                                                  ~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ms/strings.xml:521: Warning: The resource string "episodes" is marked as translatable="false", but is translated to "ms" (Malay) here [Untranslatable]

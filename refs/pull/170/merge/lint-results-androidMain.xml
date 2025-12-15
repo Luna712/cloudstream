@@ -79,7 +79,7 @@
         errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/library/src/commonMain/kotlin/com/lagradost/cloudstream3/MainAPI.kt"
-            line="2476"
+            line="2505"
             column="21"/>
     </issue>
 

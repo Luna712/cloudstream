@@ -35,7 +35,7 @@
    Similarly, you can use tools:targetApi="11" in an XML file to indicate that
    the element will only be inflated in an adequate context.
 
-/home/runner/work/cloudstream/cloudstream/library/src/commonMain/kotlin/com/lagradost/cloudstream3/MainAPI.kt:2476: Warning: To get local formatting use getDateInstance(), getDateTimeInstance(), or getTimeInstance(), or use new SimpleDateFormat(String template, Locale locale) with for example Locale.US for ASCII dates. [SimpleDateFormat]
+/home/runner/work/cloudstream/cloudstream/library/src/commonMain/kotlin/com/lagradost/cloudstream3/MainAPI.kt:2505: Warning: To get local formatting use getDateInstance(), getDateTimeInstance(), or getTimeInstance(), or use new SimpleDateFormat(String template, Locale locale) with for example Locale.US for ASCII dates. [SimpleDateFormat]
         this.date = SimpleDateFormat(format).parse(date ?: return)?.time
                     ~~~~~~~~~~~~~~~~~~~~~~~~
 
