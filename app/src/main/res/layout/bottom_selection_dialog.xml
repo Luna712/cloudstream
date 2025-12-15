@@ -9,7 +9,7 @@
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     app:behavior_fitToContents="true"
     app:behavior_skipCollapsed="true"
-    app:behavior_peekHeight="200dp">
+    app:behavior_peekHeight="0dp">
 
     <FrameLayout
         android:layout_width="match_parent"
