@@ -120,6 +120,7 @@ object SingleSelectionHelper {
         if (isLayout(PHONE or EMULATOR) && (dialog is BottomSheetDialog)) {
             binding.dragHandle.isVisible = true
             listView.setOnTouchListener { view, event ->
+                val list = view as? AbsListView ?: return@setOnTouchListener false
                 when (event.action) {
                     MotionEvent.ACTION_DOWN -> {
                         /**
@@ -128,9 +129,9 @@ object SingleSelectionHelper {
                          * accidentally collapsing the BottomSheet.
                          */
                         // Only disallow intercept touch for parent if ListView is scrollable.
-                        val canScrollVertically = view != null && view.childCount > 0 &&
-                            (view.firstVisiblePosition != 0 || view.getChildAt(0).top != 0 ||
-                                    (view.firstVisiblePosition != 0 && view.lastVisiblePosition == view.childCount))
+                        val canScrollVertically = list.childCount > 0 &&
+                            (list.firstVisiblePosition != 0 || list.getChildAt(0).top != 0 ||
+                                (list.firstVisiblePosition != 0 && list.lastVisiblePosition == list.childCount))
                         view.parent.requestDisallowInterceptTouchEvent(canScrollVertically)
                     }
                     MotionEvent.ACTION_UP -> {
