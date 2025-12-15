@@ -137,7 +137,7 @@ object SingleSelectionHelper {
                          */
                         val canScrollVertically = listView.canScrollVertically(-1) || listView.canScrollVertically(1)
                         bottomSheetBehavior?.isHideable = !canScrollVertically
-                    }
+                    } else bottomSheetBehavior?.isHideable = true
                 }
 
                 override fun onScroll(
