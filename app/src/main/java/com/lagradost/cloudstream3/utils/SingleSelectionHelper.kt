@@ -143,13 +143,13 @@ object SingleSelectionHelper {
                     MotionEvent.ACTION_DOWN -> {
                         val canScroll = view.canScrollVertically(-1) || view.canScrollVertically(1)
                         val isExpanded = canScroll && behavior?.state == BottomSheetBehavior.STATE_EXPANDED
-                        if (isExpanded) behavior?.isDragable = false else if (canScroll) behavior?.isHideable = false
+                        if (isExpanded) behavior?.isDraggable = false else if (canScroll) behavior?.isHideable = false
                     }
 
                     MotionEvent.ACTION_UP,
                     MotionEvent.ACTION_CANCEL -> {
                         // lockExpanded = false
-                        behavior?.isDragable = true
+                        behavior?.isDraggable = true
                         behavior?.isHideable = true
                     }
                 }
