@@ -128,7 +128,9 @@ object SingleSelectionHelper {
                          * accidentally collapsing the BottomSheet.
                          */
                         // Only disallow intercept touch for parent if ListView is scrollable.
-                        val canScrollVertically = view.canScrollVertically(-1) || view.canScrollVertically(1)
+                        val canScrollVertically = view != null && view.childCount > 0 &&
+                            (view.firstVisiblePosition != 0 || view.getChildAt(0).top != 0 ||
+                                    (view.firstVisiblePosition != 0 && view.lastVisiblePosition == view.childCount))
                         view.parent.requestDisallowInterceptTouchEvent(canScrollVertically)
                     }
                     MotionEvent.ACTION_UP -> {
