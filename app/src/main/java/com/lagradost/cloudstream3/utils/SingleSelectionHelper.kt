@@ -127,36 +127,32 @@ object SingleSelectionHelper {
 
             binding.dragHandle.isVisible = true
             listView.setOnTouchListener { view, event ->
-                val list = view as? AbsListView ?: return@setOnTouchListener false
-                when (event.actionMasked) {
-                    MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
-                        /**
-                         * When the user touches the ListView, tell the parent not to intercept touch events.
-                         * This ensures the ListView handles vertical scroll gestures smoothly without
-                         * accidentally collapsing the BottomSheet.
-                         */
-                        val dy = event.y - (event.getHistoricalY(0) ?: event.y)
+    val list = view as? AbsListView ?: return@setOnTouchListener false
+    val dy = if (event.actionMasked == MotionEvent.ACTION_DOWN || event.historySize == 0)
+                 0f
+             else
+                 event.y - event.getHistoricalY(0)
 
-                        // Only intercept parent on swipe up if the list can scroll up
-                        if (dy < 0 && canScrollUp(list)) {
-                            view.parent.requestDisallowInterceptTouchEvent(true)
-                        }
-                    }
-                    MotionEvent.ACTION_UP -> {
-                        /**
-                         * When the user lifts their finger, allow the parent to intercept touch events again.
-                         * This is important for restoring normal gesture handling outside of active ListView scrolling,
-                         * like dragging the BottomSheet from the top once the scroll ends.
-                         */
-                        view.parent.requestDisallowInterceptTouchEvent(false)
-                    }
-                }
-
-                // Let the ListView handle the touch event normally.
-                view.onTouchEvent(event)
-                true
+    when (event.actionMasked) {
+        MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
+            /**
+             * When the user touches the ListView, tell the parent not to intercept touch events.
+             * This ensures the ListView handles vertical scroll gestures smoothly without
+             * accidentally collapsing the BottomSheet.
+             */
+            if (dy < 0 && canScrollUp(list)) {
+                view.parent.requestDisallowInterceptTouchEvent(true)
             }
         }
+        MotionEvent.ACTION_UP -> {
+            view.parent.requestDisallowInterceptTouchEvent(false)
+        }
+    }
+
+    view.onTouchEvent(event)
+    true
+}
+
 
         applyHolder.isVisible = realShowApply
         if (!realShowApply) {
