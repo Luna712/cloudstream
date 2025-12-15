@@ -136,7 +136,7 @@ object SingleSelectionHelper {
                          * content can currently scroll. By locking the draggable state at gesture start,
                          * we ensure the sheet only collapses when the user intentionally swipes from the top.
                          */
-                        val canScrollVertically = view.canScrollVertically(-1) || view.canScrollVertically(1)
+                        val canScrollVertically = listView.canScrollVertically(-1) || listView.canScrollVertically(1)
                         bottomSheetBehavior?.isHideable = !canScrollVertically
                     }
                 }
