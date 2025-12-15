@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isEmpty
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.core.view.marginLeft
@@ -118,6 +119,14 @@ object SingleSelectionHelper {
         val applyHolder = binding.applyBttHolder
 
         if (isLayout(PHONE or EMULATOR) && (dialog is BottomSheetDialog)) {
+            fun canScrollVertically(view: AbsListView): Boolean {
+                if (view.isEmpty()) return false
+                val isOnTop = view.firstVisiblePosition != 0 || view.getChildAt(0).top != 0
+                val isAllItemsVisible = isOnTop && view.lastVisiblePosition == view.childCount
+
+                return isOnTop || isAllItemsVisible
+            }
+
             binding.dragHandle.isVisible = true
             listView.setOnTouchListener { view, event ->
                 val list = view as? AbsListView ?: return@setOnTouchListener false
@@ -128,11 +137,7 @@ object SingleSelectionHelper {
                          * This ensures the ListView handles vertical scroll gestures smoothly without
                          * accidentally collapsing the BottomSheet.
                          */
-                        // Only disallow intercept touch for parent if ListView is scrollable.
-                        val canScrollVertically = list.childCount > 0 &&
-                            (list.firstVisiblePosition != 0 || list.getChildAt(0).top != 0 ||
-                                (list.firstVisiblePosition != 0 && list.lastVisiblePosition == list.childCount))
-                        view.parent.requestDisallowInterceptTouchEvent(canScrollVertically)
+                        view.parent.requestDisallowInterceptTouchEvent(canScrollVertically(list))
                     }
                     MotionEvent.ACTION_UP -> {
                         /**
