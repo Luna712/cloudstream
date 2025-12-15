@@ -97,7 +97,9 @@ object SingleSelectionHelper {
         //}
     }
 
-    fun Activity?.showDialog(
+    class BottomSelectionDialogHelper(private val activity: Activity?) {
+
+    fun Axtivity?showDialog(
         binding: BottomSelectionDialogBinding,
         dialog: Dialog,
         items: List<String>,
@@ -111,41 +113,32 @@ object SingleSelectionHelper {
     ) {
         if (this == null) return
 
-        val realShowApply = showApply || isMultiSelect
         val listView = binding.listview1
-        val textView = binding.text1
-        val applyButton = binding.applyBtt
-        val cancelButton = binding.cancelBtt
-        val applyHolder = binding.applyBttHolder
 
         if (isLayout(PHONE or EMULATOR) && (dialog is BottomSheetDialog)) {
-            fun canScrollInDirection(list: AbsListView, direction: Int): Boolean {
+
+            fun canScrollUp(list: AbsListView): Boolean {
                 if (list.isEmpty()) return false
-                return when {
-                    direction < 0 -> list.firstVisiblePosition != 0 || list.getChildAt(0).top != 0
-                    direction > 0 -> list.lastVisiblePosition < list.count - 1 ||
-                        list.getChildAt(list.childCount - 1).bottom > list.height
-                    else -> false
-                }
+                return list.firstVisiblePosition != 0 || list.getChildAt(0).top != 0
             }
 
             binding.dragHandle.isVisible = true
             listView.setOnTouchListener { view, event ->
                 val list = view as? AbsListView ?: return@setOnTouchListener false
-                when (event.action) {
-                    MotionEvent.ACTION_DOWN -> {
+                when (event.actionMasked) {
+                    MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
                         /**
                          * When the user touches the ListView, tell the parent not to intercept touch events.
                          * This ensures the ListView handles vertical scroll gestures smoothly without
                          * accidentally collapsing the BottomSheet.
                          */
                         val dy = event.y - (event.getHistoricalY(0) ?: event.y)
-                        val disallow = when {
-                            dy < 0 && canScrollInDirection(list, 1) -> true  // swiping up
-                            dy > 0 && canScrollInDirection(list, -1) -> true // swiping down
-                            else -> false
+
+                        // Only intercept parent on swipe up if the list can scroll up
+                        if (dy < 0 && canScrollUp(list)) {
+                            view.parent.requestDisallowInterceptTouchEvent(true)
                         }
-                        view.parent.requestDisallowInterceptTouchEvent(disallow)
+                        // Swipe down: do nothing, let parent handle expansion
                     }
                     MotionEvent.ACTION_UP -> {
                         /**
@@ -162,6 +155,9 @@ object SingleSelectionHelper {
                 true
             }
         }
+    }
+}
+
 
         applyHolder.isVisible = realShowApply
         if (!realShowApply) {
