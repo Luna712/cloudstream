@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Dialog
 import android.text.Spanned
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.widget.AbsListView
 import android.widget.ArrayAdapter
@@ -15,6 +16,7 @@ import androidx.core.view.isVisible
 import androidx.core.view.marginLeft
 import androidx.core.view.marginRight
 import androidx.core.view.marginTop
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.databinding.BottomInputDialogBinding
@@ -119,6 +121,31 @@ object SingleSelectionHelper {
         if (isLayout(PHONE or EMULATOR) && dialog is BottomSheetDialog) {
             binding.dragHandle.isVisible = true
             listView.isNestedScrollingEnabled = true
+            val bottomSheetBehavior = dialog.findViewById<View>(
+                com.google.android.material.R.id.design_bottom_sheet
+            )?.let(BottomSheetBehavior<View>::from)
+            listView.setOnTouchListener { view, event ->
+                when (event.actionMasked) {
+                    MotionEvent.ACTION_DOWN -> {
+                        val canScroll = view.canScrollVertically(-1) || view.canScrollVertically(1)
+                        val isExpanded = bottomSheetBehavior?.state == BottomSheetBehavior.STATE_EXPANDED
+                        if (canScroll && !isExpanded) {
+                            // If ListView is currently scrolling but not expanded,
+                            // which means it's in collapsed state, don't hide it
+                            // while scrolling is in progress.
+                            bottomSheetBehavior?.isHideable = false
+                        }
+                    }
+
+                    MotionEvent.ACTION_UP,
+                    MotionEvent.ACTION_CANCEL -> {
+                        // Restore state
+                        bottomSheetBehavior?.isHideable = true
+                    }
+                }
+
+                false
+            }
         }
 
         applyHolder.isVisible = realShowApply
