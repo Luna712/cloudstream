@@ -119,13 +119,36 @@ object SingleSelectionHelper {
         val applyHolder = binding.applyBttHolder
 
         if (isLayout(PHONE or EMULATOR) && (dialog is BottomSheetDialog)) {
-			binding.dragHandle.isVisible = true
-			val bottomSheetBehavior = (dialog as? BottomSheetDialog)
+            binding.dragHandle.isVisible = true
+            val bottomSheetBehavior = (dialog as? BottomSheetDialog)
                 ?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
                 ?.let(BottomSheetBehavior<View>::from)
 
-			bottomSheetBehavior?.isDraggableOnNestedScroll = false
-		}
+            listView.setOnScrollListener(object : AbsListView.OnScrollListener {
+                override fun onScrollStateChanged(view: AbsListView?, scrollState: Int) {
+                    if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+                        /**
+                         * Prevent the BottomSheet from collapsing while the user is scrolling the list.
+                         * Collapsing mid-scroll is interpreted as an accidental dismissal and is extremely
+                         * frustrating UX, especially for long lists where upward scroll gestures are common.
+                         *
+                         * BottomSheetBehavior does not track where a touch gesture begins, only whether the
+                         * content can currently scroll. By locking the draggable state at gesture start,
+                         * we ensure the sheet only collapses when the user intentionally swipes from the top.
+                         */
+                        val canScrollVertically = view.canScrollVertically(-1) || view.canScrollVertically(1)
+                        bottomSheetBehavior?.isHideable = !canScrollVertically
+                    }
+                }
+
+                override fun onScroll(
+                    view: AbsListView?,
+                    firstVisibleItem: Int,
+                    visibleItemCount: Int,
+                    totalItemCount: Int
+                ) {}
+            })
+        }
 
         applyHolder.isVisible = realShowApply
         if (!realShowApply) {
