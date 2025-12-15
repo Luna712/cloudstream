@@ -111,7 +111,12 @@ object SingleSelectionHelper {
     ) {
         if (this == null) return
 
+        val realShowApply = showApply || isMultiSelect
         val listView = binding.listview1
+        val textView = binding.text1
+        val applyButton = binding.applyBtt
+        val cancelButton = binding.cancelBtt
+        val applyHolder = binding.applyBttHolder
 
         if (isLayout(PHONE or EMULATOR) && (dialog is BottomSheetDialog)) {
 
