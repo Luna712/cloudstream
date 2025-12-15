@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    app:behavior_draggableOnNestedScroll="false">
+    app:behavior_draggableOnNestedScroll="false"
+    app:behavior_peekHeight="300dp"
+    app:behavior_hideable="false">
 
     <FrameLayout
         android:layout_width="match_parent"
