@@ -118,39 +118,8 @@ object SingleSelectionHelper {
         val applyHolder = binding.applyBttHolder
 
         if (isLayout(PHONE or EMULATOR) && (dialog is BottomSheetDialog)) {
-	binding.dragHandle.isVisible = true
-
-	var lastY = 0f
-
-	listView.setOnTouchListener { view, event ->
-		when (event.action) {
-			MotionEvent.ACTION_DOWN -> {
-				lastY = event.y
-				view.parent.requestDisallowInterceptTouchEvent(false)
-			}
-
-			MotionEvent.ACTION_MOVE -> {
-				val dy = event.y - lastY
-
-				val scrollingUp = dy < 0
-				val canScrollUp = view.canScrollVertically(-1)
-
-				view.parent.requestDisallowInterceptTouchEvent(
-					scrollingUp && canScrollUp
-				)
-			}
-
-			MotionEvent.ACTION_UP,
-			MotionEvent.ACTION_CANCEL -> {
-				view.parent.requestDisallowInterceptTouchEvent(false)
-			}
+			binding.dragHandle.isVisible = true
 		}
-
-		view.onTouchEvent(event)
-		true
-	}
-}
-
 
         applyHolder.isVisible = realShowApply
         if (!realShowApply) {
