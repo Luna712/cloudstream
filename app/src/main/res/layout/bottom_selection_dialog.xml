@@ -39,7 +39,6 @@
         android:requiresFadingEdge="vertical"
         android:nextFocusRight="@id/cancel_btt"
         android:nextFocusLeft="@id/apply_btt"
-        android:nestedScrollingEnabled="true"
         tools:listitem="@layout/sort_bottom_single_choice" />
 
     <LinearLayout
