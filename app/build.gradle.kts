@@ -89,8 +89,6 @@ android {
         versionCode = 67
         versionName = "4.6.1"
 
-        resValue("bool", "is_prerelease", "false")
-
         manifestPlaceholders["target_sdk_version"] = libs.versions.targetSdk.get()
 
         // Reads local.properties
@@ -143,11 +141,9 @@ android {
     productFlavors {
         create("stable") {
             dimension = "state"
-            resValue("bool", "is_prerelease", "false")
         }
         create("prerelease") {
             dimension = "state"
-            resValue("bool", "is_prerelease", "true")
             applicationIdSuffix = ".prerelease"
             if (signingConfigs.names.contains("prerelease")) {
                 signingConfig = signingConfigs.getByName("prerelease")
@@ -186,7 +182,6 @@ android {
 
     buildFeatures {
         buildConfig = true
-        resValues = true
     }
 
     namespace = "com.lagradost.cloudstream3"
