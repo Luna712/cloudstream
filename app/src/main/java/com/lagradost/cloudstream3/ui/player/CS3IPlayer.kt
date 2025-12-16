@@ -1089,9 +1089,7 @@ class CS3IPlayer : IPlayer {
                             setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_ON)
                         }
                     } else {
-                        DefaultRenderersFactory(context).apply {
-                            setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_ON)
-                        }
+                        DefaultRenderersFactory(context)
                     }
 
                     val style = CustomDecoder.style
