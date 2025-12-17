@@ -52,6 +52,7 @@ import androidx.media3.container.NalUnitUtil
 import androidx.media3.extractor.AacUtil
 import androidx.media3.extractor.AvcConfig
 import androidx.media3.extractor.ChunkIndex
+import androidx.media3.extractor.DtsUtil
 import androidx.media3.extractor.Extractor
 import androidx.media3.extractor.ExtractorInput
 import androidx.media3.extractor.ExtractorOutput
@@ -122,6 +123,7 @@ class UpdatedMatroskaExtractor private constructor(
     private var durationTimecode = C.TIME_UNSET
     private var durationUs = C.TIME_UNSET
     private var isWebm: Boolean = false
+    private var pendingEndTracks: Boolean
 
     // The track corresponding to the current TrackEntry element, or null.
     private var currentTrack: Track? = null
@@ -236,6 +238,7 @@ class UpdatedMatroskaExtractor private constructor(
         encryptionSubsampleData = ParsableByteArray()
         supplementalData = ParsableByteArray()
         blockSampleSizes = IntArray(1)
+        pendingEndTracks = true
     }
 
     @Throws(IOException::class)
@@ -549,7 +552,7 @@ class UpdatedMatroskaExtractor private constructor(
                         "No valid tracks were found",  /* cause= */null
                     )
                 }
-                extractorOutput!!.endTracks()
+                maybeEndTracks()
             }
 
             else -> {}
@@ -1203,6 +1206,20 @@ class UpdatedMatroskaExtractor private constructor(
             return finishWriteSampleData()
         }
 
+        if (track.waitingForDtsAnalysis) {
+            checkNotNull(track.format)
+            if (DtsUtil.isSampleDtsHd(input, size)) {
+                track.format = track.format!!
+                    .buildUpon()
+                    .setSampleMimeType(MimeTypes.AUDIO_DTS_HD)
+                    .build()
+            }
+
+            track.output.format(track.format)
+            track.waitingForDtsAnalysis = false
+            maybeEndTracks()
+        }
+
         val output = track.output
         if (!sampleEncodingHandled) {
             if (track.hasContentEncryption) {
@@ -1688,8 +1705,8 @@ class UpdatedMatroskaExtractor private constructor(
         var sampleRate: Int = 8000
         var codecDelayNs: Long = 0
         var seekPreRollNs: Long = 0
-        var trueHdSampleRechunker: TrueHdSampleRechunker? =
-            null
+        var trueHdSampleRechunker: TrueHdSampleRechunker? = null
+        var waitingForDtsAnalysis: Boolean = false
 
         // Text elements.
         var flagForced: Boolean = false
@@ -1698,6 +1715,7 @@ class UpdatedMatroskaExtractor private constructor(
 
         // Set when the output is initialized. nalUnitLengthFieldLength is only set for H264/H265.
         var output: TrackOutput? = null
+        var format: Format? = null
         var nalUnitLengthFieldLength: Int = 0
 
         /** Initializes the track with an output.  */
@@ -1837,7 +1855,10 @@ class UpdatedMatroskaExtractor private constructor(
                     trueHdSampleRechunker = TrueHdSampleRechunker()
                 }
 
-                CODEC_ID_DTS, CODEC_ID_DTS_EXPRESS -> mimeType = MimeTypes.AUDIO_DTS
+                CODEC_ID_DTS, CODEC_ID_DTS_EXPRESS -> {
+                    mimeType = MimeTypes.AUDIO_DTS // temporary
+                    waitingForDtsAnalysis = true
+                }
                 CODEC_ID_DTS_LOSSLESS -> mimeType = MimeTypes.AUDIO_DTS_HD
                 CODEC_ID_FLAC -> {
                     mimeType = MimeTypes.AUDIO_FLAC
@@ -2065,7 +2086,7 @@ class UpdatedMatroskaExtractor private constructor(
                 formatBuilder.setLabel(name)
             }
 
-            val format =
+            format =
                 formatBuilder
                     .setId(trackId)
                     .setContainerMimeType(if (isWebm) MimeTypes.VIDEO_WEBM else MimeTypes.VIDEO_MATROSKA)
@@ -2079,7 +2100,9 @@ class UpdatedMatroskaExtractor private constructor(
                     .build()
 
             this.output = output.track(number, type)
-            this.output!!.format(format)
+            if (!waitingForDtsAnalysis) {
+                this.output!!.format(format);
+            }
         }
 
         /** Forces any pending sample metadata to be flushed to the output.  */
@@ -2852,6 +2875,16 @@ class UpdatedMatroskaExtractor private constructor(
                 )
             }
         }
+
+        private fun maybeEndTracks() {
+            if (!pendingEndTracks) return
+
+            for (i in 0 until tracks.size()) {
+                if (tracks.valueAt(i).waitingForDtsAnalysis) return
+            }
+
+            checkNotNull(extractorOutput).endTracks()
+            pendingEndTracks = false
+        }
     }
 }
-
