@@ -1607,13 +1607,12 @@ class CS3IPlayer : IPlayer {
             currentDownloadedFile = data
 
             // TODO: support more types
-            val mime = when (val type = context.contentResolver.getType(data.uri)) {
+            val mime = when (context.contentResolver.getType(data.uri)) {
                 "audio/x-mpegurl", "audio/mpegurl",
                 "application/x-mpegurl",
                 "application/vnd.apple.mpegurl" -> MimeTypes.APPLICATION_M3U8
                 else -> MimeTypes.VIDEO_MP4
             }
-            com.lagradost.cloudstream3.CommonActivity.showToast(mime)
 
             val mediaItem = getMediaItem(mime, data.uri)
             val offlineSourceFactory = context.createOfflineSource()
