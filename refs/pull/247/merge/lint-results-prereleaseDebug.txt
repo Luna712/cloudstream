@@ -220,7 +220,7 @@
    You should manually check whether the generated output is acceptable for
    those older devices.
 
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:4: Warning: A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.1 [GradleDependency]
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:4: Warning: A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.2 [GradleDependency]
 activityKtx = "1.11.0"
               ~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:7: Warning: A newer version of androidx.biometric:biometric than 1.4.0-alpha04 is available: 1.4.0-alpha05 [GradleDependency]

@@ -526,7 +526,7 @@
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.1"
+        message="A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.2"
         category="Correctness"
         priority="4"
         summary="Obsolete Gradle Dependency"
