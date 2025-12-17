@@ -1606,7 +1606,15 @@ class CS3IPlayer : IPlayer {
         try {
             currentDownloadedFile = data
 
-            val mediaItem = getMediaItem(MimeTypes.APPLICATION_M3U8, data.uri)
+            // TODO: Improve MIME type detection. Currently only detects files ending with ".m3u8".
+            //       Consider adding support for M3U8 files that may not have the ".m3u8" extension,
+            //       and handle other file types more robustly.
+            val mime = when {
+                data.uri.toString().endsWith(".m3u8", ignoreCase = true) -> MimeTypes.APPLICATION_M3U8
+                else -> MimeTypes.VIDEO_MP4
+            }
+
+            val mediaItem = getMediaItem(mime, data.uri)
             val offlineSourceFactory = context.createOfflineSource()
             val onlineSourceFactory = createOnlineSource(emptyMap())
 
