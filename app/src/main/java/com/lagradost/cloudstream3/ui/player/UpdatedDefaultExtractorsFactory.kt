@@ -104,7 +104,7 @@ class UpdatedDefaultExtractorsFactory : ExtractorsFactory {
     private var tsTimestampSearchBytes: Int
     private var textTrackTranscodingEnabled: Boolean
     private var subtitleParserFactory: SubtitleParser.Factory
-    private var codecsToParseWithinGopSampleDependencies: @C.VideoCodecFlags Int = 0
+    private var codecsToParseWithinGopSampleDependencies: @C.VideoCodecFlags Int
     private var jpegFlags: @JpegExtractor.Flags Int = 0
 
     init {
@@ -112,6 +112,7 @@ class UpdatedDefaultExtractorsFactory : ExtractorsFactory {
         tsTimestampSearchBytes = TsExtractor.DEFAULT_TIMESTAMP_SEARCH_BYTES
         subtitleParserFactory = DefaultSubtitleParserFactory()
         textTrackTranscodingEnabled = true
+        codecsToParseWithinGopSampleDependencies = C.VIDEO_CODEC_FLAG_H264 or C.VIDEO_CODEC_FLAG_H265
     }
 
     /**
@@ -665,5 +666,6 @@ class UpdatedDefaultExtractorsFactory : ExtractorsFactory {
             }
     }
 }
+
 
 
