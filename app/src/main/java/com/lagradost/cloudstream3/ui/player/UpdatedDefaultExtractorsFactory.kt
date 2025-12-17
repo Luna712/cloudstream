@@ -350,7 +350,7 @@ class UpdatedDefaultExtractorsFactory : ExtractorsFactory {
 
     @Synchronized
     override fun experimentalSetCodecsToParseWithinGopSampleDependencies(
-        @C.VideoCodecFlags codecsToParseWithinGopSampleDependencies: Int
+        codecsToParseWithinGopSampleDependencies: @C.VideoCodecFlags Int
     ): UpdatedDefaultExtractorsFactory {
         this.codecsToParseWithinGopSampleDependencies = codecsToParseWithinGopSampleDependencies
         return this
@@ -665,4 +665,5 @@ class UpdatedDefaultExtractorsFactory : ExtractorsFactory {
             }
     }
 }
+
 
