@@ -375,7 +375,7 @@ class UpdatedMatroskaExtractor private constructor(
             ID_CONTENT_ENCRYPTION -> getCurrentTrack(id).hasContentEncryption = true
             ID_TRACK_ENTRY -> {
                 currentTrack = Track()
-                currentTrack.isWebm = isWebm
+                currentTrack!!.isWebm = isWebm
             }
             ID_MASTERING_METADATA -> getCurrentTrack(id).hasColorInfo = true
             else -> {}
@@ -2068,7 +2068,7 @@ class UpdatedMatroskaExtractor private constructor(
             val format =
                 formatBuilder
                     .setId(trackId)
-                    .setContainerMimeType(isWebm ? MimeTypes.VIDEO_WEBM : MimeTypes.VIDEO_MATROSKA)
+                    .setContainerMimeType(if (isWebm) MimeTypes.VIDEO_WEBM else MimeTypes.VIDEO_MATROSKA)
                     .setSampleMimeType(mimeType)
                     .setMaxInputSize(maxInputSize)
                     .setLanguage(language)
@@ -2854,3 +2854,4 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
