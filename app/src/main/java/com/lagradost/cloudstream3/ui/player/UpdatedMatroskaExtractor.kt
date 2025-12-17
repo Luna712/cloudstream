@@ -1607,6 +1607,17 @@ class UpdatedMatroskaExtractor private constructor(
         )
     }
 
+    private fun maybeEndTracks() {
+        if (!pendingEndTracks) return
+
+        for (i in 0 until tracks.size()) {
+            if (tracks.valueAt(i).waitingForDtsAnalysis) return
+        }
+
+        checkNotNull(extractorOutput).endTracks()
+        pendingEndTracks = false
+    }
+
     /** Passes events through to the outer [UpdatedMatroskaExtractor].  */
     private inner class InnerEbmlProcessor : EbmlProcessor {
         override fun getElementType(id: Int): @EbmlProcessor.ElementType Int {
@@ -2101,7 +2112,7 @@ class UpdatedMatroskaExtractor private constructor(
 
             this.output = output.track(number, type)
             if (!waitingForDtsAnalysis) {
-                this.output!!.format(format);
+                this.output!!.format(format!!);
             }
         }
 
@@ -2875,16 +2886,6 @@ class UpdatedMatroskaExtractor private constructor(
                 )
             }
         }
-
-        private fun maybeEndTracks() {
-            if (!pendingEndTracks) return
-
-            for (i in 0 until tracks.size()) {
-                if (tracks.valueAt(i).waitingForDtsAnalysis) return
-            }
-
-            checkNotNull(extractorOutput).endTracks()
-            pendingEndTracks = false
-        }
     }
 }
+
