@@ -59,7 +59,7 @@ object OfflinePlaybackHelper {
     }
 
     fun playUri(activity: Activity, uri: Uri) {
-        if (uri.scheme == "magnet") {
+        if (uri.scheme != "magnet") {
             playLink(activity, uri.toString())
             return
         }
