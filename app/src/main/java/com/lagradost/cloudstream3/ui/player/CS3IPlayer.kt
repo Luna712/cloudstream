@@ -1608,6 +1608,7 @@ class CS3IPlayer : IPlayer {
 
             val mime = context.contentResolver.getType(data.uri) ?:
                 MimeTypes.VIDEO_MP4
+            com.lagradost.cloudstream3.CommonActivity.showToast(mime)
 
             val mediaItem = getMediaItem(mime, data.uri)
             val offlineSourceFactory = context.createOfflineSource()
