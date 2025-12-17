@@ -98,7 +98,21 @@
 
    https://developer.android.com/guide/app-bundle/configure-base#handling_language_changes
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/AndroidManifest.xml:176: Warning: This intent filter has the format of an Android App Link but is missing the autoVerify attribute; add android:autoVerify="true" to ensure your domain will be validated and enable App Link-related Lint warnings. If you do not want clicked URLs to bring the user to your app, remove the android.intent.category.BROWSABLE category, or set android:autoVerify="false" to make it clear this is not intended to be an Android App Link. [AppLinkWarning]
+/home/runner/work/cloudstream/cloudstream/app/src/main/AndroidManifest.xml:76: Error: At least one host must be specified [AppLinkUrlError]
+                <data android:scheme="file" />
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/AndroidManifest.xml:84: Error: Mime-type matching is case sensitive and should only use lower-case characters [AppLinkUrlError]
+                <data android:mimeType="application/x-mpegURL" />
+                                        ~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "AppLinkUrlError":
+   Ensure your intent filter has the documented elements for deep links, web
+   links, or Android App Links.
+
+   https://developer.android.com/training/app-links
+   https://g.co/AppIndexing/AndroidStudio
+
+/home/runner/work/cloudstream/cloudstream/app/src/main/AndroidManifest.xml:186: Warning: This intent filter has the format of an Android App Link but is missing the autoVerify attribute; add android:autoVerify="true" to ensure your domain will be validated and enable App Link-related Lint warnings. If you do not want clicked URLs to bring the user to your app, remove the android.intent.category.BROWSABLE category, or set android:autoVerify="false" to make it clear this is not intended to be an Android App Link. [AppLinkWarning]
             <intent-filter>
              ~~~~~~~~~~~~~
 
@@ -2395,4 +2409,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-5 errors, 640 warnings, 1 hint
+7 errors, 640 warnings, 1 hint

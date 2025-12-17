@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 5 errors, 640 warnings and 1 hint</span>
+      <span class="mdl-layout-title">Lint Report: 7 errors, 640 warnings and 1 hint</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Dec 17 19:33:40 UTC 2025 by AGP (9.0.0-beta05)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Dec 17 20:38:12 UTC 2025 by AGP (9.0.0-beta05)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -191,6 +191,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#InternalInsetResource"><i class="material-icons warning-icon">warning</i>Using internal inset dimension resource (2)</a>
       <a class="mdl-navigation__link" href="#UnusedAttribute"><i class="material-icons warning-icon">warning</i>Attribute unused on older versions (7)</a>
       <a class="mdl-navigation__link" href="#AppBundleLocaleChanges"><i class="material-icons warning-icon">warning</i>App Bundle handling of runtime locale changes (1)</a>
+      <a class="mdl-navigation__link" href="#AppLinkUrlError"><i class="material-icons error-icon">error</i>URI invalid (2)</a>
       <a class="mdl-navigation__link" href="#AppLinkWarning"><i class="material-icons warning-icon">warning</i>App Link warning (1)</a>
       <a class="mdl-navigation__link" href="#BatteryLife"><i class="material-icons warning-icon">warning</i>Battery Life Issues (2)</a>
       <a class="mdl-navigation__link" href="#DefaultUncaughtExceptionDelegation"><i class="material-icons warning-icon">warning</i>Missing default uncaught exception handler delegation (1)</a>
@@ -258,6 +259,9 @@ document.getElementById(id).style.display = 'none';
 <tr>
 <td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#AppBundleLocaleChanges">AppBundleLocaleChanges</a>: App Bundle handling of runtime locale changes</td></tr>
+<tr>
+<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
+<a href="#AppLinkUrlError">AppLinkUrlError</a>: URI invalid</td></tr>
 <tr>
 <td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#AppLinkWarning">AppLinkWarning</a>: App Link warning</td></tr>
@@ -700,6 +704,63 @@ When changing locales at runtime (e.g. to provide an in-app language switcher), 
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="AppBundleLocaleChangesCardLink" onclick="hideid('AppBundleLocaleChangesCard');">
 Dismiss</button>            </div>
             </div>
+          </section><a name="AppLinkUrlError"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="AppLinkUrlErrorCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">URI invalid</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/AndroidManifest.xml">../../src/main/AndroidManifest.xml</a>:76</span>: <span class="message">At least one <code>host</code> must be specified</span><br /><pre class="errorlines">
+<span class="lineno">  73 </span>                <span class="tag">&lt;category</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">name</span>=<span class="value">"android.intent.category.DEFAULT"</span> />
+<span class="lineno">  74 </span>                <span class="tag">&lt;category</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">name</span>=<span class="value">"android.intent.category.BROWSABLE"</span> />
+<span class="lineno">  75 </span>
+<span class="caretline"><span class="lineno">  76 </span>                <span class="error"><span class="tag">&lt;data</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">scheme</span>=<span class="value">"file"</span> /></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  77 </span>                <span class="tag">&lt;data</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">scheme</span>=<span class="value">"content"</span> />
+<span class="lineno">  78 </span>
+<span class="lineno">  79 </span>                <span class="tag">&lt;data</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">mimeType</span>=<span class="value">"video/*"</span> />
+</pre>
+
+<span class="location"><a href="../../src/main/AndroidManifest.xml">../../src/main/AndroidManifest.xml</a>:84</span>: <span class="message">Mime-type matching is case sensitive and should only use lower-case characters</span><br /><pre class="errorlines">
+<span class="lineno">  81 </span>
+<span class="lineno">  82 </span>                <span class="tag">&lt;data</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">mimeType</span>=<span class="value">"application/mpeg*"</span> />
+<span class="lineno">  83 </span>                <span class="tag">&lt;data</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">mimeType</span>=<span class="value">"application/vnd.apple.mpegurl"</span> />
+<span class="caretline"><span class="lineno">  84 </span>                <span class="tag">&lt;data</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">mimeType</span>=<span class="value">"</span><span class="error"><span class="value">application/x-mpegURL</span></span><span class="value">"</span> />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  85 </span>
+<span class="lineno">  86 </span>                <span class="tag">&lt;data</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">pathPattern</span>=<span class="value">".*\\.m3u8"</span> />
+<span class="lineno">  87 </span>            <span class="tag">&lt;/intent-filter></span></pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationAppLinkUrlError" style="display: none;">
+Ensure your intent filter has the documented elements for deep links, web links, or Android App Links.<br/><div class="moreinfo">More info: <ul><li><a href="https://developer.android.com/training/app-links">https://developer.android.com/training/app-links</a>
+<li><a href="https://g.co/AppIndexing/AndroidStudio">https://g.co/AppIndexing/AndroidStudio</a>
+</ul></div>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "AppLinkUrlError" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">AppLinkUrlError</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Error</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 5/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationAppLinkUrlErrorLink" onclick="reveal('explanationAppLinkUrlError');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="AppLinkUrlErrorCardLink" onclick="hideid('AppLinkUrlErrorCard');">
+Dismiss</button>            </div>
+            </div>
           </section><a name="AppLinkWarning"></a>
 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="AppLinkWarningCard" style="display: block;">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
@@ -709,14 +770,14 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/AndroidManifest.xml">../../src/main/AndroidManifest.xml</a>:176</span>: <span class="message">This intent filter has the format of an Android App Link but is missing the <code>autoVerify</code> attribute; add <code>android:autoVerify="true"</code> to ensure your domain will be validated and enable App Link-related Lint warnings. If you do not want clicked URLs to bring the user to your app, remove the <code>android.intent.category.BROWSABLE</code> category, or set <code>android:autoVerify="false"</code> to make it clear this is not intended to be an Android App Link.</span><br /><pre class="errorlines">
-<span class="lineno"> 173 </span>                <span class="tag">&lt;data</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">scheme</span>=<span class="value">"cloudstreamcontinuewatching"</span> />
-<span class="lineno"> 174 </span>            <span class="tag">&lt;/intent-filter></span>
-<span class="lineno"> 175 </span>
-<span class="caretline"><span class="lineno"> 176 </span>            <span class="tag">&lt;</span><span class="warning"><span class="tag">intent-filter</span></span><span class="tag">></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 177 </span>                <span class="tag">&lt;action</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">name</span>=<span class="value">"android.intent.action.VIEW"</span> />
-<span class="lineno"> 178 </span>
-<span class="lineno"> 179 </span>                <span class="tag">&lt;category</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">name</span>=<span class="value">"android.intent.category.DEFAULT"</span> />
+<span class="location"><a href="../../src/main/AndroidManifest.xml">../../src/main/AndroidManifest.xml</a>:186</span>: <span class="message">This intent filter has the format of an Android App Link but is missing the <code>autoVerify</code> attribute; add <code>android:autoVerify="true"</code> to ensure your domain will be validated and enable App Link-related Lint warnings. If you do not want clicked URLs to bring the user to your app, remove the <code>android.intent.category.BROWSABLE</code> category, or set <code>android:autoVerify="false"</code> to make it clear this is not intended to be an Android App Link.</span><br /><pre class="errorlines">
+<span class="lineno"> 183 </span>                <span class="tag">&lt;data</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">scheme</span>=<span class="value">"cloudstreamcontinuewatching"</span> />
+<span class="lineno"> 184 </span>            <span class="tag">&lt;/intent-filter></span>
+<span class="lineno"> 185 </span>
+<span class="caretline"><span class="lineno"> 186 </span>            <span class="tag">&lt;</span><span class="warning"><span class="tag">intent-filter</span></span><span class="tag">></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 187 </span>                <span class="tag">&lt;action</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">name</span>=<span class="value">"android.intent.action.VIEW"</span> />
+<span class="lineno"> 188 </span>
+<span class="lineno"> 189 </span>                <span class="tag">&lt;category</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">name</span>=<span class="value">"android.intent.category.DEFAULT"</span> />
 </pre>
 
 </div>

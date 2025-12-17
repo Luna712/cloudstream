@@ -196,6 +196,42 @@
     </issue>
 
     <issue
+        id="AppLinkUrlError"
+        severity="Error"
+        message="At least one `host` must be specified"
+        category="Correctness"
+        priority="5"
+        summary="URI invalid"
+        explanation="Ensure your intent filter has the documented elements for deep links, web links, or Android App Links."
+        url="https://developer.android.com/training/app-links"
+        urls="https://developer.android.com/training/app-links,https://g.co/AppIndexing/AndroidStudio"
+        errorLine1="                &lt;data android:scheme=&quot;file&quot; />"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/AndroidManifest.xml"
+            line="76"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="AppLinkUrlError"
+        severity="Error"
+        message="Mime-type matching is case sensitive and should only use lower-case characters"
+        category="Correctness"
+        priority="5"
+        summary="URI invalid"
+        explanation="Ensure your intent filter has the documented elements for deep links, web links, or Android App Links."
+        url="https://developer.android.com/training/app-links"
+        urls="https://developer.android.com/training/app-links,https://g.co/AppIndexing/AndroidStudio"
+        errorLine1="                &lt;data android:mimeType=&quot;application/x-mpegURL&quot; />"
+        errorLine2="                                        ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/AndroidManifest.xml"
+            line="84"
+            column="41"/>
+    </issue>
+
+    <issue
         id="AppLinkWarning"
         severity="Warning"
         message="This intent filter has the format of an Android App Link but is missing the `autoVerify` attribute; add `android:autoVerify=&quot;true&quot;` to ensure your domain will be validated and enable App Link-related Lint warnings. If you do not want clicked URLs to bring the user to your app, remove the `android.intent.category.BROWSABLE` category, or set `android:autoVerify=&quot;false&quot;` to make it clear this is not intended to be an Android App Link."
@@ -209,7 +245,7 @@
         errorLine2="             ~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/AndroidManifest.xml"
-            line="176"
+            line="186"
             column="14"/>
     </issue>
 
