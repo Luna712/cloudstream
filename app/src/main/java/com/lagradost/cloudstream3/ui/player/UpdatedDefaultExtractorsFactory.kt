@@ -13,6 +13,7 @@ package com.lagradost.cloudstream3.ui.player
 
 import android.net.Uri
 import androidx.annotation.GuardedBy
+import androidx.media3.common.C
 import androidx.media3.common.FileTypes
 import androidx.media3.common.Format
 import androidx.media3.common.util.TimestampAdjuster
@@ -103,6 +104,7 @@ class UpdatedDefaultExtractorsFactory : ExtractorsFactory {
     private var tsTimestampSearchBytes: Int
     private var textTrackTranscodingEnabled: Boolean
     private var subtitleParserFactory: SubtitleParser.Factory
+    private var codecsToParseWithinGopSampleDependencies: @C.VideoCodecFlags Int = 0
     private var jpegFlags: @JpegExtractor.Flags Int = 0
 
     init {
@@ -346,6 +348,14 @@ class UpdatedDefaultExtractorsFactory : ExtractorsFactory {
         return this
     }
 
+    @Synchronized
+    override fun experimentalSetCodecsToParseWithinGopSampleDependencies(
+        @C.VideoCodecFlags codecsToParseWithinGopSampleDependencies: Int
+    ): UpdatedDefaultExtractorsFactory {
+        this.codecsToParseWithinGopSampleDependencies = codecsToParseWithinGopSampleDependencies
+        return this
+    }
+
     /**
      * Sets flags for [JpegExtractor] instances created by the factory.
      *
@@ -468,21 +478,26 @@ class UpdatedDefaultExtractorsFactory : ExtractorsFactory {
                 extractors.add(
                     FragmentedMp4Extractor(
                         subtitleParserFactory,
-                        fragmentedMp4Flags
-                                or (if (textTrackTranscodingEnabled)
-                            0
-                        else
-                            FragmentedMp4Extractor.FLAG_EMIT_RAW_SUBTITLE_DATA)
+                        fragmentedMp4Flags or
+                            FragmentedMp4Extractor
+                                .codecsToParseWithinGopSampleDependenciesAsFlags(
+                                    codecsToParseWithinGopSampleDependencies
+                                ) or
+                        if (textTrackTranscodingEnabled) 0
+                        else FragmentedMp4Extractor.FLAG_EMIT_RAW_SUBTITLE_DATA
                     )
                 )
+
                 extractors.add(
                     Mp4Extractor(
                         subtitleParserFactory,
-                        mp4Flags
-                                or (if (textTrackTranscodingEnabled)
-                            0
-                        else
-                            Mp4Extractor.FLAG_EMIT_RAW_SUBTITLE_DATA)
+                        mp4Flags or
+                            Mp4Extractor
+                                .codecsToParseWithinGopSampleDependenciesAsFlags(
+                                    codecsToParseWithinGopSampleDependencies
+                                ) or
+                        if (textTrackTranscodingEnabled) 0
+                        else Mp4Extractor.FLAG_EMIT_RAW_SUBTITLE_DATA
                     )
                 )
             }
@@ -650,3 +665,4 @@ class UpdatedDefaultExtractorsFactory : ExtractorsFactory {
             }
     }
 }
+
