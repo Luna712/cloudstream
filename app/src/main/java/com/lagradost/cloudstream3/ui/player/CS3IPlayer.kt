@@ -1606,11 +1606,8 @@ class CS3IPlayer : IPlayer {
         try {
             currentDownloadedFile = data
 
-            // TODO: support other mime types as well
-            val mime = when (context.contentResolver.getType(data.uri)) {
-                MimeTypes.APPLICATION_M3U8 -> MimeTypes.APPLICATION_M3U8
-                else -> MimeTypes.VIDEO_MP4
-            }
+            val mime = context.contentResolver.getType(data.uri) ?:
+                MimeTypes.VIDEO_MP4
 
             val mediaItem = getMediaItem(mime, data.uri)
             val offlineSourceFactory = context.createOfflineSource()
