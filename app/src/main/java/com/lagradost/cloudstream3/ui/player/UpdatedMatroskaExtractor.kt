@@ -1215,7 +1215,7 @@ class UpdatedMatroskaExtractor private constructor(
                     .build()
             }
 
-            track.output.format(track.format)
+            track.output!!.format(track.format!!)
             track.waitingForDtsAnalysis = false
             maybeEndTracks()
         }
@@ -2888,4 +2888,5 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
 
