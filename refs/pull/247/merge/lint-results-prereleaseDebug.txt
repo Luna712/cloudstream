@@ -223,12 +223,18 @@
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:4: Warning: A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.1 [GradleDependency]
 activityKtx = "1.11.0"
               ~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:7: Warning: A newer version of androidx.biometric:biometric than 1.4.0-alpha04 is available: 1.4.0-alpha05 [GradleDependency]
+biometric = "1.4.0-alpha04"
+            ~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:28: Warning: A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.9.4 is available: 2.10.0 [GradleDependency]
 lifecycleKtx = "2.9.4"
                ~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:28: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.9.4 is available: 2.10.0 [GradleDependency]
 lifecycleKtx = "2.9.4"
                ~~~~~~~
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:29: Warning: A newer version of com.google.android.material:material than 1.14.0-alpha07 is available: 1.14.0-alpha08 [GradleDependency]
+material = "1.14.0-alpha07"
+           ~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:48: Warning: A newer version of androidx.work:work-runtime-ktx than 2.10.5 is available: 2.11.0 [GradleDependency]
 workRuntimeKtx = "2.10.5"
                  ~~~~~~~~
@@ -2389,4 +2395,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-5 errors, 638 warnings, 1 hint
+5 errors, 640 warnings, 1 hint

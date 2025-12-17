@@ -542,6 +542,22 @@
     <issue
         id="GradleDependency"
         severity="Warning"
+        message="A newer version of androidx.biometric:biometric than 1.4.0-alpha04 is available: 1.4.0-alpha05"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="biometric = &quot;1.4.0-alpha04&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="7"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
         message="A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.9.4 is available: 2.10.0"
         category="Correctness"
         priority="4"
@@ -569,6 +585,22 @@
             file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
             line="28"
             column="16"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of com.google.android.material:material than 1.14.0-alpha07 is available: 1.14.0-alpha08"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="material = &quot;1.14.0-alpha07&quot;"
+        errorLine2="           ~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="29"
+            column="12"/>
     </issue>
 
     <issue

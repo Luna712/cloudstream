@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 5 errors, 638 warnings and 1 hint</span>
+      <span class="mdl-layout-title">Lint Report: 5 errors, 640 warnings and 1 hint</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Dec 17 16:59:13 UTC 2025 by AGP (9.0.0-beta05)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Dec 17 18:04:54 UTC 2025 by AGP (9.0.0-beta05)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -196,7 +196,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#DefaultUncaughtExceptionDelegation"><i class="material-icons warning-icon">warning</i>Missing default uncaught exception handler delegation (1)</a>
       <a class="mdl-navigation__link" href="#PictureInPictureIssue"><i class="material-icons warning-icon">warning</i>Picture In Picture best practices not followed (1)</a>
       <a class="mdl-navigation__link" href="#VectorRaster"><i class="material-icons warning-icon">warning</i>Vector Image Generation (15)</a>
-      <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (4)</a>
+      <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (6)</a>
       <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (2)</a>
       <a class="mdl-navigation__link" href="#PrivateResource"><i class="material-icons warning-icon">warning</i>Using private resources (26)</a>
       <a class="mdl-navigation__link" href="#Aligned16KB"><i class="material-icons warning-icon">warning</i>Native library dependency not 16 KB aligned (9)</a>
@@ -274,7 +274,7 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">15</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#VectorRaster">VectorRaster</a>: Vector Image Generation</td></tr>
 <tr>
-<td class="countColumn">4</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">6</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#GradleDependency">GradleDependency</a>: Obsolete Gradle Dependency</td></tr>
 <tr>
 <td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
@@ -1092,6 +1092,16 @@ Dismiss</button>            </div>
 <span class="lineno">   7 </span>biometric = "1.4.0-alpha04"
 </pre>
 
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:7</span>: <span class="message">A newer version of androidx.biometric:biometric than 1.4.0-alpha04 is available: 1.4.0-alpha05</span><br /><pre class="errorlines">
+<span class="lineno">   4 </span>activityKtx = "1.11.0"
+<span class="lineno">   5 </span>androidGradlePlugin = "9.0.0-beta05"
+<span class="lineno">   6 </span>appcompat = "1.7.1"
+<span class="caretline"><span class="lineno">   7 </span>biometric = <span class="warning">"1.4.0-alpha04"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">   8 </span>buildkonfigGradlePlugin = "0.17.1"
+<span class="lineno">   9 </span>coil = "3.3.0"
+<span class="lineno">  10 </span>colorpicker = "6b46b49bd5"
+</pre>
+
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:28</span>: <span class="message">A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.9.4 is available: 2.10.0</span><br /><pre class="errorlines">
 <span class="lineno">  25 </span>juniversalchardet = "2.5.0"
 <span class="lineno">  26 </span>kotlinGradlePlugin = "2.3.20-dev-6805"
@@ -1110,6 +1120,16 @@ Dismiss</button>            </div>
 <span class="lineno">  29 </span>material = "1.14.0-alpha07"
 <span class="lineno">  30 </span>media3 = "1.9.0-rc01"
 <span class="lineno">  31 </span>media3FfmpegDecoder = "1.8.0+1"
+</pre>
+
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:29</span>: <span class="message">A newer version of com.google.android.material:material than 1.14.0-alpha07 is available: 1.14.0-alpha08</span><br /><pre class="errorlines">
+<span class="lineno">  26 </span>kotlinGradlePlugin = "2.3.20-dev-6805"
+<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
+<span class="lineno">  28 </span>lifecycleKtx = "2.9.4"
+<span class="caretline"><span class="lineno">  29 </span>material = <span class="warning">"1.14.0-alpha07"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  30 </span>media3 = "1.9.0-rc01"
+<span class="lineno">  31 </span>media3FfmpegDecoder = "1.8.0+1"
+<span class="lineno">  32 </span>navigationKtx = "2.9.6"
 </pre>
 
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:48</span>: <span class="message">A newer version of androidx.work:work-runtime-ktx than 2.10.5 is available: 2.11.0</span><br /><pre class="errorlines">
