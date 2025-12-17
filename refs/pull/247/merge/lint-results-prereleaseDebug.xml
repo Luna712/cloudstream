@@ -245,7 +245,7 @@
         errorLine2="             ~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/AndroidManifest.xml"
-            line="186"
+            line="187"
             column="14"/>
     </issue>
 

@@ -112,7 +112,7 @@
    https://developer.android.com/training/app-links
    https://g.co/AppIndexing/AndroidStudio
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/AndroidManifest.xml:186: Warning: This intent filter has the format of an Android App Link but is missing the autoVerify attribute; add android:autoVerify="true" to ensure your domain will be validated and enable App Link-related Lint warnings. If you do not want clicked URLs to bring the user to your app, remove the android.intent.category.BROWSABLE category, or set android:autoVerify="false" to make it clear this is not intended to be an Android App Link. [AppLinkWarning]
+/home/runner/work/cloudstream/cloudstream/app/src/main/AndroidManifest.xml:187: Warning: This intent filter has the format of an Android App Link but is missing the autoVerify attribute; add android:autoVerify="true" to ensure your domain will be validated and enable App Link-related Lint warnings. If you do not want clicked URLs to bring the user to your app, remove the android.intent.category.BROWSABLE category, or set android:autoVerify="false" to make it clear this is not intended to be an Android App Link. [AppLinkWarning]
             <intent-filter>
              ~~~~~~~~~~~~~
 
