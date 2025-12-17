@@ -1606,7 +1606,7 @@ class CS3IPlayer : IPlayer {
         try {
             currentDownloadedFile = data
 
-            val mediaItem = getMediaItem(MimeTypes.VIDEO_MP4, data.uri)
+            val mediaItem = getMediaItem(MimeTypes.APPLICATION_M3U8, data.uri)
             val offlineSourceFactory = context.createOfflineSource()
             val onlineSourceFactory = createOnlineSource(emptyMap())
 
