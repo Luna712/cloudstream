@@ -49,7 +49,6 @@ import java.lang.reflect.Constructor
 import java.lang.reflect.InvocationTargetException
 import java.util.concurrent.atomic.AtomicBoolean
 
-
 /**
  * An [ExtractorsFactory] that provides an array of extractors for the following formats:
  *
@@ -106,6 +105,7 @@ class UpdatedDefaultExtractorsFactory : ExtractorsFactory {
     private var subtitleParserFactory: SubtitleParser.Factory
     private var codecsToParseWithinGopSampleDependencies: @C.VideoCodecFlags Int
     private var jpegFlags: @JpegExtractor.Flags Int = 0
+    private var heifFlags: @HeifExtractor.Flags Int = 0
 
     init {
         tsMode = TsExtractor.MODE_SINGLE_PMT
@@ -372,6 +372,21 @@ class UpdatedDefaultExtractorsFactory : ExtractorsFactory {
         return this
     }
 
+    /**
+     * Sets flags for [HeifExtractor] instances created by the factory.
+     *
+     * @see HeifExtractor.HeifExtractor
+     * @param flags The flags to use.
+     * @return The factory, for convenience.
+     */
+    @Synchronized
+    fun setHeifExtractorFlags(
+        flags: @HeifExtractor.Flags Int
+    ): UpdatedDefaultExtractorsFactory {
+        this.heifFlags = flags
+        return this
+    }
+
     @Synchronized
     override fun createExtractors(): Array<Extractor> {
         return createExtractors(Uri.EMPTY, HashMap())
@@ -540,12 +555,7 @@ class UpdatedDefaultExtractorsFactory : ExtractorsFactory {
             FileTypes.PNG -> extractors.add(PngExtractor())
             FileTypes.WEBP -> extractors.add(WebpExtractor())
             FileTypes.BMP -> extractors.add(BmpExtractor())
-            FileTypes.HEIF -> if ((mp4Flags and Mp4Extractor.FLAG_READ_MOTION_PHOTO_METADATA) == 0
-                && (mp4Flags and Mp4Extractor.FLAG_READ_SEF_DATA) == 0
-            ) {
-                extractors.add(HeifExtractor())
-            }
-
+            FileTypes.HEIF -> extractors.add(HeifExtractor(heifFlags))
             FileTypes.AVIF -> extractors.add(AvifExtractor())
             FileTypes.WEBVTT, FileTypes.UNKNOWN -> {}
             else -> {}
@@ -666,6 +676,3 @@ class UpdatedDefaultExtractorsFactory : ExtractorsFactory {
             }
     }
 }
-
-
-
