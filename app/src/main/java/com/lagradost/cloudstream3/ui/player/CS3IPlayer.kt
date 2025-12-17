@@ -1608,6 +1608,7 @@ class CS3IPlayer : IPlayer {
 
             // TODO: support more types
             val mime = when (context.contentResolver.getType(data.uri)) {
+                MimeTypes.APPLICATION_M3U8,
                 "audio/x-mpegurl", "audio/mpegurl",
                 "application/x-mpegurl",
                 "application/vnd.apple.mpegurl" -> MimeTypes.APPLICATION_M3U8
