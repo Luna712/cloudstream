@@ -2942,7 +2942,7 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 
-    private inner class MatroskaSeekMap(
+    private class MatroskaSeekMap(
         private val perTrackCues: SparseArray<List<CuePointData>>,
         private val durationUs: Long,
         private val primarySeekTrackNumber: Int,
@@ -3096,10 +3096,3 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
-
-
-
-
-
-
-
