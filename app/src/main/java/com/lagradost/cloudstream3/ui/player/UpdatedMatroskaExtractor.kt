@@ -79,6 +79,7 @@ import java.nio.ByteOrder
 import java.util.Arrays
 import java.util.Collections
 import java.util.Locale
+import java.util.Objects
 import java.util.UUID
 import kotlin.math.max
 import kotlin.math.min
@@ -3068,15 +3069,33 @@ class UpdatedMatroskaExtractor private constructor(
             }
         }
 
-        private data class CuePointData(
+        private class CuePointData(
             val timeUs: Long,
             val clusterPosition: Long
         ) : Comparable<CuePointData> {
-            override fun compareTo(other: CuePointData): Int =
-                timeUs.compareTo(other.timeUs)
+
+            override fun compareTo(other: CuePointData): Int {
+                return timeUs.compareTo(other.timeUs)
+            }
+
+            override fun equals(other: Any?): Boolean {
+                if (this === other) {
+                    return true
+                }
+                if (other !is CuePointData) {
+                    return false
+                }
+                return timeUs == other.timeUs &&
+                    clusterPosition == other.clusterPosition
+            }
+
+            override fun hashCode(): Int {
+                return Objects.hash(timeUs, clusterPosition)
+            }
         }
     }
 }
+
 
 
 
