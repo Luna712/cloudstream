@@ -2271,6 +2271,89 @@ class UpdatedMatroskaExtractor private constructor(
             }
 
         /**
+         * Finds the best thumbnail timestamp from the cue points and adds it to the track's format as
+         * [ThumbnailMetadata].
+         */
+        private fun maybeAddThumbnailMetadata(
+            perTrackCues: SparseArray<List<MatroskaSeekMap.CuePointData>>,
+            durationUs: Long,
+            segmentContentPosition: Long,
+            segmentContentSize: Long
+        ) {
+            if (type != C.TRACK_TYPE_VIDEO) return
+
+            val cuePoints = perTrackCues[number]
+            if (cuePoints.isNullOrEmpty()) return
+
+            val thumbnailTimestampUs = findBestThumbnailPresentationTimeUs(
+                cuePoints, durationUs, segmentContentPosition, segmentContentSize
+            )
+
+            if (thumbnailTimestampUs != C.TIME_UNSET) {
+                val existingMetadata = requireNotNull(format).metadata
+                val thumbnailMetadata = ThumbnailMetadata(thumbnailTimestampUs)
+                val newMetadata = if (existingMetadata == null) {
+                    Metadata(thumbnailMetadata)
+                } else {
+                    existingMetadata.copyWithAppendedEntries(thumbnailMetadata)
+                }
+                format = format.buildUpon().setMetadata(newMetadata).build()
+            }
+        }
+
+        /**
+         * Finds the best thumbnail timestamp from the provided cue points.
+         *
+         * <p>The heuristic seeks to find a visually interesting frame by assuming that a larger chunk
+         * size corresponds to a more complex and representative frame. It calculates an approximate
+         * bitrate for each chunk and selects the timestamp of the chunk with the highest bitrate.
+         */
+        private fun findBestThumbnailPresentationTimeUs(
+            cuePoints: List<MatroskaSeekMap.CuePointData>,
+            durationUs: Long,
+            segmentContentPosition: Long,
+            segmentContentSize: Long
+        ): Long {
+            if (cuePoints.isEmpty()) return C.TIME_UNSET
+
+            var maxBitrate = 0.0
+            var bestCueIndex = -1
+            val scanLimit = min(cuePoints.size, MAX_CHUNKS_TO_SCAN_FOR_THUMBNAIL)
+
+            for (i in 0 until scanLimit) {
+                val cue = cuePoints[i]
+
+                if (cue.timeUs > MAX_DURATION_US_TO_SCAN_FOR_THUMBNAIL) break
+
+                val bytesBetweenCues: Long
+                val durationBetweenCuesUs: Long
+
+                if (i < cuePoints.size - 1) {
+                    val nextCue = cuePoints[i + 1]
+                    bytesBetweenCues = (nextCue.clusterPosition + nextCue.relativePosition) -
+                        (cue.clusterPosition + cue.relativePosition)
+                    durationBetweenCuesUs = nextCue.timeUs - cue.timeUs
+                } else {
+                    // Last cue point
+                    bytesBetweenCues = (segmentContentPosition + segmentContentSize) -
+                        (cue.clusterPosition + cue.relativePosition)
+                    durationBetweenCuesUs = durationUs - cue.timeUs
+                }
+
+                if (durationBetweenCuesUs > 0) {
+                    // This is an approximation of the bitrate for thumbnail heuristic.
+                    val bitrate = bytesBetweenCues.toDouble() / durationBetweenCuesUs
+                    if (bitrate > maxBitrate) {
+                        maxBitrate = bitrate
+                        bestCueIndex = i
+                    }
+                }
+            }
+
+            return if (bestCueIndex == -1) C.TIME_UNSET else cuePoints[bestCueIndex].timeUs
+        }
+
+        /**
          * Checks that the track has an output.
          *
          *
@@ -2284,9 +2367,7 @@ class UpdatedMatroskaExtractor private constructor(
             )
         }
 
-        @Throws(
-            ParserException::class
-        )
+        @Throws(ParserException::class)
         private fun getCodecPrivate(codecId: String): ByteArray {
             if (codecPrivate == null) {
                 throw ParserException.createForMalformedContainer(
@@ -3143,6 +3224,7 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
 
 
 
