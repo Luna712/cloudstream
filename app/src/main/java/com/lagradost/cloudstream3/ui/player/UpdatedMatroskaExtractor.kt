@@ -3097,5 +3097,3 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
-
-
