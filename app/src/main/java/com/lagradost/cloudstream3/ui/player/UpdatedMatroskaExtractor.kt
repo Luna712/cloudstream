@@ -529,7 +529,6 @@ class UpdatedMatroskaExtractor private constructor(
                     trackCues.add(
                         MatroskaSeekMap.CuePointData(
                             currentCueTimeUs,
-                            segmentContentPosition + currentCueClusterPosition,
                             /* clusterPosition= */ segmentContentPosition + currentCueClusterPosition,
                             /* relativePosition= */ currentCueRelativePosition
                         )
@@ -639,7 +638,7 @@ class UpdatedMatroskaExtractor private constructor(
                 var firstAudioTrackNumber: Int = C.INDEX_UNSET
 
                 // If we're not going to seek for cues, output the formats immediately.
-                val mayBeSendFormatsEarly = !seekForCuesEnabled || cuesContentPosition == C.INDEX_UNSET;
+                val mayBeSendFormatsEarly = !seekForCuesEnabled || cuesContentPosition == C.INDEX_UNSET.toLong();
 
                 for (i in 0 until tracks.size()) {
                     val trackItem: Track = tracks.valueAt(i)
@@ -2274,7 +2273,7 @@ class UpdatedMatroskaExtractor private constructor(
          * Finds the best thumbnail timestamp from the cue points and adds it to the track's format as
          * [ThumbnailMetadata].
          */
-        private fun maybeAddThumbnailMetadata(
+        fun maybeAddThumbnailMetadata(
             perTrackCues: SparseArray<List<MatroskaSeekMap.CuePointData>>,
             durationUs: Long,
             segmentContentPosition: Long,
@@ -2290,14 +2289,15 @@ class UpdatedMatroskaExtractor private constructor(
             )
 
             if (thumbnailTimestampUs != C.TIME_UNSET) {
-                val existingMetadata = requireNotNull(format).metadata
+                val currentFormat = requireNotNull(format)
+                val existingMetadata = currentFormat.metadata
                 val thumbnailMetadata = ThumbnailMetadata(thumbnailTimestampUs)
                 val newMetadata = if (existingMetadata == null) {
                     Metadata(thumbnailMetadata)
                 } else {
                     existingMetadata.copyWithAppendedEntries(thumbnailMetadata)
                 }
-                format = format.buildUpon().setMetadata(newMetadata).build()
+                format = currentFormat.buildUpon().setMetadata(newMetadata).build()
             }
         }
 
@@ -3224,9 +3224,3 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
-
-
-
-
-
-
