@@ -3024,7 +3024,7 @@ class UpdatedMatroskaExtractor private constructor(
 
             val bestIndex = Util.binarySearchFloor(
                 cuePoints,
-                CuePointData(timeUs, C.INDEX_UNSET.toLong()),
+                CuePointData(timeUs, C.INDEX_UNSET.toLong(), C.INDEX_UNSET.toLong()),
                 /* inclusive= */ true,
                 /* stayInBounds= */ false
             )
@@ -3107,8 +3107,18 @@ class UpdatedMatroskaExtractor private constructor(
         }
 
         class CuePointData(
+            /** The timestamp of the cue point, in microseconds. */
             val timeUs: Long,
-            val clusterPosition: Long
+
+            /** The absolute byte offset of the start of the cluster containing this cue point. */
+            val clusterPosition: Long,
+
+            /**
+             * The relative byte offset of the cue point's data block within its cluster.
+             *
+             * <p>Note: For seeking, use {@link #clusterPosition} to prevent A/V desync.
+             */
+            val relativePosition: Long
         ) : Comparable<CuePointData> {
 
             override fun compareTo(other: CuePointData): Int {
@@ -3122,16 +3132,18 @@ class UpdatedMatroskaExtractor private constructor(
                 if (other !is CuePointData) {
                     return false
                 }
-                return timeUs == other.timeUs &&
-                    clusterPosition == other.clusterPosition
+                return this.timeUs == other.timeUs &&
+                    this.clusterPosition == other.clusterPosition &&
+                    this.relativePosition == other.relativePosition
             }
 
             override fun hashCode(): Int {
-                return Objects.hash(timeUs, clusterPosition)
+                return Objects.hash(timeUs, clusterPosition, relativePosition)
             }
         }
     }
 }
+
 
 
 
