@@ -52,6 +52,7 @@ import androidx.media3.container.NalUnitUtil
 import androidx.media3.extractor.AacUtil
 import androidx.media3.extractor.AvcConfig
 import androidx.media3.extractor.ChunkIndex
+import androidx.media3.extractor.ChunkIndexProvider
 import androidx.media3.extractor.DtsUtil
 import androidx.media3.extractor.Extractor
 import androidx.media3.extractor.ExtractorInput
@@ -61,7 +62,8 @@ import androidx.media3.extractor.HevcConfig
 import androidx.media3.extractor.MpegAudioUtil
 import androidx.media3.extractor.PositionHolder
 import androidx.media3.extractor.SeekMap
-import androidx.media3.extractor.SeekMap.Unseekable
+import androidx.media3.extractor.SeekPoint
+import androidx.media3.extractor.TrackAwareSeekMap
 import androidx.media3.extractor.TrackOutput
 import androidx.media3.extractor.TrackOutput.CryptoData
 import androidx.media3.extractor.TrueHdSampleRechunker
@@ -136,6 +138,12 @@ class UpdatedMatroskaExtractor private constructor(
     private var seekEntryPosition: Long = 0
 
     // Cue related elements.
+    private val perTrackCues = SparseArray<List<MatroskaSeekMap.CuePointData>>()
+    private var inCuesElement = false
+    private var currentCueTimeUs: Long = C.TIME_UNSET.toLong()
+    private var currentCueTrackNumber: Int = C.INDEX_UNSET
+    private var currentCueClusterPosition: Long = C.INDEX_UNSET.toLong()
+    private var primarySeekTrackNumber: Int = C.INDEX_UNSET
     private var seekForCues = false
     private var seekForSeekContent = false
     private var visitedSeekHeads: HashSet<Long> = HashSet()
@@ -144,9 +152,6 @@ class UpdatedMatroskaExtractor private constructor(
     private var cuesContentPosition = C.INDEX_UNSET.toLong()
     private var seekPositionAfterBuildingCues = C.INDEX_UNSET.toLong()
     private var clusterTimecodeUs = C.TIME_UNSET
-    private var cueTimesUs: androidx.media3.common.util.LongArray? = null
-    private var cueClusterPositions: androidx.media3.common.util.LongArray? = null
-    private var seenClusterPositionForCurrentCuePoint = false
 
     // Reading state.
     private var haveOutputSample = false
@@ -223,6 +228,7 @@ class UpdatedMatroskaExtractor private constructor(
     init {
         reader.init(InnerEbmlProcessor())
         this.subtitleParserFactory = subtitleParserFactory
+        this.perTrackCues = SparseArray()
         seekForCuesEnabled = (flags and FLAG_DISABLE_SEEK_FOR_CUES) == 0
         parseSubtitlesDuringExtraction = (flags and FLAG_EMIT_RAW_SUBTITLE_DATA) == 0
         varintReader = VarintReader()
@@ -261,6 +267,10 @@ class UpdatedMatroskaExtractor private constructor(
         reader.reset()
         varintReader.reset()
         resetWriteSampleData()
+        inCuesElement = false
+        currentCueTimeUs = C.TIME_UNSET
+        currentCueTrackNumber = C.INDEX_UNSET
+        currentCueClusterPosition = C.INDEX_UNSET
         for (i in 0..<tracks.size()) {
             tracks.valueAt(i).reset()
         }
@@ -301,7 +311,7 @@ class UpdatedMatroskaExtractor private constructor(
         return when (id) {
             ID_EBML, ID_SEGMENT, ID_SEEK_HEAD, ID_SEEK, ID_INFO, ID_CLUSTER, ID_TRACKS, ID_TRACK_ENTRY, ID_BLOCK_ADDITION_MAPPING, ID_AUDIO, ID_VIDEO, ID_CONTENT_ENCODINGS, ID_CONTENT_ENCODING, ID_CONTENT_COMPRESSION, ID_CONTENT_ENCRYPTION, ID_CONTENT_ENCRYPTION_AES_SETTINGS, ID_CUES, ID_CUE_POINT, ID_CUE_TRACK_POSITIONS, ID_BLOCK_GROUP, ID_BLOCK_ADDITIONS, ID_BLOCK_MORE, ID_PROJECTION, ID_COLOUR, ID_MASTERING_METADATA -> EbmlProcessor.ELEMENT_TYPE_MASTER
 
-            ID_EBML_READ_VERSION, ID_DOC_TYPE_READ_VERSION, ID_SEEK_POSITION, ID_TIMECODE_SCALE, ID_TIME_CODE, ID_BLOCK_DURATION, ID_PIXEL_WIDTH, ID_PIXEL_HEIGHT, ID_DISPLAY_WIDTH, ID_DISPLAY_HEIGHT, ID_DISPLAY_UNIT, ID_TRACK_NUMBER, ID_TRACK_TYPE, ID_FLAG_DEFAULT, ID_FLAG_FORCED, ID_DEFAULT_DURATION, ID_MAX_BLOCK_ADDITION_ID, ID_BLOCK_ADD_ID_TYPE, ID_CODEC_DELAY, ID_SEEK_PRE_ROLL, ID_DISCARD_PADDING, ID_CHANNELS, ID_AUDIO_BIT_DEPTH, ID_CONTENT_ENCODING_ORDER, ID_CONTENT_ENCODING_SCOPE, ID_CONTENT_COMPRESSION_ALGORITHM, ID_CONTENT_ENCRYPTION_ALGORITHM, ID_CONTENT_ENCRYPTION_AES_SETTINGS_CIPHER_MODE, ID_CUE_TIME, ID_CUE_CLUSTER_POSITION, ID_REFERENCE_BLOCK, ID_STEREO_MODE, ID_COLOUR_BITS_PER_CHANNEL, ID_COLOUR_RANGE, ID_COLOUR_TRANSFER, ID_COLOUR_PRIMARIES, ID_MAX_CLL, ID_MAX_FALL, ID_PROJECTION_TYPE, ID_BLOCK_ADD_ID -> EbmlProcessor.ELEMENT_TYPE_UNSIGNED_INT
+            ID_EBML_READ_VERSION, ID_DOC_TYPE_READ_VERSION, ID_SEEK_POSITION, ID_TIMECODE_SCALE, ID_TIME_CODE, ID_BLOCK_DURATION, ID_PIXEL_WIDTH, ID_PIXEL_HEIGHT, ID_DISPLAY_WIDTH, ID_DISPLAY_HEIGHT, ID_DISPLAY_UNIT, ID_TRACK_NUMBER, ID_TRACK_TYPE, ID_FLAG_DEFAULT, ID_FLAG_FORCED, ID_DEFAULT_DURATION, ID_MAX_BLOCK_ADDITION_ID, ID_BLOCK_ADD_ID_TYPE, ID_CODEC_DELAY, ID_SEEK_PRE_ROLL, ID_DISCARD_PADDING, ID_CHANNELS, ID_AUDIO_BIT_DEPTH, ID_CONTENT_ENCODING_ORDER, ID_CONTENT_ENCODING_SCOPE, ID_CONTENT_COMPRESSION_ALGORITHM, ID_CONTENT_ENCRYPTION_ALGORITHM, ID_CONTENT_ENCRYPTION_AES_SETTINGS_CIPHER_MODE, ID_CUE_TIME, ID_CUE_CLUSTER_POSITION, ID_CUE_TRACK, ID_REFERENCE_BLOCK, ID_STEREO_MODE, ID_COLOUR_BITS_PER_CHANNEL, ID_COLOUR_RANGE, ID_COLOUR_TRANSFER, ID_COLOUR_PRIMARIES, ID_MAX_CLL, ID_MAX_FALL, ID_PROJECTION_TYPE, ID_BLOCK_ADD_ID -> EbmlProcessor.ELEMENT_TYPE_UNSIGNED_INT
 
             ID_DOC_TYPE, ID_NAME, ID_CODEC_ID, ID_LANGUAGE -> EbmlProcessor.ELEMENT_TYPE_STRING
             ID_SEEK_ID, ID_BLOCK_ADD_ID_EXTRA_DATA, ID_CONTENT_COMPRESSION_SETTINGS, ID_CONTENT_ENCRYPTION_KEY_ID, ID_SIMPLE_BLOCK, ID_BLOCK, ID_CODEC_PRIVATE, ID_PROJECTION_PRIVATE, ID_BLOCK_ADDITIONAL -> EbmlProcessor.ELEMENT_TYPE_BINARY
@@ -347,11 +357,20 @@ class UpdatedMatroskaExtractor private constructor(
             }
 
             ID_CUES -> {
-                cueTimesUs = androidx.media3.common.util.LongArray()
-                cueClusterPositions = androidx.media3.common.util.LongArray()
+                inCuesElement = true
             }
 
-            ID_CUE_POINT -> seenClusterPositionForCurrentCuePoint = false
+            ID_CUE_POINT -> {
+                assertInCues(id)
+                currentCueTimeUs = C.TIME_UNSET
+            }
+
+            ID_CUE_TRACK_POSITIONS -> {
+                assertInCues(id)
+                currentCueTrackNumber = C.INDEX_UNSET
+                currentCueClusterPosition = C.INDEX_UNSET
+            }
+
             ID_CLUSTER -> if (!sentSeekMap) {
                 // We need to build cues before parsing the cluster.
                 if (seekForCuesEnabled && cuesContentPosition != C.INDEX_UNSET.toLong()) {
@@ -364,7 +383,7 @@ class UpdatedMatroskaExtractor private constructor(
                 } else {
                     // We don't know where the Cues element is located. It's most likely omitted. Allow
                     // playback, but disable seeking.
-                    extractorOutput!!.seekMap(Unseekable(durationUs))
+                    extractorOutput!!.seekMap(SeekMap.Unseekable(durationUs))
                     sentSeekMap = true
                 }
             }
@@ -418,7 +437,7 @@ class UpdatedMatroskaExtractor private constructor(
                     } else {
                         // Otherwise, if we not found any cues nor any more seek heads then we mark
                         // this as unseekable.
-                        extractorOutput!!.seekMap(Unseekable(durationUs))
+                        extractorOutput!!.seekMap(SeekMap.Unseekable(durationUs))
                         sentSeekMap = true
                     }
                 }
@@ -1497,7 +1516,7 @@ class UpdatedMatroskaExtractor private constructor(
     ): SeekMap {
         if (segmentContentPosition == C.INDEX_UNSET.toLong() || durationUs == C.TIME_UNSET || cueTimesUs == null || cueTimesUs.size() == 0 || cueClusterPositions == null || cueClusterPositions.size() != cueTimesUs.size()) {
             // Cues information is missing or incomplete.
-            return Unseekable(durationUs)
+            return SeekMap.Unseekable(durationUs)
         }
         val cuePointsSize = cueTimesUs.size()
         var sizes = IntArray(cuePointsSize)
@@ -1721,6 +1740,8 @@ class UpdatedMatroskaExtractor private constructor(
 
         // Text elements.
         var flagForced: Boolean = false
+
+        // Common track elements.
         var flagDefault: Boolean = true
         var language: String = "eng"
 
@@ -2520,6 +2541,7 @@ class UpdatedMatroskaExtractor private constructor(
         private const val ID_CUES = 0x1C53BB6B
         private const val ID_CUE_POINT = 0xBB
         private const val ID_CUE_TIME = 0xB3
+        private const val ID_CUE_TRACK = 0xF7
         private const val ID_CUE_TRACK_POSITIONS = 0xB7
         private const val ID_CUE_CLUSTER_POSITION = 0xF1
         private const val ID_LANGUAGE = 0x22B59C
@@ -2885,6 +2907,143 @@ class UpdatedMatroskaExtractor private constructor(
                         .toInt()
                 )
             }
+        }
+    }
+
+    private class MatroskaSeekMap(
+        private val perTrackCues: SparseArray<List<CuePointData>>,
+        private val durationUs: Long,
+        private val primarySeekTrackNumber: Int,
+        segmentContentPosition: Long,
+        segmentContentSize: Long
+    ) : TrackAwareSeekMap, ChunkIndexProvider {
+
+        private val chunkIndex: ChunkIndex? =
+            buildChunkIndex(
+                perTrackCues,
+                durationUs,
+                primarySeekTrackNumber,
+                segmentContentPosition,
+                segmentContentSize
+            )
+
+        override fun isSeekable(): Boolean = {
+            // The media is seekable overall only if the primary seek track has cue points.
+            return isSeekable(primarySeekTrackNumber)
+        }
+
+        override fun isSeekable(trackId: Int): Boolean {
+            val cuePoints = perTrackCues[trackId]
+            return !cuePoints.isNullOrEmpty()
+        }
+
+        override fun getDurationUs(): Long = durationUs
+
+        override fun getSeekPoints(timeUs: Long): SeekPoints =
+            chunkIndex?.getSeekPoints(timeUs)
+                ?: SeekPoints(SeekPoint.START)
+
+        override fun getSeekPoints(timeUs: Long, trackId: Int): SeekPoints {
+            var cuePoints = perTrackCues[trackId]
+
+            if ((cuePoints.isNullOrEmpty()) && trackId != primarySeekTrackNumber) {
+                cuePoints = perTrackCues[primarySeekTrackNumber]
+            }
+
+            if (cuePoints.isNullOrEmpty()) {
+                return SeekPoints(SeekPoint.START)
+            }
+
+            val bestIndex = Util.binarySearchFloor(
+                cuePoints,
+                CuePointData(timeUs, C.INDEX_UNSET),
+                /* inclusive= */ true,
+                /* stayInBounds= */ false
+            )
+
+            return if (bestIndex != -1) {
+                val bestCue = cuePoints[bestIndex]
+                val firstPoint = SeekPoint(bestCue.timeUs, bestCue.clusterPosition)
+
+                if (bestCue.timeUs < timeUs && bestIndex + 1 < cuePoints.size) {
+                    val nextCue = cuePoints[bestIndex + 1]
+                    val secondPoint = SeekPoint(nextCue.timeUs, nextCue.clusterPosition)
+                    SeekPoints(firstPoint, secondPoint)
+                } else {
+                    SeekPoints(firstPoint)
+                }
+            } else {
+                val firstCue = cuePoints[0]
+                SeekPoints(SeekPoint(firstCue.timeUs, firstCue.clusterPosition))
+            }
+        }
+
+        override fun getChunkIndex(): ChunkIndex? = chunkIndex
+
+        private companion object {
+
+            private fun buildChunkIndex(
+                perTrackCues: SparseArray<List<CuePointData>>,
+                durationUs: Long,
+                primarySeekTrackNumber: Int,
+                segmentContentPosition: Long,
+                segmentContentSize: Long
+            ): ChunkIndex? {
+
+                val primaryTrackCuePoints =
+                    perTrackCues[primarySeekTrackNumber] ?: return null
+
+                if (primaryTrackCuePoints.isEmpty()) {
+                    return null
+                }
+
+                val cuePointsSize = primaryTrackCuePoints.size
+                var sizes = IntArray(cuePointsSize)
+                var offsets = LongArray(cuePointsSize)
+                var durationsUs = LongArray(cuePointsSize)
+                var timesUs = LongArray(cuePointsSize)
+
+                for (i in 0 until cuePointsSize) {
+                    val cue = primaryTrackCuePoints[i]
+                    timesUs[i] = cue.timeUs
+                    offsets[i] = cue.clusterPosition
+                }
+
+                for (i in 0 until cuePointsSize - 1) {
+                    sizes[i] = (offsets[i + 1] - offsets[i]).toInt()
+                    durationsUs[i] = timesUs[i + 1] - timesUs[i]
+                }
+
+                // Start from the last cue point and move backward until a valid duration is found.
+                var lastValidIndex = cuePointsSize - 1
+                while (lastValidIndex > 0 && timesUs[lastValidIndex] >= durationUs) {
+                    lastValidIndex--
+                }
+
+                // Calculate sizes and durations for the last valid index
+                sizes[lastValidIndex] =
+                    (segmentContentPosition + segmentContentSize - offsets[lastValidIndex]).toInt()
+                durationsUs[lastValidIndex] = durationUs - timesUs[lastValidIndex]
+
+                // If trailing cue points were found, truncate the arrays to the last valid index.
+                if (lastValidIndex < cuePointsSize - 1) {
+                    Log.w(TAG, "Discarding trailing cue points with timestamps greater than total duration.")
+                    sizes = sizes.copyOf(lastValidIndex + 1)
+                    offsets = offsets.copyOf(lastValidIndex + 1)
+                    durationsUs = durationsUs.copyOf(lastValidIndex + 1)
+                    timesUs = timesUs.copyOf(lastValidIndex + 1)
+                }
+
+                return ChunkIndex(sizes, offsets, durationsUs, timesUs)
+            }
+        }
+
+        private data class CuePointData(
+            val timeUs: Long,
+            val clusterPosition: Long
+        ) : Comparable<CuePointData> {
+            override fun compareTo(other: CuePointData): Int =
+                timeUs.compareTo(other.timeUs)
         }
     }
 }
