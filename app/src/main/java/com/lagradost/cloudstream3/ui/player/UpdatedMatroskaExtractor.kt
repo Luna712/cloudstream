@@ -41,6 +41,7 @@ import androidx.media3.common.ColorInfo
 import androidx.media3.common.DrmInitData
 import androidx.media3.common.DrmInitData.SchemeData
 import androidx.media3.common.Format
+import androidx.media3.common.Metadata
 import androidx.media3.common.MimeTypes
 import androidx.media3.common.ParserException
 import androidx.media3.common.util.Log
@@ -68,6 +69,7 @@ import androidx.media3.extractor.TrackAwareSeekMap
 import androidx.media3.extractor.TrackOutput
 import androidx.media3.extractor.TrackOutput.CryptoData
 import androidx.media3.extractor.TrueHdSampleRechunker
+import androidx.media3.extractor.metadata.ThumbnailMetadata
 import androidx.media3.extractor.text.SubtitleParser
 import androidx.media3.extractor.text.SubtitleTranscodingExtractorOutput
 import com.google.common.base.Preconditions.checkArgument
@@ -145,6 +147,7 @@ class UpdatedMatroskaExtractor private constructor(
     private var currentCueTimeUs: Long = C.TIME_UNSET.toLong()
     private var currentCueTrackNumber: Int = C.INDEX_UNSET
     private var currentCueClusterPosition: Long = C.INDEX_UNSET.toLong()
+    private var currentCueRelativePosition: Long = C.INDEX_UNSET.toLong()
     private var primarySeekTrackNumber: Int = C.INDEX_UNSET
     private var seekForCues = false
     private var seekForSeekContent = false
@@ -270,9 +273,10 @@ class UpdatedMatroskaExtractor private constructor(
         varintReader.reset()
         resetWriteSampleData()
         inCuesElement = false
-        currentCueTimeUs = C.TIME_UNSET.toLong()
+        currentCueTimeUs = C.TIME_UNSET
         currentCueTrackNumber = C.INDEX_UNSET
         currentCueClusterPosition = C.INDEX_UNSET.toLong()
+        currentCueRelativePosition = C.INDEX_UNSET.toLong()
         perTrackCues.clear()
         for (i in 0..<tracks.size()) {
             tracks.valueAt(i).reset()
@@ -2577,6 +2581,7 @@ class UpdatedMatroskaExtractor private constructor(
         private const val ID_CUE_TRACK = 0xF7
         private const val ID_CUE_TRACK_POSITIONS = 0xB7
         private const val ID_CUE_CLUSTER_POSITION = 0xF1
+        private const val ID_CUE_RELATIVE_POSITION = 0xF0
         private const val ID_LANGUAGE = 0x22B59C
         private const val ID_PROJECTION = 0x7670
         private const val ID_PROJECTION_TYPE = 0x7671
@@ -2630,6 +2635,12 @@ class UpdatedMatroskaExtractor private constructor(
         private const val FOURCC_COMPRESSION_DIVX = 0x58564944
         private const val FOURCC_COMPRESSION_H263 = 0x33363248
         private const val FOURCC_COMPRESSION_VC1 = 0x31435657
+
+        /** The maximum number of chunks to scan when searching for a thumbnail. */
+        private const val MAX_CHUNKS_TO_SCAN_FOR_THUMBNAIL = 20
+
+        /** The maximum duration to scan for a thumbnail, in microseconds. */
+        private const val MAX_DURATION_US_TO_SCAN_FOR_THUMBNAIL = 10_000_000L
 
         /**
          * A template for the prefix that must be added to each subrip sample.
@@ -3097,3 +3108,4 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
