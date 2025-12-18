@@ -3055,7 +3055,7 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 
-    internal class MatroskaSeekMap(
+    class MatroskaSeekMap(
         private val perTrackCues: SparseArray<List<CuePointData>>,
         private val durationUs: Long,
         private val primarySeekTrackNumber: Int,
@@ -3183,7 +3183,7 @@ class UpdatedMatroskaExtractor private constructor(
             }
         }
 
-        internal class CuePointData(
+        class CuePointData(
             /** The timestamp of the cue point, in microseconds. */
             val timeUs: Long,
 
@@ -3220,3 +3220,4 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
