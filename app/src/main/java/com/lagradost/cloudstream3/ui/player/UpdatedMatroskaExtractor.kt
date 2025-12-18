@@ -529,7 +529,9 @@ class UpdatedMatroskaExtractor private constructor(
                     trackCues.add(
                         MatroskaSeekMap.CuePointData(
                             currentCueTimeUs,
-                            segmentContentPosition + currentCueClusterPosition
+                            segmentContentPosition + currentCueClusterPosition,
+                            /* clusterPosition= */ segmentContentPosition + currentCueClusterPosition,
+                            /* relativePosition= */ currentCueRelativePosition
                         )
                     )
                 }
@@ -614,11 +616,9 @@ class UpdatedMatroskaExtractor private constructor(
                         "CodecId is missing in TrackEntry element",  /* cause= */null
                     )
                 } else {
-                    if (isCodecSupported(
-                            currentTrack.codecId!!
-                        )
-                    ) {
-                        currentTrack.initializeOutput(extractorOutput!!, currentTrack.number)
+                    if (isCodecSupported(currentTrack.codecId!!)) {
+                        currentTrack.initializeFormat(currentTrack.number);
+                        currentTrack.output = extractorOutput!!.track(currentTrack.number, currentTrack.type);
                         tracks.put(currentTrack.number, currentTrack)
                     }
                 }
@@ -631,16 +631,20 @@ class UpdatedMatroskaExtractor private constructor(
                         "No valid tracks were found",  /* cause= */ null
                     )
                 }
+
                 // Determine the track to use for default seeking.
                 var defaultVideoTrackNumber: Int = C.INDEX_UNSET
                 var firstVideoTrackNumber: Int = C.INDEX_UNSET
                 var defaultAudioTrackNumber: Int = C.INDEX_UNSET
                 var firstAudioTrackNumber: Int = C.INDEX_UNSET
 
+                // If we're not going to seek for cues, output the formats immediately.
+                val mayBeSendFormatsEarly = !seekForCuesEnabled || cuesContentPosition == C.INDEX_UNSET;
+
                 for (i in 0 until tracks.size()) {
                     val trackItem: Track = tracks.valueAt(i)
-                    val trackType: @C.TrackType Int = trackItem.type
 
+                    val trackType: @C.TrackType Int = trackItem.type
                     when (trackType) {
                         C.TRACK_TYPE_VIDEO -> {
                             if (trackItem.flagDefault) {
@@ -660,6 +664,13 @@ class UpdatedMatroskaExtractor private constructor(
                             }
                         }
                     }
+
+                    if (mayBeSendFormatsEarly) {
+                        trackItem.assertOutputInitialized()
+                        if (!trackItem.waitingForDtsAnalysis) {
+                            trackItem.output!!.format(checkNotNull(trackItem.format))
+                        }
+                    }
                 }
 
                 primarySeekTrackNumber = when {
@@ -670,7 +681,10 @@ class UpdatedMatroskaExtractor private constructor(
                     tracks.size() > 0 -> tracks.valueAt(0).number
                     else -> C.INDEX_UNSET
                 }
-                maybeEndTracks()
+
+                if (mayBeSendFormatsEarly) {
+                    maybeEndTracks()
+                }
             }
 
             else -> {}
@@ -781,6 +795,13 @@ class UpdatedMatroskaExtractor private constructor(
                 assertInCues(id)
                 if (currentCueClusterPosition == C.INDEX_UNSET.toLong()) {
                     currentCueClusterPosition = value
+                }
+            }
+
+            ID_CUE_RELATIVE_POSITION -> {
+                assertInCues(id)
+                if (currentCueRelativePosition == C.INDEX_UNSET.toLong()) {
+                    currentCueRelativePosition = value
                 }
             }
 
@@ -1797,11 +1818,9 @@ class UpdatedMatroskaExtractor private constructor(
         var format: Format? = null
         var nalUnitLengthFieldLength: Int = 0
 
-        /** Initializes the track with an output.  */
-        @Throws(
-            ParserException::class
-        )
-        fun initializeOutput(output: ExtractorOutput, trackId: Int) {
+        /** Builds the [Format] for the track. */
+        @Throws(ParserException::class)
+        fun initializeFormat(int trackId) {
             var mimeType: String
             var maxInputSize = Format.NO_VALUE
             var pcmEncoding: @PcmEncoding Int = Format.NO_VALUE
@@ -2177,11 +2196,6 @@ class UpdatedMatroskaExtractor private constructor(
                     .setCodecs(codecs)
                     .setDrmInitData(drmInitData)
                     .build()
-
-            this.output = output.track(number, type)
-            if (!waitingForDtsAnalysis) {
-                this.output!!.format(format!!);
-            }
         }
 
         /** Forces any pending sample metadata to be flushed to the output.  */
@@ -3118,5 +3132,6 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
 
 
