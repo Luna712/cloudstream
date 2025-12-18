@@ -2988,7 +2988,7 @@ class UpdatedMatroskaExtractor private constructor(
 
             val bestIndex = Util.binarySearchFloor(
                 cuePoints,
-                CuePointData(timeUs, C.INDEX_UNSET),
+                CuePointData(timeUs, C.INDEX_UNSET.toLong()),
                 /* inclusive= */ true,
                 /* stayInBounds= */ false
             )
@@ -3096,6 +3096,7 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
 
 
 
