@@ -138,7 +138,7 @@ class UpdatedMatroskaExtractor private constructor(
     private var seekEntryPosition: Long = 0
 
     // Cue related elements.
-    private val perTrackCues = SparseArray<List<MatroskaSeekMap.CuePointData>>()
+    private val perTrackCues: SparseArray<List<MatroskaSeekMap.CuePointData>>
     private var inCuesElement = false
     private var currentCueTimeUs: Long = C.TIME_UNSET.toLong()
     private var currentCueTrackNumber: Int = C.INDEX_UNSET
@@ -268,9 +268,9 @@ class UpdatedMatroskaExtractor private constructor(
         varintReader.reset()
         resetWriteSampleData()
         inCuesElement = false
-        currentCueTimeUs = C.TIME_UNSET
+        currentCueTimeUs = C.TIME_UNSET.toLong()
         currentCueTrackNumber = C.INDEX_UNSET
-        currentCueClusterPosition = C.INDEX_UNSET
+        currentCueClusterPosition = C.INDEX_UNSET.toLong()
         perTrackCues.clear()
         for (i in 0..<tracks.size()) {
             tracks.valueAt(i).reset()
@@ -369,7 +369,7 @@ class UpdatedMatroskaExtractor private constructor(
             ID_CUE_TRACK_POSITIONS -> {
                 assertInCues(id)
                 currentCueTrackNumber = C.INDEX_UNSET
-                currentCueClusterPosition = C.INDEX_UNSET
+                currentCueClusterPosition = C.INDEX_UNSET.toLong()
             }
 
             ID_CLUSTER -> if (!sentSeekMap) {
@@ -499,9 +499,9 @@ class UpdatedMatroskaExtractor private constructor(
 
             ID_CUE_TRACK_POSITIONS -> {
                 assertInCues(id)
-                if (currentCueTimeUs != C.TIME_UNSET
+                if (currentCueTimeUs != C.TIME_UNSET.toLong()
                     && currentCueTrackNumber != C.INDEX_UNSET
-                    && currentCueClusterPosition != C.INDEX_UNSET
+                    && currentCueClusterPosition != C.INDEX_UNSET.toLong()
                 ) {
                     val trackCues =
                         perTrackCues[currentCueTrackNumber]
@@ -762,7 +762,7 @@ class UpdatedMatroskaExtractor private constructor(
 
             ID_CUE_CLUSTER_POSITION -> {
                 assertInCues(id)
-                if (currentCueClusterPosition == C.INDEX_UNSET) {
+                if (currentCueClusterPosition == C.INDEX_UNSET.toLong()) {
                     currentCueClusterPosition = value
                 }
             }
@@ -3077,5 +3077,6 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
 
 
