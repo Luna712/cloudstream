@@ -3070,7 +3070,7 @@ class UpdatedMatroskaExtractor private constructor(
             }
         }
 
-        private class CuePointData : Comparable<CuePointData> {
+        private inner class CuePointData : Comparable<CuePointData> {
             val timeUs: Long
             val clusterPosition: Long
 
@@ -3095,5 +3095,6 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
 
 
