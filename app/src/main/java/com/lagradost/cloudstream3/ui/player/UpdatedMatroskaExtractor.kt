@@ -140,7 +140,7 @@ class UpdatedMatroskaExtractor private constructor(
     private var seekEntryPosition: Long = 0
 
     // Cue related elements.
-    private val perTrackCues: SparseArray<List<MatroskaSeekMap.CuePointData>>
+    private val perTrackCues: SparseArray<MutableList<MatroskaSeekMap.CuePointData>>
     private var inCuesElement = false
     private var currentCueTimeUs: Long = C.TIME_UNSET.toLong()
     private var currentCueTrackNumber: Int = C.INDEX_UNSET
@@ -3096,3 +3096,4 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
