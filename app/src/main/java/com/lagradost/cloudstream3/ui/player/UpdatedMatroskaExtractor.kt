@@ -2942,7 +2942,7 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 
-    private class MatroskaSeekMap(
+    private inner class MatroskaSeekMap(
         private val perTrackCues: SparseArray<List<CuePointData>>,
         private val durationUs: Long,
         private val primarySeekTrackNumber: Int,
@@ -3070,7 +3070,7 @@ class UpdatedMatroskaExtractor private constructor(
             }
         }
 
-        private class CuePointData(
+        class CuePointData(
             val timeUs: Long,
             val clusterPosition: Long
         ) : Comparable<CuePointData> {
@@ -3096,6 +3096,7 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
 
 
 
