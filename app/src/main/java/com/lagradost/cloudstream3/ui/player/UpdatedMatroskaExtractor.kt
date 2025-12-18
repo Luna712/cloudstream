@@ -2959,7 +2959,7 @@ class UpdatedMatroskaExtractor private constructor(
                 segmentContentSize
             )
 
-        override fun isSeekable(): Boolean = {
+        override fun isSeekable(): Boolean {
             // The media is seekable overall only if the primary seek track has cue points.
             return isSeekable(primarySeekTrackNumber)
         }
@@ -3070,7 +3070,7 @@ class UpdatedMatroskaExtractor private constructor(
             }
         }
 
-        class CuePointData(
+        private class CuePointData(
             val timeUs: Long,
             val clusterPosition: Long
         ) : Comparable<CuePointData> {
@@ -3096,3 +3096,4 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
