@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<issues format="6" by="lint 9.0.0-beta05">
+<issues format="6" by="lint 9.0.0-rc01">
 
     <issue
         id="NewApi"
         severity="Error"
-        message="Call requires API level 26, or core library desugaring (current min is 23): `java.util.Base64#getEncoder`"
+        message="Call requires API level 26, or core library desugaring (current min is 21): `java.util.Base64#getEncoder`"
         category="Correctness"
         priority="6"
         summary="Calling new methods on older versions"
@@ -20,7 +20,7 @@
     <issue
         id="NewApi"
         severity="Error"
-        message="Call requires API level 26, or core library desugaring (current min is 23): `java.util.Base64.Encoder#encode`"
+        message="Call requires API level 26, or core library desugaring (current min is 21): `java.util.Base64.Encoder#encode`"
         category="Correctness"
         priority="6"
         summary="Calling new methods on older versions"
@@ -36,7 +36,7 @@
     <issue
         id="NewApi"
         severity="Error"
-        message="Call requires API level 26, or core library desugaring (current min is 23): `java.util.Base64#getDecoder`"
+        message="Call requires API level 26, or core library desugaring (current min is 21): `java.util.Base64#getDecoder`"
         category="Correctness"
         priority="6"
         summary="Calling new methods on older versions"
@@ -52,7 +52,7 @@
     <issue
         id="NewApi"
         severity="Error"
-        message="Call requires API level 26, or core library desugaring (current min is 23): `java.util.Base64.Decoder#decode`"
+        message="Call requires API level 26, or core library desugaring (current min is 21): `java.util.Base64.Decoder#decode`"
         category="Correctness"
         priority="6"
         summary="Calling new methods on older versions"
