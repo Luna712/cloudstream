@@ -466,13 +466,55 @@ class UpdatedMatroskaExtractor private constructor(
 
             ID_CUES -> {
                 if (!sentSeekMap) {
-                    extractorOutput!!.seekMap(buildSeekMap(cueTimesUs, cueClusterPositions))
+                    var hasAnyCues = false
+                    for (i in 0 until perTrackCues.size()) {
+                        if (perTrackCues.valueAt(i).isNotEmpty()) {
+                            hasAnyCues = true
+                            break
+                        }
+                    }
+
+                    if (!hasAnyCues || durationUs == C.TIME_UNSET) {
+                        // Cues are missing, empty, or duration is unknown.
+                        extractorOutput!!.seekMap(SeekMap.Unseekable(durationUs))
+                    } else {
+                        for (i in 0 until perTrackCues.size()) {
+                            perTrackCues.valueAt(i).sort()
+                        }
+
+                        val seekMap = MatroskaSeekMap(
+                            perTrackCues,
+                            durationUs,
+                            primarySeekTrackNumber,
+                            segmentContentPosition,
+                            segmentContentSize
+                        )
+                        extractorOutput!!.seekMap(seekMap)
+                    }
                     sentSeekMap = true
-                } else {
-                    // We have already built the cues. Ignore.
                 }
-                this.cueTimesUs = null
-                this.cueClusterPositions = null
+                inCuesElement = false
+            }
+
+            ID_CUE_TRACK_POSITIONS -> {
+                assertInCues(id)
+                if (currentCueTimeUs != C.TIME_UNSET
+                    && currentCueTrackNumber != C.INDEX_UNSET
+                    && currentCueClusterPosition != C.INDEX_UNSET
+                ) {
+                    val trackCues =
+                        perTrackCues[currentCueTrackNumber]
+                            ?: ArrayList<MatroskaSeekMap.CuePointData>().also {
+                                perTrackCues.put(currentCueTrackNumber, it)
+                            }
+
+                    trackCues.add(
+                        MatroskaSeekMap.CuePointData(
+                            currentCueTimeUs,
+                            segmentContentPosition + currentCueClusterPosition
+                        )
+                    )
+                }
             }
 
             ID_BLOCK_GROUP -> {
@@ -568,8 +610,47 @@ class UpdatedMatroskaExtractor private constructor(
             ID_TRACKS -> {
                 if (tracks.size() == 0) {
                     throw ParserException.createForMalformedContainer(
-                        "No valid tracks were found",  /* cause= */null
+                        "No valid tracks were found",  /* cause= */ null
                     )
+                }
+                // Determine the track to use for default seeking.
+                var defaultVideoTrackNumber: Int = C.INDEX_UNSET
+                var firstVideoTrackNumber: Int = C.INDEX_UNSET
+                var defaultAudioTrackNumber: Int = C.INDEX_UNSET
+                var firstAudioTrackNumber: Int = C.INDEX_UNSET
+
+                for (i in 0 until tracks.size()) {
+                    val trackItem: Track = tracks.valueAt(i)
+                    val trackType: @C.TrackType Int = trackItem.type
+
+                    when (trackType) {
+                        C.TRACK_TYPE_VIDEO -> {
+                            if (trackItem.flagDefault) {
+                                defaultVideoTrackNumber = trackItem.number
+                            }
+                            if (firstVideoTrackNumber == C.INDEX_UNSET) {
+                                firstVideoTrackNumber = trackItem.number
+                            }
+                        }
+
+                        C.TRACK_TYPE_AUDIO -> {
+                            if (trackItem.flagDefault) {
+                                defaultAudioTrackNumber = trackItem.number
+                            }
+                            if (firstAudioTrackNumber == C.INDEX_UNSET) {
+                                firstAudioTrackNumber = trackItem.number
+                            }
+                        }
+                    }
+                }
+
+                primarySeekTrackNumber = when {
+                    defaultVideoTrackNumber != C.INDEX_UNSET -> defaultVideoTrackNumber
+                    firstVideoTrackNumber != C.INDEX_UNSET -> firstVideoTrackNumber
+                    defaultAudioTrackNumber != C.INDEX_UNSET -> defaultAudioTrackNumber
+                    firstAudioTrackNumber != C.INDEX_UNSET -> firstAudioTrackNumber
+                    tracks.size() > 0 -> tracks.valueAt(0).number
+                    else -> C.INDEX_UNSET
                 }
                 maybeEndTracks()
             }
@@ -670,16 +751,19 @@ class UpdatedMatroskaExtractor private constructor(
 
             ID_CUE_TIME -> {
                 assertInCues(id)
-                cueTimesUs!!.add(scaleTimecodeToUs(value))
+                currentCueTimeUs = scaleTimecodeToUs(value)
             }
 
-            ID_CUE_CLUSTER_POSITION -> if (!seenClusterPositionForCurrentCuePoint) {
+            ID_CUE_TRACK -> {
                 assertInCues(id)
-                // If there's more than one video/audio track, then there could be more than one
-                // CueTrackPositions within a single CuePoint. In such a case, ignore all but the first
-                // one (since the cluster position will be quite close for all the tracks).
-                cueClusterPositions!!.add(value)
-                seenClusterPositionForCurrentCuePoint = true
+                currentCueTrackNumber = value.toInt()
+            }
+
+            ID_CUE_CLUSTER_POSITION -> {
+                assertInCues(id)
+                if (currentCueClusterPosition == C.INDEX_UNSET) {
+                    currentCueClusterPosition = value
+                }
             }
 
             ID_TIME_CODE -> clusterTimecodeUs = scaleTimecodeToUs(value)
@@ -1083,9 +1167,7 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 
-    @Throws(
-        ParserException::class
-    )
+    @Throws(ParserException::class)
     private fun assertInTrackEntry(id: Int) {
         if (currentTrack == null) {
             throw ParserException.createForMalformedContainer(
@@ -1094,11 +1176,9 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 
-    @Throws(
-        ParserException::class
-    )
+    @Throws(ParserException::class)
     private fun assertInCues(id: Int) {
-        if (cueTimesUs == null || cueClusterPositions == null) {
+        if (!inCuesElement) {
             throw ParserException.createForMalformedContainer(
                 "Element $id must be in a Cues",  /* cause= */null
             )
@@ -1502,57 +1582,6 @@ class UpdatedMatroskaExtractor private constructor(
             bytesWritten = output.sampleData(input, length, false)
         }
         return bytesWritten
-    }
-
-    /**
-     * Builds a [SeekMap] from the recently gathered Cues information.
-     *
-     * @return The built [SeekMap]. The returned [SeekMap] may be unseekable if cues
-     * information was missing or incomplete.
-     */
-    private fun buildSeekMap(
-        cueTimesUs: androidx.media3.common.util.LongArray?,
-        cueClusterPositions: androidx.media3.common.util.LongArray?
-    ): SeekMap {
-        if (segmentContentPosition == C.INDEX_UNSET.toLong() || durationUs == C.TIME_UNSET || cueTimesUs == null || cueTimesUs.size() == 0 || cueClusterPositions == null || cueClusterPositions.size() != cueTimesUs.size()) {
-            // Cues information is missing or incomplete.
-            return SeekMap.Unseekable(durationUs)
-        }
-        val cuePointsSize = cueTimesUs.size()
-        var sizes = IntArray(cuePointsSize)
-        var offsets = LongArray(cuePointsSize)
-        var durationsUs = LongArray(cuePointsSize)
-        var timesUs = LongArray(cuePointsSize)
-        for (i in 0..<cuePointsSize) {
-            timesUs[i] = cueTimesUs[i]
-            offsets[i] = segmentContentPosition + cueClusterPositions[i]
-        }
-        for (i in 0..<cuePointsSize - 1) {
-            sizes[i] = (offsets[i + 1] - offsets[i]).toInt()
-            durationsUs[i] = timesUs[i + 1] - timesUs[i]
-        }
-
-        // Start from the last cue point and move backward until a valid duration is found.
-        var lastValidIndex = cuePointsSize - 1
-        while (lastValidIndex > 0 && timesUs[lastValidIndex] > durationUs) {
-            lastValidIndex--
-        }
-
-        // Calculate sizes and durations for the last valid index
-        sizes[lastValidIndex] =
-            (segmentContentPosition + segmentContentSize - offsets[lastValidIndex]).toInt()
-        durationsUs[lastValidIndex] = durationUs - timesUs[lastValidIndex]
-
-        // If the last valid index is not the last cue point, truncate the arrays
-        if (lastValidIndex < cuePointsSize - 1) {
-            Log.w(TAG, "Discarding trailing cue points with timestamps greater than total duration")
-            sizes = sizes.copyOf(lastValidIndex + 1)
-            offsets = offsets.copyOf(lastValidIndex + 1)
-            durationsUs = durationsUs.copyOf(lastValidIndex + 1)
-            timesUs = timesUs.copyOf(lastValidIndex + 1)
-        }
-
-        return ChunkIndex(sizes, offsets, durationsUs, timesUs)
     }
 
     /**
@@ -3047,3 +3076,4 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
