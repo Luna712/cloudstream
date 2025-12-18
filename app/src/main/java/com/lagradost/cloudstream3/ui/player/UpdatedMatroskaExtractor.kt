@@ -2100,18 +2100,15 @@ class UpdatedMatroskaExtractor private constructor(
             selectionFlags = selectionFlags or if (flagDefault) C.SELECTION_FLAG_DEFAULT else 0
             selectionFlags = selectionFlags or if (flagForced) C.SELECTION_FLAG_FORCED else 0
 
-            val type: Int
             val formatBuilder = Format.Builder()
             // TODO: Consider reading the name elements of the tracks and, if present, incorporating them
             // into the trackId passed when creating the formats.
             if (MimeTypes.isAudio(mimeType)) {
-                type = C.TRACK_TYPE_AUDIO
                 formatBuilder
                     .setChannelCount(channelCount)
                     .setSampleRate(sampleRate)
                     .setPcmEncoding(pcmEncoding)
             } else if (MimeTypes.isVideo(mimeType)) {
-                type = C.TRACK_TYPE_VIDEO
                 if (displayUnit == DISPLAY_UNIT_PIXELS) {
                     displayWidth = if (displayWidth == Format.NO_VALUE) width else displayWidth
                     displayHeight = if (displayHeight == Format.NO_VALUE) height else displayHeight
@@ -2172,7 +2169,6 @@ class UpdatedMatroskaExtractor private constructor(
                 || MimeTypes.APPLICATION_PGS == mimeType
                 || MimeTypes.APPLICATION_DVBSUBS == mimeType
             ) {
-                type = C.TRACK_TYPE_TEXT
             } else {
                 throw ParserException.createForMalformedContainer(
                     "Unexpected MIME type.",  /* cause= */null
