@@ -271,6 +271,7 @@ class UpdatedMatroskaExtractor private constructor(
         currentCueTimeUs = C.TIME_UNSET
         currentCueTrackNumber = C.INDEX_UNSET
         currentCueClusterPosition = C.INDEX_UNSET
+        perTrackCues.clear()
         for (i in 0..<tracks.size()) {
             tracks.valueAt(i).reset()
         }
@@ -3076,4 +3077,5 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
 
