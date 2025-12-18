@@ -3070,24 +3070,23 @@ class UpdatedMatroskaExtractor private constructor(
             }
         }
 
-        private class CuePointData(
-            val timeUs: Long,
+        private class CuePointData : Comparable<CuePointData> {
+            val timeUs: Long
             val clusterPosition: Long
-        ) : Comparable<CuePointData> {
+
+            constructor(timeUs: Long, clusterPosition: Long) {
+                this.timeUs = timeUs
+                this.clusterPosition = clusterPosition
+            }
 
             override fun compareTo(other: CuePointData): Int {
                 return timeUs.compareTo(other.timeUs)
             }
 
             override fun equals(other: Any?): Boolean {
-                if (this === other) {
-                    return true
-                }
-                if (other !is CuePointData) {
-                    return false
-                }
-                return timeUs == other.timeUs &&
-                    clusterPosition == other.clusterPosition
+                if (this === other) return true
+                if (other !is CuePointData) return false
+                return timeUs == other.timeUs && clusterPosition == other.clusterPosition
             }
 
             override fun hashCode(): Int {
@@ -3096,4 +3095,5 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
 
