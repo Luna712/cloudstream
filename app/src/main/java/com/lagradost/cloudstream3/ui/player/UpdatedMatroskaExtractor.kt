@@ -1820,7 +1820,7 @@ class UpdatedMatroskaExtractor private constructor(
 
         /** Builds the [Format] for the track. */
         @Throws(ParserException::class)
-        fun initializeFormat(int trackId) {
+        fun initializeFormat(trackId: Int) {
             var mimeType: String
             var maxInputSize = Format.NO_VALUE
             var pcmEncoding: @PcmEncoding Int = Format.NO_VALUE
@@ -3224,6 +3224,7 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
 
 
 
