@@ -360,12 +360,6 @@ class UpdatedMatroskaExtractor private constructor(
                     )
                 }
 
-                // If we have to reparse due to an IO exception we also have to clear the seek head data
-                /*visitedSeekHeads.clear()
-                pendingSeekHeads.clear()
-                seekPositionAfterSeekingForHead = C.INDEX_UNSET.toLong()
-                seekForSeekContent = false*/
-
                 segmentContentPosition = contentPosition
                 segmentContentSize = contentSize
             }
@@ -477,10 +471,7 @@ class UpdatedMatroskaExtractor private constructor(
                 } else if (seekEntryId == ID_SEEK_HEAD) {
                     // We have a set here to prevent inf recursion, only if this seek head is non
                     // visited we add it. VLC limits this to 10, but this should work equally as well.
-                    //
-                    // Note that we also need to check that we do not jump before or to the segment we are on
-                    // as we do not want to clear our visitedSeekHeads.
-                    if (visitedSeekHeads.add(seekEntryPosition) && seekEntryPosition > segmentContentPosition) {
+                    if (visitedSeekHeads.add(seekEntryPosition)) {
                         pendingSeekHeads.add(seekEntryPosition)
                     }
                 } else if (seekEntryId == ID_CUES) {
@@ -3250,10 +3241,3 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
-
-
-
-
-
-
-
