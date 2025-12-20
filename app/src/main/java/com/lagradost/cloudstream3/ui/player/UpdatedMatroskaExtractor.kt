@@ -278,11 +278,6 @@ class UpdatedMatroskaExtractor private constructor(
         currentCueClusterPosition = C.INDEX_UNSET.toLong()
         currentCueRelativePosition = C.INDEX_UNSET.toLong()
         perTrackCues.clear()
-        // If we have to reparse due to an IO exception we also have to clear the seek head data
-        visitedSeekHeads.clear()
-        pendingSeekHeads.clear()
-        seekPositionAfterSeekingForHead = C.INDEX_UNSET.toLong()
-        seekForSeekContent = false
         for (i in 0..<tracks.size()) {
             tracks.valueAt(i).reset()
         }
@@ -359,6 +354,13 @@ class UpdatedMatroskaExtractor private constructor(
                         "Multiple Segment elements not supported",  /* cause= */null
                     )
                 }
+
+                // If we have to reparse due to an IO exception we also have to clear the seek head data
+                visitedSeekHeads.clear()
+                pendingSeekHeads.clear()
+                seekPositionAfterSeekingForHead = C.INDEX_UNSET.toLong()
+                seekForSeekContent = false
+
                 segmentContentPosition = contentPosition
                 segmentContentSize = contentSize
             }
@@ -3228,5 +3230,6 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
 
 
