@@ -525,24 +525,26 @@ class UpdatedMatroskaExtractor private constructor(
             }
 
             ID_CUE_TRACK_POSITIONS -> {
-                assertInCues(id)
-                if (currentCueTimeUs != C.TIME_UNSET.toLong()
-                    && currentCueTrackNumber != C.INDEX_UNSET
-                    && currentCueClusterPosition != C.INDEX_UNSET.toLong()
-                ) {
-                    val trackCues: MutableList<MatroskaSeekMap.CuePointData> =
-                        (perTrackCues[currentCueTrackNumber] as? MutableList<MatroskaSeekMap.CuePointData>)
-                            ?: ArrayList<MatroskaSeekMap.CuePointData>().also {
-                                perTrackCues.put(currentCueTrackNumber, it)
-                            }
+                if (!sentSeekMap) {
+                    assertInCues(id)
+                    if (currentCueTimeUs != C.TIME_UNSET
+                        && currentCueTrackNumber != C.INDEX_UNSET
+                        && currentCueClusterPosition != C.INDEX_UNSET.toLong()
+                    ) {
+                        var trackCues = perTrackCues[currentCueTrackNumber]
+                        if (trackCues == null) {
+                            trackCues = ArrayList()
+                            perTrackCues.put(currentCueTrackNumber, trackCues)
+                        }
 
-                    trackCues.add(
-                        MatroskaSeekMap.CuePointData(
-                            currentCueTimeUs,
-                            /* clusterPosition= */ segmentContentPosition + currentCueClusterPosition,
-                            /* relativePosition= */ currentCueRelativePosition
+                        trackCues.add(
+                            MatroskaSeekMap.CuePointData(
+                                currentCueTimeUs,
+                                /* clusterPosition= */ segmentContentPosition + currentCueClusterPosition,
+                                /* relativePosition= */ currentCueRelativePosition
+                            )
                         )
-                    )
+                    }
                 }
             }
 
@@ -3230,6 +3232,7 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
 
 
 
