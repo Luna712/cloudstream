@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 5 errors, 696 warnings and 1 hint</span>
+      <span class="mdl-layout-title">Lint Report: 5 errors, 695 warnings and 1 hint</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Fri Dec 19 15:50:35 UTC 2025 by AGP (9.0.0-rc01)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sat Dec 20 18:34:35 UTC 2025 by AGP (9.0.0-rc01)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -196,7 +196,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#DefaultUncaughtExceptionDelegation"><i class="material-icons warning-icon">warning</i>Missing default uncaught exception handler delegation (1)</a>
       <a class="mdl-navigation__link" href="#PictureInPictureIssue"><i class="material-icons warning-icon">warning</i>Picture In Picture best practices not followed (1)</a>
       <a class="mdl-navigation__link" href="#VectorRaster"><i class="material-icons warning-icon">warning</i>Vector Image Generation (15)</a>
-      <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (16)</a>
+      <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (15)</a>
       <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (2)</a>
       <a class="mdl-navigation__link" href="#PrivateResource"><i class="material-icons warning-icon">warning</i>Using private resources (26)</a>
       <a class="mdl-navigation__link" href="#Aligned16KB"><i class="material-icons warning-icon">warning</i>Native library dependency not 16 KB aligned (9)</a>
@@ -273,7 +273,7 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">15</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#VectorRaster">VectorRaster</a>: Vector Image Generation</td></tr>
 <tr>
-<td class="countColumn">16</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">15</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#GradleDependency">GradleDependency</a>: Obsolete Gradle Dependency</td></tr>
 <tr>
 <td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
@@ -1515,7 +1515,7 @@ Dismiss</button>            </div>
 <span class="lineno">  26 </span>kotlinGradlePlugin = "2.3.20-dev-6805"
 <span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
 <span class="caretline"><span class="lineno">  28 </span>lifecycleKtx = <span class="warning">"2.9.4"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  29 </span>material = "1.14.0-alpha07"
+<span class="lineno">  29 </span>material = "1.14.0-alpha08"
 <span class="lineno">  30 </span>media3 = "1.8.0"
 <span class="lineno">  31 </span>media3FfmpegDecoder = "1.8.0+1"
 </pre>
@@ -1525,37 +1525,27 @@ Dismiss</button>            </div>
 <span class="lineno">  26 </span>kotlinGradlePlugin = "2.3.20-dev-6805"
 <span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
 <span class="caretline"><span class="lineno">  28 </span>lifecycleKtx = <span class="warning">"2.9.4"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  29 </span>material = "1.14.0-alpha07"
+<span class="lineno">  29 </span>material = "1.14.0-alpha08"
 <span class="lineno">  30 </span>media3 = "1.8.0"
 <span class="lineno">  31 </span>media3FfmpegDecoder = "1.8.0+1"
 </pre>
 
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:29</span>: <span class="message">A newer version of com.google.android.material:material than 1.14.0-alpha07 is available: 1.14.0-alpha08</span><br /><pre class="errorlines">
-<span class="lineno">  26 </span>kotlinGradlePlugin = "2.3.20-dev-6805"
-<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
-<span class="lineno">  28 </span>lifecycleKtx = "2.9.4"
-<span class="caretline"><span class="lineno">  29 </span>material = <span class="warning">"1.14.0-alpha07"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  30 </span>media3 = "1.8.0"
-<span class="lineno">  31 </span>media3FfmpegDecoder = "1.8.0+1"
-<span class="lineno">  32 </span>navigationKtx = "2.9.6"
-</pre>
-
-<button class="mdl-button mdl-js-button mdl-button--primary" id="GradleDependencyDivLink" onclick="reveal('GradleDependencyDiv');" />+ 11 More Occurrences...</button>
-<div id="GradleDependencyDiv" style="display: none">
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-cast than 1.8.0 is available: 1.9.0</span><br /><pre class="errorlines">
 <span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
 <span class="lineno">  28 </span>lifecycleKtx = "2.9.4"
-<span class="lineno">  29 </span>material = "1.14.0-alpha07"
+<span class="lineno">  29 </span>material = "1.14.0-alpha08"
 <span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.8.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  31 </span>media3FfmpegDecoder = "1.8.0+1"
 <span class="lineno">  32 </span>navigationKtx = "2.9.6"
 <span class="lineno">  33 </span>newpipeextractor = "v0.24.8"
 </pre>
 
+<button class="mdl-button mdl-js-button mdl-button--primary" id="GradleDependencyDivLink" onclick="reveal('GradleDependencyDiv');" />+ 10 More Occurrences...</button>
+<div id="GradleDependencyDiv" style="display: none">
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-common than 1.8.0 is available: 1.9.0</span><br /><pre class="errorlines">
 <span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
 <span class="lineno">  28 </span>lifecycleKtx = "2.9.4"
-<span class="lineno">  29 </span>material = "1.14.0-alpha07"
+<span class="lineno">  29 </span>material = "1.14.0-alpha08"
 <span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.8.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  31 </span>media3FfmpegDecoder = "1.8.0+1"
 <span class="lineno">  32 </span>navigationKtx = "2.9.6"
@@ -1565,7 +1555,7 @@ Dismiss</button>            </div>
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-container than 1.8.0 is available: 1.9.0</span><br /><pre class="errorlines">
 <span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
 <span class="lineno">  28 </span>lifecycleKtx = "2.9.4"
-<span class="lineno">  29 </span>material = "1.14.0-alpha07"
+<span class="lineno">  29 </span>material = "1.14.0-alpha08"
 <span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.8.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  31 </span>media3FfmpegDecoder = "1.8.0+1"
 <span class="lineno">  32 </span>navigationKtx = "2.9.6"
@@ -1575,7 +1565,7 @@ Dismiss</button>            </div>
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-datasource-cronet than 1.8.0 is available: 1.9.0</span><br /><pre class="errorlines">
 <span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
 <span class="lineno">  28 </span>lifecycleKtx = "2.9.4"
-<span class="lineno">  29 </span>material = "1.14.0-alpha07"
+<span class="lineno">  29 </span>material = "1.14.0-alpha08"
 <span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.8.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  31 </span>media3FfmpegDecoder = "1.8.0+1"
 <span class="lineno">  32 </span>navigationKtx = "2.9.6"
@@ -1585,7 +1575,7 @@ Dismiss</button>            </div>
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-datasource-okhttp than 1.8.0 is available: 1.9.0</span><br /><pre class="errorlines">
 <span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
 <span class="lineno">  28 </span>lifecycleKtx = "2.9.4"
-<span class="lineno">  29 </span>material = "1.14.0-alpha07"
+<span class="lineno">  29 </span>material = "1.14.0-alpha08"
 <span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.8.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  31 </span>media3FfmpegDecoder = "1.8.0+1"
 <span class="lineno">  32 </span>navigationKtx = "2.9.6"
@@ -1595,7 +1585,7 @@ Dismiss</button>            </div>
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-exoplayer than 1.8.0 is available: 1.9.0</span><br /><pre class="errorlines">
 <span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
 <span class="lineno">  28 </span>lifecycleKtx = "2.9.4"
-<span class="lineno">  29 </span>material = "1.14.0-alpha07"
+<span class="lineno">  29 </span>material = "1.14.0-alpha08"
 <span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.8.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  31 </span>media3FfmpegDecoder = "1.8.0+1"
 <span class="lineno">  32 </span>navigationKtx = "2.9.6"
@@ -1605,7 +1595,7 @@ Dismiss</button>            </div>
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-exoplayer-dash than 1.8.0 is available: 1.9.0</span><br /><pre class="errorlines">
 <span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
 <span class="lineno">  28 </span>lifecycleKtx = "2.9.4"
-<span class="lineno">  29 </span>material = "1.14.0-alpha07"
+<span class="lineno">  29 </span>material = "1.14.0-alpha08"
 <span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.8.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  31 </span>media3FfmpegDecoder = "1.8.0+1"
 <span class="lineno">  32 </span>navigationKtx = "2.9.6"
@@ -1615,7 +1605,7 @@ Dismiss</button>            </div>
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-exoplayer-hls than 1.8.0 is available: 1.9.0</span><br /><pre class="errorlines">
 <span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
 <span class="lineno">  28 </span>lifecycleKtx = "2.9.4"
-<span class="lineno">  29 </span>material = "1.14.0-alpha07"
+<span class="lineno">  29 </span>material = "1.14.0-alpha08"
 <span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.8.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  31 </span>media3FfmpegDecoder = "1.8.0+1"
 <span class="lineno">  32 </span>navigationKtx = "2.9.6"
@@ -1625,7 +1615,7 @@ Dismiss</button>            </div>
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-session than 1.8.0 is available: 1.9.0</span><br /><pre class="errorlines">
 <span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
 <span class="lineno">  28 </span>lifecycleKtx = "2.9.4"
-<span class="lineno">  29 </span>material = "1.14.0-alpha07"
+<span class="lineno">  29 </span>material = "1.14.0-alpha08"
 <span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.8.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  31 </span>media3FfmpegDecoder = "1.8.0+1"
 <span class="lineno">  32 </span>navigationKtx = "2.9.6"
@@ -1635,7 +1625,7 @@ Dismiss</button>            </div>
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-ui than 1.8.0 is available: 1.9.0</span><br /><pre class="errorlines">
 <span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
 <span class="lineno">  28 </span>lifecycleKtx = "2.9.4"
-<span class="lineno">  29 </span>material = "1.14.0-alpha07"
+<span class="lineno">  29 </span>material = "1.14.0-alpha08"
 <span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.8.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  31 </span>media3FfmpegDecoder = "1.8.0+1"
 <span class="lineno">  32 </span>navigationKtx = "2.9.6"
@@ -1903,14 +1893,14 @@ Dismiss</button>            </div>
 <span class="lineno"> 18 </span>            <span class="prefix">android:</span><span class="attribute">toAlpha</span>=<span class="value">"0.0"</span>/>
 <span class="lineno"> 19 </span><span class="tag">&lt;/set></span></pre>
 
-<span class="location"><a href="../../src/main/res/drawable/material_outline_background.xml">../../src/main/res/drawable/material_outline_background.xml</a>:4</span>: <span class="message">The resource <code>@color/mtrl_btn_stroke_color_selector</code> is marked as private in com.google.android.material:material:1.14.0-alpha07</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/drawable/material_outline_background.xml">../../src/main/res/drawable/material_outline_background.xml</a>:4</span>: <span class="message">The resource <code>@color/mtrl_btn_stroke_color_selector</code> is marked as private in com.google.android.material:material:1.14.0-alpha08</span><br /><pre class="errorlines">
 <span class="lineno"> 1 </span><span class="prologue">&lt;?xml version="1.0" encoding="utf-8"?></span>
 <span class="lineno"> 2 </span><span class="tag">&lt;shape</span><span class="attribute"> </span><span class="prefix">xmlns:</span><span class="attribute">android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span>>
 <span class="lineno"> 3 </span>    <span class="tag">&lt;solid</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">color</span>=<span class="value">"?attr/primaryBlackBackground"</span>/>
 <span class="caretline"><span class="lineno"> 4 </span>    <span class="tag">&lt;stroke</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">width</span>=<span class="value">"@dimen/mtrl_btn_stroke_size"</span> <span class="prefix">android:</span><span class="attribute">color</span>=<span class="value">"</span><span class="warning"><span class="value">@color/mtrl_btn_stroke_color_selector</span></span><span class="value">"</span>/></span>
 <span class="lineno"> 5 </span><span class="tag">&lt;/shape></span></pre>
 
-<span class="location"><a href="../../src/main/res/drawable/material_outline_background.xml">../../src/main/res/drawable/material_outline_background.xml</a>:4</span>: <span class="message">The resource <code>@dimen/mtrl_btn_stroke_size</code> is marked as private in com.google.android.material:material:1.14.0-alpha07</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/drawable/material_outline_background.xml">../../src/main/res/drawable/material_outline_background.xml</a>:4</span>: <span class="message">The resource <code>@dimen/mtrl_btn_stroke_size</code> is marked as private in com.google.android.material:material:1.14.0-alpha08</span><br /><pre class="errorlines">
 <span class="lineno"> 1 </span><span class="prologue">&lt;?xml version="1.0" encoding="utf-8"?></span>
 <span class="lineno"> 2 </span><span class="tag">&lt;shape</span><span class="attribute"> </span><span class="prefix">xmlns:</span><span class="attribute">android</span>=<span class="value">"http://schemas.android.com/apk/res/android"</span>>
 <span class="lineno"> 3 </span>    <span class="tag">&lt;solid</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">color</span>=<span class="value">"?attr/primaryBlackBackground"</span>/>
@@ -2143,14 +2133,14 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/res/values/array.xml">../../src/main/res/values/array.xml</a>:331</span>: <span class="message">"Ok" is usually capitalized as "OK"</span><br /><pre class="errorlines">
-<span class="lineno"> 328 </span>    <span class="tag">&lt;string-array</span><span class="attribute"> name</span>=<span class="value">"extension_statuses"</span>>
-<span class="lineno"> 329 </span>        <span class="tag">&lt;item></span>Down<span class="tag">&lt;/item></span>
-<span class="lineno"> 330 </span>        <span class="comment">&lt;!-- "Ok" is usually capitalized as "OK". Ok android studio 🤓--></span>
-<span class="caretline"><span class="lineno"> 331 </span>        <span class="tag">&lt;item></span><span class="warning">Ok</span><span class="tag">&lt;/item></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 332 </span>        <span class="tag">&lt;item></span>Slow<span class="tag">&lt;/item></span>
-<span class="lineno"> 333 </span>        <span class="tag">&lt;item></span>Beta<span class="tag">&lt;/item></span>
-<span class="lineno"> 334 </span>    <span class="tag">&lt;/string-array></span></pre>
+<span class="location"><a href="../../src/main/res/values/array.xml">../../src/main/res/values/array.xml</a>:333</span>: <span class="message">"Ok" is usually capitalized as "OK"</span><br /><pre class="errorlines">
+<span class="lineno"> 330 </span>    <span class="tag">&lt;string-array</span><span class="attribute"> name</span>=<span class="value">"extension_statuses"</span>>
+<span class="lineno"> 331 </span>        <span class="tag">&lt;item></span>Down<span class="tag">&lt;/item></span>
+<span class="lineno"> 332 </span>        <span class="comment">&lt;!-- "Ok" is usually capitalized as "OK". Ok android studio 🤓--></span>
+<span class="caretline"><span class="lineno"> 333 </span>        <span class="tag">&lt;item></span><span class="warning">Ok</span><span class="tag">&lt;/item></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 334 </span>        <span class="tag">&lt;item></span>Slow<span class="tag">&lt;/item></span>
+<span class="lineno"> 335 </span>        <span class="tag">&lt;item></span>Beta<span class="tag">&lt;/item></span>
+<span class="lineno"> 336 </span>    <span class="tag">&lt;/string-array></span></pre>
 
 <span class="location"><a href="../../src/main/res/values-b%2Bpt%2BBR/strings.xml">../../src/main/res/values-b%2Bpt%2BBR/strings.xml</a>:110</span>: <span class="message">"video" is a common misspelling; did you mean "vídeo"?</span><br /><pre class="errorlines">
 <span class="lineno"> 107 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"action_open_play"</span>>@string/home_play<span class="tag">&lt;/string></span>
@@ -2852,32 +2842,32 @@ Dismiss</button>            </div>
 <span class="lineno"> 215 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subs_auto_select_language"</span>>Auto-Select Language<span class="tag">&lt;/string></span>
 <span class="lineno"> 216 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subs_download_languages"</span>>Download Languages<span class="tag">&lt;/string></span></pre>
 
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:647</span>: <span class="message">Formatting %d followed by words ("plugins"): This should probably be a plural rather than a string</span><br /><pre class="errorlines">
-<span class="lineno"> 644 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_downloaded"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Downloaded: %d<span class="tag">&lt;/string></span>
-<span class="lineno"> 645 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_disabled"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Disabled: %d<span class="tag">&lt;/string></span>
-<span class="lineno"> 646 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_not_downloaded"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Not downloaded: %d<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 647 </span>    <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_updated"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Updated %d plugins<span class="tag">&lt;/string></span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 648 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"blank_repo_message"</span>>CloudStream has no sites installed by default. You need to install the sites from repositories.
-<span class="lineno"> 649 </span>\n
-<span class="lineno"> 650 </span>\nJoin our Discord or search online.<span class="tag">&lt;/string></span></pre>
+<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:649</span>: <span class="message">Formatting %d followed by words ("plugins"): This should probably be a plural rather than a string</span><br /><pre class="errorlines">
+<span class="lineno"> 646 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_downloaded"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Downloaded: %d<span class="tag">&lt;/string></span>
+<span class="lineno"> 647 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_disabled"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Disabled: %d<span class="tag">&lt;/string></span>
+<span class="lineno"> 648 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_not_downloaded"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Not downloaded: %d<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno"> 649 </span>    <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_updated"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Updated %d plugins<span class="tag">&lt;/string></span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 650 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"blank_repo_message"</span>>CloudStream has no sites installed by default. You need to install the sites from repositories.
+<span class="lineno"> 651 </span>\n
+<span class="lineno"> 652 </span>\nJoin our Discord or search online.<span class="tag">&lt;/string></span></pre>
 
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:745</span>: <span class="message">Formatting %d followed by words ("released"): This should probably be a plural rather than a string</span><br /><pre class="errorlines">
-<span class="lineno"> 742 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subscription_list_name"</span>>Subscribed<span class="tag">&lt;/string></span>
-<span class="lineno"> 743 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subscription_new"</span>>Subscribed to %s<span class="tag">&lt;/string></span>
-<span class="lineno"> 744 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subscription_deleted"</span>>Unsubscribed from %s<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 745 </span>    <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subscription_episode_released"</span>>Episode %d released!<span class="tag">&lt;/string></span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 746 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"action_subscribe"</span>>Subscribe<span class="tag">&lt;/string></span>
-<span class="lineno"> 747 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"action_unsubscribe"</span>>Unsubscribe<span class="tag">&lt;/string></span>
-<span class="lineno"> 748 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"profile_number"</span>>Profile %d<span class="tag">&lt;/string></span></pre>
+<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:747</span>: <span class="message">Formatting %d followed by words ("released"): This should probably be a plural rather than a string</span><br /><pre class="errorlines">
+<span class="lineno"> 744 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subscription_list_name"</span>>Subscribed<span class="tag">&lt;/string></span>
+<span class="lineno"> 745 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subscription_new"</span>>Subscribed to %s<span class="tag">&lt;/string></span>
+<span class="lineno"> 746 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subscription_deleted"</span>>Unsubscribed from %s<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno"> 747 </span>    <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subscription_episode_released"</span>>Episode %d released!<span class="tag">&lt;/string></span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 748 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"action_subscribe"</span>>Subscribe<span class="tag">&lt;/string></span>
+<span class="lineno"> 749 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"action_unsubscribe"</span>>Unsubscribe<span class="tag">&lt;/string></span>
+<span class="lineno"> 750 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"profile_number"</span>>Profile %d<span class="tag">&lt;/string></span></pre>
 
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:858</span>: <span class="message">Formatting %d followed by words ("plugin"): This should probably be a plural rather than a string</span><br /><pre class="errorlines">
-<span class="lineno"> 855 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"update_plugins_manually"</span>>Update plugins manually<span class="tag">&lt;/string></span>
-<span class="lineno"> 856 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"manual_update_plugins_key"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>manual_update_plugins<span class="tag">&lt;/string></span>
-<span class="lineno"> 857 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"starting_plugin_update_manually"</span>>Starting plugin update process!<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 858 </span>  <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_updated_manually"</span>>Successfully updated %d plugin(s)!<span class="tag">&lt;/string></span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 859 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"no_plugins_updated_manually"</span>>No plugins were updated.<span class="tag">&lt;/string></span>
-<span class="lineno"> 860 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"player_notification_channel_name"</span>>Player notifications<span class="tag">&lt;/string></span>
-<span class="lineno"> 861 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"player_notification_channel_description"</span>>The player notification for controlling the playback from the background<span class="tag">&lt;/string></span></pre>
+<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:860</span>: <span class="message">Formatting %d followed by words ("plugin"): This should probably be a plural rather than a string</span><br /><pre class="errorlines">
+<span class="lineno"> 857 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"update_plugins_manually"</span>>Update plugins manually<span class="tag">&lt;/string></span>
+<span class="lineno"> 858 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"manual_update_plugins_key"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>manual_update_plugins<span class="tag">&lt;/string></span>
+<span class="lineno"> 859 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"starting_plugin_update_manually"</span>>Starting plugin update process!<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno"> 860 </span>  <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_updated_manually"</span>>Successfully updated %d plugin(s)!<span class="tag">&lt;/string></span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 861 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"no_plugins_updated_manually"</span>>No plugins were updated.<span class="tag">&lt;/string></span>
+<span class="lineno"> 862 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"player_notification_channel_name"</span>>Player notifications<span class="tag">&lt;/string></span>
+<span class="lineno"> 863 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"player_notification_channel_description"</span>>The player notification for controlling the playback from the background<span class="tag">&lt;/string></span></pre>
 
 </div>
 <div class="metadata"><div class="explanation" id="explanationPluralsCandidate" style="display: none;">

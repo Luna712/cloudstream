@@ -406,9 +406,6 @@ lifecycleKtx = "2.9.4"
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:28: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.9.4 is available: 2.10.0 [GradleDependency]
 lifecycleKtx = "2.9.4"
                ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:29: Warning: A newer version of com.google.android.material:material than 1.14.0-alpha07 is available: 1.14.0-alpha08 [GradleDependency]
-material = "1.14.0-alpha07"
-           ~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-cast than 1.8.0 is available: 1.9.0 [GradleDependency]
 media3 = "1.8.0"
          ~~~~~~~
@@ -516,10 +513,10 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/anim/exit_anim.xml:16: Warning: The resource @integer/config_navAnimTime is marked as private in androidx.navigation:navigation-ui:2.9.6 [PrivateResource]
             android:duration="@integer/config_navAnimTime"
                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/material_outline_background.xml:4: Warning: The resource @color/mtrl_btn_stroke_color_selector is marked as private in com.google.android.material:material:1.14.0-alpha07 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/material_outline_background.xml:4: Warning: The resource @color/mtrl_btn_stroke_color_selector is marked as private in com.google.android.material:material:1.14.0-alpha08 [PrivateResource]
     <stroke android:width="@dimen/mtrl_btn_stroke_size" android:color="@color/mtrl_btn_stroke_color_selector"/>
                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/material_outline_background.xml:4: Warning: The resource @dimen/mtrl_btn_stroke_size is marked as private in com.google.android.material:material:1.14.0-alpha07 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/material_outline_background.xml:4: Warning: The resource @dimen/mtrl_btn_stroke_size is marked as private in com.google.android.material:material:1.14.0-alpha08 [PrivateResource]
     <stroke android:width="@dimen/mtrl_btn_stroke_size" android:color="@color/mtrl_btn_stroke_color_selector"/>
                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:558: Warning: The resource @style/ExoMediaButton is marked as private in androidx.media3:media3-ui:1.8.0 [PrivateResource]
@@ -600,7 +597,7 @@ conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = 
    Discouraged APIs are allowed and are not deprecated, but they may be unfit
    for common use (e.g. due to slow performance or subtle behavior).
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/array.xml:331: Warning: "Ok" is usually capitalized as "OK" [Typos]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/array.xml:333: Warning: "Ok" is usually capitalized as "OK" [Typos]
         <item>Ok</item>
               ~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pt+BR/strings.xml:110: Warning: "video" is a common misspelling; did you mean "vídeo"? [Typos]
@@ -1394,13 +1391,13 @@ conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = 
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:213: Warning: Formatting %d followed by words ("Benenes"): This should probably be a plural rather than a string [PluralsCandidate]
     <string name="benene_count_text">%d Benenes given to devs</string>
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:647: Warning: Formatting %d followed by words ("plugins"): This should probably be a plural rather than a string [PluralsCandidate]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:649: Warning: Formatting %d followed by words ("plugins"): This should probably be a plural rather than a string [PluralsCandidate]
     <string name="plugins_updated" formatted="true">Updated %d plugins</string>
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:745: Warning: Formatting %d followed by words ("released"): This should probably be a plural rather than a string [PluralsCandidate]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:747: Warning: Formatting %d followed by words ("released"): This should probably be a plural rather than a string [PluralsCandidate]
     <string name="subscription_episode_released">Episode %d released!</string>
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:858: Warning: Formatting %d followed by words ("plugin"): This should probably be a plural rather than a string [PluralsCandidate]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:860: Warning: Formatting %d followed by words ("plugin"): This should probably be a plural rather than a string [PluralsCandidate]
     <string name="plugins_updated_manually">Successfully updated %d plugin(s)!</string>
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1905,67 +1902,67 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:392: Warning: The resource R.string.episode_action_cast_mirror appears to be unused [UnusedResources]
     <string name="episode_action_cast_mirror">Cast mirror</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:443: Warning: The resource R.string.nginx_url_pref appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:445: Warning: The resource R.string.nginx_url_pref appears to be unused [UnusedResources]
     <string name="nginx_url_pref">NGINX server URL</string>
             ~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:513: Warning: The resource R.string.nginx_key appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:515: Warning: The resource R.string.nginx_key appears to be unused [UnusedResources]
     <string name="nginx_key" translatable="false">nginx_key</string>
             ~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:529: Warning: The resource R.string.login_format appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:531: Warning: The resource R.string.login_format appears to be unused [UnusedResources]
     <string name="login_format" formatted="true">%1$s %2$s</string>
             ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:538: Warning: The resource R.string.added_sync_format appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:540: Warning: The resource R.string.added_sync_format appears to be unused [UnusedResources]
     <string name="added_sync_format" formatted="true">Added %s</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:551: Warning: The resource R.string.max appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:553: Warning: The resource R.string.max appears to be unused [UnusedResources]
     <string name="max">Max</string>
             ~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:552: Warning: The resource R.string.min appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:554: Warning: The resource R.string.min appears to be unused [UnusedResources]
     <string name="min">Min</string>
             ~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:612: Warning: The resource R.string.extras appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:614: Warning: The resource R.string.extras appears to be unused [UnusedResources]
     <string name="extras">Extras</string>
             ~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:651: Warning: The resource R.string.view_public_repositories_button appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:653: Warning: The resource R.string.view_public_repositories_button appears to be unused [UnusedResources]
     <string name="view_public_repositories_button">View community repositories</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:652: Warning: The resource R.string.view_public_repositories_button_short appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:654: Warning: The resource R.string.view_public_repositories_button_short appears to be unused [UnusedResources]
     <string name="view_public_repositories_button_short">Public list</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:665: Warning: The resource R.string.extension_rating appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:667: Warning: The resource R.string.extension_rating appears to be unused [UnusedResources]
     <string name="extension_rating" formatted="true">Rating: %s</string>
             ~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:688: Warning: The resource R.string.skip_type_intro appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:690: Warning: The resource R.string.skip_type_intro appears to be unused [UnusedResources]
     <string name="skip_type_intro">Intro</string>
             ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:773: Warning: The resource R.string.action_remove_from_favorites appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:775: Warning: The resource R.string.action_remove_from_favorites appears to be unused [UnusedResources]
     <string name="action_remove_from_favorites">Remove from favorites</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:248: Warning: The resource R.style.OverlayPrimaryColorBlue appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:251: Warning: The resource R.style.OverlayPrimaryColorBlue appears to be unused [UnusedResources]
     <style name="OverlayPrimaryColorBlue">
            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:432: Warning: The resource R.style.customRatingBar appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:435: Warning: The resource R.style.customRatingBar appears to be unused [UnusedResources]
     <style name="customRatingBar" parent="@style/Widget.AppCompat.RatingBar">
            ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:556: Warning: The resource R.style.AlertDialogCustomTransparent appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:559: Warning: The resource R.style.AlertDialogCustomTransparent appears to be unused [UnusedResources]
     <style name="AlertDialogCustomTransparent" parent="Theme.AppCompat.Dialog.Alert">
            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:788: Warning: The resource R.style.RoundedSelectableButtonIcon appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:791: Warning: The resource R.style.RoundedSelectableButtonIcon appears to be unused [UnusedResources]
     <style name="RoundedSelectableButtonIcon" parent="RoundedSelectableButton">
            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:812: Warning: The resource R.style.RoundedSelectableButton appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:815: Warning: The resource R.style.RoundedSelectableButton appears to be unused [UnusedResources]
     <style name="RoundedSelectableButton">
            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:842: Warning: The resource R.style.SelectableButton appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:845: Warning: The resource R.style.SelectableButton appears to be unused [UnusedResources]
     <style name="SelectableButton" parent="NiceButton">
            ~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:875: Warning: The resource R.style.SyncButton appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:878: Warning: The resource R.style.SyncButton appears to be unused [UnusedResources]
     <style name="SyncButton" parent="NiceButton">
            ~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:888: Warning: The resource R.style.Tag appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:891: Warning: The resource R.style.Tag appears to be unused [UnusedResources]
     <style name="Tag" parent="Widget.MaterialComponents.Button.OutlinedButton">
            ~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:892: Warning: The resource R.style.ResultButtonTV appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:895: Warning: The resource R.style.ResultButtonTV appears to be unused [UnusedResources]
     <style name="ResultButtonTV" parent="@style/RegularButtonTV">
            ~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/sub_bg_color.xml:2: Warning: The resource R.drawable.sub_bg_color appears to be unused [UnusedResources]
@@ -2553,4 +2550,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-5 errors, 696 warnings, 1 hint
+5 errors, 695 warnings, 1 hint

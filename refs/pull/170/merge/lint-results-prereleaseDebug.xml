@@ -1518,22 +1518,6 @@
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of com.google.android.material:material than 1.14.0-alpha07 is available: 1.14.0-alpha08"
-        category="Correctness"
-        priority="4"
-        summary="Obsolete Gradle Dependency"
-        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
-        errorLine1="material = &quot;1.14.0-alpha07&quot;"
-        errorLine2="           ~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
-            line="29"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="GradleDependency"
-        severity="Warning"
         message="A newer version of androidx.media3:media3-cast than 1.8.0 is available: 1.9.0"
         category="Correctness"
         priority="4"
@@ -2014,7 +1998,7 @@
     <issue
         id="PrivateResource"
         severity="Warning"
-        message="The resource `@color/mtrl_btn_stroke_color_selector` is marked as private in com.google.android.material:material:1.14.0-alpha07"
+        message="The resource `@color/mtrl_btn_stroke_color_selector` is marked as private in com.google.android.material:material:1.14.0-alpha08"
         category="Correctness"
         priority="3"
         summary="Using private resources"
@@ -2030,7 +2014,7 @@
     <issue
         id="PrivateResource"
         severity="Warning"
-        message="The resource `@dimen/mtrl_btn_stroke_size` is marked as private in com.google.android.material:material:1.14.0-alpha07"
+        message="The resource `@dimen/mtrl_btn_stroke_size` is marked as private in com.google.android.material:material:1.14.0-alpha08"
         category="Correctness"
         priority="3"
         summary="Using private resources"
@@ -2329,7 +2313,7 @@
         errorLine2="              ~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/array.xml"
-            line="331"
+            line="333"
             column="15"/>
     </issue>
 
@@ -6419,7 +6403,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="647"
+            line="649"
             column="5"/>
     </issue>
 
@@ -6437,7 +6421,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="745"
+            line="747"
             column="5"/>
     </issue>
 
@@ -6455,7 +6439,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="858"
+            line="860"
             column="5"/>
     </issue>
 
@@ -8703,7 +8687,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="443"
+            line="445"
             column="13"/>
     </issue>
 
@@ -8719,7 +8703,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="513"
+            line="515"
             column="13"/>
     </issue>
 
@@ -8735,7 +8719,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="529"
+            line="531"
             column="13"/>
     </issue>
 
@@ -8751,7 +8735,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="538"
+            line="540"
             column="13"/>
     </issue>
 
@@ -8767,7 +8751,7 @@
         errorLine2="            ~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="551"
+            line="553"
             column="13"/>
     </issue>
 
@@ -8783,7 +8767,7 @@
         errorLine2="            ~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="552"
+            line="554"
             column="13"/>
     </issue>
 
@@ -8799,7 +8783,7 @@
         errorLine2="            ~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="612"
+            line="614"
             column="13"/>
     </issue>
 
@@ -8815,7 +8799,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="651"
+            line="653"
             column="13"/>
     </issue>
 
@@ -8831,7 +8815,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="652"
+            line="654"
             column="13"/>
     </issue>
 
@@ -8847,7 +8831,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="665"
+            line="667"
             column="13"/>
     </issue>
 
@@ -8863,7 +8847,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="688"
+            line="690"
             column="13"/>
     </issue>
 
@@ -8879,7 +8863,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="773"
+            line="775"
             column="13"/>
     </issue>
 
@@ -8895,7 +8879,7 @@
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml"
-            line="248"
+            line="251"
             column="12"/>
     </issue>
 
@@ -8911,7 +8895,7 @@
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml"
-            line="432"
+            line="435"
             column="12"/>
     </issue>
 
@@ -8927,7 +8911,7 @@
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml"
-            line="556"
+            line="559"
             column="12"/>
     </issue>
 
@@ -8943,7 +8927,7 @@
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml"
-            line="788"
+            line="791"
             column="12"/>
     </issue>
 
@@ -8959,7 +8943,7 @@
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml"
-            line="812"
+            line="815"
             column="12"/>
     </issue>
 
@@ -8975,7 +8959,7 @@
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml"
-            line="842"
+            line="845"
             column="12"/>
     </issue>
 
@@ -8991,7 +8975,7 @@
         errorLine2="           ~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml"
-            line="875"
+            line="878"
             column="12"/>
     </issue>
 
@@ -9007,7 +8991,7 @@
         errorLine2="           ~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml"
-            line="888"
+            line="891"
             column="12"/>
     </issue>
 
@@ -9023,7 +9007,7 @@
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml"
-            line="892"
+            line="895"
             column="12"/>
     </issue>
 
