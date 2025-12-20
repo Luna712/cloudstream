@@ -277,7 +277,12 @@ class UpdatedMatroskaExtractor private constructor(
         currentCueTrackNumber = C.INDEX_UNSET
         currentCueClusterPosition = C.INDEX_UNSET.toLong()
         currentCueRelativePosition = C.INDEX_UNSET.toLong()
-        perTrackCues.clear()
+        // To prevent creating duplicate cue points on a re-parse, clear any existing cue data if the
+        // seek map has not yet been sent. Once sent, the cue data is considered final, and subsequent
+        // Cues elements will be ignored by the parsing logic.
+        if (!sentSeekMap) {
+            perTrackCues.clear()
+        }
         for (i in 0..<tracks.size()) {
             tracks.valueAt(i).reset()
         }
@@ -798,26 +803,34 @@ class UpdatedMatroskaExtractor private constructor(
                 }
 
             ID_CUE_TIME -> {
-                assertInCues(id)
-                currentCueTimeUs = scaleTimecodeToUs(value)
+                if (!sentSeekMap) {
+                    assertInCues(id)
+                    currentCueTimeUs = scaleTimecodeToUs(value)
+                }
             }
 
             ID_CUE_TRACK -> {
-                assertInCues(id)
-                currentCueTrackNumber = value.toInt()
+                if (!sentSeekMap) {
+                    assertInCues(id)
+                    currentCueTrackNumber = value.toInt()
+                }
             }
 
             ID_CUE_CLUSTER_POSITION -> {
-                assertInCues(id)
-                if (currentCueClusterPosition == C.INDEX_UNSET.toLong()) {
-                    currentCueClusterPosition = value
+                if (!sentSeekMap) {
+                    assertInCues(id)
+                    if (currentCueClusterPosition == C.INDEX_UNSET.toLong()) {
+                        currentCueClusterPosition = value
+                    }
                 }
             }
 
             ID_CUE_RELATIVE_POSITION -> {
-                assertInCues(id)
-                if (currentCueRelativePosition == C.INDEX_UNSET.toLong()) {
-                    currentCueRelativePosition = value
+                if (!sentSeekMap) {
+                    assertInCues(id)
+                    if (currentCueRelativePosition == C.INDEX_UNSET.toLong()) {
+                        currentCueRelativePosition = value
+                    }
                 }
             }
 
@@ -3237,6 +3250,7 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
 
 
 
