@@ -356,10 +356,10 @@ class UpdatedMatroskaExtractor private constructor(
                 }
 
                 // If we have to reparse due to an IO exception we also have to clear the seek head data
-                visitedSeekHeads.clear()
+                /*visitedSeekHeads.clear()
                 pendingSeekHeads.clear()
                 seekPositionAfterSeekingForHead = C.INDEX_UNSET.toLong()
-                seekForSeekContent = false
+                seekForSeekContent = false*/
 
                 segmentContentPosition = contentPosition
                 segmentContentSize = contentSize
@@ -371,19 +371,25 @@ class UpdatedMatroskaExtractor private constructor(
             }
 
             ID_CUES -> {
-                inCuesElement = true
+                if (!sentSeekMap) {
+                    inCuesElement = true
+                }
             }
 
             ID_CUE_POINT -> {
-                assertInCues(id)
-                currentCueTimeUs = C.TIME_UNSET
+                if (!sentSeekMap) {
+                    assertInCues(id)
+                    currentCueTimeUs = C.TIME_UNSET
+                }
             }
 
             ID_CUE_TRACK_POSITIONS -> {
-                assertInCues(id)
-                currentCueTrackNumber = C.INDEX_UNSET
-                currentCueClusterPosition = C.INDEX_UNSET.toLong()
-                currentCueRelativePosition = C.INDEX_UNSET.toLong()
+                if (!sentSeekMap) {
+                    assertInCues(id)
+                    currentCueTrackNumber = C.INDEX_UNSET
+                    currentCueClusterPosition = C.INDEX_UNSET.toLong()
+                    currentCueRelativePosition = C.INDEX_UNSET.toLong()
+                }
             }
 
             ID_CLUSTER -> if (!sentSeekMap) {
@@ -510,6 +516,7 @@ class UpdatedMatroskaExtractor private constructor(
                         extractorOutput!!.seekMap(seekMap)
                     }
                     sentSeekMap = true
+                    inCuesElement = false
                     for (i in 0 until tracks.size()) {
                         val track: Track = tracks.valueAt(i)
                         track.maybeAddThumbnailMetadata(perTrackCues, durationUs, segmentContentPosition, segmentContentSize)
@@ -520,7 +527,6 @@ class UpdatedMatroskaExtractor private constructor(
                     }
                     maybeEndTracks()
                 }
-                inCuesElement = false
             }
 
             ID_CUE_TRACK_POSITIONS -> {
@@ -3231,6 +3237,7 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
 
 
 
