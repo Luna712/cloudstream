@@ -359,7 +359,6 @@ class UpdatedMatroskaExtractor private constructor(
                         "Multiple Segment elements not supported",  /* cause= */null
                     )
                 }
-
                 segmentContentPosition = contentPosition
                 segmentContentSize = contentSize
             }
