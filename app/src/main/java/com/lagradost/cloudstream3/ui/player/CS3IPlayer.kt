@@ -1218,6 +1218,9 @@ class CS3IPlayer : IPlayer {
         // Because "Java rules" the media3 team hates to do open classes so we have to copy paste the entire thing to add a custom extractor
         // This includes the updated MKV extractor that enabled seeking in formats where the seek information is at the back of the file
         val extractorFactor = UpdatedDefaultExtractorsFactory()
+            .setFragmentedMp4ExtractorFlags(
+                androidx.media3.extractor.mp4.FragmentedMp4Extractor.FLAG_MERGE_FRAGMENTED_SIDX
+            )
 
         val factory =
             if (cacheFactory == null) DefaultMediaSourceFactory(context, extractorFactor)
