@@ -144,7 +144,7 @@ class UpdatedMatroskaExtractor private constructor(
     // Cue related elements.
     private val perTrackCues: SparseArray<List<MatroskaSeekMap.CuePointData>>
     private var inCuesElement = false
-    private var currentCueTimeUs: Long = C.TIME_UNSET.toLong()
+    private var currentCueTimeUs: Long = C.TIME_UNSET
     private var currentCueTrackNumber: Int = C.INDEX_UNSET
     private var currentCueClusterPosition: Long = C.INDEX_UNSET.toLong()
     private var currentCueRelativePosition: Long = C.INDEX_UNSET.toLong()
@@ -278,6 +278,11 @@ class UpdatedMatroskaExtractor private constructor(
         currentCueClusterPosition = C.INDEX_UNSET.toLong()
         currentCueRelativePosition = C.INDEX_UNSET.toLong()
         perTrackCues.clear()
+        // If we have to reparse due to an IO exception we also have to clear the seek head data
+        visitedSeekHeads.clear()
+        pendingSeekHeads.clear()
+        seekPositionAfterSeekingForHead = C.INDEX_UNSET.toLong()
+        seekForSeekContent = false
         for (i in 0..<tracks.size()) {
             tracks.valueAt(i).reset()
         }
@@ -3220,3 +3225,4 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
