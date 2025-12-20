@@ -142,7 +142,7 @@ class UpdatedMatroskaExtractor private constructor(
     private var seekEntryPosition: Long = 0
 
     // Cue related elements.
-    private val perTrackCues: SparseArray<List<MatroskaSeekMap.CuePointData>>
+    private val perTrackCues: SparseArray<MutableList<MatroskaSeekMap.CuePointData>>
     private var inCuesElement = false
     private var currentCueTimeUs: Long = C.TIME_UNSET
     private var currentCueTrackNumber: Int = C.INDEX_UNSET
@@ -497,8 +497,7 @@ class UpdatedMatroskaExtractor private constructor(
                         extractorOutput!!.seekMap(SeekMap.Unseekable(durationUs))
                     } else {
                         for (i in 0 until perTrackCues.size()) {
-                            val sortedList = perTrackCues.valueAt(i).sorted()
-                            perTrackCues.put(perTrackCues.keyAt(i), sortedList)
+                            perTrackCues.valueAt(i).sort()
                         }
 
                         val seekMap = MatroskaSeekMap(
@@ -2282,7 +2281,7 @@ class UpdatedMatroskaExtractor private constructor(
          * [ThumbnailMetadata].
          */
         fun maybeAddThumbnailMetadata(
-            perTrackCues: SparseArray<List<MatroskaSeekMap.CuePointData>>,
+            perTrackCues: SparseArray<MutableList<MatroskaSeekMap.CuePointData>>,
             durationUs: Long,
             segmentContentPosition: Long,
             segmentContentSize: Long
@@ -2317,7 +2316,7 @@ class UpdatedMatroskaExtractor private constructor(
          * bitrate for each chunk and selects the timestamp of the chunk with the highest bitrate.
          */
         private fun findBestThumbnailPresentationTimeUs(
-            cuePoints: List<MatroskaSeekMap.CuePointData>,
+            cuePoints: MutableList<MatroskaSeekMap.CuePointData>,
             durationUs: Long,
             segmentContentPosition: Long,
             segmentContentSize: Long
@@ -3068,7 +3067,7 @@ class UpdatedMatroskaExtractor private constructor(
     }
 
     class MatroskaSeekMap(
-        private val perTrackCues: SparseArray<List<CuePointData>>,
+        private val perTrackCues: SparseArray<MutableList<CuePointData>>,
         private val durationUs: Long,
         private val primarySeekTrackNumber: Int,
         segmentContentPosition: Long,
@@ -3140,7 +3139,7 @@ class UpdatedMatroskaExtractor private constructor(
         private companion object {
 
             private fun buildChunkIndex(
-                perTrackCues: SparseArray<List<CuePointData>>,
+                perTrackCues: SparseArray<MutableList<CuePointData>>,
                 durationUs: Long,
                 primarySeekTrackNumber: Int,
                 segmentContentPosition: Long,
@@ -3232,6 +3231,7 @@ class UpdatedMatroskaExtractor private constructor(
         }
     }
 }
+
 
 
 
