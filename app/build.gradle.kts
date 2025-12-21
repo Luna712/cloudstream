@@ -155,6 +155,16 @@ android {
     namespace = "com.lagradost.cloudstream3"
 }
 
+androidComponents {
+    onVariants { variant ->
+        val variantName = variant.name.replaceFirstChar { it.uppercase() }
+
+        tasks.named("assemble$variantName").configure {
+            dependsOn("lint$variantName")
+        }
+    }
+}
+
 dependencies {
     // Testing
     testImplementation(libs.junit)
@@ -267,14 +277,6 @@ tasks.withType<KotlinJvmCompile> {
         optIn.add("com.lagradost.cloudstream3.Prerelease")
         freeCompilerArgs.add("-Xannotation-default-target=param-property")
     }
-}
-
-tasks.whenTaskAdded {
-	if (name.startsWith("lint") && name != "lintFix") {
-		tasks.named("check").configure {
-			dependsOn(this@whenTaskAdded)
-		}
-	}
 }
 
 dokka {
