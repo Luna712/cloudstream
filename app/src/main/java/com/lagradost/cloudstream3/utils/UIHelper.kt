@@ -108,7 +108,7 @@ object UIHelper {
     ) {
         if (view == null) return
         val context = view.context ?: return
-        val maxVisible = 10
+        val maxVisible = if (isLayout(PHONE)) 10 else 15
         var expanded = false
 
         fun render() {
