@@ -436,7 +436,7 @@ media3 = "1.8.0"
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-ui than 1.8.0 is available: 1.9.0 [GradleDependency]
 media3 = "1.8.0"
          ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:48: Warning: A newer version of androidx.work:work-runtime-ktx than 2.10.5 is available: 2.11.0 [GradleDependency]
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:47: Warning: A newer version of androidx.work:work-runtime-ktx than 2.10.5 is available: 2.11.0 [GradleDependency]
 workRuntimeKtx = "2.10.5"
                  ~~~~~~~~
 
@@ -547,15 +547,15 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
 
    To fix this, copy the resource into your own project instead.
 
-/home/runner/.gradle/caches/9.2.1/transforms/236ce024d60fae51cca7669ebdf403f0/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/236ce024d60fae51cca7669ebdf403f0/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/5caf75241f951d3c5d3e714e5b3683e2/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/5caf75241f951d3c5d3e714e5b3683e2/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/5caf75241f951d3c5d3e714e5b3683e2/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/5b9bc2d51eff3117885211df0bd41ea4/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so: Warning: The native library arm64-v8a/libquickjs.so (from app.cash.quickjs:quickjs-android:0.9.2) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/5b9bc2d51eff3117885211df0bd41ea4/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so: Warning: The native library arm64-v8a/libquickjs.so (from app.cash.quickjs:quickjs-android:0.9.2) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/5b9bc2d51eff3117885211df0bd41ea4/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so: Warning: The native library arm64-v8a/libquickjs.so (from app.cash.quickjs:quickjs-android:0.9.2) is not 16 KB aligned [Aligned16KB]
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:63: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/d668a94fbb7d316a59370b1425b3b570/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/d668a94fbb7d316a59370b1425b3b570/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/e694f7e187554843d8c5f0e240e8a89d/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/e694f7e187554843d8c5f0e240e8a89d/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/e694f7e187554843d8c5f0e240e8a89d/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/b055392f5955a37e8a82d24b855356f8/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so: Warning: The native library arm64-v8a/libquickjs.so (from app.cash.quickjs:quickjs-android:0.9.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/b055392f5955a37e8a82d24b855356f8/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so: Warning: The native library arm64-v8a/libquickjs.so (from app.cash.quickjs:quickjs-android:0.9.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.2.1/transforms/b055392f5955a37e8a82d24b855356f8/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so: Warning: The native library arm64-v8a/libquickjs.so (from app.cash.quickjs:quickjs-android:0.9.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:62: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
 conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = "conscryptAndroid" }
                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

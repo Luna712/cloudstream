@@ -1687,7 +1687,7 @@
         errorLine2="                 ~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
-            line="48"
+            line="47"
             column="18"/>
     </issue>
 
@@ -2150,7 +2150,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/236ce024d60fae51cca7669ebdf403f0/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
+            file="/home/runner/.gradle/caches/9.2.1/transforms/d668a94fbb7d316a59370b1425b3b570/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
     </issue>
 
     <issue
@@ -2164,7 +2164,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/236ce024d60fae51cca7669ebdf403f0/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
+            file="/home/runner/.gradle/caches/9.2.1/transforms/d668a94fbb7d316a59370b1425b3b570/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
     </issue>
 
     <issue
@@ -2178,7 +2178,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/5caf75241f951d3c5d3e714e5b3683e2/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
+            file="/home/runner/.gradle/caches/9.2.1/transforms/e694f7e187554843d8c5f0e240e8a89d/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
     </issue>
 
     <issue
@@ -2192,7 +2192,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/5caf75241f951d3c5d3e714e5b3683e2/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
+            file="/home/runner/.gradle/caches/9.2.1/transforms/e694f7e187554843d8c5f0e240e8a89d/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
     </issue>
 
     <issue
@@ -2206,7 +2206,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/5caf75241f951d3c5d3e714e5b3683e2/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
+            file="/home/runner/.gradle/caches/9.2.1/transforms/e694f7e187554843d8c5f0e240e8a89d/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
     </issue>
 
     <issue
@@ -2220,7 +2220,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/5b9bc2d51eff3117885211df0bd41ea4/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so"/>
+            file="/home/runner/.gradle/caches/9.2.1/transforms/b055392f5955a37e8a82d24b855356f8/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so"/>
     </issue>
 
     <issue
@@ -2234,7 +2234,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/5b9bc2d51eff3117885211df0bd41ea4/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so"/>
+            file="/home/runner/.gradle/caches/9.2.1/transforms/b055392f5955a37e8a82d24b855356f8/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so"/>
     </issue>
 
     <issue
@@ -2248,7 +2248,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/5b9bc2d51eff3117885211df0bd41ea4/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so"/>
+            file="/home/runner/.gradle/caches/9.2.1/transforms/b055392f5955a37e8a82d24b855356f8/transformed/quickjs-android-0.9.2/jni/arm64-v8a/libquickjs.so"/>
     </issue>
 
     <issue
@@ -2265,7 +2265,7 @@
         errorLine2="                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
-            line="63"
+            line="62"
             column="22"/>
     </issue>
 
