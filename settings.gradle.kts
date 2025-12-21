@@ -4,7 +4,6 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
-        maven("https://redirector.kotlinlang.org/maven/dev")
     }
 }
 
@@ -15,7 +14,6 @@ dependencyResolutionManagement {
         mavenCentral()
         mavenLocal()
         maven("https://jitpack.io")
-        maven("https://redirector.kotlinlang.org/maven/dev")
     }
 }
 
