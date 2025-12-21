@@ -289,6 +289,9 @@ tasks.withType<KotlinJvmCompile> {
         optIn.add("com.lagradost.cloudstream3.Prerelease")
         freeCompilerArgs.add("-Xannotation-default-target=param-property")
     }
+    doLast {
+        println("checkDependencies = ${android.lint.checkDependencies}")
+    }
 }
 
 // Make sure lint runs when running debug builds
