@@ -166,7 +166,6 @@ android {
 
     lint {
         abortOnError = false
-        // checkDependencies = false
         checkReleaseBuilds = false
     }
 
@@ -288,9 +287,6 @@ tasks.withType<KotlinJvmCompile> {
         jvmDefault.set(JvmDefaultMode.ENABLE)
         optIn.add("com.lagradost.cloudstream3.Prerelease")
         freeCompilerArgs.add("-Xannotation-default-target=param-property")
-    }
-    doLast {
-        println("checkDependencies = ${android.lint.checkDependencies}")
     }
 }
 
