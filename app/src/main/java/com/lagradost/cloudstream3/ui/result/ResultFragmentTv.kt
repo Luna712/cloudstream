@@ -911,6 +911,7 @@ class ResultFragmentTv : BaseFragment<FragmentResultTvBinding>(
                         }
                         comingSoon = d.comingSoon
                         resultTvComingSoon.isVisible = d.comingSoon
+
                         populateChips(
                             view = resultTag,
                             tags = d.tags,
