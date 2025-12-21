@@ -270,7 +270,7 @@ tasks.withType<KotlinJvmCompile> {
 }
 
 // Make sure lint runs when running debug builds
-tasks.matching { it.name == "check" }.configureEach {
+tasks.matching { it.name == "assemblePrereleaseDebug" }.configureEach {
     dependsOn("lint")
 }
 
