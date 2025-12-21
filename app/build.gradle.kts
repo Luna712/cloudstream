@@ -142,10 +142,10 @@ android {
     	}
     }
 
-    lint {
+    /*lint {
         abortOnError = false
         checkReleaseBuilds = false
-    }
+    }*/
 
     buildFeatures {
         buildConfig = true
