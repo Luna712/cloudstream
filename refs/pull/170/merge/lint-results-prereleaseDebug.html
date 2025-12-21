@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 5 errors, 695 warnings and 1 hint</span>
+      <span class="mdl-layout-title">Lint Report: 1 error, 695 warnings and 1 hint</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sat Dec 20 18:34:35 UTC 2025 by AGP (9.0.0-rc01)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sun Dec 21 02:00:47 UTC 2025 by AGP (9.0.0-rc01)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -223,7 +223,6 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#IconDuplicates"><i class="material-icons warning-icon">warning</i>Duplicated icons under different names (15)</a>
       <a class="mdl-navigation__link" href="#UseKtx"><i class="material-icons warning-icon">warning</i>Use KTX extension function (4)</a>
       <a class="mdl-navigation__link" href="#ContentDescription"><i class="material-icons warning-icon">warning</i>Image without <code>contentDescription</code> (46)</a>
-      <a class="mdl-navigation__link" href="#ByteOrderMark"><i class="material-icons error-icon">error</i>Byte order mark inside files (4)</a>
       <a class="mdl-navigation__link" href="#SetTextI18n"><i class="material-icons warning-icon">warning</i>TextView Internationalization (6)</a>
       <a class="mdl-navigation__link" href="#HardcodedText"><i class="material-icons warning-icon">warning</i>Hardcoded text (17)</a>
       <a class="mdl-navigation__link" href="#RelativeOverlap"><i class="material-icons warning-icon">warning</i>Overlapping items in RelativeLayout (1)</a>
@@ -370,9 +369,6 @@ document.getElementById(id).style.display = 'none';
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Internationalization">Internationalization</a>
 </td></tr>
 <tr>
-<td class="countColumn">4</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
-<a href="#ByteOrderMark">ByteOrderMark</a>: Byte order mark inside files</td></tr>
-<tr>
 <td class="countColumn">6</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#SetTextI18n">SetTextI18n</a>: TextView Internationalization</td></tr>
 <tr>
@@ -388,7 +384,7 @@ document.getElementById(id).style.display = 'none';
 <a href="#RtlSymmetry">RtlSymmetry</a>: Padding and margin symmetry</td></tr>
 <tr><td></td><td class="categoryColumn"><a href="#ExtraIssues">Included Additional Checks (49)</a>
 </td></tr>
-<tr><td></td><td class="categoryColumn"><a href="#MissingIssues">Disabled Checks (42)</a>
+<tr><td></td><td class="categoryColumn"><a href="#MissingIssues">Disabled Checks (43)</a>
 </td></tr>
 </table>
 <br/>              </div>
@@ -2397,7 +2393,8 @@ Dismiss</button>            </div>
 <span class="lineno"> 4 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>ክፋል %d በ ላይ ይወጣል<span class="tag">&lt;/string></span>
 <span class="lineno"> 5 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"cast_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>ተዋሳእቲ፡ %s<span class="tag">&lt;/string></span>
 <span class="caretline"><span class="lineno"> 6 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"hide_player_control_names_key"</span> <span class="warning"><span class="attribute">translatable</span>=<span class="value">"false"</span></span>>hide_player_control_names_key<span class="tag">&lt;/string></span></span>
-<span class="lineno"> 7 </span><span class="tag">&lt;/resources></span></pre>
+<span class="lineno"> 7 </span><span class="tag">&lt;/resources></span>
+</pre>
 
 <span class="location"><a href="../../src/main/res/values-b%2Bhr/strings.xml">../../src/main/res/values-b%2Bhr/strings.xml</a>:7</span>: <span class="message">The resource string "episode_name_format" is marked as translatable="false", but is translated to "hr" (Croatian) here</span><br /><pre class="errorlines">
 <span class="lineno">   4 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_info_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>%d %s | %s<span class="tag">&lt;/string></span>
@@ -5091,80 +5088,7 @@ Dismiss</button>            </div>
             </div>
           </section>
 <a name="Internationalization"></a>
-<a name="ByteOrderMark"></a>
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="ByteOrderMarkCard" style="display: block;">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Byte order mark inside files</h2>
-  </div>
-              <div class="mdl-card__supporting-text">
-<div class="issue">
-<div class="warningslist">
-<span class="location"><a href="../../src/main/res/values-b%2Bja/strings.xml">../../src/main/res/values-b%2Bja/strings.xml</a>:24</span>: <span class="message">Found byte-order-mark in the middle of a file</span><br /><pre class="errorlines">
-<span class="lineno">  21 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"player_speed_text_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>再生速度 (%.2fx)<span class="tag">&lt;/string></span>
-<span class="lineno">  22 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode"</span>>次のエピソード<span class="tag">&lt;/string></span>
-<span class="lineno">  23 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"sort_apply"</span>>適用<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno">  24 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"category_account"</span>>ア<span class="error">﻿</span>カ﻿ウ﻿ン﻿トとセキュリティ<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  25 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"cartoons"</span>>カートゥーン<span class="tag">&lt;/string></span>
-<span class="lineno">  26 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"tv_series"</span>>TVシリーズ<span class="tag">&lt;/string></span>
-<span class="lineno">  27 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"torrent"</span>>トレント<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Bja/strings.xml">../../src/main/res/values-b%2Bja/strings.xml</a>:24</span>: <span class="message">Found byte-order-mark in the middle of a file</span><br /><pre class="errorlines">
-<span class="lineno">  21 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"player_speed_text_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>再生速度 (%.2fx)<span class="tag">&lt;/string></span>
-<span class="lineno">  22 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode"</span>>次のエピソード<span class="tag">&lt;/string></span>
-<span class="lineno">  23 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"sort_apply"</span>>適用<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno">  24 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"category_account"</span>>ア﻿カ<span class="error">﻿</span>ウ﻿ン﻿トとセキュリティ<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  25 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"cartoons"</span>>カートゥーン<span class="tag">&lt;/string></span>
-<span class="lineno">  26 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"tv_series"</span>>TVシリーズ<span class="tag">&lt;/string></span>
-<span class="lineno">  27 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"torrent"</span>>トレント<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Bja/strings.xml">../../src/main/res/values-b%2Bja/strings.xml</a>:24</span>: <span class="message">Found byte-order-mark in the middle of a file</span><br /><pre class="errorlines">
-<span class="lineno">  21 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"player_speed_text_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>再生速度 (%.2fx)<span class="tag">&lt;/string></span>
-<span class="lineno">  22 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode"</span>>次のエピソード<span class="tag">&lt;/string></span>
-<span class="lineno">  23 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"sort_apply"</span>>適用<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno">  24 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"category_account"</span>>ア﻿カ﻿ウ<span class="error">﻿</span>ン﻿トとセキュリティ<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  25 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"cartoons"</span>>カートゥーン<span class="tag">&lt;/string></span>
-<span class="lineno">  26 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"tv_series"</span>>TVシリーズ<span class="tag">&lt;/string></span>
-<span class="lineno">  27 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"torrent"</span>>トレント<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Bja/strings.xml">../../src/main/res/values-b%2Bja/strings.xml</a>:24</span>: <span class="message">Found byte-order-mark in the middle of a file</span><br /><pre class="errorlines">
-<span class="lineno">  21 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"player_speed_text_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>再生速度 (%.2fx)<span class="tag">&lt;/string></span>
-<span class="lineno">  22 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"next_episode"</span>>次のエピソード<span class="tag">&lt;/string></span>
-<span class="lineno">  23 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"sort_apply"</span>>適用<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno">  24 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"category_account"</span>>ア﻿カ﻿ウ﻿ン<span class="error">﻿</span>トとセキュリティ<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  25 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"cartoons"</span>>カートゥーン<span class="tag">&lt;/string></span>
-<span class="lineno">  26 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"tv_series"</span>>TVシリーズ<span class="tag">&lt;/string></span>
-<span class="lineno">  27 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"torrent"</span>>トレント<span class="tag">&lt;/string></span></pre>
-
-</div>
-<div class="metadata"><div class="explanation" id="explanationByteOrderMark" style="display: none;">
-Lint will flag any byte-order-mark (BOM) characters it finds in the middle of a file. Since we expect files to be encoded with UTF-8 (see the EnforceUTF8 issue), the BOM characters are not necessary, and they are not handled correctly by all tools. For example, if you have a BOM as part of a resource name in one particular translation, that name will not be considered identical to the base resource's name and the translation will not be used.<br/><div class="moreinfo">More info: <a href="https://en.wikipedia.org/wiki/Byte_order_mark">https://en.wikipedia.org/wiki/Byte_order_mark</a>
-</div>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
-To suppress this error, use the issue id "ByteOrderMark" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
-<br/></div>
-</div>
-</div>
-<div class="chips">
-<span class="mdl-chip">
-    <span class="mdl-chip__text">ByteOrderMark</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Internationalization</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Error</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Priority 8/10</span>
-</span>
-</div>
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationByteOrderMarkLink" onclick="reveal('explanationByteOrderMark');">
-Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="ByteOrderMarkCardLink" onclick="hideid('ByteOrderMarkCard');">
-Dismiss</button>            </div>
-            </div>
-          </section><a name="SetTextI18n"></a>
+<a name="SetTextI18n"></a>
 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="SetTextI18nCard" style="display: block;">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
   <div class="mdl-card__title">
@@ -6313,6 +6237,17 @@ This check is not very sophisticated (it just looks for buttons with the label "
 </div>
 </div>
 <div class="issue">
+<div class="id">ByteOrderMark<div class="issueSeparator"></div>
+</div>
+<div class="metadata">Disabled By: Project lint.xml file<br/>
+<div class="explanation">
+Lint will flag any byte-order-mark (BOM) characters it finds in the middle of a file. Since we expect files to be encoded with UTF-8 (see the EnforceUTF8 issue), the BOM characters are not necessary, and they are not handled correctly by all tools. For example, if you have a BOM as part of a resource name in one particular translation, that name will not be considered identical to the base resource's name and the translation will not be used.<br/><div class="moreinfo">More info: <a href="https://en.wikipedia.org/wiki/Byte_order_mark">https://en.wikipedia.org/wiki/Byte_order_mark</a>
+</div>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+<br/>
+<br/></div>
+</div>
+</div>
+<div class="issue">
 <div class="id">ConvertToWebp<div class="issueSeparator"></div>
 </div>
 <div class="metadata">Disabled By: Default<br/>
@@ -6539,7 +6474,7 @@ The value of the <code>minSdkVersion</code> property is too low and can be incre
 <div class="issue">
 <div class="id">MissingTranslation<div class="issueSeparator"></div>
 </div>
-<div class="metadata">Disabled By: Command line flag<br/>
+<div class="metadata">Disabled By: Project lint.xml file<br/>
 <div class="explanation">
 If an application has more than one locale, then all the strings declared in one language should also be translated in all other languages.<br/>
 <br/>

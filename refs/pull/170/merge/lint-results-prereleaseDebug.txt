@@ -2410,30 +2410,6 @@ class SSLTrustManager : X509TrustManager {
 
    https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ja/strings.xml:24: Error: Found byte-order-mark in the middle of a file [ByteOrderMark]
-    <string name="category_account">ア﻿カ﻿ウ﻿ン﻿トとセキュリティ</string>
-                                     ~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ja/strings.xml:24: Error: Found byte-order-mark in the middle of a file [ByteOrderMark]
-    <string name="category_account">ア﻿カ﻿ウ﻿ン﻿トとセキュリティ</string>
-                                       ~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ja/strings.xml:24: Error: Found byte-order-mark in the middle of a file [ByteOrderMark]
-    <string name="category_account">ア﻿カ﻿ウ﻿ン﻿トとセキュリティ</string>
-                                         ~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ja/strings.xml:24: Error: Found byte-order-mark in the middle of a file [ByteOrderMark]
-    <string name="category_account">ア﻿カ﻿ウ﻿ン﻿トとセキュリティ</string>
-                                           ~
-
-   Explanation for issues of type "ByteOrderMark":
-   Lint will flag any byte-order-mark (BOM) characters it finds in the middle
-   of a file. Since we expect files to be encoded with UTF-8 (see the
-   EnforceUTF8 issue), the BOM characters are not necessary, and they are not
-   handled correctly by all tools. For example, if you have a BOM as part of a
-   resource name in one particular translation, that name will not be
-   considered identical to the base resource's name and the translation will
-   not be used.
-
-   https://en.wikipedia.org/wiki/Byte_order_mark
-
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/extensions/PluginDetailsFragment.kt:64: Warning: Number formatting does not take into account locale settings. Consider using String.format instead. [SetTextI18n]
             pluginVersion.text = metadata.version.toString()
                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2550,4 +2526,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-5 errors, 695 warnings, 1 hint
+1 error, 695 warnings, 1 hint
