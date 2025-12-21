@@ -157,10 +157,11 @@ android {
 
 androidComponents {
     onVariants { variant ->
-        val variantName = variant.name.replaceFirstChar { it.uppercase() }
-
-        tasks.named("assemble$variantName").configure {
-            dependsOn("lint$variantName")
+        if (variant.buildType == "debug" && variant.flavorName == "prerelease") {
+            val variantName = variant.name.replaceFirstChar { it.uppercase() }
+            tasks.named("assemble$variantName").configure {
+                dependsOn("lint$variantName")
+            }
         }
     }
 }
