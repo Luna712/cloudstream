@@ -105,8 +105,8 @@ object UIHelper {
     fun populateChips(
         view: ChipGroup?,
         tags: List<String>,
-        @StyleRes style: Int = R.style.ChipFilled,
-        expandable: Boolean = false
+        expandable: Boolean,
+        @StyleRes style: Int = R.style.ChipFilled
     ) {
         if (view == null) return
         val context = view.context ?: return
