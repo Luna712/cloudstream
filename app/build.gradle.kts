@@ -272,16 +272,12 @@ tasks.withType<KotlinJvmCompile> {
 androidComponents {
     // Make sure lint runs when running debug builds
     onVariants(selector().withBuildType("debug")) { variant ->
-        val assemble = variant.assembleProvider
-
-        assemble.configure {
+        val variantName = variant.name.replaceFirstChar { it.uppercase() }
+        tasks.matching { it.name == "assemble$variantName" }.configureEach {
             dependsOn("lint", ":library:lint")
         }
     }
 }
-/*tasks.matching { it.name == "assemblePrereleaseDebug" }.configureEach {
-    dependsOn("lint", ":library:lint")
-}*/
 
 dokka {
     moduleName = "App"
