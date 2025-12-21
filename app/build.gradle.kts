@@ -269,6 +269,12 @@ tasks.withType<KotlinJvmCompile> {
     }
 }
 
+afterEvaluate {
+    tasks.named("assembleDebug").configure {
+        dependsOn("lint")
+    }
+}
+
 dokka {
     moduleName = "App"
     dokkaSourceSets {
