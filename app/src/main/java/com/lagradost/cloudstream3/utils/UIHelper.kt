@@ -103,19 +103,16 @@ object UIHelper {
     }
 
     fun populateChips(
-        view: ChipGroup?,
+        view: ChipGroup,
         tags: List<String>,
+        collapsedVisibleCount: Int,
         expandable: Boolean,
         @StyleRes style: Int = R.style.ChipFilled
     ) {
-        if (view == null) return
-        val context = view.context ?: return
-        val maxVisible = if (isLayout(PHONE)) 10 else 15
         var expanded = false
-
         fun render() {
             view.removeAllViews()
-            val visibleTags = if (expanded) tags else tags.take(maxVisible)
+            val visibleTags = if (expanded) tags else tags.take(collapsedVisibleCount)
 
             visibleTags.forEach { tag ->
                 val chip = Chip(context).apply {
@@ -132,7 +129,7 @@ object UIHelper {
         }
 
         render()
-        if (expandable && tags.size > maxVisible) {
+        if (expandable && tags.size > collapsedVisibleCount) {
             view.setOnClickListener {
                 expanded = !expanded
                 render()
