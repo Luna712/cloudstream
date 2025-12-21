@@ -269,7 +269,7 @@ tasks.withType<KotlinJvmCompile> {
     }
 }
 
-tasks.named("check").configure {
+tasks.getByName("check") {
     dependsOn("lint")
 }
 
