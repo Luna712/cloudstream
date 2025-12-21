@@ -346,8 +346,9 @@ class HomeParentItemAdapterPreview(
                 homePreviewText.text = item.name.html()
                 populateChips(
                     view = homePreviewTags,
-                    tags = item.tags?.take(6) ?: emptyList(),
+                    tags = item.tags ?: emptyList(),
                     expandable = false,
+                    initialVisibleLimit = 6,
                     style = R.style.ChipFilledSemiTransparent
                 )
 
