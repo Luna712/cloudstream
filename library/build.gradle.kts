@@ -32,7 +32,6 @@ kotlin {
 
         lint {
             targetSdk = libs.versions.targetSdk.get().toInt()
-            abortOnError = false
         }
     }
 
