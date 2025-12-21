@@ -261,6 +261,7 @@ tasks.register<Jar>("makeJar") {
 }
 
 tasks.withType<KotlinJvmCompile> {
+    dependsOn("lint")
     compilerOptions {
         jvmTarget.set(javaTarget)
         jvmDefault.set(JvmDefaultMode.ENABLE)
@@ -269,9 +270,9 @@ tasks.withType<KotlinJvmCompile> {
     }
 }
 
-tasks.getByName("build") {
+/*tasks.getByName("build") {
     dependsOn("lint")
-}
+}*/
 
 dokka {
     moduleName = "App"
