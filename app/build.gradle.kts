@@ -269,7 +269,7 @@ tasks.withType<KotlinJvmCompile> {
     }
 }
 
-tasks.getByName("check") {
+tasks.getByName("preBuild") {
     dependsOn("lint")
 }
 
