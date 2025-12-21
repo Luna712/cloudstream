@@ -269,6 +269,11 @@ tasks.withType<KotlinJvmCompile> {
     }
 }
 
+// Make sure lint runs when we are building debug
+tasks.named("assemblePrereleaseDebug") {
+    dependsOn("lintPrereleaseDebug")
+}
+
 dokka {
     moduleName = "App"
     dokkaSourceSets {
