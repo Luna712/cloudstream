@@ -261,7 +261,6 @@ tasks.register<Jar>("makeJar") {
 }
 
 tasks.withType<KotlinJvmCompile> {
-    dependsOn("lint")
     compilerOptions {
         jvmTarget.set(javaTarget)
         jvmDefault.set(JvmDefaultMode.ENABLE)
@@ -270,9 +269,13 @@ tasks.withType<KotlinJvmCompile> {
     }
 }
 
-/*tasks.getByName("build") {
-    dependsOn("lint")
-}*/
+tasks.whenTaskAdded {
+	if (name.startsWith("lint") && name != "lintFix") {
+		tasks.named("check").configure {
+			dependsOn(this@whenTaskAdded)
+		}
+	}
+}
 
 dokka {
     moduleName = "App"
