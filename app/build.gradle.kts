@@ -34,6 +34,10 @@ fun getGitCommitHash(): String {
         "" // Just return an empty string if any exception occurs
     }
 }
+tasks.matching { it.name == "assemblePrereleaseDebug" }
+    .configureEach {
+        dependsOn("lintPrereleaseDebug")
+    }
 
 android {
     @Suppress("UnstableApiUsage")
@@ -155,7 +159,7 @@ android {
     namespace = "com.lagradost.cloudstream3"
 }
 
-androidComponents {
+/*androidComponents {
     onVariants { variant ->
         if (variant.buildType == "debug" && variant.flavorName == "prerelease") {
             val variantName = variant.name.replaceFirstChar { it.uppercase() }
@@ -164,7 +168,7 @@ androidComponents {
             }
         }
     }
-}
+}*/
 
 dependencies {
     // Testing
