@@ -269,10 +269,8 @@ tasks.withType<KotlinJvmCompile> {
     }
 }
 
-afterEvaluate {
-    tasks.named("assembleDebug").configure {
-        dependsOn("lint")
-    }
+tasks.named("check") {
+    dependsOn("lint")
 }
 
 dokka {
