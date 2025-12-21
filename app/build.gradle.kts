@@ -143,7 +143,7 @@ android {
     }
 
     lint {
-        // abortOnError = false
+        abortOnError = false
         checkReleaseBuilds = false
     }
 
