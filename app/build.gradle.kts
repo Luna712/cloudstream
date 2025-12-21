@@ -34,10 +34,6 @@ fun getGitCommitHash(): String {
         "" // Just return an empty string if any exception occurs
     }
 }
-tasks.matching { it.name == "assemblePrereleaseDebug" }
-    .configureEach {
-        dependsOn("lintPrereleaseDebug")
-    }
 
 android {
     @Suppress("UnstableApiUsage")
@@ -147,7 +143,7 @@ android {
     }
 
     lint {
-        abortOnError = false
+        // abortOnError = false
         checkReleaseBuilds = false
     }
 
@@ -158,17 +154,6 @@ android {
 
     namespace = "com.lagradost.cloudstream3"
 }
-
-/*androidComponents {
-    onVariants { variant ->
-        if (variant.buildType == "debug" && variant.flavorName == "prerelease") {
-            val variantName = variant.name.replaceFirstChar { it.uppercase() }
-            tasks.named("assemble$variantName").configure {
-                dependsOn("lint$variantName")
-            }
-        }
-    }
-}*/
 
 dependencies {
     // Testing
@@ -282,6 +267,11 @@ tasks.withType<KotlinJvmCompile> {
         optIn.add("com.lagradost.cloudstream3.Prerelease")
         freeCompilerArgs.add("-Xannotation-default-target=param-property")
     }
+}
+
+// Make sure lint runs when running debug builds
+tasks.matching { it.name == "assemblePrereleaseDebug" }.configureEach {
+    dependsOn("lintPrereleaseDebug")
 }
 
 dokka {
