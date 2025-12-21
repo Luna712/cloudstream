@@ -269,9 +269,10 @@ tasks.withType<KotlinJvmCompile> {
     }
 }
 
-// Make sure lint runs when we are building debug
-tasks.named("assemblePrereleaseDebug") {
-    dependsOn("lintPrereleaseDebug")
+// Make sure lint runs for all flavors
+tasks.named("assemble") {
+    dependsOn("lint")
+    dependsOn(":library:lint")
 }
 
 dokka {
