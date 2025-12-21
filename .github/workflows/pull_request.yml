@@ -30,4 +30,4 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: pull-request-build
-        path: "app/build/outputs/apk/prerelease/debug/*.apk"
+        path: "app/build/outputs/apk/debug/*.apk"
