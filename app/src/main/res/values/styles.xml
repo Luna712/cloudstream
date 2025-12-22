@@ -447,7 +447,7 @@
         <item name="android:paddingStart">-10dp</item>
     </style>
 
-    <style name="AppSearchViewStyle" parent="Theme.Material3Expressive.DayNight.NoActionBar">
+    <style name="AppSearchViewStyle" parent="Theme.Material3Expressive.Dark.NoActionBar">
         <item name="android:searchIcon">@drawable/search_icon</item>
         <item name="android:queryHint">@string/search_hint</item>
         <item name="android:background">@color/transparent</item>
