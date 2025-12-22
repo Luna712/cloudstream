@@ -601,7 +601,7 @@
                                             app:trackColor="@color/skipOpTransparent"
                                             tools:progress="50" />
                                     </FrameLayout>
-                                    <TextView
+                                    <com.google.android.material.button.MaterialButton
                                         android:id="@+id/result_resume_series_title"
                                         style="@style/Widget.Material3Expressive.Button.TextButton"
                                         android:layout_width="wrap_content"
@@ -620,7 +620,7 @@
                                         android:ellipsize="end"
                                         android:clickable="false"
                                         android:focusable="false" />
-                                    <TextView
+                                    <com.google.android.material.button.MaterialButton
                                         android:id="@+id/result_resume_series_progress_text"
                                         style="@style/Widget.Material3Expressive.Button.TextButton"
                                         android:layout_width="wrap_content"
