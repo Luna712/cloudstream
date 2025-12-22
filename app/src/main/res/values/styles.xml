@@ -89,7 +89,7 @@
         <item name="boxItemBackground">@color/amoledModeLight</item>
     </style>
 
-    <style name="ChipFilled" parent="@style/Widget.Material3Expressive.Chip.Filter">
+    <style name="ChipFilled" parent="@style/Widget.Material3.Chip.Filter">
         <item name="chipBackgroundColor">@color/chip_color</item>
         <item name="chipStrokeColor">@color/white_transparent_toggle</item>
         <!--        <item name="chipStrokeColor">@color/transparent</item>-->
