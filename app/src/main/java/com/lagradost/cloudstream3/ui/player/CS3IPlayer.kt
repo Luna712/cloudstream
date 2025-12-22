@@ -1288,9 +1288,9 @@ class CS3IPlayer : IPlayer {
                 mediaItemSlices.map { item ->
                     source.add(
                         // The duration MUST be known for it to work properly, see https://github.com/google/ExoPlayer/issues/4727
-                        ClippingMediaSource(
-                            factory.createMediaSource(item.mediaItem),
-                            item.durationUs
+                        ClippingMediaSource.Builder(
+                            factory.createMediaSource(item.mediaItem)
+                            //item.durationUs
                         )
                     )
                 }
