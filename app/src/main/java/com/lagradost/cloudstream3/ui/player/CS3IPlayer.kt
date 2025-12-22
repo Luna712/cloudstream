@@ -1291,7 +1291,7 @@ class CS3IPlayer : IPlayer {
                         ClippingMediaSource.Builder(
                             factory.createMediaSource(item.mediaItem)
                             //item.durationUs
-                        )
+                        ).build()
                     )
                 }
                 source.build()
