@@ -453,6 +453,9 @@ conscryptAndroid = { strictly = "2.5.2" } # 2.5.3 crashes everything
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:19: Warning: A newer version of com.fasterxml.jackson.module:jackson-module-kotlin than 2.13.1 is available: 2.20.1 [NewerVersionAvailable]
 jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support minSdk <26 (Crashes on Android TV's and FireSticks)
                                    ~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:20: Warning: A newer version of org.json:json than 20250517 is available: 20251224 [NewerVersionAvailable]
+json = "20250517"
+       ~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:40: Warning: A newer version of org.mozilla:rhino than 1.8.1 is available: 1.9.0 [NewerVersionAvailable]
 rhino = { strictly = "1.8.1" } # Requires minSdk 26 or later beginning at version 1.9.0
                      ~~~~~~~
@@ -1776,4 +1779,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-0 errors, 452 warnings, 1 hint
+0 errors, 453 warnings, 1 hint

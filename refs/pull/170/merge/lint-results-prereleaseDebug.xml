@@ -1726,6 +1726,22 @@
     <issue
         id="NewerVersionAvailable"
         severity="Warning"
+        message="A newer version of org.json:json than 20250517 is available: 20251224"
+        category="Correctness"
+        priority="4"
+        summary="Newer Library Versions Available"
+        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
+        errorLine1="json = &quot;20250517&quot;"
+        errorLine2="       ~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="20"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        severity="Warning"
         message="A newer version of org.mozilla:rhino than 1.8.1 is available: 1.9.0"
         category="Correctness"
         priority="4"
