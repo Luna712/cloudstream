@@ -1037,7 +1037,7 @@
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="963"
+            line="962"
             column="9"/>
     </issue>
 
@@ -2819,7 +2819,7 @@
         errorLine2="     ~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="967"
+            line="966"
             column="6"/>
     </issue>
 
@@ -5539,7 +5539,7 @@
         errorLine2="                 ~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="435"
+            line="434"
             column="18"/>
     </issue>
 
@@ -5635,7 +5635,7 @@
         errorLine2="             ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="843"
+            line="842"
             column="14"/>
     </issue>
 
@@ -6967,7 +6967,7 @@
         errorLine2="                 ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="107"
+            line="106"
             column="18"/>
     </issue>
 
@@ -6985,7 +6985,7 @@
         errorLine2="                     ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="439"
+            line="438"
             column="22"/>
     </issue>
 
@@ -7003,7 +7003,7 @@
         errorLine2="         ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="574"
+            line="573"
             column="10"/>
     </issue>
 
@@ -7021,7 +7021,7 @@
         errorLine2="                 ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="700"
+            line="699"
             column="18"/>
     </issue>
 

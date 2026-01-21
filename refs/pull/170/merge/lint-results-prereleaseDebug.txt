@@ -227,7 +227,7 @@
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/splash_background.xml:6: Warning: Attribute width is only used in API level 23 and higher (current min is 21) [UnusedAttribute]
     <item android:width="150dp" android:height="150dp" android:gravity="center" android:drawable="@drawable/ic_launcher_foreground">
           ~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:963: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:962: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
         android:foreground="@null"
         ~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/video_pause.xml:4: Warning: Attribute height is only used in API level 23 and higher (current min is 21) [UnusedAttribute]
@@ -757,7 +757,7 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:91: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
             <LinearLayout
              ~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:967: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:966: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
     <LinearLayout
      ~~~~~~~~~~~~
 
@@ -1340,7 +1340,7 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:453: Warning: This FrameLayout layout or its LinearLayout parent is unnecessary [UselessParent]
                     <FrameLayout
                      ~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:435: Warning: This FrameLayout layout or its LinearLayout parent is unnecessary [UselessParent]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:434: Warning: This FrameLayout layout or its LinearLayout parent is unnecessary [UselessParent]
                 <FrameLayout
                  ~~~~~~~~~~~
 
@@ -1372,7 +1372,7 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:939: Warning: player_custom_layout_tv.xml has more than 80 views, bad for performance [TooManyViews]
                         <com.google.android.material.button.MaterialButton
                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:843: Warning: trailer_custom_layout.xml has more than 80 views, bad for performance [TooManyViews]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:842: Warning: trailer_custom_layout.xml has more than 80 views, bad for performance [TooManyViews]
             <ImageView
              ~~~~~~~~~
 
@@ -1654,16 +1654,16 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:70: Warning: Missing contentDescription attribute on image [ContentDescription]
         <ImageView
          ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:107: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:106: Warning: Missing contentDescription attribute on image [ContentDescription]
                 <ImageView
                  ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:439: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:438: Warning: Missing contentDescription attribute on image [ContentDescription]
                     <ImageView
                      ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:574: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:573: Warning: Missing contentDescription attribute on image [ContentDescription]
         <ImageView
          ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:700: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:699: Warning: Missing contentDescription attribute on image [ContentDescription]
                 <ImageView
                  ~~~~~~~~~
 
