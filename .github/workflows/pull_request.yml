@@ -26,8 +26,11 @@ jobs:
         cache-encryption-key: ${{ secrets.GRADLE_ENCRYPTION_KEY }}
         cache-read-only: false
 
-    - name: Run Gradle (build + jars + dokka)
-      run: ./gradlew assemblePrereleaseRelease androidSourcesJar makeJar docs:dokkaGeneratePublicationHtml
+    - name: Build dokka
+      run: ./gradlew docs:dokkaGeneratePublicationHtml
+  
+    - name: Run Gradle
+      run: ./gradlew assemblePrereleaseRelease androidSourcesJar makeJar
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v6
