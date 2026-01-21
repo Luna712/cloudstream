@@ -92,8 +92,7 @@
                 android:id="@+id/player_video_title_holder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:gravity="center">
                 <TextView
                     android:maxLines="2"
                     android:id="@+id/player_video_title"
