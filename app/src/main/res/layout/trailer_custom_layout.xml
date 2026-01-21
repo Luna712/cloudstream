@@ -88,12 +88,12 @@
             android:layout_marginEnd="32dp"
             android:orientation="vertical">
 
-
             <LinearLayout
                 android:id="@+id/player_video_title_holder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
                 <TextView
                     android:maxLines="2"
                     android:id="@+id/player_video_title"
