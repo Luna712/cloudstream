@@ -295,7 +295,7 @@ dokka {
     moduleName = "App"
     dokkaSourceSets {
         configureEach {
-            suppress = name !== "prereleaseDebug"
+            suppress = name != "prereleaseDebug"
             analysisPlatform = KotlinPlatform.JVM
             displayName = "JVM"
             documentedVisibilities(
