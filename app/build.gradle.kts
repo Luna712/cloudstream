@@ -7,8 +7,8 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
-    alias(libs.plugins.android.application)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.android.application)
 }
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
@@ -293,17 +293,19 @@ tasks.withType<KotlinJvmCompile> {
 
 dokka {
     moduleName = "App"
-    dokkaSourceSets.main {
-        analysisPlatform = KotlinPlatform.JVM
-        documentedVisibilities(
-            VisibilityModifier.Public,
-            VisibilityModifier.Protected
-        )
+    dokkaSourceSets {
+        main {
+            analysisPlatform = KotlinPlatform.JVM
+            documentedVisibilities(
+                VisibilityModifier.Public,
+                VisibilityModifier.Protected
+            )
 
-        sourceLink {
-            localDirectory = file("..")
-            remoteUrl("https://github.com/recloudstream/cloudstream/tree/master")
-            remoteLineSuffix = "#L"
+            sourceLink {
+                localDirectory = file("..")
+                remoteUrl("https://github.com/recloudstream/cloudstream/tree/master")
+                remoteLineSuffix = "#L"
+            }
         }
     }
 }
