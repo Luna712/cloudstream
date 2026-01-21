@@ -294,7 +294,7 @@ tasks.withType<KotlinJvmCompile> {
 dokka {
     moduleName = "App"
     dokkaSourceSets {
-        named("main") {
+        configureEach {
             analysisPlatform = KotlinPlatform.JVM
             documentedVisibilities(
                 VisibilityModifier.Public,
