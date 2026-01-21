@@ -8,7 +8,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
     alias(libs.plugins.android.application)
-    // alias(libs.plugins.dokka)
+    alias(libs.plugins.dokka)
 }
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
@@ -175,16 +175,6 @@ android {
     namespace = "com.lagradost.cloudstream3"
 }
 
-androidComponents {
-    // Make sure lint runs when running debug builds
-    onVariants(selector().withBuildType("debug")) { variant ->
-        val variantName = variant.name.replaceFirstChar { it.uppercase() }
-        tasks.matching { it.name == "assemble$variantName" }.configureEach {
-            dependsOn("lint", ":library:lint")
-        }
-    }
-}
-
 dependencies {
     // Testing
     testImplementation(libs.junit)
@@ -301,7 +291,7 @@ tasks.withType<KotlinJvmCompile> {
     }
 }
 
-/*dokka {
+dokka {
     moduleName = "App"
     dokkaSourceSets {
         main {
@@ -318,4 +308,4 @@ tasks.withType<KotlinJvmCompile> {
             }
         }
     }
-}*/
+}
