@@ -62,6 +62,12 @@
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/account_single.xml:26: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
         android:foreground="@null"
         ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/cast_item.xml:44: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
+                    android:foreground="@drawable/outline_big_35_gray"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/cast_item.xml:60: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
+                    android:foreground="@drawable/outline_big_35_gray"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/download_header_episode.xml:31: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
         android:foreground="?android:attr/selectableItemBackgroundBorderless"
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -77,18 +83,12 @@
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_extensions.xml:221: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
         android:foreground="@drawable/outline_drawable"
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_home_head.xml:66: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_home_head.xml:64: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
                 android:foreground="@drawable/rounded_select_ripple"
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_home_head.xml:85: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                        android:foreground="@drawable/rounded_outline"
-                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_home_head.xml:175: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_home_head.xml:172: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
             android:foreground="@drawable/rounded_select_ripple"
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_home_head.xml:194: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                    android:foreground="@drawable/rounded_outline"
-                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_plugin_details.xml:78: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
             android:foreground="?android:attr/selectableItemBackgroundBorderless"
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -149,13 +149,10 @@
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/home_result_grid_expanded.xml:46: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
                 android:foreground="?android:attr/selectableItemBackgroundBorderless"
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/main_settings.xml:39: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
-                        android:foreground="@drawable/rounded_outline"
-                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/options_popup_tv.xml:27: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
                 android:foreground="?android:attr/selectableItemBackgroundBorderless"
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:987: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:1007: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
         android:foreground="@null"
         ~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_select_source_and_subs.xml:31: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
@@ -227,7 +224,7 @@
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/splash_background.xml:6: Warning: Attribute width is only used in API level 23 and higher (current min is 21) [UnusedAttribute]
     <item android:width="150dp" android:height="150dp" android:gravity="center" android:drawable="@drawable/ic_launcher_foreground">
           ~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:962: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:980: Warning: Attribute android:foreground has no effect on API levels lower than 23 (current min is 21) [UnusedAttribute]
         android:foreground="@null"
         ~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/video_pause.xml:4: Warning: Attribute height is only used in API level 23 and higher (current min is 21) [UnusedAttribute]
@@ -394,8 +391,8 @@
    You should manually check whether the generated output is acceptable for
    those older devices.
 
-/home/runner/work/cloudstream/cloudstream/gradle/wrapper/gradle-wrapper.properties:5: Warning: A newer version of Gradle than 9.2.1 is available: 9.3.0 [AndroidGradlePluginVersion]
-distributionUrl=https\://services.gradle.org/distributions/gradle-9.2.1-bin.zip
+/home/runner/work/cloudstream/cloudstream/gradle/wrapper/gradle-wrapper.properties:5: Warning: A newer version of Gradle than 9.3.0 is available: 9.3.1 [AndroidGradlePluginVersion]
+distributionUrl=https\://services.gradle.org/distributions/gradle-9.3.0-bin.zip
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    Explanation for issues of type "AndroidGradlePluginVersion":
@@ -405,7 +402,7 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-9.2.1-bin.zip
    with an older version. However, you may simply not be aware that a more
    recent version is available, and that is what this lint check helps find.
 
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:4: Warning: A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.2 [GradleDependency]
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:4: Warning: A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.3 [GradleDependency]
 activityKtx = "1.11.0"
               ~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:7: Warning: A newer version of androidx.biometric:biometric than 1.4.0-alpha04 is available: 1.4.0-alpha05 [GradleDependency]
@@ -417,37 +414,46 @@ lifecycleKtx = "2.9.4"
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:28: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.9.4 is available: 2.10.0 [GradleDependency]
 lifecycleKtx = "2.9.4"
                ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-cast than 1.8.0 is available: 1.9.0 [GradleDependency]
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:29: Warning: A newer version of com.google.android.material:material than 1.14.0-alpha08 is available: 1.14.0-alpha09 [GradleDependency]
+material = "1.14.0-alpha08"
+           ~~~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-cast than 1.8.0 is available: 1.9.1 [GradleDependency]
 media3 = "1.8.0"
          ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-common than 1.8.0 is available: 1.9.0 [GradleDependency]
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-common than 1.8.0 is available: 1.9.1 [GradleDependency]
 media3 = "1.8.0"
          ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-container than 1.8.0 is available: 1.9.0 [GradleDependency]
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-container than 1.8.0 is available: 1.9.1 [GradleDependency]
 media3 = "1.8.0"
          ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-datasource-cronet than 1.8.0 is available: 1.9.0 [GradleDependency]
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-datasource-cronet than 1.8.0 is available: 1.9.1 [GradleDependency]
 media3 = "1.8.0"
          ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-datasource-okhttp than 1.8.0 is available: 1.9.0 [GradleDependency]
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-datasource-okhttp than 1.8.0 is available: 1.9.1 [GradleDependency]
 media3 = "1.8.0"
          ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-exoplayer than 1.8.0 is available: 1.9.0 [GradleDependency]
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-exoplayer than 1.8.0 is available: 1.9.1 [GradleDependency]
 media3 = "1.8.0"
          ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-exoplayer-dash than 1.8.0 is available: 1.9.0 [GradleDependency]
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-exoplayer-dash than 1.8.0 is available: 1.9.1 [GradleDependency]
 media3 = "1.8.0"
          ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-exoplayer-hls than 1.8.0 is available: 1.9.0 [GradleDependency]
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-exoplayer-hls than 1.8.0 is available: 1.9.1 [GradleDependency]
 media3 = "1.8.0"
          ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-session than 1.8.0 is available: 1.9.0 [GradleDependency]
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-session than 1.8.0 is available: 1.9.1 [GradleDependency]
 media3 = "1.8.0"
          ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-ui than 1.8.0 is available: 1.9.0 [GradleDependency]
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-ui than 1.8.0 is available: 1.9.1 [GradleDependency]
 media3 = "1.8.0"
          ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:47: Warning: A newer version of androidx.work:work-runtime-ktx than 2.10.5 is available: 2.11.0 [GradleDependency]
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:31: Warning: A newer version of androidx.navigation:navigation-fragment-ktx than 2.9.6 is available: 2.9.7 [GradleDependency]
+navigationKtx = "2.9.6"
+                ~~~~~~~
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:31: Warning: A newer version of androidx.navigation:navigation-ui-ktx than 2.9.6 is available: 2.9.7 [GradleDependency]
+navigationKtx = "2.9.6"
+                ~~~~~~~
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:47: Warning: A newer version of androidx.work:work-runtime-ktx than 2.10.5 is available: 2.11.1 [GradleDependency]
 workRuntimeKtx = "2.10.5"
                  ~~~~~~~~
 
@@ -467,10 +473,16 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:21: Warning: A newer version of org.jsoup:jsoup than 1.21.2 is available: 1.22.1 [NewerVersionAvailable]
 jsoup = "1.21.2"
         ~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:33: Warning: A newer version of io.github.anilbeesetti:nextlib-media3ext than 1.8.0-0.9.0 is available: 1.9.0-0.10.0 [NewerVersionAvailable]
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:26: Warning: A newer version of org.jetbrains.kotlin.jvm than 2.3.20-Beta1 is available: 2.3.20-Beta2 [NewerVersionAvailable]
+kotlinGradlePlugin = "2.3.20-Beta1"
+                     ~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:26: Warning: A newer version of org.jetbrains.kotlin.multiplatform than 2.3.20-Beta1 is available: 2.3.20-Beta2 [NewerVersionAvailable]
+kotlinGradlePlugin = "2.3.20-Beta1"
+                     ~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:33: Warning: A newer version of io.github.anilbeesetti:nextlib-media3ext than 1.8.0-0.9.0 is available: 1.9.1-0.11.0 [NewerVersionAvailable]
 nextlibMedia3 = "1.8.0-0.9.0"
                 ~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:33: Warning: A newer version of io.github.anilbeesetti:nextlib-mediainfo than 1.8.0-0.9.0 is available: 1.9.0-0.10.0 [NewerVersionAvailable]
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:33: Warning: A newer version of io.github.anilbeesetti:nextlib-mediainfo than 1.8.0-0.9.0 is available: 1.9.1-0.11.0 [NewerVersionAvailable]
 nextlibMedia3 = "1.8.0-0.9.0"
                 ~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:40: Warning: A newer version of org.mozilla:rhino than 1.8.1 is available: 1.9.0 [NewerVersionAvailable]
@@ -561,11 +573,11 @@ zipline = "1.24.0"
 
    To fix this, copy the resource into your own project instead.
 
-/home/runner/.gradle/caches/9.2.1/transforms/178e67372886ba6783c73b320e775abd/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/178e67372886ba6783c73b320e775abd/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/c1aa213c4b101637aac0a3209738e791/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/c1aa213c4b101637aac0a3209738e791/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.2.1/transforms/c1aa213c4b101637aac0a3209738e791/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.3.0/transforms/ff451ab1ff1fed6ce8e776813eda8e64/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.3.0/transforms/ff451ab1ff1fed6ce8e776813eda8e64/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.3.0/transforms/d14dcb70245501d6c52c1b8b12476d86/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.3.0/transforms/d14dcb70245501d6c52c1b8b12476d86/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.3.0/transforms/d14dcb70245501d6c52c1b8b12476d86/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:64: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
 conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = "conscryptAndroid" }
                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -597,9 +609,6 @@ conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = 
 
    https://developer.android.com/guide/practices/page-sizes
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt:215: Warning: Use of this function is discouraged because resource reflection makes it harder to perform build optimizations and compile-time verification of code. It is much more efficient to retrieve resources by identifier (e.g. R.foo.bar) than by name (e.g. getIdentifier("bar", "foo", null)). [DiscouragedApi]
-            val contentId = resources.getIdentifier("exo_content_frame", "id", packageName)
-                                      ~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/UIHelper.kt:394: Warning: Use of this function is discouraged because resource reflection makes it harder to perform build optimizations and compile-time verification of code. It is much more efficient to retrieve resources by identifier (e.g. R.foo.bar) than by name (e.g. getIdentifier("bar", "foo", null)). [DiscouragedApi]
         val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
                                    ~~~~~~~~~~~~~
@@ -611,7 +620,7 @@ conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = 
    Discouraged APIs are allowed and are not deprecated, but they may be unfit
    for common use (e.g. due to slow performance or subtle behavior).
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/array.xml:335: Warning: "Ok" is usually capitalized as "OK" [Typos]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/array.xml:332: Warning: "Ok" is usually capitalized as "OK" [Typos]
         <item>Ok</item>
               ~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+pt+BR/strings.xml:110: Warning: "video" is a common misspelling; did you mean "vídeo"? [Typos]
@@ -658,13 +667,13 @@ conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = 
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:122: Warning: Formatting %d followed by words ("Benenes"): This should probably be a plural rather than a string [PluralsCandidate]
     <string name="benene_count_text">%d Benenes given to devs</string>
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:511: Warning: Formatting %d followed by words ("plugins"): This should probably be a plural rather than a string [PluralsCandidate]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:516: Warning: Formatting %d followed by words ("plugins"): This should probably be a plural rather than a string [PluralsCandidate]
     <string name="plugins_updated" formatted="true">Updated %d plugins</string>
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:608: Warning: Formatting %d followed by words ("released"): This should probably be a plural rather than a string [PluralsCandidate]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:613: Warning: Formatting %d followed by words ("released"): This should probably be a plural rather than a string [PluralsCandidate]
     <string name="subscription_episode_released">Episode %d released!</string>
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:712: Warning: Formatting %d followed by words ("plugin"): This should probably be a plural rather than a string [PluralsCandidate]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:717: Warning: Formatting %d followed by words ("plugin"): This should probably be a plural rather than a string [PluralsCandidate]
     <string name="plugins_updated_manually">Successfully updated %d plugin(s)!</string>
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -742,22 +751,19 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/home_episodes_expanded.xml:21: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
         <LinearLayout
          ~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:149: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:169: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
                     <LinearLayout
                      ~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:990: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:1010: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
     <LinearLayout
      ~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:272: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:281: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
                     <LinearLayout
                      ~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout-port/player_select_source_priority.xml:18: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
         <LinearLayout
          ~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:91: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
-            <LinearLayout
-             ~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:966: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:984: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
     <LinearLayout
      ~~~~~~~~~~~~
 
@@ -820,7 +826,7 @@ class SSLTrustManager : X509TrustManager {
    with non-zero weights is nested inside another LinearLayout with non-zero
    weights, then the number of measurements increase exponentially.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/array.xml:92: Warning: The resource R.array.skip_sec_values appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/array.xml:87: Warning: The resource R.array.skip_sec_values appears to be unused [UnusedResources]
     <array name="skip_sec_values">
            ~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values/attrs.xml:12: Warning: The resource R.style.customCastDefColor appears to be unused [UnusedResources]
@@ -919,19 +925,19 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml:28: Warning: The resource R.string.use_system_brightness_key appears to be unused [UnusedResources]
     <string name="use_system_brightness_key">use_system_brightness_key</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml:52: Warning: The resource R.string.app_name_download_path appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml:53: Warning: The resource R.string.app_name_download_path appears to be unused [UnusedResources]
     <string name="app_name_download_path">Cloudstream</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml:61: Warning: The resource R.string.log_enabled_key appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml:62: Warning: The resource R.string.log_enabled_key appears to be unused [UnusedResources]
     <string name="log_enabled_key">log_enabled_key</string>
             ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml:111: Warning: The resource R.string.episode_name_format appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml:113: Warning: The resource R.string.episode_name_format appears to be unused [UnusedResources]
     <string name="episode_name_format" formatted="true">%1$s %2$s</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml:118: Warning: The resource R.string.year_format appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml:120: Warning: The resource R.string.year_format appears to be unused [UnusedResources]
     <string name="year_format" formatted="true">%d</string>
             ~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml:120: Warning: The resource R.string.episode_play_img_des appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml:122: Warning: The resource R.string.episode_play_img_des appears to be unused [UnusedResources]
     <string name="episode_play_img_des">@string/play_episode</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/download_button.xml:2: Warning: The resource R.layout.download_button appears to be unused [UnusedResources]
@@ -1073,6 +1079,9 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_tag.xml:2: Warning: The resource R.layout.result_tag appears to be unused [UnusedResources]
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 ^
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/rounded_outline.xml:2: Warning: The resource R.drawable.rounded_outline appears to be unused [UnusedResources]
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+^
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/rounded_progress.xml:2: Warning: The resource R.drawable.rounded_progress appears to be unused [UnusedResources]
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 ^
@@ -1145,69 +1154,78 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:181: Warning: The resource R.string.settings_info appears to be unused [UnusedResources]
     <string name="settings_info">Info</string>
             ~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:202: Warning: The resource R.string.anim appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:206: Warning: The resource R.string.anim appears to be unused [UnusedResources]
     <string name="anim">Anime app by the same devs</string>
             ~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:209: Warning: The resource R.string.copy_link_toast appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:213: Warning: The resource R.string.copy_link_toast appears to be unused [UnusedResources]
     <string name="copy_link_toast">Link copied to clipboard</string>
             ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:234: Warning: The resource R.string.go_back_30 appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:238: Warning: The resource R.string.go_back_30 appears to be unused [UnusedResources]
     <string name="go_back_30">-30</string>
             ~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:241: Warning: The resource R.string.resume_time_left appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:245: Warning: The resource R.string.resume_time_left appears to be unused [UnusedResources]
     <string name="resume_time_left" formatted="true">%dm\nremaining</string>
             ~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:245: Warning: The resource R.string.status appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:249: Warning: The resource R.string.status appears to be unused [UnusedResources]
     <string name="status">Status</string>
             ~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:247: Warning: The resource R.string.rating appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:251: Warning: The resource R.string.rating appears to be unused [UnusedResources]
     <string name="rating">Rating</string>
             ~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:248: Warning: The resource R.string.duration appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:252: Warning: The resource R.string.duration appears to be unused [UnusedResources]
     <string name="duration">Duration</string>
             ~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:249: Warning: The resource R.string.site appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:253: Warning: The resource R.string.site appears to be unused [UnusedResources]
     <string name="site">Site</string>
             ~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:251: Warning: The resource R.string.queued appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:255: Warning: The resource R.string.queued appears to be unused [UnusedResources]
     <string name="queued">queued</string>
             ~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:292: Warning: The resource R.string.storage_error appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:296: Warning: The resource R.string.storage_error appears to be unused [UnusedResources]
     <string name="storage_error">Download error, check storage permissions</string>
             ~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:295: Warning: The resource R.string.episode_action_cast_mirror appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:299: Warning: The resource R.string.episode_action_cast_mirror appears to be unused [UnusedResources]
     <string name="episode_action_cast_mirror">Cast mirror</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:342: Warning: The resource R.string.nginx_url_pref appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:346: Warning: The resource R.string.nginx_url_pref appears to be unused [UnusedResources]
     <string name="nginx_url_pref">NGINX server URL</string>
             ~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:394: Warning: The resource R.string.login_format appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:398: Warning: The resource R.string.login_format appears to be unused [UnusedResources]
     <string name="login_format" formatted="true">%1$s %2$s</string>
             ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:403: Warning: The resource R.string.added_sync_format appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:407: Warning: The resource R.string.added_sync_format appears to be unused [UnusedResources]
     <string name="added_sync_format" formatted="true">Added %s</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:416: Warning: The resource R.string.max appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:420: Warning: The resource R.string.max appears to be unused [UnusedResources]
     <string name="max">Max</string>
             ~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:417: Warning: The resource R.string.min appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:421: Warning: The resource R.string.min appears to be unused [UnusedResources]
     <string name="min">Min</string>
             ~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:476: Warning: The resource R.string.extras appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:470: Warning: The resource R.string.resolution_and_title appears to be unused [UnusedResources]
+    <string name="resolution_and_title">Resolution and title</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:481: Warning: The resource R.string.extras appears to be unused [UnusedResources]
     <string name="extras">Extras</string>
             ~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:515: Warning: The resource R.string.view_public_repositories_button appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:520: Warning: The resource R.string.view_public_repositories_button appears to be unused [UnusedResources]
     <string name="view_public_repositories_button">View community repositories</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:516: Warning: The resource R.string.view_public_repositories_button_short appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:521: Warning: The resource R.string.view_public_repositories_button_short appears to be unused [UnusedResources]
     <string name="view_public_repositories_button_short">Public list</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:552: Warning: The resource R.string.skip_type_intro appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:557: Warning: The resource R.string.skip_type_intro appears to be unused [UnusedResources]
     <string name="skip_type_intro">Intro</string>
             ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:636: Warning: The resource R.string.action_remove_from_favorites appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:641: Warning: The resource R.string.action_remove_from_favorites appears to be unused [UnusedResources]
     <string name="action_remove_from_favorites">Remove from favorites</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:750: Warning: The resource R.string.name appears to be unused [UnusedResources]
+    <string name="name">Name</string>
+            ~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:752: Warning: The resource R.string.resolution_and_name appears to be unused [UnusedResources]
+    <string name="resolution_and_name">Resolution and name</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:267: Warning: The resource R.style.OverlayPrimaryColorBlue appears to be unused [UnusedResources]
     <style name="OverlayPrimaryColorBlue">
            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1325,7 +1343,7 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/dialog_online_subtitles.xml:17: Warning: This LinearLayout layout or its LinearLayout parent is possibly unnecessary [UselessParent]
         <LinearLayout
          ~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_home_head.xml:167: Warning: This LinearLayout layout or its LinearLayout parent is possibly unnecessary [UselessParent]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_home_head.xml:166: Warning: This LinearLayout layout or its LinearLayout parent is possibly unnecessary [UselessParent]
         <LinearLayout
          ~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_tv.xml:873: Warning: This LinearLayout layout or its LinearLayout parent is unnecessary [UselessParent]
@@ -1337,10 +1355,10 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_tv.xml:1082: Warning: This LinearLayout layout or its LinearLayout parent is possibly unnecessary [UselessParent]
                     <LinearLayout
                      ~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:453: Warning: This FrameLayout layout or its LinearLayout parent is unnecessary [UselessParent]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:473: Warning: This FrameLayout layout or its LinearLayout parent is unnecessary [UselessParent]
                     <FrameLayout
                      ~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:434: Warning: This FrameLayout layout or its LinearLayout parent is unnecessary [UselessParent]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:452: Warning: This FrameLayout layout or its LinearLayout parent is unnecessary [UselessParent]
                 <FrameLayout
                  ~~~~~~~~~~~
 
@@ -1366,15 +1384,15 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_tv.xml:674: Warning: fragment_result_tv.xml has more than 80 views, bad for performance [TooManyViews]
                 <androidx.recyclerview.widget.RecyclerView
                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:902: Warning: player_custom_layout.xml has more than 80 views, bad for performance [TooManyViews]
-            <RelativeLayout
-             ~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:939: Warning: player_custom_layout_tv.xml has more than 80 views, bad for performance [TooManyViews]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:888: Warning: player_custom_layout.xml has more than 80 views, bad for performance [TooManyViews]
+                <ProgressBar
+                 ~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:940: Warning: player_custom_layout_tv.xml has more than 80 views, bad for performance [TooManyViews]
                         <com.google.android.material.button.MaterialButton
                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:842: Warning: trailer_custom_layout.xml has more than 80 views, bad for performance [TooManyViews]
-            <ImageView
-             ~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:841: Warning: trailer_custom_layout.xml has more than 80 views, bad for performance [TooManyViews]
+    <LinearLayout
+     ~~~~~~~~~~~~
 
    Explanation for issues of type "TooManyViews":
    Using too many views in a single layout is bad for performance. Consider
@@ -1449,6 +1467,13 @@ class SSLTrustManager : X509TrustManager {
    smaller. However, duplicated icons usually are not intentional and can
    sometimes point to icons that were accidentally overwritten or accidentally
    not updated.
+
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:121: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+                    android:textSize="10sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "SmallSp":
+   Avoid using sizes smaller than 11sp.
 
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/CustomRecyclerViews.kt:158: Warning: Use the KTX extension function Context.withStyledAttributes instead? [UseKtx]
             val array = context.obtainStyledAttributes(attrs, attrsArray)
@@ -1546,6 +1571,12 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_extensions.xml:39: Warning: Missing contentDescription attribute on image [ContentDescription]
         <ImageView
          ~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_home.xml:252: Warning: Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+     ~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_library.xml:176: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_player_tv.xml:74: Warning: Missing contentDescription attribute on image [ContentDescription]
             <ImageView
              ~~~~~~~~~
@@ -1564,6 +1595,9 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result.xml:608: Warning: Missing contentDescription attribute on image [ContentDescription]
                                         <ImageView
                                          ~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_swipe.xml:37: Warning: Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+             ~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_swipe.xml:71: Warning: Missing contentDescription attribute on image [ContentDescription]
             <ImageView
              ~~~~~~~~~
@@ -1591,19 +1625,25 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/home_scroll_view.xml:8: Warning: Missing contentDescription attribute on image [ContentDescription]
     <ImageView
      ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:91: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:10: Warning: Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+     ~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:99: Warning: Missing contentDescription attribute on image [ContentDescription]
         <ImageView
          ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:164: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:184: Warning: Missing contentDescription attribute on image [ContentDescription]
                         <ImageView
                          ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:457: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:477: Warning: Missing contentDescription attribute on image [ContentDescription]
                         <ImageView
                          ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:221: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:11: Warning: Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+     ~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:229: Warning: Missing contentDescription attribute on image [ContentDescription]
         <ImageView
          ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:290: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:299: Warning: Missing contentDescription attribute on image [ContentDescription]
                         <ImageView
                          ~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_prioritize_item.xml:17: Warning: Missing contentDescription attribute on image [ContentDescription]
@@ -1651,19 +1691,22 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/speed_dialog.xml:62: Warning: Missing contentDescription attribute on image [ContentDescription]
         <com.google.android.material.floatingactionbutton.FloatingActionButton
          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:70: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:10: Warning: Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+     ~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:78: Warning: Missing contentDescription attribute on image [ContentDescription]
         <ImageView
          ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:106: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:124: Warning: Missing contentDescription attribute on image [ContentDescription]
                 <ImageView
                  ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:438: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:456: Warning: Missing contentDescription attribute on image [ContentDescription]
                     <ImageView
                      ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:573: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:591: Warning: Missing contentDescription attribute on image [ContentDescription]
         <ImageView
          ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:699: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:717: Warning: Missing contentDescription attribute on image [ContentDescription]
                 <ImageView
                  ~~~~~~~~~
 
@@ -1808,4 +1851,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-0 errors, 460 warnings, 1 hint
+0 errors, 473 warnings, 1 hint

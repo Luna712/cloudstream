@@ -153,6 +153,38 @@
         priority="6"
         summary="Attribute unused on older versions"
         explanation="This check finds attributes set in XML files that were introduced in a version newer than the oldest version targeted by your application (with the `minSdkVersion` attribute).&#xA;&#xA;This is not an error; the application will simply ignore the attribute. However, if the attribute is important to the appearance or functionality of your application, you should consider finding an alternative way to achieve the same result with only available attributes, and then you can optionally create a copy of the layout in a layout-vNN folder which will be used on API NN or higher where you can take advantage of the newer attribute.&#xA;&#xA;Note: This check does not only apply to attributes. For example, some tags can be unused too, such as the new `&lt;tag>` element in layouts introduced in API 21."
+        errorLine1="                    android:foreground=&quot;@drawable/outline_big_35_gray&quot;"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/cast_item.xml"
+            line="44"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        severity="Warning"
+        message="Attribute `android:foreground` has no effect on API levels lower than 23 (current min is 21)"
+        category="Correctness"
+        priority="6"
+        summary="Attribute unused on older versions"
+        explanation="This check finds attributes set in XML files that were introduced in a version newer than the oldest version targeted by your application (with the `minSdkVersion` attribute).&#xA;&#xA;This is not an error; the application will simply ignore the attribute. However, if the attribute is important to the appearance or functionality of your application, you should consider finding an alternative way to achieve the same result with only available attributes, and then you can optionally create a copy of the layout in a layout-vNN folder which will be used on API NN or higher where you can take advantage of the newer attribute.&#xA;&#xA;Note: This check does not only apply to attributes. For example, some tags can be unused too, such as the new `&lt;tag>` element in layouts introduced in API 21."
+        errorLine1="                    android:foreground=&quot;@drawable/outline_big_35_gray&quot;"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/cast_item.xml"
+            line="60"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        severity="Warning"
+        message="Attribute `android:foreground` has no effect on API levels lower than 23 (current min is 21)"
+        category="Correctness"
+        priority="6"
+        summary="Attribute unused on older versions"
+        explanation="This check finds attributes set in XML files that were introduced in a version newer than the oldest version targeted by your application (with the `minSdkVersion` attribute).&#xA;&#xA;This is not an error; the application will simply ignore the attribute. However, if the attribute is important to the appearance or functionality of your application, you should consider finding an alternative way to achieve the same result with only available attributes, and then you can optionally create a copy of the layout in a layout-vNN folder which will be used on API NN or higher where you can take advantage of the newer attribute.&#xA;&#xA;Note: This check does not only apply to attributes. For example, some tags can be unused too, such as the new `&lt;tag>` element in layouts introduced in API 21."
         errorLine1="        android:foreground=&quot;?android:attr/selectableItemBackgroundBorderless&quot;"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -237,24 +269,8 @@
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_home_head.xml"
-            line="66"
+            line="64"
             column="17"/>
-    </issue>
-
-    <issue
-        id="UnusedAttribute"
-        severity="Warning"
-        message="Attribute `android:foreground` has no effect on API levels lower than 23 (current min is 21)"
-        category="Correctness"
-        priority="6"
-        summary="Attribute unused on older versions"
-        explanation="This check finds attributes set in XML files that were introduced in a version newer than the oldest version targeted by your application (with the `minSdkVersion` attribute).&#xA;&#xA;This is not an error; the application will simply ignore the attribute. However, if the attribute is important to the appearance or functionality of your application, you should consider finding an alternative way to achieve the same result with only available attributes, and then you can optionally create a copy of the layout in a layout-vNN folder which will be used on API NN or higher where you can take advantage of the newer attribute.&#xA;&#xA;Note: This check does not only apply to attributes. For example, some tags can be unused too, such as the new `&lt;tag>` element in layouts introduced in API 21."
-        errorLine1="                        android:foreground=&quot;@drawable/rounded_outline&quot;"
-        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_home_head.xml"
-            line="85"
-            column="25"/>
     </issue>
 
     <issue
@@ -269,24 +285,8 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_home_head.xml"
-            line="175"
+            line="172"
             column="13"/>
-    </issue>
-
-    <issue
-        id="UnusedAttribute"
-        severity="Warning"
-        message="Attribute `android:foreground` has no effect on API levels lower than 23 (current min is 21)"
-        category="Correctness"
-        priority="6"
-        summary="Attribute unused on older versions"
-        explanation="This check finds attributes set in XML files that were introduced in a version newer than the oldest version targeted by your application (with the `minSdkVersion` attribute).&#xA;&#xA;This is not an error; the application will simply ignore the attribute. However, if the attribute is important to the appearance or functionality of your application, you should consider finding an alternative way to achieve the same result with only available attributes, and then you can optionally create a copy of the layout in a layout-vNN folder which will be used on API NN or higher where you can take advantage of the newer attribute.&#xA;&#xA;Note: This check does not only apply to attributes. For example, some tags can be unused too, such as the new `&lt;tag>` element in layouts introduced in API 21."
-        errorLine1="                    android:foreground=&quot;@drawable/rounded_outline&quot;"
-        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_home_head.xml"
-            line="194"
-            column="21"/>
     </issue>
 
     <issue
@@ -617,22 +617,6 @@
         priority="6"
         summary="Attribute unused on older versions"
         explanation="This check finds attributes set in XML files that were introduced in a version newer than the oldest version targeted by your application (with the `minSdkVersion` attribute).&#xA;&#xA;This is not an error; the application will simply ignore the attribute. However, if the attribute is important to the appearance or functionality of your application, you should consider finding an alternative way to achieve the same result with only available attributes, and then you can optionally create a copy of the layout in a layout-vNN folder which will be used on API NN or higher where you can take advantage of the newer attribute.&#xA;&#xA;Note: This check does not only apply to attributes. For example, some tags can be unused too, such as the new `&lt;tag>` element in layouts introduced in API 21."
-        errorLine1="                        android:foreground=&quot;@drawable/rounded_outline&quot;"
-        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/main_settings.xml"
-            line="39"
-            column="25"/>
-    </issue>
-
-    <issue
-        id="UnusedAttribute"
-        severity="Warning"
-        message="Attribute `android:foreground` has no effect on API levels lower than 23 (current min is 21)"
-        category="Correctness"
-        priority="6"
-        summary="Attribute unused on older versions"
-        explanation="This check finds attributes set in XML files that were introduced in a version newer than the oldest version targeted by your application (with the `minSdkVersion` attribute).&#xA;&#xA;This is not an error; the application will simply ignore the attribute. However, if the attribute is important to the appearance or functionality of your application, you should consider finding an alternative way to achieve the same result with only available attributes, and then you can optionally create a copy of the layout in a layout-vNN folder which will be used on API NN or higher where you can take advantage of the newer attribute.&#xA;&#xA;Note: This check does not only apply to attributes. For example, some tags can be unused too, such as the new `&lt;tag>` element in layouts introduced in API 21."
         errorLine1="                android:foreground=&quot;?android:attr/selectableItemBackgroundBorderless&quot;"
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -653,7 +637,7 @@
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml"
-            line="987"
+            line="1007"
             column="9"/>
     </issue>
 
@@ -1037,7 +1021,7 @@
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="962"
+            line="980"
             column="9"/>
     </issue>
 
@@ -1454,12 +1438,12 @@
     <issue
         id="AndroidGradlePluginVersion"
         severity="Warning"
-        message="A newer version of Gradle than 9.2.1 is available: 9.3.0"
+        message="A newer version of Gradle than 9.3.0 is available: 9.3.1"
         category="Correctness"
         priority="4"
         summary="Obsolete Android Gradle Plugin Version"
         explanation="This detector looks for usage of the Android Gradle Plugin where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
-        errorLine1="distributionUrl=https\://services.gradle.org/distributions/gradle-9.2.1-bin.zip"
+        errorLine1="distributionUrl=https\://services.gradle.org/distributions/gradle-9.3.0-bin.zip"
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/gradle/wrapper/gradle-wrapper.properties"
@@ -1470,7 +1454,7 @@
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.2"
+        message="A newer version of androidx.activity:activity-ktx than 1.11.0 is available: 1.12.3"
         category="Correctness"
         priority="4"
         summary="Obsolete Gradle Dependency"
@@ -1534,7 +1518,23 @@
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of androidx.media3:media3-cast than 1.8.0 is available: 1.9.0"
+        message="A newer version of com.google.android.material:material than 1.14.0-alpha08 is available: 1.14.0-alpha09"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="material = &quot;1.14.0-alpha08&quot;"
+        errorLine2="           ~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="29"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.media3:media3-cast than 1.8.0 is available: 1.9.1"
         category="Correctness"
         priority="4"
         summary="Obsolete Gradle Dependency"
@@ -1550,7 +1550,7 @@
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of androidx.media3:media3-common than 1.8.0 is available: 1.9.0"
+        message="A newer version of androidx.media3:media3-common than 1.8.0 is available: 1.9.1"
         category="Correctness"
         priority="4"
         summary="Obsolete Gradle Dependency"
@@ -1566,7 +1566,7 @@
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of androidx.media3:media3-container than 1.8.0 is available: 1.9.0"
+        message="A newer version of androidx.media3:media3-container than 1.8.0 is available: 1.9.1"
         category="Correctness"
         priority="4"
         summary="Obsolete Gradle Dependency"
@@ -1582,7 +1582,7 @@
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of androidx.media3:media3-datasource-cronet than 1.8.0 is available: 1.9.0"
+        message="A newer version of androidx.media3:media3-datasource-cronet than 1.8.0 is available: 1.9.1"
         category="Correctness"
         priority="4"
         summary="Obsolete Gradle Dependency"
@@ -1598,7 +1598,7 @@
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of androidx.media3:media3-datasource-okhttp than 1.8.0 is available: 1.9.0"
+        message="A newer version of androidx.media3:media3-datasource-okhttp than 1.8.0 is available: 1.9.1"
         category="Correctness"
         priority="4"
         summary="Obsolete Gradle Dependency"
@@ -1614,7 +1614,7 @@
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of androidx.media3:media3-exoplayer than 1.8.0 is available: 1.9.0"
+        message="A newer version of androidx.media3:media3-exoplayer than 1.8.0 is available: 1.9.1"
         category="Correctness"
         priority="4"
         summary="Obsolete Gradle Dependency"
@@ -1630,7 +1630,7 @@
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of androidx.media3:media3-exoplayer-dash than 1.8.0 is available: 1.9.0"
+        message="A newer version of androidx.media3:media3-exoplayer-dash than 1.8.0 is available: 1.9.1"
         category="Correctness"
         priority="4"
         summary="Obsolete Gradle Dependency"
@@ -1646,7 +1646,7 @@
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of androidx.media3:media3-exoplayer-hls than 1.8.0 is available: 1.9.0"
+        message="A newer version of androidx.media3:media3-exoplayer-hls than 1.8.0 is available: 1.9.1"
         category="Correctness"
         priority="4"
         summary="Obsolete Gradle Dependency"
@@ -1662,7 +1662,7 @@
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of androidx.media3:media3-session than 1.8.0 is available: 1.9.0"
+        message="A newer version of androidx.media3:media3-session than 1.8.0 is available: 1.9.1"
         category="Correctness"
         priority="4"
         summary="Obsolete Gradle Dependency"
@@ -1678,7 +1678,7 @@
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of androidx.media3:media3-ui than 1.8.0 is available: 1.9.0"
+        message="A newer version of androidx.media3:media3-ui than 1.8.0 is available: 1.9.1"
         category="Correctness"
         priority="4"
         summary="Obsolete Gradle Dependency"
@@ -1694,7 +1694,39 @@
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of androidx.work:work-runtime-ktx than 2.10.5 is available: 2.11.0"
+        message="A newer version of androidx.navigation:navigation-fragment-ktx than 2.9.6 is available: 2.9.7"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="navigationKtx = &quot;2.9.6&quot;"
+        errorLine2="                ~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="31"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.navigation:navigation-ui-ktx than 2.9.6 is available: 2.9.7"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="navigationKtx = &quot;2.9.6&quot;"
+        errorLine2="                ~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="31"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.work:work-runtime-ktx than 2.10.5 is available: 2.11.1"
         category="Correctness"
         priority="4"
         summary="Obsolete Gradle Dependency"
@@ -1758,7 +1790,39 @@
     <issue
         id="NewerVersionAvailable"
         severity="Warning"
-        message="A newer version of io.github.anilbeesetti:nextlib-media3ext than 1.8.0-0.9.0 is available: 1.9.0-0.10.0"
+        message="A newer version of org.jetbrains.kotlin.jvm than 2.3.20-Beta1 is available: 2.3.20-Beta2"
+        category="Correctness"
+        priority="4"
+        summary="Newer Library Versions Available"
+        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
+        errorLine1="kotlinGradlePlugin = &quot;2.3.20-Beta1&quot;"
+        errorLine2="                     ~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="26"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        severity="Warning"
+        message="A newer version of org.jetbrains.kotlin.multiplatform than 2.3.20-Beta1 is available: 2.3.20-Beta2"
+        category="Correctness"
+        priority="4"
+        summary="Newer Library Versions Available"
+        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
+        errorLine1="kotlinGradlePlugin = &quot;2.3.20-Beta1&quot;"
+        errorLine2="                     ~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="26"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        severity="Warning"
+        message="A newer version of io.github.anilbeesetti:nextlib-media3ext than 1.8.0-0.9.0 is available: 1.9.1-0.11.0"
         category="Correctness"
         priority="4"
         summary="Newer Library Versions Available"
@@ -1774,7 +1838,7 @@
     <issue
         id="NewerVersionAvailable"
         severity="Warning"
-        message="A newer version of io.github.anilbeesetti:nextlib-mediainfo than 1.8.0-0.9.0 is available: 1.9.0-0.10.0"
+        message="A newer version of io.github.anilbeesetti:nextlib-mediainfo than 1.8.0-0.9.0 is available: 1.9.1-0.11.0"
         category="Correctness"
         priority="4"
         summary="Newer Library Versions Available"
@@ -2182,7 +2246,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/178e67372886ba6783c73b320e775abd/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
+            file="/home/runner/.gradle/caches/9.3.0/transforms/ff451ab1ff1fed6ce8e776813eda8e64/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
     </issue>
 
     <issue
@@ -2196,7 +2260,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/178e67372886ba6783c73b320e775abd/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
+            file="/home/runner/.gradle/caches/9.3.0/transforms/ff451ab1ff1fed6ce8e776813eda8e64/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
     </issue>
 
     <issue
@@ -2210,7 +2274,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/c1aa213c4b101637aac0a3209738e791/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
+            file="/home/runner/.gradle/caches/9.3.0/transforms/d14dcb70245501d6c52c1b8b12476d86/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
     </issue>
 
     <issue
@@ -2224,7 +2288,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/c1aa213c4b101637aac0a3209738e791/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
+            file="/home/runner/.gradle/caches/9.3.0/transforms/d14dcb70245501d6c52c1b8b12476d86/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
     </issue>
 
     <issue
@@ -2238,7 +2302,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.2.1/transforms/c1aa213c4b101637aac0a3209738e791/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
+            file="/home/runner/.gradle/caches/9.3.0/transforms/d14dcb70245501d6c52c1b8b12476d86/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
     </issue>
 
     <issue
@@ -2257,22 +2321,6 @@
             file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
             line="64"
             column="22"/>
-    </issue>
-
-    <issue
-        id="DiscouragedApi"
-        severity="Warning"
-        message="Use of this function is discouraged because resource reflection makes it harder to perform build optimizations and compile-time verification of code. It is much more efficient to retrieve resources by identifier (e.g. `R.foo.bar`) than by name (e.g. `getIdentifier(&quot;bar&quot;, &quot;foo&quot;, null)`)."
-        category="Correctness"
-        priority="2"
-        summary="Using discouraged APIs"
-        explanation="Discouraged APIs are allowed and are not deprecated, but they may be unfit for common use (e.g. due to slow performance or subtle behavior)."
-        errorLine1="            val contentId = resources.getIdentifier(&quot;exo_content_frame&quot;, &quot;id&quot;, packageName)"
-        errorLine2="                                      ~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt"
-            line="215"
-            column="39"/>
     </issue>
 
     <issue
@@ -2319,7 +2367,7 @@
         errorLine2="              ~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/array.xml"
-            line="335"
+            line="332"
             column="15"/>
     </issue>
 
@@ -2551,7 +2599,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="511"
+            line="516"
             column="5"/>
     </issue>
 
@@ -2569,7 +2617,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="608"
+            line="613"
             column="5"/>
     </issue>
 
@@ -2587,7 +2635,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="712"
+            line="717"
             column="5"/>
     </issue>
 
@@ -2739,7 +2787,7 @@
         errorLine2="                     ~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml"
-            line="149"
+            line="169"
             column="22"/>
     </issue>
 
@@ -2755,7 +2803,7 @@
         errorLine2="     ~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml"
-            line="990"
+            line="1010"
             column="6"/>
     </issue>
 
@@ -2771,7 +2819,7 @@
         errorLine2="                     ~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml"
-            line="272"
+            line="281"
             column="22"/>
     </issue>
 
@@ -2799,27 +2847,11 @@
         priority="6"
         summary="Node can be replaced by a `TextView` with compound drawables"
         explanation="A `LinearLayout` which contains an `ImageView` and a `TextView` can be more efficiently handled as a compound drawable (a single TextView, using the `drawableTop`, `drawableLeft`, `drawableRight` and/or `drawableBottom` attributes to draw one or more images adjacent to the text).&#xA;&#xA;If the two widgets are offset from each other with margins, this can be replaced with a `drawablePadding` attribute.&#xA;&#xA;There&apos;s a lint quickfix to perform this conversion in the Eclipse plugin."
-        errorLine1="            &lt;LinearLayout"
-        errorLine2="             ~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="91"
-            column="14"/>
-    </issue>
-
-    <issue
-        id="UseCompoundDrawables"
-        severity="Warning"
-        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
-        category="Performance"
-        priority="6"
-        summary="Node can be replaced by a `TextView` with compound drawables"
-        explanation="A `LinearLayout` which contains an `ImageView` and a `TextView` can be more efficiently handled as a compound drawable (a single TextView, using the `drawableTop`, `drawableLeft`, `drawableRight` and/or `drawableBottom` attributes to draw one or more images adjacent to the text).&#xA;&#xA;If the two widgets are offset from each other with margins, this can be replaced with a `drawablePadding` attribute.&#xA;&#xA;There&apos;s a lint quickfix to perform this conversion in the Eclipse plugin."
         errorLine1="    &lt;LinearLayout"
         errorLine2="     ~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="966"
+            line="984"
             column="6"/>
     </issue>
 
@@ -2967,7 +2999,7 @@
         errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/array.xml"
-            line="92"
+            line="87"
             column="12"/>
     </issue>
 
@@ -3495,7 +3527,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml"
-            line="52"
+            line="53"
             column="13"/>
     </issue>
 
@@ -3511,7 +3543,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml"
-            line="61"
+            line="62"
             column="13"/>
     </issue>
 
@@ -3527,7 +3559,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml"
-            line="111"
+            line="113"
             column="13"/>
     </issue>
 
@@ -3543,7 +3575,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml"
-            line="118"
+            line="120"
             column="13"/>
     </issue>
 
@@ -3559,7 +3591,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml"
-            line="120"
+            line="122"
             column="13"/>
     </issue>
 
@@ -4314,6 +4346,22 @@
     <issue
         id="UnusedResources"
         severity="Warning"
+        message="The resource `R.drawable.rounded_outline` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="&lt;ripple xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/rounded_outline.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
         message="The resource `R.drawable.rounded_progress` appears to be unused"
         category="Performance"
         priority="3"
@@ -4707,7 +4755,7 @@
         errorLine2="            ~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="202"
+            line="206"
             column="13"/>
     </issue>
 
@@ -4723,7 +4771,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="209"
+            line="213"
             column="13"/>
     </issue>
 
@@ -4739,7 +4787,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="234"
+            line="238"
             column="13"/>
     </issue>
 
@@ -4755,7 +4803,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="241"
+            line="245"
             column="13"/>
     </issue>
 
@@ -4771,7 +4819,7 @@
         errorLine2="            ~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="245"
+            line="249"
             column="13"/>
     </issue>
 
@@ -4787,7 +4835,7 @@
         errorLine2="            ~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="247"
+            line="251"
             column="13"/>
     </issue>
 
@@ -4803,7 +4851,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="248"
+            line="252"
             column="13"/>
     </issue>
 
@@ -4819,7 +4867,7 @@
         errorLine2="            ~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="249"
+            line="253"
             column="13"/>
     </issue>
 
@@ -4835,7 +4883,7 @@
         errorLine2="            ~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="251"
+            line="255"
             column="13"/>
     </issue>
 
@@ -4851,7 +4899,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="292"
+            line="296"
             column="13"/>
     </issue>
 
@@ -4867,7 +4915,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="295"
+            line="299"
             column="13"/>
     </issue>
 
@@ -4883,7 +4931,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="342"
+            line="346"
             column="13"/>
     </issue>
 
@@ -4899,7 +4947,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="394"
+            line="398"
             column="13"/>
     </issue>
 
@@ -4915,7 +4963,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="403"
+            line="407"
             column="13"/>
     </issue>
 
@@ -4931,7 +4979,7 @@
         errorLine2="            ~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="416"
+            line="420"
             column="13"/>
     </issue>
 
@@ -4947,7 +4995,23 @@
         errorLine2="            ~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="417"
+            line="421"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.resolution_and_title` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;resolution_and_title&quot;>Resolution and title&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
+            line="470"
             column="13"/>
     </issue>
 
@@ -4963,7 +5027,7 @@
         errorLine2="            ~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="476"
+            line="481"
             column="13"/>
     </issue>
 
@@ -4979,7 +5043,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="515"
+            line="520"
             column="13"/>
     </issue>
 
@@ -4995,7 +5059,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="516"
+            line="521"
             column="13"/>
     </issue>
 
@@ -5011,7 +5075,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="552"
+            line="557"
             column="13"/>
     </issue>
 
@@ -5027,7 +5091,39 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="636"
+            line="641"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.name` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;name&quot;>Name&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
+            line="750"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.resolution_and_name` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;resolution_and_name&quot;>Resolution and name&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
+            line="752"
             column="13"/>
     </issue>
 
@@ -5459,7 +5555,7 @@
         errorLine2="         ~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_home_head.xml"
-            line="167"
+            line="166"
             column="10"/>
     </issue>
 
@@ -5523,7 +5619,7 @@
         errorLine2="                     ~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml"
-            line="453"
+            line="473"
             column="22"/>
     </issue>
 
@@ -5539,7 +5635,7 @@
         errorLine2="                 ~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="434"
+            line="452"
             column="18"/>
     </issue>
 
@@ -5599,12 +5695,12 @@
         priority="1"
         summary="Layout has too many views"
         explanation="Using too many views in a single layout is bad for performance. Consider using compound drawables or other tricks for reducing the number of views in this layout.&#xA;&#xA;The maximum view count defaults to 80 but can be configured with the environment variable `ANDROID_LINT_MAX_VIEW_COUNT`."
-        errorLine1="            &lt;RelativeLayout"
-        errorLine2="             ~~~~~~~~~~~~~~">
+        errorLine1="                &lt;ProgressBar"
+        errorLine2="                 ~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml"
-            line="902"
-            column="14"/>
+            line="888"
+            column="18"/>
     </issue>
 
     <issue
@@ -5619,7 +5715,7 @@
         errorLine2="                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml"
-            line="939"
+            line="940"
             column="26"/>
     </issue>
 
@@ -5631,12 +5727,12 @@
         priority="1"
         summary="Layout has too many views"
         explanation="Using too many views in a single layout is bad for performance. Consider using compound drawables or other tricks for reducing the number of views in this layout.&#xA;&#xA;The maximum view count defaults to 80 but can be configured with the environment variable `ANDROID_LINT_MAX_VIEW_COUNT`."
-        errorLine1="            &lt;ImageView"
-        errorLine2="             ~~~~~~~~~">
+        errorLine1="    &lt;LinearLayout"
+        errorLine2="     ~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="842"
-            column="14"/>
+            line="841"
+            column="6"/>
     </issue>
 
     <issue
@@ -6080,6 +6176,22 @@
     </issue>
 
     <issue
+        id="SmallSp"
+        severity="Warning"
+        message="Avoid using sizes smaller than `11sp`: `10sp`"
+        category="Usability"
+        priority="4"
+        summary="Text size is too small"
+        explanation="Avoid using sizes smaller than 11sp."
+        errorLine1="                    android:textSize=&quot;10sp&quot;"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
+            line="121"
+            column="21"/>
+    </issue>
+
+    <issue
         id="UseKtx"
         severity="Warning"
         message="Use the KTX extension function `Context.withStyledAttributes` instead?"
@@ -6315,6 +6427,42 @@
         explanation="Non-textual widgets like ImageViews and ImageButtons should use the `contentDescription` attribute to specify a textual description of the widget such that screen readers and other accessibility tools can adequately describe the user interface.&#xA;&#xA;Note that elements in application screens that are purely decorative and do not provide any content or enable a user action should not have accessibility content descriptions. In this case, set their descriptions to `@null`. If your app&apos;s minSdkVersion is 16 or higher, you can instead set these graphical elements&apos; `android:importantForAccessibility` attributes to `no`.&#xA;&#xA;Note that for text fields, you should not set both the `hint` and the `contentDescription` attributes since the hint will never be shown. Just set the `hint`."
         url="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
         urls="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_home.xml"
+            line="252"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        severity="Warning"
+        message="Missing `contentDescription` attribute on image"
+        category="Accessibility"
+        priority="3"
+        summary="Image without `contentDescription`"
+        explanation="Non-textual widgets like ImageViews and ImageButtons should use the `contentDescription` attribute to specify a textual description of the widget such that screen readers and other accessibility tools can adequately describe the user interface.&#xA;&#xA;Note that elements in application screens that are purely decorative and do not provide any content or enable a user action should not have accessibility content descriptions. In this case, set their descriptions to `@null`. If your app&apos;s minSdkVersion is 16 or higher, you can instead set these graphical elements&apos; `android:importantForAccessibility` attributes to `no`.&#xA;&#xA;Note that for text fields, you should not set both the `hint` and the `contentDescription` attributes since the hint will never be shown. Just set the `hint`."
+        url="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
+        urls="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_library.xml"
+            line="176"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        severity="Warning"
+        message="Missing `contentDescription` attribute on image"
+        category="Accessibility"
+        priority="3"
+        summary="Image without `contentDescription`"
+        explanation="Non-textual widgets like ImageViews and ImageButtons should use the `contentDescription` attribute to specify a textual description of the widget such that screen readers and other accessibility tools can adequately describe the user interface.&#xA;&#xA;Note that elements in application screens that are purely decorative and do not provide any content or enable a user action should not have accessibility content descriptions. In this case, set their descriptions to `@null`. If your app&apos;s minSdkVersion is 16 or higher, you can instead set these graphical elements&apos; `android:importantForAccessibility` attributes to `no`.&#xA;&#xA;Note that for text fields, you should not set both the `hint` and the `contentDescription` attributes since the hint will never be shown. Just set the `hint`."
+        url="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
+        urls="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
         errorLine1="            &lt;ImageView"
         errorLine2="             ~~~~~~~~~">
         <location
@@ -6411,6 +6559,24 @@
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result.xml"
             line="608"
             column="42"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        severity="Warning"
+        message="Missing `contentDescription` attribute on image"
+        category="Accessibility"
+        priority="3"
+        summary="Image without `contentDescription`"
+        explanation="Non-textual widgets like ImageViews and ImageButtons should use the `contentDescription` attribute to specify a textual description of the widget such that screen readers and other accessibility tools can adequately describe the user interface.&#xA;&#xA;Note that elements in application screens that are purely decorative and do not provide any content or enable a user action should not have accessibility content descriptions. In this case, set their descriptions to `@null`. If your app&apos;s minSdkVersion is 16 or higher, you can instead set these graphical elements&apos; `android:importantForAccessibility` attributes to `no`.&#xA;&#xA;Note that for text fields, you should not set both the `hint` and the `contentDescription` attributes since the hint will never be shown. Just set the `hint`."
+        url="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
+        urls="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_swipe.xml"
+            line="37"
+            column="14"/>
     </issue>
 
     <issue
@@ -6585,11 +6751,29 @@
         explanation="Non-textual widgets like ImageViews and ImageButtons should use the `contentDescription` attribute to specify a textual description of the widget such that screen readers and other accessibility tools can adequately describe the user interface.&#xA;&#xA;Note that elements in application screens that are purely decorative and do not provide any content or enable a user action should not have accessibility content descriptions. In this case, set their descriptions to `@null`. If your app&apos;s minSdkVersion is 16 or higher, you can instead set these graphical elements&apos; `android:importantForAccessibility` attributes to `no`.&#xA;&#xA;Note that for text fields, you should not set both the `hint` and the `contentDescription` attributes since the hint will never be shown. Just set the `hint`."
         url="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
         urls="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml"
+            line="10"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        severity="Warning"
+        message="Missing `contentDescription` attribute on image"
+        category="Accessibility"
+        priority="3"
+        summary="Image without `contentDescription`"
+        explanation="Non-textual widgets like ImageViews and ImageButtons should use the `contentDescription` attribute to specify a textual description of the widget such that screen readers and other accessibility tools can adequately describe the user interface.&#xA;&#xA;Note that elements in application screens that are purely decorative and do not provide any content or enable a user action should not have accessibility content descriptions. In this case, set their descriptions to `@null`. If your app&apos;s minSdkVersion is 16 or higher, you can instead set these graphical elements&apos; `android:importantForAccessibility` attributes to `no`.&#xA;&#xA;Note that for text fields, you should not set both the `hint` and the `contentDescription` attributes since the hint will never be shown. Just set the `hint`."
+        url="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
+        urls="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
         errorLine1="        &lt;ImageView"
         errorLine2="         ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml"
-            line="91"
+            line="99"
             column="10"/>
     </issue>
 
@@ -6607,7 +6791,7 @@
         errorLine2="                         ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml"
-            line="164"
+            line="184"
             column="26"/>
     </issue>
 
@@ -6625,8 +6809,26 @@
         errorLine2="                         ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml"
-            line="457"
+            line="477"
             column="26"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        severity="Warning"
+        message="Missing `contentDescription` attribute on image"
+        category="Accessibility"
+        priority="3"
+        summary="Image without `contentDescription`"
+        explanation="Non-textual widgets like ImageViews and ImageButtons should use the `contentDescription` attribute to specify a textual description of the widget such that screen readers and other accessibility tools can adequately describe the user interface.&#xA;&#xA;Note that elements in application screens that are purely decorative and do not provide any content or enable a user action should not have accessibility content descriptions. In this case, set their descriptions to `@null`. If your app&apos;s minSdkVersion is 16 or higher, you can instead set these graphical elements&apos; `android:importantForAccessibility` attributes to `no`.&#xA;&#xA;Note that for text fields, you should not set both the `hint` and the `contentDescription` attributes since the hint will never be shown. Just set the `hint`."
+        url="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
+        urls="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml"
+            line="11"
+            column="6"/>
     </issue>
 
     <issue
@@ -6643,7 +6845,7 @@
         errorLine2="         ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml"
-            line="221"
+            line="229"
             column="10"/>
     </issue>
 
@@ -6661,7 +6863,7 @@
         errorLine2="                         ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml"
-            line="290"
+            line="299"
             column="26"/>
     </issue>
 
@@ -6945,11 +7147,29 @@
         explanation="Non-textual widgets like ImageViews and ImageButtons should use the `contentDescription` attribute to specify a textual description of the widget such that screen readers and other accessibility tools can adequately describe the user interface.&#xA;&#xA;Note that elements in application screens that are purely decorative and do not provide any content or enable a user action should not have accessibility content descriptions. In this case, set their descriptions to `@null`. If your app&apos;s minSdkVersion is 16 or higher, you can instead set these graphical elements&apos; `android:importantForAccessibility` attributes to `no`.&#xA;&#xA;Note that for text fields, you should not set both the `hint` and the `contentDescription` attributes since the hint will never be shown. Just set the `hint`."
         url="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
         urls="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
+            line="10"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        severity="Warning"
+        message="Missing `contentDescription` attribute on image"
+        category="Accessibility"
+        priority="3"
+        summary="Image without `contentDescription`"
+        explanation="Non-textual widgets like ImageViews and ImageButtons should use the `contentDescription` attribute to specify a textual description of the widget such that screen readers and other accessibility tools can adequately describe the user interface.&#xA;&#xA;Note that elements in application screens that are purely decorative and do not provide any content or enable a user action should not have accessibility content descriptions. In this case, set their descriptions to `@null`. If your app&apos;s minSdkVersion is 16 or higher, you can instead set these graphical elements&apos; `android:importantForAccessibility` attributes to `no`.&#xA;&#xA;Note that for text fields, you should not set both the `hint` and the `contentDescription` attributes since the hint will never be shown. Just set the `hint`."
+        url="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
+        urls="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
         errorLine1="        &lt;ImageView"
         errorLine2="         ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="70"
+            line="78"
             column="10"/>
     </issue>
 
@@ -6967,7 +7187,7 @@
         errorLine2="                 ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="106"
+            line="124"
             column="18"/>
     </issue>
 
@@ -6985,7 +7205,7 @@
         errorLine2="                     ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="438"
+            line="456"
             column="22"/>
     </issue>
 
@@ -7003,7 +7223,7 @@
         errorLine2="         ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="573"
+            line="591"
             column="10"/>
     </issue>
 
@@ -7021,7 +7241,7 @@
         errorLine2="                 ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="699"
+            line="717"
             column="18"/>
     </issue>
 
