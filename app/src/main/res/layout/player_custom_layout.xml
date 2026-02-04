@@ -991,7 +991,7 @@
     </FrameLayout>
     <com.google.android.material.button.MaterialButton
         android:id="@+id/player_speedup_button"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        style="@style/Widget.Material3Expressive.Button.OutlinedButton"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_gravity="center_horizontal"

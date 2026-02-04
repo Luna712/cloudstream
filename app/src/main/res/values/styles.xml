@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. Material3 -->
-    <style name="AppTheme" parent="Theme.Material3.Dark.NoActionBar">
+    <!-- Base application theme. Material3Expressive -->
+    <style name="AppTheme" parent="Theme.Material3Expressive.Dark.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_background</item>
         <item name="android:colorEdgeEffect">?attr/textColor</item>
 
@@ -463,7 +463,7 @@
         <item name="android:paddingStart">-10dp</item>
     </style>
 
-    <style name="AppSearchViewStyle" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="AppSearchViewStyle" parent="Theme.Material3Expressive.Dark.NoActionBar">
         <item name="android:searchIcon">@drawable/search_icon</item>
         <item name="android:queryHint">@string/search_hint</item>
         <item name="android:background">@color/transparent</item>
@@ -492,7 +492,7 @@
 
     <style name="PreferenceTheme" parent="@style/AppTheme" />
 
-    <style name="Theme.AlertDialog" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+    <style name="Theme.AlertDialog" parent="ThemeOverlay.Material3Expressive.Dialog.Alert">
         <item name="android:windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
         <item name="android:windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
         <item name="android:windowBackground">@drawable/dialog__window_background</item>
@@ -534,12 +534,12 @@
            <item name="android:paddingEnd">5dp</item>-->
     </style>
 
-    <style name="AppMaterialButtonStyle" parent="Widget.MaterialComponents.Button">
+    <style name="AppMaterialButtonStyle" parent="Widget.Material3Expressive.Button">
         <item name="android:fontFamily">@font/google_sans</item>
     </style>
 
-    <style name="Theme.Widget.Tabs" parent="Widget.MaterialComponents.TabLayout.Colored">
-        <!--<item name="tabGravity">center</item>
+    <style name="Theme.Widget.Tabs" parent="Widget.Material3.TabLayout">
+        <item name="tabGravity">center</item>
         <item name="backgroundTint">@color/transparent</item>
         <item name="tabIndicator">@drawable/tab_selector</item>
         <item name="tabIndicatorColor">?attr/colorPrimary</item>
@@ -548,7 +548,7 @@
         <item name="tabIndicatorHeight">3dp</item>
         <item name="tabInlineLabel">true</item>
         <item name="tabMinWidth">75dp</item>
-        <item name="tabMode">scrollable</item>-->
+        <item name="tabMode">scrollable</item>
     </style>
 
     <style name="DarkFragment" parent="AppTheme">
@@ -729,7 +729,7 @@
         <item name="android:insetBottom">@dimen/dialog_buttons_inset</item>
     </style>
 
-    <style name="BlackLabel" parent="@style/Widget.MaterialComponents.Tooltip">
+    <style name="BlackLabel" parent="@style/Widget.Material3.Tooltip">
         <item name="backgroundTint">?attr/iconGrayBackground</item>
         <item name="android:textColor">?attr/textColor</item>
     </style>
@@ -904,7 +904,7 @@
         <item name="strokeColor">@color/toggle_button_outline</item>
     </style>
 
-    <style name="Tag" parent="Widget.MaterialComponents.Button.OutlinedButton">
+    <style name="Tag" parent="Widget.Material3Expressive.Button.OutlinedButton">
         <item name="strokeColor">@color/tag_stroke_color</item>
     </style>
 
