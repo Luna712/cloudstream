@@ -1,4 +1,5 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import com.android.build.gradle.tasks.MergeSourceSetFolders
 import org.jetbrains.dokka.gradle.engine.parameters.KotlinPlatform
 import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
 import org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode
@@ -8,30 +9,48 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.dokka)
-    alias(libs.plugins.kotlin.android)
 }
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
-val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
-val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
 
-fun getGitCommitHash(): String {
-    return try {
-        val headFile = file("${project.rootDir}/.git/HEAD")
+tasks.register("generateGitHash") {
+    val gitHashDir = layout.buildDirectory.dir("generated/git")
+    val rootDir = project.rootDir
+    outputs.dir(gitHashDir)
 
-        // Read the commit hash from .git/HEAD
-        if (headFile.exists()) {
-            val headContent = headFile.readText().trim()
-            if (headContent.startsWith("ref:")) {
-                val refPath = headContent.substring(5) // e.g., refs/heads/main
-                val commitFile = file("${project.rootDir}/.git/$refPath")
-                if (commitFile.exists()) commitFile.readText().trim() else ""
-            } else headContent // If it's a detached HEAD (commit hash directly)
-        } else {
-            "" // If .git/HEAD doesn't exist
-        }.take(7) // Return the short commit hash
-    } catch (_: Throwable) {
-        "" // Just return an empty string if any exception occurs
+    doLast {
+        val hash = try {
+            // Read the commit hash from .git/HEAD
+            val headFile = File(rootDir, ".git/HEAD")
+            if (headFile.exists()) {
+                val headContent = headFile.readText().trim()
+                if (headContent.startsWith("ref:")) {
+                    val refPath = headContent.substring(5) // e.g., refs/heads/main
+                    val commitFile = File(rootDir, ".git/$refPath")
+                    if (commitFile.exists()) commitFile.readText().trim() else ""
+                } else headContent // If it's a detached HEAD (commit hash directly)
+            } else "" // If .git/HEAD doesn't exist
+        } catch (_: Throwable) {
+            "" // Just set to an empty string if any exception occurs
+        }.take(7) // Get the short commit hash
+
+        val outFile = gitHashDir.get().file("git-hash.txt").asFile
+        outFile.parentFile.mkdirs()
+        outFile.writeText(hash)
+    }
+}
+
+tasks.withType<MergeSourceSetFolders> {
+    if (name.contains("Assets", ignoreCase = true)) {
+        dependsOn("generateGitHash")
+        val gitHashDir = layout.buildDirectory.dir("generated/git")
+
+        doLast {
+            val assetsDir = outputs.files.singleFile
+            val gitHashFile = gitHashDir.get().file("git-hash.txt").asFile
+            val outFile = File(assetsDir, "git-hash.txt")
+            gitHashFile.copyTo(outFile, overwrite = true)
+        }
     }
 }
 
@@ -46,9 +65,14 @@ android {
     }
 
     signingConfigs {
-        if (prereleaseStoreFile != null) {
+        // We just use SIGNING_KEY_ALIAS here since it won't change
+        // so won't kill the configuration cache.
+        if (System.getenv("SIGNING_KEY_ALIAS") != null) {
             create("prerelease") {
-                storeFile = file(prereleaseStoreFile)
+                val tmpFilePath = System.getProperty("user.home") + "/work/_temp/keystore/"
+                val prereleaseStoreFile: File? = File(tmpFilePath).listFiles()?.first()
+
+                storeFile = prereleaseStoreFile?.let { file(it) }
                 storePassword = System.getenv("SIGNING_STORE_PASSWORD")
                 keyAlias = System.getenv("SIGNING_KEY_ALIAS")
                 keyPassword = System.getenv("SIGNING_KEY_PASSWORD")
@@ -64,8 +88,6 @@ android {
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 67
         versionName = "4.6.2"
-
-        resValue("string", "commit_hash", getGitCommitHash())
 
         manifestPlaceholders["target_sdk_version"] = libs.versions.targetSdk.get()
 
@@ -135,21 +157,19 @@ android {
     }
 
     java {
-	    // Use Java 17 toolchain even if a higher JDK runs the build.
+        // Use Java 17 toolchain even if a higher JDK runs the build.
         // We still use Java 8 for now which higher JDKs have deprecated.
-	    toolchain {
-		    languageVersion.set(JavaLanguageVersion.of(libs.versions.jdkToolchain.get()))
-    	}
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(libs.versions.jdkToolchain.get()))
+        }
     }
 
     lint {
-        abortOnError = false
         checkReleaseBuilds = false
     }
 
     buildFeatures {
         buildConfig = true
-        resValues = true
     }
 
     namespace = "com.lagradost.cloudstream3"
@@ -272,8 +292,10 @@ tasks.withType<KotlinJvmCompile> {
 dokka {
     moduleName = "App"
     dokkaSourceSets {
-        main {
+        configureEach {
+            suppress = name != "prereleaseDebug"
             analysisPlatform = KotlinPlatform.JVM
+            displayName = "JVM"
             documentedVisibilities(
                 VisibilityModifier.Public,
                 VisibilityModifier.Protected
