@@ -824,14 +824,7 @@ class CS3IPlayer : IPlayer {
 
             // These are extra headers the browser like to insert, not sure if we want to include them
             // for WIDEVINE/drm as well? Do that if someone gets 404 and creates an issue.
-            val headers = mapOf(
-                "accept" to "*/*",
-                "sec-ch-ua" to "\"Chromium\";v=\"91\", \" Not;A Brand\";v=\"99\"",
-                "sec-ch-ua-mobile" to "?0",
-                "sec-fetch-user" to "?1",
-                "sec-fetch-mode" to "navigate",
-                "sec-fetch-dest" to "video"
-            ) + refererMap + link.headers // Adds the headers from the provider, e.g Authorization
+            val headers = refererMap + link.headers // Adds the headers from the provider, e.g Authorization
 
             return source.apply {
                 setDefaultRequestProperties(headers)
@@ -1091,7 +1084,7 @@ class CS3IPlayer : IPlayer {
                     }
 
                     val factory = if (isSoftwareDecodingEnabled) {
-                        NextRenderersFactory(context).apply {
+                        FixedNextRenderersFactory(context).apply {
                             setEnableDecoderFallback(true)
                             setExtensionRendererMode(
                                 if (isSoftwareDecodingPreferred)
@@ -1873,6 +1866,13 @@ class CS3IPlayer : IPlayer {
                     // Single sliced list with unset length
                     MediaItemSlice(getMediaItem(mime, link.url), Long.MIN_VALUE)
                 )
+            }
+
+            // For DASH or HLS single streams (non-playlist), prefer the player's default
+            // live position instead of starting at 0. Use TIME_UNSET to let ExoPlayer pick
+            // the live/default position when no explicit start position was provided.
+            if (playbackPosition == 0L && (link.type == ExtractorLinkType.M3U8 || link.type == ExtractorLinkType.DASH)) {
+                playbackPosition = TIME_UNSET
             }
 
             val provider = getApiFromNameNull(link.source)

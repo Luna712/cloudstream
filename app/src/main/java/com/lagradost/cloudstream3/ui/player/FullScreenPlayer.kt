@@ -54,7 +54,7 @@ import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.google.android.material.button.MaterialButton
-import com.lagradost.api.BuildConfig
+import com.lagradost.cloudstream3.BuildConfig
 import com.lagradost.cloudstream3.CommonActivity.keyEventListener
 import com.lagradost.cloudstream3.CommonActivity.playerEventListener
 import com.lagradost.cloudstream3.CommonActivity.screenHeightWithOrientation
@@ -615,6 +615,7 @@ open class FullScreenPlayer : AbstractPlayerFragment() {
     }
 
     protected fun exitFullscreen() {
+        resetZoomToDefault()
         // if (lockRotation)
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_USER
 
@@ -627,6 +628,9 @@ open class FullScreenPlayer : AbstractPlayerFragment() {
         }
         activity?.window?.attributes = lp
         activity?.showSystemUI()
+    }
+    private fun resetZoomToDefault() {
+        if (zoomMatrix != null) resize(PlayerResize.Fit, false)
     }
 
     override fun onResume() {
