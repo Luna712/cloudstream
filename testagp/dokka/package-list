@@ -19,6 +19,7 @@ com.lagradost.cloudstream3.ui
 com.lagradost.cloudstream3.ui.account
 com.lagradost.cloudstream3.ui.download
 com.lagradost.cloudstream3.ui.download.button
+com.lagradost.cloudstream3.ui.download.queue
 com.lagradost.cloudstream3.ui.home
 com.lagradost.cloudstream3.ui.library
 com.lagradost.cloudstream3.ui.player
@@ -33,6 +34,7 @@ com.lagradost.cloudstream3.ui.settings.utils
 com.lagradost.cloudstream3.ui.setup
 com.lagradost.cloudstream3.ui.subtitles
 com.lagradost.cloudstream3.utils
+com.lagradost.cloudstream3.utils.downloader
 com.lagradost.cloudstream3.widget
 module:Library
 com.lagradost.api
