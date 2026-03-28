@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 4 errors, 460 warnings and 2 hints</span>
+      <span class="mdl-layout-title">Lint Report: 4 errors, 459 warnings and 2 hints</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sat Mar 28 19:44:37 UTC 2026 by AGP (9.0.0)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sat Mar 28 20:00:44 UTC 2026 by AGP (9.0.0)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -200,7 +200,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#VectorRaster"><i class="material-icons warning-icon">warning</i>Vector Image Generation (15)</a>
       <a class="mdl-navigation__link" href="#AndroidGradlePluginVersion"><i class="material-icons warning-icon">warning</i>Obsolete Android Gradle Plugin Version (4)</a>
       <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (16)</a>
-      <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (12)</a>
+      <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (11)</a>
       <a class="mdl-navigation__link" href="#PrivateResource"><i class="material-icons warning-icon">warning</i>Using private resources (26)</a>
       <a class="mdl-navigation__link" href="#SwitchIntDef"><i class="material-icons warning-icon">warning</i>Missing @IntDef in Switch (2)</a>
       <a class="mdl-navigation__link" href="#Aligned16KB"><i class="material-icons warning-icon">warning</i>Native library dependency not 16 KB aligned (6)</a>
@@ -289,7 +289,7 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">16</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#GradleDependency">GradleDependency</a>: Obsolete Gradle Dependency</td></tr>
 <tr>
-<td class="countColumn">12</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">11</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#NewerVersionAvailable">NewerVersionAvailable</a>: Newer Library Versions Available</td></tr>
 <tr>
 <td class="countColumn">26</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
@@ -1369,7 +1369,7 @@ Dismiss</button>            </div>
 <span class="lineno">  12 </span>constraintlayout = "2.2.1"
 <span class="caretline"><span class="lineno">  13 </span>coreKtx = <span class="warning">"1.17.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  14 </span>desugar_jdk_libs_nio = "2.1.5"
-<span class="lineno">  15 </span>dokkaGradlePlugin = "2.2.0-Beta"
+<span class="lineno">  15 </span>dokkaGradlePlugin = "2.2.0"
 <span class="lineno">  16 </span>espressoCore = "3.7.0"
 </pre>
 
@@ -1562,16 +1562,6 @@ Dismiss</button>            </div>
 <span class="lineno">  14 </span>desugar_jdk_libs_nio = "2.1.5"
 </pre>
 
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:15</span>: <span class="message">A newer version of org.jetbrains.dokka than 2.2.0-Beta is available: 2.2.0</span><br /><pre class="errorlines">
-<span class="lineno">  12 </span>constraintlayout = "2.2.1"
-<span class="lineno">  13 </span>coreKtx = "1.17.0"
-<span class="lineno">  14 </span>desugar_jdk_libs_nio = "2.1.5"
-<span class="caretline"><span class="lineno">  15 </span>dokkaGradlePlugin = <span class="warning">"2.2.0-Beta"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  16 </span>espressoCore = "3.7.0"
-<span class="lineno">  17 </span>fragmentKtx = "1.8.9"
-<span class="lineno">  18 </span>fuzzywuzzy = "1.4.0"
-</pre>
-
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:19</span>: <span class="message">A newer version of com.fasterxml.jackson.module:jackson-module-kotlin than 2.13.1 is available: 2.21.2</span><br /><pre class="errorlines">
 <span class="lineno">  16 </span>espressoCore = "3.7.0"
 <span class="lineno">  17 </span>fragmentKtx = "1.8.9"
@@ -1582,8 +1572,6 @@ Dismiss</button>            </div>
 <span class="lineno">  22 </span>junit = "4.13.2"
 </pre>
 
-<button class="mdl-button mdl-js-button mdl-button--primary" id="NewerVersionAvailableDivLink" onclick="reveal('NewerVersionAvailableDiv');" />+ 7 More Occurrences...</button>
-<div id="NewerVersionAvailableDiv" style="display: none">
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:21</span>: <span class="message">A newer version of org.jsoup:jsoup than 1.21.2 is available: 1.22.1</span><br /><pre class="errorlines">
 <span class="lineno">  18 </span>fuzzywuzzy = "1.4.0"
 <span class="lineno">  19 </span>jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support minSdk &lt;26 (Crashes on Android TV's and FireSticks)
@@ -1594,6 +1582,8 @@ Dismiss</button>            </div>
 <span class="lineno">  24 </span>junitVersion = "1.3.0"
 </pre>
 
+<button class="mdl-button mdl-js-button mdl-button--primary" id="NewerVersionAvailableDivLink" onclick="reveal('NewerVersionAvailableDiv');" />+ 6 More Occurrences...</button>
+<div id="NewerVersionAvailableDiv" style="display: none">
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:26</span>: <span class="message">A newer version of org.jetbrains.kotlin.jvm than 2.3.20-Beta1 is available: 2.3.20</span><br /><pre class="errorlines">
 <span class="lineno">  23 </span>junitKtx = "1.3.0"
 <span class="lineno">  24 </span>junitVersion = "1.3.0"
@@ -2021,11 +2011,11 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../../../../../.gradle/caches/9.3.1/transforms/103beef14447777c8ee51b1f0a32322f/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.3.1/transforms/103beef14447777c8ee51b1f0a32322f/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.3.1/transforms/103beef14447777c8ee51b1f0a32322f/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.3.1/transforms/103beef14447777c8ee51b1f0a32322f/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.3.1/transforms/f97bf7740f91c199a14f6943355f5590/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.3.1/transforms/f97bf7740f91c199a14f6943355f5590/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.3.1/transforms/f97bf7740f91c199a14f6943355f5590/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.3.1/transforms/f97bf7740f91c199a14f6943355f5590/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.3.1/transforms/f97bf7740f91c199a14f6943355f5590/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.3.1/transforms/f97bf7740f91c199a14f6943355f5590/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.3.1/transforms/546e903530ce75e8b1b43ca2e40a546a/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.3.1/transforms/546e903530ce75e8b1b43ca2e40a546a/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.3.1/transforms/546e903530ce75e8b1b43ca2e40a546a/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.3.1/transforms/546e903530ce75e8b1b43ca2e40a546a/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.3.1/transforms/4e74b0c8395d79780813d4f76a154f44/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.3.1/transforms/4e74b0c8395d79780813d4f76a154f44/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.3.1/transforms/4e74b0c8395d79780813d4f76a154f44/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.3.1/transforms/4e74b0c8395d79780813d4f76a154f44/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.3.1/transforms/4e74b0c8395d79780813d4f76a154f44/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.3.1/transforms/4e74b0c8395d79780813d4f76a154f44/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e</code>) is not 16 KB aligned</span><br />
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:63</span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br /><pre class="errorlines">
 <span class="lineno">  60 </span>coil = { module = "io.coil-kt.coil3:coil", version.ref = "coil" }
 <span class="lineno">  61 </span>coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }

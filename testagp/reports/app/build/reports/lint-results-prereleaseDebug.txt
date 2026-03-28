@@ -354,9 +354,6 @@ coil = "3.3.0"
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:11: Warning: A newer version of org.conscrypt:conscrypt-android than 2.5.2 is available: 2.5.3 [NewerVersionAvailable]
 conscryptAndroid = { strictly = "2.5.2" } # 2.5.3 crashes everything
                                 ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:15: Warning: A newer version of org.jetbrains.dokka than 2.2.0-Beta is available: 2.2.0 [NewerVersionAvailable]
-dokkaGradlePlugin = "2.2.0-Beta"
-                    ~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:19: Warning: A newer version of com.fasterxml.jackson.module:jackson-module-kotlin than 2.13.1 is available: 2.21.2 [NewerVersionAvailable]
 jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support minSdk <26 (Crashes on Android TV's and FireSticks)
                                    ~~~~~~~~
@@ -486,11 +483,11 @@ zipline = "1.24.0"
    This check warns if a switch statement does not explicitly include all the
    values declared by the typedef @IntDef declaration.
 
-/home/runner/.gradle/caches/9.3.1/transforms/103beef14447777c8ee51b1f0a32322f/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.3.1/transforms/103beef14447777c8ee51b1f0a32322f/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.3.1/transforms/f97bf7740f91c199a14f6943355f5590/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.3.1/transforms/f97bf7740f91c199a14f6943355f5590/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.3.1/transforms/f97bf7740f91c199a14f6943355f5590/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.3.1/transforms/546e903530ce75e8b1b43ca2e40a546a/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.3.1/transforms/546e903530ce75e8b1b43ca2e40a546a/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.3.1/transforms/4e74b0c8395d79780813d4f76a154f44/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.3.1/transforms/4e74b0c8395d79780813d4f76a154f44/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.3.1/transforms/4e74b0c8395d79780813d4f76a154f44/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:63: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
 conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = "conscryptAndroid" }
                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1854,4 +1851,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-4 errors, 460 warnings, 2 hints
+4 errors, 459 warnings, 2 hints

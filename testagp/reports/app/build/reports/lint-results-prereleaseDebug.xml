@@ -1038,22 +1038,6 @@
     <issue
         id="NewerVersionAvailable"
         severity="Warning"
-        message="A newer version of org.jetbrains.dokka than 2.2.0-Beta is available: 2.2.0"
-        category="Correctness"
-        priority="4"
-        summary="Newer Library Versions Available"
-        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
-        errorLine1="dokkaGradlePlugin = &quot;2.2.0-Beta&quot;"
-        errorLine2="                    ~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
-            line="15"
-            column="21"/>
-    </issue>
-
-    <issue
-        id="NewerVersionAvailable"
-        severity="Warning"
         message="A newer version of com.fasterxml.jackson.module:jackson-module-kotlin than 2.13.1 is available: 2.21.2"
         category="Correctness"
         priority="4"
@@ -1638,7 +1622,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.3.1/transforms/103beef14447777c8ee51b1f0a32322f/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
+            file="/home/runner/.gradle/caches/9.3.1/transforms/546e903530ce75e8b1b43ca2e40a546a/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
     </issue>
 
     <issue
@@ -1652,7 +1636,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.3.1/transforms/103beef14447777c8ee51b1f0a32322f/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
+            file="/home/runner/.gradle/caches/9.3.1/transforms/546e903530ce75e8b1b43ca2e40a546a/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
     </issue>
 
     <issue
@@ -1666,7 +1650,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.3.1/transforms/f97bf7740f91c199a14f6943355f5590/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
+            file="/home/runner/.gradle/caches/9.3.1/transforms/4e74b0c8395d79780813d4f76a154f44/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
     </issue>
 
     <issue
@@ -1680,7 +1664,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.3.1/transforms/f97bf7740f91c199a14f6943355f5590/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
+            file="/home/runner/.gradle/caches/9.3.1/transforms/4e74b0c8395d79780813d4f76a154f44/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
     </issue>
 
     <issue
@@ -1694,7 +1678,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.3.1/transforms/f97bf7740f91c199a14f6943355f5590/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
+            file="/home/runner/.gradle/caches/9.3.1/transforms/4e74b0c8395d79780813d4f76a154f44/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
     </issue>
 
     <issue
