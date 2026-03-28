@@ -6196,7 +6196,7 @@
         errorLine2="             ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/account_edit_dialog.xml"
-            line="56"
+            line="57"
             column="14"/>
     </issue>
 
@@ -7634,7 +7634,7 @@
         errorLine2="         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/account_edit_dialog.xml"
-            line="109"
+            line="110"
             column="10"/>
     </issue>
 

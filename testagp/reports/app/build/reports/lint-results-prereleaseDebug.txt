@@ -1541,7 +1541,7 @@ class SSLTrustManager : X509TrustManager {
    Explanation for issues of type "SmallSp":
    Avoid using sizes smaller than 11sp.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/account_edit_dialog.xml:56: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/account_edit_dialog.xml:57: Warning: Missing contentDescription attribute on image [ContentDescription]
             <ImageView
              ~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/account_list_item.xml:22: Warning: Missing contentDescription attribute on image [ContentDescription]
@@ -1836,7 +1836,7 @@ class SSLTrustManager : X509TrustManager {
    There are quickfixes to automatically extract this hardcoded string into a
    resource lookup.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/account_edit_dialog.xml:109: Warning: @id/apply_btt can overlap @id/delete_btt if @string/delete, @string/sort_apply grow due to localized text expansion [RelativeOverlap]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/account_edit_dialog.xml:110: Warning: @id/apply_btt can overlap @id/delete_btt if @string/delete, @string/sort_apply grow due to localized text expansion [RelativeOverlap]
         <com.google.android.material.button.MaterialButton
          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
