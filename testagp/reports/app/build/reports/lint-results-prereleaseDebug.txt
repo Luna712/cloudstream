@@ -272,15 +272,6 @@
 /home/runner/work/cloudstream/cloudstream/gradle/wrapper/gradle-wrapper.properties:5: Warning: A newer version of Gradle than 9.3.1 is available: 9.4.1 [AndroidGradlePluginVersion]
 distributionUrl=https\://services.gradle.org/distributions/gradle-9.3.1-bin.zip
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:5: Warning: A newer version of com.android.application than 9.0.0 is available: 9.1.0. (There is also a newer version of 9.0.𝑥 available, if upgrading to 9.1.0 is difficult: 9.0.1) [AndroidGradlePluginVersion]
-androidGradlePlugin = "9.0.0"
-                      ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:5: Warning: A newer version of com.android.kotlin.multiplatform.library than 9.0.0 is available: 9.1.0. (There is also a newer version of 9.0.𝑥 available, if upgrading to 9.1.0 is difficult: 9.0.1) [AndroidGradlePluginVersion]
-androidGradlePlugin = "9.0.0"
-                      ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:5: Warning: A newer version of com.android.lint than 9.0.0 is available: 9.1.0. (There is also a newer version of 9.0.𝑥 available, if upgrading to 9.1.0 is difficult: 9.0.1) [AndroidGradlePluginVersion]
-androidGradlePlugin = "9.0.0"
-                      ~~~~~~~
 
    Explanation for issues of type "AndroidGradlePluginVersion":
    This detector looks for usage of the Android Gradle Plugin where the
@@ -292,9 +283,6 @@ androidGradlePlugin = "9.0.0"
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:4: Warning: A newer version of androidx.activity:activity-ktx than 1.12.4 is available: 1.13.0 [GradleDependency]
 activityKtx = "1.12.4"
               ~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:5: Warning: A newer version of androidx.databinding:viewbinding than 9.0.0 is available: 9.1.0 [GradleDependency]
-androidGradlePlugin = "9.0.0"
-                      ~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:7: Warning: A newer version of androidx.biometric:biometric than 1.4.0-alpha05 is available: 1.4.0-alpha06 [GradleDependency]
 biometric = "1.4.0-alpha05"
             ~~~~~~~~~~~~~~~
@@ -360,12 +348,6 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:21: Warning: A newer version of org.jsoup:jsoup than 1.21.2 is available: 1.22.1 [NewerVersionAvailable]
 jsoup = "1.21.2"
         ~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:26: Warning: A newer version of org.jetbrains.kotlin.jvm than 2.3.20-Beta1 is available: 2.3.20 [NewerVersionAvailable]
-kotlinGradlePlugin = "2.3.20-Beta1"
-                     ~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:26: Warning: A newer version of org.jetbrains.kotlin.multiplatform than 2.3.20-Beta1 is available: 2.3.20 [NewerVersionAvailable]
-kotlinGradlePlugin = "2.3.20-Beta1"
-                     ~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:33: Warning: A newer version of io.github.anilbeesetti:nextlib-media3ext than 1.9.1-0.11.0 is available: 1.9.3-0.12.0 [NewerVersionAvailable]
 nextlibMedia3 = "1.9.1-0.11.0"
                 ~~~~~~~~~~~~~~
@@ -483,11 +465,11 @@ zipline = "1.24.0"
    This check warns if a switch statement does not explicitly include all the
    values declared by the typedef @IntDef declaration.
 
-/home/runner/.gradle/caches/9.3.1/transforms/546e903530ce75e8b1b43ca2e40a546a/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.3.1/transforms/546e903530ce75e8b1b43ca2e40a546a/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.3.1/transforms/4e74b0c8395d79780813d4f76a154f44/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.3.1/transforms/4e74b0c8395d79780813d4f76a154f44/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
-/home/runner/.gradle/caches/9.3.1/transforms/4e74b0c8395d79780813d4f76a154f44/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.3.1/transforms/13690ceec703441fe241ce9cad9a1e47/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.3.1/transforms/13690ceec703441fe241ce9cad9a1e47/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.3.1/transforms/4b2ee8761d464f7ef416907f56f467b5/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.3.1/transforms/4b2ee8761d464f7ef416907f56f467b5/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
+/home/runner/.gradle/caches/9.3.1/transforms/4b2ee8761d464f7ef416907f56f467b5/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so: Warning: The native library arm64-v8a/libgojni.so (from com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e) is not 16 KB aligned [Aligned16KB]
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:63: Warning: The native library arm64-v8a/libconscrypt_jni.so (from org.conscrypt:conscrypt-android:2.5.2) is not 16 KB aligned [Aligned16KB]
 conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = "conscryptAndroid" }
                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1851,4 +1833,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-4 errors, 459 warnings, 2 hints
+4 errors, 453 warnings, 2 hints
