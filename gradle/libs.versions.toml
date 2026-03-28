@@ -4,7 +4,7 @@
 activityKtx = "1.12.4"
 androidGradlePlugin = "8.13.2"
 appcompat = "1.7.1"
-biometric = "1.4.0-alpha05"
+biometric = "1.4.0-alpha06"
 buildkonfigGradlePlugin = "0.17.1"
 coil = "3.3.0"
 colorpicker = "6b46b49bd5"
