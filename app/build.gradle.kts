@@ -316,8 +316,10 @@ tasks.withType<KotlinJvmCompile> {
 dokka {
     moduleName = "App"
     dokkaSourceSets {
-        prereleaseDebug {
+        configureEach {
+            suppress = name != "prereleaseDebug"
             analysisPlatform = KotlinPlatform.JVM
+            displayName = "JVM"
             documentedVisibilities(
                 VisibilityModifier.Public,
                 VisibilityModifier.Protected
