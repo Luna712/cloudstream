@@ -357,7 +357,7 @@ nextlibMedia3 = "1.9.1-0.11.0"
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:40: Warning: A newer version of org.mozilla:rhino than 1.8.1 is available: 1.9.1 [NewerVersionAvailable]
 rhino = { strictly = "1.8.1" } # Requires minSdk 26 or later beginning at version 1.9.0
                      ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:48: Warning: A newer version of app.cash.zipline:zipline-android than 1.24.0 is available: 1.26.0 [NewerVersionAvailable]
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:48: Warning: A newer version of app.cash.zipline:zipline-android than 1.24.0 is available: 1.27.0 [NewerVersionAvailable]
 zipline = "1.24.0"
           ~~~~~~~~
 

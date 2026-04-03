@@ -1054,7 +1054,7 @@
     <issue
         id="NewerVersionAvailable"
         severity="Warning"
-        message="A newer version of app.cash.zipline:zipline-android than 1.24.0 is available: 1.26.0"
+        message="A newer version of app.cash.zipline:zipline-android than 1.24.0 is available: 1.27.0"
         category="Correctness"
         priority="4"
         summary="Newer Library Versions Available"
