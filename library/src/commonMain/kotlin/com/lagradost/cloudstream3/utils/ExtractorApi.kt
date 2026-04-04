@@ -336,7 +336,7 @@ fun Long.toUs(): Long {
  * If your site has an unorthodox m3u8-like system where there are multiple smaller videos concatenated
  * use this.
  * */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION_ERROR")
 data class ExtractorLinkPlayList(
     override val source: String,
     override val name: String,
@@ -513,7 +513,7 @@ suspend fun newDrmExtractorLink(
  * @property keyRequestParameters Parameters that will used to request the key.
  * @see newDrmExtractorLink
  * */
-@Suppress("DEPRECATION")
+@Suppress("DEPRECATION_ERROR")
 open class DrmExtractorLink private constructor(
     override val source: String,
     override val name: String,
@@ -618,7 +618,7 @@ open class DrmExtractorLink private constructor(
  * @see newExtractorLink
  * */
 open class ExtractorLink
-@Deprecated("Use newExtractorLink", level = DeprecationLevel.WARNING)
+@Deprecated("Use newExtractorLink", level = DeprecationLevel.ERROR)
 constructor(
     open val source: String,
     open val name: String,
@@ -665,7 +665,7 @@ constructor(
         return headers
     }
 
-    @Suppress("DEPRECATION")
+    @Suppress("DEPRECATION_ERROR")
     @Deprecated("Use newExtractorLink", level = DeprecationLevel.ERROR)
     constructor(
         source: String,
@@ -689,7 +689,7 @@ constructor(
         type = type ?: inferTypeFromUrl(url)
     )
 
-    @Suppress("DEPRECATION")
+    @Suppress("DEPRECATION_ERROR")
     @Deprecated("Use newExtractorLink", level = DeprecationLevel.ERROR)
     constructor(
         source: String,
@@ -731,7 +731,7 @@ constructor(
         extractorData: String? = null
     ) : this(source, name, url, referer, quality, isM3u8, headers, extractorData, false)
 
-    @Suppress("DEPRECATION")
+    @Suppress("DEPRECATION_ERROR")
     @Deprecated("Use newExtractorLink", level = DeprecationLevel.ERROR)
     constructor(
         source: String,

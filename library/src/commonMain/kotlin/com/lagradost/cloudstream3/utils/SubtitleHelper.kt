@@ -17,7 +17,7 @@ object SubtitleHelper {
     @Deprecated(
         "Default language code changed to IETF BCP 47 tag",
         replaceWith = ReplaceWith("LanguageMetadata(languageName, nativeName, ISO_639_1.ifBlank { ISO_639_2_B }), ISO_639_1, ISO_639_2_B, ISO_639_3, ISO_639_1"),
-        level = DeprecationLevel.WARNING
+        level = DeprecationLevel.ERROR
     )
     data class Language639(
         val languageName: String,
@@ -140,7 +140,7 @@ object SubtitleHelper {
     @Deprecated(
         "Default language code changed to IETF BCP 47 tag",
         replaceWith = ReplaceWith("fromLanguageToTagIETF(input, looseCheck)"),
-        level = DeprecationLevel.WARNING
+        level = DeprecationLevel.ERROR
     )
     /**
      * Language name (english or native) -> ISO_639_1
@@ -154,7 +154,7 @@ object SubtitleHelper {
     @Deprecated(
         "Default language code changed to IETF BCP 47 tag",
         replaceWith = ReplaceWith("fromLanguageToTagIETF(input)"),
-        level = DeprecationLevel.WARNING
+        level = DeprecationLevel.ERROR
     )
     /**
      * Language name (english or native) -> ISO_639_3
@@ -194,7 +194,7 @@ object SubtitleHelper {
     @Deprecated(
         "Default language code changed to IETF BCP 47 tag",
         replaceWith = ReplaceWith("fromTagToEnglishLanguageName(input)"),
-        level = DeprecationLevel.WARNING
+        level = DeprecationLevel.ERROR
     )
     /**
      * Language code -> language english name
@@ -206,7 +206,7 @@ object SubtitleHelper {
     @Deprecated(
         "Default language code changed to IETF BCP 47 tag",
         replaceWith = ReplaceWith("fromTagToEnglishLanguageName(input)"),
-        level = DeprecationLevel.WARNING
+        level = DeprecationLevel.ERROR
     )
     /**
      * Language code -> language english name
