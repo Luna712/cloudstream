@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 4 errors, 455 warnings and 2 hints</span>
+      <span class="mdl-layout-title">Lint Report: 4 errors, 458 warnings and 2 hints</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Fri Apr 03 18:31:31 UTC 2026 by AGP (9.1.0)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sat Apr 04 19:11:07 UTC 2026 by AGP (9.1.0)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -228,7 +228,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#IconLocation"><i class="material-icons warning-icon">warning</i>Image defined in density-independent drawable folder (10)</a>
       <a class="mdl-navigation__link" href="#IconDuplicates"><i class="material-icons warning-icon">warning</i>Duplicated icons under different names (15)</a>
       <a class="mdl-navigation__link" href="#SmallSp"><i class="material-icons warning-icon">warning</i>Text size is too small (1)</a>
-      <a class="mdl-navigation__link" href="#ContentDescription"><i class="material-icons warning-icon">warning</i>Image without <code>contentDescription</code> (57)</a>
+      <a class="mdl-navigation__link" href="#ContentDescription"><i class="material-icons warning-icon">warning</i>Image without <code>contentDescription</code> (60)</a>
       <a class="mdl-navigation__link" href="#SetTextI18n"><i class="material-icons warning-icon">warning</i>TextView Internationalization (7)</a>
       <a class="mdl-navigation__link" href="#HardcodedText"><i class="material-icons warning-icon">warning</i>Hardcoded text (18)</a>
       <a class="mdl-navigation__link" href="#RelativeOverlap"><i class="material-icons warning-icon">warning</i>Overlapping items in RelativeLayout (1)</a>
@@ -388,7 +388,7 @@ document.getElementById(id).style.display = 'none';
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Accessibility">Accessibility</a>
 </td></tr>
 <tr>
-<td class="countColumn">57</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">60</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#ContentDescription">ContentDescription</a>: Image without <code>contentDescription</code></td></tr>
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Internationalization">Internationalization</a>
 </td></tr>
@@ -639,8 +639,8 @@ Dismiss</button>            </div>
 <span class="lineno"> 107 </span>        applicationId = "com.lagradost.cloudstream3"
 <span class="lineno"> 108 </span>        minSdk = libs.versions.minSdk.get().toInt()
 <span class="caretline"><span class="lineno"> 109 </span>        <span class="warning">targetSdk = libs.versions.targetSdk.get().toInt()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 110 </span>        versionCode = 67
-<span class="lineno"> 111 </span>        versionName = "4.6.2"
+<span class="lineno"> 110 </span>        versionCode = 68
+<span class="lineno"> 111 </span>        versionName = "4.7.0"
 </pre>
 
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:54</span>: <span class="message">Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the <code>android.os.Build.VERSION_CODES</code> javadoc for details.</span><br /><pre class="errorlines">
@@ -694,14 +694,14 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CustomSubripParser.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CustomSubripParser.kt</a>:170</span>: <span class="message">The lambda argument (<code>{ it &lt;= ' ' }</code>) is unnecessary</span><br /><pre class="errorlines">
-<span class="lineno"> 167 </span><span class="javadoc">     */</span>
-<span class="lineno"> 168 </span>    private <span class="keyword">fun</span> processLine(line: String, tags: ArrayList&lt;String>): String {
-<span class="lineno"> 169 </span>        <span class="keyword">var</span> line = line
-<span class="caretline"><span class="lineno"> 170 </span>        line = line.trim <span class="warning">{ it &lt;= <span class="string">' '</span> }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 171 </span>
-<span class="lineno"> 172 </span>        <span class="keyword">var</span> removedCharacterCount = <span class="number">0</span>
-<span class="lineno"> 173 </span>        <span class="keyword">val</span> processedLine = StringBuilder(line)
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CustomSubripParser.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CustomSubripParser.kt</a>:171</span>: <span class="message">The lambda argument (<code>{ it &lt;= ' ' }</code>) is unnecessary</span><br /><pre class="errorlines">
+<span class="lineno"> 168 </span><span class="javadoc">     */</span>
+<span class="lineno"> 169 </span>    private <span class="keyword">fun</span> processLine(line: String, tags: ArrayList&lt;String>): String {
+<span class="lineno"> 170 </span>        <span class="keyword">var</span> line = line
+<span class="caretline"><span class="lineno"> 171 </span>        line = line.trim <span class="warning">{ it &lt;= <span class="string">' '</span> }</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 172 </span>
+<span class="lineno"> 173 </span>        <span class="keyword">var</span> removedCharacterCount = <span class="number">0</span>
+<span class="lineno"> 174 </span>        <span class="keyword">val</span> processedLine = StringBuilder(line)
 </pre>
 
 </div>
@@ -1685,14 +1685,14 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:374</span>: <span class="message">The resource <code>@string/exo_controls_stop_description</code> is marked as private in androidx.media3:media3-ui:1.9.2</span><br /><pre class="errorlines">
-<span class="lineno">  371 </span>  <span class="keyword">return</span> mutableMapOf(
-<span class="lineno">  372 </span>      STOP_ACTION to NotificationCompat.Action(
-<span class="lineno">  373 </span>          R.drawable.baseline_stop_24,
-<span class="caretline"><span class="lineno">  374 </span>          context.getString(<span class="warning">androidx.media3.ui.R.string.exo_controls_stop_description</span>),</span>
-<span class="lineno">  375 </span>          createBroadcastIntent(STOP_ACTION, context, instanceId)
-<span class="lineno">  376 </span>      )
-<span class="lineno">  377 </span>  )
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:376</span>: <span class="message">The resource <code>@string/exo_controls_stop_description</code> is marked as private in androidx.media3:media3-ui:1.9.2</span><br /><pre class="errorlines">
+<span class="lineno">  373 </span>  <span class="keyword">return</span> mutableMapOf(
+<span class="lineno">  374 </span>      STOP_ACTION to NotificationCompat.Action(
+<span class="lineno">  375 </span>          R.drawable.baseline_stop_24,
+<span class="caretline"><span class="lineno">  376 </span>          context.getString(<span class="warning">androidx.media3.ui.R.string.exo_controls_stop_description</span>),</span>
+<span class="lineno">  377 </span>          createBroadcastIntent(STOP_ACTION, context, instanceId)
+<span class="lineno">  378 </span>      )
+<span class="lineno">  379 </span>  )
 </pre>
 
 <span class="location"><a href="../../src/main/res/layout/custom_preference_category_material.xml">../../src/main/res/layout/custom_preference_category_material.xml</a>:29</span>: <span class="message">The resource <code>@layout/image_frame</code> is marked as private in androidx.preference:preference:1.2.1</span><br /><pre class="errorlines">
@@ -1857,24 +1857,24 @@ Dismiss</button>            </div>
 <span class="caretline"><span class="lineno"> 4 </span>    <span class="tag">&lt;stroke</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">width</span>=<span class="value">"</span><span class="warning"><span class="value">@dimen/mtrl_btn_stroke_size</span></span><span class="value">"</span> <span class="prefix">android:</span><span class="attribute">color</span>=<span class="value">"@color/mtrl_btn_stroke_color_selector"</span>/></span>
 <span class="lineno"> 5 </span><span class="tag">&lt;/shape></span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:590</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.9.2</span><br /><pre class="errorlines">
-<span class="lineno">  587 </span>
-<span class="lineno">  588 </span>                <span class="tag">&lt;ImageButton</span><span class="attribute">
-</span><span class="lineno">  589 </span><span class="attribute">                    </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@id/exo_repeat_toggle"</span>
-<span class="caretline"><span class="lineno">  590 </span>                    <span class="attribute">style</span>=<span class="value">"</span><span class="warning"><span class="value">@style/ExoMediaButton</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  591 </span>                    <span class="prefix">android:</span><span class="attribute">tintMode</span>=<span class="value">"src_in"</span>
-<span class="lineno">  592 </span>                    <span class="prefix">app:</span><span class="attribute">tint</span>=<span class="value">"?attr/colorPrimaryDark"</span>
-<span class="lineno">  593 </span>                    <span class="prefix">tools:</span><span class="attribute">ignore</span>=<span class="value">"ContentDescription"</span> />
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:662</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.9.2</span><br /><pre class="errorlines">
+<span class="lineno">  659 </span>
+<span class="lineno">  660 </span>                <span class="tag">&lt;ImageButton</span><span class="attribute">
+</span><span class="lineno">  661 </span><span class="attribute">                    </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@id/exo_repeat_toggle"</span>
+<span class="caretline"><span class="lineno">  662 </span>                    <span class="attribute">style</span>=<span class="value">"</span><span class="warning"><span class="value">@style/ExoMediaButton</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  663 </span>                    <span class="prefix">android:</span><span class="attribute">tintMode</span>=<span class="value">"src_in"</span>
+<span class="lineno">  664 </span>                    <span class="prefix">app:</span><span class="attribute">tint</span>=<span class="value">"?attr/colorPrimaryDark"</span>
+<span class="lineno">  665 </span>                    <span class="prefix">tools:</span><span class="attribute">ignore</span>=<span class="value">"ContentDescription"</span> />
 </pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:733</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.9.2</span><br /><pre class="errorlines">
-<span class="lineno">  730 </span>
-<span class="lineno">  731 </span>                <span class="tag">&lt;ImageButton</span><span class="attribute">
-</span><span class="lineno">  732 </span><span class="attribute">                    </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@id/exo_repeat_toggle"</span>
-<span class="caretline"><span class="lineno">  733 </span>                    <span class="attribute">style</span>=<span class="value">"</span><span class="warning"><span class="value">@style/ExoMediaButton</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  734 </span>                    <span class="prefix">android:</span><span class="attribute">tintMode</span>=<span class="value">"src_in"</span>
-<span class="lineno">  735 </span>                    <span class="prefix">app:</span><span class="attribute">tint</span>=<span class="value">"?attr/colorPrimaryDark"</span>
-<span class="lineno">  736 </span>                    <span class="prefix">tools:</span><span class="attribute">ignore</span>=<span class="value">"ContentDescription"</span> />
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:802</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.9.2</span><br /><pre class="errorlines">
+<span class="lineno">  799 </span>
+<span class="lineno">  800 </span>                <span class="tag">&lt;ImageButton</span><span class="attribute">
+</span><span class="lineno">  801 </span><span class="attribute">                    </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@id/exo_repeat_toggle"</span>
+<span class="caretline"><span class="lineno">  802 </span>                    <span class="attribute">style</span>=<span class="value">"</span><span class="warning"><span class="value">@style/ExoMediaButton</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  803 </span>                    <span class="prefix">android:</span><span class="attribute">tintMode</span>=<span class="value">"src_in"</span>
+<span class="lineno">  804 </span>                    <span class="prefix">app:</span><span class="attribute">tint</span>=<span class="value">"?attr/colorPrimaryDark"</span>
+<span class="lineno">  805 </span>                    <span class="prefix">tools:</span><span class="attribute">ignore</span>=<span class="value">"ContentDescription"</span> />
 </pre>
 
 <span class="location"><a href="../../src/main/res/anim/pop_enter.xml">../../src/main/res/anim/pop_enter.xml</a>:5</span>: <span class="message">The resource <code>@integer/config_navAnimTime</code> is marked as private in androidx.navigation:navigation-ui:2.9.7</span><br /><pre class="errorlines">
@@ -1913,14 +1913,14 @@ Dismiss</button>            </div>
 <span class="lineno"> 18 </span>            <span class="prefix">android:</span><span class="attribute">toAlpha</span>=<span class="value">"0.0"</span>/>
 <span class="lineno"> 19 </span><span class="tag">&lt;/set></span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:549</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.9.2</span><br /><pre class="errorlines">
-<span class="lineno">  546 </span>
-<span class="lineno">  547 </span>            <span class="tag">&lt;ImageButton</span><span class="attribute">
-</span><span class="lineno">  548 </span><span class="attribute">                </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@id/exo_repeat_toggle"</span>
-<span class="caretline"><span class="lineno">  549 </span>                <span class="attribute">style</span>=<span class="value">"</span><span class="warning"><span class="value">@style/ExoMediaButton</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  550 </span>                <span class="prefix">android:</span><span class="attribute">tintMode</span>=<span class="value">"src_in"</span>
-<span class="lineno">  551 </span>                <span class="prefix">app:</span><span class="attribute">tint</span>=<span class="value">"?attr/colorPrimaryDark"</span>
-<span class="lineno">  552 </span>                <span class="prefix">tools:</span><span class="attribute">ignore</span>=<span class="value">"ContentDescription"</span> />
+<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:620</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.9.2</span><br /><pre class="errorlines">
+<span class="lineno">  617 </span>
+<span class="lineno">  618 </span>            <span class="tag">&lt;ImageButton</span><span class="attribute">
+</span><span class="lineno">  619 </span><span class="attribute">                </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@id/exo_repeat_toggle"</span>
+<span class="caretline"><span class="lineno">  620 </span>                <span class="attribute">style</span>=<span class="value">"</span><span class="warning"><span class="value">@style/ExoMediaButton</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  621 </span>                <span class="prefix">android:</span><span class="attribute">tintMode</span>=<span class="value">"src_in"</span>
+<span class="lineno">  622 </span>                <span class="prefix">app:</span><span class="attribute">tint</span>=<span class="value">"?attr/colorPrimaryDark"</span>
+<span class="lineno">  623 </span>                <span class="prefix">tools:</span><span class="attribute">ignore</span>=<span class="value">"ContentDescription"</span> />
 </pre>
 
 </div>
@@ -2074,14 +2074,14 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt</a>:225</span>: <span class="message">Use of this function is discouraged because resource reflection makes it harder to perform build optimizations and compile-time verification of code. It is much more efficient to retrieve resources by identifier (e.g. <code>R.foo.bar</code>) than by name (e.g. <code>getIdentifier("bar", "foo", null)</code>).</span><br /><pre class="errorlines">
-<span class="lineno">  222 </span>  safe {
-<span class="lineno">  223 </span>      <span class="keyword">val</span> pv = root.findViewById&lt;androidx.media3.ui.PlayerView>(R.id.player_view)
-<span class="lineno">  224 </span>      <span class="keyword">val</span> packageName = context?.packageName ?: <span class="keyword">return</span><span class="annotation">@safe</span>
-<span class="caretline"><span class="lineno">  225 </span>      <span class="keyword">val</span> contentId = resources.<span class="warning">getIdentifier</span>(<span class="string">"exo_content_frame"</span>, <span class="string">"id"</span>, packageName)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  226 </span>      <span class="keyword">val</span> contentFrame = pv?.findViewById&lt;ViewGroup>(contentId)
-<span class="lineno">  227 </span>      <span class="keyword">if</span> (contentFrame != <span class="keyword">null</span>) {
-<span class="lineno">  228 </span>          brightnessOverlay = contentFrame.findViewById&lt;View>(R.id.extra_brightness_overlay)
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt</a>:228</span>: <span class="message">Use of this function is discouraged because resource reflection makes it harder to perform build optimizations and compile-time verification of code. It is much more efficient to retrieve resources by identifier (e.g. <code>R.foo.bar</code>) than by name (e.g. <code>getIdentifier("bar", "foo", null)</code>).</span><br /><pre class="errorlines">
+<span class="lineno">  225 </span>  safe {
+<span class="lineno">  226 </span>      <span class="keyword">val</span> pv = root.findViewById&lt;androidx.media3.ui.PlayerView>(R.id.player_view)
+<span class="lineno">  227 </span>      <span class="keyword">val</span> packageName = context?.packageName ?: <span class="keyword">return</span><span class="annotation">@safe</span>
+<span class="caretline"><span class="lineno">  228 </span>      <span class="keyword">val</span> contentId = resources.<span class="warning">getIdentifier</span>(<span class="string">"exo_content_frame"</span>, <span class="string">"id"</span>, packageName)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  229 </span>      <span class="keyword">val</span> contentFrame = pv?.findViewById&lt;ViewGroup>(contentId)
+<span class="lineno">  230 </span>      <span class="keyword">if</span> (contentFrame != <span class="keyword">null</span>) {
+<span class="lineno">  231 </span>          brightnessOverlay = contentFrame.findViewById&lt;View>(R.id.extra_brightness_overlay)
 </pre>
 
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/UIHelper.kt">../../src/main/java/com/lagradost/cloudstream3/utils/UIHelper.kt</a>:387</span>: <span class="message">Use of this function is discouraged because resource reflection makes it harder to perform build optimizations and compile-time verification of code. It is much more efficient to retrieve resources by identifier (e.g. <code>R.foo.bar</code>) than by name (e.g. <code>getIdentifier("bar", "foo", null)</code>).</span><br /><pre class="errorlines">
@@ -2380,32 +2380,32 @@ Dismiss</button>            </div>
 <span class="lineno"> 172 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings"</span>>Update watch progress<span class="tag">&lt;/string></span>
 <span class="lineno"> 173 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings_des"</span>>Automatically sync your current episode progress<span class="tag">&lt;/string></span></pre>
 
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:521</span>: <span class="message">Formatting %d followed by words ("plugins"): This should probably be a plural rather than a string</span><br /><pre class="errorlines">
-<span class="lineno"> 518 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_downloaded"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Downloaded: %d<span class="tag">&lt;/string></span>
-<span class="lineno"> 519 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_disabled"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Disabled: %d<span class="tag">&lt;/string></span>
-<span class="lineno"> 520 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_not_downloaded"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Not downloaded: %d<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 521 </span>    <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_updated"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Updated %d plugins<span class="tag">&lt;/string></span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 522 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"blank_repo_message"</span>>CloudStream has no sites installed by default. You need to install the sites from repositories.
-<span class="lineno"> 523 </span>\n
-<span class="lineno"> 524 </span>\nJoin our Discord or search online.<span class="tag">&lt;/string></span></pre>
+<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:522</span>: <span class="message">Formatting %d followed by words ("plugins"): This should probably be a plural rather than a string</span><br /><pre class="errorlines">
+<span class="lineno"> 519 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_downloaded"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Downloaded: %d<span class="tag">&lt;/string></span>
+<span class="lineno"> 520 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_disabled"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Disabled: %d<span class="tag">&lt;/string></span>
+<span class="lineno"> 521 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_not_downloaded"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Not downloaded: %d<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno"> 522 </span>    <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_updated"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>Updated %d plugins<span class="tag">&lt;/string></span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 523 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"blank_repo_message"</span>>CloudStream has no sites installed by default. You need to install the sites from repositories.
+<span class="lineno"> 524 </span>\n
+<span class="lineno"> 525 </span>\nJoin our Discord or search online.<span class="tag">&lt;/string></span></pre>
 
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:618</span>: <span class="message">Formatting %d followed by words ("released"): This should probably be a plural rather than a string</span><br /><pre class="errorlines">
-<span class="lineno"> 615 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subscription_list_name"</span>>Subscribed<span class="tag">&lt;/string></span>
-<span class="lineno"> 616 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subscription_new"</span>>Subscribed to %s<span class="tag">&lt;/string></span>
-<span class="lineno"> 617 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subscription_deleted"</span>>Unsubscribed from %s<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 618 </span>    <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subscription_episode_released"</span>>Episode %d released!<span class="tag">&lt;/string></span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 619 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"action_subscribe"</span>>Subscribe<span class="tag">&lt;/string></span>
-<span class="lineno"> 620 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"action_unsubscribe"</span>>Unsubscribe<span class="tag">&lt;/string></span>
-<span class="lineno"> 621 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"profile_number"</span>>Profile %d<span class="tag">&lt;/string></span></pre>
+<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:619</span>: <span class="message">Formatting %d followed by words ("released"): This should probably be a plural rather than a string</span><br /><pre class="errorlines">
+<span class="lineno"> 616 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subscription_list_name"</span>>Subscribed<span class="tag">&lt;/string></span>
+<span class="lineno"> 617 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subscription_new"</span>>Subscribed to %s<span class="tag">&lt;/string></span>
+<span class="lineno"> 618 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subscription_deleted"</span>>Unsubscribed from %s<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno"> 619 </span>    <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"subscription_episode_released"</span>>Episode %d released!<span class="tag">&lt;/string></span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 620 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"action_subscribe"</span>>Subscribe<span class="tag">&lt;/string></span>
+<span class="lineno"> 621 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"action_unsubscribe"</span>>Unsubscribe<span class="tag">&lt;/string></span>
+<span class="lineno"> 622 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"profile_number"</span>>Profile %d<span class="tag">&lt;/string></span></pre>
 
-<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:724</span>: <span class="message">Formatting %d followed by words ("plugin"): This should probably be a plural rather than a string</span><br /><pre class="errorlines">
-<span class="lineno"> 721 </span>  <span class="comment">&lt;!--Manual Update Button--></span>
-<span class="lineno"> 722 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"update_plugins_manually"</span>>Update plugins manually<span class="tag">&lt;/string></span>
-<span class="lineno"> 723 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"starting_plugin_update_manually"</span>>Starting plugin update process!<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 724 </span>  <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_updated_manually"</span>>Successfully updated %d plugin(s)!<span class="tag">&lt;/string></span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 725 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"no_plugins_updated_manually"</span>>No plugins were updated.<span class="tag">&lt;/string></span>
-<span class="lineno"> 726 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"player_notification_channel_name"</span>>Player notifications<span class="tag">&lt;/string></span>
-<span class="lineno"> 727 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"player_notification_channel_description"</span>>The player notification for controlling the playback from the background<span class="tag">&lt;/string></span></pre>
+<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:725</span>: <span class="message">Formatting %d followed by words ("plugin"): This should probably be a plural rather than a string</span><br /><pre class="errorlines">
+<span class="lineno"> 722 </span>  <span class="comment">&lt;!--Manual Update Button--></span>
+<span class="lineno"> 723 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"update_plugins_manually"</span>>Update plugins manually<span class="tag">&lt;/string></span>
+<span class="lineno"> 724 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"starting_plugin_update_manually"</span>>Starting plugin update process!<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno"> 725 </span>  <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"plugins_updated_manually"</span>>Successfully updated %d plugin(s)!<span class="tag">&lt;/string></span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 726 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"no_plugins_updated_manually"</span>>No plugins were updated.<span class="tag">&lt;/string></span>
+<span class="lineno"> 727 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"player_notification_channel_name"</span>>Player notifications<span class="tag">&lt;/string></span>
+<span class="lineno"> 728 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"player_notification_channel_description"</span>>The player notification for controlling the playback from the background<span class="tag">&lt;/string></span></pre>
 
 </div>
 <div class="metadata"><div class="explanation" id="explanationPluralsCandidate" style="display: none;">
@@ -2542,12 +2542,12 @@ Dismiss</button>            </div>
 <div id="StringFormatCountDiv" style="display: none">
 <span class="location"><a href="../../src/main/res/values-b%2Buk/strings.xml">../../src/main/res/values-b%2Buk/strings.xml</a>:713</span>: <span class="message">Inconsistent number of arguments in formatting string <code>extra_brightness_settings_des</code>; found both 0 here and 1 in values/strings.xml</span><br /><pre class="errorlines">
 <span class="lineno"> 710 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_suggestions_des"</span>>Показувати підказки пошуку під час введення тексту<span class="tag">&lt;/string></span>
-<span class="lineno"> 711 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"clear_suggestions"</span>>Очистити пропозиції<span class="tag">&lt;/string></span>
+<span class="lineno"> 711 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"clear_suggestions"</span>>Очистити Пропозиції<span class="tag">&lt;/string></span>
 <span class="lineno"> 712 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>Додаткова яскравість<span class="tag">&lt;/string></span>
 <span class="caretline"><span class="lineno"> 713 </span>  <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings_des"</span>>Увімкнути фільтр яскравості при перевищенні 100% яскравості дисплея<span class="tag">&lt;/string></span></span></span>
 <span class="lineno"> 714 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>extra_brightness_enabled<span class="tag">&lt;/string></span>
 <span class="lineno"> 715 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"show_cast_in_details"</span>>Показати панель трансляції<span class="tag">&lt;/string></span>
-<span class="lineno"> 716 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"video_info"</span>>Інформація про медіа<span class="tag">&lt;/string></span></pre>
+<span class="lineno"> 716 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"video_info"</span>>Інформація Про Медіа<span class="tag">&lt;/string></span></pre>
 
 <ul><span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:170</span>: <span class="message">Conflicting number of arguments (1) here</span><br /><pre class="errorlines">
 <span class="lineno"> 167 </span>      overlay
@@ -2565,6 +2565,23 @@ Dismiss</button>            </div>
 <span class="lineno"> 719 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>追加の輝度を有効化<span class="tag">&lt;/string></span>
 <span class="lineno"> 720 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_queue"</span>>ダウンロードキュー<span class="tag">&lt;/string></span>
 <span class="lineno"> 721 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"queue_empty_message"</span>>現在、ダウンロードキューは空です。<span class="tag">&lt;/string></span></pre>
+
+<ul><span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:170</span>: <span class="message">Conflicting number of arguments (1) here</span><br /><pre class="errorlines">
+<span class="lineno"> 167 </span>      overlay
+<span class="lineno"> 168 </span>  <span class="tag">&lt;/string></span>
+<span class="lineno"> 169 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>Extra brightness<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno"> 170 </span>  <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings_des"</span>>Enable brightness filter when 100% display brightness is exceeded<span class="tag">&lt;/string></span></span></span>
+<span class="lineno"> 171 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>extra_brightness_enabled<span class="tag">&lt;/string></span>
+<span class="lineno"> 172 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings"</span>>Update watch progress<span class="tag">&lt;/string></span>
+<span class="lineno"> 173 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings_des"</span>>Automatically sync your current episode progress<span class="tag">&lt;/string></span></pre>
+</ul><span class="location"><a href="../../src/main/res/values-b%2Bko/strings.xml">../../src/main/res/values-b%2Bko/strings.xml</a>:730</span>: <span class="message">Inconsistent number of arguments in formatting string <code>extra_brightness_settings_des</code>; found both 0 here and 1 in values/strings.xml</span><br /><pre class="errorlines">
+<span class="lineno"> 727 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"top_center"</span>>중앙 위<span class="tag">&lt;/string></span>
+<span class="lineno"> 728 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"top_right"</span>>오른쪽 위<span class="tag">&lt;/string></span>
+<span class="lineno"> 729 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"source_priority_help"</span>>비디오 소스가 플레이어에서 정렬되는 순서 설정<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno"> 730 </span>    <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings_des"</span>>디스플레이 밝기가 100%를 초과하면 밝기 필터를 활성화합니다<span class="tag">&lt;/string></span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 731 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"cancel_queue_message"</span>>모든 다운로드 작업을 취소하시겠습니까?<span class="tag">&lt;/string></span>
+<span class="lineno"> 732 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_episode_range"</span>>에피소드를 다운로드 하시겠습니까 %s?<span class="tag">&lt;/string></span>
+<span class="lineno"> 733 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"queue_empty_message"</span>>다운로드 대기열이 비어 있습니다.<span class="tag">&lt;/string></span></pre>
 
 <ul><span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:170</span>: <span class="message">Conflicting number of arguments (1) here</span><br /><pre class="errorlines">
 <span class="lineno"> 167 </span>      overlay
@@ -2599,23 +2616,6 @@ Dismiss</button>            </div>
 <span class="lineno"> 734 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>extra_brightness_enabled<span class="tag">&lt;/string></span>
 <span class="lineno"> 735 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"show_cast_in_details"</span>>Afficher le panneau de cast<span class="tag">&lt;/string></span>
 <span class="lineno"> 736 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"video_info"</span>>Information du média<span class="tag">&lt;/string></span></pre>
-
-<ul><span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:170</span>: <span class="message">Conflicting number of arguments (1) here</span><br /><pre class="errorlines">
-<span class="lineno"> 167 </span>      overlay
-<span class="lineno"> 168 </span>  <span class="tag">&lt;/string></span>
-<span class="lineno"> 169 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>Extra brightness<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 170 </span>  <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings_des"</span>>Enable brightness filter when 100% display brightness is exceeded<span class="tag">&lt;/string></span></span></span>
-<span class="lineno"> 171 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>extra_brightness_enabled<span class="tag">&lt;/string></span>
-<span class="lineno"> 172 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings"</span>>Update watch progress<span class="tag">&lt;/string></span>
-<span class="lineno"> 173 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings_des"</span>>Automatically sync your current episode progress<span class="tag">&lt;/string></span></pre>
-</ul><span class="location"><a href="../../src/main/res/values-b%2Bko/strings.xml">../../src/main/res/values-b%2Bko/strings.xml</a>:736</span>: <span class="message">Inconsistent number of arguments in formatting string <code>extra_brightness_settings_des</code>; found both 0 here and 1 in values/strings.xml</span><br /><pre class="errorlines">
-<span class="lineno"> 733 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"top_center"</span>>중앙 위<span class="tag">&lt;/string></span>
-<span class="lineno"> 734 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"top_right"</span>>오른쪽 위<span class="tag">&lt;/string></span>
-<span class="lineno"> 735 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"source_priority_help"</span>>비디오 소스가 플레이어에서 정렬되어야하는 방법 결정<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 736 </span>    <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings_des"</span>>100% 표시 광도가 초과될 때 Enable 광도 여과기<span class="tag">&lt;/string></span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 737 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"cancel_queue_message"</span>>모든 퀴즈 다운로드를 취소하시겠습니까?<span class="tag">&lt;/string></span>
-<span class="lineno"> 738 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_episode_range"</span>>에피소드를 다운로드 하시겠습니까 %s?<span class="tag">&lt;/string></span>
-<span class="lineno"> 739 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"queue_empty_message"</span>>현재 누락된 다운로드가 없습니다.<span class="tag">&lt;/string></span></pre>
 
 <ul><span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:170</span>: <span class="message">Conflicting number of arguments (1) here</span><br /><pre class="errorlines">
 <span class="lineno"> 167 </span>      overlay
@@ -2710,14 +2710,14 @@ Dismiss</button>            </div>
 <span class="lineno"> 171 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>extra_brightness_enabled<span class="tag">&lt;/string></span>
 <span class="lineno"> 172 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings"</span>>Update watch progress<span class="tag">&lt;/string></span>
 <span class="lineno"> 173 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings_des"</span>>Automatically sync your current episode progress<span class="tag">&lt;/string></span></pre>
-</ul><span class="location"><a href="../../src/main/res/values-b%2Btr/strings.xml">../../src/main/res/values-b%2Btr/strings.xml</a>:754</span>: <span class="message">Inconsistent number of arguments in formatting string <code>extra_brightness_settings_des</code>; found both 0 here and 1 in values/strings.xml</span><br /><pre class="errorlines">
-<span class="lineno"> 751 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"clear_suggestions"</span>>Önerileri Temizle<span class="tag">&lt;/string></span>
-<span class="lineno"> 752 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"show_cast_in_details"</span>>Yayın panelini göster<span class="tag">&lt;/string></span>
-<span class="lineno"> 753 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>Ekstra parlaklık<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 754 </span>  <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings_des"</span>>Görüntü parlaklığı %100\'ü geçerse parlaklık filtresini aktifleştir<span class="tag">&lt;/string></span></span></span>
-<span class="lineno"> 755 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>Ekstra parlaklık aktifleştirildi<span class="tag">&lt;/string></span>
-<span class="lineno"> 756 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"video_info"</span>>Medya bilgisi<span class="tag">&lt;/string></span>
-<span class="lineno"> 757 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"source_name"</span>>Kaynağın adı<span class="tag">&lt;/string></span></pre>
+</ul><span class="location"><a href="../../src/main/res/values-b%2Bvi/strings.xml">../../src/main/res/values-b%2Bvi/strings.xml</a>:753</span>: <span class="message">Inconsistent number of arguments in formatting string <code>extra_brightness_settings_des</code>; found both 0 here and 1 in values/strings.xml</span><br /><pre class="errorlines">
+<span class="lineno"> 750 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"prerelease_already_installed"</span>>Bản phát hành trước đã được cài đặt.<span class="tag">&lt;/string></span>
+<span class="lineno"> 751 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"prerelease_install_failed"</span>>Cài đặt bản phát hành trước thất bại.<span class="tag">&lt;/string></span>
+<span class="lineno"> 752 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"show_episode_text"</span>>Thông tin tập<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno"> 753 </span>  <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings_des"</span>>Bật bộ lọc độ sáng khi độ sáng màn hình vượt quá 100%<span class="tag">&lt;/string></span></span></span>
+<span class="lineno"> 754 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"show_cast_in_details"</span>>Hiển thị bảng điều khiển<span class="tag">&lt;/string></span>
+<span class="lineno"> 755 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"video_info"</span>>Thông tin video<span class="tag">&lt;/string></span>
+<span class="lineno"> 756 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>Độ sáng bổ sung<span class="tag">&lt;/string></span></pre>
 
 <ul><span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:170</span>: <span class="message">Conflicting number of arguments (1) here</span><br /><pre class="errorlines">
 <span class="lineno"> 167 </span>      overlay
@@ -2727,14 +2727,14 @@ Dismiss</button>            </div>
 <span class="lineno"> 171 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>extra_brightness_enabled<span class="tag">&lt;/string></span>
 <span class="lineno"> 172 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings"</span>>Update watch progress<span class="tag">&lt;/string></span>
 <span class="lineno"> 173 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings_des"</span>>Automatically sync your current episode progress<span class="tag">&lt;/string></span></pre>
-</ul><span class="location"><a href="../../src/main/res/values-b%2Bvi/strings.xml">../../src/main/res/values-b%2Bvi/strings.xml</a>:755</span>: <span class="message">Inconsistent number of arguments in formatting string <code>extra_brightness_settings_des</code>; found both 0 here and 1 in values/strings.xml</span><br /><pre class="errorlines">
-<span class="lineno"> 752 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"prerelease_already_installed"</span>>Bản phát hành trước đã được cài đặt.<span class="tag">&lt;/string></span>
-<span class="lineno"> 753 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"prerelease_install_failed"</span>>Cài đặt bản phát hành trước thất bại.<span class="tag">&lt;/string></span>
-<span class="lineno"> 754 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"show_episode_text"</span>>Chữ của tập<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 755 </span>  <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings_des"</span>>Kích hoạt bộ lọc độ sáng khi độ sáng màn hình vượt quá 100%<span class="tag">&lt;/string></span></span></span>
-<span class="lineno"> 756 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"show_cast_in_details"</span>>Hiển thị bảng điều khiển<span class="tag">&lt;/string></span>
-<span class="lineno"> 757 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"video_info"</span>>Thông tin âm thanh<span class="tag">&lt;/string></span>
-<span class="lineno"> 758 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>Độ sáng bổ sung<span class="tag">&lt;/string></span></pre>
+</ul><span class="location"><a href="../../src/main/res/values-b%2Btr/strings.xml">../../src/main/res/values-b%2Btr/strings.xml</a>:754</span>: <span class="message">Inconsistent number of arguments in formatting string <code>extra_brightness_settings_des</code>; found both 0 here and 1 in values/strings.xml</span><br /><pre class="errorlines">
+<span class="lineno"> 751 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"clear_suggestions"</span>>Önerileri Temizle<span class="tag">&lt;/string></span>
+<span class="lineno"> 752 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"show_cast_in_details"</span>>Yayın panelini göster<span class="tag">&lt;/string></span>
+<span class="lineno"> 753 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>Ekstra parlaklık<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno"> 754 </span>  <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings_des"</span>>Görüntü parlaklığı %100\'ü geçerse parlaklık filtresini aktifleştir<span class="tag">&lt;/string></span></span></span>
+<span class="lineno"> 755 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>Ekstra parlaklık aktifleştirildi<span class="tag">&lt;/string></span>
+<span class="lineno"> 756 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"video_info"</span>>Medya bilgisi<span class="tag">&lt;/string></span>
+<span class="lineno"> 757 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"source_name"</span>>Kaynağın adı<span class="tag">&lt;/string></span></pre>
 
 <ul><span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:170</span>: <span class="message">Conflicting number of arguments (1) here</span><br /><pre class="errorlines">
 <span class="lineno"> 167 </span>      overlay
@@ -2973,23 +2973,23 @@ Dismiss</button>            </div>
 <span class="lineno"> 120 </span>                            R.drawable.outline_drawable
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt</a>:634</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
-<span class="lineno"> 631 </span>    <span class="keyword">fun</span> Context.isNetworkAvailable(): Boolean {
-<span class="lineno"> 632 </span>        <span class="keyword">val</span> connectivityManager =
-<span class="lineno"> 633 </span>            getSystemService(Context.CONNECTIVITY_SERVICE) <span class="keyword">as</span> ConnectivityManager
-<span class="caretline"><span class="lineno"> 634 </span>        <span class="keyword">return</span> <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 635 </span>            <span class="keyword">val</span> network = connectivityManager.activeNetwork ?: <span class="keyword">return</span> <span class="keyword">false</span>
-<span class="lineno"> 636 </span>            <span class="keyword">val</span> networkCapabilities =
-<span class="lineno"> 637 </span>                connectivityManager.getNetworkCapabilities(network) ?: <span class="keyword">return</span> <span class="keyword">false</span></pre>
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt</a>:642</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
+<span class="lineno"> 639 </span>    <span class="keyword">fun</span> Context.isNetworkAvailable(): Boolean {
+<span class="lineno"> 640 </span>        <span class="keyword">val</span> connectivityManager =
+<span class="lineno"> 641 </span>            getSystemService(Context.CONNECTIVITY_SERVICE) <span class="keyword">as</span> ConnectivityManager
+<span class="caretline"><span class="lineno"> 642 </span>        <span class="keyword">return</span> <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 643 </span>            <span class="keyword">val</span> network = connectivityManager.activeNetwork ?: <span class="keyword">return</span> <span class="keyword">false</span>
+<span class="lineno"> 644 </span>            <span class="keyword">val</span> networkCapabilities =
+<span class="lineno"> 645 </span>                connectivityManager.getNetworkCapabilities(network) ?: <span class="keyword">return</span> <span class="keyword">false</span></pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt</a>:859</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
-<span class="lineno"> 856 </span>
-<span class="lineno"> 857 </span>  <span class="keyword">fun</span> Context.isUsingMobileData(): Boolean {
-<span class="lineno"> 858 </span>      <span class="keyword">val</span> connectionManager = getSystemService(Context.CONNECTIVITY_SERVICE) <span class="keyword">as</span> ConnectivityManager
-<span class="caretline"><span class="lineno"> 859 </span>      <span class="keyword">return</span> <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 860 </span>          <span class="keyword">val</span> activeNetwork: Network? = connectionManager.activeNetwork
-<span class="lineno"> 861 </span>          <span class="keyword">val</span> networkCapabilities = connectionManager.getNetworkCapabilities(activeNetwork)
-<span class="lineno"> 862 </span>          networkCapabilities?.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) == <span class="keyword">true</span> &amp;&amp;
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt">../../src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt</a>:867</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
+<span class="lineno"> 864 </span>
+<span class="lineno"> 865 </span>  <span class="keyword">fun</span> Context.isUsingMobileData(): Boolean {
+<span class="lineno"> 866 </span>      <span class="keyword">val</span> connectionManager = getSystemService(Context.CONNECTIVITY_SERVICE) <span class="keyword">as</span> ConnectivityManager
+<span class="caretline"><span class="lineno"> 867 </span>      <span class="keyword">return</span> <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 868 </span>          <span class="keyword">val</span> activeNetwork: Network? = connectionManager.activeNetwork
+<span class="lineno"> 869 </span>          <span class="keyword">val</span> networkCapabilities = connectionManager.getNetworkCapabilities(activeNetwork)
+<span class="lineno"> 870 </span>          networkCapabilities?.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) == <span class="keyword">true</span> &amp;&amp;
 </pre>
 
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/download/DownloadFragment.kt">../../src/main/java/com/lagradost/cloudstream3/ui/download/DownloadFragment.kt</a>:254</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
@@ -3013,23 +3013,23 @@ Dismiss</button>            </div>
 <span class="lineno"> 102 </span>                    <span class="keyword">val</span> dy = scrollY - oldScrollY
 <span class="lineno"> 103 </span>                    <span class="keyword">if</span> (dy > <span class="number">0</span>) { <span class="comment">// check for scroll down</span></pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt</a>:2521</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
-<span class="lineno"> 2518 </span>                <span class="keyword">return</span><span class="annotation">@setOnTouchListener</span> handleMotionEvent(callView, event)
-<span class="lineno"> 2519 </span>            }
-<span class="lineno"> 2520 </span>
-<span class="caretline"><span class="lineno"> 2521 </span>            <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 2522 </span>                playerControlsScroll.setOnScrollChangeListener { _, _, _, _, _ ->
-<span class="lineno"> 2523 </span>                    autoHide()
-<span class="lineno"> 2524 </span>                }
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt</a>:2645</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
+<span class="lineno"> 2642 </span>                <span class="keyword">return</span><span class="annotation">@setOnTouchListener</span> handleMotionEvent(callView, event)
+<span class="lineno"> 2643 </span>            }
+<span class="lineno"> 2644 </span>
+<span class="caretline"><span class="lineno"> 2645 </span>            <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 2646 </span>                playerControlsScroll.setOnScrollChangeListener { _, _, _, _, _ ->
+<span class="lineno"> 2647 </span>                    autoHide()
+<span class="lineno"> 2648 </span>                }
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:264</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
-<span class="lineno">  261 </span>    ): PendingIntent {
-<span class="lineno">  262 </span>        <span class="keyword">val</span> intent: Intent = Intent(action).setPackage(context.packageName)
-<span class="lineno">  263 </span>        intent.putExtra(EXTRA_INSTANCE_ID, instanceId)
-<span class="caretline"><span class="lineno">  264 </span>        <span class="keyword">val</span> pendingFlags = <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  265 </span>            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-<span class="lineno">  266 </span>        } <span class="keyword">else</span> PendingIntent.FLAG_UPDATE_CURRENT
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:266</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
+<span class="lineno">  263 </span>    ): PendingIntent {
+<span class="lineno">  264 </span>        <span class="keyword">val</span> intent: Intent = Intent(action).setPackage(context.packageName)
+<span class="lineno">  265 </span>        intent.putExtra(EXTRA_INSTANCE_ID, instanceId)
+<span class="caretline"><span class="lineno">  266 </span>        <span class="keyword">val</span> pendingFlags = <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  267 </span>            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+<span class="lineno">  268 </span>        } <span class="keyword">else</span> PendingIntent.FLAG_UPDATE_CURRENT
 </pre>
 
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt">../../src/main/java/com/lagradost/cloudstream3/utils/PowerManagerAPI.kt</a>:26</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
@@ -3192,34 +3192,34 @@ Dismiss</button>            </div>
 <span class="lineno"> 23 </span>                <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>>
 </pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:169</span>: <span class="message">This tag and its children can be replaced by one <code>&lt;TextView/></code> and a compound drawable</span><br /><pre class="errorlines">
-<span class="lineno">  166 </span>                        <span class="prefix">android:</span><span class="attribute">visibility</span>=<span class="value">"gone"</span>
-<span class="lineno">  167 </span>                        <span class="prefix">tools:</span><span class="attribute">text</span>=<span class="value">"HEVC"</span> />
-<span class="lineno">  168 </span>
-<span class="caretline"><span class="lineno">  169 </span>                    <span class="tag">&lt;</span><span class="warning"><span class="tag">LinearLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  170 </span><span class="attribute">                        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_video_title_holder"</span>
-<span class="lineno">  171 </span>                        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
-<span class="lineno">  172 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:241</span>: <span class="message">This tag and its children can be replaced by one <code>&lt;TextView/></code> and a compound drawable</span><br /><pre class="errorlines">
+<span class="lineno">  238 </span>                        <span class="prefix">android:</span><span class="attribute">visibility</span>=<span class="value">"gone"</span>
+<span class="lineno">  239 </span>                        <span class="prefix">tools:</span><span class="attribute">text</span>=<span class="value">"HEVC"</span> />
+<span class="lineno">  240 </span>
+<span class="caretline"><span class="lineno">  241 </span>                    <span class="tag">&lt;</span><span class="warning"><span class="tag">LinearLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  242 </span><span class="attribute">                        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_video_title_holder"</span>
+<span class="lineno">  243 </span>                        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  244 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
 
 <button class="mdl-button mdl-js-button mdl-button--primary" id="UseCompoundDrawablesDivLink" onclick="reveal('UseCompoundDrawablesDiv');" />+ 4 More Occurrences...</button>
 <div id="UseCompoundDrawablesDiv" style="display: none">
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:1010</span>: <span class="message">This tag and its children can be replaced by one <code>&lt;TextView/></code> and a compound drawable</span><br /><pre class="errorlines">
-<span class="lineno"> 1007 </span>        <span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@null"</span>
-<span class="lineno"> 1008 </span>        <span class="prefix">android:</span><span class="attribute">backgroundTint</span>=<span class="value">"@color/skipOpTransparent"</span>
-<span class="lineno"> 1009 </span>        <span class="prefix">tools:</span><span class="attribute">visibility</span>=<span class="value">"visible"</span> />
-<span class="caretline"><span class="lineno"> 1010 </span>    <span class="tag">&lt;</span><span class="warning"><span class="tag">LinearLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno"> 1011 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_episodes_button_root"</span>
-<span class="lineno"> 1012 </span>        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
-<span class="lineno"> 1013 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:1082</span>: <span class="message">This tag and its children can be replaced by one <code>&lt;TextView/></code> and a compound drawable</span><br /><pre class="errorlines">
+<span class="lineno"> 1079 </span>        <span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@null"</span>
+<span class="lineno"> 1080 </span>        <span class="prefix">android:</span><span class="attribute">backgroundTint</span>=<span class="value">"@color/skipOpTransparent"</span>
+<span class="lineno"> 1081 </span>        <span class="prefix">tools:</span><span class="attribute">visibility</span>=<span class="value">"visible"</span> />
+<span class="caretline"><span class="lineno"> 1082 </span>    <span class="tag">&lt;</span><span class="warning"><span class="tag">LinearLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno"> 1083 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_episodes_button_root"</span>
+<span class="lineno"> 1084 </span>        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
+<span class="lineno"> 1085 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:281</span>: <span class="message">This tag and its children can be replaced by one <code>&lt;TextView/></code> and a compound drawable</span><br /><pre class="errorlines">
-<span class="lineno">  278 </span>                    <span class="prefix">android:</span><span class="attribute">layout_marginEnd</span>=<span class="value">"32dp"</span>
-<span class="lineno">  279 </span>                    <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"vertical"</span>>
-<span class="lineno">  280 </span>
-<span class="caretline"><span class="lineno">  281 </span>                    <span class="tag">&lt;</span><span class="warning"><span class="tag">LinearLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  282 </span><span class="attribute">                        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_video_title_holder"</span>
-<span class="lineno">  283 </span>                        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
-<span class="lineno">  284 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:350</span>: <span class="message">This tag and its children can be replaced by one <code>&lt;TextView/></code> and a compound drawable</span><br /><pre class="errorlines">
+<span class="lineno">  347 </span>                    <span class="prefix">android:</span><span class="attribute">layout_marginEnd</span>=<span class="value">"32dp"</span>
+<span class="lineno">  348 </span>                    <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"vertical"</span>>
+<span class="lineno">  349 </span>
+<span class="caretline"><span class="lineno">  350 </span>                    <span class="tag">&lt;</span><span class="warning"><span class="tag">LinearLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  351 </span><span class="attribute">                        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_video_title_holder"</span>
+<span class="lineno">  352 </span>                        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
+<span class="lineno">  353 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
 
 <span class="location"><a href="../../src/main/res/layout-port/player_select_source_priority.xml">../../src/main/res/layout-port/player_select_source_priority.xml</a>:18</span>: <span class="message">This tag and its children can be replaced by one <code>&lt;TextView/></code> and a compound drawable</span><br /><pre class="errorlines">
 <span class="lineno">  15 </span>        <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"vertical"</span>
@@ -3230,14 +3230,14 @@ Dismiss</button>            </div>
 <span class="lineno">  20 </span>            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
 <span class="lineno">  21 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:984</span>: <span class="message">This tag and its children can be replaced by one <code>&lt;TextView/></code> and a compound drawable</span><br /><pre class="errorlines">
-<span class="lineno">  981 </span>        <span class="prefix">android:</span><span class="attribute">backgroundTint</span>=<span class="value">"@color/skipOpTransparent"</span>
-<span class="lineno">  982 </span>        <span class="prefix">tools:</span><span class="attribute">visibility</span>=<span class="value">"visible"</span> />
-<span class="lineno">  983 </span>
-<span class="caretline"><span class="lineno">  984 </span>    <span class="tag">&lt;</span><span class="warning"><span class="tag">LinearLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  985 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_episodes_button_root"</span>
-<span class="lineno">  986 </span>        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
-<span class="lineno">  987 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:1055</span>: <span class="message">This tag and its children can be replaced by one <code>&lt;TextView/></code> and a compound drawable</span><br /><pre class="errorlines">
+<span class="lineno"> 1052 </span>        <span class="prefix">android:</span><span class="attribute">backgroundTint</span>=<span class="value">"@color/skipOpTransparent"</span>
+<span class="lineno"> 1053 </span>        <span class="prefix">tools:</span><span class="attribute">visibility</span>=<span class="value">"visible"</span> />
+<span class="lineno"> 1054 </span>
+<span class="caretline"><span class="lineno"> 1055 </span>    <span class="tag">&lt;</span><span class="warning"><span class="tag">LinearLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno"> 1056 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_episodes_button_root"</span>
+<span class="lineno"> 1057 </span>        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
+<span class="lineno"> 1058 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
 
 </div>
 </div>
@@ -3740,41 +3740,41 @@ Dismiss</button>            </div>
 <span class="lineno">  30 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"playback_speed_enabled_key"</span>>playback_speed_enabled_key<span class="tag">&lt;/string></span>
 <span class="lineno">  31 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"player_resize_enabled_key"</span>>player_resize_enabled_key<span class="tag">&lt;/string></span></pre>
 
-<span class="location"><a href="../../src/main/res/values/donottranslate-strings.xml">../../src/main/res/values/donottranslate-strings.xml</a>:54</span>: <span class="message">The resource <code>R.string.app_name_download_path</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno">  51 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_parallel_key"</span>>download_parallel_key<span class="tag">&lt;/string></span>
-<span class="lineno">  52 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_concurrent_key"</span>>download_concurrent_key<span class="tag">&lt;/string></span>
-<span class="lineno">  53 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_path_key_visual"</span>>download_path_key_visual<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno">  54 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"app_name_download_path"</span></span>>Cloudstream<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  55 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"app_layout_key"</span>>app_layout_key<span class="tag">&lt;/string></span>
-<span class="lineno">  56 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"primary_color_key"</span>>primary_color_key<span class="tag">&lt;/string></span>
-<span class="lineno">  57 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"restore_key"</span>>restore_key<span class="tag">&lt;/string></span></pre>
+<span class="location"><a href="../../src/main/res/values/donottranslate-strings.xml">../../src/main/res/values/donottranslate-strings.xml</a>:55</span>: <span class="message">The resource <code>R.string.app_name_download_path</code> appears to be unused</span><br /><pre class="errorlines">
+<span class="lineno">  52 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_parallel_key"</span>>download_parallel_key<span class="tag">&lt;/string></span>
+<span class="lineno">  53 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_concurrent_key"</span>>download_concurrent_key<span class="tag">&lt;/string></span>
+<span class="lineno">  54 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_path_key_visual"</span>>download_path_key_visual<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno">  55 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"app_name_download_path"</span></span>>Cloudstream<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  56 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"app_layout_key"</span>>app_layout_key<span class="tag">&lt;/string></span>
+<span class="lineno">  57 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"primary_color_key"</span>>primary_color_key<span class="tag">&lt;/string></span>
+<span class="lineno">  58 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"restore_key"</span>>restore_key<span class="tag">&lt;/string></span></pre>
 
-<span class="location"><a href="../../src/main/res/values/donottranslate-strings.xml">../../src/main/res/values/donottranslate-strings.xml</a>:63</span>: <span class="message">The resource <code>R.string.log_enabled_key</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno">  60 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"prefer_media_type_key"</span>>prefer_media_type_key_2<span class="tag">&lt;/string></span>
-<span class="lineno">  61 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"app_theme_key"</span>>app_theme_key<span class="tag">&lt;/string></span>
-<span class="lineno">  62 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_enabled_key"</span>>episode_sync_enabled_key<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno">  63 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"log_enabled_key"</span></span>>log_enabled_key<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  64 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"show_logcat_key"</span>>show_logcat_key<span class="tag">&lt;/string></span>
-<span class="lineno">  65 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"bottom_title_key"</span>>bottom_title_key<span class="tag">&lt;/string></span>
-<span class="lineno">  66 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"poster_ui_key"</span>>poster_ui_key<span class="tag">&lt;/string></span></pre>
+<span class="location"><a href="../../src/main/res/values/donottranslate-strings.xml">../../src/main/res/values/donottranslate-strings.xml</a>:64</span>: <span class="message">The resource <code>R.string.log_enabled_key</code> appears to be unused</span><br /><pre class="errorlines">
+<span class="lineno">  61 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"prefer_media_type_key"</span>>prefer_media_type_key_2<span class="tag">&lt;/string></span>
+<span class="lineno">  62 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"app_theme_key"</span>>app_theme_key<span class="tag">&lt;/string></span>
+<span class="lineno">  63 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_enabled_key"</span>>episode_sync_enabled_key<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno">  64 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"log_enabled_key"</span></span>>log_enabled_key<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  65 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"show_logcat_key"</span>>show_logcat_key<span class="tag">&lt;/string></span>
+<span class="lineno">  66 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"bottom_title_key"</span>>bottom_title_key<span class="tag">&lt;/string></span>
+<span class="lineno">  67 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"poster_ui_key"</span>>poster_ui_key<span class="tag">&lt;/string></span></pre>
 
-<span class="location"><a href="../../src/main/res/values/donottranslate-strings.xml">../../src/main/res/values/donottranslate-strings.xml</a>:114</span>: <span class="message">The resource <code>R.string.episode_name_format</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 111 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"storage_size_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$s • %2$s<span class="tag">&lt;/string></span>
-<span class="lineno"> 112 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$s - %2$s<span class="tag">&lt;/string></span>
-<span class="lineno"> 113 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_size_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$s / %2$s<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 114 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"episode_name_format"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$s %2$s<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 115 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_text"</span>>S1E1<span class="tag">&lt;/string></span>
-<span class="lineno"> 116 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"ffw_text_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>+%d<span class="tag">&lt;/string></span>
-<span class="lineno"> 117 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rew_text_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>-%d<span class="tag">&lt;/string></span></pre>
+<span class="location"><a href="../../src/main/res/values/donottranslate-strings.xml">../../src/main/res/values/donottranslate-strings.xml</a>:115</span>: <span class="message">The resource <code>R.string.episode_name_format</code> appears to be unused</span><br /><pre class="errorlines">
+<span class="lineno"> 112 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"storage_size_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$s • %2$s<span class="tag">&lt;/string></span>
+<span class="lineno"> 113 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$s - %2$s<span class="tag">&lt;/string></span>
+<span class="lineno"> 114 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_size_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$s / %2$s<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno"> 115 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"episode_name_format"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%1$s %2$s<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 116 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_text"</span>>S1E1<span class="tag">&lt;/string></span>
+<span class="lineno"> 117 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"ffw_text_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>+%d<span class="tag">&lt;/string></span>
+<span class="lineno"> 118 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rew_text_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>-%d<span class="tag">&lt;/string></span></pre>
 
-<span class="location"><a href="../../src/main/res/values/donottranslate-strings.xml">../../src/main/res/values/donottranslate-strings.xml</a>:121</span>: <span class="message">The resource <code>R.string.year_format</code> appears to be unused</span><br /><pre class="errorlines">
-<span class="lineno"> 118 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"ffw_text_regular_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%d<span class="tag">&lt;/string></span>
-<span class="lineno"> 119 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rew_text_regular_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%d<span class="tag">&lt;/string></span>
-<span class="lineno"> 120 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rating_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%s/10.0<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 121 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"year_format"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%d<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 122 </span>
-<span class="lineno"> 123 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_play_img_des"</span>>@string/play_episode<span class="tag">&lt;/string></span>
-<span class="lineno"> 124 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"change_providers_img_des"</span>>@string/home_change_provider_img_des<span class="tag">&lt;/string></span></pre>
+<span class="location"><a href="../../src/main/res/values/donottranslate-strings.xml">../../src/main/res/values/donottranslate-strings.xml</a>:122</span>: <span class="message">The resource <code>R.string.year_format</code> appears to be unused</span><br /><pre class="errorlines">
+<span class="lineno"> 119 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"ffw_text_regular_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%d<span class="tag">&lt;/string></span>
+<span class="lineno"> 120 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rew_text_regular_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%d<span class="tag">&lt;/string></span>
+<span class="lineno"> 121 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"rating_format"</span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%s/10.0<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno"> 122 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"year_format"</span></span> <span class="attribute">formatted</span>=<span class="value">"true"</span>>%d<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 123 </span>
+<span class="lineno"> 124 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_play_img_des"</span>>@string/play_episode<span class="tag">&lt;/string></span>
+<span class="lineno"> 125 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"change_providers_img_des"</span>>@string/home_change_provider_img_des<span class="tag">&lt;/string></span></pre>
 
 <span class="location"><a href="../../src/main/res/layout/download_button.xml">../../src/main/res/layout/download_button.xml</a>:2</span>: <span class="message">The resource <code>R.layout.download_button</code> appears to be unused</span><br /><pre class="errorlines">
 <span class="lineno"> 1 </span><span class="prologue">&lt;?xml version="1.0" encoding="utf-8"?></span>
@@ -4041,22 +4041,22 @@ Dismiss</button>            </div>
 <span class="lineno"> 1084 </span>                        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
 <span class="lineno"> 1085 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:473</span>: <span class="message">This <code>FrameLayout</code> layout or its <code>LinearLayout</code> parent is unnecessary</span><br /><pre class="errorlines">
-<span class="lineno">  470 </span>                    <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
-<span class="lineno">  471 </span>                    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>>
-<span class="lineno">  472 </span>
-<span class="caretline"><span class="lineno">  473 </span>                    <span class="tag">&lt;</span><span class="warning"><span class="tag">FrameLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  474 </span><span class="attribute">                        </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
-<span class="lineno">  475 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:545</span>: <span class="message">This <code>FrameLayout</code> layout or its <code>LinearLayout</code> parent is unnecessary</span><br /><pre class="errorlines">
+<span class="lineno">  542 </span>                    <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  543 </span>                    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>>
+<span class="lineno">  544 </span>
+<span class="caretline"><span class="lineno">  545 </span>                    <span class="tag">&lt;</span><span class="warning"><span class="tag">FrameLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  546 </span><span class="attribute">                        </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  547 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>>
 </pre>
 
-<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:452</span>: <span class="message">This <code>FrameLayout</code> layout or its <code>LinearLayout</code> parent is unnecessary</span><br /><pre class="errorlines">
-<span class="lineno">  449 </span>                <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
-<span class="lineno">  450 </span>                <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>>
-<span class="lineno">  451 </span>
-<span class="caretline"><span class="lineno">  452 </span>                <span class="tag">&lt;</span><span class="warning"><span class="tag">FrameLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  453 </span><span class="attribute">                    </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
-<span class="lineno">  454 </span>                    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>>
+<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:523</span>: <span class="message">This <code>FrameLayout</code> layout or its <code>LinearLayout</code> parent is unnecessary</span><br /><pre class="errorlines">
+<span class="lineno">  520 </span>                <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  521 </span>                <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>>
+<span class="lineno">  522 </span>
+<span class="caretline"><span class="lineno">  523 </span>                <span class="tag">&lt;</span><span class="warning"><span class="tag">FrameLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  524 </span><span class="attribute">                    </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  525 </span>                    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>>
 </pre>
 
 </div>
@@ -4157,33 +4157,32 @@ Dismiss</button>            </div>
 <span class="lineno">  676 </span>                    <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
 <span class="lineno">  677 </span>                    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:888</span>: <span class="message"><code>player_custom_layout.xml</code> has more than 80 views, bad for performance</span><br /><pre class="errorlines">
-<span class="lineno">  885 </span>                    <span class="prefix">app:</span><span class="attribute">tint</span>=<span class="value">"@android:color/white"</span>
-<span class="lineno">  886 </span>                    <span class="prefix">tools:</span><span class="attribute">ignore</span>=<span class="value">"ContentDescription"</span> />
-<span class="lineno">  887 </span>
-<span class="caretline"><span class="lineno">  888 </span>                <span class="tag">&lt;</span><span class="warning"><span class="tag">ProgressBar</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  889 </span><span class="attribute">                    </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_progressbar_left_level1"</span>
-<span class="lineno">  890 </span>                    <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"5dp"</span>
-<span class="lineno">  891 </span>                    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"150dp"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:885</span>: <span class="message"><code>player_custom_layout.xml</code> has more than 80 views, bad for performance</span><br /><pre class="errorlines">
+<span class="lineno">  882 </span>                        <span class="prefix">app:</span><span class="attribute">icon</span>=<span class="value">"@drawable/ic_outline_subtitles_24"</span>
+<span class="lineno">  883 </span>                        <span class="prefix">tools:</span><span class="attribute">visibility</span>=<span class="value">"visible"</span> />
+<span class="lineno">  884 </span>
+<span class="caretline"><span class="lineno">  885 </span>                    <span class="tag">&lt;</span><span class="warning"><span class="tag">com.google.android.material.button.MaterialButton</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  886 </span><span class="attribute">                        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_sources_btt"</span>
+<span class="lineno">  887 </span>                        <span class="attribute">style</span>=<span class="value">"@style/VideoButton"</span>
+<span class="lineno">  888 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"40dp"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:940</span>: <span class="message"><code>player_custom_layout_tv.xml</code> has more than 80 views, bad for performance</span><br /><pre class="errorlines">
-<span class="lineno">  937 </span>                            <span class="attribute">style</span>=<span class="value">"@style/VideoButton"</span>
-<span class="lineno">  938 </span>                            <span class="prefix">android:</span><span class="attribute">visibility</span>=<span class="value">"gone"</span> />
-<span class="lineno">  939 </span>
-<span class="caretline"><span class="lineno">  940 </span>                        <span class="tag">&lt;</span><span class="warning"><span class="tag">com.google.android.material.button.MaterialButton</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  941 </span><span class="attribute">                            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_skip_op"</span>
-<span class="lineno">  942 </span>                            <span class="attribute">style</span>=<span class="value">"@style/VideoButtonTV"</span>
-<span class="lineno">  943 </span>                            <span class="prefix">android:</span><span class="attribute">nextFocusLeft</span>=<span class="value">"@id/player_pause_play"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:936</span>: <span class="message"><code>player_custom_layout_tv.xml</code> has more than 80 views, bad for performance</span><br /><pre class="errorlines">
+<span class="lineno">  933 </span>                        <span class="prefix">app:</span><span class="attribute">scrubber_enabled_size</span>=<span class="value">"24dp"</span>
+<span class="lineno">  934 </span>                        <span class="prefix">app:</span><span class="attribute">unplayed_color</span>=<span class="value">"@color/videoProgress"</span> />
+<span class="lineno">  935 </span>
+<span class="caretline"><span class="lineno">  936 </span>                    <span class="tag">&lt;</span><span class="warning"><span class="tag">TextView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  937 </span><span class="attribute">                        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@id/exo_duration"</span>
+<span class="lineno">  938 </span>                        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
+<span class="lineno">  939 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"30dp"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:841</span>: <span class="message"><code>trailer_custom_layout.xml</code> has more than 80 views, bad for performance</span><br /><pre class="errorlines">
-<span class="lineno">  838 </span>
-<span class="lineno">  839 </span>    <span class="tag">&lt;/androidx.constraintlayout.widget.ConstraintLayout></span>
-<span class="lineno">  840 </span>
-<span class="caretline"><span class="lineno">  841 </span>    <span class="tag">&lt;</span><span class="warning"><span class="tag">LinearLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  842 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
-<span class="lineno">  843 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
-<span class="lineno">  844 </span>        <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"horizontal"</span>>
-</pre>
+<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:837</span>: <span class="message"><code>trailer_custom_layout.xml</code> has more than 80 views, bad for performance</span><br /><pre class="errorlines">
+<span class="lineno">  834 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  835 </span>                        <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"horizontal"</span>>
+<span class="lineno">  836 </span>
+<span class="caretline"><span class="lineno">  837 </span>                        <span class="tag">&lt;</span><span class="warning"><span class="tag">com.google.android.material.button.MaterialButton</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  838 </span><span class="attribute">                            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_resize_btt"</span>
+<span class="lineno">  839 </span>                            <span class="attribute">style</span>=<span class="value">"@style/VideoButton"</span>
+<span class="lineno">  840 </span>                            <span class="prefix">android:</span><span class="attribute">nextFocusLeft</span>=<span class="value">"@id/player_lock"</span></pre>
 
 </div>
 <div class="metadata"><div class="explanation" id="explanationTooManyViews" style="display: none;">
@@ -4587,14 +4586,14 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:121</span>: <span class="message">Avoid using sizes smaller than <code>11sp</code>: <code>10sp</code></span><br /><pre class="errorlines">
-<span class="lineno">  118 </span>                    <span class="prefix">android:</span><span class="attribute">layout_marginStart</span>=<span class="value">"6dp"</span>
-<span class="lineno">  119 </span>                    <span class="prefix">android:</span><span class="attribute">layout_marginBottom</span>=<span class="value">"2.5dp"</span>
-<span class="lineno">  120 </span>                    <span class="prefix">android:</span><span class="attribute">textColor</span>=<span class="value">"@color/white"</span>
-<span class="caretline"><span class="lineno">  121 </span>                    <span class="warning"><span class="prefix">android:</span><span class="attribute">textSize</span>=<span class="value">"10sp"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  122 </span>                    <span class="prefix">android:</span><span class="attribute">visibility</span>=<span class="value">"gone"</span>
-<span class="lineno">  123 </span>                    <span class="prefix">tools:</span><span class="attribute">text</span>=<span class="value">"HDR10 • HEVC"</span> />
-<span class="lineno">  124 </span>                <span class="tag">&lt;ImageView</span></pre>
+<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:192</span>: <span class="message">Avoid using sizes smaller than <code>11sp</code>: <code>10sp</code></span><br /><pre class="errorlines">
+<span class="lineno">  189 </span>                    <span class="prefix">android:</span><span class="attribute">layout_marginStart</span>=<span class="value">"6dp"</span>
+<span class="lineno">  190 </span>                    <span class="prefix">android:</span><span class="attribute">layout_marginBottom</span>=<span class="value">"2.5dp"</span>
+<span class="lineno">  191 </span>                    <span class="prefix">android:</span><span class="attribute">textColor</span>=<span class="value">"@color/white"</span>
+<span class="caretline"><span class="lineno">  192 </span>                    <span class="warning"><span class="prefix">android:</span><span class="attribute">textSize</span>=<span class="value">"10sp"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  193 </span>                    <span class="prefix">android:</span><span class="attribute">visibility</span>=<span class="value">"gone"</span>
+<span class="lineno">  194 </span>                    <span class="prefix">tools:</span><span class="attribute">text</span>=<span class="value">"HDR10 • HEVC"</span> />
+<span class="lineno">  195 </span>                <span class="tag">&lt;ImageView</span></pre>
 
 </div>
 <div class="metadata"><div class="explanation" id="explanationSmallSp" style="display: none;">
@@ -4678,7 +4677,7 @@ Dismiss</button>            </div>
 <span class="lineno"> 39 </span>        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"24dp"</span>
 <span class="lineno"> 40 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"24dp"</span></pre>
 
-<button class="mdl-button mdl-js-button mdl-button--primary" id="ContentDescriptionDivLink" onclick="reveal('ContentDescriptionDiv');" />+ 52 More Occurrences...</button>
+<button class="mdl-button mdl-js-button mdl-button--primary" id="ContentDescriptionDivLink" onclick="reveal('ContentDescriptionDiv');" />+ 55 More Occurrences...</button>
 <div id="ContentDescriptionDiv" style="display: none">
 <span class="location"><a href="../../src/main/res/layout/account_list_item_edit.xml">../../src/main/res/layout/account_list_item_edit.xml</a>:48</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
 <span class="lineno"> 45 </span>        <span class="prefix">app:</span><span class="attribute">tint</span>=<span class="value">"@color/textColor"</span>
@@ -4902,68 +4901,86 @@ Dismiss</button>            </div>
 <span class="lineno"> 10 </span>        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
 <span class="lineno"> 11 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:10</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
-<span class="lineno">    7 </span>    <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"vertical"</span>
-<span class="lineno">    8 </span>    <span class="prefix">tools:</span><span class="attribute">orientation</span>=<span class="value">"vertical"</span>>
-<span class="lineno">    9 </span>
-<span class="caretline"><span class="lineno">   10 </span>    <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">   11 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">visibility</span>=<span class="value">"gone"</span>
-<span class="lineno">   12 </span>        <span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/video_outline"</span>
-<span class="lineno">   13 </span>        <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@drawable/video_outline"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:34</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
+<span class="lineno">   31 </span><span class="attribute">                </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno">   32 </span>                <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"88dp"</span>>
+<span class="lineno">   33 </span>
+<span class="caretline"><span class="lineno">   34 </span>                <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">   35 </span><span class="attribute">                    </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_movie_logo"</span>
+<span class="lineno">   36 </span>                    <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
+<span class="lineno">   37 </span>                    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:99</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
-<span class="lineno">   96 </span>
-<span class="lineno">   97 </span>
-<span class="lineno">   98 </span>        <span class="comment">&lt;!-- atm this is useless, however it might be used for PIP one day? --></span>
-<span class="caretline"><span class="lineno">   99 </span>        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  100 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_fullscreen"</span>
-<span class="lineno">  101 </span>            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"30dp"</span>
-<span class="lineno">  102 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"30dp"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:82</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
+<span class="lineno">   79 </span>        <span class="tag">&lt;/LinearLayout></span>
+<span class="lineno">   80 </span>    <span class="tag">&lt;/FrameLayout></span>
+<span class="lineno">   81 </span>
+<span class="caretline"><span class="lineno">   82 </span>    <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">   83 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">visibility</span>=<span class="value">"gone"</span>
+<span class="lineno">   84 </span>        <span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/video_outline"</span>
+<span class="lineno">   85 </span>        <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@drawable/video_outline"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:184</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
-<span class="lineno">  181 </span>                            <span class="prefix">android:</span><span class="attribute">textStyle</span>=<span class="value">"bold"</span>
-<span class="lineno">  182 </span>                            <span class="prefix">android:</span><span class="attribute">visibility</span>=<span class="value">"visible"</span>
-<span class="lineno">  183 </span>                            <span class="prefix">tools:</span><span class="attribute">text</span>=<span class="value">"Hello world "</span> />
-<span class="caretline"><span class="lineno">  184 </span>                        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  185 </span><span class="attribute">                            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/offline_pin"</span>
-<span class="lineno">  186 </span>                            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"16dp"</span>
-<span class="lineno">  187 </span>                            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"16dp"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:171</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
+<span class="lineno">  168 </span>
+<span class="lineno">  169 </span>
+<span class="lineno">  170 </span>        <span class="comment">&lt;!-- atm this is useless, however it might be used for PIP one day? --></span>
+<span class="caretline"><span class="lineno">  171 </span>        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  172 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_fullscreen"</span>
+<span class="lineno">  173 </span>            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"30dp"</span>
+<span class="lineno">  174 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"30dp"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:477</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
-<span class="lineno">  474 </span><span class="attribute">                        </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
-<span class="lineno">  475 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>>
-<span class="lineno">  476 </span>
-<span class="caretline"><span class="lineno">  477 </span>                        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  478 </span><span class="attribute">                            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/download_header_toggle"</span>
-<span class="lineno">  479 </span>                            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"40dp"</span>
-<span class="lineno">  480 </span>                            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"40dp"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:256</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
+<span class="lineno">  253 </span>                            <span class="prefix">android:</span><span class="attribute">textStyle</span>=<span class="value">"bold"</span>
+<span class="lineno">  254 </span>                            <span class="prefix">android:</span><span class="attribute">visibility</span>=<span class="value">"visible"</span>
+<span class="lineno">  255 </span>                            <span class="prefix">tools:</span><span class="attribute">text</span>=<span class="value">"Hello world "</span> />
+<span class="caretline"><span class="lineno">  256 </span>                        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  257 </span><span class="attribute">                            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/offline_pin"</span>
+<span class="lineno">  258 </span>                            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"16dp"</span>
+<span class="lineno">  259 </span>                            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"16dp"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:11</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
-<span class="lineno">    8 </span>    <span class="prefix">android:</span><span class="attribute">tag</span>=<span class="value">"television"</span>
-<span class="lineno">    9 </span>    <span class="prefix">tools:</span><span class="attribute">orientation</span>=<span class="value">"vertical"</span>>
-<span class="lineno">   10 </span>
-<span class="caretline"><span class="lineno">   11 </span>    <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">   12 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">visibility</span>=<span class="value">"gone"</span>
-<span class="lineno">   13 </span>        <span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/video_outline"</span>
-<span class="lineno">   14 </span>        <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@drawable/video_outline"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:549</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
+<span class="lineno">  546 </span><span class="attribute">                        </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno">  547 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>>
+<span class="lineno">  548 </span>
+<span class="caretline"><span class="lineno">  549 </span>                        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  550 </span><span class="attribute">                            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/download_header_toggle"</span>
+<span class="lineno">  551 </span>                            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"40dp"</span>
+<span class="lineno">  552 </span>                            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"40dp"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:229</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
-<span class="lineno">  226 </span>            <span class="prefix">android:</span><span class="attribute">visibility</span>=<span class="value">"gone"</span> />
-<span class="lineno">  227 </span>
-<span class="lineno">  228 </span>        <span class="comment">&lt;!-- atm this is useless, however it might be used for PIP one day? --></span>
-<span class="caretline"><span class="lineno">  229 </span>        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  230 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_fullscreen"</span>
-<span class="lineno">  231 </span>            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"30dp"</span>
-<span class="lineno">  232 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"30dp"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:35</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
+<span class="lineno">   32 </span><span class="attribute">                </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
+<span class="lineno">   33 </span>                <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"88dp"</span>>
+<span class="lineno">   34 </span>
+<span class="caretline"><span class="lineno">   35 </span>                <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">   36 </span><span class="attribute">                    </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_movie_logo"</span>
+<span class="lineno">   37 </span>                    <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
+<span class="lineno">   38 </span>                    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:299</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
-<span class="lineno">  296 </span>                            <span class="prefix">android:</span><span class="attribute">textSize</span>=<span class="value">"16sp"</span>
-<span class="lineno">  297 </span>                            <span class="prefix">android:</span><span class="attribute">textStyle</span>=<span class="value">"bold"</span>
-<span class="lineno">  298 </span>                            <span class="prefix">tools:</span><span class="attribute">text</span>=<span class="value">"Hello world"</span> />
-<span class="caretline"><span class="lineno">  299 </span>                        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  300 </span><span class="attribute">                            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/offline_pin"</span>
-<span class="lineno">  301 </span>                            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"18dp"</span>
-<span class="lineno">  302 </span>                            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"18dp"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:81</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
+<span class="lineno">   78 </span>          <span class="prefix">tools:</span><span class="attribute">text</span>=<span class="value">"Brave rabbit cop Judy Hopps and her friend, the fox Nick Wilde, team up again to crack a new case."</span>/>
+<span class="lineno">   79 </span>
+<span class="lineno">   80 </span>  <span class="tag">&lt;/LinearLayout></span>
+<span class="caretline"><span class="lineno">   81 </span>  <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">   82 </span><span class="attribute">      </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/video_outline"</span>
+<span class="lineno">   83 </span>      <span class="prefix">android:</span><span class="attribute">visibility</span>=<span class="value">"gone"</span>
+<span class="lineno">   84 </span>      <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@drawable/video_outline"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:298</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
+<span class="lineno">  295 </span>            <span class="prefix">android:</span><span class="attribute">visibility</span>=<span class="value">"gone"</span> />
+<span class="lineno">  296 </span>
+<span class="lineno">  297 </span>        <span class="comment">&lt;!-- atm this is useless, however it might be used for PIP one day? --></span>
+<span class="caretline"><span class="lineno">  298 </span>        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  299 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_fullscreen"</span>
+<span class="lineno">  300 </span>            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"30dp"</span>
+<span class="lineno">  301 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"30dp"</span></pre>
+
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:368</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
+<span class="lineno">  365 </span>                            <span class="prefix">android:</span><span class="attribute">textSize</span>=<span class="value">"16sp"</span>
+<span class="lineno">  366 </span>                            <span class="prefix">android:</span><span class="attribute">textStyle</span>=<span class="value">"bold"</span>
+<span class="lineno">  367 </span>                            <span class="prefix">tools:</span><span class="attribute">text</span>=<span class="value">"Hello world"</span> />
+<span class="caretline"><span class="lineno">  368 </span>                        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  369 </span><span class="attribute">                            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/offline_pin"</span>
+<span class="lineno">  370 </span>                            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"18dp"</span>
+<span class="lineno">  371 </span>                            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"18dp"</span></pre>
 
 <span class="location"><a href="../../src/main/res/layout/player_prioritize_item.xml">../../src/main/res/layout/player_prioritize_item.xml</a>:17</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
 <span class="lineno"> 14 </span>        <span class="prefix">android:</span><span class="attribute">layout_toStartOf</span>=<span class="value">"@+id/subtract_button"</span>
@@ -5072,26 +5089,7 @@ Dismiss</button>            </div>
 <span class="lineno"> 33 </span>                    <span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/imageView"</span>
 <span class="lineno"> 34 </span>                    <span class="prefix">android:</span><span class="attribute">scaleType</span>=<span class="value">"centerCrop"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/sort_bottom_single_provider_choice.xml">../../src/main/res/layout/sort_bottom_single_provider_choice.xml</a>:13</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
-<span class="lineno"> 10 </span>        <span class="attribute">style</span>=<span class="value">"@style/CheckLabel"</span>
-<span class="lineno"> 11 </span>        <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"center"</span>
-<span class="lineno"> 12 </span>        <span class="prefix">tools:</span><span class="attribute">text</span>=<span class="value">"hello"</span> />
-<span class="caretline"><span class="lineno"> 13 </span>    <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno"> 14 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/pinicon"</span>
-<span class="lineno"> 15 </span>        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"50dp"</span>
-<span class="lineno"> 16 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"24dp"</span></pre>
-
-<span class="location"><a href="../../src/main/res/layout/speed_dialog.xml">../../src/main/res/layout/speed_dialog.xml</a>:24</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
-<span class="lineno">  21 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
-<span class="lineno">  22 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span>>
-<span class="lineno">  23 </span>
-<span class="caretline"><span class="lineno">  24 </span>        <span class="tag">&lt;</span><span class="warning"><span class="tag">com.google.android.material.floatingactionbutton.FloatingActionButton</span></span><span class="attribute"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  25 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/speed_minus"</span>
-<span class="lineno">  26 </span>            <span class="attribute">style</span>=<span class="value">"@style/ExtendedFloatingActionButton"</span>
-<span class="lineno">  27 </span>            <span class="prefix">android:</span><span class="attribute">layout_gravity</span>=<span class="value">"center_vertical"</span>
-</pre>
-
-<br/><b>NOTE: 7 results omitted.</b><br/><br/></div>
+<br/><b>NOTE: 10 results omitted.</b><br/><br/></div>
 </div>
 <div class="metadata"><div class="explanation" id="explanationContentDescription" style="display: none;">
 Non-textual widgets like ImageViews and ImageButtons should use the <code>contentDescription</code> attribute to specify a textual description of the widget such that screen readers and other accessibility tools can adequately describe the user interface.<br/>

@@ -145,7 +145,7 @@
         errorLine2="                         ~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/CustomSubripParser.kt"
-            line="170"
+            line="171"
             column="26"/>
     </issue>
 
@@ -1115,7 +1115,7 @@
         errorLine2="                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt"
-            line="374"
+            line="376"
             column="47"/>
     </issue>
 
@@ -1419,7 +1419,7 @@
         errorLine2="                           ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml"
-            line="590"
+            line="662"
             column="28"/>
     </issue>
 
@@ -1435,7 +1435,7 @@
         errorLine2="                           ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml"
-            line="733"
+            line="802"
             column="28"/>
     </issue>
 
@@ -1515,7 +1515,7 @@
         errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="549"
+            line="620"
             column="24"/>
     </issue>
 
@@ -1651,7 +1651,7 @@
         errorLine2="                                      ~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt"
-            line="225"
+            line="228"
             column="39"/>
     </issue>
 
@@ -1981,7 +1981,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="521"
+            line="522"
             column="5"/>
     </issue>
 
@@ -1999,7 +1999,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="618"
+            line="619"
             column="5"/>
     </issue>
 
@@ -2017,7 +2017,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="724"
+            line="725"
             column="5"/>
     </issue>
 
@@ -2171,6 +2171,27 @@
         priority="5"
         summary="Formatting argument types incomplete or inconsistent"
         explanation="When a formatted string takes arguments, it usually needs to reference the same arguments in all translations (or all arguments if there are no translations.&#xA;&#xA;There are cases where this is not the case, so this issue is a warning rather than an error by default. However, this usually happens when a language is not translated or updated correctly."
+        errorLine1="    &lt;string name=&quot;extra_brightness_settings_des&quot;>디스플레이 밝기가 100%를 초과하면 밝기 필터를 활성화합니다&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ko/strings.xml"
+            line="730"
+            column="5"/>
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
+            line="170"
+            column="5"
+            message="Conflicting number of arguments (1) here"/>
+    </issue>
+
+    <issue
+        id="StringFormatCount"
+        severity="Warning"
+        message="Inconsistent number of arguments in formatting string `extra_brightness_settings_des`; found both 0 here and 1 in values/strings.xml"
+        category="Correctness:Messages"
+        priority="5"
+        summary="Formatting argument types incomplete or inconsistent"
+        explanation="When a formatted string takes arguments, it usually needs to reference the same arguments in all translations (or all arguments if there are no translations.&#xA;&#xA;There are cases where this is not the case, so this issue is a warning rather than an error by default. However, this usually happens when a language is not translated or updated correctly."
         errorLine1="    &lt;string name=&quot;extra_brightness_settings_des&quot;>Aktivera ljusstyrkefiltret när ljusstyrkan överstiger 100%&lt;/string>"
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
@@ -2197,27 +2218,6 @@
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+fr/strings.xml"
             line="733"
-            column="5"/>
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="170"
-            column="5"
-            message="Conflicting number of arguments (1) here"/>
-    </issue>
-
-    <issue
-        id="StringFormatCount"
-        severity="Warning"
-        message="Inconsistent number of arguments in formatting string `extra_brightness_settings_des`; found both 0 here and 1 in values/strings.xml"
-        category="Correctness:Messages"
-        priority="5"
-        summary="Formatting argument types incomplete or inconsistent"
-        explanation="When a formatted string takes arguments, it usually needs to reference the same arguments in all translations (or all arguments if there are no translations.&#xA;&#xA;There are cases where this is not the case, so this issue is a warning rather than an error by default. However, this usually happens when a language is not translated or updated correctly."
-        errorLine1="    &lt;string name=&quot;extra_brightness_settings_des&quot;>100% 표시 광도가 초과될 때 Enable 광도 여과기&lt;/string>"
-        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+ko/strings.xml"
-            line="736"
             column="5"/>
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
@@ -2339,11 +2339,11 @@
         priority="5"
         summary="Formatting argument types incomplete or inconsistent"
         explanation="When a formatted string takes arguments, it usually needs to reference the same arguments in all translations (or all arguments if there are no translations.&#xA;&#xA;There are cases where this is not the case, so this issue is a warning rather than an error by default. However, this usually happens when a language is not translated or updated correctly."
-        errorLine1="    &lt;string name=&quot;extra_brightness_settings_des&quot;>Görüntü parlaklığı %100\&apos;ü geçerse parlaklık filtresini aktifleştir&lt;/string>"
-        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="    &lt;string name=&quot;extra_brightness_settings_des&quot;>Bật bộ lọc độ sáng khi độ sáng màn hình vượt quá 100%&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml"
-            line="754"
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+vi/strings.xml"
+            line="753"
             column="5"/>
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
@@ -2360,11 +2360,11 @@
         priority="5"
         summary="Formatting argument types incomplete or inconsistent"
         explanation="When a formatted string takes arguments, it usually needs to reference the same arguments in all translations (or all arguments if there are no translations.&#xA;&#xA;There are cases where this is not the case, so this issue is a warning rather than an error by default. However, this usually happens when a language is not translated or updated correctly."
-        errorLine1="    &lt;string name=&quot;extra_brightness_settings_des&quot;>Kích hoạt bộ lọc độ sáng khi độ sáng màn hình vượt quá 100%&lt;/string>"
-        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="    &lt;string name=&quot;extra_brightness_settings_des&quot;>Görüntü parlaklığı %100\&apos;ü geçerse parlaklık filtresini aktifleştir&lt;/string>"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+vi/strings.xml"
-            line="755"
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+tr/strings.xml"
+            line="754"
             column="5"/>
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
@@ -2510,7 +2510,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt"
-            line="634"
+            line="642"
             column="20"/>
     </issue>
 
@@ -2526,7 +2526,7 @@
         errorLine2="                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/AppContextUtils.kt"
-            line="859"
+            line="867"
             column="20"/>
     </issue>
 
@@ -2574,7 +2574,7 @@
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt"
-            line="2521"
+            line="2645"
             column="17"/>
     </issue>
 
@@ -2590,7 +2590,7 @@
         errorLine2="                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt"
-            line="264"
+            line="266"
             column="32"/>
     </issue>
 
@@ -2750,7 +2750,7 @@
         errorLine2="                     ~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml"
-            line="169"
+            line="241"
             column="22"/>
     </issue>
 
@@ -2766,7 +2766,7 @@
         errorLine2="     ~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml"
-            line="1010"
+            line="1082"
             column="6"/>
     </issue>
 
@@ -2782,7 +2782,7 @@
         errorLine2="                     ~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml"
-            line="281"
+            line="350"
             column="22"/>
     </issue>
 
@@ -2814,7 +2814,7 @@
         errorLine2="     ~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="984"
+            line="1055"
             column="6"/>
     </issue>
 
@@ -3490,7 +3490,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml"
-            line="54"
+            line="55"
             column="13"/>
     </issue>
 
@@ -3506,7 +3506,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml"
-            line="63"
+            line="64"
             column="13"/>
     </issue>
 
@@ -3522,7 +3522,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml"
-            line="114"
+            line="115"
             column="13"/>
     </issue>
 
@@ -3538,7 +3538,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/donottranslate-strings.xml"
-            line="121"
+            line="122"
             column="13"/>
     </issue>
 
@@ -4670,7 +4670,7 @@
         errorLine2="            ~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="211"
+            line="212"
             column="13"/>
     </issue>
 
@@ -4686,7 +4686,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="218"
+            line="219"
             column="13"/>
     </issue>
 
@@ -4702,7 +4702,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="243"
+            line="244"
             column="13"/>
     </issue>
 
@@ -4718,7 +4718,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="250"
+            line="251"
             column="13"/>
     </issue>
 
@@ -4734,7 +4734,7 @@
         errorLine2="            ~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="254"
+            line="255"
             column="13"/>
     </issue>
 
@@ -4750,7 +4750,7 @@
         errorLine2="            ~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="256"
+            line="257"
             column="13"/>
     </issue>
 
@@ -4766,7 +4766,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="257"
+            line="258"
             column="13"/>
     </issue>
 
@@ -4782,7 +4782,7 @@
         errorLine2="            ~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="258"
+            line="259"
             column="13"/>
     </issue>
 
@@ -4798,7 +4798,7 @@
         errorLine2="            ~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="260"
+            line="261"
             column="13"/>
     </issue>
 
@@ -4814,7 +4814,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="301"
+            line="302"
             column="13"/>
     </issue>
 
@@ -4830,7 +4830,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="304"
+            line="305"
             column="13"/>
     </issue>
 
@@ -4846,7 +4846,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="351"
+            line="352"
             column="13"/>
     </issue>
 
@@ -4862,7 +4862,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="403"
+            line="404"
             column="13"/>
     </issue>
 
@@ -4878,7 +4878,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="412"
+            line="413"
             column="13"/>
     </issue>
 
@@ -4894,7 +4894,7 @@
         errorLine2="            ~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="425"
+            line="426"
             column="13"/>
     </issue>
 
@@ -4910,7 +4910,7 @@
         errorLine2="            ~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="426"
+            line="427"
             column="13"/>
     </issue>
 
@@ -4926,7 +4926,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="475"
+            line="476"
             column="13"/>
     </issue>
 
@@ -4942,7 +4942,7 @@
         errorLine2="            ~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="486"
+            line="487"
             column="13"/>
     </issue>
 
@@ -4958,7 +4958,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="525"
+            line="526"
             column="13"/>
     </issue>
 
@@ -4974,7 +4974,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="526"
+            line="527"
             column="13"/>
     </issue>
 
@@ -4990,7 +4990,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="562"
+            line="563"
             column="13"/>
     </issue>
 
@@ -5006,7 +5006,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="629"
+            line="630"
             column="13"/>
     </issue>
 
@@ -5022,7 +5022,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="648"
+            line="649"
             column="13"/>
     </issue>
 
@@ -5038,7 +5038,7 @@
         errorLine2="            ~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="757"
+            line="758"
             column="13"/>
     </issue>
 
@@ -5054,7 +5054,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="759"
+            line="760"
             column="13"/>
     </issue>
 
@@ -5534,7 +5534,7 @@
         errorLine2="                     ~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml"
-            line="473"
+            line="545"
             column="22"/>
     </issue>
 
@@ -5550,7 +5550,7 @@
         errorLine2="                 ~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="452"
+            line="523"
             column="18"/>
     </issue>
 
@@ -5610,12 +5610,12 @@
         priority="1"
         summary="Layout has too many views"
         explanation="Using too many views in a single layout is bad for performance. Consider using compound drawables or other tricks for reducing the number of views in this layout.&#xA;&#xA;The maximum view count defaults to 80 but can be configured with the environment variable `ANDROID_LINT_MAX_VIEW_COUNT`."
-        errorLine1="                &lt;ProgressBar"
-        errorLine2="                 ~~~~~~~~~~~">
+        errorLine1="                            &lt;com.google.android.material.button.MaterialButton"
+        errorLine2="                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml"
-            line="888"
-            column="18"/>
+            line="885"
+            column="30"/>
     </issue>
 
     <issue
@@ -5626,12 +5626,12 @@
         priority="1"
         summary="Layout has too many views"
         explanation="Using too many views in a single layout is bad for performance. Consider using compound drawables or other tricks for reducing the number of views in this layout.&#xA;&#xA;The maximum view count defaults to 80 but can be configured with the environment variable `ANDROID_LINT_MAX_VIEW_COUNT`."
-        errorLine1="                        &lt;com.google.android.material.button.MaterialButton"
-        errorLine2="                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="                    &lt;TextView"
+        errorLine2="                     ~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml"
-            line="940"
-            column="26"/>
+            line="936"
+            column="22"/>
     </issue>
 
     <issue
@@ -5642,12 +5642,12 @@
         priority="1"
         summary="Layout has too many views"
         explanation="Using too many views in a single layout is bad for performance. Consider using compound drawables or other tricks for reducing the number of views in this layout.&#xA;&#xA;The maximum view count defaults to 80 but can be configured with the environment variable `ANDROID_LINT_MAX_VIEW_COUNT`."
-        errorLine1="    &lt;LinearLayout"
-        errorLine2="     ~~~~~~~~~~~~">
+        errorLine1="                        &lt;com.google.android.material.button.MaterialButton"
+        errorLine2="                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="841"
-            column="6"/>
+            line="837"
+            column="26"/>
     </issue>
 
     <issue
@@ -6102,7 +6102,7 @@
         errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="121"
+            line="192"
             column="21"/>
     </issue>
 
@@ -6638,11 +6638,29 @@
         explanation="Non-textual widgets like ImageViews and ImageButtons should use the `contentDescription` attribute to specify a textual description of the widget such that screen readers and other accessibility tools can adequately describe the user interface.&#xA;&#xA;Note that elements in application screens that are purely decorative and do not provide any content or enable a user action should not have accessibility content descriptions. In this case, set their descriptions to `@null`. If your app&apos;s minSdkVersion is 16 or higher, you can instead set these graphical elements&apos; `android:importantForAccessibility` attributes to `no`.&#xA;&#xA;Note that for text fields, you should not set both the `hint` and the `contentDescription` attributes since the hint will never be shown. Just set the `hint`."
         url="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
         urls="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml"
+            line="34"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        severity="Warning"
+        message="Missing `contentDescription` attribute on image"
+        category="Accessibility"
+        priority="3"
+        summary="Image without `contentDescription`"
+        explanation="Non-textual widgets like ImageViews and ImageButtons should use the `contentDescription` attribute to specify a textual description of the widget such that screen readers and other accessibility tools can adequately describe the user interface.&#xA;&#xA;Note that elements in application screens that are purely decorative and do not provide any content or enable a user action should not have accessibility content descriptions. In this case, set their descriptions to `@null`. If your app&apos;s minSdkVersion is 16 or higher, you can instead set these graphical elements&apos; `android:importantForAccessibility` attributes to `no`.&#xA;&#xA;Note that for text fields, you should not set both the `hint` and the `contentDescription` attributes since the hint will never be shown. Just set the `hint`."
+        url="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
+        urls="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
         errorLine1="    &lt;ImageView"
         errorLine2="     ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml"
-            line="10"
+            line="82"
             column="6"/>
     </issue>
 
@@ -6660,7 +6678,7 @@
         errorLine2="         ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml"
-            line="99"
+            line="171"
             column="10"/>
     </issue>
 
@@ -6678,7 +6696,7 @@
         errorLine2="                         ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml"
-            line="184"
+            line="256"
             column="26"/>
     </issue>
 
@@ -6696,7 +6714,7 @@
         errorLine2="                         ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml"
-            line="477"
+            line="549"
             column="26"/>
     </issue>
 
@@ -6710,12 +6728,12 @@
         explanation="Non-textual widgets like ImageViews and ImageButtons should use the `contentDescription` attribute to specify a textual description of the widget such that screen readers and other accessibility tools can adequately describe the user interface.&#xA;&#xA;Note that elements in application screens that are purely decorative and do not provide any content or enable a user action should not have accessibility content descriptions. In this case, set their descriptions to `@null`. If your app&apos;s minSdkVersion is 16 or higher, you can instead set these graphical elements&apos; `android:importantForAccessibility` attributes to `no`.&#xA;&#xA;Note that for text fields, you should not set both the `hint` and the `contentDescription` attributes since the hint will never be shown. Just set the `hint`."
         url="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
         urls="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
-        errorLine1="    &lt;ImageView"
-        errorLine2="     ~~~~~~~~~">
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml"
-            line="11"
-            column="6"/>
+            line="35"
+            column="18"/>
     </issue>
 
     <issue
@@ -6732,7 +6750,25 @@
         errorLine2="         ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml"
-            line="229"
+            line="81"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        severity="Warning"
+        message="Missing `contentDescription` attribute on image"
+        category="Accessibility"
+        priority="3"
+        summary="Image without `contentDescription`"
+        explanation="Non-textual widgets like ImageViews and ImageButtons should use the `contentDescription` attribute to specify a textual description of the widget such that screen readers and other accessibility tools can adequately describe the user interface.&#xA;&#xA;Note that elements in application screens that are purely decorative and do not provide any content or enable a user action should not have accessibility content descriptions. In this case, set their descriptions to `@null`. If your app&apos;s minSdkVersion is 16 or higher, you can instead set these graphical elements&apos; `android:importantForAccessibility` attributes to `no`.&#xA;&#xA;Note that for text fields, you should not set both the `hint` and the `contentDescription` attributes since the hint will never be shown. Just set the `hint`."
+        url="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
+        urls="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml"
+            line="298"
             column="10"/>
     </issue>
 
@@ -6750,7 +6786,7 @@
         errorLine2="                         ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml"
-            line="299"
+            line="368"
             column="26"/>
     </issue>
 
@@ -7034,11 +7070,29 @@
         explanation="Non-textual widgets like ImageViews and ImageButtons should use the `contentDescription` attribute to specify a textual description of the widget such that screen readers and other accessibility tools can adequately describe the user interface.&#xA;&#xA;Note that elements in application screens that are purely decorative and do not provide any content or enable a user action should not have accessibility content descriptions. In this case, set their descriptions to `@null`. If your app&apos;s minSdkVersion is 16 or higher, you can instead set these graphical elements&apos; `android:importantForAccessibility` attributes to `no`.&#xA;&#xA;Note that for text fields, you should not set both the `hint` and the `contentDescription` attributes since the hint will never be shown. Just set the `hint`."
         url="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
         urls="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
+            line="34"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        severity="Warning"
+        message="Missing `contentDescription` attribute on image"
+        category="Accessibility"
+        priority="3"
+        summary="Image without `contentDescription`"
+        explanation="Non-textual widgets like ImageViews and ImageButtons should use the `contentDescription` attribute to specify a textual description of the widget such that screen readers and other accessibility tools can adequately describe the user interface.&#xA;&#xA;Note that elements in application screens that are purely decorative and do not provide any content or enable a user action should not have accessibility content descriptions. In this case, set their descriptions to `@null`. If your app&apos;s minSdkVersion is 16 or higher, you can instead set these graphical elements&apos; `android:importantForAccessibility` attributes to `no`.&#xA;&#xA;Note that for text fields, you should not set both the `hint` and the `contentDescription` attributes since the hint will never be shown. Just set the `hint`."
+        url="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
+        urls="https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases"
         errorLine1="    &lt;ImageView"
         errorLine2="     ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="10"
+            line="82"
             column="6"/>
     </issue>
 
@@ -7056,7 +7110,7 @@
         errorLine2="         ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="78"
+            line="149"
             column="10"/>
     </issue>
 
@@ -7074,7 +7128,7 @@
         errorLine2="                 ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="124"
+            line="195"
             column="18"/>
     </issue>
 
@@ -7092,7 +7146,7 @@
         errorLine2="                     ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="456"
+            line="527"
             column="22"/>
     </issue>
 
@@ -7110,7 +7164,7 @@
         errorLine2="         ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="591"
+            line="662"
             column="10"/>
     </issue>
 
@@ -7128,7 +7182,7 @@
         errorLine2="                 ~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml"
-            line="717"
+            line="788"
             column="18"/>
     </issue>
 
