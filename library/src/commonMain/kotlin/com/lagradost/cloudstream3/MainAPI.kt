@@ -1119,8 +1119,7 @@ fun TvType.isAnimeOp(): Boolean {
  * @see newSubtitleFile
  * */
 @ConsistentCopyVisibility
-@InternalAPI
-data class SubtitleFile(
+data class SubtitleFile @InternalAPI constructor(
     var lang: String,
     var url: String,
     var headers: Map<String, String>? = null
