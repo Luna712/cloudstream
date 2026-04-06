@@ -179,7 +179,7 @@ document.getElementById(id).style.display = 'none';
     <div class="mdl-layout__header-row">
       <span class="mdl-layout-title">Lint Report: 4 errors, 458 warnings and 2 hints</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Mon Apr 06 19:53:09 UTC 2026 by AGP (9.1.0)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Mon Apr 06 21:58:11 UTC 2026 by AGP (9.1.0)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -1056,14 +1056,14 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/CloudStreamApp.kt">../../src/main/java/com/lagradost/cloudstream3/CloudStreamApp.kt</a>:84</span>: <span class="message">Must call <code>getDefaultUncaughtExceptionHandler()</code> to get the existing handler, and call <code>existingHandler.uncaughtException(thread, throwable)</code> from your new handler</span><br /><pre class="errorlines">
-<span class="lineno">  81 </span>            startActivity(Intent.makeRestartActivityTask(intent!!.component))
-<span class="lineno">  82 </span>        }.also {
-<span class="lineno">  83 </span>            exceptionHandler = it
-<span class="caretline"><span class="lineno">  84 </span>            <span class="warning">Thread.setDefaultUncaughtExceptionHandler(it)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  85 </span>        }
-<span class="lineno">  86 </span>
-<span class="lineno">  87 </span>        AppDebug.isDebug = BuildConfig.DEBUG
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/CloudStreamApp.kt">../../src/main/java/com/lagradost/cloudstream3/CloudStreamApp.kt</a>:83</span>: <span class="message">Must call <code>getDefaultUncaughtExceptionHandler()</code> to get the existing handler, and call <code>existingHandler.uncaughtException(thread, throwable)</code> from your new handler</span><br /><pre class="errorlines">
+<span class="lineno">  80 </span>            startActivity(Intent.makeRestartActivityTask(intent!!.component))
+<span class="lineno">  81 </span>        }.also {
+<span class="lineno">  82 </span>            exceptionHandler = it
+<span class="caretline"><span class="lineno">  83 </span>            <span class="warning">Thread.setDefaultUncaughtExceptionHandler(it)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  84 </span>        }
+<span class="lineno">  85 </span>
+<span class="lineno">  86 </span>        AppDebug.isDebug = BuildConfig.DEBUG
 </pre>
 
 </div>

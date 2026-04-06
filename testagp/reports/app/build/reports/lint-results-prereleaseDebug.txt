@@ -208,7 +208,7 @@ targetSdk = "36"
    https://developer.android.com/topic/performance/background-optimization
 
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/CloudStreamApp.kt:84: Warning: Must call getDefaultUncaughtExceptionHandler() to get the existing handler, and call existingHandler.uncaughtException(thread, throwable) from your new handler [DefaultUncaughtExceptionDelegation]
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/CloudStreamApp.kt:83: Warning: Must call getDefaultUncaughtExceptionHandler() to get the existing handler, and call existingHandler.uncaughtException(thread, throwable) from your new handler [DefaultUncaughtExceptionDelegation]
             Thread.setDefaultUncaughtExceptionHandler(it)
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

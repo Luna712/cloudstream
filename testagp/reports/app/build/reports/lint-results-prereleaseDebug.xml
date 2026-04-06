@@ -441,7 +441,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/CloudStreamApp.kt"
-            line="84"
+            line="83"
             column="13"/>
     </issue>
 
