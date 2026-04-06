@@ -72,10 +72,6 @@ android {
         includeInBundle = false
     }
 
-    viewBinding {
-        enable = true
-    }
-
     androidComponents {
         onVariants { variant ->
             variant.sources.assets?.addGeneratedSourceDirectory(
@@ -192,6 +188,7 @@ android {
 
     buildFeatures {
         buildConfig = true
+        viewBinding = true
     }
 
     packaging {
