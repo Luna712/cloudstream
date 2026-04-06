@@ -64,7 +64,7 @@
    listen to updates, use androidx.core.view.WindowInsetsCompat and related
    APIs.
 
-/home/runner/work/cloudstream/cloudstream/app/build.gradle.kts:109: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
+/home/runner/work/cloudstream/cloudstream/app/build.gradle.kts:105: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
         targetSdk = libs.versions.targetSdk.get().toInt()
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:54: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]

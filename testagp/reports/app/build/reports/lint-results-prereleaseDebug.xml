@@ -111,7 +111,7 @@
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/build.gradle.kts"
-            line="109"
+            line="105"
             column="9"/>
     </issue>
 
