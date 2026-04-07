@@ -55,6 +55,13 @@ annotation class Prerelease
 )
 annotation class InternalAPI
 
+@Retention(AnnotationRetention.BINARY) // This is only an IDE hint, and will not be used in the runtime
+@RequiresOptIn(
+    message = "This API is marked as private and should not be used anywhere else.",
+    level = RequiresOptIn.Level.ERROR
+)
+internal annotation class PrivateAPI
+
 /**
  * Defines the constant for the all languages preference, if this is set then it is
  * the equivalent of all languages being set
@@ -1119,12 +1126,14 @@ fun TvType.isAnimeOp(): Boolean {
  * @see newSubtitleFile
  * */
 @ConsistentCopyVisibility
-data class SubtitleFile private constructor(
+data class SubtitleFile
+@PrivateAPI
+internal constructor(
     var lang: String,
     var url: String,
-    var headers: Map<String, String>?
+    var headers: Map<String, String>? = null
 ) {
-    @Deprecated("Use newSubtitleFile method", level = DeprecationLevel.WARNING)
+    @Deprecated("Use newSubtitleFile method", level = DeprecationLevel.ERROR)
     constructor(lang: String, url: String) : this(lang = lang, url = url, headers = null)
 
     /** Language code to properly filter auto select / download subtitles */
@@ -1132,20 +1141,21 @@ data class SubtitleFile private constructor(
         get() = fromCodeToLangTagIETF(lang) ?: fromLanguageToTagIETF(lang, true)
 
     /** Backwards compatible copy */
+    @Deprecated("Use newSubtitleFile method", level = DeprecationLevel.ERROR)
     fun copy(
         lang: String = this.lang, url: String = this.url
     ): SubtitleFile = SubtitleFile(lang = lang, url = url, headers = this.headers)
 }
 
 // No `MainAPI.` to be able to use this in extractors
+@OptIn(PrivateApi::class)
 suspend fun newSubtitleFile(
     lang: String,
     url: String,
     initializer: suspend SubtitleFile.() -> Unit = { }
 ): SubtitleFile {
-    @Suppress("DEPRECATION")
     val builder = SubtitleFile(
-        lang, url
+        lang, url, null
     )
     builder.initializer()
 
