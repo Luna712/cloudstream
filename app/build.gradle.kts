@@ -310,6 +310,12 @@ tasks.withType<KotlinJvmCompile> {
     }
 }
 
+tasks.withType<JavaCompile> {
+    isCoreLibraryDesugaringEnabled = true
+    sourceCompatibility = JavaVersion.toVersion(javaTarget.target)
+    targetCompatibility = JavaVersion.toVersion(javaTarget.target)
+}
+
 dokka {
     moduleName = "App"
     dokkaSourceSets {
