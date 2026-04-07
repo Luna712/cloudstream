@@ -1582,7 +1582,7 @@
     <issue
         id="Aligned16KB"
         severity="Warning"
-        message="The native library `arm64-v8a/libgojni.so` (from `com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e`) is not 16 KB aligned"
+        message="The native library `arm64-v8a/libgojni.so` (from `com.github.recloudstream:torrentserver:7861970`) is not 16 KB aligned"
         category="Correctness"
         priority="2"
         summary="Native library dependency not 16 KB aligned"
@@ -1590,13 +1590,13 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.3.1/transforms/4b2ee8761d464f7ef416907f56f467b5/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
+            file="/home/runner/.gradle/caches/9.3.1/transforms/53a86539192c0c9642334c969506c089/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so"/>
     </issue>
 
     <issue
         id="Aligned16KB"
         severity="Warning"
-        message="The native library `arm64-v8a/libgojni.so` (from `com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e`) is not 16 KB aligned"
+        message="The native library `arm64-v8a/libgojni.so` (from `com.github.recloudstream:torrentserver:7861970`) is not 16 KB aligned"
         category="Correctness"
         priority="2"
         summary="Native library dependency not 16 KB aligned"
@@ -1604,13 +1604,13 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.3.1/transforms/4b2ee8761d464f7ef416907f56f467b5/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
+            file="/home/runner/.gradle/caches/9.3.1/transforms/53a86539192c0c9642334c969506c089/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so"/>
     </issue>
 
     <issue
         id="Aligned16KB"
         severity="Warning"
-        message="The native library `arm64-v8a/libgojni.so` (from `com.github.recloudstream:torrentserver:7861970e038b35cd8c6918384e49caf26903e09e`) is not 16 KB aligned"
+        message="The native library `arm64-v8a/libgojni.so` (from `com.github.recloudstream:torrentserver:7861970`) is not 16 KB aligned"
         category="Correctness"
         priority="2"
         summary="Native library dependency not 16 KB aligned"
@@ -1618,7 +1618,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.3.1/transforms/4b2ee8761d464f7ef416907f56f467b5/transformed/torrentserver-7861970e038b35cd8c6918384e49caf26903e09e/jni/arm64-v8a/libgojni.so"/>
+            file="/home/runner/.gradle/caches/9.3.1/transforms/53a86539192c0c9642334c969506c089/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so"/>
     </issue>
 
     <issue
