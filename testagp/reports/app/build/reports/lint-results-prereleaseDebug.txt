@@ -311,9 +311,21 @@ activityKtx = "1.12.4"
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:7: Warning: A newer version of androidx.biometric:biometric than 1.4.0-alpha05 is available: 1.4.0-alpha06 [GradleDependency]
 biometric = "1.4.0-alpha05"
             ~~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:9: Warning: A newer version of io.coil-kt.coil3:coil than 3.3.0 is available: 3.4.0 [GradleDependency]
+coil = "3.3.0"
+       ~~~~~~~
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:9: Warning: A newer version of io.coil-kt.coil3:coil-network-okhttp than 3.3.0 is available: 3.4.0 [GradleDependency]
+coil = "3.3.0"
+       ~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:13: Warning: A newer version of androidx.core:core-ktx than 1.17.0 is available: 1.18.0 [GradleDependency]
 coreKtx = "1.17.0"
           ~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:19: Warning: A newer version of com.fasterxml.jackson.module:jackson-module-kotlin than 2.13.1 is available: 2.15.3 [GradleDependency]
+jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support minSdk <26 (Crashes on Android TV's and FireSticks)
+                                   ~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:21: Warning: A newer version of org.jsoup:jsoup than 1.21.2 is available: 1.22.1 [GradleDependency]
+jsoup = "1.21.2"
+        ~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:29: Warning: A newer version of com.google.android.material:material than 1.14.0-alpha09 is available: 1.14.0-alpha10 [GradleDependency]
 material = "1.14.0-alpha09"
            ~~~~~~~~~~~~~~~~
@@ -357,42 +369,6 @@ workRuntimeKtx = "2.11.1"
    are cases where you deliberately want to stick with an older version.
    However, you may simply not be aware that a more recent version is
    available, and that is what this lint check helps find.
-
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:9: Warning: A newer version of io.coil-kt.coil3:coil than 3.3.0 is available: 3.4.0 [NewerVersionAvailable]
-coil = "3.3.0"
-       ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:9: Warning: A newer version of io.coil-kt.coil3:coil-network-okhttp than 3.3.0 is available: 3.4.0 [NewerVersionAvailable]
-coil = "3.3.0"
-       ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:11: Warning: A newer version of org.conscrypt:conscrypt-android than 2.5.2 is available: 2.5.3 [NewerVersionAvailable]
-conscryptAndroid = { strictly = "2.5.2" } # 2.5.3 crashes everything
-                                ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:19: Warning: A newer version of com.fasterxml.jackson.module:jackson-module-kotlin than 2.13.1 is available: 2.21.2 [NewerVersionAvailable]
-jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support minSdk <26 (Crashes on Android TV's and FireSticks)
-                                   ~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:21: Warning: A newer version of org.jsoup:jsoup than 1.21.2 is available: 1.22.1 [NewerVersionAvailable]
-jsoup = "1.21.2"
-        ~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:33: Warning: A newer version of io.github.anilbeesetti:nextlib-media3ext than 1.9.1-0.11.0 is available: 1.9.3-0.12.0 [NewerVersionAvailable]
-nextlibMedia3 = "1.9.1-0.11.0"
-                ~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:33: Warning: A newer version of io.github.anilbeesetti:nextlib-mediainfo than 1.9.1-0.11.0 is available: 1.9.3-0.12.0 [NewerVersionAvailable]
-nextlibMedia3 = "1.9.1-0.11.0"
-                ~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:40: Warning: A newer version of org.mozilla:rhino than 1.8.1 is available: 1.9.1 [NewerVersionAvailable]
-rhino = { strictly = "1.8.1" } # Requires minSdk 26 or later beginning at version 1.9.0
-                     ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:48: Warning: A newer version of app.cash.zipline:zipline-android than 1.24.0 is available: 1.27.0 [NewerVersionAvailable]
-zipline = "1.24.0"
-          ~~~~~~~~
-
-   Explanation for issues of type "NewerVersionAvailable":
-   This detector checks with a central repository to see if there are newer
-   versions available for the dependencies used by this project. This is
-   similar to the GradleDependency check, which checks for newer versions
-   available in the Android SDK tools and libraries, but this works with any
-   MavenCentral dependency, and connects to the library every time, which
-   makes it more flexible but also much slower.
 
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt:376: Warning: The resource @string/exo_controls_stop_description is marked as private in androidx.media3:media3-ui:1.9.2 [PrivateResource]
                             context.getString(androidx.media3.ui.R.string.exo_controls_stop_description),
@@ -1867,4 +1843,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-4 errors, 458 warnings, 2 hints
+4 errors, 453 warnings, 2 hints

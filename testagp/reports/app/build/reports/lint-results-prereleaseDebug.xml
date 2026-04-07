@@ -754,6 +754,38 @@
     <issue
         id="GradleDependency"
         severity="Warning"
+        message="A newer version of io.coil-kt.coil3:coil than 3.3.0 is available: 3.4.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="coil = &quot;3.3.0&quot;"
+        errorLine2="       ~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="9"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of io.coil-kt.coil3:coil-network-okhttp than 3.3.0 is available: 3.4.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="coil = &quot;3.3.0&quot;"
+        errorLine2="       ~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="9"
+            column="8"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
         message="A newer version of androidx.core:core-ktx than 1.17.0 is available: 1.18.0"
         category="Correctness"
         priority="4"
@@ -765,6 +797,38 @@
             file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
             line="13"
             column="11"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of com.fasterxml.jackson.module:jackson-module-kotlin than 2.13.1 is available: 2.15.3"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="jacksonModuleKotlin = { strictly = &quot;2.13.1&quot; } # Later versions don&apos;t support minSdk &lt;26 (Crashes on Android TV&apos;s and FireSticks)"
+        errorLine2="                                   ~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="19"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of org.jsoup:jsoup than 1.21.2 is available: 1.22.1"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="jsoup = &quot;1.21.2&quot;"
+        errorLine2="        ~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="21"
+            column="9"/>
     </issue>
 
     <issue
@@ -957,150 +1021,6 @@
             file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
             line="47"
             column="18"/>
-    </issue>
-
-    <issue
-        id="NewerVersionAvailable"
-        severity="Warning"
-        message="A newer version of io.coil-kt.coil3:coil than 3.3.0 is available: 3.4.0"
-        category="Correctness"
-        priority="4"
-        summary="Newer Library Versions Available"
-        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
-        errorLine1="coil = &quot;3.3.0&quot;"
-        errorLine2="       ~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
-            line="9"
-            column="8"/>
-    </issue>
-
-    <issue
-        id="NewerVersionAvailable"
-        severity="Warning"
-        message="A newer version of io.coil-kt.coil3:coil-network-okhttp than 3.3.0 is available: 3.4.0"
-        category="Correctness"
-        priority="4"
-        summary="Newer Library Versions Available"
-        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
-        errorLine1="coil = &quot;3.3.0&quot;"
-        errorLine2="       ~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
-            line="9"
-            column="8"/>
-    </issue>
-
-    <issue
-        id="NewerVersionAvailable"
-        severity="Warning"
-        message="A newer version of org.conscrypt:conscrypt-android than 2.5.2 is available: 2.5.3"
-        category="Correctness"
-        priority="4"
-        summary="Newer Library Versions Available"
-        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
-        errorLine1="conscryptAndroid = { strictly = &quot;2.5.2&quot; } # 2.5.3 crashes everything"
-        errorLine2="                                ~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
-            line="11"
-            column="33"/>
-    </issue>
-
-    <issue
-        id="NewerVersionAvailable"
-        severity="Warning"
-        message="A newer version of com.fasterxml.jackson.module:jackson-module-kotlin than 2.13.1 is available: 2.21.2"
-        category="Correctness"
-        priority="4"
-        summary="Newer Library Versions Available"
-        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
-        errorLine1="jacksonModuleKotlin = { strictly = &quot;2.13.1&quot; } # Later versions don&apos;t support minSdk &lt;26 (Crashes on Android TV&apos;s and FireSticks)"
-        errorLine2="                                   ~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
-            line="19"
-            column="36"/>
-    </issue>
-
-    <issue
-        id="NewerVersionAvailable"
-        severity="Warning"
-        message="A newer version of org.jsoup:jsoup than 1.21.2 is available: 1.22.1"
-        category="Correctness"
-        priority="4"
-        summary="Newer Library Versions Available"
-        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
-        errorLine1="jsoup = &quot;1.21.2&quot;"
-        errorLine2="        ~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
-            line="21"
-            column="9"/>
-    </issue>
-
-    <issue
-        id="NewerVersionAvailable"
-        severity="Warning"
-        message="A newer version of io.github.anilbeesetti:nextlib-media3ext than 1.9.1-0.11.0 is available: 1.9.3-0.12.0"
-        category="Correctness"
-        priority="4"
-        summary="Newer Library Versions Available"
-        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
-        errorLine1="nextlibMedia3 = &quot;1.9.1-0.11.0&quot;"
-        errorLine2="                ~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
-            line="33"
-            column="17"/>
-    </issue>
-
-    <issue
-        id="NewerVersionAvailable"
-        severity="Warning"
-        message="A newer version of io.github.anilbeesetti:nextlib-mediainfo than 1.9.1-0.11.0 is available: 1.9.3-0.12.0"
-        category="Correctness"
-        priority="4"
-        summary="Newer Library Versions Available"
-        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
-        errorLine1="nextlibMedia3 = &quot;1.9.1-0.11.0&quot;"
-        errorLine2="                ~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
-            line="33"
-            column="17"/>
-    </issue>
-
-    <issue
-        id="NewerVersionAvailable"
-        severity="Warning"
-        message="A newer version of org.mozilla:rhino than 1.8.1 is available: 1.9.1"
-        category="Correctness"
-        priority="4"
-        summary="Newer Library Versions Available"
-        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
-        errorLine1="rhino = { strictly = &quot;1.8.1&quot; } # Requires minSdk 26 or later beginning at version 1.9.0"
-        errorLine2="                     ~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
-            line="40"
-            column="22"/>
-    </issue>
-
-    <issue
-        id="NewerVersionAvailable"
-        severity="Warning"
-        message="A newer version of app.cash.zipline:zipline-android than 1.24.0 is available: 1.27.0"
-        category="Correctness"
-        priority="4"
-        summary="Newer Library Versions Available"
-        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
-        errorLine1="zipline = &quot;1.24.0&quot;"
-        errorLine2="          ~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
-            line="48"
-            column="11"/>
     </issue>
 
     <issue
