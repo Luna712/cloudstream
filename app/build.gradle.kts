@@ -310,11 +310,6 @@ tasks.withType<KotlinJvmCompile> {
     }
 }
 
-tasks.withType<JavaCompile> {
-    sourceCompatibility = JavaVersion.toVersion(javaTarget.target).toString()
-    targetCompatibility = JavaVersion.toVersion(javaTarget.target).toString()
-}
-
 dokka {
     moduleName = "App"
     dokkaSourceSets {
