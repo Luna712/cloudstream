@@ -312,8 +312,8 @@ tasks.withType<KotlinJvmCompile> {
 
 tasks.withType<JavaCompile> {
     isCoreLibraryDesugaringEnabled = true
-    sourceCompatibility = JavaVersion.toVersion(javaTarget.target)
-    targetCompatibility = JavaVersion.toVersion(javaTarget.target)
+    sourceCompatibility = JavaVersion.toVersion(javaTarget.target).toString()
+    targetCompatibility = JavaVersion.toVersion(javaTarget.target).toString()
 }
 
 dokka {
