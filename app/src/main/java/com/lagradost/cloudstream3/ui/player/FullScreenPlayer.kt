@@ -1660,7 +1660,7 @@ open class FullScreenPlayer : AbstractPlayerFragment() {
         playerBinding?.playerIntroPlay?.isGone = true
 
         // Handle pan with two fingers
-        if ((event.pointerCount == 2 || (lastPan != null && event.actionMasked == MotionEvent.ACTION_CANCEL)) && !isLocked && isFullScreenPlayer && !hasTriggeredSpeedUp && currentTouchAction == null) {
+        if ((event.pointerCount == 2 || lastPan != null) && !isLocked && isFullScreenPlayer && !hasTriggeredSpeedUp && currentTouchAction == null) {
             holdhandler.removeCallbacks(holdRunnable) // remove 2x speed
 
             // Gesture detectors for zoom & pan
