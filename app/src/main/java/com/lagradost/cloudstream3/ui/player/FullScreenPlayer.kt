@@ -1695,7 +1695,7 @@ open class FullScreenPlayer : AbstractPlayerFragment() {
                     lastPan = newPan
                 }
 
-                MotionEvent.ACTION_POINTER_UP, MotionEvent.ACTION_UP -> {
+                MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_POINTER_UP, MotionEvent.ACTION_UP -> {
                     // Reset touch
                     lastPan = null
                     currentTouchStart = null
@@ -1777,7 +1777,7 @@ open class FullScreenPlayer : AbstractPlayerFragment() {
                     }
                 }
 
-                MotionEvent.ACTION_UP -> {
+                MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
                     holdhandler.removeCallbacks(holdRunnable)
                     if (hasTriggeredSpeedUp) {
                         player.setPlaybackSpeed(DataStoreHelper.playBackSpeed)
