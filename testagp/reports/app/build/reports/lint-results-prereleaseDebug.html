@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 4 errors, 453 warnings and 2 hints</span>
+      <span class="mdl-layout-title">Lint Report: 4 errors, 460 warnings and 2 hints</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Tue Apr 07 01:06:13 UTC 2026 by AGP (9.1.0)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Apr 08 22:53:10 UTC 2026 by AGP (9.1.0)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -200,7 +200,8 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#PictureInPictureIssue"><i class="material-icons warning-icon">warning</i>Picture In Picture best practices not followed (1)</a>
       <a class="mdl-navigation__link" href="#VectorRaster"><i class="material-icons warning-icon">warning</i>Vector Image Generation (15)</a>
       <a class="mdl-navigation__link" href="#AndroidGradlePluginVersion"><i class="material-icons warning-icon">warning</i>Obsolete Android Gradle Plugin Version (1)</a>
-      <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (19)</a>
+      <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (15)</a>
+      <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (9)</a>
       <a class="mdl-navigation__link" href="#PrivateResource"><i class="material-icons warning-icon">warning</i>Using private resources (26)</a>
       <a class="mdl-navigation__link" href="#SwitchIntDef"><i class="material-icons warning-icon">warning</i>Missing @IntDef in Switch (2)</a>
       <a class="mdl-navigation__link" href="#Aligned16KB"><i class="material-icons warning-icon">warning</i>Native library dependency not 16 KB aligned (6)</a>
@@ -208,7 +209,7 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#StringFormatInvalid"><i class="material-icons error-icon">error</i>Invalid format string (2)</a>
       <a class="mdl-navigation__link" href="#Typos"><i class="material-icons warning-icon">warning</i>Spelling error (11)</a>
       <a class="mdl-navigation__link" href="#PluralsCandidate"><i class="material-icons warning-icon">warning</i>Potential Plurals (7)</a>
-      <a class="mdl-navigation__link" href="#StringFormatCount"><i class="material-icons warning-icon">warning</i>Formatting argument types incomplete or inconsistent (18)</a>
+      <a class="mdl-navigation__link" href="#StringFormatCount"><i class="material-icons warning-icon">warning</i>Formatting argument types incomplete or inconsistent (20)</a>
       <a class="mdl-navigation__link" href="#SetJavaScriptEnabled"><i class="material-icons warning-icon">warning</i>Using <code>setJavaScriptEnabled</code> (1)</a>
       <a class="mdl-navigation__link" href="#TrustAllX509TrustManager"><i class="material-icons warning-icon">warning</i>Insecure TLS/SSL trust manager (2)</a>
       <a class="mdl-navigation__link" href="#CustomX509TrustManager"><i class="material-icons warning-icon">warning</i>Implements custom TLS trust manager (1)</a>
@@ -289,8 +290,11 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#AndroidGradlePluginVersion">AndroidGradlePluginVersion</a>: Obsolete Android Gradle Plugin Version</td></tr>
 <tr>
-<td class="countColumn">19</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">15</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#GradleDependency">GradleDependency</a>: Obsolete Gradle Dependency</td></tr>
+<tr>
+<td class="countColumn">9</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#NewerVersionAvailable">NewerVersionAvailable</a>: Newer Library Versions Available</td></tr>
 <tr>
 <td class="countColumn">26</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#PrivateResource">PrivateResource</a>: Using private resources</td></tr>
@@ -315,7 +319,7 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">7</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#PluralsCandidate">PluralsCandidate</a>: Potential Plurals</td></tr>
 <tr>
-<td class="countColumn">18</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">20</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#StringFormatCount">StringFormatCount</a>: Formatting argument types incomplete or inconsistent</td></tr>
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Security">Security</a>
 </td></tr>
@@ -1383,26 +1387,6 @@ Dismiss</button>            </div>
 <span class="lineno">  10 </span>colorpicker = "6b46b49"
 </pre>
 
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:9</span>: <span class="message">A newer version of io.coil-kt.coil3:coil than 3.3.0 is available: 3.4.0</span><br /><pre class="errorlines">
-<span class="lineno">   6 </span>appcompat = "1.7.1"
-<span class="lineno">   7 </span>biometric = "1.4.0-alpha05"
-<span class="lineno">   8 </span>buildkonfigGradlePlugin = "0.17.1"
-<span class="caretline"><span class="lineno">   9 </span>coil = <span class="warning">"3.3.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  10 </span>colorpicker = "6b46b49"
-<span class="lineno">  11 </span>conscryptAndroid = { strictly = "2.5.2" } # 2.5.3 crashes everything
-<span class="lineno">  12 </span>constraintlayout = "2.2.1"
-</pre>
-
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:9</span>: <span class="message">A newer version of io.coil-kt.coil3:coil-network-okhttp than 3.3.0 is available: 3.4.0</span><br /><pre class="errorlines">
-<span class="lineno">   6 </span>appcompat = "1.7.1"
-<span class="lineno">   7 </span>biometric = "1.4.0-alpha05"
-<span class="lineno">   8 </span>buildkonfigGradlePlugin = "0.17.1"
-<span class="caretline"><span class="lineno">   9 </span>coil = <span class="warning">"3.3.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  10 </span>colorpicker = "6b46b49"
-<span class="lineno">  11 </span>conscryptAndroid = { strictly = "2.5.2" } # 2.5.3 crashes everything
-<span class="lineno">  12 </span>constraintlayout = "2.2.1"
-</pre>
-
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:13</span>: <span class="message">A newer version of androidx.core:core-ktx than 1.17.0 is available: 1.18.0</span><br /><pre class="errorlines">
 <span class="lineno">  10 </span>colorpicker = "6b46b49"
 <span class="lineno">  11 </span>conscryptAndroid = { strictly = "2.5.2" } # 2.5.3 crashes everything
@@ -1411,28 +1395,6 @@ Dismiss</button>            </div>
 <span class="lineno">  14 </span>desugar_jdk_libs_nio = "2.1.5"
 <span class="lineno">  15 </span>dokkaGradlePlugin = "2.2.0"
 <span class="lineno">  16 </span>espressoCore = "3.7.0"
-</pre>
-
-<button class="mdl-button mdl-js-button mdl-button--primary" id="GradleDependencyDivLink" onclick="reveal('GradleDependencyDiv');" />+ 14 More Occurrences...</button>
-<div id="GradleDependencyDiv" style="display: none">
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:19</span>: <span class="message">A newer version of com.fasterxml.jackson.module:jackson-module-kotlin than 2.13.1 is available: 2.15.3</span><br /><pre class="errorlines">
-<span class="lineno">  16 </span>espressoCore = "3.7.0"
-<span class="lineno">  17 </span>fragmentKtx = "1.8.9"
-<span class="lineno">  18 </span>fuzzywuzzy = "1.4.0"
-<span class="caretline"><span class="lineno">  19 </span>jacksonModuleKotlin = { strictly = <span class="warning">"2.13.1"</span> } # Later versions don't support minSdk &lt;26 (Crashes on Android TV's and FireSticks)</span>
-<span class="lineno">  20 </span>json = "20251224"
-<span class="lineno">  21 </span>jsoup = "1.21.2"
-<span class="lineno">  22 </span>junit = "4.13.2"
-</pre>
-
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:21</span>: <span class="message">A newer version of org.jsoup:jsoup than 1.21.2 is available: 1.22.1</span><br /><pre class="errorlines">
-<span class="lineno">  18 </span>fuzzywuzzy = "1.4.0"
-<span class="lineno">  19 </span>jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support minSdk &lt;26 (Crashes on Android TV's and FireSticks)
-<span class="lineno">  20 </span>json = "20251224"
-<span class="caretline"><span class="lineno">  21 </span>jsoup = <span class="warning">"1.21.2"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  22 </span>junit = "4.13.2"
-<span class="lineno">  23 </span>junitKtx = "1.3.0"
-<span class="lineno">  24 </span>junitVersion = "1.3.0"
 </pre>
 
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:29</span>: <span class="message">A newer version of com.google.android.material:material than 1.14.0-alpha09 is available: 1.14.0-alpha10</span><br /><pre class="errorlines">
@@ -1455,6 +1417,8 @@ Dismiss</button>            </div>
 <span class="lineno">  33 </span>nextlibMedia3 = "1.9.1-0.11.0"
 </pre>
 
+<button class="mdl-button mdl-js-button mdl-button--primary" id="GradleDependencyDivLink" onclick="reveal('GradleDependencyDiv');" />+ 10 More Occurrences...</button>
+<div id="GradleDependencyDiv" style="display: none">
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-common than 1.9.2 is available: 1.10.0</span><br /><pre class="errorlines">
 <span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
 <span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
@@ -1581,6 +1545,135 @@ To suppress this error, use the issue id "GradleDependency" as explained in the 
               <div class="mdl-card__actions mdl-card--border">
 <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationGradleDependencyLink" onclick="reveal('explanationGradleDependency');">
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="GradleDependencyCardLink" onclick="hideid('GradleDependencyCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="NewerVersionAvailable"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="NewerVersionAvailableCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Newer Library Versions Available</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:9</span>: <span class="message">A newer version of io.coil-kt.coil3:coil than 3.3.0 is available: 3.4.0</span><br /><pre class="errorlines">
+<span class="lineno">   6 </span>appcompat = "1.7.1"
+<span class="lineno">   7 </span>biometric = "1.4.0-alpha05"
+<span class="lineno">   8 </span>buildkonfigGradlePlugin = "0.17.1"
+<span class="caretline"><span class="lineno">   9 </span>coil = <span class="warning">"3.3.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  10 </span>colorpicker = "6b46b49"
+<span class="lineno">  11 </span>conscryptAndroid = { strictly = "2.5.2" } # 2.5.3 crashes everything
+<span class="lineno">  12 </span>constraintlayout = "2.2.1"
+</pre>
+
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:9</span>: <span class="message">A newer version of io.coil-kt.coil3:coil-network-okhttp than 3.3.0 is available: 3.4.0</span><br /><pre class="errorlines">
+<span class="lineno">   6 </span>appcompat = "1.7.1"
+<span class="lineno">   7 </span>biometric = "1.4.0-alpha05"
+<span class="lineno">   8 </span>buildkonfigGradlePlugin = "0.17.1"
+<span class="caretline"><span class="lineno">   9 </span>coil = <span class="warning">"3.3.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  10 </span>colorpicker = "6b46b49"
+<span class="lineno">  11 </span>conscryptAndroid = { strictly = "2.5.2" } # 2.5.3 crashes everything
+<span class="lineno">  12 </span>constraintlayout = "2.2.1"
+</pre>
+
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:11</span>: <span class="message">A newer version of org.conscrypt:conscrypt-android than 2.5.2 is available: 2.5.3</span><br /><pre class="errorlines">
+<span class="lineno">   8 </span>buildkonfigGradlePlugin = "0.17.1"
+<span class="lineno">   9 </span>coil = "3.3.0"
+<span class="lineno">  10 </span>colorpicker = "6b46b49"
+<span class="caretline"><span class="lineno">  11 </span>conscryptAndroid = { strictly = <span class="warning">"2.5.2"</span> } # 2.5.3 crashes everything&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  12 </span>constraintlayout = "2.2.1"
+<span class="lineno">  13 </span>coreKtx = "1.17.0"
+<span class="lineno">  14 </span>desugar_jdk_libs_nio = "2.1.5"
+</pre>
+
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:19</span>: <span class="message">A newer version of com.fasterxml.jackson.module:jackson-module-kotlin than 2.13.1 is available: 2.21.2</span><br /><pre class="errorlines">
+<span class="lineno">  16 </span>espressoCore = "3.7.0"
+<span class="lineno">  17 </span>fragmentKtx = "1.8.9"
+<span class="lineno">  18 </span>fuzzywuzzy = "1.4.0"
+<span class="caretline"><span class="lineno">  19 </span>jacksonModuleKotlin = { strictly = <span class="warning">"2.13.1"</span> } # Later versions don't support minSdk &lt;26 (Crashes on Android TV's and FireSticks)</span>
+<span class="lineno">  20 </span>json = "20251224"
+<span class="lineno">  21 </span>jsoup = "1.21.2"
+<span class="lineno">  22 </span>junit = "4.13.2"
+</pre>
+
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:21</span>: <span class="message">A newer version of org.jsoup:jsoup than 1.21.2 is available: 1.22.1</span><br /><pre class="errorlines">
+<span class="lineno">  18 </span>fuzzywuzzy = "1.4.0"
+<span class="lineno">  19 </span>jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support minSdk &lt;26 (Crashes on Android TV's and FireSticks)
+<span class="lineno">  20 </span>json = "20251224"
+<span class="caretline"><span class="lineno">  21 </span>jsoup = <span class="warning">"1.21.2"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  22 </span>junit = "4.13.2"
+<span class="lineno">  23 </span>junitKtx = "1.3.0"
+<span class="lineno">  24 </span>junitVersion = "1.3.0"
+</pre>
+
+<button class="mdl-button mdl-js-button mdl-button--primary" id="NewerVersionAvailableDivLink" onclick="reveal('NewerVersionAvailableDiv');" />+ 4 More Occurrences...</button>
+<div id="NewerVersionAvailableDiv" style="display: none">
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:33</span>: <span class="message">A newer version of io.github.anilbeesetti:nextlib-media3ext than 1.9.1-0.11.0 is available: 1.9.3-0.12.0</span><br /><pre class="errorlines">
+<span class="lineno">  30 </span>media3 = "1.9.2"
+<span class="lineno">  31 </span>navigationKtx = "2.9.7"
+<span class="lineno">  32 </span>newpipeextractor = "v0.25.2"
+<span class="caretline"><span class="lineno">  33 </span>nextlibMedia3 = <span class="warning">"1.9.1-0.11.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  34 </span>nicehttp = "0.4.17"
+<span class="lineno">  35 </span>overlappingpanels = "0.1.5"
+<span class="lineno">  36 </span>paletteKtx = "1.0.0"
+</pre>
+
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:33</span>: <span class="message">A newer version of io.github.anilbeesetti:nextlib-mediainfo than 1.9.1-0.11.0 is available: 1.9.3-0.12.0</span><br /><pre class="errorlines">
+<span class="lineno">  30 </span>media3 = "1.9.2"
+<span class="lineno">  31 </span>navigationKtx = "2.9.7"
+<span class="lineno">  32 </span>newpipeextractor = "v0.25.2"
+<span class="caretline"><span class="lineno">  33 </span>nextlibMedia3 = <span class="warning">"1.9.1-0.11.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  34 </span>nicehttp = "0.4.17"
+<span class="lineno">  35 </span>overlappingpanels = "0.1.5"
+<span class="lineno">  36 </span>paletteKtx = "1.0.0"
+</pre>
+
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:40</span>: <span class="message">A newer version of org.mozilla:rhino than 1.8.1 is available: 1.9.1</span><br /><pre class="errorlines">
+<span class="lineno">  37 </span>preferenceKtx = "1.2.1"
+<span class="lineno">  38 </span>previewseekbarMedia3 = "1.1.1.0"
+<span class="lineno">  39 </span>qrcodeKotlin = "4.5.0"
+<span class="caretline"><span class="lineno">  40 </span>rhino = { strictly = <span class="warning">"1.8.1"</span> } # Requires minSdk 26 or later beginning at version 1.9.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  41 </span>safefile = "0.0.8"
+<span class="lineno">  42 </span>shimmer = "0.5.0"
+<span class="lineno">  43 </span>tmdbJava = "2.13.0"
+</pre>
+
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:48</span>: <span class="message">A newer version of app.cash.zipline:zipline-android than 1.24.0 is available: 1.27.0</span><br /><pre class="errorlines">
+<span class="lineno">  45 </span>tvprovider = "1.1.0"
+<span class="lineno">  46 </span>video = "1.0.0"
+<span class="lineno">  47 </span>workRuntimeKtx = "2.11.1"
+<span class="caretline"><span class="lineno">  48 </span>zipline = <span class="warning">"1.24.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  49 </span>
+<span class="lineno">  50 </span>jvmTarget = "1.8"
+<span class="lineno">  51 </span>jdkToolchain = "17"
+</pre>
+
+</div>
+</div>
+<div class="metadata"><div class="explanation" id="explanationNewerVersionAvailable" style="display: none;">
+This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the <code>GradleDependency</code> check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also <b>much</b> slower.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "NewerVersionAvailable" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">NewerVersionAvailable</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 4/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationNewerVersionAvailableLink" onclick="reveal('explanationNewerVersionAvailable');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="NewerVersionAvailableCardLink" onclick="hideid('NewerVersionAvailableCard');">
 Dismiss</button>            </div>
             </div>
           </section><a name="PrivateResource"></a>
@@ -2368,7 +2461,24 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/res/values-be/strings.xml">../../src/main/res/values-be/strings.xml</a>:291</span>: <span class="message">Inconsistent number of arguments in formatting string <code>extra_brightness_settings_des</code>; found both 0 here and 1 in values/strings.xml</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/values-sq/strings.xml">../../src/main/res/values-sq/strings.xml</a>:163</span>: <span class="message">Inconsistent number of arguments in formatting string <code>extra_brightness_settings_des</code>; found both 0 here and 1 in values/strings.xml</span><br /><pre class="errorlines">
+<span class="lineno"> 160 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"use_system_brightness_settings"</span>>Përdor nivelin e ndriçimit të sitemit<span class="tag">&lt;/string></span>
+<span class="lineno"> 161 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"use_system_brightness_settings_des"</span>>Përdor ndriçimin e sistemit në luajtësin e aplikacionit në vend të një mbivendosjeje të errët<span class="tag">&lt;/string></span>
+<span class="lineno"> 162 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>Ndriçim ekstra<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno"> 163 </span>  <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings_des"</span>>Aktivizo filtrin e ndriçimit kur ndriçimi i ekranit kalon 100%<span class="tag">&lt;/string></span></span></span>
+<span class="lineno"> 164 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>extra_brightness_enabled<span class="tag">&lt;/string></span>
+<span class="lineno"> 165 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings"</span>>Përditëso progresin e shikimit<span class="tag">&lt;/string></span>
+<span class="lineno"> 166 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings_des"</span>>Sinkronizo automatikisht progresin e episodit aktual<span class="tag">&lt;/string></span></pre>
+
+<ul><span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:170</span>: <span class="message">Conflicting number of arguments (1) here</span><br /><pre class="errorlines">
+<span class="lineno"> 167 </span>      overlay
+<span class="lineno"> 168 </span>  <span class="tag">&lt;/string></span>
+<span class="lineno"> 169 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>Extra brightness<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno"> 170 </span>  <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings_des"</span>>Enable brightness filter when 100% display brightness is exceeded<span class="tag">&lt;/string></span></span></span>
+<span class="lineno"> 171 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>extra_brightness_enabled<span class="tag">&lt;/string></span>
+<span class="lineno"> 172 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings"</span>>Update watch progress<span class="tag">&lt;/string></span>
+<span class="lineno"> 173 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings_des"</span>>Automatically sync your current episode progress<span class="tag">&lt;/string></span></pre>
+</ul><span class="location"><a href="../../src/main/res/values-be/strings.xml">../../src/main/res/values-be/strings.xml</a>:291</span>: <span class="message">Inconsistent number of arguments in formatting string <code>extra_brightness_settings_des</code>; found both 0 here and 1 in values/strings.xml</span><br /><pre class="errorlines">
 <span class="lineno"> 288 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_action_chromecast_episode"</span>>Глядзець праз Chromecast<span class="tag">&lt;/string></span>
 <span class="lineno"> 289 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_action_chromecast_mirror"</span>>Люстэрка Chromecast<span class="tag">&lt;/string></span>
 <span class="lineno"> 290 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>Дадатковая яркасць<span class="tag">&lt;/string></span>
@@ -2376,6 +2486,22 @@ Dismiss</button>            </div>
 <span class="lineno"> 292 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>extra_brightness_enabled<span class="tag">&lt;/string></span>
 <span class="lineno"> 293 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_action_cast_mirror"</span>>Трансляцыя праз люстэрку<span class="tag">&lt;/string></span>
 <span class="lineno"> 294 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_action_play_in_app"</span>>Глядзець у праграме<span class="tag">&lt;/string></span></pre>
+
+<ul><span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:170</span>: <span class="message">Conflicting number of arguments (1) here</span><br /><pre class="errorlines">
+<span class="lineno"> 167 </span>      overlay
+<span class="lineno"> 168 </span>  <span class="tag">&lt;/string></span>
+<span class="lineno"> 169 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>Extra brightness<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno"> 170 </span>  <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings_des"</span>>Enable brightness filter when 100% display brightness is exceeded<span class="tag">&lt;/string></span></span></span>
+<span class="lineno"> 171 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>extra_brightness_enabled<span class="tag">&lt;/string></span>
+<span class="lineno"> 172 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings"</span>>Update watch progress<span class="tag">&lt;/string></span>
+<span class="lineno"> 173 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings_des"</span>>Automatically sync your current episode progress<span class="tag">&lt;/string></span></pre>
+</ul><span class="location"><a href="../../src/main/res/values-b%2Bhi/strings.xml">../../src/main/res/values-b%2Bhi/strings.xml</a>:424</span>: <span class="message">Inconsistent number of arguments in formatting string <code>extra_brightness_settings_des</code>; found both 0 here and 1 in values/strings.xml</span><br /><pre class="errorlines">
+<span class="lineno"> 421 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"download_queue"</span>>कतार डाउनलोड करें<span class="tag">&lt;/string></span>
+<span class="lineno"> 422 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"queue_empty_message"</span>>फिलहाल कोई डाउनलोड कतार में नहीं है।<span class="tag">&lt;/string></span>
+<span class="lineno"> 423 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>अतिरिक्त चमक<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno"> 424 </span>    <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings_des"</span>>डिस्प्ले की चमक 100% से अधिक होने पर ब्राइटनेस फ़िल्टर चालू करें<span class="tag">&lt;/string></span></span></span>
+<span class="lineno"> 425 </span><span class="tag">&lt;/resources></span>
+</pre>
 
 <ul><span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:170</span>: <span class="message">Conflicting number of arguments (1) here</span><br /><pre class="errorlines">
 <span class="lineno"> 167 </span>      overlay
@@ -2411,7 +2537,9 @@ Dismiss</button>            </div>
 <span class="lineno"> 171 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>extra_brightness_enabled<span class="tag">&lt;/string></span>
 <span class="lineno"> 172 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings"</span>>Update watch progress<span class="tag">&lt;/string></span>
 <span class="lineno"> 173 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings_des"</span>>Automatically sync your current episode progress<span class="tag">&lt;/string></span></pre>
-</ul><span class="location"><a href="../../src/main/res/values-b%2Bta/strings.xml">../../src/main/res/values-b%2Bta/strings.xml</a>:683</span>: <span class="message">Inconsistent number of arguments in formatting string <code>extra_brightness_settings_des</code>; found both 0 here and 1 in values/strings.xml</span><br /><pre class="errorlines">
+</ul><button class="mdl-button mdl-js-button mdl-button--primary" id="StringFormatCountDivLink" onclick="reveal('StringFormatCountDiv');" />+ 15 More Occurrences...</button>
+<div id="StringFormatCountDiv" style="display: none">
+<span class="location"><a href="../../src/main/res/values-b%2Bta/strings.xml">../../src/main/res/values-b%2Bta/strings.xml</a>:683</span>: <span class="message">Inconsistent number of arguments in formatting string <code>extra_brightness_settings_des</code>; found both 0 here and 1 in values/strings.xml</span><br /><pre class="errorlines">
 <span class="lineno"> 680 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"play_full_series_button"</span>>முழு தொடரையும் விளையாடு<span class="tag">&lt;/string></span>
 <span class="lineno"> 681 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"queue_empty_message"</span>>தற்போது வரிசைப்படுத்தப்பட்ட பதிவிறக்கங்கள் எதுவும் இல்லை.<span class="tag">&lt;/string></span>
 <span class="lineno"> 682 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>கூடுதல் ஒளி<span class="tag">&lt;/string></span>
@@ -2445,9 +2573,7 @@ Dismiss</button>            </div>
 <span class="lineno"> 171 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>extra_brightness_enabled<span class="tag">&lt;/string></span>
 <span class="lineno"> 172 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings"</span>>Update watch progress<span class="tag">&lt;/string></span>
 <span class="lineno"> 173 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings_des"</span>>Automatically sync your current episode progress<span class="tag">&lt;/string></span></pre>
-</ul><button class="mdl-button mdl-js-button mdl-button--primary" id="StringFormatCountDivLink" onclick="reveal('StringFormatCountDiv');" />+ 13 More Occurrences...</button>
-<div id="StringFormatCountDiv" style="display: none">
-<span class="location"><a href="../../src/main/res/values-b%2Buk/strings.xml">../../src/main/res/values-b%2Buk/strings.xml</a>:713</span>: <span class="message">Inconsistent number of arguments in formatting string <code>extra_brightness_settings_des</code>; found both 0 here and 1 in values/strings.xml</span><br /><pre class="errorlines">
+</ul><span class="location"><a href="../../src/main/res/values-b%2Buk/strings.xml">../../src/main/res/values-b%2Buk/strings.xml</a>:713</span>: <span class="message">Inconsistent number of arguments in formatting string <code>extra_brightness_settings_des</code>; found both 0 here and 1 in values/strings.xml</span><br /><pre class="errorlines">
 <span class="lineno"> 710 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_suggestions_des"</span>>Показувати підказки пошуку під час введення тексту<span class="tag">&lt;/string></span>
 <span class="lineno"> 711 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"clear_suggestions"</span>>Очистити Пропозиції<span class="tag">&lt;/string></span>
 <span class="lineno"> 712 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>Додаткова яскравість<span class="tag">&lt;/string></span>
@@ -2617,14 +2743,14 @@ Dismiss</button>            </div>
 <span class="lineno"> 171 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>extra_brightness_enabled<span class="tag">&lt;/string></span>
 <span class="lineno"> 172 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings"</span>>Update watch progress<span class="tag">&lt;/string></span>
 <span class="lineno"> 173 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings_des"</span>>Automatically sync your current episode progress<span class="tag">&lt;/string></span></pre>
-</ul><span class="location"><a href="../../src/main/res/values-b%2Bvi/strings.xml">../../src/main/res/values-b%2Bvi/strings.xml</a>:753</span>: <span class="message">Inconsistent number of arguments in formatting string <code>extra_brightness_settings_des</code>; found both 0 here and 1 in values/strings.xml</span><br /><pre class="errorlines">
-<span class="lineno"> 750 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"prerelease_already_installed"</span>>Bản phát hành trước đã được cài đặt.<span class="tag">&lt;/string></span>
-<span class="lineno"> 751 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"prerelease_install_failed"</span>>Cài đặt bản phát hành trước thất bại.<span class="tag">&lt;/string></span>
-<span class="lineno"> 752 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"show_episode_text"</span>>Thông tin tập<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 753 </span>  <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings_des"</span>>Bật bộ lọc độ sáng khi độ sáng màn hình vượt quá 100%<span class="tag">&lt;/string></span></span></span>
-<span class="lineno"> 754 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"show_cast_in_details"</span>>Hiển thị bảng điều khiển<span class="tag">&lt;/string></span>
-<span class="lineno"> 755 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"video_info"</span>>Thông tin video<span class="tag">&lt;/string></span>
-<span class="lineno"> 756 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>Độ sáng bổ sung<span class="tag">&lt;/string></span></pre>
+</ul><span class="location"><a href="../../src/main/res/values-b%2Bvi/strings.xml">../../src/main/res/values-b%2Bvi/strings.xml</a>:751</span>: <span class="message">Inconsistent number of arguments in formatting string <code>extra_brightness_settings_des</code>; found both 0 here and 1 in values/strings.xml</span><br /><pre class="errorlines">
+<span class="lineno"> 748 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"prerelease_already_installed"</span>>Bản phát hành trước đã được cài đặt.<span class="tag">&lt;/string></span>
+<span class="lineno"> 749 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"prerelease_install_failed"</span>>Cài đặt bản phát hành trước thất bại.<span class="tag">&lt;/string></span>
+<span class="lineno"> 750 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"show_episode_text"</span>>Tập<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno"> 751 </span>  <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings_des"</span>>Bật bộ lọc độ sáng khi độ sáng màn hình vượt quá 100%<span class="tag">&lt;/string></span></span></span>
+<span class="lineno"> 752 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"show_cast_in_details"</span>>Hiển thị bảng diễn viên<span class="tag">&lt;/string></span>
+<span class="lineno"> 753 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"video_info"</span>>Thông tin video<span class="tag">&lt;/string></span>
+<span class="lineno"> 754 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>Độ sáng bổ sung<span class="tag">&lt;/string></span></pre>
 
 <ul><span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:170</span>: <span class="message">Conflicting number of arguments (1) here</span><br /><pre class="errorlines">
 <span class="lineno"> 167 </span>      overlay
@@ -2634,14 +2760,14 @@ Dismiss</button>            </div>
 <span class="lineno"> 171 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>extra_brightness_enabled<span class="tag">&lt;/string></span>
 <span class="lineno"> 172 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings"</span>>Update watch progress<span class="tag">&lt;/string></span>
 <span class="lineno"> 173 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"episode_sync_settings_des"</span>>Automatically sync your current episode progress<span class="tag">&lt;/string></span></pre>
-</ul><span class="location"><a href="../../src/main/res/values-b%2Btr/strings.xml">../../src/main/res/values-b%2Btr/strings.xml</a>:754</span>: <span class="message">Inconsistent number of arguments in formatting string <code>extra_brightness_settings_des</code>; found both 0 here and 1 in values/strings.xml</span><br /><pre class="errorlines">
-<span class="lineno"> 751 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"clear_suggestions"</span>>Önerileri Temizle<span class="tag">&lt;/string></span>
-<span class="lineno"> 752 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"show_cast_in_details"</span>>Yayın panelini göster<span class="tag">&lt;/string></span>
-<span class="lineno"> 753 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>Ekstra parlaklık<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 754 </span>  <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings_des"</span>>Görüntü parlaklığı %100\'ü geçerse parlaklık filtresini aktifleştir<span class="tag">&lt;/string></span></span></span>
-<span class="lineno"> 755 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>Ekstra parlaklık aktifleştirildi<span class="tag">&lt;/string></span>
-<span class="lineno"> 756 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"video_info"</span>>Medya bilgisi<span class="tag">&lt;/string></span>
-<span class="lineno"> 757 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"source_name"</span>>Kaynağın adı<span class="tag">&lt;/string></span></pre>
+</ul><span class="location"><a href="../../src/main/res/values-b%2Btr/strings.xml">../../src/main/res/values-b%2Btr/strings.xml</a>:752</span>: <span class="message">Inconsistent number of arguments in formatting string <code>extra_brightness_settings_des</code>; found both 0 here and 1 in values/strings.xml</span><br /><pre class="errorlines">
+<span class="lineno"> 749 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"clear_suggestions"</span>>Önerileri Temizle<span class="tag">&lt;/string></span>
+<span class="lineno"> 750 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"show_cast_in_details"</span>>Yayın panelini göster<span class="tag">&lt;/string></span>
+<span class="lineno"> 751 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>Ekstra parlaklık<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno"> 752 </span>  <span class="warning"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings_des"</span>>Görüntü parlaklığı %100\'ü geçerse parlaklık filtresini aktifleştir<span class="tag">&lt;/string></span></span></span>
+<span class="lineno"> 753 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>Ekstra parlaklık aktifleştirildi<span class="tag">&lt;/string></span>
+<span class="lineno"> 754 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"video_info"</span>>Medya bilgisi<span class="tag">&lt;/string></span>
+<span class="lineno"> 755 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"source_name"</span>>Kaynağın adı<span class="tag">&lt;/string></span></pre>
 
 <ul><span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:170</span>: <span class="message">Conflicting number of arguments (1) here</span><br /><pre class="errorlines">
 <span class="lineno"> 167 </span>      overlay
