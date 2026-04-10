@@ -848,17 +848,33 @@
     <issue
         id="NewerVersionAvailable"
         severity="Warning"
+        message="A newer version of com.codingfeline.buildkonfig than 0.17.1 is available: 0.18.0"
+        category="Correctness"
+        priority="4"
+        summary="Newer Library Versions Available"
+        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
+        errorLine1="buildkonfigGradlePlugin = &quot;0.17.1&quot;"
+        errorLine2="                          ~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="8"
+            column="27"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        severity="Warning"
         message="A newer version of io.coil-kt.coil3:coil than 3.3.0 is available: 3.4.0"
         category="Correctness"
         priority="4"
         summary="Newer Library Versions Available"
         explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
-        errorLine1="coil = &quot;3.3.0&quot;"
-        errorLine2="       ~~~~~~~">
+        errorLine1="coil = { strictly = &quot;3.3.0&quot; } # Later versions require jvmTarget 11 or later"
+        errorLine2="                    ~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
             line="9"
-            column="8"/>
+            column="21"/>
     </issue>
 
     <issue
@@ -869,12 +885,12 @@
         priority="4"
         summary="Newer Library Versions Available"
         explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
-        errorLine1="coil = &quot;3.3.0&quot;"
-        errorLine2="       ~~~~~~~">
+        errorLine1="coil = { strictly = &quot;3.3.0&quot; } # Later versions require jvmTarget 11 or later"
+        errorLine2="                    ~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
             line="9"
-            column="8"/>
+            column="21"/>
     </issue>
 
     <issue
@@ -1264,7 +1280,7 @@
     <issue
         id="PrivateResource"
         severity="Warning"
-        message="The resource `@color/mtrl_btn_stroke_color_selector` is marked as private in com.google.android.material:material:1.14.0-alpha10"
+        message="The resource `@color/mtrl_btn_stroke_color_selector` is marked as private in com.google.android.material:material:1.14.0-beta01"
         category="Correctness"
         priority="3"
         summary="Using private resources"
@@ -1280,7 +1296,7 @@
     <issue
         id="PrivateResource"
         severity="Warning"
-        message="The resource `@dimen/mtrl_btn_stroke_size` is marked as private in com.google.android.material:material:1.14.0-alpha10"
+        message="The resource `@dimen/mtrl_btn_stroke_size` is marked as private in com.google.android.material:material:1.14.0-beta01"
         category="Correctness"
         priority="3"
         summary="Using private resources"
@@ -1885,7 +1901,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="619"
+            line="620"
             column="5"/>
     </issue>
 
@@ -1903,7 +1919,7 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="725"
+            line="726"
             column="5"/>
     </issue>
 
@@ -4930,22 +4946,6 @@
     <issue
         id="UnusedResources"
         severity="Warning"
-        message="The resource `R.string.skip_type_intro` appears to be unused"
-        category="Performance"
-        priority="3"
-        summary="Unused resources"
-        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
-        errorLine1="    &lt;string name=&quot;skip_type_intro&quot;>Intro&lt;/string>"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="563"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="UnusedResources"
-        severity="Warning"
         message="The resource `R.string.profiles` appears to be unused"
         category="Performance"
         priority="3"
@@ -4955,7 +4955,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="630"
+            line="631"
             column="13"/>
     </issue>
 
@@ -4971,7 +4971,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="649"
+            line="650"
             column="13"/>
     </issue>
 
@@ -4987,7 +4987,7 @@
         errorLine2="            ~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="758"
+            line="759"
             column="13"/>
     </issue>
 
@@ -5003,7 +5003,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml"
-            line="760"
+            line="761"
             column="13"/>
     </issue>
 

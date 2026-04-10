@@ -315,12 +315,15 @@ media3 = "1.9.2"
    However, you may simply not be aware that a more recent version is
    available, and that is what this lint check helps find.
 
+/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:8: Warning: A newer version of com.codingfeline.buildkonfig than 0.17.1 is available: 0.18.0 [NewerVersionAvailable]
+buildkonfigGradlePlugin = "0.17.1"
+                          ~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:9: Warning: A newer version of io.coil-kt.coil3:coil than 3.3.0 is available: 3.4.0 [NewerVersionAvailable]
-coil = "3.3.0"
-       ~~~~~~~
+coil = { strictly = "3.3.0" } # Later versions require jvmTarget 11 or later
+                    ~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:9: Warning: A newer version of io.coil-kt.coil3:coil-network-okhttp than 3.3.0 is available: 3.4.0 [NewerVersionAvailable]
-coil = "3.3.0"
-       ~~~~~~~
+coil = { strictly = "3.3.0" } # Later versions require jvmTarget 11 or later
+                    ~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:11: Warning: A newer version of org.conscrypt:conscrypt-android than 2.5.2 is available: 2.5.3 [NewerVersionAvailable]
 conscryptAndroid = { strictly = "2.5.2" } # 2.5.3 crashes everything
                                 ~~~~~~~
@@ -402,10 +405,10 @@ zipline = "1.24.0"
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/anim/exit_anim.xml:16: Warning: The resource @integer/config_navAnimTime is marked as private in androidx.navigation:navigation-ui:2.9.7 [PrivateResource]
             android:duration="@integer/config_navAnimTime"
                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/material_outline_background.xml:4: Warning: The resource @color/mtrl_btn_stroke_color_selector is marked as private in com.google.android.material:material:1.14.0-alpha10 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/material_outline_background.xml:4: Warning: The resource @color/mtrl_btn_stroke_color_selector is marked as private in com.google.android.material:material:1.14.0-beta01 [PrivateResource]
     <stroke android:width="@dimen/mtrl_btn_stroke_size" android:color="@color/mtrl_btn_stroke_color_selector"/>
                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/material_outline_background.xml:4: Warning: The resource @dimen/mtrl_btn_stroke_size is marked as private in com.google.android.material:material:1.14.0-alpha10 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/material_outline_background.xml:4: Warning: The resource @dimen/mtrl_btn_stroke_size is marked as private in com.google.android.material:material:1.14.0-beta01 [PrivateResource]
     <stroke android:width="@dimen/mtrl_btn_stroke_size" android:color="@color/mtrl_btn_stroke_color_selector"/>
                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:662: Warning: The resource @style/ExoMediaButton is marked as private in androidx.media3:media3-ui:1.9.2 [PrivateResource]
@@ -576,10 +579,10 @@ conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = 
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:522: Warning: Formatting %d followed by words ("plugins"): This should probably be a plural rather than a string [PluralsCandidate]
     <string name="plugins_updated" formatted="true">Updated %d plugins</string>
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:619: Warning: Formatting %d followed by words ("released"): This should probably be a plural rather than a string [PluralsCandidate]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:620: Warning: Formatting %d followed by words ("released"): This should probably be a plural rather than a string [PluralsCandidate]
     <string name="subscription_episode_released">Episode %d released!</string>
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:725: Warning: Formatting %d followed by words ("plugin"): This should probably be a plural rather than a string [PluralsCandidate]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:726: Warning: Formatting %d followed by words ("plugin"): This should probably be a plural rather than a string [PluralsCandidate]
     <string name="plugins_updated_manually">Successfully updated %d plugin(s)!</string>
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1260,19 +1263,16 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:527: Warning: The resource R.string.view_public_repositories_button_short appears to be unused [UnusedResources]
     <string name="view_public_repositories_button_short">Public list</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:563: Warning: The resource R.string.skip_type_intro appears to be unused [UnusedResources]
-    <string name="skip_type_intro">Intro</string>
-            ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:630: Warning: The resource R.string.profiles appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:631: Warning: The resource R.string.profiles appears to be unused [UnusedResources]
     <string name="profiles">Profiles</string>
             ~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:649: Warning: The resource R.string.action_remove_from_favorites appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:650: Warning: The resource R.string.action_remove_from_favorites appears to be unused [UnusedResources]
     <string name="action_remove_from_favorites">Remove from favorites</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:758: Warning: The resource R.string.name appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:759: Warning: The resource R.string.name appears to be unused [UnusedResources]
     <string name="name">Name</string>
             ~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:760: Warning: The resource R.string.resolution_and_name appears to be unused [UnusedResources]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/values/strings.xml:761: Warning: The resource R.string.resolution_and_name appears to be unused [UnusedResources]
     <string name="resolution_and_name">Resolution and name</string>
             ~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values/styles.xml:267: Warning: The resource R.style.OverlayPrimaryColorBlue appears to be unused [UnusedResources]
