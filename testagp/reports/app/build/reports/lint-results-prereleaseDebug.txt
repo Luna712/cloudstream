@@ -277,44 +277,6 @@ targetSdk = "36"
    You should manually check whether the generated output is acceptable for
    those older devices.
 
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-cast than 1.9.2 is available: 1.10.0 [GradleDependency]
-media3 = "1.9.2"
-         ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-common than 1.9.2 is available: 1.10.0 [GradleDependency]
-media3 = "1.9.2"
-         ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-container than 1.9.2 is available: 1.10.0 [GradleDependency]
-media3 = "1.9.2"
-         ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-datasource-cronet than 1.9.2 is available: 1.10.0 [GradleDependency]
-media3 = "1.9.2"
-         ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-datasource-okhttp than 1.9.2 is available: 1.10.0 [GradleDependency]
-media3 = "1.9.2"
-         ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-exoplayer than 1.9.2 is available: 1.10.0 [GradleDependency]
-media3 = "1.9.2"
-         ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-exoplayer-dash than 1.9.2 is available: 1.10.0 [GradleDependency]
-media3 = "1.9.2"
-         ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-exoplayer-hls than 1.9.2 is available: 1.10.0 [GradleDependency]
-media3 = "1.9.2"
-         ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-session than 1.9.2 is available: 1.10.0 [GradleDependency]
-media3 = "1.9.2"
-         ~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:30: Warning: A newer version of androidx.media3:media3-ui than 1.9.2 is available: 1.10.0 [GradleDependency]
-media3 = "1.9.2"
-         ~~~~~~~
-
-   Explanation for issues of type "GradleDependency":
-   This detector looks for usages of libraries where the version you are using
-   is not the current stable release. Using older versions is fine, and there
-   are cases where you deliberately want to stick with an older version.
-   However, you may simply not be aware that a more recent version is
-   available, and that is what this lint check helps find.
-
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:8: Warning: A newer version of com.codingfeline.buildkonfig than 0.17.1 is available: 0.18.0 [NewerVersionAvailable]
 buildkonfigGradlePlugin = "0.17.1"
                           ~~~~~~~~
@@ -333,12 +295,6 @@ jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support min
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:21: Warning: A newer version of org.jsoup:jsoup than 1.21.2 is available: 1.22.1 [NewerVersionAvailable]
 jsoup = "1.21.2"
         ~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:33: Warning: A newer version of io.github.anilbeesetti:nextlib-media3ext than 1.9.1-0.11.0 is available: 1.9.3-0.12.0 [NewerVersionAvailable]
-nextlibMedia3 = "1.9.1-0.11.0"
-                ~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:33: Warning: A newer version of io.github.anilbeesetti:nextlib-mediainfo than 1.9.1-0.11.0 is available: 1.9.3-0.12.0 [NewerVersionAvailable]
-nextlibMedia3 = "1.9.1-0.11.0"
-                ~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:40: Warning: A newer version of org.mozilla:rhino than 1.8.1 is available: 1.9.1 [NewerVersionAvailable]
 rhino = { strictly = "1.8.1" } # Requires minSdk 26 or later beginning at version 1.9.0
                      ~~~~~~~
@@ -354,7 +310,38 @@ zipline = "1.24.0"
    MavenCentral dependency, and connects to the library every time, which
    makes it more flexible but also much slower.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt:376: Warning: The resource @string/exo_controls_stop_description is marked as private in androidx.media3:media3-ui:1.9.2 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt:1206: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.ExperimentalApi or @OptIn(markerClass = androidx.media3.common.util.ExperimentalApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
+                                experimentalSetLegacyDecodingEnabled(true)
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnsafeOptInUsageError":
+   This API has been flagged as opt-in with error-level severity.
+
+   Any declaration annotated with this marker is considered part of an
+   unstable or
+   otherwise non-standard API surface and its call sites should accept the
+   opt-in
+   aspect of it by using the @OptIn annotation, using the marker annotation
+   --
+   effectively causing further propagation of the opt-in aspect -- or
+   configuring
+   the UnsafeOptInUsageError check's options for project-wide opt-in.
+
+   To configure project-wide opt-in, specify the opt-in option value in
+   lint.xml
+   as a comma-delimited list of opted-in annotations:
+
+   <lint>
+       <issue id="UnsafeOptInUsageError">
+           <option name="opt-in" value="com.foo.ExperimentalBarAnnotation" />
+       </issue>
+   </lint>
+
+   Vendor: Android Open Source Project
+   Identifier: androidx.annotation.experimental
+   Feedback: https://issuetracker.google.com/issues/new?component=459778
+
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt:376: Warning: The resource @string/exo_controls_stop_description is marked as private in androidx.media3:media3-ui:1.10.0 [PrivateResource]
                             context.getString(androidx.media3.ui.R.string.exo_controls_stop_description),
                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/custom_preference_category_material.xml:29: Warning: The resource @layout/image_frame is marked as private in androidx.preference:preference:1.2.1 [PrivateResource]
@@ -411,10 +398,10 @@ zipline = "1.24.0"
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/drawable/material_outline_background.xml:4: Warning: The resource @dimen/mtrl_btn_stroke_size is marked as private in com.google.android.material:material:1.14.0-beta01 [PrivateResource]
     <stroke android:width="@dimen/mtrl_btn_stroke_size" android:color="@color/mtrl_btn_stroke_color_selector"/>
                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:662: Warning: The resource @style/ExoMediaButton is marked as private in androidx.media3:media3-ui:1.9.2 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:662: Warning: The resource @style/ExoMediaButton is marked as private in androidx.media3:media3-ui:1.10.0 [PrivateResource]
                     style="@style/ExoMediaButton"
                            ~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:802: Warning: The resource @style/ExoMediaButton is marked as private in androidx.media3:media3-ui:1.9.2 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:810: Warning: The resource @style/ExoMediaButton is marked as private in androidx.media3:media3-ui:1.10.0 [PrivateResource]
                     style="@style/ExoMediaButton"
                            ~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/anim/pop_enter.xml:5: Warning: The resource @integer/config_navAnimTime is marked as private in androidx.navigation:navigation-ui:2.9.7 [PrivateResource]
@@ -429,7 +416,7 @@ zipline = "1.24.0"
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/anim/pop_exit.xml:16: Warning: The resource @integer/config_navAnimTime is marked as private in androidx.navigation:navigation-ui:2.9.7 [PrivateResource]
             android:duration="@integer/config_navAnimTime"
                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:620: Warning: The resource @style/ExoMediaButton is marked as private in androidx.media3:media3-ui:1.9.2 [PrivateResource]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:620: Warning: The resource @style/ExoMediaButton is marked as private in androidx.media3:media3-ui:1.10.0 [PrivateResource]
                 style="@style/ExoMediaButton"
                        ~~~~~~~~~~~~~~~~~~~~~
 
@@ -760,7 +747,7 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/settings/extensions/ExtensionsFragment.kt:100: Warning: Unnecessary; SDK_INT is always >= 23 [ObsoleteSdkInt]
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt:2645: Warning: Unnecessary; SDK_INT is always >= 23 [ObsoleteSdkInt]
+/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt:2646: Warning: Unnecessary; SDK_INT is always >= 23 [ObsoleteSdkInt]
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt:266: Warning: Unnecessary; SDK_INT is always >= 23 [ObsoleteSdkInt]
@@ -812,16 +799,16 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:241: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
                     <LinearLayout
                      ~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:1082: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:1100: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
     <LinearLayout
      ~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:350: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:358: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
                     <LinearLayout
                      ~~~~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout-port/player_select_source_priority.xml:18: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
         <LinearLayout
          ~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:1055: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:1072: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
     <LinearLayout
      ~~~~~~~~~~~~
 
@@ -1430,15 +1417,15 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/fragment_result_tv.xml:674: Warning: fragment_result_tv.xml has more than 80 views, bad for performance [TooManyViews]
                 <androidx.recyclerview.widget.RecyclerView
                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:885: Warning: player_custom_layout.xml has more than 80 views, bad for performance [TooManyViews]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout.xml:892: Warning: player_custom_layout.xml has more than 80 views, bad for performance [TooManyViews]
                             <com.google.android.material.button.MaterialButton
                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:936: Warning: player_custom_layout_tv.xml has more than 80 views, bad for performance [TooManyViews]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:944: Warning: player_custom_layout_tv.xml has more than 80 views, bad for performance [TooManyViews]
                     <TextView
                      ~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:837: Warning: trailer_custom_layout.xml has more than 80 views, bad for performance [TooManyViews]
-                        <com.google.android.material.button.MaterialButton
-                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:848: Warning: trailer_custom_layout.xml has more than 80 views, bad for performance [TooManyViews]
+                    <LinearLayout
+                     ~~~~~~~~~~~~
 
    Explanation for issues of type "TooManyViews":
    Using too many views in a single layout is bad for performance. Consider
@@ -1626,13 +1613,13 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:35: Warning: Missing contentDescription attribute on image [ContentDescription]
                 <ImageView
                  ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:81: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:89: Warning: Missing contentDescription attribute on image [ContentDescription]
         <ImageView
          ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:298: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:306: Warning: Missing contentDescription attribute on image [ContentDescription]
         <ImageView
          ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:368: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_custom_layout_tv.xml:376: Warning: Missing contentDescription attribute on image [ContentDescription]
                         <ImageView
                          ~~~~~~~~~
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/player_prioritize_item.xml:17: Warning: Missing contentDescription attribute on image [ContentDescription]
@@ -1698,7 +1685,7 @@ class SSLTrustManager : X509TrustManager {
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:662: Warning: Missing contentDescription attribute on image [ContentDescription]
         <ImageView
          ~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:788: Warning: Missing contentDescription attribute on image [ContentDescription]
+/home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/trailer_custom_layout.xml:805: Warning: Missing contentDescription attribute on image [ContentDescription]
                 <ImageView
                  ~~~~~~~~~
 
@@ -1843,4 +1830,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-4 errors, 454 warnings, 2 hints
+5 errors, 442 warnings, 2 hints

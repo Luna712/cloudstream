@@ -23,6 +23,7 @@ com.lagradost.cloudstream3.ui.download.queue
 com.lagradost.cloudstream3.ui.home
 com.lagradost.cloudstream3.ui.library
 com.lagradost.cloudstream3.ui.player
+com.lagradost.cloudstream3.ui.player.live
 com.lagradost.cloudstream3.ui.player.source_priority
 com.lagradost.cloudstream3.ui.quicksearch
 com.lagradost.cloudstream3.ui.result

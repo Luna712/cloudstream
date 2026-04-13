@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 4 errors, 454 warnings and 2 hints</span>
+      <span class="mdl-layout-title">Lint Report: 5 errors, 442 warnings and 2 hints</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Fri Apr 10 21:51:48 UTC 2026 by AGP (9.1.0)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Mon Apr 13 01:26:06 UTC 2026 by AGP (9.1.0)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -198,8 +198,8 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#DefaultUncaughtExceptionDelegation"><i class="material-icons warning-icon">warning</i>Missing default uncaught exception handler delegation (1)</a>
       <a class="mdl-navigation__link" href="#PictureInPictureIssue"><i class="material-icons warning-icon">warning</i>Picture In Picture best practices not followed (1)</a>
       <a class="mdl-navigation__link" href="#VectorRaster"><i class="material-icons warning-icon">warning</i>Vector Image Generation (15)</a>
-      <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (10)</a>
-      <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (10)</a>
+      <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (8)</a>
+      <a class="mdl-navigation__link" href="#UnsafeOptInUsageError"><i class="material-icons error-icon">error</i>Unsafe opt-in usage intended to be error-level severity (1)</a>
       <a class="mdl-navigation__link" href="#PrivateResource"><i class="material-icons warning-icon">warning</i>Using private resources (26)</a>
       <a class="mdl-navigation__link" href="#SwitchIntDef"><i class="material-icons warning-icon">warning</i>Missing @IntDef in Switch (2)</a>
       <a class="mdl-navigation__link" href="#Aligned16KB"><i class="material-icons warning-icon">warning</i>Native library dependency not 16 KB aligned (6)</a>
@@ -283,11 +283,11 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">15</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#VectorRaster">VectorRaster</a>: Vector Image Generation</td></tr>
 <tr>
-<td class="countColumn">10</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
-<a href="#GradleDependency">GradleDependency</a>: Obsolete Gradle Dependency</td></tr>
-<tr>
-<td class="countColumn">10</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">8</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#NewerVersionAvailable">NewerVersionAvailable</a>: Newer Library Versions Available</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
+<a href="#UnsafeOptInUsageError">UnsafeOptInUsageError</a>: Unsafe opt-in usage intended to be error-level severity</td></tr>
 <tr>
 <td class="countColumn">26</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#PrivateResource">PrivateResource</a>: Using private resources</td></tr>
@@ -1261,145 +1261,6 @@ However, there are some limitations to this raster image generation, and this li
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="VectorRasterCardLink" onclick="hideid('VectorRasterCard');">
 Dismiss</button>            </div>
             </div>
-          </section><a name="GradleDependency"></a>
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="GradleDependencyCard" style="display: block;">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Obsolete Gradle Dependency</h2>
-  </div>
-              <div class="mdl-card__supporting-text">
-<div class="issue">
-<div class="warningslist">
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-cast than 1.9.2 is available: 1.10.0</span><br /><pre class="errorlines">
-<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
-<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
-<span class="lineno">  29 </span>material = "1.14.0-beta01"
-<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.2"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  31 </span>navigationKtx = "2.9.7"
-<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
-<span class="lineno">  33 </span>nextlibMedia3 = "1.9.1-0.11.0"
-</pre>
-
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-common than 1.9.2 is available: 1.10.0</span><br /><pre class="errorlines">
-<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
-<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
-<span class="lineno">  29 </span>material = "1.14.0-beta01"
-<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.2"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  31 </span>navigationKtx = "2.9.7"
-<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
-<span class="lineno">  33 </span>nextlibMedia3 = "1.9.1-0.11.0"
-</pre>
-
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-container than 1.9.2 is available: 1.10.0</span><br /><pre class="errorlines">
-<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
-<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
-<span class="lineno">  29 </span>material = "1.14.0-beta01"
-<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.2"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  31 </span>navigationKtx = "2.9.7"
-<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
-<span class="lineno">  33 </span>nextlibMedia3 = "1.9.1-0.11.0"
-</pre>
-
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-datasource-cronet than 1.9.2 is available: 1.10.0</span><br /><pre class="errorlines">
-<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
-<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
-<span class="lineno">  29 </span>material = "1.14.0-beta01"
-<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.2"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  31 </span>navigationKtx = "2.9.7"
-<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
-<span class="lineno">  33 </span>nextlibMedia3 = "1.9.1-0.11.0"
-</pre>
-
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-datasource-okhttp than 1.9.2 is available: 1.10.0</span><br /><pre class="errorlines">
-<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
-<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
-<span class="lineno">  29 </span>material = "1.14.0-beta01"
-<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.2"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  31 </span>navigationKtx = "2.9.7"
-<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
-<span class="lineno">  33 </span>nextlibMedia3 = "1.9.1-0.11.0"
-</pre>
-
-<button class="mdl-button mdl-js-button mdl-button--primary" id="GradleDependencyDivLink" onclick="reveal('GradleDependencyDiv');" />+ 5 More Occurrences...</button>
-<div id="GradleDependencyDiv" style="display: none">
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-exoplayer than 1.9.2 is available: 1.10.0</span><br /><pre class="errorlines">
-<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
-<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
-<span class="lineno">  29 </span>material = "1.14.0-beta01"
-<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.2"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  31 </span>navigationKtx = "2.9.7"
-<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
-<span class="lineno">  33 </span>nextlibMedia3 = "1.9.1-0.11.0"
-</pre>
-
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-exoplayer-dash than 1.9.2 is available: 1.10.0</span><br /><pre class="errorlines">
-<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
-<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
-<span class="lineno">  29 </span>material = "1.14.0-beta01"
-<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.2"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  31 </span>navigationKtx = "2.9.7"
-<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
-<span class="lineno">  33 </span>nextlibMedia3 = "1.9.1-0.11.0"
-</pre>
-
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-exoplayer-hls than 1.9.2 is available: 1.10.0</span><br /><pre class="errorlines">
-<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
-<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
-<span class="lineno">  29 </span>material = "1.14.0-beta01"
-<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.2"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  31 </span>navigationKtx = "2.9.7"
-<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
-<span class="lineno">  33 </span>nextlibMedia3 = "1.9.1-0.11.0"
-</pre>
-
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-session than 1.9.2 is available: 1.10.0</span><br /><pre class="errorlines">
-<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
-<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
-<span class="lineno">  29 </span>material = "1.14.0-beta01"
-<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.2"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  31 </span>navigationKtx = "2.9.7"
-<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
-<span class="lineno">  33 </span>nextlibMedia3 = "1.9.1-0.11.0"
-</pre>
-
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-ui than 1.9.2 is available: 1.10.0</span><br /><pre class="errorlines">
-<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
-<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
-<span class="lineno">  29 </span>material = "1.14.0-beta01"
-<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.2"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  31 </span>navigationKtx = "2.9.7"
-<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
-<span class="lineno">  33 </span>nextlibMedia3 = "1.9.1-0.11.0"
-</pre>
-
-</div>
-</div>
-<div class="metadata"><div class="explanation" id="explanationGradleDependency" style="display: none;">
-This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
-To suppress this error, use the issue id "GradleDependency" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
-<br/></div>
-</div>
-</div>
-<div class="chips">
-<span class="mdl-chip">
-    <span class="mdl-chip__text">GradleDependency</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Correctness</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Warning</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Priority 4/10</span>
-</span>
-</div>
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationGradleDependencyLink" onclick="reveal('explanationGradleDependency');">
-Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="GradleDependencyCardLink" onclick="hideid('GradleDependencyCard');">
-Dismiss</button>            </div>
-            </div>
           </section><a name="NewerVersionAvailable"></a>
 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="NewerVersionAvailableCard" style="display: block;">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
@@ -1459,8 +1320,6 @@ Dismiss</button>            </div>
 <span class="lineno">  22 </span>junit = "4.13.2"
 </pre>
 
-<button class="mdl-button mdl-js-button mdl-button--primary" id="NewerVersionAvailableDivLink" onclick="reveal('NewerVersionAvailableDiv');" />+ 5 More Occurrences...</button>
-<div id="NewerVersionAvailableDiv" style="display: none">
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:21</span>: <span class="message">A newer version of org.jsoup:jsoup than 1.21.2 is available: 1.22.1</span><br /><pre class="errorlines">
 <span class="lineno">  18 </span>fuzzywuzzy = "1.4.0"
 <span class="lineno">  19 </span>jacksonModuleKotlin = { strictly = "2.13.1" } # Later versions don't support minSdk &lt;26 (Crashes on Android TV's and FireSticks)
@@ -1469,26 +1328,6 @@ Dismiss</button>            </div>
 <span class="lineno">  22 </span>junit = "4.13.2"
 <span class="lineno">  23 </span>junitKtx = "1.3.0"
 <span class="lineno">  24 </span>junitVersion = "1.3.0"
-</pre>
-
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:33</span>: <span class="message">A newer version of io.github.anilbeesetti:nextlib-media3ext than 1.9.1-0.11.0 is available: 1.9.3-0.12.0</span><br /><pre class="errorlines">
-<span class="lineno">  30 </span>media3 = "1.9.2"
-<span class="lineno">  31 </span>navigationKtx = "2.9.7"
-<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
-<span class="caretline"><span class="lineno">  33 </span>nextlibMedia3 = <span class="warning">"1.9.1-0.11.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  34 </span>nicehttp = "0.4.17"
-<span class="lineno">  35 </span>overlappingpanels = "0.1.5"
-<span class="lineno">  36 </span>paletteKtx = "1.0.0"
-</pre>
-
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:33</span>: <span class="message">A newer version of io.github.anilbeesetti:nextlib-mediainfo than 1.9.1-0.11.0 is available: 1.9.3-0.12.0</span><br /><pre class="errorlines">
-<span class="lineno">  30 </span>media3 = "1.9.2"
-<span class="lineno">  31 </span>navigationKtx = "2.9.7"
-<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
-<span class="caretline"><span class="lineno">  33 </span>nextlibMedia3 = <span class="warning">"1.9.1-0.11.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  34 </span>nicehttp = "0.4.17"
-<span class="lineno">  35 </span>overlappingpanels = "0.1.5"
-<span class="lineno">  36 </span>paletteKtx = "1.0.0"
 </pre>
 
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:40</span>: <span class="message">A newer version of org.mozilla:rhino than 1.8.1 is available: 1.9.1</span><br /><pre class="errorlines">
@@ -1511,7 +1350,6 @@ Dismiss</button>            </div>
 <span class="lineno">  51 </span>jdkToolchain = "17"
 </pre>
 
-</div>
 </div>
 <div class="metadata"><div class="explanation" id="explanationNewerVersionAvailable" style="display: none;">
 This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the <code>GradleDependency</code> check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also <b>much</b> slower.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
@@ -1539,6 +1377,74 @@ To suppress this error, use the issue id "NewerVersionAvailable" as explained in
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="NewerVersionAvailableCardLink" onclick="hideid('NewerVersionAvailableCard');">
 Dismiss</button>            </div>
             </div>
+          </section><a name="UnsafeOptInUsageError"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="UnsafeOptInUsageErrorCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Unsafe opt-in usage intended to be error-level severity</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:1206</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.ExperimentalApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.ExperimentalApi.class)</code></span><br /><pre class="errorlines">
+<span class="lineno"> 1203 </span>       <span class="comment">// Required to make the decoder work with old subtitles</span>
+<span class="lineno"> 1204 </span>       <span class="comment">// Upgrade CustomSubtitleDecoderFactory when media3 supports it</span>
+<span class="lineno"> 1205 </span>       <span class="annotation">@Suppress</span>(<span class="string">"DEPRECATION"</span>)
+<span class="caretline"><span class="lineno"> 1206 </span>       <span class="error">experimentalSetLegacyDecodingEnabled</span>(<span class="keyword">true</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 1207 </span>   }.also { renderer ->
+<span class="lineno"> 1208 </span>       currentTextRenderer = renderer
+<span class="lineno"> 1209 </span>       currentSubtitleDecoder = decoder
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationUnsafeOptInUsageError" style="display: none;">
+This API has been flagged as opt-in with error-level severity.<br/>
+<br/>
+Any declaration annotated with this marker is considered part of an unstable or<br/>
+otherwise non-standard API surface and its call sites should accept the opt-in<br/>
+aspect of it by using the <code>@OptIn</code> annotation, using the marker annotation --<br/>
+effectively causing further propagation of the opt-in aspect -- or configuring<br/>
+the <code>UnsafeOptInUsageError</code> check's options for project-wide opt-in.<br/>
+<br/>
+To configure project-wide opt-in, specify the <code>opt-in</code> option value in <code>lint.xml</code><br/>
+as a comma-delimited list of opted-in annotations:<br/>
+
+<pre>
+&lt;lint>
+    &lt;issue id="UnsafeOptInUsageError">
+        &lt;option name="opt-in" value="com.foo.ExperimentalBarAnnotation" />
+    &lt;/issue>
+&lt;/lint>
+</pre>
+<br/>To suppress this error, use the issue id "UnsafeOptInUsageError" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="vendor">
+Vendor: Android Open Source Project<br/>
+Identifier: androidx.annotation.experimental<br/>
+Feedback: <a href="https://issuetracker.google.com/issues/new?component=459778">https://issuetracker.google.com/issues/new?component=459778</a><br/>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">UnsafeOptInUsageError</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Error</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 4/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationUnsafeOptInUsageErrorLink" onclick="reveal('explanationUnsafeOptInUsageError');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="UnsafeOptInUsageErrorCardLink" onclick="hideid('UnsafeOptInUsageErrorCard');">
+Dismiss</button>            </div>
+            </div>
           </section><a name="PrivateResource"></a>
 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="PrivateResourceCard" style="display: block;">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
@@ -1548,7 +1454,7 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:376</span>: <span class="message">The resource <code>@string/exo_controls_stop_description</code> is marked as private in androidx.media3:media3-ui:1.9.2</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:376</span>: <span class="message">The resource <code>@string/exo_controls_stop_description</code> is marked as private in androidx.media3:media3-ui:1.10.0</span><br /><pre class="errorlines">
 <span class="lineno">  373 </span>  <span class="keyword">return</span> mutableMapOf(
 <span class="lineno">  374 </span>      STOP_ACTION to NotificationCompat.Action(
 <span class="lineno">  375 </span>          R.drawable.baseline_stop_24,
@@ -1720,7 +1626,7 @@ Dismiss</button>            </div>
 <span class="caretline"><span class="lineno"> 4 </span>    <span class="tag">&lt;stroke</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">width</span>=<span class="value">"</span><span class="warning"><span class="value">@dimen/mtrl_btn_stroke_size</span></span><span class="value">"</span> <span class="prefix">android:</span><span class="attribute">color</span>=<span class="value">"@color/mtrl_btn_stroke_color_selector"</span>/></span>
 <span class="lineno"> 5 </span><span class="tag">&lt;/shape></span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:662</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.9.2</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:662</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.10.0</span><br /><pre class="errorlines">
 <span class="lineno">  659 </span>
 <span class="lineno">  660 </span>                <span class="tag">&lt;ImageButton</span><span class="attribute">
 </span><span class="lineno">  661 </span><span class="attribute">                    </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@id/exo_repeat_toggle"</span>
@@ -1730,14 +1636,14 @@ Dismiss</button>            </div>
 <span class="lineno">  665 </span>                    <span class="prefix">tools:</span><span class="attribute">ignore</span>=<span class="value">"ContentDescription"</span> />
 </pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:802</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.9.2</span><br /><pre class="errorlines">
-<span class="lineno">  799 </span>
-<span class="lineno">  800 </span>                <span class="tag">&lt;ImageButton</span><span class="attribute">
-</span><span class="lineno">  801 </span><span class="attribute">                    </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@id/exo_repeat_toggle"</span>
-<span class="caretline"><span class="lineno">  802 </span>                    <span class="attribute">style</span>=<span class="value">"</span><span class="warning"><span class="value">@style/ExoMediaButton</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  803 </span>                    <span class="prefix">android:</span><span class="attribute">tintMode</span>=<span class="value">"src_in"</span>
-<span class="lineno">  804 </span>                    <span class="prefix">app:</span><span class="attribute">tint</span>=<span class="value">"?attr/colorPrimaryDark"</span>
-<span class="lineno">  805 </span>                    <span class="prefix">tools:</span><span class="attribute">ignore</span>=<span class="value">"ContentDescription"</span> />
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:810</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.10.0</span><br /><pre class="errorlines">
+<span class="lineno">  807 </span>
+<span class="lineno">  808 </span>                <span class="tag">&lt;ImageButton</span><span class="attribute">
+</span><span class="lineno">  809 </span><span class="attribute">                    </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@id/exo_repeat_toggle"</span>
+<span class="caretline"><span class="lineno">  810 </span>                    <span class="attribute">style</span>=<span class="value">"</span><span class="warning"><span class="value">@style/ExoMediaButton</span></span><span class="value">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  811 </span>                    <span class="prefix">android:</span><span class="attribute">tintMode</span>=<span class="value">"src_in"</span>
+<span class="lineno">  812 </span>                    <span class="prefix">app:</span><span class="attribute">tint</span>=<span class="value">"?attr/colorPrimaryDark"</span>
+<span class="lineno">  813 </span>                    <span class="prefix">tools:</span><span class="attribute">ignore</span>=<span class="value">"ContentDescription"</span> />
 </pre>
 
 <span class="location"><a href="../../src/main/res/anim/pop_enter.xml">../../src/main/res/anim/pop_enter.xml</a>:5</span>: <span class="message">The resource <code>@integer/config_navAnimTime</code> is marked as private in androidx.navigation:navigation-ui:2.9.7</span><br /><pre class="errorlines">
@@ -1776,7 +1682,7 @@ Dismiss</button>            </div>
 <span class="lineno"> 18 </span>            <span class="prefix">android:</span><span class="attribute">toAlpha</span>=<span class="value">"0.0"</span>/>
 <span class="lineno"> 19 </span><span class="tag">&lt;/set></span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:620</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.9.2</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:620</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.10.0</span><br /><pre class="errorlines">
 <span class="lineno">  617 </span>
 <span class="lineno">  618 </span>            <span class="tag">&lt;ImageButton</span><span class="attribute">
 </span><span class="lineno">  619 </span><span class="attribute">                </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@id/exo_repeat_toggle"</span>
@@ -2962,14 +2868,14 @@ Dismiss</button>            </div>
 <span class="lineno"> 102 </span>                    <span class="keyword">val</span> dy = scrollY - oldScrollY
 <span class="lineno"> 103 </span>                    <span class="keyword">if</span> (dy > <span class="number">0</span>) { <span class="comment">// check for scroll down</span></pre>
 
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt</a>:2645</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
-<span class="lineno"> 2642 </span>                <span class="keyword">return</span><span class="annotation">@setOnTouchListener</span> handleMotionEvent(callView, event)
-<span class="lineno"> 2643 </span>            }
-<span class="lineno"> 2644 </span>
-<span class="caretline"><span class="lineno"> 2645 </span>            <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 2646 </span>                playerControlsScroll.setOnScrollChangeListener { _, _, _, _, _ ->
-<span class="lineno"> 2647 </span>                    autoHide()
-<span class="lineno"> 2648 </span>                }
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/FullScreenPlayer.kt</a>:2646</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
+<span class="lineno"> 2643 </span>                <span class="keyword">return</span><span class="annotation">@setOnTouchListener</span> handleMotionEvent(callView, event)
+<span class="lineno"> 2644 </span>            }
+<span class="lineno"> 2645 </span>
+<span class="caretline"><span class="lineno"> 2646 </span>            <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.M</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 2647 </span>                playerControlsScroll.setOnScrollChangeListener { _, _, _, _, _ ->
+<span class="lineno"> 2648 </span>                    autoHide()
+<span class="lineno"> 2649 </span>                }
 </pre>
 
 <span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:266</span>: <span class="message">Unnecessary; <code>SDK_INT</code> is always >= 23</span><br /><pre class="errorlines">
@@ -3152,23 +3058,23 @@ Dismiss</button>            </div>
 
 <button class="mdl-button mdl-js-button mdl-button--primary" id="UseCompoundDrawablesDivLink" onclick="reveal('UseCompoundDrawablesDiv');" />+ 4 More Occurrences...</button>
 <div id="UseCompoundDrawablesDiv" style="display: none">
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:1082</span>: <span class="message">This tag and its children can be replaced by one <code>&lt;TextView/></code> and a compound drawable</span><br /><pre class="errorlines">
-<span class="lineno"> 1079 </span>        <span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@null"</span>
-<span class="lineno"> 1080 </span>        <span class="prefix">android:</span><span class="attribute">backgroundTint</span>=<span class="value">"@color/skipOpTransparent"</span>
-<span class="lineno"> 1081 </span>        <span class="prefix">tools:</span><span class="attribute">visibility</span>=<span class="value">"visible"</span> />
-<span class="caretline"><span class="lineno"> 1082 </span>    <span class="tag">&lt;</span><span class="warning"><span class="tag">LinearLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno"> 1083 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_episodes_button_root"</span>
-<span class="lineno"> 1084 </span>        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
-<span class="lineno"> 1085 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:1100</span>: <span class="message">This tag and its children can be replaced by one <code>&lt;TextView/></code> and a compound drawable</span><br /><pre class="errorlines">
+<span class="lineno"> 1097 </span>        <span class="prefix">android:</span><span class="attribute">foreground</span>=<span class="value">"@null"</span>
+<span class="lineno"> 1098 </span>        <span class="prefix">android:</span><span class="attribute">backgroundTint</span>=<span class="value">"@color/skipOpTransparent"</span>
+<span class="lineno"> 1099 </span>        <span class="prefix">tools:</span><span class="attribute">visibility</span>=<span class="value">"visible"</span> />
+<span class="caretline"><span class="lineno"> 1100 </span>    <span class="tag">&lt;</span><span class="warning"><span class="tag">LinearLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno"> 1101 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_episodes_button_root"</span>
+<span class="lineno"> 1102 </span>        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
+<span class="lineno"> 1103 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:350</span>: <span class="message">This tag and its children can be replaced by one <code>&lt;TextView/></code> and a compound drawable</span><br /><pre class="errorlines">
-<span class="lineno">  347 </span>                    <span class="prefix">android:</span><span class="attribute">layout_marginEnd</span>=<span class="value">"32dp"</span>
-<span class="lineno">  348 </span>                    <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"vertical"</span>>
-<span class="lineno">  349 </span>
-<span class="caretline"><span class="lineno">  350 </span>                    <span class="tag">&lt;</span><span class="warning"><span class="tag">LinearLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  351 </span><span class="attribute">                        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_video_title_holder"</span>
-<span class="lineno">  352 </span>                        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
-<span class="lineno">  353 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:358</span>: <span class="message">This tag and its children can be replaced by one <code>&lt;TextView/></code> and a compound drawable</span><br /><pre class="errorlines">
+<span class="lineno">  355 </span>                    <span class="prefix">android:</span><span class="attribute">layout_marginEnd</span>=<span class="value">"32dp"</span>
+<span class="lineno">  356 </span>                    <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"vertical"</span>>
+<span class="lineno">  357 </span>
+<span class="caretline"><span class="lineno">  358 </span>                    <span class="tag">&lt;</span><span class="warning"><span class="tag">LinearLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  359 </span><span class="attribute">                        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_video_title_holder"</span>
+<span class="lineno">  360 </span>                        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
+<span class="lineno">  361 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
 
 <span class="location"><a href="../../src/main/res/layout-port/player_select_source_priority.xml">../../src/main/res/layout-port/player_select_source_priority.xml</a>:18</span>: <span class="message">This tag and its children can be replaced by one <code>&lt;TextView/></code> and a compound drawable</span><br /><pre class="errorlines">
 <span class="lineno">  15 </span>        <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"vertical"</span>
@@ -3179,14 +3085,14 @@ Dismiss</button>            </div>
 <span class="lineno">  20 </span>            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"match_parent"</span>
 <span class="lineno">  21 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:1055</span>: <span class="message">This tag and its children can be replaced by one <code>&lt;TextView/></code> and a compound drawable</span><br /><pre class="errorlines">
-<span class="lineno"> 1052 </span>        <span class="prefix">android:</span><span class="attribute">backgroundTint</span>=<span class="value">"@color/skipOpTransparent"</span>
-<span class="lineno"> 1053 </span>        <span class="prefix">tools:</span><span class="attribute">visibility</span>=<span class="value">"visible"</span> />
-<span class="lineno"> 1054 </span>
-<span class="caretline"><span class="lineno"> 1055 </span>    <span class="tag">&lt;</span><span class="warning"><span class="tag">LinearLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno"> 1056 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_episodes_button_root"</span>
-<span class="lineno"> 1057 </span>        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
-<span class="lineno"> 1058 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:1072</span>: <span class="message">This tag and its children can be replaced by one <code>&lt;TextView/></code> and a compound drawable</span><br /><pre class="errorlines">
+<span class="lineno"> 1069 </span>        <span class="prefix">android:</span><span class="attribute">backgroundTint</span>=<span class="value">"@color/skipOpTransparent"</span>
+<span class="lineno"> 1070 </span>        <span class="prefix">tools:</span><span class="attribute">visibility</span>=<span class="value">"visible"</span> />
+<span class="lineno"> 1071 </span>
+<span class="caretline"><span class="lineno"> 1072 </span>    <span class="tag">&lt;</span><span class="warning"><span class="tag">LinearLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno"> 1073 </span><span class="attribute">        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_episodes_button_root"</span>
+<span class="lineno"> 1074 </span>        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
+<span class="lineno"> 1075 </span>        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
 
 </div>
 </div>
@@ -4106,32 +4012,32 @@ Dismiss</button>            </div>
 <span class="lineno">  676 </span>                    <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
 <span class="lineno">  677 </span>                    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"wrap_content"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:885</span>: <span class="message"><code>player_custom_layout.xml</code> has more than 80 views, bad for performance</span><br /><pre class="errorlines">
-<span class="lineno">  882 </span>                        <span class="prefix">app:</span><span class="attribute">icon</span>=<span class="value">"@drawable/ic_outline_subtitles_24"</span>
-<span class="lineno">  883 </span>                        <span class="prefix">tools:</span><span class="attribute">visibility</span>=<span class="value">"visible"</span> />
-<span class="lineno">  884 </span>
-<span class="caretline"><span class="lineno">  885 </span>                    <span class="tag">&lt;</span><span class="warning"><span class="tag">com.google.android.material.button.MaterialButton</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  886 </span><span class="attribute">                        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_sources_btt"</span>
-<span class="lineno">  887 </span>                        <span class="attribute">style</span>=<span class="value">"@style/VideoButton"</span>
-<span class="lineno">  888 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"40dp"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:892</span>: <span class="message"><code>player_custom_layout.xml</code> has more than 80 views, bad for performance</span><br /><pre class="errorlines">
+<span class="lineno">  889 </span>                        <span class="prefix">app:</span><span class="attribute">icon</span>=<span class="value">"@drawable/ic_baseline_speed_24"</span>
+<span class="lineno">  890 </span>                        <span class="prefix">tools:</span><span class="attribute">text</span>=<span class="value">"Speed"</span> />
+<span class="lineno">  891 </span>
+<span class="caretline"><span class="lineno">  892 </span>                    <span class="tag">&lt;</span><span class="warning"><span class="tag">com.google.android.material.button.MaterialButton</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  893 </span><span class="attribute">                        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_subtitle_offset_btt"</span>
+<span class="lineno">  894 </span>                        <span class="attribute">style</span>=<span class="value">"@style/VideoButton"</span>
+<span class="lineno">  895 </span>                        <span class="prefix">android:</span><span class="attribute">nextFocusLeft</span>=<span class="value">"@id/player_speed_btt"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:936</span>: <span class="message"><code>player_custom_layout_tv.xml</code> has more than 80 views, bad for performance</span><br /><pre class="errorlines">
-<span class="lineno">  933 </span>                        <span class="prefix">app:</span><span class="attribute">scrubber_enabled_size</span>=<span class="value">"24dp"</span>
-<span class="lineno">  934 </span>                        <span class="prefix">app:</span><span class="attribute">unplayed_color</span>=<span class="value">"@color/videoProgress"</span> />
-<span class="lineno">  935 </span>
-<span class="caretline"><span class="lineno">  936 </span>                    <span class="tag">&lt;</span><span class="warning"><span class="tag">TextView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  937 </span><span class="attribute">                        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@id/exo_duration"</span>
-<span class="lineno">  938 </span>                        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
-<span class="lineno">  939 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"30dp"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:944</span>: <span class="message"><code>player_custom_layout_tv.xml</code> has more than 80 views, bad for performance</span><br /><pre class="errorlines">
+<span class="lineno">  941 </span>                        <span class="prefix">app:</span><span class="attribute">scrubber_enabled_size</span>=<span class="value">"24dp"</span>
+<span class="lineno">  942 </span>                        <span class="prefix">app:</span><span class="attribute">unplayed_color</span>=<span class="value">"@color/videoProgress"</span> />
+<span class="lineno">  943 </span>
+<span class="caretline"><span class="lineno">  944 </span>                    <span class="tag">&lt;</span><span class="warning"><span class="tag">TextView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  945 </span><span class="attribute">                        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@id/exo_duration"</span>
+<span class="lineno">  946 </span>                        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
+<span class="lineno">  947 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"30dp"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:837</span>: <span class="message"><code>trailer_custom_layout.xml</code> has more than 80 views, bad for performance</span><br /><pre class="errorlines">
-<span class="lineno">  834 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span>
-<span class="lineno">  835 </span>                        <span class="prefix">android:</span><span class="attribute">orientation</span>=<span class="value">"horizontal"</span>>
-<span class="lineno">  836 </span>
-<span class="caretline"><span class="lineno">  837 </span>                        <span class="tag">&lt;</span><span class="warning"><span class="tag">com.google.android.material.button.MaterialButton</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  838 </span><span class="attribute">                            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_resize_btt"</span>
-<span class="lineno">  839 </span>                            <span class="attribute">style</span>=<span class="value">"@style/VideoButton"</span>
-<span class="lineno">  840 </span>                            <span class="prefix">android:</span><span class="attribute">nextFocusLeft</span>=<span class="value">"@id/player_lock"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:848</span>: <span class="message"><code>trailer_custom_layout.xml</code> has more than 80 views, bad for performance</span><br /><pre class="errorlines">
+<span class="lineno">  845 </span>
+<span class="lineno">  846 </span>                        <span class="prefix">app:</span><span class="attribute">iconSize</span>=<span class="value">"30dp"</span> />
+<span class="lineno">  847 </span>
+<span class="caretline"><span class="lineno">  848 </span>                    <span class="tag">&lt;</span><span class="warning"><span class="tag">LinearLayout</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  849 </span><span class="attribute">                        </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_lock_holder"</span>
+<span class="lineno">  850 </span>                        <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
+<span class="lineno">  851 </span>                        <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span></pre>
 
 </div>
 <div class="metadata"><div class="explanation" id="explanationTooManyViews" style="display: none;">
@@ -4904,32 +4810,32 @@ Dismiss</button>            </div>
 <span class="lineno">   37 </span>                    <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"wrap_content"</span>
 <span class="lineno">   38 </span>                    <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"match_parent"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:81</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
-<span class="lineno">   78 </span>          <span class="prefix">tools:</span><span class="attribute">text</span>=<span class="value">"Brave rabbit cop Judy Hopps and her friend, the fox Nick Wilde, team up again to crack a new case."</span>/>
-<span class="lineno">   79 </span>
-<span class="lineno">   80 </span>  <span class="tag">&lt;/LinearLayout></span>
-<span class="caretline"><span class="lineno">   81 </span>  <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">   82 </span><span class="attribute">      </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/video_outline"</span>
-<span class="lineno">   83 </span>      <span class="prefix">android:</span><span class="attribute">visibility</span>=<span class="value">"gone"</span>
-<span class="lineno">   84 </span>      <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@drawable/video_outline"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:89</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
+<span class="lineno">   86 </span>                <span class="prefix">tools:</span><span class="attribute">text</span>=<span class="value">"Brave rabbit cop Judy Hopps..."</span>/>
+<span class="lineno">   87 </span>
+<span class="lineno">   88 </span>        <span class="tag">&lt;/LinearLayout></span>
+<span class="caretline"><span class="lineno">   89 </span>        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">   90 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/video_outline"</span>
+<span class="lineno">   91 </span>            <span class="prefix">android:</span><span class="attribute">visibility</span>=<span class="value">"gone"</span>
+<span class="lineno">   92 </span>            <span class="prefix">android:</span><span class="attribute">src</span>=<span class="value">"@drawable/video_outline"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:298</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
-<span class="lineno">  295 </span>            <span class="prefix">android:</span><span class="attribute">visibility</span>=<span class="value">"gone"</span> />
-<span class="lineno">  296 </span>
-<span class="lineno">  297 </span>        <span class="comment">&lt;!-- atm this is useless, however it might be used for PIP one day? --></span>
-<span class="caretline"><span class="lineno">  298 </span>        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  299 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_fullscreen"</span>
-<span class="lineno">  300 </span>            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"30dp"</span>
-<span class="lineno">  301 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"30dp"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:306</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
+<span class="lineno">  303 </span>            <span class="prefix">android:</span><span class="attribute">visibility</span>=<span class="value">"gone"</span> />
+<span class="lineno">  304 </span>
+<span class="lineno">  305 </span>        <span class="comment">&lt;!-- atm this is useless, however it might be used for PIP one day? --></span>
+<span class="caretline"><span class="lineno">  306 </span>        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  307 </span><span class="attribute">            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/player_fullscreen"</span>
+<span class="lineno">  308 </span>            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"30dp"</span>
+<span class="lineno">  309 </span>            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"30dp"</span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:368</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
-<span class="lineno">  365 </span>                            <span class="prefix">android:</span><span class="attribute">textSize</span>=<span class="value">"16sp"</span>
-<span class="lineno">  366 </span>                            <span class="prefix">android:</span><span class="attribute">textStyle</span>=<span class="value">"bold"</span>
-<span class="lineno">  367 </span>                            <span class="prefix">tools:</span><span class="attribute">text</span>=<span class="value">"Hello world"</span> />
-<span class="caretline"><span class="lineno">  368 </span>                        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
-</span><span class="lineno">  369 </span><span class="attribute">                            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/offline_pin"</span>
-<span class="lineno">  370 </span>                            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"18dp"</span>
-<span class="lineno">  371 </span>                            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"18dp"</span></pre>
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:376</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
+<span class="lineno">  373 </span>                            <span class="prefix">android:</span><span class="attribute">textSize</span>=<span class="value">"16sp"</span>
+<span class="lineno">  374 </span>                            <span class="prefix">android:</span><span class="attribute">textStyle</span>=<span class="value">"bold"</span>
+<span class="lineno">  375 </span>                            <span class="prefix">tools:</span><span class="attribute">text</span>=<span class="value">"Hello world"</span> />
+<span class="caretline"><span class="lineno">  376 </span>                        <span class="tag">&lt;</span><span class="warning"><span class="tag">ImageView</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="attribute">
+</span><span class="lineno">  377 </span><span class="attribute">                            </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@+id/offline_pin"</span>
+<span class="lineno">  378 </span>                            <span class="prefix">android:</span><span class="attribute">layout_width</span>=<span class="value">"18dp"</span>
+<span class="lineno">  379 </span>                            <span class="prefix">android:</span><span class="attribute">layout_height</span>=<span class="value">"18dp"</span></pre>
 
 <span class="location"><a href="../../src/main/res/layout/player_prioritize_item.xml">../../src/main/res/layout/player_prioritize_item.xml</a>:17</span>: <span class="message">Missing <code>contentDescription</code> attribute on image</span><br /><pre class="errorlines">
 <span class="lineno"> 14 </span>        <span class="prefix">android:</span><span class="attribute">layout_toStartOf</span>=<span class="value">"@+id/subtract_button"</span>
