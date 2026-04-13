@@ -1,2 +1,2 @@
 # AI Policy
-- [ ] I have read the [AI Policy](/AI-POLICY.md) if this pull request used AI.
+- [ ] Check this box if this pull request was created with AI. See the [AI Policy](/recloudstream/cloudstream/AI-POLICY.md).
