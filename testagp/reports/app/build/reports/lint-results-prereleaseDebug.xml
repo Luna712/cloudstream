@@ -66,42 +66,6 @@
     </issue>
 
     <issue
-        id="OldTargetApi"
-        severity="Warning"
-        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details."
-        category="Correctness"
-        priority="6"
-        summary="Target SDK attribute is not targeting latest version"
-        explanation="When your application or sdk runs on a version of Android that is more recent than your `targetSdk` specifies that it has been tested with, various compatibility modes kick in. This ensures that your application continues to work, but it may look out of place. For example, if the `targetSdk` is less than 14, your app may get an option button in the UI.&#xA;&#xA;To fix this issue, set the `targetSdk` to the highest available value. Then test your app to make sure everything works correctly. You may want to consult the compatibility notes to see what changes apply to each version you are adding support for: https://developer.android.com/reference/android/os/Build.VERSION_CODES.html as well as follow this guide:&#xA;https://developer.android.com/distribute/best-practices/develop/target-sdk.html"
-        url="https://developer.android.com/distribute/best-practices/develop/target-sdk.html"
-        urls="https://developer.android.com/distribute/best-practices/develop/target-sdk.html,https://developer.android.com/reference/android/os/Build.VERSION_CODES.html"
-        errorLine1="        targetSdk = libs.versions.targetSdk.get().toInt()"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/build.gradle.kts"
-            line="105"
-            column="9"/>
-    </issue>
-
-    <issue
-        id="OldTargetApi"
-        severity="Warning"
-        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details."
-        category="Correctness"
-        priority="6"
-        summary="Target SDK attribute is not targeting latest version"
-        explanation="When your application or sdk runs on a version of Android that is more recent than your `targetSdk` specifies that it has been tested with, various compatibility modes kick in. This ensures that your application continues to work, but it may look out of place. For example, if the `targetSdk` is less than 14, your app may get an option button in the UI.&#xA;&#xA;To fix this issue, set the `targetSdk` to the highest available value. Then test your app to make sure everything works correctly. You may want to consult the compatibility notes to see what changes apply to each version you are adding support for: https://developer.android.com/reference/android/os/Build.VERSION_CODES.html as well as follow this guide:&#xA;https://developer.android.com/distribute/best-practices/develop/target-sdk.html"
-        url="https://developer.android.com/distribute/best-practices/develop/target-sdk.html"
-        urls="https://developer.android.com/distribute/best-practices/develop/target-sdk.html,https://developer.android.com/reference/android/os/Build.VERSION_CODES.html"
-        errorLine1="targetSdk = &quot;36&quot;"
-        errorLine2="            ~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
-            line="54"
-            column="13"/>
-    </issue>
-
-    <issue
         id="TrimLambda"
         severity="Hint"
         message="The lambda argument (`{ it &lt;= &apos; &apos; }`) is unnecessary"

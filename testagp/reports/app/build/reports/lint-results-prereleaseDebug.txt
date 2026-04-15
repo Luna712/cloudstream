@@ -47,31 +47,6 @@
    listen to updates, use androidx.core.view.WindowInsetsCompat and related
    APIs.
 
-/home/runner/work/cloudstream/cloudstream/app/build.gradle.kts:105: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
-        targetSdk = libs.versions.targetSdk.get().toInt()
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml:54: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
-targetSdk = "36"
-            ~~~~
-
-   Explanation for issues of type "OldTargetApi":
-   When your application or sdk runs on a version of Android that is more
-   recent than your targetSdk specifies that it has been tested with, various
-   compatibility modes kick in. This ensures that your application continues
-   to work, but it may look out of place. For example, if the targetSdk is
-   less than 14, your app may get an option button in the UI.
-
-   To fix this issue, set the targetSdk to the highest available value. Then
-   test your app to make sure everything works correctly. You may want to
-   consult the compatibility notes to see what changes apply to each version
-   you are adding support for:
-   https://developer.android.com/reference/android/os/Build.VERSION_CODES.html
-   as well as follow this guide:
-   https://developer.android.com/distribute/best-practices/develop/target-sdk.
-   html
-
-   https://developer.android.com/distribute/best-practices/develop/target-sdk.html
-
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/CustomSubripParser.kt:171: Hint: The lambda argument ({ it <= ' ' }) is unnecessary [TrimLambda]
         line = line.trim { it <= ' ' }
                          ~~~~~~~~~~~~~
@@ -1756,4 +1731,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-0 errors, 442 warnings, 2 hints
+0 errors, 440 warnings, 2 hints
