@@ -8,6 +8,6 @@
 
     <!-- We only care about the source language here. -->
     <issue id="StringFormatInvalid">
-        <ignore path="res/values-*/**" />
+        <ignore path="**/res/values-*/**" />
     </issue>
 </lint>
