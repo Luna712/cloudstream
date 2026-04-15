@@ -1196,6 +1196,7 @@ class CS3IPlayer : IPlayer {
                             CustomDecoder.subtitleOffset = subtitleOffset
                             val decoder = CustomSubtitleDecoderFactory()
 
+                            @OptIn(ExperimentalApi::class)
                             val currentTextRenderer = TextRenderer(
                                 customTextOutput,
                                 eventHandler.looper,
@@ -1203,7 +1204,6 @@ class CS3IPlayer : IPlayer {
                             ).apply {
                                 // Required to make the decoder work with old subtitles
                                 // Upgrade CustomSubtitleDecoderFactory when media3 supports it
-                                @OptIn(ExperimentalApi::class)
                                 @Suppress("DEPRECATION")
                                 experimentalSetLegacyDecodingEnabled(true)
                             }.also { renderer ->
