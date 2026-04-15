@@ -29,6 +29,7 @@ import androidx.media3.common.TrackGroup
 import androidx.media3.common.TrackSelectionOverride
 import androidx.media3.common.Tracks
 import androidx.media3.common.VideoSize
+import androidx.media3.common.util.ExperimentalApi
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.database.StandaloneDatabaseProvider
 import androidx.media3.datasource.DataSource
@@ -1202,6 +1203,7 @@ class CS3IPlayer : IPlayer {
                             ).apply {
                                 // Required to make the decoder work with old subtitles
                                 // Upgrade CustomSubtitleDecoderFactory when media3 supports it
+                                @OptIn(ExperimentalApi::class)
                                 @Suppress("DEPRECATION")
                                 experimentalSetLegacyDecodingEnabled(true)
                             }.also { renderer ->
