@@ -9,4 +9,3 @@ AI is a great tool. However, we want you to follow these rules regarding usage o
 3. Listen to humans over computers. Contributors to CloudStream know this codebase better than an AI. 
 
 4. You should be able to explain and fix any code you submit. We do in-depth reviews and will reject low effort contributions.
-
