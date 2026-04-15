@@ -177,16 +177,15 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 5 errors, 442 warnings and 2 hints</span>
+      <span class="mdl-layout-title">Lint Report: 442 warnings and 2 hints</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Apr 15 16:39:09 UTC 2026 by AGP (9.1.1)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Wed Apr 15 17:54:35 UTC 2026 by AGP (9.1.1)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
     <span class="mdl-layout-title">Issue Types</span>
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" href="#overview"><i class="material-icons">dashboard</i>Overview</a>
-      <a class="mdl-navigation__link" href="#MissingPermission"><i class="material-icons error-icon">error</i>Missing Permissions (2)</a>
       <a class="mdl-navigation__link" href="#NestedScrolling"><i class="material-icons warning-icon">warning</i>Nested scrolling widgets (1)</a>
       <a class="mdl-navigation__link" href="#InlinedApi"><i class="material-icons warning-icon">warning</i>Using inlined constants on older versions (1)</a>
       <a class="mdl-navigation__link" href="#InternalInsetResource"><i class="material-icons warning-icon">warning</i>Using internal inset dimension resource (2)</a>
@@ -199,12 +198,10 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#PictureInPictureIssue"><i class="material-icons warning-icon">warning</i>Picture In Picture best practices not followed (1)</a>
       <a class="mdl-navigation__link" href="#VectorRaster"><i class="material-icons warning-icon">warning</i>Vector Image Generation (15)</a>
       <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (8)</a>
-      <a class="mdl-navigation__link" href="#UnsafeOptInUsageError"><i class="material-icons error-icon">error</i>Unsafe opt-in usage intended to be error-level severity (1)</a>
       <a class="mdl-navigation__link" href="#PrivateResource"><i class="material-icons warning-icon">warning</i>Using private resources (26)</a>
       <a class="mdl-navigation__link" href="#SwitchIntDef"><i class="material-icons warning-icon">warning</i>Missing @IntDef in Switch (2)</a>
       <a class="mdl-navigation__link" href="#Aligned16KB"><i class="material-icons warning-icon">warning</i>Native library dependency not 16 KB aligned (6)</a>
       <a class="mdl-navigation__link" href="#DiscouragedApi"><i class="material-icons warning-icon">warning</i>Using discouraged APIs (3)</a>
-      <a class="mdl-navigation__link" href="#StringFormatInvalid"><i class="material-icons error-icon">error</i>Invalid format string (2)</a>
       <a class="mdl-navigation__link" href="#Typos"><i class="material-icons warning-icon">warning</i>Spelling error (11)</a>
       <a class="mdl-navigation__link" href="#PluralsCandidate"><i class="material-icons warning-icon">warning</i>Potential Plurals (7)</a>
       <a class="mdl-navigation__link" href="#StringFormatCount"><i class="material-icons warning-icon">warning</i>Formatting argument types incomplete or inconsistent (20)</a>
@@ -247,9 +244,6 @@ document.getElementById(id).style.display = 'none';
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Correctness">Correctness</a>
 </td></tr>
 <tr>
-<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
-<a href="#MissingPermission">MissingPermission</a>: Missing Permissions</td></tr>
-<tr>
 <td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#NestedScrolling">NestedScrolling</a>: Nested scrolling widgets</td></tr>
 <tr>
@@ -286,9 +280,6 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">8</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#NewerVersionAvailable">NewerVersionAvailable</a>: Newer Library Versions Available</td></tr>
 <tr>
-<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
-<a href="#UnsafeOptInUsageError">UnsafeOptInUsageError</a>: Unsafe opt-in usage intended to be error-level severity</td></tr>
-<tr>
 <td class="countColumn">26</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#PrivateResource">PrivateResource</a>: Using private resources</td></tr>
 <tr>
@@ -302,9 +293,6 @@ document.getElementById(id).style.display = 'none';
 <a href="#DiscouragedApi">DiscouragedApi</a>: Using discouraged APIs</td></tr>
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Correctness:Messages">Correctness:Messages</a>
 </td></tr>
-<tr>
-<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons error-icon">error</i>
-<a href="#StringFormatInvalid">StringFormatInvalid</a>: Invalid format string</td></tr>
 <tr>
 <td class="countColumn">11</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#Typos">Typos</a>: Spelling error</td></tr>
@@ -414,65 +402,7 @@ Dismiss</button>            </div>
             </div>
           </section>
 <a name="Correctness"></a>
-<a name="MissingPermission"></a>
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="MissingPermissionCard" style="display: block;">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Missing Permissions</h2>
-  </div>
-              <div class="mdl-card__supporting-text">
-<div class="issue">
-<div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/utils/downloader/DownloadManager.kt">../../src/main/java/com/lagradost/cloudstream3/utils/downloader/DownloadManager.kt</a>:1737</span>: <span class="message">Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with <code>checkPermission</code>) or explicitly handle a potential <code>SecurityException</code></span><br /><pre class="errorlines">
-<span class="lineno"> 1734 </span>  companion <span class="keyword">object</span> {
-<span class="lineno"> 1735 </span>      private <span class="keyword">fun</span> displayNotification(context: Context, id: Int, notification: Notification) {
-<span class="lineno"> 1736 </span>          safe {
-<span class="caretline"><span class="lineno"> 1737 </span>              <span class="error">NotificationManagerCompat.from(context)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 1738 </span>                  .notify(DOWNLOAD_NOTIFICATION_TAG, id, notification)
-<span class="lineno"> 1739 </span>          }
-<span class="lineno"> 1740 </span>      }
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/services/DownloadQueueService.kt">../../src/main/java/com/lagradost/cloudstream3/services/DownloadQueueService.kt</a>:118</span>: <span class="message">Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with <code>checkPermission</code>) or explicitly handle a potential <code>SecurityException</code></span><br /><pre class="errorlines">
-<span class="lineno"> 115 </span>            .build()
-<span class="lineno"> 116 </span>
-<span class="lineno"> 117 </span>        safe {
-<span class="caretline"><span class="lineno"> 118 </span>            <span class="error">NotificationManagerCompat.from(context)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 119 </span>                .notify(DOWNLOAD_QUEUE_NOTIFICATION_ID, newNotification)
-<span class="lineno"> 120 </span>        }
-<span class="lineno"> 121 </span>    }
-</pre>
-
-</div>
-<div class="metadata"><div class="explanation" id="explanationMissingPermission" style="display: none;">
-This check scans through your code and libraries and looks at the APIs being used, and checks this against the set of permissions required to access those APIs. If the code using those APIs is called at runtime, then the program will crash.<br/>
-<br/>
-Furthermore, for permissions that are revocable (with <code>targetSdkVersion</code> 23), client code must also be prepared to handle the calls throwing an exception if the user rejects the request for permission at runtime.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
-To suppress this error, use the issue id "MissingPermission" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
-<br/></div>
-</div>
-</div>
-<div class="chips">
-<span class="mdl-chip">
-    <span class="mdl-chip__text">MissingPermission</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Correctness</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Error</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Priority 9/10</span>
-</span>
-</div>
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationMissingPermissionLink" onclick="reveal('explanationMissingPermission');">
-Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="MissingPermissionCardLink" onclick="hideid('MissingPermissionCard');">
-Dismiss</button>            </div>
-            </div>
-          </section><a name="NestedScrolling"></a>
+<a name="NestedScrolling"></a>
 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="NestedScrollingCard" style="display: block;">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
   <div class="mdl-card__title">
@@ -1377,74 +1307,6 @@ To suppress this error, use the issue id "NewerVersionAvailable" as explained in
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="NewerVersionAvailableCardLink" onclick="hideid('NewerVersionAvailableCard');">
 Dismiss</button>            </div>
             </div>
-          </section><a name="UnsafeOptInUsageError"></a>
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="UnsafeOptInUsageErrorCard" style="display: block;">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Unsafe opt-in usage intended to be error-level severity</h2>
-  </div>
-              <div class="mdl-card__supporting-text">
-<div class="issue">
-<div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt</a>:1206</span>: <span class="message">This declaration is opt-in and its usage should be marked with <code>@androidx.media3.common.util.ExperimentalApi</code> or <code>@OptIn(markerClass = androidx.media3.common.util.ExperimentalApi.class)</code></span><br /><pre class="errorlines">
-<span class="lineno"> 1203 </span>       <span class="comment">// Required to make the decoder work with old subtitles</span>
-<span class="lineno"> 1204 </span>       <span class="comment">// Upgrade CustomSubtitleDecoderFactory when media3 supports it</span>
-<span class="lineno"> 1205 </span>       <span class="annotation">@Suppress</span>(<span class="string">"DEPRECATION"</span>)
-<span class="caretline"><span class="lineno"> 1206 </span>       <span class="error">experimentalSetLegacyDecodingEnabled</span>(<span class="keyword">true</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 1207 </span>   }.also { renderer ->
-<span class="lineno"> 1208 </span>       currentTextRenderer = renderer
-<span class="lineno"> 1209 </span>       currentSubtitleDecoder = decoder
-</pre>
-
-</div>
-<div class="metadata"><div class="explanation" id="explanationUnsafeOptInUsageError" style="display: none;">
-This API has been flagged as opt-in with error-level severity.<br/>
-<br/>
-Any declaration annotated with this marker is considered part of an unstable or<br/>
-otherwise non-standard API surface and its call sites should accept the opt-in<br/>
-aspect of it by using the <code>@OptIn</code> annotation, using the marker annotation --<br/>
-effectively causing further propagation of the opt-in aspect -- or configuring<br/>
-the <code>UnsafeOptInUsageError</code> check's options for project-wide opt-in.<br/>
-<br/>
-To configure project-wide opt-in, specify the <code>opt-in</code> option value in <code>lint.xml</code><br/>
-as a comma-delimited list of opted-in annotations:<br/>
-
-<pre>
-&lt;lint>
-    &lt;issue id="UnsafeOptInUsageError">
-        &lt;option name="opt-in" value="com.foo.ExperimentalBarAnnotation" />
-    &lt;/issue>
-&lt;/lint>
-</pre>
-<br/>To suppress this error, use the issue id "UnsafeOptInUsageError" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
-<br/></div>
-</div>
-</div>
-<div class="vendor">
-Vendor: Android Open Source Project<br/>
-Identifier: androidx.annotation.experimental<br/>
-Feedback: <a href="https://issuetracker.google.com/issues/new?component=459778">https://issuetracker.google.com/issues/new?component=459778</a><br/>
-</div>
-<div class="chips">
-<span class="mdl-chip">
-    <span class="mdl-chip__text">UnsafeOptInUsageError</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Correctness</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Error</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Priority 4/10</span>
-</span>
-</div>
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationUnsafeOptInUsageErrorLink" onclick="reveal('explanationUnsafeOptInUsageError');">
-Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="UnsafeOptInUsageErrorCardLink" onclick="hideid('UnsafeOptInUsageErrorCard');">
-Dismiss</button>            </div>
-            </div>
           </section><a name="PrivateResource"></a>
 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="PrivateResourceCard" style="display: block;">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
@@ -1901,69 +1763,7 @@ Dismiss</button>            </div>
             </div>
           </section>
 <a name="Correctness:Messages"></a>
-<a name="StringFormatInvalid"></a>
-<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="StringFormatInvalidCard" style="display: block;">
-            <div class="mdl-card mdl-cell mdl-cell--12-col">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Invalid format string</h2>
-  </div>
-              <div class="mdl-card__supporting-text">
-<div class="issue">
-<div class="warningslist">
-<span class="location"><a href="../../src/main/res/values-b%2Bde/strings.xml">../../src/main/res/values-b%2Bde/strings.xml</a>:741</span>: <span class="message">Incorrect formatting string <code>extra_brightness_settings_des</code>; missing conversion character in '<code>% B</code>'?</span><br /><pre class="errorlines">
-<span class="lineno"> 738 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_suggestions_des"</span>>Beim Tippen Suchempfehlungen anzeigen<span class="tag">&lt;/string></span>
-<span class="lineno"> 739 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"clear_suggestions"</span>>Empfehlungen löschen<span class="tag">&lt;/string></span>
-<span class="lineno"> 740 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>Zusätzliche Helligkeit<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 741 </span>  <span class="error"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings_des"</span>>Aktiviere Helligkeitsfilter, wenn 100% Bildschirmhelligkeit überschritten ist<span class="tag">&lt;/string></span></span></span>
-<span class="lineno"> 742 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>Erhöhte Helligkeit aktiviert<span class="tag">&lt;/string></span>
-<span class="lineno"> 743 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"show_cast_in_details"</span>>Cast-Panel zeigen<span class="tag">&lt;/string></span>
-<span class="lineno"> 744 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"video_info"</span>>Medieninfo<span class="tag">&lt;/string></span></pre>
-
-<span class="location"><a href="../../src/main/res/values-b%2Bhr/strings.xml">../../src/main/res/values-b%2Bhr/strings.xml</a>:752</span>: <span class="message">Incorrect formatting string <code>extra_brightness_settings_des</code>; missing conversion character in '<code>% s</code>'?</span><br /><pre class="errorlines">
-<span class="lineno"> 749 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"top_center"</span>>Gore u sredini<span class="tag">&lt;/string></span>
-<span class="lineno"> 750 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"top_right"</span>>Gore desno<span class="tag">&lt;/string></span>
-<span class="lineno"> 751 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings"</span>>Dodatna svjetlina<span class="tag">&lt;/string></span>
-<span class="caretline"><span class="lineno"> 752 </span>  <span class="error"><span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_settings_des"</span>>Uključi filtar svjetline kada se prekorači 100 % svjetline ekrana<span class="tag">&lt;/string></span></span></span>
-<span class="lineno"> 753 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"extra_brightness_key"</span>>dodatna_svjetlina_uključena<span class="tag">&lt;/string></span>
-<span class="lineno"> 754 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_suggestions"</span>>Prijedlozi za pretraživanje<span class="tag">&lt;/string></span>
-<span class="lineno"> 755 </span>  <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"search_suggestions_des"</span>>Prikaži prijedloge za pretraživanje tijekom tipkanja<span class="tag">&lt;/string></span></pre>
-
-</div>
-<div class="metadata"><div class="explanation" id="explanationStringFormatInvalid" style="display: none;">
-If a string contains a '%' character, then the string may be a formatting string which will be passed to <code>String.format</code> from Java code to replace each '%' occurrence with specific values.<br/>
-<br/>
-This lint warning checks for two related problems:<br/>
-(1) Formatting strings that are invalid, meaning that <code>String.format</code> will throw exceptions at runtime when attempting to use the format string.<br/>
-(2) Strings containing '%' that are not formatting strings getting passed to a <code>String.format</code> call. In this case the '%' will need to be escaped as '%%'.<br/>
-<br/>
-NOTE: Not all Strings which look like formatting strings are intended for use by <code>String.format</code>; for example, they may contain date formats intended for <code>android.text.format.Time#format()</code>. Lint cannot always figure out that a String is a date format, so you may get false warnings in those scenarios. See the suppress help topic for information on how to suppress errors in that case.<br/>To suppress this error, use the issue id "StringFormatInvalid" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
-<br/></div>
-</div>
-</div>
-<div class="chips">
-<span class="mdl-chip">
-    <span class="mdl-chip__text">StringFormatInvalid</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Messages</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Correctness</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Error</span>
-</span>
-<span class="mdl-chip">
-    <span class="mdl-chip__text">Priority 9/10</span>
-</span>
-</div>
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationStringFormatInvalidLink" onclick="reveal('explanationStringFormatInvalid');">
-Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="StringFormatInvalidCardLink" onclick="hideid('StringFormatInvalidCard');">
-Dismiss</button>            </div>
-            </div>
-          </section><a name="Typos"></a>
+<a name="Typos"></a>
 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="TyposCard" style="display: block;">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
   <div class="mdl-card__title">

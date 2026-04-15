@@ -2,38 +2,6 @@
 <issues format="6" by="lint 9.1.1">
 
     <issue
-        id="MissingPermission"
-        severity="Error"
-        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`"
-        category="Correctness"
-        priority="9"
-        summary="Missing Permissions"
-        explanation="This check scans through your code and libraries and looks at the APIs being used, and checks this against the set of permissions required to access those APIs. If the code using those APIs is called at runtime, then the program will crash.&#xA;&#xA;Furthermore, for permissions that are revocable (with `targetSdkVersion` 23), client code must also be prepared to handle the calls throwing an exception if the user rejects the request for permission at runtime."
-        errorLine1="                    NotificationManagerCompat.from(context)"
-        errorLine2="                    ^">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/downloader/DownloadManager.kt"
-            line="1737"
-            column="21"/>
-    </issue>
-
-    <issue
-        id="MissingPermission"
-        severity="Error"
-        message="Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with `checkPermission`) or explicitly handle a potential `SecurityException`"
-        category="Correctness"
-        priority="9"
-        summary="Missing Permissions"
-        explanation="This check scans through your code and libraries and looks at the APIs being used, and checks this against the set of permissions required to access those APIs. If the code using those APIs is called at runtime, then the program will crash.&#xA;&#xA;Furthermore, for permissions that are revocable (with `targetSdkVersion` 23), client code must also be prepared to handle the calls throwing an exception if the user rejects the request for permission at runtime."
-        errorLine1="            NotificationManagerCompat.from(context)"
-        errorLine2="            ^">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/services/DownloadQueueService.kt"
-            line="118"
-            column="13"/>
-    </issue>
-
-    <issue
         id="NestedScrolling"
         severity="Warning"
         message="The vertically scrolling `ScrollView` should not contain another vertically scrolling widget (`ListView`)"
@@ -814,22 +782,6 @@
     </issue>
 
     <issue
-        id="UnsafeOptInUsageError"
-        severity="Error"
-        message="This declaration is opt-in and its usage should be marked with `@androidx.media3.common.util.ExperimentalApi` or `@OptIn(markerClass = androidx.media3.common.util.ExperimentalApi.class)`"
-        category="Correctness"
-        priority="4"
-        summary="Unsafe opt-in usage intended to be error-level severity"
-        explanation="This API has been flagged as opt-in with error-level severity.&#xA;&#xA;Any declaration annotated with this marker is considered part of an unstable or&#xA;otherwise non-standard API surface and its call sites should accept the opt-in&#xA;aspect of it by using the `@OptIn` annotation, using the marker annotation --&#xA;effectively causing further propagation of the opt-in aspect -- or configuring&#xA;the `UnsafeOptInUsageError` check&apos;s options for project-wide opt-in.&#xA;&#xA;To configure project-wide opt-in, specify the `opt-in` option value in `lint.xml`&#xA;as a comma-delimited list of opted-in annotations:&#xA;&#xA;```&#xA;&lt;lint>&#xA;    &lt;issue id=&quot;UnsafeOptInUsageError&quot;>&#xA;        &lt;option name=&quot;opt-in&quot; value=&quot;com.foo.ExperimentalBarAnnotation&quot; />&#xA;    &lt;/issue>&#xA;&lt;/lint>&#xA;```"
-        errorLine1="                                experimentalSetLegacyDecodingEnabled(true)"
-        errorLine2="                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt"
-            line="1206"
-            column="33"/>
-    </issue>
-
-    <issue
         id="PrivateResource"
         severity="Warning"
         message="The resource `@string/exo_controls_stop_description` is marked as private in androidx.media3:media3-ui:1.10.0"
@@ -1411,38 +1363,6 @@
             file="/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/UIHelper.kt"
             line="500"
             column="36"/>
-    </issue>
-
-    <issue
-        id="StringFormatInvalid"
-        severity="Error"
-        message="Incorrect formatting string `extra_brightness_settings_des`; missing conversion character in &apos;`% B`&apos;?"
-        category="Correctness:Messages"
-        priority="9"
-        summary="Invalid format string"
-        explanation="If a string contains a &apos;%&apos; character, then the string may be a formatting string which will be passed to `String.format` from Java code to replace each &apos;%&apos; occurrence with specific values.&#xA;&#xA;This lint warning checks for two related problems:&#xA;(1) Formatting strings that are invalid, meaning that `String.format` will throw exceptions at runtime when attempting to use the format string.&#xA;(2) Strings containing &apos;%&apos; that are not formatting strings getting passed to a `String.format` call. In this case the &apos;%&apos; will need to be escaped as &apos;%%&apos;.&#xA;&#xA;NOTE: Not all Strings which look like formatting strings are intended for use by `String.format`; for example, they may contain date formats intended for `android.text.format.Time#format()`. Lint cannot always figure out that a String is a date format, so you may get false warnings in those scenarios. See the suppress help topic for information on how to suppress errors in that case."
-        errorLine1="    &lt;string name=&quot;extra_brightness_settings_des&quot;>Aktiviere Helligkeitsfilter, wenn 100% Bildschirmhelligkeit überschritten ist&lt;/string>"
-        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+de/strings.xml"
-            line="741"
-            column="5"/>
-    </issue>
-
-    <issue
-        id="StringFormatInvalid"
-        severity="Error"
-        message="Incorrect formatting string `extra_brightness_settings_des`; missing conversion character in &apos;`% s`&apos;?"
-        category="Correctness:Messages"
-        priority="9"
-        summary="Invalid format string"
-        explanation="If a string contains a &apos;%&apos; character, then the string may be a formatting string which will be passed to `String.format` from Java code to replace each &apos;%&apos; occurrence with specific values.&#xA;&#xA;This lint warning checks for two related problems:&#xA;(1) Formatting strings that are invalid, meaning that `String.format` will throw exceptions at runtime when attempting to use the format string.&#xA;(2) Strings containing &apos;%&apos; that are not formatting strings getting passed to a `String.format` call. In this case the &apos;%&apos; will need to be escaped as &apos;%%&apos;.&#xA;&#xA;NOTE: Not all Strings which look like formatting strings are intended for use by `String.format`; for example, they may contain date formats intended for `android.text.format.Time#format()`. Lint cannot always figure out that a String is a date format, so you may get false warnings in those scenarios. See the suppress help topic for information on how to suppress errors in that case."
-        errorLine1="    &lt;string name=&quot;extra_brightness_settings_des&quot;>Uključi filtar svjetline kada se prekorači 100 % svjetline ekrana&lt;/string>"
-        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+hr/strings.xml"
-            line="752"
-            column="5"/>
     </issue>
 
     <issue

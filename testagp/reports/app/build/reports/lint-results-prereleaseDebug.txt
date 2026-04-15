@@ -1,20 +1,3 @@
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/utils/downloader/DownloadManager.kt:1737: Error: Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with checkPermission) or explicitly handle a potential SecurityException [MissingPermission]
-                    NotificationManagerCompat.from(context)
-                    ^
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/services/DownloadQueueService.kt:118: Error: Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with checkPermission) or explicitly handle a potential SecurityException [MissingPermission]
-            NotificationManagerCompat.from(context)
-            ^
-
-   Explanation for issues of type "MissingPermission":
-   This check scans through your code and libraries and looks at the APIs
-   being used, and checks this against the set of permissions required to
-   access those APIs. If the code using those APIs is called at runtime, then
-   the program will crash.
-
-   Furthermore, for permissions that are revocable (with targetSdkVersion 23),
-   client code must also be prepared to handle the calls throwing an exception
-   if the user rejects the request for permission at runtime.
-
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/layout/result_sync.xml:157: Warning: The vertically scrolling ScrollView should not contain another vertically scrolling widget (ListView) [NestedScrolling]
             <ListView
              ~~~~~~~~
@@ -310,37 +293,6 @@ zipline = "1.24.0"
    MavenCentral dependency, and connects to the library every time, which
    makes it more flexible but also much slower.
 
-/home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/CS3IPlayer.kt:1206: Error: This declaration is opt-in and its usage should be marked with @androidx.media3.common.util.ExperimentalApi or @OptIn(markerClass = androidx.media3.common.util.ExperimentalApi.class) [UnsafeOptInUsageError from androidx.annotation.experimental]
-                                experimentalSetLegacyDecodingEnabled(true)
-                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-   Explanation for issues of type "UnsafeOptInUsageError":
-   This API has been flagged as opt-in with error-level severity.
-
-   Any declaration annotated with this marker is considered part of an
-   unstable or
-   otherwise non-standard API surface and its call sites should accept the
-   opt-in
-   aspect of it by using the @OptIn annotation, using the marker annotation
-   --
-   effectively causing further propagation of the opt-in aspect -- or
-   configuring
-   the UnsafeOptInUsageError check's options for project-wide opt-in.
-
-   To configure project-wide opt-in, specify the opt-in option value in
-   lint.xml
-   as a comma-delimited list of opted-in annotations:
-
-   <lint>
-       <issue id="UnsafeOptInUsageError">
-           <option name="opt-in" value="com.foo.ExperimentalBarAnnotation" />
-       </issue>
-   </lint>
-
-   Vendor: Android Open Source Project
-   Identifier: androidx.annotation.experimental
-   Feedback: https://issuetracker.google.com/issues/new?component=459778
-
 /home/runner/work/cloudstream/cloudstream/app/src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt:376: Warning: The resource @string/exo_controls_stop_description is marked as private in androidx.media3:media3-ui:1.10.0 [PrivateResource]
                             context.getString(androidx.media3.ui.R.string.exo_controls_stop_description),
                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -486,32 +438,6 @@ conscrypt-android = { module = "org.conscrypt:conscrypt-android", version.ref = 
    Explanation for issues of type "DiscouragedApi":
    Discouraged APIs are allowed and are not deprecated, but they may be unfit
    for common use (e.g. due to slow performance or subtle behavior).
-
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+de/strings.xml:741: Error: Incorrect formatting string extra_brightness_settings_des; missing conversion character in '% B'? [StringFormatInvalid]
-    <string name="extra_brightness_settings_des">Aktiviere Helligkeitsfilter, wenn 100% Bildschirmhelligkeit überschritten ist</string>
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/cloudstream/cloudstream/app/src/main/res/values-b+hr/strings.xml:752: Error: Incorrect formatting string extra_brightness_settings_des; missing conversion character in '% s'? [StringFormatInvalid]
-    <string name="extra_brightness_settings_des">Uključi filtar svjetline kada se prekorači 100 % svjetline ekrana</string>
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-   Explanation for issues of type "StringFormatInvalid":
-   If a string contains a '%' character, then the string may be a formatting
-   string which will be passed to String.format from Java code to replace each
-   '%' occurrence with specific values.
-
-   This lint warning checks for two related problems:
-   (1) Formatting strings that are invalid, meaning that String.format will
-   throw exceptions at runtime when attempting to use the format string.
-   (2) Strings containing '%' that are not formatting strings getting passed
-   to a String.format call. In this case the '%' will need to be escaped as
-   '%%'.
-
-   NOTE: Not all Strings which look like formatting strings are intended for
-   use by String.format; for example, they may contain date formats intended
-   for android.text.format.Time#format(). Lint cannot always figure out that a
-   String is a date format, so you may get false warnings in those scenarios.
-   See the suppress help topic for information on how to suppress errors in
-   that case.
 
 /home/runner/work/cloudstream/cloudstream/app/src/main/res/values/array.xml:332: Warning: "Ok" is usually capitalized as "OK" [Typos]
         <item>Ok</item>
@@ -1830,4 +1756,4 @@ class SSLTrustManager : X509TrustManager {
    probably also specify padding on the right side (and vice versa) for
    right-to-left layout symmetry.
 
-5 errors, 442 warnings, 2 hints
+0 errors, 442 warnings, 2 hints
