@@ -50,8 +50,8 @@ zipline = "1.24.0"
 jvmTarget = "1.8"
 jdkToolchain = "17"
 minSdk = "23"
-compileSdk = "37"
-targetSdk = "37"
+compileSdk = "36"
+targetSdk = "36"
 
 [libraries]
 activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
