@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 440 warnings and 2 hints</span>
+      <span class="mdl-layout-title">Lint Report: 451 warnings and 2 hints</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Thu Apr 16 16:01:29 UTC 2026 by AGP (9.1.1)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sun Apr 19 21:16:56 UTC 2026 by AGP (9.1.1)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -196,7 +196,8 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#DefaultUncaughtExceptionDelegation"><i class="material-icons warning-icon">warning</i>Missing default uncaught exception handler delegation (1)</a>
       <a class="mdl-navigation__link" href="#PictureInPictureIssue"><i class="material-icons warning-icon">warning</i>Picture In Picture best practices not followed (1)</a>
       <a class="mdl-navigation__link" href="#VectorRaster"><i class="material-icons warning-icon">warning</i>Vector Image Generation (15)</a>
-      <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (8)</a>
+      <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (10)</a>
+      <a class="mdl-navigation__link" href="#NewerVersionAvailable"><i class="material-icons warning-icon">warning</i>Newer Library Versions Available (9)</a>
       <a class="mdl-navigation__link" href="#PrivateResource"><i class="material-icons warning-icon">warning</i>Using private resources (26)</a>
       <a class="mdl-navigation__link" href="#SwitchIntDef"><i class="material-icons warning-icon">warning</i>Missing @IntDef in Switch (2)</a>
       <a class="mdl-navigation__link" href="#Aligned16KB"><i class="material-icons warning-icon">warning</i>Native library dependency not 16 KB aligned (6)</a>
@@ -273,7 +274,10 @@ document.getElementById(id).style.display = 'none';
 <td class="countColumn">15</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#VectorRaster">VectorRaster</a>: Vector Image Generation</td></tr>
 <tr>
-<td class="countColumn">8</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">10</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#GradleDependency">GradleDependency</a>: Obsolete Gradle Dependency</td></tr>
+<tr>
+<td class="countColumn">9</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#NewerVersionAvailable">NewerVersionAvailable</a>: Newer Library Versions Available</td></tr>
 <tr>
 <td class="countColumn">26</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
@@ -1127,6 +1131,145 @@ However, there are some limitations to this raster image generation, and this li
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="VectorRasterCardLink" onclick="hideid('VectorRasterCard');">
 Dismiss</button>            </div>
             </div>
+          </section><a name="GradleDependency"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="GradleDependencyCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Obsolete Gradle Dependency</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-cast than 1.9.3 is available: 1.10.0</span><br /><pre class="errorlines">
+<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
+<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
+<span class="lineno">  29 </span>material = "1.14.0-beta01"
+<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.3"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  31 </span>navigationKtx = "2.9.7"
+<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
+<span class="lineno">  33 </span>nextlibMedia3 = "1.9.3-0.12.0"
+</pre>
+
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-common than 1.9.3 is available: 1.10.0</span><br /><pre class="errorlines">
+<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
+<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
+<span class="lineno">  29 </span>material = "1.14.0-beta01"
+<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.3"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  31 </span>navigationKtx = "2.9.7"
+<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
+<span class="lineno">  33 </span>nextlibMedia3 = "1.9.3-0.12.0"
+</pre>
+
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-container than 1.9.3 is available: 1.10.0</span><br /><pre class="errorlines">
+<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
+<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
+<span class="lineno">  29 </span>material = "1.14.0-beta01"
+<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.3"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  31 </span>navigationKtx = "2.9.7"
+<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
+<span class="lineno">  33 </span>nextlibMedia3 = "1.9.3-0.12.0"
+</pre>
+
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-datasource-cronet than 1.9.3 is available: 1.10.0</span><br /><pre class="errorlines">
+<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
+<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
+<span class="lineno">  29 </span>material = "1.14.0-beta01"
+<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.3"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  31 </span>navigationKtx = "2.9.7"
+<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
+<span class="lineno">  33 </span>nextlibMedia3 = "1.9.3-0.12.0"
+</pre>
+
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-datasource-okhttp than 1.9.3 is available: 1.10.0</span><br /><pre class="errorlines">
+<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
+<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
+<span class="lineno">  29 </span>material = "1.14.0-beta01"
+<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.3"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  31 </span>navigationKtx = "2.9.7"
+<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
+<span class="lineno">  33 </span>nextlibMedia3 = "1.9.3-0.12.0"
+</pre>
+
+<button class="mdl-button mdl-js-button mdl-button--primary" id="GradleDependencyDivLink" onclick="reveal('GradleDependencyDiv');" />+ 5 More Occurrences...</button>
+<div id="GradleDependencyDiv" style="display: none">
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-exoplayer than 1.9.3 is available: 1.10.0</span><br /><pre class="errorlines">
+<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
+<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
+<span class="lineno">  29 </span>material = "1.14.0-beta01"
+<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.3"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  31 </span>navigationKtx = "2.9.7"
+<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
+<span class="lineno">  33 </span>nextlibMedia3 = "1.9.3-0.12.0"
+</pre>
+
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-exoplayer-dash than 1.9.3 is available: 1.10.0</span><br /><pre class="errorlines">
+<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
+<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
+<span class="lineno">  29 </span>material = "1.14.0-beta01"
+<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.3"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  31 </span>navigationKtx = "2.9.7"
+<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
+<span class="lineno">  33 </span>nextlibMedia3 = "1.9.3-0.12.0"
+</pre>
+
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-exoplayer-hls than 1.9.3 is available: 1.10.0</span><br /><pre class="errorlines">
+<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
+<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
+<span class="lineno">  29 </span>material = "1.14.0-beta01"
+<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.3"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  31 </span>navigationKtx = "2.9.7"
+<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
+<span class="lineno">  33 </span>nextlibMedia3 = "1.9.3-0.12.0"
+</pre>
+
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-session than 1.9.3 is available: 1.10.0</span><br /><pre class="errorlines">
+<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
+<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
+<span class="lineno">  29 </span>material = "1.14.0-beta01"
+<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.3"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  31 </span>navigationKtx = "2.9.7"
+<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
+<span class="lineno">  33 </span>nextlibMedia3 = "1.9.3-0.12.0"
+</pre>
+
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:30</span>: <span class="message">A newer version of androidx.media3:media3-ui than 1.9.3 is available: 1.10.0</span><br /><pre class="errorlines">
+<span class="lineno">  27 </span>kotlinxCoroutinesCore = "1.10.2"
+<span class="lineno">  28 </span>lifecycleKtx = "2.10.0"
+<span class="lineno">  29 </span>material = "1.14.0-beta01"
+<span class="caretline"><span class="lineno">  30 </span>media3 = <span class="warning">"1.9.3"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  31 </span>navigationKtx = "2.9.7"
+<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
+<span class="lineno">  33 </span>nextlibMedia3 = "1.9.3-0.12.0"
+</pre>
+
+</div>
+</div>
+<div class="metadata"><div class="explanation" id="explanationGradleDependency" style="display: none;">
+This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "GradleDependency" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">GradleDependency</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Correctness</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 4/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationGradleDependencyLink" onclick="reveal('explanationGradleDependency');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="GradleDependencyCardLink" onclick="hideid('GradleDependencyCard');">
+Dismiss</button>            </div>
+            </div>
           </section><a name="NewerVersionAvailable"></a>
 <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="NewerVersionAvailableCard" style="display: block;">
             <div class="mdl-card mdl-cell mdl-cell--12-col">
@@ -1136,20 +1279,10 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:8</span>: <span class="message">A newer version of com.codingfeline.buildkonfig than 0.17.1 is available: 0.18.0</span><br /><pre class="errorlines">
-<span class="lineno">   5 </span>androidGradlePlugin = "9.1.1"
-<span class="lineno">   6 </span>appcompat = "1.7.1"
-<span class="lineno">   7 </span>biometric = "1.4.0-alpha06"
-<span class="caretline"><span class="lineno">   8 </span>buildkonfigGradlePlugin = <span class="warning">"0.17.1"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">   9 </span>coil = { strictly = "3.3.0" } # Later versions require jvmTarget 11 or later
-<span class="lineno">  10 </span>colorpicker = "6b46b49"
-<span class="lineno">  11 </span>conscryptAndroid = { strictly = "2.5.2" } # 2.5.3 crashes everything
-</pre>
-
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:9</span>: <span class="message">A newer version of io.coil-kt.coil3:coil than 3.3.0 is available: 3.4.0</span><br /><pre class="errorlines">
 <span class="lineno">   6 </span>appcompat = "1.7.1"
 <span class="lineno">   7 </span>biometric = "1.4.0-alpha06"
-<span class="lineno">   8 </span>buildkonfigGradlePlugin = "0.17.1"
+<span class="lineno">   8 </span>buildkonfigGradlePlugin = "0.18.0"
 <span class="caretline"><span class="lineno">   9 </span>coil = { strictly = <span class="warning">"3.3.0"</span> } # Later versions require jvmTarget 11 or later&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  10 </span>colorpicker = "6b46b49"
 <span class="lineno">  11 </span>conscryptAndroid = { strictly = "2.5.2" } # 2.5.3 crashes everything
@@ -1159,7 +1292,7 @@ Dismiss</button>            </div>
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:9</span>: <span class="message">A newer version of io.coil-kt.coil3:coil-network-okhttp than 3.3.0 is available: 3.4.0</span><br /><pre class="errorlines">
 <span class="lineno">   6 </span>appcompat = "1.7.1"
 <span class="lineno">   7 </span>biometric = "1.4.0-alpha06"
-<span class="lineno">   8 </span>buildkonfigGradlePlugin = "0.17.1"
+<span class="lineno">   8 </span>buildkonfigGradlePlugin = "0.18.0"
 <span class="caretline"><span class="lineno">   9 </span>coil = { strictly = <span class="warning">"3.3.0"</span> } # Later versions require jvmTarget 11 or later&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 <span class="lineno">  10 </span>colorpicker = "6b46b49"
 <span class="lineno">  11 </span>conscryptAndroid = { strictly = "2.5.2" } # 2.5.3 crashes everything
@@ -1167,7 +1300,7 @@ Dismiss</button>            </div>
 </pre>
 
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:11</span>: <span class="message">A newer version of org.conscrypt:conscrypt-android than 2.5.2 is available: 2.5.3</span><br /><pre class="errorlines">
-<span class="lineno">   8 </span>buildkonfigGradlePlugin = "0.17.1"
+<span class="lineno">   8 </span>buildkonfigGradlePlugin = "0.18.0"
 <span class="lineno">   9 </span>coil = { strictly = "3.3.0" } # Later versions require jvmTarget 11 or later
 <span class="lineno">  10 </span>colorpicker = "6b46b49"
 <span class="caretline"><span class="lineno">  11 </span>conscryptAndroid = { strictly = <span class="warning">"2.5.2"</span> } # 2.5.3 crashes everything&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -1196,6 +1329,28 @@ Dismiss</button>            </div>
 <span class="lineno">  24 </span>junitVersion = "1.3.0"
 </pre>
 
+<button class="mdl-button mdl-js-button mdl-button--primary" id="NewerVersionAvailableDivLink" onclick="reveal('NewerVersionAvailableDiv');" />+ 4 More Occurrences...</button>
+<div id="NewerVersionAvailableDiv" style="display: none">
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:33</span>: <span class="message">A newer version of io.github.anilbeesetti:nextlib-media3ext than 1.9.3-0.12.0 is available: 1.10.0-0.12.1</span><br /><pre class="errorlines">
+<span class="lineno">  30 </span>media3 = "1.9.3"
+<span class="lineno">  31 </span>navigationKtx = "2.9.7"
+<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
+<span class="caretline"><span class="lineno">  33 </span>nextlibMedia3 = <span class="warning">"1.9.3-0.12.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  34 </span>nicehttp = "0.4.17"
+<span class="lineno">  35 </span>overlappingpanels = "0.1.5"
+<span class="lineno">  36 </span>paletteKtx = "1.0.0"
+</pre>
+
+<span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:33</span>: <span class="message">A newer version of io.github.anilbeesetti:nextlib-mediainfo than 1.9.3-0.12.0 is available: 1.10.0-0.12.1</span><br /><pre class="errorlines">
+<span class="lineno">  30 </span>media3 = "1.9.3"
+<span class="lineno">  31 </span>navigationKtx = "2.9.7"
+<span class="lineno">  32 </span>newpipeextractor = "v0.26.0"
+<span class="caretline"><span class="lineno">  33 </span>nextlibMedia3 = <span class="warning">"1.9.3-0.12.0"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno">  34 </span>nicehttp = "0.4.17"
+<span class="lineno">  35 </span>overlappingpanels = "0.1.5"
+<span class="lineno">  36 </span>paletteKtx = "1.0.0"
+</pre>
+
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:40</span>: <span class="message">A newer version of org.mozilla:rhino than 1.8.1 is available: 1.9.1</span><br /><pre class="errorlines">
 <span class="lineno">  37 </span>preferenceKtx = "1.2.1"
 <span class="lineno">  38 </span>previewseekbarMedia3 = "1.1.1.0"
@@ -1216,6 +1371,7 @@ Dismiss</button>            </div>
 <span class="lineno">  51 </span>jdkToolchain = "17"
 </pre>
 
+</div>
 </div>
 <div class="metadata"><div class="explanation" id="explanationNewerVersionAvailable" style="display: none;">
 This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the <code>GradleDependency</code> check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also <b>much</b> slower.<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
@@ -1252,7 +1408,7 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:376</span>: <span class="message">The resource <code>@string/exo_controls_stop_description</code> is marked as private in androidx.media3:media3-ui:1.10.0</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt">../../src/main/java/com/lagradost/cloudstream3/ui/player/GeneratorPlayer.kt</a>:376</span>: <span class="message">The resource <code>@string/exo_controls_stop_description</code> is marked as private in androidx.media3:media3-ui:1.9.3</span><br /><pre class="errorlines">
 <span class="lineno">  373 </span>  <span class="keyword">return</span> mutableMapOf(
 <span class="lineno">  374 </span>      STOP_ACTION to NotificationCompat.Action(
 <span class="lineno">  375 </span>          R.drawable.baseline_stop_24,
@@ -1424,7 +1580,7 @@ Dismiss</button>            </div>
 <span class="caretline"><span class="lineno"> 4 </span>    <span class="tag">&lt;stroke</span><span class="attribute"> </span><span class="prefix">android:</span><span class="attribute">width</span>=<span class="value">"</span><span class="warning"><span class="value">@dimen/mtrl_btn_stroke_size</span></span><span class="value">"</span> <span class="prefix">android:</span><span class="attribute">color</span>=<span class="value">"@color/mtrl_btn_stroke_color_selector"</span>/></span>
 <span class="lineno"> 5 </span><span class="tag">&lt;/shape></span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:662</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.10.0</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout.xml">../../src/main/res/layout/player_custom_layout.xml</a>:662</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.9.3</span><br /><pre class="errorlines">
 <span class="lineno">  659 </span>
 <span class="lineno">  660 </span>                <span class="tag">&lt;ImageButton</span><span class="attribute">
 </span><span class="lineno">  661 </span><span class="attribute">                    </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@id/exo_repeat_toggle"</span>
@@ -1434,7 +1590,7 @@ Dismiss</button>            </div>
 <span class="lineno">  665 </span>                    <span class="prefix">tools:</span><span class="attribute">ignore</span>=<span class="value">"ContentDescription"</span> />
 </pre>
 
-<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:810</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.10.0</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/layout/player_custom_layout_tv.xml">../../src/main/res/layout/player_custom_layout_tv.xml</a>:810</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.9.3</span><br /><pre class="errorlines">
 <span class="lineno">  807 </span>
 <span class="lineno">  808 </span>                <span class="tag">&lt;ImageButton</span><span class="attribute">
 </span><span class="lineno">  809 </span><span class="attribute">                    </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@id/exo_repeat_toggle"</span>
@@ -1480,7 +1636,7 @@ Dismiss</button>            </div>
 <span class="lineno"> 18 </span>            <span class="prefix">android:</span><span class="attribute">toAlpha</span>=<span class="value">"0.0"</span>/>
 <span class="lineno"> 19 </span><span class="tag">&lt;/set></span></pre>
 
-<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:620</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.10.0</span><br /><pre class="errorlines">
+<span class="location"><a href="../../src/main/res/layout/trailer_custom_layout.xml">../../src/main/res/layout/trailer_custom_layout.xml</a>:620</span>: <span class="message">The resource <code>@style/ExoMediaButton</code> is marked as private in androidx.media3:media3-ui:1.9.3</span><br /><pre class="errorlines">
 <span class="lineno">  617 </span>
 <span class="lineno">  618 </span>            <span class="tag">&lt;ImageButton</span><span class="attribute">
 </span><span class="lineno">  619 </span><span class="attribute">                </span><span class="prefix">android:</span><span class="attribute">id</span>=<span class="value">"@id/exo_repeat_toggle"</span>
@@ -1582,11 +1738,11 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../../../../../.gradle/caches/9.4.1/transforms/e8ef61779b3cca7e2f30f12d4ad0edfc/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.4.1/transforms/e8ef61779b3cca7e2f30f12d4ad0edfc/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.4.1/transforms/e8ef61779b3cca7e2f30f12d4ad0edfc/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.4.1/transforms/e8ef61779b3cca7e2f30f12d4ad0edfc/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.4.1/transforms/4bc49e97d5a7fb3ed85243fcade4311a/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.4.1/transforms/4bc49e97d5a7fb3ed85243fcade4311a/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.4.1/transforms/4bc49e97d5a7fb3ed85243fcade4311a/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.4.1/transforms/4bc49e97d5a7fb3ed85243fcade4311a/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970</code>) is not 16 KB aligned</span><br />
-<span class="location"><a href="../../../../../../.gradle/caches/9.4.1/transforms/4bc49e97d5a7fb3ed85243fcade4311a/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.4.1/transforms/4bc49e97d5a7fb3ed85243fcade4311a/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.4.1/transforms/d3b2f7b787ef30c6c2173dd239d1021f/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.4.1/transforms/d3b2f7b787ef30c6c2173dd239d1021f/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.4.1/transforms/d3b2f7b787ef30c6c2173dd239d1021f/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so">../../../../../../.gradle/caches/9.4.1/transforms/d3b2f7b787ef30c6c2173dd239d1021f/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.4.1/transforms/0b54627220f2479f3a5a3f8c6f9453ca/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.4.1/transforms/0b54627220f2479f3a5a3f8c6f9453ca/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.4.1/transforms/0b54627220f2479f3a5a3f8c6f9453ca/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.4.1/transforms/0b54627220f2479f3a5a3f8c6f9453ca/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970</code>) is not 16 KB aligned</span><br />
+<span class="location"><a href="../../../../../../.gradle/caches/9.4.1/transforms/0b54627220f2479f3a5a3f8c6f9453ca/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so">../../../../../../.gradle/caches/9.4.1/transforms/0b54627220f2479f3a5a3f8c6f9453ca/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so</a></span>: <span class="message">The native library <code>arm64-v8a/libgojni.so</code> (from <code>com.github.recloudstream:torrentserver:7861970</code>) is not 16 KB aligned</span><br />
 <span class="location"><a href="../../../gradle/libs.versions.toml">../../../gradle/libs.versions.toml</a>:63</span>: <span class="message">The native library <code>arm64-v8a/libconscrypt_jni.so</code> (from <code>org.conscrypt:conscrypt-android:2.5.2</code>) is not 16 KB aligned</span><br /><pre class="errorlines">
 <span class="lineno">  60 </span>coil = { module = "io.coil-kt.coil3:coil", version.ref = "coil" }
 <span class="lineno">  61 </span>coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }

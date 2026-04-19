@@ -618,19 +618,163 @@
     </issue>
 
     <issue
-        id="NewerVersionAvailable"
+        id="GradleDependency"
         severity="Warning"
-        message="A newer version of com.codingfeline.buildkonfig than 0.17.1 is available: 0.18.0"
+        message="A newer version of androidx.media3:media3-cast than 1.9.3 is available: 1.10.0"
         category="Correctness"
         priority="4"
-        summary="Newer Library Versions Available"
-        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
-        errorLine1="buildkonfigGradlePlugin = &quot;0.17.1&quot;"
-        errorLine2="                          ~~~~~~~~">
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="media3 = &quot;1.9.3&quot;"
+        errorLine2="         ~~~~~~~">
         <location
             file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
-            line="8"
-            column="27"/>
+            line="30"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.media3:media3-common than 1.9.3 is available: 1.10.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="media3 = &quot;1.9.3&quot;"
+        errorLine2="         ~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="30"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.media3:media3-container than 1.9.3 is available: 1.10.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="media3 = &quot;1.9.3&quot;"
+        errorLine2="         ~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="30"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.media3:media3-datasource-cronet than 1.9.3 is available: 1.10.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="media3 = &quot;1.9.3&quot;"
+        errorLine2="         ~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="30"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.media3:media3-datasource-okhttp than 1.9.3 is available: 1.10.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="media3 = &quot;1.9.3&quot;"
+        errorLine2="         ~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="30"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.media3:media3-exoplayer than 1.9.3 is available: 1.10.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="media3 = &quot;1.9.3&quot;"
+        errorLine2="         ~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="30"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.media3:media3-exoplayer-dash than 1.9.3 is available: 1.10.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="media3 = &quot;1.9.3&quot;"
+        errorLine2="         ~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="30"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.media3:media3-exoplayer-hls than 1.9.3 is available: 1.10.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="media3 = &quot;1.9.3&quot;"
+        errorLine2="         ~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="30"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.media3:media3-session than 1.9.3 is available: 1.10.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="media3 = &quot;1.9.3&quot;"
+        errorLine2="         ~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="30"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        severity="Warning"
+        message="A newer version of androidx.media3:media3-ui than 1.9.3 is available: 1.10.0"
+        category="Correctness"
+        priority="4"
+        summary="Obsolete Gradle Dependency"
+        explanation="This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find."
+        errorLine1="media3 = &quot;1.9.3&quot;"
+        errorLine2="         ~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="30"
+            column="10"/>
     </issue>
 
     <issue
@@ -716,6 +860,38 @@
     <issue
         id="NewerVersionAvailable"
         severity="Warning"
+        message="A newer version of io.github.anilbeesetti:nextlib-media3ext than 1.9.3-0.12.0 is available: 1.10.0-0.12.1"
+        category="Correctness"
+        priority="4"
+        summary="Newer Library Versions Available"
+        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
+        errorLine1="nextlibMedia3 = &quot;1.9.3-0.12.0&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="33"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        severity="Warning"
+        message="A newer version of io.github.anilbeesetti:nextlib-mediainfo than 1.9.3-0.12.0 is available: 1.10.0-0.12.1"
+        category="Correctness"
+        priority="4"
+        summary="Newer Library Versions Available"
+        explanation="This detector checks with a central repository to see if there are newer versions available for the dependencies used by this project. This is similar to the `GradleDependency` check, which checks for newer versions available in the Android SDK tools and libraries, but this works with any MavenCentral dependency, and connects to the library every time, which makes it more flexible but also **much** slower."
+        errorLine1="nextlibMedia3 = &quot;1.9.3-0.12.0&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/cloudstream/cloudstream/gradle/libs.versions.toml"
+            line="33"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="NewerVersionAvailable"
+        severity="Warning"
         message="A newer version of org.mozilla:rhino than 1.8.1 is available: 1.9.1"
         category="Correctness"
         priority="4"
@@ -748,7 +924,7 @@
     <issue
         id="PrivateResource"
         severity="Warning"
-        message="The resource `@string/exo_controls_stop_description` is marked as private in androidx.media3:media3-ui:1.10.0"
+        message="The resource `@string/exo_controls_stop_description` is marked as private in androidx.media3:media3-ui:1.9.3"
         category="Correctness"
         priority="3"
         summary="Using private resources"
@@ -1052,7 +1228,7 @@
     <issue
         id="PrivateResource"
         severity="Warning"
-        message="The resource `@style/ExoMediaButton` is marked as private in androidx.media3:media3-ui:1.10.0"
+        message="The resource `@style/ExoMediaButton` is marked as private in androidx.media3:media3-ui:1.9.3"
         category="Correctness"
         priority="3"
         summary="Using private resources"
@@ -1068,7 +1244,7 @@
     <issue
         id="PrivateResource"
         severity="Warning"
-        message="The resource `@style/ExoMediaButton` is marked as private in androidx.media3:media3-ui:1.10.0"
+        message="The resource `@style/ExoMediaButton` is marked as private in androidx.media3:media3-ui:1.9.3"
         category="Correctness"
         priority="3"
         summary="Using private resources"
@@ -1148,7 +1324,7 @@
     <issue
         id="PrivateResource"
         severity="Warning"
-        message="The resource `@style/ExoMediaButton` is marked as private in androidx.media3:media3-ui:1.10.0"
+        message="The resource `@style/ExoMediaButton` is marked as private in androidx.media3:media3-ui:1.9.3"
         category="Correctness"
         priority="3"
         summary="Using private resources"
@@ -1204,7 +1380,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.4.1/transforms/e8ef61779b3cca7e2f30f12d4ad0edfc/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
+            file="/home/runner/.gradle/caches/9.4.1/transforms/d3b2f7b787ef30c6c2173dd239d1021f/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
     </issue>
 
     <issue
@@ -1218,7 +1394,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.4.1/transforms/e8ef61779b3cca7e2f30f12d4ad0edfc/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
+            file="/home/runner/.gradle/caches/9.4.1/transforms/d3b2f7b787ef30c6c2173dd239d1021f/transformed/conscrypt-android-2.5.2/jni/arm64-v8a/libconscrypt_jni.so"/>
     </issue>
 
     <issue
@@ -1232,7 +1408,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.4.1/transforms/4bc49e97d5a7fb3ed85243fcade4311a/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so"/>
+            file="/home/runner/.gradle/caches/9.4.1/transforms/0b54627220f2479f3a5a3f8c6f9453ca/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so"/>
     </issue>
 
     <issue
@@ -1246,7 +1422,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.4.1/transforms/4bc49e97d5a7fb3ed85243fcade4311a/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so"/>
+            file="/home/runner/.gradle/caches/9.4.1/transforms/0b54627220f2479f3a5a3f8c6f9453ca/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so"/>
     </issue>
 
     <issue
@@ -1260,7 +1436,7 @@
         url="https://developer.android.com/guide/practices/page-sizes"
         urls="https://developer.android.com/guide/practices/page-sizes">
         <location
-            file="/home/runner/.gradle/caches/9.4.1/transforms/4bc49e97d5a7fb3ed85243fcade4311a/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so"/>
+            file="/home/runner/.gradle/caches/9.4.1/transforms/0b54627220f2479f3a5a3f8c6f9453ca/transformed/torrentserver-7861970/jni/arm64-v8a/libgojni.so"/>
     </issue>
 
     <issue
