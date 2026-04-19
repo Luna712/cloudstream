@@ -106,7 +106,7 @@ class DownloadQueueService : Service() {
 
 
     private fun updateNotification(context: Context, downloads: Int, queued: Int) {
-         if (context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)
+        if (context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)
             != PackageManager.PERMISSION_GRANTED
         ) return
 
