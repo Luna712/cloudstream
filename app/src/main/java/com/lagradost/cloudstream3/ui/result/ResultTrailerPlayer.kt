@@ -56,7 +56,6 @@ class ResultTrailerPlayer : ResultFragmentPhone() {
     override fun isValidTouch(rawX: Float, rawY: Float): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             val insets = playerBinding?.playerHolder?.rootWindowInsets
-                ?.getInsets(WindowInsets.Type.systemBars()) ?: return true
                 ?.getInsetsIgnoringVisibility(WindowInsets.Type.systemBars()) ?: return true
             return rawY > insets.top && rawX < (screenWidthWithOrientation - insets.right)
         }
