@@ -2,7 +2,7 @@
 # https://docs.gradle.org/current/userguide/dependency_versions.html#sec:strict-version
 [versions]
 activityKtx = "1.13.0"
-androidGradlePlugin = "9.1.1"
+androidGradlePlugin = "9.2.0"
 animeDb = "1.0.2"
 appcompat = "1.7.1"
 biometric = "1.4.0-alpha06"
