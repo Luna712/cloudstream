@@ -271,7 +271,7 @@ dependencies {
     implementation(project(":library"))
 
     implementation("androidx.media3:media3-decoder:1.9.3")
-    implementation("androidx.media3:media3-exoplayer-ffmpeg:1.9.3")
+    implementation("org.jellyfin.media3:media3-ffmpeg-decoder:1.9.0+1")
 }
 
 tasks.register<Jar>("androidSourcesJar") {
