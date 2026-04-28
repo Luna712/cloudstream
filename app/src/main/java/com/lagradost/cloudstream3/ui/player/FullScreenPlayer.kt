@@ -19,7 +19,6 @@ import android.view.MotionEvent
 import android.view.Surface
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowInsets
 import android.view.WindowManager
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AlphaAnimation
@@ -41,8 +40,6 @@ import androidx.recyclerview.widget.SimpleItemAnimator
 import com.google.android.material.button.MaterialButton
 import com.lagradost.cloudstream3.CommonActivity.keyEventListener
 import com.lagradost.cloudstream3.CommonActivity.playerEventListener
-import com.lagradost.cloudstream3.CommonActivity.screenHeightWithOrientation
-import com.lagradost.cloudstream3.CommonActivity.screenWidthWithOrientation
 import com.lagradost.cloudstream3.LoadResponse
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.databinding.FragmentPlayerBinding
@@ -64,7 +61,6 @@ import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.UIHelper.colorFromAttribute
 import com.lagradost.cloudstream3.utils.UIHelper.dismissSafe
 import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
-import com.lagradost.cloudstream3.utils.UIHelper.getStatusBarHeight
 import com.lagradost.cloudstream3.utils.UIHelper.hideSystemUI
 import com.lagradost.cloudstream3.utils.UIHelper.popCurrentPage
 import com.lagradost.cloudstream3.utils.UIHelper.toPx
@@ -820,18 +816,6 @@ open class FullScreenPlayer : AbstractPlayerFragment<FragmentPlayerBinding>(
     }
 
     /** PlayerView.Callbacks touch overrides */
-
-    override fun isValidTouch(rawX: Float, rawY: Float): Boolean {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            val insets = playerBinding?.playerHolder?.rootWindowInsets
-                ?.getInsetsIgnoringVisibility(WindowInsets.Type.systemBars()) ?: return true
-            val validHeight = rawY > insets.top && rawY < screenHeightWithOrientation - insets.bottom
-            val validWidth = rawX > insets.left && rawX < screenWidthWithOrientation - insets.right
-            return validHeight && validWidth
-        }
-
-        return rawY > (context?.getStatusBarHeight() ?: 0) && rawX < screenWidthWithOrientation
-    }
 
     override fun isUIShowing(): Boolean = isShowing
 
