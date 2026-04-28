@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.lagradost.cloudstream3.CommonActivity.screenHeight
+import com.lagradost.cloudstream3.CommonActivity.screenHeightWithOrientation
 import com.lagradost.cloudstream3.CommonActivity.screenWidth
 import com.lagradost.cloudstream3.CommonActivity.screenWidthWithOrientation
 import com.lagradost.cloudstream3.LoadResponse
@@ -57,9 +58,12 @@ class ResultTrailerPlayer : ResultFragmentPhone() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             val insets = playerBinding?.playerHolder?.rootWindowInsets
                 ?.getInsetsIgnoringVisibility(WindowInsets.Type.systemBars()) ?: return true
-            return rawY > insets.top && rawX < (screenWidthWithOrientation - insets.right)
+            val validHeight = rawY > insets.top && rawY < screenHeightWithOrientation - insets.bottom
+            val validWidth = rawX > insets.left && rawX < screenWidthWithOrientation - insets.right
+            return validHeight && validWidth
         }
-        return rawY > (context?.getStatusBarHeight() ?: 0)
+
+        return rawY > (context?.getStatusBarHeight() ?: 0) && rawX < screenWidthWithOrientation
     }
 
     override fun isUIShowing(): Boolean = isShowing
