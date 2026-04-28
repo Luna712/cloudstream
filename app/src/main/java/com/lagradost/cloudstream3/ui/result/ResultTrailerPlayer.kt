@@ -6,15 +6,12 @@ import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.view.ViewGroup
-import android.view.WindowInsets
 import android.widget.FrameLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.lagradost.cloudstream3.CommonActivity.screenHeight
-import com.lagradost.cloudstream3.CommonActivity.screenHeightWithOrientation
 import com.lagradost.cloudstream3.CommonActivity.screenWidth
-import com.lagradost.cloudstream3.CommonActivity.screenWidthWithOrientation
 import com.lagradost.cloudstream3.LoadResponse
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.databinding.FragmentResultSwipeBinding
@@ -25,7 +22,6 @@ import com.lagradost.cloudstream3.ui.player.SubtitleData
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.attachBackPressedCallback
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.detachBackPressedCallback
 import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
-import com.lagradost.cloudstream3.utils.UIHelper.getStatusBarHeight
 
 class ResultTrailerPlayer : ResultFragmentPhone() {
 
@@ -52,18 +48,6 @@ class ResultTrailerPlayer : ResultFragmentPhone() {
         isShowing = true
         updateUIVisibility()
         playerHostView?.scheduleAutoHide()
-    }
-
-    override fun isValidTouch(rawX: Float, rawY: Float): Boolean {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            val insets = playerBinding?.playerHolder?.rootWindowInsets
-                ?.getInsetsIgnoringVisibility(WindowInsets.Type.systemBars()) ?: return true
-            val validHeight = rawY > insets.top && rawY < screenHeightWithOrientation - insets.bottom
-            val validWidth = rawX > insets.left && rawX < screenWidthWithOrientation - insets.right
-            return validHeight && validWidth
-        }
-
-        return rawY > (context?.getStatusBarHeight() ?: 0) && rawX < screenWidthWithOrientation
     }
 
     override fun isUIShowing(): Boolean = isShowing
