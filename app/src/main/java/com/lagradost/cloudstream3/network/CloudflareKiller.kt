@@ -2,10 +2,10 @@ package com.lagradost.cloudstream3.network
 
 import android.util.Log
 import android.webkit.CookieManager
-import androidx.annotation.MainThread
+import androidx.annotation.AnyThread
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.mvvm.debugWarning
-import com.lagradost.cloudstream3.mvvm.safe
+import com.lagradost.cloudstream3.utils.Coroutines.ioWorkSafe
 import com.lagradost.nicehttp.Requests.Companion.await
 import com.lagradost.nicehttp.cookies
 import kotlinx.coroutines.runBlocking
@@ -15,7 +15,7 @@ import okhttp3.Request
 import okhttp3.Response
 import java.net.URI
 
-@MainThread
+@AnyThread
 class CloudflareKiller : Interceptor {
     companion object {
         const val TAG = "CloudflareKiller"
@@ -31,7 +31,7 @@ class CloudflareKiller : Interceptor {
 
     init {
         // Needs to clear cookies between sessions to generate new cookies.
-        safe {
+        ioWorkSafe {
             // This can throw an exception on unsupported devices :(
             CookieManager.getInstance().removeAllCookies(null)
         }
@@ -76,7 +76,7 @@ class CloudflareKiller : Interceptor {
     }
 
     private fun getWebViewCookie(url: String): String? {
-        return safe {
+        return ioWorkSafe {
             CookieManager.getInstance()?.getCookie(url)
         }
     }
