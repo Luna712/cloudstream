@@ -81,8 +81,7 @@ fun logError(throwable: Throwable) {
 
 @Deprecated(
     "Outdated function, use `safe` instead",
-    replaceWith = ReplaceWith("safe"),
-    level = DeprecationLevel.ERROR
+    level = DeprecationLevel.HIDDEN
 )
 fun <T> normalSafeApiCall(apiCall: () -> T): T? {
     return try {
@@ -96,7 +95,7 @@ fun <T> normalSafeApiCall(apiCall: () -> T): T? {
 /** Catches any exception (or error) and only logs it.
  * Will return null on exceptions. */
 @MainThread
-fun <T> safe(apiCall: () -> T): T? {
+fun <T> safe(@MainThread apiCall: () -> T): T? {
     return try {
         apiCall.invoke()
     } catch (throwable: Throwable) {
@@ -108,7 +107,7 @@ fun <T> safe(apiCall: () -> T): T? {
 /** Catches any exception (or error) and only logs it.
  * Will return null on exceptions. */
 @WorkerThread
-suspend fun <T> safeAsync(apiCall: suspend () -> T): T? {
+suspend fun <T> safeAsync(@WorkerThread apiCall: suspend () -> T): T? {
     return try {
         apiCall.invoke()
     } catch (e: CancellationException) {
@@ -121,8 +120,7 @@ suspend fun <T> safeAsync(apiCall: suspend () -> T): T? {
 
 @Deprecated(
     "Outdated function, use `safeAsync` instead",
-    replaceWith = ReplaceWith("safeAsync"),
-    level = DeprecationLevel.ERROR
+    level = DeprecationLevel.HIDDEN
 )
 suspend fun <T> suspendSafeApiCall(apiCall: suspend () -> T): T? {
     return try {
