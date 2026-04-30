@@ -1810,10 +1810,9 @@ class ResultViewModel2 : ViewModel() {
 
 
     private suspend fun updateFillers(data : LoadResponse) {
-        fillers =
-            withContext(Dispatchers.IO) {
-                safe { FillerEpisodeCheck.getFillerEpisodes(data) }
-            } ?: hashSetOf()
+        fillers = ioWorkSafe {
+            FillerEpisodeCheck.getFillerEpisodes(data)
+        } ?: hashSetOf()
     }
 
     fun changeDubStatus(status: DubStatus) {
