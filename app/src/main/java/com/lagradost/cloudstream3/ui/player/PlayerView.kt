@@ -671,9 +671,6 @@ class PlayerView @JvmOverloads constructor(
                 }
             }
 
-            is InvalidFileException ->
-                showErrorToast("${context.getString(R.string.source_error)}\n${exception.message}")
-
             is SocketTimeoutException ->
                 showErrorToast("${context.getString(R.string.remote_error)}\n${exception.message}")
 
@@ -722,8 +719,7 @@ class PlayerView @JvmOverloads constructor(
         if (isLayout(TV or EMULATOR)) return ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
         return if (autoPlayerRotateEnabled && isVerticalOrientation)
             ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
-        else
-            ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+        else ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
     }
 
     /** Event dispatch */
@@ -754,17 +750,7 @@ class PlayerView @JvmOverloads constructor(
             is TimestampInvokedEvent -> callbacks?.onTimestamp(event.timestamp)
             is TracksChangedEvent -> callbacks?.onTracksInfoChanged()
             is EmbeddedSubtitlesFetchedEvent -> callbacks?.embeddedSubtitlesFetched(event.tracks)
-            is ErrorEvent -> {
-                /**
-                 * Ensure this always runs on the UI thread to prevent issues such
-                 * as those caused by SocketTimeoutException in torrents. Runnung
-                 * on another thread can break player interactions or prevent
-                 * switching to the next source.
-                 */
-                // (context as? Activity)?.runOnUiThread {
-                    callbacks?.playerError(event.error) ?: playerError(event.error)
-                // }
-            }
+            is ErrorEvent -> callbacks?.playerError(event.error) ?: playerError(event.error)
             is RequestAudioFocusEvent -> requestAudioFocus()
             is EpisodeSeekEvent -> when (event.offset) {
                 -1 -> callbacks?.prevEpisode()
