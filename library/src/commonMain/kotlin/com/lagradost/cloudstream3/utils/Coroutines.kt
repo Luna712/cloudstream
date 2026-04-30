@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream3.utils
 
+import androidx.annotation.WorkerThread
 import com.lagradost.cloudstream3.mvvm.launchSafe
 import com.lagradost.cloudstream3.mvvm.logError
 import kotlinx.coroutines.*
@@ -14,6 +15,7 @@ object Coroutines {
         }
     }
 
+    @WorkerThread
     fun <T> T.ioSafe(work: suspend (CoroutineScope.(T) -> Unit)): Job {
         val value = this
 
