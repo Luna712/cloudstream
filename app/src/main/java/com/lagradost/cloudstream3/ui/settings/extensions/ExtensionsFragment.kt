@@ -119,13 +119,14 @@ class ExtensionsFragment : BaseFragment<FragmentExtensionsBinding>(
             }, { repo ->
                 // Prompt user before deleting repo
                 main {
-                    val builder = AlertDialog.Builder(context ?: binding.root.context)
+                    val uiContext = context ?: binding.root.context
+                    val builder = AlertDialog.Builder(uiContext)
                     val dialogClickListener =
                         DialogInterface.OnClickListener { _, which ->
                             when (which) {
                                 DialogInterface.BUTTON_POSITIVE -> {
                                     ioSafe {
-                                        RepositoryManager.removeRepository(binding.root.context, repo)
+                                        RepositoryManager.removeRepository(uiContext.applicationContext, repo)
                                         extensionViewModel.loadStats()
                                         extensionViewModel.loadRepositories()
                                     }
