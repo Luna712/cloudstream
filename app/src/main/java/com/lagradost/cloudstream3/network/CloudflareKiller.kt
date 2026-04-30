@@ -5,6 +5,7 @@ import android.webkit.CookieManager
 import androidx.annotation.AnyThread
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.mvvm.debugWarning
+import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream3.utils.Coroutines.ioWorkSafe
 import com.lagradost.nicehttp.Requests.Companion.await
 import com.lagradost.nicehttp.cookies
@@ -31,7 +32,7 @@ class CloudflareKiller : Interceptor {
 
     init {
         // Needs to clear cookies between sessions to generate new cookies.
-        ioWorkSafe {
+        ioSafe {
             // This can throw an exception on unsupported devices :(
             CookieManager.getInstance().removeAllCookies(null)
         }
@@ -75,7 +76,7 @@ class CloudflareKiller : Interceptor {
         return@runBlocking chain.proceed(request)
     }
 
-    private fun getWebViewCookie(url: String): String? {
+    private suspend fun getWebViewCookie(url: String): String? {
         return ioWorkSafe {
             CookieManager.getInstance()?.getCookie(url)
         }
@@ -85,7 +86,7 @@ class CloudflareKiller : Interceptor {
      * Returns true if the cf cookies were successfully fetched from the CookieManager
      * Also saves the cookies.
      * */
-    private fun trySolveWithSavedCookies(request: Request): Boolean {
+    private suspend fun trySolveWithSavedCookies(request: Request): Boolean {
         // Not sure if this takes expiration into account
         return getWebViewCookie(request.url.toString())?.let { cookie ->
             cookie.contains("cf_clearance").also { solved ->
