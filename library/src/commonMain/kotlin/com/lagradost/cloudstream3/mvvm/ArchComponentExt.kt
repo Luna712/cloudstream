@@ -1,16 +1,21 @@
 package com.lagradost.cloudstream3.mvvm
 
+import androidx.annotation.AnyThread
+import androidx.annotation.WorkerThread
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.ErrorLoadingException
 import com.lagradost.cloudstream3.utils.AppDebug
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
+import kotlin.contracts.contract
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
+import kotlin.reflect.full.NoSuchPropertyException
 import kotlinx.coroutines.*
 import java.io.InterruptedIOException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import javax.net.ssl.SSLHandshakeException
-import kotlin.coroutines.CoroutineContext
-import kotlin.coroutines.EmptyCoroutineContext
-import kotlin.reflect.full.NoSuchPropertyException
 
 const val DEBUG_EXCEPTION = "THIS IS A DEBUG EXCEPTION!"
 const val DEBUG_PRINT = "DEBUG PRINT"
@@ -59,7 +64,7 @@ sealed class Resource<out T> {
     companion object {
         fun <T> fromResult(result: Result<T>) : Resource<T> {
             val value = result.getOrNull()
-            return if(value != null) {
+            return if (value != null) {
                 Success(value)
             } else {
                 throwAbleToResource(result.exceptionOrNull() ?: Exception("this should not be possible"))
@@ -92,23 +97,30 @@ fun <T> normalSafeApiCall(apiCall: () -> T): T? {
 
 /** Catches any exception (or error) and only logs it.
  * Will return null on exceptions. */
+@OptIn(ExperimentalContracts::class)
 fun <T> safe(apiCall: () -> T): T? {
+    contract {
+        callsInPlace(apiCall, InvocationKind.EXACTLY_ONCE)
+    }
     return try {
         apiCall.invoke()
     } catch (throwable: Throwable) {
         logError(throwable)
-        return null
+        null
     }
 }
 
 /** Catches any exception (or error) and only logs it.
  * Will return null on exceptions. */
+@WorkerThread
 suspend fun <T> safeAsync(apiCall: suspend () -> T): T? {
     return try {
         apiCall.invoke()
+    } catch (e: CancellationException) {
+        throw e 
     } catch (throwable: Throwable) {
         logError(throwable)
-        return null
+        null
     }
 }
 
@@ -232,8 +244,9 @@ fun <T> throwAbleToResource(
     }
 }
 
+@AnyThread
 suspend fun <T> safeApiCall(
-    apiCall: suspend () -> T,
+    @WorkerThread apiCall: suspend () -> T,
 ): Resource<T> {
     return withContext(Dispatchers.IO) {
         try {
