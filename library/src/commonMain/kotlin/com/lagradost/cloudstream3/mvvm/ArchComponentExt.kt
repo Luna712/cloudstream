@@ -92,24 +92,21 @@ fun <T> normalSafeApiCall(apiCall: () -> T): T? {
     }
 }
 
-/** Catches any exception (or error) and only logs it.
- * Will return null on exceptions. */
+/**
+ * Catches any exception (or error) and only logs it.
+ * Will return null on exceptions.
+ *
+ * This is intended for **UI-related work** where accessing context, views, or other
+ * main-thread-only resources must be safe and predictable.
+ *
+ * This is **main-thread only**. It is annotated with [MainThread] and should be
+ * enforced by lint to improve IDE analysis and catch incorrect usage.
+ *
+ * For background or IO work, use [safeAsync] inside a worker thread instead.
+ * You can also use [safeApiCall] on any thread to use a *new* IO thread.
+ */
 @MainThread
 fun <T> safe(@MainThread apiCall: () -> T): T? {
-    return try {
-        apiCall.invoke()
-    } catch (throwable: Throwable) {
-        logError(throwable)
-        null
-    }
-}
-
-@Deprecated(
-    "Only call safe on the main thread. Use safeAsync or ioSafe for IO thread.",
-    level = DeprecationLevel.ERROR
-)
-@JvmName("safe")
-fun <T> safeOld(apiCall: () -> T): T? {
     return try {
         apiCall.invoke()
     } catch (throwable: Throwable) {
