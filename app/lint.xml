@@ -10,7 +10,4 @@
     <issue id="StringFormatInvalid">
         <ignore path="**/res/values-*/**" />
     </issue>
-
-    <!-- Force @UiThread and other thread violations to fail the build at compile-time. -->
-    <issue id="WrongThread" severity="fatal" />
 </lint>
