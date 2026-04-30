@@ -76,17 +76,15 @@ class CloudflareKiller : Interceptor {
         return@runBlocking chain.proceed(request)
     }
 
-    private suspend fun getWebViewCookie(url: String): String? {
-        return ioWorkSafe {
-            CookieManager.getInstance()?.getCookie(url)
-        }
+    private fun getWebViewCookie(url: String): String? {
+        return CookieManager.getInstance()?.getCookie(url)
     }
 
     /**
      * Returns true if the cf cookies were successfully fetched from the CookieManager
      * Also saves the cookies.
      * */
-    private suspend fun trySolveWithSavedCookies(request: Request): Boolean {
+    private fun trySolveWithSavedCookies(request: Request): Boolean {
         // Not sure if this takes expiration into account
         return getWebViewCookie(request.url.toString())?.let { cookie ->
             cookie.contains("cf_clearance").also { solved ->
@@ -128,7 +126,7 @@ class CloudflareKiller : Interceptor {
             ).resolveUsingWebView(
                 url
             ) {
-                trySolveWithSavedCookies(request)
+                ioWorkSafe { trySolveWithSavedCookies(request) }
             }
         }
 
