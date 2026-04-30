@@ -137,9 +137,7 @@ class ExtensionsFragment : BaseFragment<FragmentExtensionsBinding>(
                         }
 
                     builder.setTitle(R.string.delete_repository)
-                        .setMessage(
-                            context?.getString(R.string.delete_repository_plugins)
-                        )
+                        .setMessage(uiContext.getString(R.string.delete_repository_plugins))
                         .setPositiveButton(R.string.delete, dialogClickListener)
                         .setNegativeButton(R.string.cancel, dialogClickListener)
                         .show().setDefaultFocus()
@@ -211,9 +209,9 @@ class ExtensionsFragment : BaseFragment<FragmentExtensionsBinding>(
 
             binding.applyBtt.setOnClickListener secondListener@{
                 val name = binding.repoNameInput.text?.toString()
+                val urlInput = binding.repoUrlInput.text?.toString()
                 ioSafe {
-                    val url = binding.repoUrlInput.text?.toString()
-                        ?.let { it1 -> RepositoryManager.parseRepoUrl(it1) }
+                    val url = urlInput?.let { it1 -> RepositoryManager.parseRepoUrl(it1) }
                     if (url.isNullOrBlank()) {
                         main {
                             showToast(R.string.error_invalid_data, Toast.LENGTH_SHORT)
