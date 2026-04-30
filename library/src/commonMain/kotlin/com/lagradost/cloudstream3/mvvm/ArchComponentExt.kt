@@ -149,20 +149,21 @@ fun <T> safeFail(throwable: Throwable): Resource<T> {
     return Resource.Failure(false, stackTraceMsg)
 }
 
+@AnyThread
 fun CoroutineScope.launchSafe(
     context: CoroutineContext = EmptyCoroutineContext,
     start: CoroutineStart = CoroutineStart.DEFAULT,
-    block: suspend CoroutineScope.() -> Unit
+    @AnyThread block: suspend CoroutineScope.() -> Unit
 ): Job {
-    val obj: suspend CoroutineScope.() -> Unit = {
+    return this.launch(context, start) {
         try {
             block()
+        } catch (e: CancellationException) {
+            throw e 
         } catch (throwable: Throwable) {
             logError(throwable)
         }
     }
-
-    return this.launch(context, start, obj)
 }
 
 fun <T> throwAbleToResource(
