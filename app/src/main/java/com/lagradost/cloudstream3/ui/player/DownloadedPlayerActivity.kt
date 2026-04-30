@@ -14,7 +14,9 @@ import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.attachBackPres
 import com.lagradost.cloudstream3.utils.UIHelper.enableEdgeToEdgeCompat
 
 class DownloadedPlayerActivity : AppCompatActivity() {
-    private val dTAG = "DownloadedPlayerAct"
+    companion object {
+        const val TAG = "DownloadedPlayerActivity"
+    }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean =
         CommonActivity.dispatchKeyEvent(this, event) ?: super.dispatchKeyEvent(event)
@@ -30,7 +32,7 @@ class DownloadedPlayerActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setIntent(intent)
-        Log.i(dTAG, "onNewIntent")
+        Log.i(TAG, "onNewIntent")
         handleIntent(intent)
     }
 
@@ -40,7 +42,7 @@ class DownloadedPlayerActivity : AppCompatActivity() {
         CommonActivity.init(this)
         enableEdgeToEdgeCompat()
         setContentView(R.layout.empty_layout)
-        Log.i(dTAG, "onCreate")
+        Log.i(TAG, "onCreate")
 
         handleIntent(intent)
         attachBackPressedCallback("DownloadedPlayerActivity") { finish() }
@@ -62,18 +64,15 @@ class DownloadedPlayerActivity : AppCompatActivity() {
             val item = if (cd != null && cd.itemCount > 0) cd.getItemAt(0) else null
             val url = item?.text?.toString()
             when {
-                item?.uri != null  -> playUri(this, item.uri)
-                url != null        -> playLink(this, url)
-                data != null       -> playUri(this, data)
-                extraText != null  -> playLink(this, extraText)
-                else               -> { finish(); return }
+                item?.uri != null -> playUri(this, item.uri)
+                url != null -> playLink(this, url)
+                data != null -> playUri(this, data)
+                extraText != null -> playLink(this, extraText)
+                else -> { finish(); return }
             }
         } else if (data?.scheme == "content") {
             playUri(this, data)
-        } else {
-            finish()
-            return
-        }
+        } else finish()
     }
 
     override fun onResume() {
