@@ -31,6 +31,8 @@ class DownloadedPlayerActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
+        // Ignore same intent so the player doesnt totally
+        // reload if you are playing the same thing.
         if (isSameIntent(intent)) return
         setIntent(intent)
         Log.i(TAG, "onNewIntent")
