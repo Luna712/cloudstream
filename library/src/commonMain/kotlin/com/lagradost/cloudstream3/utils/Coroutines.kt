@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream3.utils
 
+import androidx.annotation.AnyThread
 import androidx.annotation.WorkerThread
 import com.lagradost.cloudstream3.mvvm.launchSafe
 import com.lagradost.cloudstream3.mvvm.logError
@@ -15,10 +16,11 @@ object Coroutines {
         }
     }
 
-    @WorkerThread
-    fun <T> T.ioSafe(work: suspend (CoroutineScope.(T) -> Unit)): Job {
+    @AnyThread
+    fun <T> T.ioSafe(
+        work: suspend @WorkerThread (CoroutineScope.(T) -> Unit)
+    ): Job {
         val value = this
-
         return CoroutineScope(Dispatchers.IO).launchSafe {
             work(value)
         }
