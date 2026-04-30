@@ -8,6 +8,7 @@ import com.lagradost.cloudstream3.mvvm.logError
 import kotlinx.coroutines.*
 import java.util.Collections.synchronizedList
 
+@AnyThread
 expect fun runOnMainThreadNative(@MainThread work: (() -> Unit))
 object Coroutines {
     @AnyThread
