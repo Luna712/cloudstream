@@ -94,7 +94,6 @@ fun <T> normalSafeApiCall(apiCall: () -> T): T? {
 
 /** Catches any exception (or error) and only logs it.
  * Will return null on exceptions. */
-@JvmName("safeMain")
 @MainThread
 fun <T> safe(@MainThread apiCall: () -> T): T? {
     return try {
@@ -109,7 +108,8 @@ fun <T> safe(@MainThread apiCall: () -> T): T? {
     "Only call safe on the main thread. Use safeAsync or ioSafe for IO thread.",
     level = DeprecationLevel.ERROR
 )
-fun <T> safe(apiCall: () -> T): T? {
+@JvmName("safe")
+fun <T> safeOld(apiCall: () -> T): T? {
     return try {
         apiCall.invoke()
     } catch (throwable: Throwable) {
