@@ -94,6 +94,7 @@ fun <T> normalSafeApiCall(apiCall: () -> T): T? {
 
 /** Catches any exception (or error) and only logs it.
  * Will return null on exceptions. */
+@JvmName("safeMain")
 @MainThread
 fun <T> safe(@MainThread apiCall: () -> T): T? {
     return try {
