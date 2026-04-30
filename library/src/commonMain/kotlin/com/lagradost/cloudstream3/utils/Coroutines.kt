@@ -18,7 +18,7 @@ object Coroutines {
 
     @AnyThread
     fun <T> T.ioSafe(
-        work: suspend @WorkerThread (CoroutineScope.(T) -> Unit)
+        @WorkerThread work: suspend (CoroutineScope.(T) -> Unit)
     ): Job {
         val value = this
         return CoroutineScope(Dispatchers.IO).launchSafe {
