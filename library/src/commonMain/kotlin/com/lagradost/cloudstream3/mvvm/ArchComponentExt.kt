@@ -1,13 +1,11 @@
 package com.lagradost.cloudstream3.mvvm
 
 import androidx.annotation.AnyThread
+import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.ErrorLoadingException
 import com.lagradost.cloudstream3.utils.AppDebug
-import kotlin.contracts.ExperimentalContracts
-import kotlin.contracts.InvocationKind
-import kotlin.contracts.contract
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 import kotlin.reflect.full.NoSuchPropertyException
@@ -97,11 +95,8 @@ fun <T> normalSafeApiCall(apiCall: () -> T): T? {
 
 /** Catches any exception (or error) and only logs it.
  * Will return null on exceptions. */
-@OptIn(ExperimentalContracts::class)
+@MainThread
 fun <T> safe(apiCall: () -> T): T? {
-    contract {
-        callsInPlace(apiCall, InvocationKind.EXACTLY_ONCE)
-    }
     return try {
         apiCall.invoke()
     } catch (throwable: Throwable) {
