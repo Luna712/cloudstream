@@ -239,7 +239,7 @@ class CS3IPlayer : IPlayer {
     }
 
     override fun initCallbacks(
-        eventHandler: ((PlayerEvent) -> Unit),
+        @WorkerThread eventHandler: ((PlayerEvent) -> Unit),
         requestedListeningPercentages: List<Int>?,
     ) {
         this.requestedListeningPercentages = requestedListeningPercentages
