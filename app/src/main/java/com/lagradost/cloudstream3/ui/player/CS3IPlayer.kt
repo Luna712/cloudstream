@@ -14,6 +14,7 @@ import android.util.Rational
 import android.widget.FrameLayout
 import androidx.annotation.AnyThread
 import androidx.annotation.MainThread
+import androidx.annotation.WorkerThread
 import androidx.annotation.OptIn
 import androidx.appcompat.app.AlertDialog
 import androidx.core.net.toUri
@@ -206,7 +207,7 @@ class CS3IPlayer : IPlayer {
     private var playerSelectedSubtitleTracks = listOf<Pair<String, Boolean>>()
     private var requestedListeningPercentages: List<Int>? = null
 
-    @set:MainThread
+    @set:WorkerThread
     @get:MainThread
     private var eventHandler: ((PlayerEvent) -> Unit)? = null
     private val mainHandler = Handler(Looper.getMainLooper())
