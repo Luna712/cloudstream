@@ -211,7 +211,7 @@ class CS3IPlayer : IPlayer {
     @AnyThread
     fun event(event: PlayerEvent) {
         // Ensure that all work is done on the main thread.
-        if (Looper.myLooper() == Looper.getMainLooper()) {
+        if (Looper.getMainLooper().isCurrentThread) {
             eventHandler?.invoke(event)
         } else runOnMainThread {
             eventHandler?.invoke(event)
