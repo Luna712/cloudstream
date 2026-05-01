@@ -68,10 +68,6 @@ class DownloadedPlayerActivity : AppCompatActivity() {
             return
         }
 
-        // Detach before attaching a new one
-        detachBackPressedCallback("DownloadedPlayerActivity")
-        attachBackPressedCallback("DownloadedPlayerActivity") { finish() }
-
         if (
             intent.action == Intent.ACTION_SEND ||
             intent.action == Intent.ACTION_OPEN_DOCUMENT ||
@@ -90,7 +86,14 @@ class DownloadedPlayerActivity : AppCompatActivity() {
             }
         } else if (data?.scheme == "content") {
             playUri(this, data)
-        } else finish()
+        } else {
+            finish()
+            return
+        }
+
+        // Detach before attaching a new one
+        detachBackPressedCallback("DownloadedPlayerActivity")
+        attachBackPressedCallback("DownloadedPlayerActivity") { finish() }
     }
 
     override fun onResume() {
