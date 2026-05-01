@@ -12,6 +12,7 @@ import android.os.Looper
 import android.util.Log
 import android.util.Rational
 import android.widget.FrameLayout
+import androidx.annotation.AnyThread
 import androidx.annotation.MainThread
 import androidx.annotation.OptIn
 import androidx.appcompat.app.AlertDialog
@@ -208,6 +209,7 @@ class CS3IPlayer : IPlayer {
     private var eventHandler: ((PlayerEvent) -> Unit)? = null
     private val mainHandler = Handler(Looper.getMainLooper())
 
+    @AnyThread
     fun event(@MainThread event: PlayerEvent) {
         // Ensure that all work is done on the main looper, aka main thread
         if (Looper.myLooper() == mainHandler.looper) {
