@@ -207,8 +207,9 @@ class CS3IPlayer : IPlayer {
     private var playerSelectedSubtitleTracks = listOf<Pair<String, Boolean>>()
     private var requestedListeningPercentages: List<Int>? = null
 
-    @get:WorkerThread @set:WorkerThread
     private var eventHandler: ((PlayerEvent) -> Unit)? = null
+        @WorkerThread get
+        @WorkerThread set
     private val mainHandler = Handler(Looper.getMainLooper())
 
     @AnyThread
