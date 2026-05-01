@@ -207,13 +207,12 @@ class CS3IPlayer : IPlayer {
     private var playerSelectedSubtitleTracks = listOf<Pair<String, Boolean>>()
     private var requestedListeningPercentages: List<Int>? = null
 
-    @get:MainThread
-    @set:MainThread
+    @get:WorkerThread @set:WorkerThread
     private var eventHandler: ((PlayerEvent) -> Unit)? = null
     private val mainHandler = Handler(Looper.getMainLooper())
 
     @AnyThread
-    fun event(@MainThread event: PlayerEvent) {
+    fun event(event: PlayerEvent) {
         // Ensure that all work is done on the main looper, aka main thread
         if (Looper.myLooper() == mainHandler.looper) {
             eventHandler?.invoke(event)
@@ -241,7 +240,7 @@ class CS3IPlayer : IPlayer {
     }
 
     override fun initCallbacks(
-        @WorkerThread eventHandler: ((PlayerEvent) -> Unit),
+        @MainThread eventHandler: ((PlayerEvent) -> Unit),
         requestedListeningPercentages: List<Int>?,
     ) {
         this.requestedListeningPercentages = requestedListeningPercentages
