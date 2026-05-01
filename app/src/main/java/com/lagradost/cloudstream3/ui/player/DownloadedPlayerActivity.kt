@@ -37,7 +37,7 @@ class DownloadedPlayerActivity : AppCompatActivity() {
         if (isSameIntent(intent)) return
         setIntent(intent)
         Log.i(TAG, "onNewIntent")
-        handleIntent()
+        handleIntent(intent)
     }
 
     private fun isSameIntent(newIntent: Intent): Boolean {
@@ -61,20 +61,20 @@ class DownloadedPlayerActivity : AppCompatActivity() {
         setContentView(R.layout.empty_layout)
         Log.i(TAG, "onCreate")
 
-        handleIntent()
-        attachBackPressedCallback("DownloadedPlayerActivity") { finish() }
+        handleIntent(intent)
+        attachBackPressedCallback("DownloadedPlayerActivity") { finishAffinity() }
     }
 
-    private fun handleIntent() {
+    private fun handleIntent(intent: Intent) {
         val data = intent.data
         if (OfflinePlaybackHelper.playIntent(activity = this, intent = intent)) {
             return
         }
 
         if (
-            intent?.action == Intent.ACTION_SEND ||
-            intent?.action == Intent.ACTION_OPEN_DOCUMENT ||
-            intent?.action == Intent.ACTION_VIEW
+            intent.action == Intent.ACTION_SEND ||
+            intent.action == Intent.ACTION_OPEN_DOCUMENT ||
+            intent.action == Intent.ACTION_VIEW
         ) {
             val extraText = safe { intent.getStringExtra(Intent.EXTRA_TEXT) }
             val cd = intent.clipData
@@ -85,11 +85,11 @@ class DownloadedPlayerActivity : AppCompatActivity() {
                 url != null -> playLink(this, url)
                 data != null -> playUri(this, data)
                 extraText != null -> playLink(this, extraText)
-                else -> finish()
+                else -> finishAffinity()
             }
         } else if (data?.scheme == "content") {
             playUri(this, data)
-        } else finish()
+        } else finishAffinity()
     }
 
     override fun onResume() {
