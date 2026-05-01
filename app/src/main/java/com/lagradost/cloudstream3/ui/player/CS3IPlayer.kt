@@ -210,17 +210,12 @@ class CS3IPlayer : IPlayer {
     private var eventHandler: ((PlayerEvent) -> Unit)? = null
         @WorkerThread get
         @WorkerThread set
-    private val mainHandler = Handler(Looper.getMainLooper())
 
     @AnyThread
     fun event(event: PlayerEvent) {
-        // Ensure that all work is done on the main looper, aka main thread
-        if (Looper.myLooper() == mainHandler.looper) {
+        // Ensure that all work is done on the main thread.
+        runOnMainThread {
             eventHandler?.invoke(event)
-        } else {
-            mainHandler.post {
-                eventHandler?.invoke(event)
-            }
         }
     }
 
