@@ -234,6 +234,7 @@ class CS3IPlayer : IPlayer {
         }
     }
 
+    @AnyThread
     override fun initCallbacks(
         @MainThread eventHandler: ((PlayerEvent) -> Unit),
         requestedListeningPercentages: List<Int>?,
