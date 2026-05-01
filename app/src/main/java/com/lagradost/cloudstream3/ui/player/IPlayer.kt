@@ -3,6 +3,7 @@ package com.lagradost.cloudstream3.ui.player
 import android.content.Context
 import android.graphics.Bitmap
 import android.util.Rational
+import androidx.annotation.AnyThread
 import androidx.annotation.MainThread
 import com.lagradost.cloudstream3.ui.subtitles.SaveCaptionStyle
 import com.lagradost.cloudstream3.utils.ExtractorLink
@@ -242,6 +243,7 @@ interface IPlayer {
     fun getSubtitleOffset(): Long // in ms
     fun setSubtitleOffset(offset: Long) // in ms
 
+    @AnyThread
     fun initCallbacks(
         @MainThread eventHandler: ((PlayerEvent) -> Unit),
         /** this is used to request when the player should report back view percentage */
