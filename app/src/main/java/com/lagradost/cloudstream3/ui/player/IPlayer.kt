@@ -3,7 +3,7 @@ package com.lagradost.cloudstream3.ui.player
 import android.content.Context
 import android.graphics.Bitmap
 import android.util.Rational
-import androidx.annotation.WorkerThread
+import androidx.annotation.MainThread
 import com.lagradost.cloudstream3.ui.subtitles.SaveCaptionStyle
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.videoskip.VideoSkipStamp
@@ -243,7 +243,7 @@ interface IPlayer {
     fun setSubtitleOffset(offset: Long) // in ms
 
     fun initCallbacks(
-        @WorkerThread eventHandler: ((PlayerEvent) -> Unit),
+        @MainThread eventHandler: ((PlayerEvent) -> Unit),
         /** this is used to request when the player should report back view percentage */
         requestedListeningPercentages: List<Int>? = null,
     )
