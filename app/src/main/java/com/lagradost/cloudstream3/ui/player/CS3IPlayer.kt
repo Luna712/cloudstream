@@ -1790,7 +1790,7 @@ class CS3IPlayer : IPlayer {
                     loadOnlinePlayer(context, newLink)
                 }
             } catch (t: Throwable) {
-                runOnMainThread { event(ErrorEvent(t)) }
+                event(ErrorEvent(t))
             }
         }
     }
