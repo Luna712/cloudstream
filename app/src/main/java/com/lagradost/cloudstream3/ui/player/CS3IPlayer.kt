@@ -14,7 +14,6 @@ import android.util.Rational
 import android.widget.FrameLayout
 import androidx.annotation.AnyThread
 import androidx.annotation.MainThread
-import androidx.annotation.WorkerThread
 import androidx.annotation.OptIn
 import androidx.appcompat.app.AlertDialog
 import androidx.core.net.toUri
@@ -208,13 +207,13 @@ class CS3IPlayer : IPlayer {
     private var requestedListeningPercentages: List<Int>? = null
 
     private var eventHandler: ((PlayerEvent) -> Unit)? = null
-        @WorkerThread get
-        @WorkerThread set
 
     @AnyThread
     fun event(event: PlayerEvent) {
         // Ensure that all work is done on the main thread.
-        runOnMainThread {
+        if (Looper.myLooper() == Looper.getMainLooper()) {
+            eventHandler?.invoke(event)
+        } else runOnMainThread {
             eventHandler?.invoke(event)
         }
     }
