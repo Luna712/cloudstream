@@ -60,7 +60,7 @@ class DownloadedPlayerActivity : AppCompatActivity() {
         Log.i(TAG, "onCreate")
 
         handleIntent()
-        attachBackPressedCallback("DownloadedPlayerActivity") { finish() }
+        // attachBackPressedCallback("DownloadedPlayerActivity") { finish() }
     }
 
     private fun handleIntent() {
