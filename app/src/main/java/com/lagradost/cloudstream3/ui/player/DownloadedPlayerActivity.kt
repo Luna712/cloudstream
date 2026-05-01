@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatActivity
 import com.lagradost.cloudstream3.CommonActivity
+import com.lagradost.cloudstream3.MainActivity
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.mvvm.safe
 import com.lagradost.cloudstream3.ui.player.OfflinePlaybackHelper.playLink
@@ -31,7 +32,6 @@ class DownloadedPlayerActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        CommonActivity.setActivityInstance(this)
         // Ignore same intent so the player doesnt totally
         // reload if you are playing the same thing.
         if (isSameIntent(intent)) return
@@ -56,6 +56,7 @@ class DownloadedPlayerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         CommonActivity.loadThemes(this)
         CommonActivity.init(this)
+        MainActivity.activityResultLauncher = null
         enableEdgeToEdgeCompat()
         setContentView(R.layout.empty_layout)
         Log.i(TAG, "onCreate")
