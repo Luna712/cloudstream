@@ -31,6 +31,7 @@ class DownloadedPlayerActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
+        CommonActivity.setActivityInstance(this)
         // Ignore same intent so the player doesnt totally
         // reload if you are playing the same thing.
         if (isSameIntent(intent)) return
@@ -60,7 +61,7 @@ class DownloadedPlayerActivity : AppCompatActivity() {
         Log.i(TAG, "onCreate")
 
         handleIntent()
-        // attachBackPressedCallback("DownloadedPlayerActivity") { finish() }
+        attachBackPressedCallback("DownloadedPlayerActivity") { finish() }
     }
 
     private fun handleIntent() {
