@@ -162,8 +162,10 @@ class GeneratorPlayer : FullScreenPlayer() {
 
     private lateinit var viewModel: PlayerGeneratorViewModel //by activityViewModels()
     private lateinit var sync: SyncViewModel
-    private var currentLinks: Set<Pair<ExtractorLink?, ExtractorUri?>> = setOf()
-    private var currentSubs: Set<SubtitleData> = setOf()
+    private var currentLinks: Set<Pair<ExtractorLink?, ExtractorUri?>>
+        get() = viewModel.currentLinks ?: emptySet()
+    private var currentSubs: Set<SubtitleData>
+        get() = viewModel.currentSubs ?: emptySet()
 
     private var currentSelectedLink: Pair<ExtractorLink?, ExtractorUri?>? = null
     private var currentSelectedSubtitles: SubtitleData? = null
