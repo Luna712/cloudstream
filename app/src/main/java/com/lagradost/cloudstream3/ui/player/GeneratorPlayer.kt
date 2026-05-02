@@ -2132,8 +2132,8 @@ class GeneratorPlayer : FullScreenPlayer() {
         unwrapBundle(savedInstanceState)
         unwrapBundle(arguments)
 
-        currentLinks = viewModel.currentLinks ?: setOf()
-        currentSubs = viewModel.currentSubs ?: setOf()
+        currentLinks = viewModel.currentLinks.value ?: setOf()
+        currentSubs = viewModel.currentSubs.value ?: setOf()
 
         super.onBindingCreated(binding, savedInstanceState)
 
