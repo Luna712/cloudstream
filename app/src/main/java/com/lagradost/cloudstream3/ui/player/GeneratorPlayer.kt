@@ -1645,6 +1645,11 @@ class GeneratorPlayer : FullScreenPlayer() {
         super.onDestroy()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        arguments?.getString("generatorKey")?.let { generatorMap.remove(it) }
+    }
+
     var maxEpisodeSet: Int? = null
     var hasRequestedStamps: Boolean = false
     override fun playerPositionChanged(position: Long, duration: Long) {
