@@ -503,6 +503,8 @@ class GeneratorPlayer : FullScreenPlayer() {
 
         uiReset()
         currentSelectedLink = link
+        currentLinks = viewModel.currentLinks.value ?: setOf()
+        currentSubs = viewModel.currentSubs.value ?: setOf()
         currentMeta = viewModel.getMeta()
         nextMeta = viewModel.getNextMeta()
         allMeta = viewModel.getAllMeta()?.filterIsInstance<ResultEpisode>()?.map { episode ->
@@ -2131,9 +2133,6 @@ class GeneratorPlayer : FullScreenPlayer() {
         viewModel.attachGenerator(lastUsedGenerator)
         unwrapBundle(savedInstanceState)
         unwrapBundle(arguments)
-
-        currentLinks = viewModel.currentLinks.value ?: setOf()
-        currentSubs = viewModel.currentSubs.value ?: setOf()
 
         super.onBindingCreated(binding, savedInstanceState)
 
