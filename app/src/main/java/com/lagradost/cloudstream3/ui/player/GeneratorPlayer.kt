@@ -503,8 +503,6 @@ class GeneratorPlayer : FullScreenPlayer() {
 
         uiReset()
         currentSelectedLink = link
-        currentLinks = viewModel.currentLinks.value ?: setOf()
-        currentSubs = viewModel.currentSubs.value ?: setOf()
         currentMeta = viewModel.getMeta()
         nextMeta = viewModel.getNextMeta()
         allMeta = viewModel.getAllMeta()?.filterIsInstance<ResultEpisode>()?.map { episode ->
@@ -2204,6 +2202,8 @@ class GeneratorPlayer : FullScreenPlayer() {
                     //if (it.value != true) {
                     //    showToast(activity, R.string.unexpected_error, Toast.LENGTH_SHORT)
                     //}
+                    currentLinks = viewModel.currentLinks.value ?: emptySet()
+                    currentSubs = viewModel.currentSubs.value ?: emptySet()
                     startPlayer()
                 }
 
