@@ -63,6 +63,14 @@ class ResultTrailerPlayer : ResultFragmentPhone() {
         if (show && isShowing) uiReset()
     }
 
+    override fun onGestureEnd(hadSwipe: Boolean, wasUiShowing: Boolean) {
+        if (!player.getIsPlaying() && hadSwipe && wasUiShowing && !isShowing) {
+            isShowing = true
+            showControls()
+        }
+        uiReset()
+    }
+
     override fun nextEpisode() {}
     override fun prevEpisode() {}
     override fun playerPositionChanged(position: Long, duration: Long) {}
