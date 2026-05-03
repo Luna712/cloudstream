@@ -766,8 +766,8 @@ open class FullScreenPlayer : AbstractPlayerFragment<FragmentPlayerBinding>(
             playerLockHolder.isGone = isGone
             playerVideoBar.isGone = isGone
 
-            playerPausePlayHolderHolder.isGone = isGone ||
-                currentPlayerStatus == CSPlayerLoading.IsBuffering
+            playerPausePlayHolderHolder.isGone =
+                isGone || currentPlayerStatus == CSPlayerLoading.IsBuffering
             playerTopHolder.isGone = isGone
             val showPlayerEpisodes = !isGone && isThereEpisodes()
             playerEpisodesButtonRoot.isVisible = showPlayerEpisodes
