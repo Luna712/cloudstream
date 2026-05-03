@@ -27,6 +27,7 @@ class PlayerGeneratorViewModel : ViewModel() {
     }
 
     private var generator: IGenerator? = null
+    var currentSelectedLink: Pair<ExtractorLink?, ExtractorUri?>? = null
 
     private val _currentLinks = ConsistentLiveData<Set<Pair<ExtractorLink?, ExtractorUri?>>>(setOf())
     val currentLinks: LiveData<Set<Pair<ExtractorLink?, ExtractorUri?>>> = _currentLinks
