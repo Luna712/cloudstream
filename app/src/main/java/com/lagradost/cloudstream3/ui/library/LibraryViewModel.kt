@@ -38,8 +38,8 @@ class LibraryViewModel : ViewModel() {
     private val _currentPage = ConsistentLiveData<Int>(0)
     val currentPage: LiveData<Int> = _currentPage
 
-    private val _pages = ConsistentLiveData<Resource<List<SyncAPI.Page>>?>(null)
-    val pages: LiveData<Resource<List<SyncAPI.Page>>?> = _pages
+    private val _pages = ConsistentLiveData<Resource<List<SyncAPI.Page>>>(null)
+    val pages: LiveData<Resource<List<SyncAPI.Page>>> = _pages
 
     private val _currentApiName = ConsistentLiveData<String>("")
     val currentApiName: LiveData<String> = _currentApiName
