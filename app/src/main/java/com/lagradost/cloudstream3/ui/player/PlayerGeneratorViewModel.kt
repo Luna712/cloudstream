@@ -27,7 +27,6 @@ class PlayerGeneratorViewModel : ViewModel() {
     }
 
     private var generator: IGenerator? = null
-    var currentSelectedLink: Pair<ExtractorLink?, ExtractorUri?>? = null
 
     private val _currentLinks = ConsistentLiveData<Set<Pair<ExtractorLink?, ExtractorUri?>>>(setOf())
     val currentLinks: LiveData<Set<Pair<ExtractorLink?, ExtractorUri?>>> = _currentLinks
@@ -44,6 +43,9 @@ class PlayerGeneratorViewModel : ViewModel() {
     private val _currentSubtitleYear = MutableLiveData<Int?>(null)
     val currentSubtitleYear: LiveData<Int?> = _currentSubtitleYear
 
+    private val _currentSelectedLink = ConsistentLiveData<Pair<ExtractorLink?, ExtractorUri?>?>(null)
+    val currentSelectedLink: LiveData<Pair<ExtractorLink?, ExtractorUri?>?> = _currentSelectedLink
+
     /**
      * Save the Episode ID to prevent starting multiple link loading Jobs when preloading links.
      */
@@ -53,6 +55,10 @@ class PlayerGeneratorViewModel : ViewModel() {
 
     fun setSubtitleYear(year: Int?) {
         _currentSubtitleYear.postValue(year)
+    }
+
+    fun setCurrentSelectedLink(link: Pair<ExtractorLink?, ExtractorUri?>?) {
+        _currentSelectedLink.postValue(link)
     }
 
     fun getId(): Int? {

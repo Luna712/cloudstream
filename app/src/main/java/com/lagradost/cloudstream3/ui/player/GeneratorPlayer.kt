@@ -169,6 +169,7 @@ class GeneratorPlayer : FullScreenPlayer() {
     private var currentLinks: Set<Pair<ExtractorLink?, ExtractorUri?>> = setOf()
     private var currentSubs: Set<SubtitleData> = setOf()
 
+    private var currentSelectedLink: Pair<ExtractorLink?, ExtractorUri?>? = null
     private var currentSelectedSubtitles: SubtitleData? = null
     private var currentMeta: Any? = null
     private var nextMeta: Any? = null
@@ -505,7 +506,8 @@ class GeneratorPlayer : FullScreenPlayer() {
         showDownloadProgress(DownloadEvent(0, 0, 0, null))
 
         uiReset()
-        viewModel.currentSelectedLink = link
+        viewModel.setCurrentSelectedLink(link)
+        currentSelectedLink = link
         currentMeta = viewModel.getMeta()
         nextMeta = viewModel.getNextMeta()
         allMeta = viewModel.getAllMeta()?.filterIsInstance<ResultEpisode>()?.map { episode ->
@@ -1120,7 +1122,7 @@ class GeneratorPlayer : FullScreenPlayer() {
                         sourceDialog.findViewById<LinearLayout>(R.id.sort_sources_holder)?.isGone =
                             true
                     } else {
-                        startSource = sortedUrls.indexOf(viewModel.currentSelectedLink)
+                        startSource = sortedUrls.indexOf(currentSelectedLink)
                         sourceIndex = startSource
 
                         val sourcesArrayAdapter =
@@ -1517,12 +1519,12 @@ class GeneratorPlayer : FullScreenPlayer() {
 
     override fun playerError(exception: Throwable) {
         val currentUrl =
-            viewModel.currentSelectedLink?.let { it.first?.url ?: it.second?.uri?.toString() } ?: "unknown"
-        val headers = viewModel.currentSelectedLink?.first?.headers?.toString() ?: "none"
-        val referer = viewModel.currentSelectedLink?.first?.referer ?: "none"
+            currentSelectedLink?.let { it.first?.url ?: it.second?.uri?.toString() } ?: "unknown"
+        val headers = currentSelectedLink?.first?.headers?.toString() ?: "none"
+        val referer = currentSelectedLink?.first?.referer ?: "none"
         Log.e(
             TAG,
-            "playerError: ${viewModel.currentSelectedLink}, " +
+            "playerError: $currentSelectedLink, " +
                     "type=${exception::class.java.canonicalName}, " +
                     "message=${exception.message}, url=$currentUrl, headers=$headers, " +
                     "referer=$referer, position=${player.getPosition() ?: "unknown"}, " +
@@ -1620,7 +1622,7 @@ class GeneratorPlayer : FullScreenPlayer() {
 
     override fun hasNextMirror(): Boolean {
         val links = sortLinks(currentQualityProfile)
-        return links.isNotEmpty() && links.indexOf(viewModel.currentSelectedLink) + 1 < links.size
+        return links.isNotEmpty() && links.indexOf(currentSelectedLink) + 1 < links.size
     }
 
     override fun nextMirror() {
@@ -1630,7 +1632,7 @@ class GeneratorPlayer : FullScreenPlayer() {
             return
         }
 
-        val newIndex = links.indexOf(viewModel.currentSelectedLink) + 1
+        val newIndex = links.indexOf(currentSelectedLink) + 1
         if (newIndex >= links.size) {
             noLinksFound()
             return
@@ -1868,7 +1870,7 @@ class GeneratorPlayer : FullScreenPlayer() {
 
     fun setPlayerDimen(widthHeight: Pair<Int, Int>?) {
         val resolution = widthHeight?.let { "${it.first}x${it.second}" }
-        val name = viewModel.currentSelectedLink?.first?.name ?: viewModel.currentSelectedLink?.second?.name
+        val name = currentSelectedLink?.first?.name ?: currentSelectedLink?.second?.name
         val title = getHeaderName()
 
         val result = listOfNotNull(
@@ -2189,7 +2191,7 @@ class GeneratorPlayer : FullScreenPlayer() {
 
         preferredAutoSelectSubtitles = getAutoSelectLanguageTagIETF()
 
-        if (viewModel.currentSelectedLink == null) {
+        if (currentSelectedLink == null) {
             viewModel.loadLinks()
         }
 
@@ -2229,6 +2231,7 @@ class GeneratorPlayer : FullScreenPlayer() {
                     //    showToast(activity, R.string.unexpected_error, Toast.LENGTH_SHORT)
                     //}
                     currentLinks = viewModel.currentLinks.value ?: emptySet()
+                    currentSelectedLink = viewModel.currentSelectedLink.value
                     updateCurrentSubs(viewModel.currentSubs.value ?: emptySet())
                     startPlayer()
                 }
