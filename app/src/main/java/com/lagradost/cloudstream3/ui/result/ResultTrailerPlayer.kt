@@ -67,8 +67,7 @@ class ResultTrailerPlayer : ResultFragmentPhone() {
         if (!player.getIsPlaying() && hadSwipe && wasUiShowing && !isShowing) {
             isShowing = true
             showControls()
-        }
-        playerHostView?.scheduleAutoHide()
+        } else playerHostView?.scheduleAutoHide()
     }
 
     override fun nextEpisode() {}
