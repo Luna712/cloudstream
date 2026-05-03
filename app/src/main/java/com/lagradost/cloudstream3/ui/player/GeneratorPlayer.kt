@@ -48,6 +48,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.lagradost.cloudstream3.APIHolder.getApiFromNameNull
 import com.lagradost.cloudstream3.CloudStreamApp
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKey
+import com.lagradost.cloudstream3.CommonActivity
 import com.lagradost.cloudstream3.CommonActivity.showToast
 import com.lagradost.cloudstream3.LoadResponse
 import com.lagradost.cloudstream3.LoadResponse.Companion.getAniListId
@@ -139,11 +140,14 @@ class GeneratorPlayer : FullScreenPlayer() {
         const val CHANNEL_ID = 7340
         const val STOP_ACTION = "stopcs3"
 
-        private var lastUsedGenerator: IGenerator? = null
+        private var generatorMap = mutableMapOf<String?, IGenerator>()
         fun newInstance(generator: IGenerator, syncData: HashMap<String, String>? = null): Bundle {
             Log.i(TAG, "newInstance = $syncData")
-            lastUsedGenerator = generator
+            val key = CommonActivity.activity?.javaClass?.simpleName
+            Log.i(TAG, "newInstanceKey = $key")
+            generatorMap[key] = generator
             return Bundle().apply {
+                putString("generatorKey", key)
                 if (syncData != null) putSerializable("syncData", syncData)
             }
         }
@@ -2143,13 +2147,17 @@ class GeneratorPlayer : FullScreenPlayer() {
         } else currentSubs = set
     }
 
+    private var lastUsedGenerator: IGenerator? = null
     override fun onBindingCreated(binding: FragmentPlayerBinding, savedInstanceState: Bundle?) {
         viewModel = ViewModelProvider(this)[PlayerGeneratorViewModel::class.java]
         sync = ViewModelProvider(this)[SyncViewModel::class.java]
+
+        val key = arguments?.getString("generatorKey")
+        lastUsedGenerator = key?.let { generatorMap[it] }
         viewModel.attachGenerator(lastUsedGenerator)
+
         unwrapBundle(savedInstanceState)
         unwrapBundle(arguments)
-
         super.onBindingCreated(binding, savedInstanceState)
 
         context?.let { ctx ->
