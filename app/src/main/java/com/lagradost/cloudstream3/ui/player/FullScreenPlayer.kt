@@ -1176,10 +1176,6 @@ open class FullScreenPlayer : AbstractPlayerFragment<FragmentPlayerBinding>(
                 }
             }
 
-            playerPausePlay.setOnClickListener {
-                autoHide()
-            }
-
             skipChapterButton.setOnClickListener {
                 player.handleEvent(CSPlayerEvent.SkipCurrentChapter)
             }
