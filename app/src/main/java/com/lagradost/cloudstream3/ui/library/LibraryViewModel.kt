@@ -2,7 +2,6 @@ package com.lagradost.cloudstream3.ui.library
 
 import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKey
@@ -12,6 +11,7 @@ import com.lagradost.cloudstream3.mvvm.Resource
 import com.lagradost.cloudstream3.mvvm.throwAbleToResource
 import com.lagradost.cloudstream3.syncproviders.AccountManager
 import com.lagradost.cloudstream3.syncproviders.SyncAPI
+import com.lagradost.cloudstream3.utils.ConsistentLiveData
 import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.DataStoreHelper.currentAccount
@@ -35,13 +35,13 @@ class LibraryViewModel : ViewModel() {
         _currentPage.postValue(page)
     }
 
-    private val _currentPage: MutableLiveData<Int> = MutableLiveData(0)
+    private val _currentPage = ConsistentLiveData<Int>(0)
     val currentPage: LiveData<Int> = _currentPage
 
-    private val _pages: MutableLiveData<Resource<List<SyncAPI.Page>>> = MutableLiveData(null)
-    val pages: LiveData<Resource<List<SyncAPI.Page>>> = _pages
+    private val _pages = ConsistentLiveData<Resource<List<SyncAPI.Page>>?>(null)
+    val pages: LiveData<Resource<List<SyncAPI.Page>>?> = _pages
 
-    private val _currentApiName: MutableLiveData<String> = MutableLiveData("")
+    private val _currentApiName = ConsistentLiveData<String>("")
     val currentApiName: LiveData<String> = _currentApiName
 
     private val availableSyncApis
