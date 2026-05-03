@@ -68,7 +68,7 @@ class ResultTrailerPlayer : ResultFragmentPhone() {
             isShowing = true
             showControls()
         }
-        uiReset()
+        playerHostView?.scheduleAutoHide()
     }
 
     override fun nextEpisode() {}
