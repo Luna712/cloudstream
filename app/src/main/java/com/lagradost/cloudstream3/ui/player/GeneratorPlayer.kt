@@ -131,7 +131,6 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import java.io.Serializable
 import java.util.Calendar
-import java.util.UUID
 
 @OptIn(UnstableApi::class)
 class GeneratorPlayer : FullScreenPlayer() {
@@ -143,7 +142,8 @@ class GeneratorPlayer : FullScreenPlayer() {
         private var generatorMap = mutableMapOf<String, IGenerator>()
         fun newInstance(generator: IGenerator, syncData: HashMap<String, String>? = null): Bundle {
             Log.i(TAG, "newInstance = $syncData")
-            val key = UUID.randomUUID().toString()
+            val key = activity?.javaClass?.simpleName
+            Log.i(TAG, "newInstanceKey = $key")
             generatorMap[key] = generator
             return Bundle().apply {
                 putString("generatorKey", key)
