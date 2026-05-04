@@ -1,4 +1,4 @@
-package com.lagradost.cloudstream3.ui.player
+package com.lagradost.cloudstream3.ui.player 
 
 import android.content.Intent
 import android.os.Bundle
