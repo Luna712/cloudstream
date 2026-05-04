@@ -14,7 +14,6 @@ import com.lagradost.cloudstream3.mvvm.safe
 import com.lagradost.cloudstream3.ui.player.OfflinePlaybackHelper.playLink
 import com.lagradost.cloudstream3.ui.player.OfflinePlaybackHelper.playUri
 import com.lagradost.cloudstream3.utils.BackPressedCallbackHelper.attachBackPressedCallback
-import com.lagradost.cloudstream3.utils.DataStore.getSharedPrefs
 import com.lagradost.cloudstream3.utils.UIHelper.enableEdgeToEdgeCompat
 
 class DownloadedPlayerActivity : AppCompatActivity() {
@@ -41,12 +40,11 @@ class DownloadedPlayerActivity : AppCompatActivity() {
 
     private fun saveIntentToPrefs(intent: Intent) {
         safe {
-            val settingsManager = context?.getSharedPrefs() ?: return@safe
             val parcel = Parcel.obtain()
             try {
                 intent.writeToParcel(parcel, 0)
                 val bytes = parcel.marshall()
-                settingsManager.edit {
+                getSharedPreferences(TAG, MODE_PRIVATE).edit {
                     putString(PREF_LAST_INTENT, Base64.encodeToString(bytes, Base64.DEFAULT))
                 }
             } finally {
@@ -56,8 +54,8 @@ class DownloadedPlayerActivity : AppCompatActivity() {
     }
 
     private fun loadIntentFromPrefs(): Intent? = safe {
-        val prefs = context?.getSharedPrefs()
-        val b64 = prefs?.getString(PREF_LAST_INTENT, null) ?: return@safe null
+        val b64 = getSharedPreferences(TAG, MODE_PRIVATE)
+            .getString(PREF_LAST_INTENT, null) ?: return@safe null
         val bytes = Base64.decode(b64, Base64.DEFAULT)
         val parcel = Parcel.obtain()
         try {
