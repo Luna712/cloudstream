@@ -2405,6 +2405,48 @@ class GeneratorPlayer : FullScreenPlayer() {
             player.addTimeStamps(stamps)
         }
 
+        // currentLinks and currentSubs MUST be registered before loadingLinks.
+        // LiveData delivers to newly-active observers in registration (insertion) order.
+        // The loadingLinks observer calls startPlayer(), which reads the Fragment-local
+        // currentLinks field. If loadingLinks fires first (because it was registered first),
+        // currentLinks is still empty and startPlayer() calls noLinksFound().
+        // Registering currentLinks first guarantees its observer updates the field before
+        // the loadingLinks observer can call startPlayer(), both on initial delivery to a
+        // newly-started Fragment and on any subsequent setValue() call from the ViewModel.
+        observe(viewModel.currentLinks) { links ->
+            currentLinks = links
+            val turnVisible = links.isNotEmpty() && viewModel.getGenerator()?.canSkipLoading == true
+            val wasGone = binding.overlayLoadingSkipButton.isGone
+
+            binding.overlayLoadingSkipButton.apply {
+                isVisible = turnVisible
+                if (links.isEmpty()) {
+                    setText(R.string.skip_loading)
+                } else {
+                    @SuppressLint("SetTextI18n")
+                    text = "${context.getString(R.string.skip_loading)} (${links.size})"
+                }
+            }
+
+            safe {
+                // If we have a restored link pending, don't auto-start yet: the matching
+                // source may not have arrived in the list yet. startPlayer() will run from
+                // the loadingLinks observer once generateLinks() finishes and the full list
+                // is available for URL matching.
+                if (currentSelectedLink == null && links.any { link ->
+                        getLinkPriority(currentQualityProfile, link.first) >=
+                                QualityDataHelper.AUTO_SKIP_PRIORITY
+                    }
+                ) {
+                    startPlayer()
+                }
+            }
+
+            if (turnVisible && wasGone) {
+                binding.overlayLoadingSkipButton.requestFocus()
+            }
+        }
+
         observe(viewModel.loadingLinks) {
             when (it) {
                 is Resource.Loading -> {
@@ -2423,41 +2465,6 @@ class GeneratorPlayer : FullScreenPlayer() {
                     showToast(it.errorString, Toast.LENGTH_LONG)
                     startPlayer()
                 }
-            }
-        }
-
-        observe(viewModel.currentLinks) {
-            currentLinks = it
-            val turnVisible = it.isNotEmpty() && viewModel.getGenerator()?.canSkipLoading == true
-            val wasGone = binding.overlayLoadingSkipButton.isGone
-
-            binding.overlayLoadingSkipButton.apply {
-                isVisible = turnVisible
-                val value = viewModel.currentLinks.value
-                if (value.isNullOrEmpty()) {
-                    setText(R.string.skip_loading)
-                } else {
-                    @SuppressLint("SetTextI18n")
-                    text = "${context.getString(R.string.skip_loading)} (${value.size})"
-                }
-            }
-
-            safe {
-                // If we have a restored link pending, don't auto-start yet: the matching
-                // source may not have arrived in the list yet. startPlayer() will run from
-                // the loadingLinks observer once generateLinks() finishes and the full list
-                // is available for URL matching.
-                if (currentSelectedLink == null && currentLinks.any { link ->
-                        getLinkPriority(currentQualityProfile, link.first) >=
-                                QualityDataHelper.AUTO_SKIP_PRIORITY
-                    }
-                ) {
-                    startPlayer()
-                }
-            }
-
-            if (turnVisible && wasGone) {
-                binding.overlayLoadingSkipButton.requestFocus()
             }
         }
 
