@@ -580,14 +580,9 @@ class GeneratorPlayer : FullScreenPlayer() {
                     if (isNextEpisode) 0L else getPos()
                 },
                 currentSubs,
-                // Resolve the selected subtitle against the current subtitle set by URL.
-                // This handles the case where nameSuffix shifts between sessions (e.g. the
-                // subtitle was "English 3" but arrives as "English 1" this time), we match
-                // by the stable url field and use the current session's SubtitleData so that
-                // ExoPlayer's track id matches correctly.
-                currentSelectedSubtitles?.let { selected ->
-                    currentSubs.firstOrNull { it.url == selected.url } ?: selected
-                } ?: getAutoSelectSubtitle(currentSubs, settings = true, downloads = true),
+                currentSelectedSubtitles ?: getAutoSelectSubtitle(
+                    currentSubs, settings = true, downloads = true
+                ),
                 preview = true
             )
         }
@@ -1062,8 +1057,6 @@ class GeneratorPlayer : FullScreenPlayer() {
     override fun showMirrorsDialogue() {
         try {
             currentSelectedSubtitles = player.getCurrentPreferredSubtitle()
-            // Persist so subtitle survives process death (direct player-state read, not via setSubtitles).
-            viewModel.saveSelectedState(currentSelectedLink, currentSelectedSubtitles)
             //println("CURRENT SELECTED :$currentSelectedSubtitles of $currentSubs")
             context?.let { ctx ->
                 val isPlaying = player.getIsPlaying()
@@ -1636,16 +1629,7 @@ class GeneratorPlayer : FullScreenPlayer() {
         // ViewModel's lazy restoration value. After this loadLink() call, saveSelectedState()
         // will persist the new pair going forward.
         if (currentSelectedSubtitles == null) {
-            viewModel.restoredSelectedSubtitle?.let { sub ->
-                currentSelectedSubtitles = sub
-                // Online subtitles (SubtitleOrigin.URL) are not produced by generateLinks,
-                // they're added externally via addSubtitles(). extraSubtitles is cleared on
-                // each loadLinks() call, so they vanish on restore. Re-inject them here so
-                // ExoPlayer sees the track and setPreferredSubtitles() can select it.
-                if (sub.origin == SubtitleOrigin.URL) {
-                    viewModel.addSubtitles(setOf(sub))
-                }
-            }
+            viewModel.restoredSelectedSubtitle?.let { currentSelectedSubtitles = it }
         }
 
         loadLink(target, false)
