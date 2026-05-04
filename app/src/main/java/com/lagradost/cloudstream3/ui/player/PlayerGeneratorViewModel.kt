@@ -316,12 +316,6 @@ class PlayerGeneratorViewModel(private val savedStateHandle: SavedStateHandle) :
         return repoGen.videoIndex
     }
 
-    fun attachGenerator(newGenerator: IGenerator?) {
-        if (generator == null) {
-            generator = newGenerator
-        }
-    }
-
     private var extraSubtitles : MutableSet<SubtitleData> = mutableSetOf()
 
     /**
