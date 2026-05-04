@@ -32,27 +32,27 @@ class PlayerGeneratorViewModel(private val savedStateHandle: SavedStateHandle) :
         // Keys shared with GeneratorPlayer.newInstance() so the arguments Bundle seeds
         // SavedStateHandle on first creation, and SavedStateHandle auto-restores them after
         // process death without any manual Bundle read/write in the Fragment.
-        const val KEY_GEN_TYPE     = "generatorType"
+        const val KEY_GEN_TYPE = "generatorType"
         const val KEY_GEN_EPISODES = "generatorEpisodes"
-        const val KEY_GEN_INDEX    = "generatorIndex"
-        const val KEY_GEN_PAGE     = "generatorPage"
+        const val KEY_GEN_INDEX = "generatorIndex"
+        const val KEY_GEN_PAGE = "generatorPage"
         const val KEY_GEN_PAGE_CLS = "generatorPageClass"
-        const val KEY_GEN_LINKS    = "generatorLinks"
-        const val KEY_GEN_EXTRACT  = "generatorExtract"
-        const val KEY_GEN_REFERER  = "generatorReferer"
-        const val KEY_GEN_URIS     = "generatorUris"
+        const val KEY_GEN_LINKS = "generatorLinks"
+        const val KEY_GEN_EXTRACT = "generatorExtract"
+        const val KEY_GEN_REFERER = "generatorReferer"
+        const val KEY_GEN_URIS = "generatorUris"
 
-        const val GEN_TYPE_REPO     = "repo"
-        const val GEN_TYPE_LINK     = "link"
+        const val GEN_TYPE_REPO = "repo"
+        const val GEN_TYPE_LINK = "link"
         const val GEN_TYPE_DOWNLOAD = "download"
 
         // Keys for the currently-selected source and subtitle. Written here whenever the
         // Fragment selects a source; auto-restored on process death via SavedStateHandle.
-        const val KEY_SEL_LINK_JSON   = "selectedLinkJson"
-        const val KEY_SEL_LINK_CLS    = "selectedLinkClass"
+        const val KEY_SEL_LINK_JSON = "selectedLinkJson"
+        const val KEY_SEL_LINK_CLS = "selectedLinkClass"
         const val KEY_SEL_LINK_IS_URI = "selectedLinkIsUri"
-        const val KEY_SEL_URI_JSON    = "selectedUriJson"
-        const val KEY_SEL_SUB_JSON    = "selectedSubJson"
+        const val KEY_SEL_URI_JSON = "selectedUriJson"
+        const val KEY_SEL_SUB_JSON = "selectedSubJson"
     }
 
     // Generator is restored from SavedStateHandle on process death, set via attachGenerator().
@@ -73,7 +73,7 @@ class PlayerGeneratorViewModel(private val savedStateHandle: SavedStateHandle) :
                 val episodes: List<ResultEpisode> = AppUtils.parseJson(episodesJson)
                 val index = savedStateHandle.get<Int>(KEY_GEN_INDEX) ?: 0
                 val page: LoadResponse? = run {
-                    val json      = savedStateHandle.get<String>(KEY_GEN_PAGE) ?: return@run null
+                    val json = savedStateHandle.get<String>(KEY_GEN_PAGE) ?: return@run null
                     val className = savedStateHandle.get<String>(KEY_GEN_PAGE_CLS) ?: return@run null
                     try {
                         jacksonMapper.readValue(json, Class.forName(className)) as? LoadResponse
@@ -113,23 +113,23 @@ class PlayerGeneratorViewModel(private val savedStateHandle: SavedStateHandle) :
         try {
             when (newGenerator) {
                 is RepoLinkGenerator -> {
-                    savedStateHandle[KEY_GEN_TYPE]     = GEN_TYPE_REPO
+                    savedStateHandle[KEY_GEN_TYPE] = GEN_TYPE_REPO
                     savedStateHandle[KEY_GEN_EPISODES] = newGenerator.videos.toJson()
-                    savedStateHandle[KEY_GEN_INDEX]    = newGenerator.videoIndex
+                    savedStateHandle[KEY_GEN_INDEX] = newGenerator.videoIndex
                     newGenerator.page?.let { page ->
-                        savedStateHandle[KEY_GEN_PAGE]     = page.toJson()
+                        savedStateHandle[KEY_GEN_PAGE] = page.toJson()
                         savedStateHandle[KEY_GEN_PAGE_CLS] = page::class.java.name
                     }
                 }
                 is LinkGenerator -> {
-                    savedStateHandle[KEY_GEN_TYPE]    = GEN_TYPE_LINK
-                    savedStateHandle[KEY_GEN_LINKS]   = newGenerator.links.toJson()
+                    savedStateHandle[KEY_GEN_TYPE] = GEN_TYPE_LINK
+                    savedStateHandle[KEY_GEN_LINKS] = newGenerator.links.toJson()
                     savedStateHandle[KEY_GEN_EXTRACT] = newGenerator.extract
                     newGenerator.refererUrl?.let { savedStateHandle[KEY_GEN_REFERER] = it }
                 }
                 is DownloadFileGenerator -> {
-                    savedStateHandle[KEY_GEN_TYPE]  = GEN_TYPE_DOWNLOAD
-                    savedStateHandle[KEY_GEN_URIS]  = newGenerator.videos.toJson()
+                    savedStateHandle[KEY_GEN_TYPE] = GEN_TYPE_DOWNLOAD
+                    savedStateHandle[KEY_GEN_URIS] = newGenerator.videos.toJson()
                     savedStateHandle[KEY_GEN_INDEX] = newGenerator.videoIndex
                 }
                 // MinimalLinkGenerator: comes from external intents that re-fire on restore.
@@ -158,9 +158,9 @@ class PlayerGeneratorViewModel(private val savedStateHandle: SavedStateHandle) :
             val json = savedStateHandle.get<String>(KEY_SEL_URI_JSON) ?: return null
             tryParseJson<ExtractorUri>(json)?.let { null to it }
         } else {
-            val json      = savedStateHandle.get<String>(KEY_SEL_LINK_JSON) ?: return null
+            val json = savedStateHandle.get<String>(KEY_SEL_LINK_JSON) ?: return null
             val className = savedStateHandle.get<String>(KEY_SEL_LINK_CLS)  ?: return null
-            val extLink   = jacksonMapper.readValue(json, Class.forName(className)) as? ExtractorLink
+            val extLink = jacksonMapper.readValue(json, Class.forName(className)) as? ExtractorLink
             extLink?.let { it to null }
         }
     } catch (t: Throwable) {
@@ -176,14 +176,14 @@ class PlayerGeneratorViewModel(private val savedStateHandle: SavedStateHandle) :
         try {
             if (link != null) {
                 val extLink = link.first
-                val extUri  = link.second
+                val extUri = link.second
                 if (extLink != null) {
                     savedStateHandle[KEY_SEL_LINK_IS_URI] = false
-                    savedStateHandle[KEY_SEL_LINK_JSON]   = extLink.toJson()
-                    savedStateHandle[KEY_SEL_LINK_CLS]    = extLink::class.java.name
+                    savedStateHandle[KEY_SEL_LINK_JSON] = extLink.toJson()
+                    savedStateHandle[KEY_SEL_LINK_CLS] = extLink::class.java.name
                 } else if (extUri != null) {
                     savedStateHandle[KEY_SEL_LINK_IS_URI] = true
-                    savedStateHandle[KEY_SEL_URI_JSON]    = extUri.toJson()
+                    savedStateHandle[KEY_SEL_URI_JSON] = extUri.toJson()
                 }
             }
             if (subtitle != null) {
