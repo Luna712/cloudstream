@@ -200,49 +200,58 @@ class PlayerGeneratorViewModel : ViewModel() {
         currentJob?.cancel()
 
         currentJob = viewModelScope.launchSafe {
-            // if we load links then we clear the prev loaded links
-            synchronized(extraSubtitles) {
-                extraSubtitles.clear()
-            }
-            val currentLinks = mutableSetOf<Pair<ExtractorLink?, ExtractorUri?>>()
-            val currentSubs = mutableSetOf<SubtitleData>()
+            // Clear any manually-added subtitles from the previous episode.
+            synchronized(extraSubtitles) { extraSubtitles.clear() }
 
-            // clear old data
+            // Dedicated lock objects so each accumulator has its own monitor.
+            // Using the set itself as its own lock (synchronized(currentLinks)) is legal
+            // but fragile — a dedicated Any() makes the intent explicit and prevents
+            // accidental re-use of the wrong lock (which was the bug for currentSubs,
+            // which was previously guarded by synchronized(extraSubtitles) instead).
+            val linksLock = Any()
+            val subsLock  = Any()
+            val currentLinks = mutableSetOf<Pair<ExtractorLink?, ExtractorUri?>>()
+            val currentSubs  = mutableSetOf<SubtitleData>()
+
+            // Signal "loading" and wipe the previous episode's data.
             _currentSubs.postValue(emptySet())
             _currentLinks.postValue(emptySet())
-
-            // load more data
             _loadingLinks.postValue(Resource.Loading())
+
             val loadingState = safeApiCall {
                 generator?.generateLinks(
                     sourceTypes = sourceTypes,
                     clearCache = forceClearCache,
-                    callback = {
-                        synchronized(currentLinks) {
-                            currentLinks.add(it)
-                            // Clone to prevent ConcurrentModificationException
-                            safe {
-                                // Extra safe since .toSet() iterates.
-                                _currentLinks.postValue(currentLinks.toSet())
+                    callback = { pair ->
+                        synchronized(linksLock) {
+                            if (currentLinks.add(pair)) {
+                                safe { _currentLinks.postValue(currentLinks.toSet()) }
                             }
                         }
                     },
-                    subtitleCallback = {
-                        synchronized(extraSubtitles) {
-                            currentSubs.add(it)
-                            safe {
-                                _currentSubs.postValue(currentSubs + extraSubtitles)
+                    subtitleCallback = { sub ->
+                        synchronized(subsLock) {
+                            if (currentSubs.add(sub)) {
+                                val extra = synchronized(extraSubtitles) { extraSubtitles.toSet() }
+                                safe { _currentSubs.postValue(currentSubs + extra) }
                             }
                         }
-                    })
+                    }
+                )
             }
 
+            // Always post the final authoritative snapshot after generateLinks returns.
+            // This is necessary for synchronous generators (e.g. DownloadFileGenerator)
+            // whose callbacks fire on the same coroutine thread: launchSafe swallows
+            // CancellationException but the coroutine will have already populated
+            // currentLinks/currentSubs before any cancellation point is reached,
+            // so this postValue is always safe and never lost.
             _loadingLinks.postValue(loadingState)
-            _currentLinks.postValue(currentLinks)
-            synchronized(extraSubtitles) {
-                _currentSubs.postValue(currentSubs + extraSubtitles)
+            synchronized(linksLock) { _currentLinks.postValue(currentLinks.toSet()) }
+            synchronized(subsLock) {
+                val extra = synchronized(extraSubtitles) { extraSubtitles.toSet() }
+                _currentSubs.postValue(currentSubs + extra)
             }
         }
-
     }
 }
