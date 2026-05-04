@@ -31,17 +31,13 @@ class DownloadedPlayerActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
+        // singleInstance: onNewIntent only fires when this exact instance is re-targeted
+        // (e.g. the same file is opened again from the file manager while already playing).
+        // Each genuinely new file always gets a fresh instance via onCreate instead.
         if (isSameIntent(intent)) return
-        // singleTask reuses this Activity instance and calls onNewIntent instead of onCreate,
-        // which means the new intent never becomes the task's base intent. If the process is
-        // killed and relaunched from recents, Android would restore using the original (stale)
-        // base intent. Fix: restart self with CLEAR_TASK so the new intent goes through
-        // onCreate and becomes the task's base intent, giving correct restore behaviour.
-        val restart = Intent(intent).apply {
-            setClass(this@DownloadedPlayerActivity, DownloadedPlayerActivity::class.java)
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        }
-        startActivity(restart)
+        setIntent(intent)
+        Log.i(TAG, "onNewIntent")
+        handleIntent(intent)
     }
 
     private fun isSameIntent(newIntent: Intent): Boolean {
@@ -62,9 +58,10 @@ class DownloadedPlayerActivity : AppCompatActivity() {
         setContentView(R.layout.empty_layout)
         Log.i(TAG, "onCreate")
 
-        // Only handle the intent on a true cold start. When savedInstanceState is present
-        // the NavController restores the player fragment from saved state automatically,
-        // replaying the intent would push a duplicate player on top of it.
+        // With singleInstance every new file open lands here via a fresh instance whose
+        // intent IS the task base intent â€” no staleness possible.
+        // When savedInstanceState != null the system is restoring after a process kill;
+        // the NavController rebuilds the correct fragment automatically so we skip replay.
         if (savedInstanceState == null) {
             handleIntent(intent)
         }
@@ -92,7 +89,7 @@ class DownloadedPlayerActivity : AppCompatActivity() {
                 url != null -> playLink(this, url)
                 data != null -> playUri(this, data)
                 extraText != null -> playLink(this, extraText)
-                else -> finish()
+                else -> { finish(); return }
             }
         } else if (data?.scheme == "content") {
             playUri(this, data)
