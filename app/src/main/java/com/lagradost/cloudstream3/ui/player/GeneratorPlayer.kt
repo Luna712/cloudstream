@@ -140,7 +140,10 @@ class GeneratorPlayer : FullScreenPlayer() {
         const val CHANNEL_ID = 7340
         const val STOP_ACTION = "stopcs3"
 
-        // Bundle keys for generator state serialization.
+        // In-memory reference for generators that can't be serialized (MinimalLinkGenerator).
+        // These come from external intents that re-fire on process-death restore anyway.
+        private var lastUsedGenerator: IGenerator? = null
+
         /** Build the Fragment arguments bundle for [GeneratorPlayer].
          *
          *  The generator state is serialized here so that [PlayerGeneratorViewModel]'s
@@ -148,14 +151,12 @@ class GeneratorPlayer : FullScreenPlayer() {
          *  SavedStateHandle merges the Fragment arguments bundle automatically, so these
          *  keys become available in the ViewModel's init block without any Fragment code.
          *  On process death, SavedStateHandle restores from savedInstanceState instead,
-         *  which it also manages automatically â€” no manual onSaveInstanceState needed. */
-        // In-memory reference for generators that can't be serialized (MinimalLinkGenerator).
-        // These come from external intents that re-fire on process-death restore anyway.
-        private var lastUsedGenerator: IGenerator? = null
+         *  which it also manages automatically â€” no manual onSaveInstanceState needed.
+         */
 
         fun newInstance(generator: IGenerator, syncData: HashMap<String, String>? = null): Bundle {
             Log.i(TAG, "newInstance = $syncData")
-            // Keep last-used reference for un-serializable generators (MinimalLinkGenerator).
+            // lastUsedGenerator is only used for un-serializable generators (MinimalLinkGenerator).
             if (generator is MinimalLinkGenerator) lastUsedGenerator = generator
             return Bundle().apply {
                 if (syncData != null) putSerializable("syncData", syncData)
@@ -181,7 +182,7 @@ class GeneratorPlayer : FullScreenPlayer() {
                             putString(PlayerGeneratorViewModel.KEY_GEN_URIS,  generator.videos.toJson())
                             putInt(PlayerGeneratorViewModel.KEY_GEN_INDEX,    generator.videoIndex)
                         }
-                        // MinimalLinkGenerator: external intents re-fire on restore, no persistence needed.
+                        // For MinimalLinkGenerator, external intents re-fire on restore, no persistence needed.
                     }
                 } catch (t: Throwable) {
                     Log.e(TAG, "Failed to serialize generator to Bundle", t)
@@ -230,7 +231,7 @@ class GeneratorPlayer : FullScreenPlayer() {
         // If subtitle is changed and user initiated -> Save the language
         if (subtitle != currentSelectedSubtitles && userInitiated) {
             val subtitleLanguageTagIETF = if (subtitle == null) {
-                "" //Â -> No Subtitles
+                "" // -> No Subtitles
             } else {
                 subtitle.getIETF_tag()
             }
@@ -691,7 +692,7 @@ class GeneratorPlayer : FullScreenPlayer() {
                     val language =
                         item?.let { fromTagToLanguageName(it.lang) ?: it.lang } ?: ""
                     val providerSuffix =
-                        if (isSingleProvider || item == null) "" else " Â· ${item.source}"
+                        if (isSingleProvider || item == null) "" else " · ${item.source}"
                     @SuppressLint("SetTextI18n")
                     secondaryTextView?.text = language + providerSuffix
 
@@ -1514,7 +1515,7 @@ class GeneratorPlayer : FullScreenPlayer() {
                             language.takeIf { it.isNotBlank() }?.replaceFirstChar { it.uppercaseChar() },
                             channels.takeIf { it.isNotBlank() },
                             codec.takeIf { it.isNotBlank() }?.uppercase()
-                        ).joinToString(" â€¢ ")
+                        ).joinToString(" • ")
 
 
                     }
@@ -1597,12 +1598,12 @@ class GeneratorPlayer : FullScreenPlayer() {
         }
 
         // On process death, SavedStateHandle in the ViewModel preserved the previously-selected
-        // source. restoredSelectedLink/Subtitle are lazy vals â€” read once, then the ViewModel's
+        // source. restoredSelectedLink/Subtitle are lazy vals, read once, then the ViewModel's
         // internal saved state is the source of truth going forward via saveSelectedState().
         // Try to match the restored source by URL. Fall back to links.first() if gone.
         val restoredLink = if (currentSelectedLink != null) {
             // currentSelectedLink is set (live session, user already picked a source this session).
-            // Use it directly â€” this is the normal startPlayer() re-entry path (e.g. skip loading).
+            // Use it directly, this is the normal startPlayer() re-entry path (e.g. skip loading).
             currentSelectedLink
         } else {
             // Fresh start or process-death restore: check what the ViewModel has.
@@ -1662,9 +1663,9 @@ class GeneratorPlayer : FullScreenPlayer() {
                     season = episode?.season
                 )
             else null,
-            load.score?.let { "â­ $it" }
+            load.score?.let { "⭐ $it" }
         ).filterNotNull()
-            .joinToString(" â€¢ ")
+            .joinToString(" • ")
 
         metaView.text = meta
         metaView.isVisible = meta.isNotBlank()
@@ -2031,7 +2032,7 @@ class GeneratorPlayer : FullScreenPlayer() {
             language,
             channels,
             audioCodec
-        ).filter { !it.isNullOrBlank() }.joinToString(" â€¢ ")
+        ).filter { !it.isNullOrBlank() }.joinToString(" • ")
 
         playerBinding?.playerVideoInfo?.apply {
             text = stats
@@ -2212,7 +2213,7 @@ class GeneratorPlayer : FullScreenPlayer() {
         sync = ViewModelProvider(this)[SyncViewModel::class.java]
         // The ViewModel restores the generator from SavedStateHandle in its init block.
         // SavedStateHandle is seeded from the Fragment arguments bundle on first creation,
-        // and from savedInstanceState on process-death restore â€” automatically, without any
+        // and from savedInstanceState on process-death restore automatically, without any
         // Fragment code. We only need to call attachGenerator() for generators that can't be
         // serialized (MinimalLinkGenerator), using lastUsedGenerator as the fallback.
         viewModel.attachGenerator(lastUsedGenerator)
@@ -2247,7 +2248,7 @@ class GeneratorPlayer : FullScreenPlayer() {
 
         preferredAutoSelectSubtitles = getAutoSelectLanguageTagIETF()
 
-        // Always load links â€” even if we restored a selected link we still need the full
+        // Always load links even if we restored a selected link we still need the full
         // link list in the ViewModel so the source picker, skip-loading button, and
         // quality-profile sorting all work correctly.
         viewModel.loadLinks()
@@ -2282,7 +2283,7 @@ class GeneratorPlayer : FullScreenPlayer() {
         // currentLinks field. If loadingLinks fires first (because it was registered first),
         // currentLinks is still empty and startPlayer() calls noLinksFound().
         // Registering currentLinks first guarantees its observer updates the field before
-        // the loadingLinks observer can call startPlayer() â€” both on initial delivery to a
+        // the loadingLinks observer can call startPlayer(), both on initial delivery to a
         // newly-started Fragment and on any subsequent setValue() call from the ViewModel.
         observe(viewModel.currentLinks) { links ->
             currentLinks = links
