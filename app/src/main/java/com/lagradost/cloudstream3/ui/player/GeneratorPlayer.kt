@@ -102,10 +102,7 @@ import com.lagradost.cloudstream3.ui.subtitles.SubtitlesFragment.Companion.getAu
 import com.lagradost.cloudstream3.utils.AppContextUtils.getShortSeasonText
 import com.lagradost.cloudstream3.utils.AppContextUtils.html
 import com.lagradost.cloudstream3.utils.AppContextUtils.sortSubs
-import com.lagradost.cloudstream3.utils.AppUtils
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
-import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
-import com.lagradost.cloudstream3.utils.DataStore.mapper as jacksonMapper
 import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream3.utils.Coroutines.runOnMainThread
 import com.lagradost.cloudstream3.utils.DataStoreHelper
@@ -143,113 +140,55 @@ class GeneratorPlayer : FullScreenPlayer() {
         const val CHANNEL_ID = 7340
         const val STOP_ACTION = "stopcs3"
 
-        // Bundle keys for generator state serialization.
-        // The generator itself is NOT a Parcelable/Serializable, so we serialize the data it
-        // wraps to JSON and reconstruct it on restore. This keeps links/episodes alive across
-        // Android process death (back-stack restoration after OOM kill).
-        private const val KEY_GEN_TYPE     = "generatorType"
-        private const val KEY_GEN_EPISODES = "generatorEpisodes"   // RepoLinkGenerator
-        private const val KEY_GEN_INDEX    = "generatorIndex"       // RepoLinkGenerator / DownloadFileGenerator
-        private const val KEY_GEN_PAGE     = "generatorPage"        // RepoLinkGenerator (nullable)
-        private const val KEY_GEN_PAGE_CLS = "generatorPageClass"   // concrete class name for LoadResponse polymorphism
-        private const val KEY_GEN_LINKS    = "generatorLinks"       // LinkGenerator
-        private const val KEY_GEN_EXTRACT  = "generatorExtract"     // LinkGenerator
-        private const val KEY_GEN_REFERER  = "generatorReferer"     // LinkGenerator (nullable)
-        private const val KEY_GEN_URIS     = "generatorUris"        // DownloadFileGenerator
+        // In-memory reference for generators that can't be serialized (MinimalLinkGenerator).
+        // These come from external intents that re-fire on process-death restore anyway.
+        private var lastUsedGenerator: IGenerator? = null
 
-        private const val GEN_TYPE_REPO     = "repo"
-        private const val GEN_TYPE_LINK     = "link"
-        private const val GEN_TYPE_DOWNLOAD = "download"
-
-        // Bundle keys for saving/restoring the currently-playing link and subtitle selection
-        // so that process death or view recreation doesn't reset the source back to the first one.
-        private const val KEY_SEL_LINK_JSON  = "selectedLinkJson"
-        private const val KEY_SEL_LINK_CLS   = "selectedLinkClass"   // for ExtractorLink polymorphism
-        private const val KEY_SEL_LINK_IS_URI = "selectedLinkIsUri"  // true => ExtractorUri, false => ExtractorLink
-        private const val KEY_SEL_URI_JSON   = "selectedUriJson"
-        private const val KEY_SEL_SUB_JSON   = "selectedSubJson"
+        /**
+         * Build the Fragment arguments bundle for [GeneratorPlayer].
+         *
+         * The generator state is serialized here so that [PlayerGeneratorViewModel]'s
+         * [SavedStateHandle] is seeded with the correct values on first creation.
+         * SavedStateHandle merges the Fragment arguments bundle automatically, so these
+         * keys become available in the ViewModel's init block without any Fragment code.
+         * On process death, SavedStateHandle restores from savedInstanceState instead,
+         * which it also manages automatically â€” no manual onSaveInstanceState needed.
+         */
 
         fun newInstance(generator: IGenerator, syncData: HashMap<String, String>? = null): Bundle {
             Log.i(TAG, "newInstance = $syncData")
+            // lastUsedGenerator is only used for un-serializable generators (MinimalLinkGenerator).
+            if (generator is MinimalLinkGenerator) lastUsedGenerator = generator
             return Bundle().apply {
                 if (syncData != null) putSerializable("syncData", syncData)
-                // Serialize generator state so the Fragment can be fully restored after
-                // an Android-initiated process death (OOM kill + back-stack restore).
                 try {
                     when (generator) {
                         is RepoLinkGenerator -> {
-                            putString(KEY_GEN_TYPE, GEN_TYPE_REPO)
-                            putString(KEY_GEN_EPISODES, generator.videos.toJson())
-                            putInt(KEY_GEN_INDEX, generator.videoIndex)
+                            putString(PlayerGeneratorViewModel.KEY_GEN_TYPE, PlayerGeneratorViewModel.GEN_TYPE_REPO)
+                            putString(PlayerGeneratorViewModel.KEY_GEN_EPISODES, generator.videos.toJson())
+                            putInt(PlayerGeneratorViewModel.KEY_GEN_INDEX, generator.videoIndex)
                             generator.page?.let { page ->
-                                putString(KEY_GEN_PAGE, page.toJson())
-                                // Store the concrete class name so we can deserialize the
-                                // polymorphic LoadResponse interface back to the right subtype.
-                                putString(KEY_GEN_PAGE_CLS, page::class.java.name)
+                                putString(PlayerGeneratorViewModel.KEY_GEN_PAGE, page.toJson())
+                                putString(PlayerGeneratorViewModel.KEY_GEN_PAGE_CLS, page::class.java.name)
                             }
                         }
                         is LinkGenerator -> {
-                            putString(KEY_GEN_TYPE, GEN_TYPE_LINK)
-                            putString(KEY_GEN_LINKS, generator.links.toJson())
-                            putBoolean(KEY_GEN_EXTRACT, generator.extract)
-                            generator.refererUrl?.let { putString(KEY_GEN_REFERER, it) }
+                            putString(PlayerGeneratorViewModel.KEY_GEN_TYPE, PlayerGeneratorViewModel.GEN_TYPE_LINK)
+                            putString(PlayerGeneratorViewModel.KEY_GEN_LINKS, generator.links.toJson())
+                            putBoolean(PlayerGeneratorViewModel.KEY_GEN_EXTRACT, generator.extract)
+                            generator.refererUrl?.let { putString(PlayerGeneratorViewModel.KEY_GEN_REFERER, it) }
                         }
                         is DownloadFileGenerator -> {
-                            putString(KEY_GEN_TYPE, GEN_TYPE_DOWNLOAD)
-                            putString(KEY_GEN_URIS, generator.videos.toJson())
-                            putInt(KEY_GEN_INDEX, generator.videoIndex)
+                            putString(PlayerGeneratorViewModel.KEY_GEN_TYPE, PlayerGeneratorViewModel.GEN_TYPE_DOWNLOAD)
+                            putString(PlayerGeneratorViewModel.KEY_GEN_URIS, generator.videos.toJson())
+                            putInt(PlayerGeneratorViewModel.KEY_GEN_INDEX, generator.videoIndex)
                         }
-                        // MinimalLinkGenerator and other internal generators come from external
-                        // intents that will re-fire on restore, so no serialization needed.
+                        // For MinimalLinkGenerator, external intents re-fire on restore, no persistence needed.
                     }
                 } catch (t: Throwable) {
                     Log.e(TAG, "Failed to serialize generator to Bundle", t)
                 }
             }
-        }
-
-        /** Reconstruct the generator from a Bundle written by [newInstance]. Returns null when
-         *  the Bundle has no generator state (e.g. old format) or deserialization fails. */
-        private fun generatorFromBundle(bundle: Bundle): IGenerator? = try {
-            when (bundle.getString(KEY_GEN_TYPE)) {
-                GEN_TYPE_REPO -> {
-                    val episodesJson = bundle.getString(KEY_GEN_EPISODES) ?: return null
-                    val episodes: List<ResultEpisode> = AppUtils.parseJson(episodesJson)
-                    val index = bundle.getInt(KEY_GEN_INDEX, 0)
-                    // Deserialize to the concrete LoadResponse subtype using the stored class
-                    // name - without this the Jackson mapper can't reconstruct a polymorphic
-                    // interface from JSON (there are no @JsonTypeInfo annotations on LoadResponse).
-                    val page: LoadResponse? = run {
-                        val json = bundle.getString(KEY_GEN_PAGE) ?: return@run null
-                        val className = bundle.getString(KEY_GEN_PAGE_CLS) ?: return@run null
-                        try {
-                            val cls = Class.forName(className)
-                            jacksonMapper.readValue(json, cls) as? LoadResponse
-                        } catch (t: Throwable) {
-                            Log.w(TAG, "Could not deserialize LoadResponse page ($className)", t)
-                            null
-                        }
-                    }
-                    RepoLinkGenerator(episodes, index, page)
-                }
-                GEN_TYPE_LINK -> {
-                    val linksJson = bundle.getString(KEY_GEN_LINKS) ?: return null
-                    val links: List<BasicLink> = AppUtils.parseJson(linksJson)
-                    val extract = bundle.getBoolean(KEY_GEN_EXTRACT, true)
-                    val referer = bundle.getString(KEY_GEN_REFERER)
-                    LinkGenerator(links, extract, referer)
-                }
-                GEN_TYPE_DOWNLOAD -> {
-                    val urisJson = bundle.getString(KEY_GEN_URIS) ?: return null
-                    val uris: List<ExtractorUri> = AppUtils.parseJson(urisJson)
-                    val index = bundle.getInt(KEY_GEN_INDEX, 0)
-                    DownloadFileGenerator(uris, index)
-                }
-                else -> null
-            }
-        } catch (t: Throwable) {
-            Log.e(TAG, "Failed to deserialize generator from Bundle", t)
-            null
         }
 
         val subsProviders = subtitleProviders
@@ -272,9 +211,7 @@ class GeneratorPlayer : FullScreenPlayer() {
     private var currentSelectedLink: Pair<ExtractorLink?, ExtractorUri?>? = null
     private var currentSelectedSubtitles: SubtitleData? = null
 
-    /** Subtitle to restore after a view recreation / process death.
-     *  Stored separately from [currentSelectedSubtitles] so [startLoading] doesn't clear it. */
-    private var pendingRestoredSubtitle: SubtitleData? = null
+
     private var currentMeta: Any? = null
     private var nextMeta: Any? = null
     private var isActive: Boolean = false
@@ -308,6 +245,8 @@ class GeneratorPlayer : FullScreenPlayer() {
         }
 
         currentSelectedSubtitles = subtitle
+        // Keep SavedStateHandle in sync so subtitle selection survives process death.
+        viewModel.saveSelectedState(currentSelectedLink, subtitle)
         //Log.i(TAG, "setSubtitles = $subtitle")
         return player.setPreferredSubtitles(subtitle)
     }
@@ -611,6 +550,8 @@ class GeneratorPlayer : FullScreenPlayer() {
 
         uiReset()
         currentSelectedLink = link
+        // Persist selected source to SavedStateHandle so it survives process death.
+        viewModel.saveSelectedState(link, currentSelectedSubtitles)
         currentMeta = viewModel.getMeta()
         nextMeta = viewModel.getNextMeta()
         allMeta = viewModel.getAllMeta()?.filterIsInstance<ResultEpisode>()?.map { episode ->
@@ -1657,31 +1598,38 @@ class GeneratorPlayer : FullScreenPlayer() {
             return
         }
 
-        // If we restored a previously-selected link (from process death or view recreation),
-        // try to find the same source in the freshly-loaded list by URL identity.
-        // Fall back to the highest-priority source (links.first()) if the old source is gone.
-        // Consume the restoration immediately: once we've used it, the next startPlayer()
-        // call (e.g. after an error retry) should pick the best source normally.
-        val restoredLink = currentSelectedLink
+        // On process death, SavedStateHandle in the ViewModel preserved the previously-selected
+        // source. restoredSelectedLink/Subtitle are lazy vals, read once, then the ViewModel's
+        // internal saved state is the source of truth going forward via saveSelectedState().
+        // Try to match the restored source by URL. Fall back to links.first() if gone.
+        val restoredLink = if (currentSelectedLink != null) {
+            // currentSelectedLink is set (live session, user already picked a source this session).
+            // Use it directly, this is the normal startPlayer() re-entry path (e.g. skip loading).
+            currentSelectedLink
+        } else {
+            // Fresh start or process-death restore: check what the ViewModel has.
+            viewModel.restoredSelectedLink
+        }
+
         val target = if (restoredLink != null) {
             val matchByUrl = links.find { candidate ->
                 val candidateUrl = candidate.first?.url ?: candidate.second?.uri?.toString()
                 val restoredUrl  = restoredLink.first?.url ?: restoredLink.second?.uri?.toString()
                 candidateUrl != null && candidateUrl == restoredUrl
             }
-            // Clear the restoration cache loadLink() will set currentSelectedLink = target.
+            // Clear the in-flight selection so the next call picks normally.
             currentSelectedLink = null
             matchByUrl ?: links.first()
         } else {
             links.first()
         }
 
-        // Consume the pending subtitle restoration (stored separately so startLoading() couldn't
-        // wipe it). Apply it as the initial subtitle selection for this playback session.
-        val restoredSub = pendingRestoredSubtitle
-        pendingRestoredSubtitle = null
-        if (restoredSub != null) {
-            currentSelectedSubtitles = restoredSub
+        // Apply restored subtitle (from SavedStateHandle) for this playback session.
+        // startLoading() clears currentSelectedSubtitles, so we re-apply it here from the
+        // ViewModel's lazy restoration value. After this loadLink() call, saveSelectedState()
+        // will persist the new pair going forward.
+        if (currentSelectedSubtitles == null) {
+            viewModel.restoredSelectedSubtitle?.let { currentSelectedSubtitles = it }
         }
 
         loadLink(target, false)
@@ -2098,66 +2046,6 @@ class GeneratorPlayer : FullScreenPlayer() {
         setPlayerDimen(width to height)
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        // Persist the currently-selected source and subtitle so that after process death
-        // or a view recreation (back-stack restore) we can skip straight back to the same
-        // source rather than defaulting to the first one again.
-        try {
-            val link = currentSelectedLink
-            if (link != null) {
-                val extLink = link.first
-                val extUri  = link.second
-                if (extLink != null) {
-                    outState.putBoolean(KEY_SEL_LINK_IS_URI, false)
-                    outState.putString(KEY_SEL_LINK_JSON, extLink.toJson())
-                    outState.putString(KEY_SEL_LINK_CLS, extLink::class.java.name)
-                } else if (extUri != null) {
-                    outState.putBoolean(KEY_SEL_LINK_IS_URI, true)
-                    outState.putString(KEY_SEL_URI_JSON, extUri.toJson())
-                }
-            }
-            currentSelectedSubtitles?.let { sub ->
-                outState.putString(KEY_SEL_SUB_JSON, sub.toJson())
-            }
-        } catch (t: Throwable) {
-            Log.e(TAG, "Failed to save selected link/subtitle to instance state", t)
-        }
-        super.onSaveInstanceState(outState)
-    }
-
-    /** Restore [currentSelectedLink] and [currentSelectedSubtitles] from a saved Bundle.
-     *  These are consumed by [startPlayer] to re-select the same source after view recreation
-     *  or process death, instead of defaulting to the highest-priority source. */
-    private fun restoreSelectedState(bundle: Bundle) {
-        try {
-            // Restored subtitle goes into pendingRestoredSubtitle, not currentSelectedSubtitles,
-            // because startLoading() clears currentSelectedSubtitles when loadLinks() begins.
-            bundle.getString(KEY_SEL_SUB_JSON)?.let { json ->
-                pendingRestoredSubtitle = AppUtils.tryParseJson<SubtitleData>(json)
-            }
-
-            // Restore the selected link may be an ExtractorUri or an ExtractorLink subclass.
-            if (bundle.containsKey(KEY_SEL_LINK_IS_URI)) {
-                val isUri = bundle.getBoolean(KEY_SEL_LINK_IS_URI)
-                currentSelectedLink = if (isUri) {
-                    val uriJson = bundle.getString(KEY_SEL_URI_JSON) ?: return
-                    AppUtils.tryParseJson<ExtractorUri>(uriJson)?.let { null to it }
-                } else {
-                    val json      = bundle.getString(KEY_SEL_LINK_JSON) ?: return
-                    val className = bundle.getString(KEY_SEL_LINK_CLS)  ?: return
-                    val cls = Class.forName(className)
-                    val extLink = jacksonMapper.readValue(json, cls) as? ExtractorLink
-                    extLink?.let { it to null }
-                }
-            }
-        } catch (t: Throwable) {
-            Log.e(TAG, "Failed to restore selected link/subtitle from instance state", t)
-            // Leave currentSelectedLink = null; loadLinks() will re-fetch cleanly.
-            currentSelectedLink = null
-            pendingRestoredSubtitle = null
-        }
-    }
-
     private fun unwrapBundle(savedInstanceState: Bundle?) {
         Log.i(TAG, "unwrapBundle = $savedInstanceState")
         savedInstanceState?.let { bundle ->
@@ -2324,16 +2212,12 @@ class GeneratorPlayer : FullScreenPlayer() {
     override fun onBindingCreated(binding: FragmentPlayerBinding, savedInstanceState: Bundle?) {
         viewModel = ViewModelProvider(this)[PlayerGeneratorViewModel::class.java]
         sync = ViewModelProvider(this)[SyncViewModel::class.java]
-        // Always reconstruct the generator from the per-instance arguments Bundle.
-        // We deliberately do NOT use a static/companion field here: a static field is shared
-        // across all GeneratorPlayer instances in all Activities (MainActivity AND
-        // DownloadedPlayerActivity both navigate to the same destination). The last caller
-        // to newInstance() would overwrite the static and break the other Activity's player.
-        // The arguments Bundle is per-fragment-instance and survives both configuration changes
-        // and Android process death, so it is the only correct source of truth.
-        val generator = arguments?.let { generatorFromBundle(it) }
-            ?: savedInstanceState?.let { generatorFromBundle(it) }
-        viewModel.attachGenerator(generator)
+        // The ViewModel restores the generator from SavedStateHandle in its init block.
+        // SavedStateHandle is seeded from the Fragment arguments bundle on first creation,
+        // and from savedInstanceState on process-death restore automatically, without any
+        // Fragment code. We only need to call attachGenerator() for generators that can't be
+        // serialized (MinimalLinkGenerator), using lastUsedGenerator as the fallback.
+        viewModel.attachGenerator(lastUsedGenerator)
         unwrapBundle(savedInstanceState)
         unwrapBundle(arguments)
 
@@ -2360,17 +2244,6 @@ class GeneratorPlayer : FullScreenPlayer() {
                 } ?: listOf()
             }
         }
-
-        unwrapBundle(savedInstanceState)
-        unwrapBundle(arguments)
-
-        // Restore the previously-selected source and subtitle so that after process death or a
-        // view recreation (back-stack restore, config change) the player re-opens on the SAME
-        // source rather than the first one in the list.
-        // We store the restored values in pendingRestoredLink/Sub so startPlayer() can pick them
-        // from the freshly-loaded link list. loadLinks() always runs so the source picker and
-        // ViewModel are fully populated regardless of restoration state.
-        savedInstanceState?.let { restoreSelectedState(it) }
 
         sync.updateUserData()
 

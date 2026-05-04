@@ -3,6 +3,7 @@ package com.lagradost.cloudstream3.ui.player
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lagradost.cloudstream3.LoadResponse
@@ -12,7 +13,11 @@ import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.mvvm.safe
 import com.lagradost.cloudstream3.mvvm.safeApiCall
 import com.lagradost.cloudstream3.ui.result.ResultEpisode
+import com.lagradost.cloudstream3.utils.AppUtils
+import com.lagradost.cloudstream3.utils.AppUtils.toJson
+import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
 import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
+import com.lagradost.cloudstream3.utils.DataStore.mapper as jacksonMapper
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream3.utils.videoskip.SkipAPI
@@ -20,12 +25,176 @@ import com.lagradost.cloudstream3.utils.videoskip.VideoSkipStamp
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class PlayerGeneratorViewModel : ViewModel() {
+class PlayerGeneratorViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel() {
     companion object {
-        const val TAG = "PlayViewGen"
+        const val TAG = "PlayerGeneratorViewModel"
+
+        // Keys shared with GeneratorPlayer.newInstance() so the arguments Bundle seeds
+        // SavedStateHandle on first creation, and SavedStateHandle auto-restores them after
+        // process death without any manual Bundle read/write in the Fragment.
+        const val KEY_GEN_TYPE = "generatorType"
+        const val KEY_GEN_EPISODES = "generatorEpisodes"
+        const val KEY_GEN_INDEX = "generatorIndex"
+        const val KEY_GEN_PAGE = "generatorPage"
+        const val KEY_GEN_PAGE_CLS = "generatorPageClass"
+        const val KEY_GEN_LINKS = "generatorLinks"
+        const val KEY_GEN_EXTRACT = "generatorExtract"
+        const val KEY_GEN_REFERER = "generatorReferer"
+        const val KEY_GEN_URIS = "generatorUris"
+
+        const val GEN_TYPE_REPO = "repo"
+        const val GEN_TYPE_LINK = "link"
+        const val GEN_TYPE_DOWNLOAD = "download"
+
+        // Keys for the currently-selected source and subtitle. Written here whenever the
+        // Fragment selects a source; auto-restored on process death via SavedStateHandle.
+        const val KEY_SEL_LINK_JSON = "selectedLinkJson"
+        const val KEY_SEL_LINK_CLS = "selectedLinkClass"
+        const val KEY_SEL_LINK_IS_URI = "selectedLinkIsUri"
+        const val KEY_SEL_URI_JSON = "selectedUriJson"
+        const val KEY_SEL_SUB_JSON = "selectedSubJson"
     }
 
+    // Generator is restored from SavedStateHandle on process death, set via attachGenerator().
     private var generator: IGenerator? = null
+
+    init {
+        // On process death Android restores the Fragment's savedInstanceState into
+        // SavedStateHandle automatically. The arguments bundle is also merged in on first
+        // creation. Either way, the generator keys are available here without any Fragment
+        // intervention.
+        generator = generatorFromHandle()
+    }
+
+    private fun generatorFromHandle(): IGenerator? = try {
+        when (savedStateHandle.get<String>(KEY_GEN_TYPE)) {
+            GEN_TYPE_REPO -> {
+                val episodesJson = savedStateHandle.get<String>(KEY_GEN_EPISODES) ?: return null
+                val episodes: List<ResultEpisode> = AppUtils.parseJson(episodesJson)
+                val index = savedStateHandle.get<Int>(KEY_GEN_INDEX) ?: 0
+                val page: LoadResponse? = run {
+                    val json = savedStateHandle.get<String>(KEY_GEN_PAGE) ?: return@run null
+                    val className = savedStateHandle.get<String>(KEY_GEN_PAGE_CLS) ?: return@run null
+                    try {
+                        jacksonMapper.readValue(json, Class.forName(className)) as? LoadResponse
+                    } catch (t: Throwable) {
+                        Log.w(TAG, "Could not deserialize LoadResponse page ($className)", t)
+                        null
+                    }
+                }
+                RepoLinkGenerator(episodes, index, page)
+            }
+            GEN_TYPE_LINK -> {
+                val linksJson = savedStateHandle.get<String>(KEY_GEN_LINKS) ?: return null
+                val links: List<BasicLink> = AppUtils.parseJson(linksJson)
+                val extract = savedStateHandle.get<Boolean>(KEY_GEN_EXTRACT) ?: true
+                val referer = savedStateHandle.get<String>(KEY_GEN_REFERER)
+                LinkGenerator(links, extract, referer)
+            }
+            GEN_TYPE_DOWNLOAD -> {
+                val urisJson = savedStateHandle.get<String>(KEY_GEN_URIS) ?: return null
+                val uris: List<ExtractorUri> = AppUtils.parseJson(urisJson)
+                val index = savedStateHandle.get<Int>(KEY_GEN_INDEX) ?: 0
+                DownloadFileGenerator(uris, index)
+            }
+            else -> null
+        }
+    } catch (t: Throwable) {
+        Log.e(TAG, "Failed to restore generator from SavedStateHandle", t)
+        null
+    }
+
+    /** Called by the Fragment when it first navigates to the player with a new generator.
+     *  Persists all generator state into SavedStateHandle so it survives process death. */
+    fun attachGenerator(newGenerator: IGenerator?) {
+        if (generator != null || newGenerator == null) return
+        generator = newGenerator
+        // Persist to SavedStateHandle so process-death restore works without Fragment involvement.
+        try {
+            when (newGenerator) {
+                is RepoLinkGenerator -> {
+                    savedStateHandle[KEY_GEN_TYPE] = GEN_TYPE_REPO
+                    savedStateHandle[KEY_GEN_EPISODES] = newGenerator.videos.toJson()
+                    savedStateHandle[KEY_GEN_INDEX] = newGenerator.videoIndex
+                    newGenerator.page?.let { page ->
+                        savedStateHandle[KEY_GEN_PAGE] = page.toJson()
+                        savedStateHandle[KEY_GEN_PAGE_CLS] = page::class.java.name
+                    }
+                }
+                is LinkGenerator -> {
+                    savedStateHandle[KEY_GEN_TYPE] = GEN_TYPE_LINK
+                    savedStateHandle[KEY_GEN_LINKS] = newGenerator.links.toJson()
+                    savedStateHandle[KEY_GEN_EXTRACT] = newGenerator.extract
+                    newGenerator.refererUrl?.let { savedStateHandle[KEY_GEN_REFERER] = it }
+                }
+                is DownloadFileGenerator -> {
+                    savedStateHandle[KEY_GEN_TYPE] = GEN_TYPE_DOWNLOAD
+                    savedStateHandle[KEY_GEN_URIS] = newGenerator.videos.toJson()
+                    savedStateHandle[KEY_GEN_INDEX] = newGenerator.videoIndex
+                }
+                // MinimalLinkGenerator: comes from external intents that re-fire on restore.
+                // No persistent state needed.
+            }
+        } catch (t: Throwable) {
+            Log.e(TAG, "Failed to persist generator to SavedStateHandle", t)
+        }
+    }
+
+    fun getGenerator(): IGenerator? = generator
+
+    /**
+     * Selected link / subtitle, persisted so process death restores the exact source.
+     */
+
+    /** The selected link as restored from SavedStateHandle. Consumed once by [startPlayer]. */
+    val restoredSelectedLink: Pair<ExtractorLink?, ExtractorUri?>? by lazy { selectedLinkFromHandle() }
+
+    /** The selected subtitle as restored from SavedStateHandle. Consumed once by [startPlayer]. */
+    val restoredSelectedSubtitle: SubtitleData? by lazy { tryParseJson<SubtitleData>(savedStateHandle[KEY_SEL_SUB_JSON]) }
+
+    private fun selectedLinkFromHandle(): Pair<ExtractorLink?, ExtractorUri?>? = try {
+        val isUri = savedStateHandle.get<Boolean>(KEY_SEL_LINK_IS_URI) ?: return null
+        if (isUri) {
+            val json = savedStateHandle.get<String>(KEY_SEL_URI_JSON) ?: return null
+            tryParseJson<ExtractorUri>(json)?.let { null to it }
+        } else {
+            val json = savedStateHandle.get<String>(KEY_SEL_LINK_JSON) ?: return null
+            val className = savedStateHandle.get<String>(KEY_SEL_LINK_CLS)  ?: return null
+            val extLink = jacksonMapper.readValue(json, Class.forName(className)) as? ExtractorLink
+            extLink?.let { it to null }
+        }
+    } catch (t: Throwable) {
+        Log.e(TAG, "Failed to restore selected link from SavedStateHandle", t)
+        null
+    }
+
+    /** Called by the Fragment whenever the user selects a source. Persists across process death. */
+    fun saveSelectedState(
+        link: Pair<ExtractorLink?, ExtractorUri?>?,
+        subtitle: SubtitleData?
+    ) {
+        try {
+            if (link != null) {
+                val extLink = link.first
+                val extUri = link.second
+                if (extLink != null) {
+                    savedStateHandle[KEY_SEL_LINK_IS_URI] = false
+                    savedStateHandle[KEY_SEL_LINK_JSON] = extLink.toJson()
+                    savedStateHandle[KEY_SEL_LINK_CLS] = extLink::class.java.name
+                } else if (extUri != null) {
+                    savedStateHandle[KEY_SEL_LINK_IS_URI] = true
+                    savedStateHandle[KEY_SEL_URI_JSON] = extUri.toJson()
+                }
+            }
+            if (subtitle != null) {
+                savedStateHandle[KEY_SEL_SUB_JSON] = subtitle.toJson()
+            } else {
+                savedStateHandle.remove<String>(KEY_SEL_SUB_JSON)
+            }
+        } catch (t: Throwable) {
+            Log.e(TAG, "Failed to persist selected state to SavedStateHandle", t)
+        }
+    }
 
     private val _currentLinks = MutableLiveData<Set<Pair<ExtractorLink?, ExtractorUri?>>>(setOf())
     val currentLinks: LiveData<Set<Pair<ExtractorLink?, ExtractorUri?>>> = _currentLinks
@@ -146,14 +315,6 @@ class PlayerGeneratorViewModel : ViewModel() {
         val repoGen = generator as? RepoLinkGenerator ?: return null
         return repoGen.videoIndex
     }
-
-    fun attachGenerator(newGenerator: IGenerator?) {
-        if (generator == null) {
-            generator = newGenerator
-        }
-    }
-
-    fun getGenerator(): IGenerator? = generator
 
     private var extraSubtitles : MutableSet<SubtitleData> = mutableSetOf()
 
