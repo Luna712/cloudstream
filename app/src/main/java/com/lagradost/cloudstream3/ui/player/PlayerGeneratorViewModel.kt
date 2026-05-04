@@ -322,8 +322,6 @@ class PlayerGeneratorViewModel(private val savedStateHandle: SavedStateHandle) :
         }
     }
 
-    fun getGenerator(): IGenerator? = generator
-
     private var extraSubtitles : MutableSet<SubtitleData> = mutableSetOf()
 
     /**
