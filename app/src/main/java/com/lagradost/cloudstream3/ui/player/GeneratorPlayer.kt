@@ -104,6 +104,7 @@ import com.lagradost.cloudstream3.utils.AppContextUtils.html
 import com.lagradost.cloudstream3.utils.AppContextUtils.sortSubs
 import com.lagradost.cloudstream3.utils.AppUtils
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
+import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
 import com.lagradost.cloudstream3.utils.DataStore.mapper as jacksonMapper
 import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream3.utils.Coroutines.runOnMainThread
@@ -160,6 +161,14 @@ class GeneratorPlayer : FullScreenPlayer() {
         private const val GEN_TYPE_LINK     = "link"
         private const val GEN_TYPE_DOWNLOAD = "download"
 
+        // Bundle keys for saving/restoring the currently-playing link and subtitle selection
+        // so that process death or view recreation doesn't reset the source back to the first one.
+        private const val KEY_SEL_LINK_JSON  = "selectedLinkJson"
+        private const val KEY_SEL_LINK_CLS   = "selectedLinkClass"   // for ExtractorLink polymorphism
+        private const val KEY_SEL_LINK_IS_URI = "selectedLinkIsUri"  // true => ExtractorUri, false => ExtractorLink
+        private const val KEY_SEL_URI_JSON   = "selectedUriJson"
+        private const val KEY_SEL_SUB_JSON   = "selectedSubJson"
+
         fun newInstance(generator: IGenerator, syncData: HashMap<String, String>? = null): Bundle {
             Log.i(TAG, "newInstance = $syncData")
             return Bundle().apply {
@@ -208,7 +217,7 @@ class GeneratorPlayer : FullScreenPlayer() {
                     val episodes: List<ResultEpisode> = AppUtils.parseJson(episodesJson)
                     val index = bundle.getInt(KEY_GEN_INDEX, 0)
                     // Deserialize to the concrete LoadResponse subtype using the stored class
-                    // name — without this the Jackson mapper can't reconstruct a polymorphic
+                    // name - without this the Jackson mapper can't reconstruct a polymorphic
                     // interface from JSON (there are no @JsonTypeInfo annotations on LoadResponse).
                     val page: LoadResponse? = run {
                         val json = bundle.getString(KEY_GEN_PAGE) ?: return@run null
@@ -262,6 +271,10 @@ class GeneratorPlayer : FullScreenPlayer() {
 
     private var currentSelectedLink: Pair<ExtractorLink?, ExtractorUri?>? = null
     private var currentSelectedSubtitles: SubtitleData? = null
+
+    /** Subtitle to restore after a view recreation / process death.
+     *  Stored separately from [currentSelectedSubtitles] so [startLoading] doesn't clear it. */
+    private var pendingRestoredSubtitle: SubtitleData? = null
     private var currentMeta: Any? = null
     private var nextMeta: Any? = null
     private var isActive: Boolean = false
@@ -282,7 +295,7 @@ class GeneratorPlayer : FullScreenPlayer() {
         // If subtitle is changed and user initiated -> Save the language
         if (subtitle != currentSelectedSubtitles && userInitiated) {
             val subtitleLanguageTagIETF = if (subtitle == null) {
-                "" // -> No Subtitles
+                "" // -> No Subtitles
             } else {
                 subtitle.getIETF_tag()
             }
@@ -626,7 +639,7 @@ class GeneratorPlayer : FullScreenPlayer() {
                     if (isNextEpisode) 0L else getPos()
                 },
                 currentSubs,
-                (if (sameEpisode) currentSelectedSubtitles else null) ?: getAutoSelectSubtitle(
+                currentSelectedSubtitles ?: getAutoSelectSubtitle(
                     currentSubs, settings = true, downloads = true
                 ),
                 preview = true
@@ -1643,7 +1656,35 @@ class GeneratorPlayer : FullScreenPlayer() {
             noLinksFound()
             return
         }
-        loadLink(links.first(), false)
+
+        // If we restored a previously-selected link (from process death or view recreation),
+        // try to find the same source in the freshly-loaded list by URL identity.
+        // Fall back to the highest-priority source (links.first()) if the old source is gone.
+        // Consume the restoration immediately: once we've used it, the next startPlayer()
+        // call (e.g. after an error retry) should pick the best source normally.
+        val restoredLink = currentSelectedLink
+        val target = if (restoredLink != null) {
+            val matchByUrl = links.find { candidate ->
+                val candidateUrl = candidate.first?.url ?: candidate.second?.uri?.toString()
+                val restoredUrl  = restoredLink.first?.url ?: restoredLink.second?.uri?.toString()
+                candidateUrl != null && candidateUrl == restoredUrl
+            }
+            // Clear the restoration cache loadLink() will set currentSelectedLink = target.
+            currentSelectedLink = null
+            matchByUrl ?: links.first()
+        } else {
+            links.first()
+        }
+
+        // Consume the pending subtitle restoration (stored separately so startLoading() couldn't
+        // wipe it). Apply it as the initial subtitle selection for this playback session.
+        val restoredSub = pendingRestoredSubtitle
+        pendingRestoredSubtitle = null
+        if (restoredSub != null) {
+            currentSelectedSubtitles = restoredSub
+        }
+
+        loadLink(target, false)
         showPlayerMetadata()
     }
 
@@ -2057,6 +2098,66 @@ class GeneratorPlayer : FullScreenPlayer() {
         setPlayerDimen(width to height)
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        // Persist the currently-selected source and subtitle so that after process death
+        // or a view recreation (back-stack restore) we can skip straight back to the same
+        // source rather than defaulting to the first one again.
+        try {
+            val link = currentSelectedLink
+            if (link != null) {
+                val extLink = link.first
+                val extUri  = link.second
+                if (extLink != null) {
+                    outState.putBoolean(KEY_SEL_LINK_IS_URI, false)
+                    outState.putString(KEY_SEL_LINK_JSON, extLink.toJson())
+                    outState.putString(KEY_SEL_LINK_CLS, extLink::class.java.name)
+                } else if (extUri != null) {
+                    outState.putBoolean(KEY_SEL_LINK_IS_URI, true)
+                    outState.putString(KEY_SEL_URI_JSON, extUri.toJson())
+                }
+            }
+            currentSelectedSubtitles?.let { sub ->
+                outState.putString(KEY_SEL_SUB_JSON, sub.toJson())
+            }
+        } catch (t: Throwable) {
+            Log.e(TAG, "Failed to save selected link/subtitle to instance state", t)
+        }
+        super.onSaveInstanceState(outState)
+    }
+
+    /** Restore [currentSelectedLink] and [currentSelectedSubtitles] from a saved Bundle.
+     *  These are consumed by [startPlayer] to re-select the same source after view recreation
+     *  or process death, instead of defaulting to the highest-priority source. */
+    private fun restoreSelectedState(bundle: Bundle) {
+        try {
+            // Restored subtitle goes into pendingRestoredSubtitle, not currentSelectedSubtitles,
+            // because startLoading() clears currentSelectedSubtitles when loadLinks() begins.
+            bundle.getString(KEY_SEL_SUB_JSON)?.let { json ->
+                pendingRestoredSubtitle = AppUtils.tryParseJson<SubtitleData>(json)
+            }
+
+            // Restore the selected link may be an ExtractorUri or an ExtractorLink subclass.
+            if (bundle.containsKey(KEY_SEL_LINK_IS_URI)) {
+                val isUri = bundle.getBoolean(KEY_SEL_LINK_IS_URI)
+                currentSelectedLink = if (isUri) {
+                    val uriJson = bundle.getString(KEY_SEL_URI_JSON) ?: return
+                    AppUtils.tryParseJson<ExtractorUri>(uriJson)?.let { null to it }
+                } else {
+                    val json      = bundle.getString(KEY_SEL_LINK_JSON) ?: return
+                    val className = bundle.getString(KEY_SEL_LINK_CLS)  ?: return
+                    val cls = Class.forName(className)
+                    val extLink = jacksonMapper.readValue(json, cls) as? ExtractorLink
+                    extLink?.let { it to null }
+                }
+            }
+        } catch (t: Throwable) {
+            Log.e(TAG, "Failed to restore selected link/subtitle from instance state", t)
+            // Leave currentSelectedLink = null; loadLinks() will re-fetch cleanly.
+            currentSelectedLink = null
+            pendingRestoredSubtitle = null
+        }
+    }
+
     private fun unwrapBundle(savedInstanceState: Bundle?) {
         Log.i(TAG, "unwrapBundle = $savedInstanceState")
         savedInstanceState?.let { bundle ->
@@ -2223,14 +2324,17 @@ class GeneratorPlayer : FullScreenPlayer() {
     override fun onBindingCreated(binding: FragmentPlayerBinding, savedInstanceState: Bundle?) {
         viewModel = ViewModelProvider(this)[PlayerGeneratorViewModel::class.java]
         sync = ViewModelProvider(this)[SyncViewModel::class.java]
-        // Always reconstruct the generator from the per-instance arguments Bundle.
-        // We deliberately do NOT use a static/companion field here: a static field is shared
-        // across all GeneratorPlayer instances in all Activities (MainActivity AND
-        // DownloadedPlayerActivity both navigate to the same destination). The last caller
-        // to newInstance() would overwrite the static and break the other Activity's player.
-        // The arguments Bundle is per-fragment-instance and survives both configuration changes
-        // and Android process death, so it is the only correct source of truth.
+        // Restore the generator. Preference order:
+        //   1. arguments Bundle always authoritative: written by THIS fragment's own
+        //      newInstance() call, immune to the static being overwritten by a concurrent
+        //      Activity's newInstance(). Survives configuration changes and process death.
+        //   2. lastUsedGenerator static fallback for generators we can't serialize, such as
+        //      MinimalLinkGenerator (comes from external intents that re-fire on restore anyway).
+        //      Also a fast path when the process is still alive and no concurrent Activity has
+        //      stomped the static.
+        //   3. savedInstanceState extra safety for system-managed instance saves.
         val generator = arguments?.let { generatorFromBundle(it) }
+            ?: lastUsedGenerator
             ?: savedInstanceState?.let { generatorFromBundle(it) }
         viewModel.attachGenerator(generator)
         unwrapBundle(savedInstanceState)
@@ -2263,13 +2367,22 @@ class GeneratorPlayer : FullScreenPlayer() {
         unwrapBundle(savedInstanceState)
         unwrapBundle(arguments)
 
+        // Restore the previously-selected source and subtitle so that after process death or a
+        // view recreation (back-stack restore, config change) the player re-opens on the SAME
+        // source rather than the first one in the list.
+        // We store the restored values in pendingRestoredLink/Sub so startPlayer() can pick them
+        // from the freshly-loaded link list. loadLinks() always runs so the source picker and
+        // ViewModel are fully populated regardless of restoration state.
+        savedInstanceState?.let { restoreSelectedState(it) }
+
         sync.updateUserData()
 
         preferredAutoSelectSubtitles = getAutoSelectLanguageTagIETF()
 
-        if (currentSelectedLink == null) {
-            viewModel.loadLinks()
-        }
+        // Always load links even if we restored a selected link we still need the full
+        // link list in the ViewModel so the source picker, skip-loading button, and
+        // quality-profile sorting all work correctly.
+        viewModel.loadLinks()
 
         binding.overlayLoadingSkipButton.setOnClickListener {
             startPlayer()
@@ -2333,7 +2446,11 @@ class GeneratorPlayer : FullScreenPlayer() {
             }
 
             safe {
-                if (currentLinks.any { link ->
+                // If we have a restored link pending, don't auto-start yet: the matching
+                // source may not have arrived in the list yet. startPlayer() will run from
+                // the loadingLinks observer once generateLinks() finishes and the full list
+                // is available for URL matching.
+                if (currentSelectedLink == null && currentLinks.any { link ->
                         getLinkPriority(currentQualityProfile, link.first) >=
                                 QualityDataHelper.AUTO_SKIP_PRIORITY
                     }
