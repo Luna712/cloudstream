@@ -134,7 +134,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
-            <!-- cloudstreamplayer://encodedUrl?name=Dune -->
+            <!-- New format: cloudstreamplayer://?url=encodedUrl&name=Dune
+                 Legacy format also still accepted: cloudstreamplayer://encodedUrl?name=Dune
+                 (legacy truncates URLs that contain slashes — prefer new format for new links) -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 

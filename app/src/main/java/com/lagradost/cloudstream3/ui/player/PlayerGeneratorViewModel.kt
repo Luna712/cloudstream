@@ -153,6 +153,8 @@ class PlayerGeneratorViewModel : ViewModel() {
         }
     }
 
+    fun getGenerator(): IGenerator? = generator
+
     private var extraSubtitles : MutableSet<SubtitleData> = mutableSetOf()
 
     /**

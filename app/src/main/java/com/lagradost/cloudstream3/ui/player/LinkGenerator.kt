@@ -1,6 +1,14 @@
 package com.lagradost.cloudstream3.ui.player
 
 import android.net.Uri
+import com.fasterxml.jackson.core.JsonGenerator
+import com.fasterxml.jackson.core.JsonParser
+import com.fasterxml.jackson.databind.DeserializationContext
+import com.fasterxml.jackson.databind.SerializerProvider
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer
+import com.fasterxml.jackson.databind.ser.std.StdSerializer
 import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.actions.temp.CloudStreamPackage
 import com.lagradost.cloudstream3.amap
@@ -12,7 +20,22 @@ import com.lagradost.cloudstream3.utils.loadExtractor
 import com.lagradost.cloudstream3.utils.newExtractorLink
 import com.lagradost.cloudstream3.utils.unshortenLinkSafe
 
+/** Jackson serializer: android.net.Uri → JSON string (its toString() representation). */
+private class UriSerializer : StdSerializer<Uri>(Uri::class.java) {
+    override fun serialize(value: Uri, gen: JsonGenerator, provider: SerializerProvider) {
+        gen.writeString(value.toString())
+    }
+}
+
+/** Jackson deserializer: JSON string → android.net.Uri. */
+private class UriDeserializer : StdDeserializer<Uri>(Uri::class.java) {
+    override fun deserialize(p: JsonParser, ctxt: DeserializationContext): Uri =
+        Uri.parse(p.text ?: "")
+}
+
 data class ExtractorUri(
+    @JsonSerialize(using = UriSerializer::class)
+    @JsonDeserialize(using = UriDeserializer::class)
     val uri: Uri,
     val name: String,
 
@@ -37,9 +60,9 @@ data class BasicLink(
 )
 
 class LinkGenerator(
-    private val links: List<BasicLink>,
-    private val extract: Boolean = true,
-    private val refererUrl: String? = null,
+    internal val links: List<BasicLink>,
+    internal val extract: Boolean = true,
+    internal val refererUrl: String? = null,
 ) : NoVideoGenerator() {
     override suspend fun generateLinks(
         clearCache: Boolean,

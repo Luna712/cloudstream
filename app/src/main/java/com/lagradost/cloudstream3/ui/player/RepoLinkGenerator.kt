@@ -61,9 +61,12 @@ class RepoLinkGenerator(
             }
         }
 
-        // these act as a general filter to prevent duplication of links or names
-        val currentLinksUrls = mutableSetOf<String>()       // makes all urls unique
-        val currentSubsUrls = mutableSetOf<String>()    // makes all subs urls unique
+        // These dedup sets are accessed from concurrent plugin callbacks, so they must live
+        // inside the same lock as currentCache to prevent TOCTOU races.  All reads and writes
+        // to currentLinksUrls / currentSubsUrls / lastCountedSuffix go through
+        // synchronized(currentCache) below.
+        val currentLinksUrls = mutableSetOf<String>()
+        val currentSubsUrls  = mutableSetOf<String>()
         val lastCountedSuffix = mutableMapOf<String, UInt>()
 
         synchronized(currentCache) {
@@ -78,7 +81,8 @@ class RepoLinkGenerator(
                 Log.d(TAG, "Resumed previous loading from ${unixTime - currentCache.lastCachedTimestamp}s ago")
             }
 
-            // call all callbacks
+            // Replay already-cached entries to the caller and seed the dedup sets so
+            // newly-arriving callbacks can't re-add the same items.
             currentCache.linkCache.forEach { link ->
                 currentLinksUrls.add(link.url)
                 if (sourceTypes.contains(link.type)) {
@@ -93,8 +97,7 @@ class RepoLinkGenerator(
                 subtitleCallback(sub)
             }
 
-            // this stops all execution if links are cached
-            // no extra get requests
+            // Short-circuit: all links are already cached, no network request needed.
             if (currentCache.saturated) {
                 return true
             }
@@ -108,22 +111,24 @@ class RepoLinkGenerator(
             subtitleCallback = { file ->
                 Log.d(TAG, "Loaded SubtitleFile: $file")
                 val correctFile = PlayerSubtitleHelper.getSubtitleData(file)
-                if (correctFile.url.isBlank() || currentSubsUrls.contains(correctFile.url)) {
-                    return@loadLinks
-                }
-                currentSubsUrls.add(correctFile.url)
 
-                // this part makes sure that all names are unique for UX
-
-                val nameDecoded = correctFile.originalName.html().toString().trim() // `%3Ch1%3Esub%20name…` → `<h1>sub name…` → `sub name…`
-
-                val suffixCount = lastCountedSuffix.getOrDefault(nameDecoded, 0u) +1u
-                lastCountedSuffix[nameDecoded] = suffixCount
-
-                val updatedFile =
-                    correctFile.copy(originalName = nameDecoded, nameSuffix = "$suffixCount")
+                // Decode the name outside the lock (pure CPU work, no shared state).
+                val nameDecoded = correctFile.originalName.html().toString().trim() // `%3Ch1%3Esub%20name…` → `sub name…`
 
                 synchronized(currentCache) {
+                    // Check + update the dedup set atomically with the cache write.
+                    if (correctFile.url.isBlank() || !currentSubsUrls.add(correctFile.url)) {
+                        return@loadLinks
+                    }
+
+                    val suffixCount = lastCountedSuffix.getOrDefault(nameDecoded, 0u) + 1u
+                    lastCountedSuffix[nameDecoded] = suffixCount
+
+                    val updatedFile = correctFile.copy(
+                        originalName = nameDecoded,
+                        nameSuffix   = "$suffixCount"
+                    )
+
                     if (currentCache.subtitleCache.add(updatedFile)) {
                         subtitleCallback(updatedFile)
                         currentCache.lastCachedTimestamp = unixTime
@@ -132,18 +137,16 @@ class RepoLinkGenerator(
             },
             callback = { link ->
                 Log.d(TAG, "Loaded ExtractorLink: $link")
-                if (link.url.isBlank() || currentLinksUrls.contains(link.url)) {
-                    return@loadLinks
-                }
-                currentLinksUrls.add(link.url)
-
                 synchronized(currentCache) {
+                    // Check + update the dedup set atomically with the cache write.
+                    if (link.url.isBlank() || !currentLinksUrls.add(link.url)) {
+                        return@loadLinks
+                    }
+
                     if (currentCache.linkCache.add(link)) {
                         if (sourceTypes.contains(link.type)) {
                             callback(Pair(link, null))
                         }
-
-                        currentCache.linkCache.add(link)
                         currentCache.lastCachedTimestamp = unixTime
                     }
                 }

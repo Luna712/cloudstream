@@ -102,6 +102,9 @@ import com.lagradost.cloudstream3.ui.subtitles.SubtitlesFragment.Companion.getAu
 import com.lagradost.cloudstream3.utils.AppContextUtils.getShortSeasonText
 import com.lagradost.cloudstream3.utils.AppContextUtils.html
 import com.lagradost.cloudstream3.utils.AppContextUtils.sortSubs
+import com.lagradost.cloudstream3.utils.AppUtils
+import com.lagradost.cloudstream3.utils.AppUtils.toJson
+import com.lagradost.cloudstream3.utils.DataStore.mapper as jacksonMapper
 import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream3.utils.Coroutines.runOnMainThread
 import com.lagradost.cloudstream3.utils.DataStoreHelper
@@ -139,13 +142,110 @@ class GeneratorPlayer : FullScreenPlayer() {
         const val CHANNEL_ID = 7340
         const val STOP_ACTION = "stopcs3"
 
+        // Bundle keys for generator state serialization.
+        // The generator itself is NOT a Parcelable/Serializable, so we serialize the data it
+        // wraps to JSON and reconstruct it on restore. This keeps links/episodes alive across
+        // Android process death (back-stack restoration after OOM kill).
+        private const val KEY_GEN_TYPE     = "generatorType"
+        private const val KEY_GEN_EPISODES = "generatorEpisodes"   // RepoLinkGenerator
+        private const val KEY_GEN_INDEX    = "generatorIndex"       // RepoLinkGenerator / DownloadFileGenerator
+        private const val KEY_GEN_PAGE     = "generatorPage"        // RepoLinkGenerator (nullable)
+        private const val KEY_GEN_PAGE_CLS = "generatorPageClass"   // concrete class name for LoadResponse polymorphism
+        private const val KEY_GEN_LINKS    = "generatorLinks"       // LinkGenerator
+        private const val KEY_GEN_EXTRACT  = "generatorExtract"     // LinkGenerator
+        private const val KEY_GEN_REFERER  = "generatorReferer"     // LinkGenerator (nullable)
+        private const val KEY_GEN_URIS     = "generatorUris"        // DownloadFileGenerator
+
+        private const val GEN_TYPE_REPO     = "repo"
+        private const val GEN_TYPE_LINK     = "link"
+        private const val GEN_TYPE_DOWNLOAD = "download"
+
+        // Kept as a fast-path: when the app process stays alive the static reference is still
+        // valid and we skip JSON round-tripping entirely.
         private var lastUsedGenerator: IGenerator? = null
+
         fun newInstance(generator: IGenerator, syncData: HashMap<String, String>? = null): Bundle {
             Log.i(TAG, "newInstance = $syncData")
             lastUsedGenerator = generator
             return Bundle().apply {
                 if (syncData != null) putSerializable("syncData", syncData)
+                // Serialize generator state so the Fragment can be fully restored after
+                // an Android-initiated process death (OOM kill + back-stack restore).
+                try {
+                    when (generator) {
+                        is RepoLinkGenerator -> {
+                            putString(KEY_GEN_TYPE, GEN_TYPE_REPO)
+                            putString(KEY_GEN_EPISODES, generator.videos.toJson())
+                            putInt(KEY_GEN_INDEX, generator.videoIndex)
+                            generator.page?.let { page ->
+                                putString(KEY_GEN_PAGE, page.toJson())
+                                // Store the concrete class name so we can deserialize the
+                                // polymorphic LoadResponse interface back to the right subtype.
+                                putString(KEY_GEN_PAGE_CLS, page::class.java.name)
+                            }
+                        }
+                        is LinkGenerator -> {
+                            putString(KEY_GEN_TYPE, GEN_TYPE_LINK)
+                            putString(KEY_GEN_LINKS, generator.links.toJson())
+                            putBoolean(KEY_GEN_EXTRACT, generator.extract)
+                            generator.refererUrl?.let { putString(KEY_GEN_REFERER, it) }
+                        }
+                        is DownloadFileGenerator -> {
+                            putString(KEY_GEN_TYPE, GEN_TYPE_DOWNLOAD)
+                            putString(KEY_GEN_URIS, generator.videos.toJson())
+                            putInt(KEY_GEN_INDEX, generator.videoIndex)
+                        }
+                        // MinimalLinkGenerator and other internal generators come from external
+                        // intents that will re-fire on restore, so no serialization needed.
+                    }
+                } catch (t: Throwable) {
+                    Log.e(TAG, "Failed to serialize generator to Bundle", t)
+                }
             }
+        }
+
+        /** Reconstruct the generator from a Bundle written by [newInstance]. Returns null when
+         *  the Bundle has no generator state (e.g. old format) or deserialization fails. */
+        private fun generatorFromBundle(bundle: Bundle): IGenerator? = try {
+            when (bundle.getString(KEY_GEN_TYPE)) {
+                GEN_TYPE_REPO -> {
+                    val episodesJson = bundle.getString(KEY_GEN_EPISODES) ?: return null
+                    val episodes: List<ResultEpisode> = AppUtils.parseJson(episodesJson)
+                    val index = bundle.getInt(KEY_GEN_INDEX, 0)
+                    // Deserialize to the concrete LoadResponse subtype using the stored class
+                    // name — without this the Jackson mapper can't reconstruct a polymorphic
+                    // interface from JSON (there are no @JsonTypeInfo annotations on LoadResponse).
+                    val page: LoadResponse? = run {
+                        val json = bundle.getString(KEY_GEN_PAGE) ?: return@run null
+                        val className = bundle.getString(KEY_GEN_PAGE_CLS) ?: return@run null
+                        try {
+                            val cls = Class.forName(className)
+                            jacksonMapper.readValue(json, cls) as? LoadResponse
+                        } catch (t: Throwable) {
+                            Log.w(TAG, "Could not deserialize LoadResponse page ($className)", t)
+                            null
+                        }
+                    }
+                    RepoLinkGenerator(episodes, index, page)
+                }
+                GEN_TYPE_LINK -> {
+                    val linksJson = bundle.getString(KEY_GEN_LINKS) ?: return null
+                    val links: List<BasicLink> = AppUtils.parseJson(linksJson)
+                    val extract = bundle.getBoolean(KEY_GEN_EXTRACT, true)
+                    val referer = bundle.getString(KEY_GEN_REFERER)
+                    LinkGenerator(links, extract, referer)
+                }
+                GEN_TYPE_DOWNLOAD -> {
+                    val urisJson = bundle.getString(KEY_GEN_URIS) ?: return null
+                    val uris: List<ExtractorUri> = AppUtils.parseJson(urisJson)
+                    val index = bundle.getInt(KEY_GEN_INDEX, 0)
+                    DownloadFileGenerator(uris, index)
+                }
+                else -> null
+            }
+        } catch (t: Throwable) {
+            Log.e(TAG, "Failed to deserialize generator from Bundle", t)
+            null
         }
 
         val subsProviders = subtitleProviders
@@ -1855,7 +1955,7 @@ class GeneratorPlayer : FullScreenPlayer() {
 
         playerBinding?.playerEpisodeFillerHolder?.isVisible = isFiller ?: false
         playerBinding?.playerVideoTitle?.text = playerVideoTitle
-        playerBinding?.offlinePin?.isVisible = lastUsedGenerator is DownloadFileGenerator
+        playerBinding?.offlinePin?.isVisible = viewModel.getGenerator() is DownloadFileGenerator
     }
 
     fun setPlayerDimen(widthHeight: Pair<Int, Int>?) {
@@ -2128,7 +2228,13 @@ class GeneratorPlayer : FullScreenPlayer() {
     override fun onBindingCreated(binding: FragmentPlayerBinding, savedInstanceState: Bundle?) {
         viewModel = ViewModelProvider(this)[PlayerGeneratorViewModel::class.java]
         sync = ViewModelProvider(this)[SyncViewModel::class.java]
-        viewModel.attachGenerator(lastUsedGenerator)
+        // Fast path: process still alive, use the in-memory reference.
+        // Slow path: process was killed and Android restored the Fragment from the back stack —
+        // reconstruct the generator from the JSON we stored in the Bundle/arguments.
+        val generator = lastUsedGenerator
+            ?: arguments?.let { generatorFromBundle(it) }
+            ?: savedInstanceState?.let { generatorFromBundle(it) }
+        viewModel.attachGenerator(generator)
         unwrapBundle(savedInstanceState)
         unwrapBundle(arguments)
 
@@ -2214,7 +2320,7 @@ class GeneratorPlayer : FullScreenPlayer() {
 
         observe(viewModel.currentLinks) {
             currentLinks = it
-            val turnVisible = it.isNotEmpty() && lastUsedGenerator?.canSkipLoading == true
+            val turnVisible = it.isNotEmpty() && viewModel.getGenerator()?.canSkipLoading == true
             val wasGone = binding.overlayLoadingSkipButton.isGone
 
             binding.overlayLoadingSkipButton.apply {

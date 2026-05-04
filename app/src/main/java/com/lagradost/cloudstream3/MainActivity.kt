@@ -354,7 +354,18 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
                     } else if (safeURI(str)?.scheme == APP_STRING_PLAYER) {
                         val uri = str.toUri()
                         val name = uri.getQueryParameter("name")
-                        val url = URLDecoder.decode(uri.authority, "UTF-8")
+                        // Legacy format put the raw URL in the URI authority position:
+                        //   cloudstreamplayer://encodedUrl?name=Title
+                        // This breaks for any URL that contains "://" or "/" because Android's
+                        // URI parser treats those as path separators and truncates uri.authority
+                        // at the first slash.  The correct format uses a query parameter:
+                        //   cloudstreamplayer://?url=encodedUrl&name=Title
+                        // We support both: prefer the "url" query parameter, fall back to
+                        // authority for backwards compatibility with existing links.
+                        val url = uri.getQueryParameter("url")
+                            ?: uri.authority?.takeIf { it.isNotBlank() }
+                                ?.let { runCatching { URLDecoder.decode(it, "UTF-8") }.getOrNull() }
+                            ?: return false
 
                         navigate(
                             R.id.global_to_navigation_player,
