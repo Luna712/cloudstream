@@ -240,27 +240,18 @@ class PlayerGeneratorViewModel : ViewModel() {
                 )
             }
 
-            // Deliver the final snapshot synchronously using setValue() — not postValue().
-            //
-            // postValue() schedules a Runnable on the main looper. When called from the Main
-            // thread (which we are after withContext(IO) returns), it still goes through the
-            // looper queue. Intermediate postValue() calls from IO callbacks may already have
-            // runnables queued. The relative execution order of those runnables vs. the final
-            // ones is subject to a race: if _loadingLinks' final runnable happens to drain
-            // before _currentLinks' runnable, startPlayer() reads a stale empty
-            // Fragment.currentLinks and calls noLinksFound().
-            //
-            // setValue() updates the LiveData value and dispatches to active observers
-            // synchronously, in the same call stack, on the calling thread. By calling
-            // setValue(_currentLinks) before setValue(_loadingLinks) we guarantee that the
-            // currentLinks observer always fires and updates Fragment.currentLinks BEFORE
-            // the loadingLinks observer fires and calls startPlayer(). No queue, no race.
-            synchronized(linksLock) { _currentLinks.setValue(currentLinks.toSet()) }
+            // Always post the final authoritative snapshot after generateLinks returns.
+            // This is necessary for synchronous generators (e.g. DownloadFileGenerator)
+            // whose callbacks fire on the same coroutine thread: launchSafe swallows
+            // CancellationException but the coroutine will have already populated
+            // currentLinks/currentSubs before any cancellation point is reached,
+            // so this postValue is always safe and never lost.
+            _loadingLinks.postValue(loadingState)
+            synchronized(linksLock) { _currentLinks.postValue(currentLinks.toSet()) }
             synchronized(subsLock) {
                 val extra = synchronized(extraSubtitles) { extraSubtitles.toSet() }
-                _currentSubs.setValue(currentSubs + extra)
+                _currentSubs.postValue(currentSubs + extra)
             }
-            _loadingLinks.setValue(loadingState)
         }
     }
 }
