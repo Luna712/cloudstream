@@ -5,7 +5,6 @@ import android.content.ContentUris
 import android.content.Intent
 import android.net.Uri
 import androidx.core.content.ContextCompat.getString
-import androidx.navigation.NavOptions
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.actions.temp.CloudStreamPackage
 import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
@@ -14,28 +13,6 @@ import com.lagradost.cloudstream3.utils.UIHelper.navigate
 import com.lagradost.safefile.SafeFile
 
 object OfflinePlaybackHelper {
-
-    /**
-     * NavOptions that pop any existing player off the back stack before pushing the new one.
-     *
-     * Without this, every [android.app.Activity.onNewIntent] call in [DownloadedPlayerActivity]
-     * stacks another GeneratorPlayer on top of the previous one:
-     *   start → player(file1) → player(file2) → player(file3) …
-     *
-     * This has two consequences:
-     *  1. Android only persists the nav back-stack in [Activity.onSaveInstanceState], which runs
-     *     asynchronously after [onNewIntent]. If the process is killed before that runs, the
-     *     saved state is stale — restoring the wrong (older) player fragment.
-     *  2. Pressing back cycles through every previously-opened file rather than leaving the player.
-     *
-     * By popping up to (and including) the player destination before each navigate() call,
-     * the stack stays flat:  start → player(fileN)
-     * The latest generator is always the only one, so save/restore is always correct.
-     */
-    private val replacePlayerNavOptions = NavOptions.Builder()
-        .setPopUpTo(R.id.navigation_player, inclusive = true, saveState = false)
-        .build()
-
     fun playLink(activity: Activity, url: String) {
         activity.navigate(
             R.id.global_to_navigation_player, GeneratorPlayer.newInstance(
@@ -44,8 +21,7 @@ object OfflinePlaybackHelper {
                         BasicLink(url)
                     )
                 )
-            ),
-            replacePlayerNavOptions
+            )
         )
     }
 
@@ -77,8 +53,7 @@ object OfflinePlaybackHelper {
                     subs,
                     if (id != -1) id else null,
                 )
-            ),
-            replacePlayerNavOptions
+            )
         )
         return true
     }
@@ -103,8 +78,7 @@ object OfflinePlaybackHelper {
                         )
                     )
                 )
-            ),
-            replacePlayerNavOptions
+            )
         )
     }
 }
