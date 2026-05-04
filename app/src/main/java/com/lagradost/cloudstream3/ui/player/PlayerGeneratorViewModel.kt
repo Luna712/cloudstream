@@ -361,22 +361,24 @@ class PlayerGeneratorViewModel(private val savedStateHandle: SavedStateHandle) :
         currentJob?.cancel()
 
         currentJob = viewModelScope.launchSafe {
-            // Clear any manually-added subtitles from the previous episode.
+            // If we are loading links, then we clear the previously loaded links first.
             synchronized(extraSubtitles) { extraSubtitles.clear() }
 
             // Dedicated lock objects so each accumulator has its own monitor.
             // Using the set itself as its own lock (synchronized(currentLinks)) is legal
-            // but fragile — a dedicated Any() makes the intent explicit and prevents
-            // accidental re-use of the wrong lock (which was the bug for currentSubs,
-            // which was previously guarded by synchronized(extraSubtitles) instead).
+            // but fragile, a dedicated Any() makes the intent explicit and prevents
+            // accidental re-use of the wrong lock.
             val linksLock = Any()
-            val subsLock  = Any()
-            val currentLinks = mutableSetOf<Pair<ExtractorLink?, ExtractorUri?>>()
-            val currentSubs  = mutableSetOf<SubtitleData>()
+            val subsLock = Any()
 
-            // Signal "loading" and wipe the previous episode's data.
+            val currentLinks = mutableSetOf<Pair<ExtractorLink?, ExtractorUri?>>()
+            val currentSubs = mutableSetOf<SubtitleData>()
+
+            // Clear old data.
             _currentSubs.postValue(emptySet())
             _currentLinks.postValue(emptySet())
+
+            // Load more data.
             _loadingLinks.postValue(Resource.Loading())
 
             val loadingState = safeApiCall {
@@ -386,7 +388,11 @@ class PlayerGeneratorViewModel(private val savedStateHandle: SavedStateHandle) :
                     callback = { pair ->
                         synchronized(linksLock) {
                             if (currentLinks.add(pair)) {
-                                safe { _currentLinks.postValue(currentLinks.toSet()) }
+                                // Clone to prevent ConcurrentModificationException.
+                                safe {
+                                    // Extra safe since .toSet() iterates.
+                                    _currentLinks.postValue(currentLinks.toSet())
+                                }
                             }
                         }
                     },
