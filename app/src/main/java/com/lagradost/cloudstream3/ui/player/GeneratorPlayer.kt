@@ -160,13 +160,8 @@ class GeneratorPlayer : FullScreenPlayer() {
         private const val GEN_TYPE_LINK     = "link"
         private const val GEN_TYPE_DOWNLOAD = "download"
 
-        // Kept as a fast-path: when the app process stays alive the static reference is still
-        // valid and we skip JSON round-tripping entirely.
-        private var lastUsedGenerator: IGenerator? = null
-
         fun newInstance(generator: IGenerator, syncData: HashMap<String, String>? = null): Bundle {
             Log.i(TAG, "newInstance = $syncData")
-            lastUsedGenerator = generator
             return Bundle().apply {
                 if (syncData != null) putSerializable("syncData", syncData)
                 // Serialize generator state so the Fragment can be fully restored after
@@ -2228,11 +2223,14 @@ class GeneratorPlayer : FullScreenPlayer() {
     override fun onBindingCreated(binding: FragmentPlayerBinding, savedInstanceState: Bundle?) {
         viewModel = ViewModelProvider(this)[PlayerGeneratorViewModel::class.java]
         sync = ViewModelProvider(this)[SyncViewModel::class.java]
-        // Fast path: process still alive, use the in-memory reference.
-        // Slow path: process was killed and Android restored the Fragment from the back stack —
-        // reconstruct the generator from the JSON we stored in the Bundle/arguments.
-        val generator = lastUsedGenerator
-            ?: arguments?.let { generatorFromBundle(it) }
+        // Always reconstruct the generator from the per-instance arguments Bundle.
+        // We deliberately do NOT use a static/companion field here: a static field is shared
+        // across all GeneratorPlayer instances in all Activities (MainActivity AND
+        // DownloadedPlayerActivity both navigate to the same destination). The last caller
+        // to newInstance() would overwrite the static and break the other Activity's player.
+        // The arguments Bundle is per-fragment-instance and survives both configuration changes
+        // and Android process death, so it is the only correct source of truth.
+        val generator = arguments?.let { generatorFromBundle(it) }
             ?: savedInstanceState?.let { generatorFromBundle(it) }
         viewModel.attachGenerator(generator)
         unwrapBundle(savedInstanceState)
