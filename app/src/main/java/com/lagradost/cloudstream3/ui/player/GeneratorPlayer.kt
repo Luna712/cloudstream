@@ -144,14 +144,15 @@ class GeneratorPlayer : FullScreenPlayer() {
         // These come from external intents that re-fire on process-death restore anyway.
         private var lastUsedGenerator: IGenerator? = null
 
-        /** Build the Fragment arguments bundle for [GeneratorPlayer].
+        /**
+         * Build the Fragment arguments bundle for [GeneratorPlayer].
          *
-         *  The generator state is serialized here so that [PlayerGeneratorViewModel]'s
-         *  [SavedStateHandle] is seeded with the correct values on first creation.
-         *  SavedStateHandle merges the Fragment arguments bundle automatically, so these
-         *  keys become available in the ViewModel's init block without any Fragment code.
-         *  On process death, SavedStateHandle restores from savedInstanceState instead,
-         *  which it also manages automatically â€” no manual onSaveInstanceState needed.
+         * The generator state is serialized here so that [PlayerGeneratorViewModel]'s
+         * [SavedStateHandle] is seeded with the correct values on first creation.
+         * SavedStateHandle merges the Fragment arguments bundle automatically, so these
+         * keys become available in the ViewModel's init block without any Fragment code.
+         * On process death, SavedStateHandle restores from savedInstanceState instead,
+         * which it also manages automatically â€” no manual onSaveInstanceState needed.
          */
 
         fun newInstance(generator: IGenerator, syncData: HashMap<String, String>? = null): Bundle {
@@ -163,24 +164,24 @@ class GeneratorPlayer : FullScreenPlayer() {
                 try {
                     when (generator) {
                         is RepoLinkGenerator -> {
-                            putString(PlayerGeneratorViewModel.KEY_GEN_TYPE,     PlayerGeneratorViewModel.GEN_TYPE_REPO)
+                            putString(PlayerGeneratorViewModel.KEY_GEN_TYPE, PlayerGeneratorViewModel.GEN_TYPE_REPO)
                             putString(PlayerGeneratorViewModel.KEY_GEN_EPISODES, generator.videos.toJson())
-                            putInt(PlayerGeneratorViewModel.KEY_GEN_INDEX,       generator.videoIndex)
+                            putInt(PlayerGeneratorViewModel.KEY_GEN_INDEX, generator.videoIndex)
                             generator.page?.let { page ->
-                                putString(PlayerGeneratorViewModel.KEY_GEN_PAGE,     page.toJson())
+                                putString(PlayerGeneratorViewModel.KEY_GEN_PAGE, page.toJson())
                                 putString(PlayerGeneratorViewModel.KEY_GEN_PAGE_CLS, page::class.java.name)
                             }
                         }
                         is LinkGenerator -> {
-                            putString(PlayerGeneratorViewModel.KEY_GEN_TYPE,    PlayerGeneratorViewModel.GEN_TYPE_LINK)
-                            putString(PlayerGeneratorViewModel.KEY_GEN_LINKS,   generator.links.toJson())
+                            putString(PlayerGeneratorViewModel.KEY_GEN_TYPE, PlayerGeneratorViewModel.GEN_TYPE_LINK)
+                            putString(PlayerGeneratorViewModel.KEY_GEN_LINKS, generator.links.toJson())
                             putBoolean(PlayerGeneratorViewModel.KEY_GEN_EXTRACT, generator.extract)
                             generator.refererUrl?.let { putString(PlayerGeneratorViewModel.KEY_GEN_REFERER, it) }
                         }
                         is DownloadFileGenerator -> {
-                            putString(PlayerGeneratorViewModel.KEY_GEN_TYPE,  PlayerGeneratorViewModel.GEN_TYPE_DOWNLOAD)
-                            putString(PlayerGeneratorViewModel.KEY_GEN_URIS,  generator.videos.toJson())
-                            putInt(PlayerGeneratorViewModel.KEY_GEN_INDEX,    generator.videoIndex)
+                            putString(PlayerGeneratorViewModel.KEY_GEN_TYPE, PlayerGeneratorViewModel.GEN_TYPE_DOWNLOAD)
+                            putString(PlayerGeneratorViewModel.KEY_GEN_URIS, generator.videos.toJson())
+                            putInt(PlayerGeneratorViewModel.KEY_GEN_INDEX, generator.videoIndex)
                         }
                         // For MinimalLinkGenerator, external intents re-fire on restore, no persistence needed.
                     }
