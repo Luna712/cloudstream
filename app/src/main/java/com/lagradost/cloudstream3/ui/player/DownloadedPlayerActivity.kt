@@ -29,6 +29,31 @@ class DownloadedPlayerActivity : AppCompatActivity() {
         CommonActivity.onUserLeaveHint(this)
     }
 
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        if (isSameIntent(intent)) return
+        // singleTask reuses this Activity instance and calls onNewIntent instead of onCreate,
+        // which means the new intent never becomes the task's base intent. If the process is
+        // killed and relaunched from recents, Android would restore using the original (stale)
+        // base intent. Fix: restart self with CLEAR_TASK so the new intent goes through
+        // onCreate and becomes the task's base intent, giving correct restore behaviour.
+        val restart = Intent(intent).apply {
+            setClass(this@DownloadedPlayerActivity, DownloadedPlayerActivity::class.java)
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        }
+        startActivity(restart)
+    }
+
+    private fun isSameIntent(newIntent: Intent): Boolean {
+        val old = intent ?: return false
+        val oldUri = old.data ?: old.clipData?.getItemAt(0)?.uri
+        val newUri = newIntent.data ?: newIntent.clipData?.getItemAt(0)?.uri
+        if (oldUri != null && oldUri == newUri) return true
+        val oldText = safe { old.getStringExtra(Intent.EXTRA_TEXT) }
+        val newText = safe { newIntent.getStringExtra(Intent.EXTRA_TEXT) }
+        return oldText != null && oldText == newText
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         CommonActivity.loadThemes(this)
@@ -37,10 +62,9 @@ class DownloadedPlayerActivity : AppCompatActivity() {
         setContentView(R.layout.empty_layout)
         Log.i(TAG, "onCreate")
 
-        // With launchMode="standard" every file open is a fresh Activity instance with its own
-        // correct base intent and its own recents entry. No onNewIntent, no stale intent issues.
-        // Only handle the intent on a true cold start â€” if savedInstanceState is present the
-        // NavController already restores the player fragment from saved state on its own.
+        // Only handle the intent on a true cold start. When savedInstanceState is present
+        // the NavController restores the player fragment from saved state automatically,
+        // replaying the intent would push a duplicate player on top of it.
         if (savedInstanceState == null) {
             handleIntent(intent)
         }
@@ -68,7 +92,7 @@ class DownloadedPlayerActivity : AppCompatActivity() {
                 url != null -> playLink(this, url)
                 data != null -> playUri(this, data)
                 extraText != null -> playLink(this, extraText)
-                else -> { finish(); return }
+                else -> finish()
             }
         } else if (data?.scheme == "content") {
             playUri(this, data)
