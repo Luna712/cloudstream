@@ -65,6 +65,7 @@
             android:screenOrientation="userLandscape"
             android:supportsPictureInPicture="true"
             android:taskAffinity="com.lagradost.cloudstream3.downloadedplayer"
+            android:launchMode="singleTask"
             tools:ignore="DiscouragedApi">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
