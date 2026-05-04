@@ -31,9 +31,6 @@ class DownloadedPlayerActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        // singleInstance: onNewIntent only fires when this exact instance is re-targeted
-        // (e.g. the same file is opened again from the file manager while already playing).
-        // Each genuinely new file always gets a fresh instance via onCreate instead.
         if (isSameIntent(intent)) return
         setIntent(intent)
         Log.i(TAG, "onNewIntent")
@@ -58,15 +55,29 @@ class DownloadedPlayerActivity : AppCompatActivity() {
         setContentView(R.layout.empty_layout)
         Log.i(TAG, "onCreate")
 
-        // With singleInstance every new file open lands here via a fresh instance whose
-        // intent IS the task base intent â€” no staleness possible.
-        // When savedInstanceState != null the system is restoring after a process kill;
-        // the NavController rebuilds the correct fragment automatically so we skip replay.
+        // When savedInstanceState != null the system saved state before killing the
+        // backgrounded process â€” the NavController restores the correct player fragment
+        // automatically. Do not replay the intent: it would push a duplicate player.
         if (savedInstanceState == null) {
             handleIntent(intent)
         }
 
-        attachBackPressedCallback("DownloadedPlayerActivity") { finish() }
+        // Use moveTaskToBack instead of finish() so there is always exactly one task
+        // entry in recents, always reflecting the current file.
+        //
+        // finish() destroys the Activity but may leave the task in recents. Each new file
+        // open can create a new task entry, so recents accumulates stale entries for old
+        // files. The user then taps a stale entry and gets the wrong file.
+        //
+        // moveTaskToBack keeps the Activity alive in the background. There is only ever
+        // one task entry in recents. New files opened from the file manager arrive via
+        // onNewIntent on the live instance, updating the player immediately. The single
+        // recents entry always reflects the current state.
+        //
+        // Process-death safety: Android guarantees onSaveInstanceState runs before killing
+        // any backgrounded process. On restore, savedInstanceState is non-null and the
+        // NavController rebuilds the correct fragment without replaying the intent.
+        attachBackPressedCallback("DownloadedPlayerActivity") { moveTaskToBack(true) }
     }
 
     private fun handleIntent(intent: Intent) {
