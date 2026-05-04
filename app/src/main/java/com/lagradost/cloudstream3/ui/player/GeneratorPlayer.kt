@@ -2324,17 +2324,14 @@ class GeneratorPlayer : FullScreenPlayer() {
     override fun onBindingCreated(binding: FragmentPlayerBinding, savedInstanceState: Bundle?) {
         viewModel = ViewModelProvider(this)[PlayerGeneratorViewModel::class.java]
         sync = ViewModelProvider(this)[SyncViewModel::class.java]
-        // Restore the generator. Preference order:
-        //   1. arguments Bundle always authoritative: written by THIS fragment's own
-        //      newInstance() call, immune to the static being overwritten by a concurrent
-        //      Activity's newInstance(). Survives configuration changes and process death.
-        //   2. lastUsedGenerator static fallback for generators we can't serialize, such as
-        //      MinimalLinkGenerator (comes from external intents that re-fire on restore anyway).
-        //      Also a fast path when the process is still alive and no concurrent Activity has
-        //      stomped the static.
-        //   3. savedInstanceState extra safety for system-managed instance saves.
+        // Always reconstruct the generator from the per-instance arguments Bundle.
+        // We deliberately do NOT use a static/companion field here: a static field is shared
+        // across all GeneratorPlayer instances in all Activities (MainActivity AND
+        // DownloadedPlayerActivity both navigate to the same destination). The last caller
+        // to newInstance() would overwrite the static and break the other Activity's player.
+        // The arguments Bundle is per-fragment-instance and survives both configuration changes
+        // and Android process death, so it is the only correct source of truth.
         val generator = arguments?.let { generatorFromBundle(it) }
-            ?: lastUsedGenerator
             ?: savedInstanceState?.let { generatorFromBundle(it) }
         viewModel.attachGenerator(generator)
         unwrapBundle(savedInstanceState)
