@@ -133,12 +133,16 @@ class ChangelogGenerator:
         )
         return candidates[0] if candidates else ''
 
+    def tag_exists(self, tag: str) -> bool:
+        try:
+            self.git('fetch', 'origin', f'refs/tags/{tag}:refs/tags/{tag}')
+            return True
+        except subprocess.CalledProcessError:
+            self.log(f'Tag {tag} not found, falling back to full history')
+            return False
+
     def get_raw_commits(self, base: str) -> list[tuple[str, str]]:
-        if base:
-            try:
-                self.git('fetch', '--tags', '--unshallow')
-            except subprocess.CalledProcessError:
-                self.git('fetch', '--tags')
+        if base and self.tag_exists(base):
             self.log(f'Getting commits between {base} and {self.sha}')
             raw = self.git('log', '--format=%H %s', '--max-count=500', f'{base}..{self.sha}')
         else:
@@ -212,6 +216,8 @@ class ChangelogGenerator:
 
     def run(self, previous_tag: str = '') -> None:
         tag = self.current_tag()
+        if previous_tag and not self.tag_exists(previous_tag):
+            previous_tag = ''
         if not previous_tag and tag:
             previous_tag = self.find_previous_tag(tag)
 
