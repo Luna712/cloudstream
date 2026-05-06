@@ -212,7 +212,7 @@ class ChangelogGenerator:
 
         self.log(f"Previous tag: {previous_tag or '<none>'}")
 
-        raw_commits = self.get_raw_commits(previous_tag or 'v4.0.1')
+        raw_commits = self.get_raw_commits(previous_tag)
         commits = [c for sha, subject in raw_commits if (c := self.parse_commit(sha, subject))]
 
         changelog = self.build_changelog(commits) if commits else ''
@@ -234,4 +234,4 @@ if __name__ == '__main__':
         sha=os.environ.get('GITHUB_SHA') or subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
         ref=os.environ.get('GITHUB_REF', ''),
         output_path=require_env('GITHUB_OUTPUT'),
-    ).run(previous_tag=sys.argv[1] if len(sys.argv) > 1 else '')
+    ).run(previous_tag=sys.argv[1] if len(sys.argv) > 1 else 'v4.0.1')
