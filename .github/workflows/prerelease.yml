@@ -70,8 +70,8 @@ jobs:
     - name: Generate release notes
       id: notes
       env:
-        GH_TOKEN: ${{ steps.app-token.outputs.token }}
-      run: bash .github/generate-release-notes.sh
+        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+      run: python .github/generate_changelog.py
 
     - name: Create pre-release
       uses: softprops/action-gh-release@v3
@@ -79,7 +79,7 @@ jobs:
         tag_name: pre-release
         name: Pre-release Build
         prerelease: true
-        body: ${{ steps.notes.outputs.body }}
+        body: ${{ steps.notes.outputs.changelog }}
         files: |
           app/build/outputs/apk/prerelease/release/*.apk
           app/build/libs/app-sources.jar
