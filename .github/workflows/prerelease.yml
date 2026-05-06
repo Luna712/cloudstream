@@ -68,7 +68,7 @@ jobs:
         MDL_API_KEY: ${{ secrets.MDL_API_KEY }}
 
     - name: Delete existing pre-release
-      run: gh release delete pre-release --yes || true
+      run: gh release delete pre-release --yes --cleanup-tag || true
       env:
         GITHUB_TOKEN: ${{ github.token }}
 
