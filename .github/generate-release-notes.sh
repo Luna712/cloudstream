@@ -16,7 +16,7 @@ FIXES=""
 CHORES=""
 COMMITS_SECTION=""
 
-echo "$COMMITS" | while read -r sha; do
+while read -r sha; do
   [ -z "$sha" ] && continue
 
   shortsha="${sha:0:7}"
@@ -56,7 +56,8 @@ echo "$COMMITS" | while read -r sha; do
     chore*) CHORES+="${line}"$'\n' ;;
     *) COMMITS_SECTION+="${line}"$'\n' ;;
   esac
-done
+
+done <<< "$COMMITS"
 
 {
   echo "body<<EOF"
