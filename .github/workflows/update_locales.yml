@@ -2,7 +2,7 @@ name: Fix locale issues
 
 on:
   push:
-    branches: [ master, client-id ]
+    branches: [ master ]
     paths:
       - '**.xml'
   workflow_dispatch:
