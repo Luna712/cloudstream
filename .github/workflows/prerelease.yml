@@ -2,7 +2,7 @@ name: Pre-release
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, release ]
     paths-ignore:
       - '*.md'
       - '*.json'
@@ -55,6 +55,7 @@ jobs:
       uses: gradle/actions/setup-gradle@v5
       with:
         cache-encryption-key: ${{ secrets.GRADLE_ENCRYPTION_KEY }}
+        cache-read-only: false
 
     - name: Run Gradle
       run: ./gradlew assemblePrereleaseRelease androidSourcesJar makeJar
@@ -66,14 +67,24 @@ jobs:
         SIMKL_CLIENT_SECRET: ${{ secrets.SIMKL_CLIENT_SECRET }}
         MDL_API_KEY: ${{ secrets.MDL_API_KEY }}
 
+    - name: Generate release notes
+      id: notes
+      run: |
+        echo "body<<EOF" >> $GITHUB_OUTPUT
+        git log --pretty=format:"- %s (%h)" $(git describe --tags --abbrev=0)..HEAD >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+
     - name: Create pre-release
-      uses: marvinpinto/action-automatic-releases@latest
+      uses: softprops/action-gh-release@v3
       with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "pre-release"
+        tag_name: pre-release
+        name: Pre-release Build
         prerelease: true
-        title: "Pre-release Build"
+        body: ${{ steps.notes.outputs.body }}
         files: |
           app/build/outputs/apk/prerelease/release/*.apk
           app/build/libs/app-sources.jar
           app/build/classes.jar
+      env:
+        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
