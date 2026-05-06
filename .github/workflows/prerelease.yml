@@ -74,7 +74,7 @@ jobs:
 
     - name: Generate release notes
       id: notes
-      run: python .github/generate_changelog.py --previous-tag=v4.0.1
+      run: python .github/generate_changelog.py --previous-tag=pre-release
       env:
         GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
       
