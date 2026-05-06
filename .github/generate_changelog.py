@@ -133,16 +133,16 @@ class ChangelogGenerator:
         return candidates[0] if candidates else ''
 
     def get_raw_commits(self, base: str) -> list[tuple[str, str]]:
-        try:
-            self.git('fetch', '--tags', '--unshallow')
-        except subprocess.CalledProcessError:
-            self.git('fetch', '--tags')
         if base:
+            try:
+                self.git('fetch', '--tags', '--unshallow')
+            except subprocess.CalledProcessError:
+                self.git('fetch', '--tags')
             self.log(f'Getting commits between {base} and {self.sha}')
-            raw = self.git('log', '--format=%H %s', f'{base}..{self.sha}')
+            raw = self.git('log', '--format=%H %s', '--max-count=100', f'{base}..{self.sha}')
         else:
             self.log(f'No previous tag — using full history to {self.sha}')
-            raw = self.git('log', '--format=%H %s', self.sha)
+            raw = self.git('log', '--format=%H %s', '--max-count=100', self.sha)
         return [(line.split(' ', 1)[0], line.split(' ', 1)[1]) for line in raw.splitlines() if line.strip()]
 
     def parse_commit(self, sha: str, subject: str) -> Commit | None:
