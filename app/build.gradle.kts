@@ -8,7 +8,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.dokka)
-    alias(libs.plugins.kotlin.android)
 }
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
@@ -183,7 +182,6 @@ android {
     }
 
     lint {
-        abortOnError = false
         checkReleaseBuilds = false
     }
 
@@ -215,10 +213,12 @@ dependencies {
     // Android Core & Lifecycle
     implementation(libs.core.ktx)
     implementation(libs.activity.ktx)
+    implementation(libs.annotation)
     implementation(libs.appcompat)
     implementation(libs.fragment.ktx)
     implementation(libs.bundles.lifecycle)
     implementation(libs.bundles.navigation)
+    implementation(libs.kotlinx.collections.immutable)
 
     // Design & UI
     implementation(libs.preference.ktx)
@@ -234,6 +234,9 @@ dependencies {
 
     // FFmpeg Decoding
     implementation(libs.bundles.nextlib)
+
+    // Anime-db for filler
+    implementation(libs.anime.db)
 
     // PlayBack
     implementation(libs.colorpicker) // Subtitle Color Picker
@@ -314,8 +317,10 @@ tasks.withType<KotlinJvmCompile> {
 dokka {
     moduleName = "App"
     dokkaSourceSets {
-        main {
+        configureEach {
+            suppress = name != "prereleaseDebug"
             analysisPlatform = KotlinPlatform.JVM
+            displayName = "JVM"
             documentedVisibilities(
                 VisibilityModifier.Public,
                 VisibilityModifier.Protected
