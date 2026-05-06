@@ -79,5 +79,5 @@ jobs:
           git config --local user.email '${{ steps.get-user-id.outputs.user-id }}+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com'
           git config --local user.name '${{ steps.app-token.outputs.app-slug }}[bot]'
           git add .
-          git commit --amend -m "Generate dokka for ${GITHUB_REPOSITORY}${GITHUB_SHA}" || exit 0   # do not error if nothing to commit
+          git commit --amend -m "Generate dokka for ${GITHUB_REPOSITORY}@${GITHUB_SHA}" || exit 0   # do not error if nothing to commit
           git push --force
