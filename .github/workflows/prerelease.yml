@@ -67,16 +67,15 @@ jobs:
         SIMKL_CLIENT_SECRET: ${{ secrets.SIMKL_CLIENT_SECRET }}
         MDL_API_KEY: ${{ secrets.MDL_API_KEY }}
 
-    - name: Delete existing pre-release
-      run: gh release delete pre-release --yes --cleanup-tag || true
-      env:
-        GH_TOKEN: ${{ github.token }}
-
     - name: Generate release notes
       id: notes
       env:
         GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-      run: python .github/generate_changelog.py
+      run: |
+        python .github/generate_changelog.py --previous-tag=pre-release
+        # Delete old release before making a new one
+        gh release delete pre-release --yes --cleanup-tag || true
+      
 
     - name: Create pre-release
       uses: softprops/action-gh-release@v3
