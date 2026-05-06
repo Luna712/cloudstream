@@ -70,8 +70,14 @@ jobs:
     - name: Generate release notes
       id: notes
       run: |
+        LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+        if [ -z "$LAST_TAG" ]; then
+          RANGE="HEAD"
+        else
+          RANGE="$LAST_TAG..HEAD"
+        fi
         echo "body<<EOF" >> $GITHUB_OUTPUT
-        git log --pretty=format:"- %s (%h)" $(git describe --tags --abbrev=0)..HEAD >> $GITHUB_OUTPUT
+        git log --pretty=format:"- %s (%h)" $RANGE >> $GITHUB_OUTPUT
         echo "" >> $GITHUB_OUTPUT
         echo "EOF" >> $GITHUB_OUTPUT
 
