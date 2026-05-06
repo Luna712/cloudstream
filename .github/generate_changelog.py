@@ -1,24 +1,4 @@
 #!/usr/bin/env python3
-"""
-generate_changelog.py
-
-Replicates the changelog format of the automatic-releases GitHub Action.
-Designed to run inside a GitHub Actions workflow — all required values are
-sourced from the standard GHA environment variables automatically.
-
-Required GHA environment variables (set automatically by GitHub Actions):
-  GITHUB_TOKEN        - Auth token for API calls          (secrets.GITHUB_TOKEN)
-  GITHUB_REPOSITORY   - "owner/repo"                      (github.repository)
-  GITHUB_SHA          - Current commit SHA                 (github.sha)
-  GITHUB_REF          - Current ref, e.g. refs/tags/v1.2  (github.ref)
-  GITHUB_OUTPUT       - Path to the GHA output file        (set by runner)
-
-Usage:
-  python generate_changelog.py [PREVIOUS_TAG]
-
-Args:
-  PREVIOUS_TAG  - Optional. Tag to compare from. Auto-detected via semver if omitted.
-"""
 
 import json
 import os
@@ -28,274 +8,230 @@ import subprocess
 import sys
 import urllib.error
 import urllib.request
-from typing import Optional
+from dataclasses import dataclass, field
 
-# ---------------------------------------------------------------------------
-# Config — sourced entirely from GHA environment
-# ---------------------------------------------------------------------------
 
-def require_env(name: str) -> str:
-    val = os.environ.get(name, "")
-    if not val:
-        die(f"{name} is not set — are you running outside of GitHub Actions?")
-    return val
-
-def log(msg: str) -> None:
-    print(f"[generate_changelog] {msg}", file=sys.stderr)
-
-def die(msg: str) -> None:
-    log(f"ERROR: {msg}")
-    sys.exit(1)
-
-PREVIOUS_TAG: str = sys.argv[1] if len(sys.argv) > 1 else ""
-GITHUB_TOKEN: str = require_env("GITHUB_TOKEN")
-GITHUB_REPOSITORY: str = require_env("GITHUB_REPOSITORY")
-GITHUB_SHA: str = os.environ.get("GITHUB_SHA") or subprocess.check_output(
-    ["git", "rev-parse", "HEAD"], text=True
-).strip()
-GITHUB_REF: str = os.environ.get("GITHUB_REF", "")
-GITHUB_OUTPUT: str = require_env("GITHUB_OUTPUT")
-
-OWNER, REPO = GITHUB_REPOSITORY.split("/", 1)
-
-log(f"Repo: {OWNER}/{REPO}")
-log(f"Current SHA: {GITHUB_SHA}")
-
-# ---------------------------------------------------------------------------
-# GitHub API
-# ---------------------------------------------------------------------------
-
-def gh_api(endpoint: str) -> list | dict:
-    url = f"https://api.github.com{endpoint}"
-    req = urllib.request.Request(
-        url,
-        headers={
-            "Authorization": f"token {GITHUB_TOKEN}",
-            "Accept": "application/vnd.github.v3+json",
-        },
-    )
-    try:
-        with urllib.request.urlopen(req) as resp:
-            return json.loads(resp.read())
-    except urllib.error.HTTPError as e:
-        log(f"API request failed for {url}: {e}")
-        return []
-
-# ---------------------------------------------------------------------------
-# Conventional commit types (matches ConventionalCommitTypes enum order)
-# ---------------------------------------------------------------------------
+MERGE_RE = re.compile(r'^Merge pull request #\d+ from ')
+CC_HEADER_RE = re.compile(r'^([a-z]+)(\([^)]*\))?(!)?:(.*)$')
+BREAKING_BODY_RE = re.compile(r'^BREAKING\s+CHANGES?:\s+', re.MULTILINE)
 
 CC_TYPES: dict[str, str] = {
-    "feat":     "Features",
-    "fix":      "Bug Fixes",
-    "docs":     "Documentation",
-    "style":    "Styles",
-    "refactor": "Code Refactoring",
-    "perf":     "Performance Improvements",
-    "test":     "Tests",
-    "build":    "Builds",
-    "ci":       "Continuous Integration",
-    "chore":    "Chores",
-    "revert":   "Reverts",
+    'feat':     'Features',
+    'fix':      'Bug Fixes',
+    'docs':     'Documentation',
+    'style':    'Styles',
+    'refactor': 'Code Refactoring',
+    'perf':     'Performance Improvements',
+    'test':     'Tests',
+    'build':    'Builds',
+    'ci':       'Continuous Integration',
+    'chore':    'Chores',
+    'revert':   'Reverts',
 }
 
-CC_HEADER_RE = re.compile(r"^([a-z]+)(\([^)]*\))?(!)?:(.*)$")
-BREAKING_BODY_RE = re.compile(r"^BREAKING\s+CHANGES?:\s+", re.MULTILINE)
-MERGE_RE = re.compile(r"^Merge pull request #\d+ from ")
 
-# ---------------------------------------------------------------------------
-# Git helpers
-# ---------------------------------------------------------------------------
+@dataclass
+class Commit:
+    sha: str
+    subject: str
+    author: str
+    url: str
+    body: str
+    cc_type: str
+    scope: str
+    parsed_subject: str
+    breaking: bool
+    prs: list[dict] = field(default_factory=list)
 
-def git(*args: str) -> str:
-    return subprocess.check_output(["git", *args], text=True).strip()
+    @property
+    def known_type(self) -> str:
+        return self.cc_type if self.cc_type in CC_TYPES else ''
 
-def get_current_tag() -> str:
-    """Extract tag from GITHUB_REF, or fall back to git describe."""
-    m = re.match(r"^refs/tags/(.+)$", GITHUB_REF)
-    if m:
-        tag = m.group(1)
-        log(f"Detected tag from GITHUB_REF: {tag}")
-        return tag
-    try:
-        return git("describe", "--exact-match", GITHUB_SHA)
-    except subprocess.CalledProcessError:
-        return ""
+    @property
+    def short_sha(self) -> str:
+        return self.sha[:7]
 
-def find_previous_tag(current_tag: str) -> str:
-    """Return the nearest semver tag strictly less than current_tag."""
-    log(f"Searching for previous semver tag before {current_tag}")
-    raw_tags = git("tag", "--list").splitlines()
-    semver_re = re.compile(r"^v?\d+\.\d+\.\d+")
-    tags = [t for t in raw_tags if semver_re.match(t)]
-    if not tags:
-        log("No semver tags found")
-        return ""
+    @property
+    def entry(self) -> str:
+        pr_string = ''
+        if self.prs:
+            parts = [f"[#{pr['number']}]({pr['html_url']})" for pr in self.prs]
+            pr_string = ' ' + ','.join(parts)
 
-    def parse_semver(tag: str) -> tuple[int, ...]:
-        digits = re.sub(r"^v", "", tag)
-        parts = re.split(r"[.\-]", digits)
-        result = []
-        for p in parts[:3]:
-            try:
-                result.append(int(p))
-            except ValueError:
-                result.append(0)
-        return tuple(result)
+        if self.known_type:
+            scope_str = f'**{self.scope}**: ' if self.scope else ''
+            return f'- {scope_str}{self.parsed_subject}{pr_string} ([{self.author}]({self.url}))'
+        else:
+            return f'- {self.short_sha}: {self.subject} ({self.author}){pr_string}'
 
-    current_ver = parse_semver(current_tag)
-    candidates = sorted(
-        [t for t in tags if t != current_tag and parse_semver(t) < current_ver],
-        key=parse_semver,
-        reverse=True,
-    )
-    return candidates[0] if candidates else ""
 
-def get_commits(base: str, head: str) -> list[tuple[str, str]]:
-    """Return list of (sha, subject) tuples."""
-    if base:
-        log(f"Getting commits between {base} and {head}")
-        raw = git("log", "--format=%H %s", f"{base}..{head}")
-    else:
-        log(f"No previous tag — using full history to {head}")
-        raw = git("log", "--format=%H %s", head)
-    result = []
-    for line in raw.splitlines():
-        if not line.strip():
-            continue
-        sha, _, subject = line.partition(" ")
-        result.append((sha, subject))
-    return result
+class ChangelogGenerator:
+    def __init__(self, token: str, repository: str, sha: str, ref: str, output_path: str):
+        self.token = token
+        self.owner, self.repo = repository.split('/', 1)
+        self.sha = sha
+        self.ref = ref
+        self.output_path = output_path
 
-# ---------------------------------------------------------------------------
-# Conventional commit parsing
-# ---------------------------------------------------------------------------
+    def log(self, msg: str) -> None:
+        print(f'[generate_changelog] {msg}', file=sys.stderr)
 
-def parse_commit(subject: str) -> tuple[str, str, str]:
-    """Return (type, scope, subject). type is empty if not conventional."""
-    m = CC_HEADER_RE.match(subject)
-    if not m:
-        return "", "", ""
-    cc_type = m.group(1)
-    scope = m.group(2)[1:-1] if m.group(2) else ""  # strip parens
-    subj = m.group(4).strip()
-    return cc_type, scope, subj
+    def git(self, *args: str) -> str:
+        return subprocess.check_output(['git', *args], text=True).strip()
 
-def is_breaking(header: str, body: str) -> bool:
-    if re.match(r"^[a-z]+(\([^)]*\))?!:", header):
-        return True
-    if BREAKING_BODY_RE.search(body or ""):
-        return True
-    return False
+    def gh_api(self, endpoint: str) -> list | dict:
+        req = urllib.request.Request(
+            f'https://api.github.com{endpoint}',
+            headers={
+                'Authorization': f'token {self.token}',
+                'Accept': 'application/vnd.github.v3+json',
+            },
+        )
+        try:
+            with urllib.request.urlopen(req) as resp:
+                return json.loads(resp.read())
+        except urllib.error.HTTPError as e:
+            self.log(f'API request failed for {endpoint}: {e}')
+            return []
 
-# ---------------------------------------------------------------------------
-# Entry formatting (matches getFormattedChangelogEntry)
-# ---------------------------------------------------------------------------
+    def current_tag(self) -> str:
+        m = re.match(r'^refs/tags/(.+)$', self.ref)
+        if m:
+            tag = m.group(1)
+            self.log(f'Detected tag from GITHUB_REF: {tag}')
+            return tag
+        try:
+            return self.git('describe', '--exact-match', self.sha)
+        except subprocess.CalledProcessError:
+            return ''
 
-def format_entry(
-    sha: str,
-    header: str,
-    author_name: str,
-    commit_url: str,
-    cc_type: str,
-    scope: str,
-    subject: str,
-    prs: list[dict],
-) -> str:
-    short = sha[:7]
+    def find_previous_tag(self, current_tag: str) -> str:
+        self.log(f'Searching for previous semver tag before {current_tag}')
 
-    pr_parts = [f"[#{pr['number']}]({pr['html_url']})" for pr in prs]
-    pr_string = (" " + ",".join(pr_parts)) if pr_parts else ""
+        def parse_semver(tag: str) -> tuple[int, ...]:
+            parts = re.split(r'[.\-]', re.sub(r'^v', '', tag))
+            result = []
+            for p in parts[:3]:
+                try:
+                    result.append(int(p))
+                except ValueError:
+                    result.append(0)
+            return tuple(result)
 
-    if cc_type:
-        scope_str = f"**{scope}**: " if scope else ""
-        return f"- {scope_str}{subject}{pr_string} ([{author_name}]({commit_url}))"
-    else:
-        return f"- {short}: {header} ({author_name}){pr_string}"
+        semver_re = re.compile(r'^v?\d+\.\d+\.\d+')
+        tags = [t for t in self.git('tag', '--list').splitlines() if semver_re.match(t)]
+        if not tags:
+            self.log('No semver tags found')
+            return ''
 
-# ---------------------------------------------------------------------------
-# Changelog assembly (matches generateChangelogFromParsedCommits)
-# ---------------------------------------------------------------------------
+        current_ver = parse_semver(current_tag)
+        candidates = sorted(
+            [t for t in tags if t != current_tag and parse_semver(t) < current_ver],
+            key=parse_semver,
+            reverse=True,
+        )
+        return candidates[0] if candidates else ''
 
-def generate_changelog(commits: list[tuple[str, str]]) -> str:
-    breaking_entries: list[str] = []
-    type_entries: dict[str, list[str]] = {k: [] for k in CC_TYPES}
-    other_entries: list[str] = []
+    def get_raw_commits(self, base: str) -> list[tuple[str, str]]:
+        if base:
+            self.log(f'Getting commits between {base} and {self.sha}')
+            raw = self.git('log', '--format=%H %s', f'{base}..{self.sha}')
+        else:
+            self.log(f'No previous tag — using full history to {self.sha}')
+            raw = self.git('log', '--format=%H %s', self.sha)
+        return [(line.split(' ', 1)[0], line.split(' ', 1)[1]) for line in raw.splitlines() if line.strip()]
 
-    for sha, subject in commits:
+    def parse_commit(self, sha: str, subject: str) -> Commit | None:
         if MERGE_RE.match(subject):
-            log(f"Skipping merge commit: {sha}")
-            continue
+            self.log(f'Skipping merge commit: {sha}')
+            return None
 
-        log(f"Processing commit {sha}: {subject}")
+        self.log(f'Processing commit {sha}: {subject}')
 
-        author_name = git("log", "-1", "--format=%an", sha) or "unknown"
-        commit_url = f"https://github.com/{OWNER}/{REPO}/commit/{sha}"
-        commit_body = git("log", "-1", "--format=%b", sha)
+        author = self.git('log', '-1', '--format=%an', sha) or 'unknown'
+        url = f'https://github.com/{self.owner}/{self.repo}/commit/{sha}'
+        body = self.git('log', '-1', '--format=%b', sha)
 
-        cc_type, scope, parsed_subject = parse_commit(subject)
-        known_type = cc_type if cc_type in CC_TYPES else ""
+        cc_type, scope, parsed_subject = '', '', ''
+        m = CC_HEADER_RE.match(subject)
+        if m:
+            cc_type = m.group(1)
+            scope = m.group(2)[1:-1] if m.group(2) else ''
+            parsed_subject = m.group(4).strip()
 
-        breaking = is_breaking(subject, commit_body)
+        breaking = bool(
+            re.match(r'^[a-z]+(\([^)]*\))?!:', subject)
+            or BREAKING_BODY_RE.search(body or '')
+        )
 
-        log(f"Fetching PRs for {sha}")
-        prs = gh_api(f"/repos/{OWNER}/{REPO}/commits/{sha}/pulls")
-        if not isinstance(prs, list):
-            prs = []
+        self.log(f'Fetching PRs for {sha}')
+        prs = self.gh_api(f'/repos/{self.owner}/{self.repo}/commits/{sha}/pulls')
 
-        entry = format_entry(sha, subject, author_name, commit_url,
-                             known_type, scope, parsed_subject, prs)
+        return Commit(
+            sha=sha,
+            subject=subject,
+            author=author,
+            url=url,
+            body=body,
+            cc_type=cc_type,
+            scope=scope,
+            parsed_subject=parsed_subject,
+            breaking=breaking,
+            prs=prs if isinstance(prs, list) else [],
+        )
+
+    def build_changelog(self, commits: list) -> str:
+        breaking = [c.entry for c in commits if c.breaking]
+        by_type = {k: [c.entry for c in commits if c.known_type == k] for k in CC_TYPES}
+        other = [c.entry for c in commits if not c.known_type]
+
+        sections: list[str] = []
 
         if breaking:
-            breaking_entries.append(entry)
+            sections.append('## Breaking Changes\n' + '\n'.join(breaking))
 
-        if known_type:
-            type_entries[known_type].append(entry)
-        else:
-            other_entries.append(entry)
+        for key, label in CC_TYPES.items():
+            if by_type[key]:
+                sections.append(f'## {label}\n' + '\n'.join(by_type[key]))
 
-    sections: list[str] = []
+        if other:
+            sections.append('## Commits\n' + '\n'.join(other))
 
-    if breaking_entries:
-        sections.append("## Breaking Changes\n" + "\n".join(breaking_entries))
+        return '\n\n'.join(sections).strip()
 
-    for key, label in CC_TYPES.items():
-        if type_entries[key]:
-            sections.append(f"## {label}\n" + "\n".join(type_entries[key]))
+    def write_output(self, changelog: str) -> None:
+        delimiter = secrets.token_hex(16)
+        with open(self.output_path, 'a') as f:
+            f.write(f'changelog<<{delimiter}\n{changelog}\n{delimiter}\n')
+        self.log("Changelog written to GITHUB_OUTPUT as 'changelog'")
 
-    if other_entries:
-        sections.append("## Commits\n" + "\n".join(other_entries))
+    def run(self, previous_tag: str = '') -> None:
+        tag = self.current_tag()
+        if not previous_tag and tag:
+            previous_tag = self.find_previous_tag(tag)
 
-    return "\n\n".join(sections).strip()
+        self.log(f"Previous tag: {previous_tag or '<none>'}")
 
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
+        raw_commits = self.get_raw_commits(previous_tag)
+        commits = [c for sha, subject in raw_commits if (c := self.parse_commit(sha, subject))]
 
-def main() -> None:
-    global PREVIOUS_TAG
+        changelog = self.build_changelog(commits) if commits else ''
+        self.write_output(changelog)
 
-    current_tag = get_current_tag()
 
-    if not PREVIOUS_TAG and current_tag:
-        PREVIOUS_TAG = find_previous_tag(current_tag)
+def require_env(name: str) -> str:
+    val = os.environ.get(name, '')
+    if not val:
+        print(f'[generate_changelog] ERROR: {name} is not set', file=sys.stderr)
+        sys.exit(1)
+    return val
 
-    log(f"Previous tag: {PREVIOUS_TAG or '<none>'}")
 
-    commits = get_commits(PREVIOUS_TAG, GITHUB_SHA)
-    if not commits:
-        log("No commits found")
-        changelog = ""
-    else:
-        changelog = generate_changelog(commits)
-
-    # Write to GITHUB_OUTPUT using the multiline heredoc format required by GHA
-    # https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/passing-information-between-jobs#setting-a-multiline-string
-    delimiter = secrets.token_hex(16)
-    with open(GITHUB_OUTPUT, "a") as f:
-        f.write(f"changelog<<{delimiter}\n{changelog}\n{delimiter}\n")
-
-    log("Changelog written to GITHUB_OUTPUT as 'changelog'")
-
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    ChangelogGenerator(
+        token=require_env('GITHUB_TOKEN'),
+        repository=require_env('GITHUB_REPOSITORY'),
+        sha=os.environ.get('GITHUB_SHA') or subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
+        ref=os.environ.get('GITHUB_REF', ''),
+        output_path=require_env('GITHUB_OUTPUT'),
+    ).run(previous_tag=sys.argv[1] if len(sys.argv) > 1 else '')
