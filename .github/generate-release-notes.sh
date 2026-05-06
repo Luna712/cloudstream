@@ -35,31 +35,38 @@ while read -r sha; do
     "/repos/${REPO}/commits/${sha}/pulls" \
     --jq '.[].number' 2>/dev/null | paste -sd "," -)
 
+  has_pr=false
   if [ -n "${prs:-}" ]; then
-    prs=" #${prs}"
+    has_pr=true
+    identity=" #${prs}"
   else
-    prs=""
+    identity=""
   fi
 
-  if [[ "$msg" == chore* && -n "$scope" ]]; then
-    line="**${scope}**: \`${shortsha}\`: ${title} (${author})${prs}"
+  if $has_pr; then
+    prefix=""
   else
-    line="\`${shortsha}\`: ${msg} (${author})${prs}"
+    prefix="\`${shortsha}\`: "
   fi
+
+  if [[ -n "$scope" ]]; then
+    scope="**${scope}**: "
+  else
+    scope=""
+  fi
+
+  line="${prefix}${scope}${msg}${identity}"
 
   if echo "$msg$body" | grep -q "BREAKING CHANGE"; then
     line="${line} **BREAKING**"
   fi
 
-  if [[ "$msg" == chore* ]]; then
-    CHORES+="${line}"$'\n'
-  elif [[ "$type" == feat* ]]; then
-    FEATURES+="${line}"$'\n'
-  elif [[ "$type" == fix* ]]; then
-    FIXES+="${line}"$'\n'
-  else
-    COMMITS_SECTION+="${line}"$'\n'
-  fi
+  case "$type" in
+    feat*) FEATURES+="${line}"$'\n' ;;
+    fix*) FIXES+="${line}"$'\n' ;;
+    chore*) CHORES+="${line}"$'\n' ;;
+    *) COMMITS_SECTION+="${line}"$'\n' ;;
+  esac
 
 done <<< "$COMMITS"
 
