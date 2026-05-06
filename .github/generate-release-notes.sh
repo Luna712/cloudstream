@@ -15,7 +15,6 @@ set -euo pipefail
 #   PREVIOUS_TAG  - Optional. Tag to compare from. Auto-detected via semver if omitted.
 #
 # Required GHA environment variables (set automatically by GitHub Actions):
-#   GITHUB_TOKEN        - Auth token for API calls          (secrets.GITHUB_TOKEN)
 #   GITHUB_REPOSITORY   - "owner/repo"                      (github.repository)
 #   GITHUB_SHA          - Current commit SHA                 (github.sha)
 #   GITHUB_REF          - Current ref, e.g. refs/tags/v1.2  (github.ref)
@@ -49,12 +48,6 @@ PREVIOUS_TAG="${1:-}"
 # GITHUB_SHA is the SHA of the commit that triggered the workflow
 CURRENT_SHA="${GITHUB_SHA:-$(git rev-parse HEAD)}"
 
-# GITHUB_TOKEN is injected by Actions; fail fast if missing
-if [[ -z "${GITHUB_TOKEN:-}" ]]; then
-  log "ERROR: GITHUB_TOKEN is not set. Add 'env: GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}' to your workflow step."
-  exit 1
-fi
-
 # GITHUB_REPOSITORY is "owner/repo"
 if [[ -z "${GITHUB_REPOSITORY:-}" ]]; then
   log "ERROR: GITHUB_REPOSITORY is not set — are you running outside of GitHub Actions?"
@@ -73,7 +66,6 @@ log "Current SHA: ${CURRENT_SHA}"
 gh_api() {
   local endpoint="$1"
   curl -fsSL \
-    -H "Authorization: token ${GITHUB_TOKEN}" \
     -H "Accept: application/vnd.github.v3+json" \
     "https://api.github.com${endpoint}"
 }
