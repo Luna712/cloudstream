@@ -41,7 +41,7 @@ jobs:
       - name: Checkout dokka
         uses: actions/checkout@v6
         with:
-          repository: recloudstream/dokka
+          repository: ${{ github.repository_owner }}/dokka
           token: ${{ steps.app-token.outputs.token }}
           path: dokka
           persist-credentials: false
