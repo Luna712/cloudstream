@@ -22,13 +22,19 @@ jobs:
       id: app-token
       uses: actions/create-github-app-token@v3
       with:
-        app-id: ${{ vars.GH_APP_ID }}
-        private-key: ${{ secrets.GH_APP_KEY }}
+        client-id: ${{ vars.APP_CLIENT_ID }}
+        private-key: ${{ secrets.APP_PRIVATE_KEY }}
+        permission-contents: write
+
+    - name: Get GitHub App User ID
+      id: get-user-id
+      run: echo "user-id=$(gh api "/users/${{ steps.app-token.outputs.app-slug }}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
+      env:
+        GH_TOKEN: ${{ steps.app-token.outputs.token }}
 
     - uses: actions/checkout@v6
       with:
         token: ${{ steps.app-token.outputs.token }}
-        persist-credentials: false
 
     - name: Install dependencies
       run: pip3 install lxml requests
@@ -38,8 +44,8 @@ jobs:
 
     - name: Commit to the repo
       run: |
-        git config --local user.email "111277985+recloudstream[bot]@users.noreply.github.com"
-        git config --local user.name "recloudstream[bot]"
+        git config --local user.email '${{ steps.get-user-id.outputs.user-id }}+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com'
+        git config --local user.name '${{ steps.app-token.outputs.app-slug }}[bot]'
         git add .
         # "echo" returns true so the build succeeds, even if no changed files
         git commit -m 'chore(locales): fix locale issues' || echo
