@@ -25,6 +25,7 @@ jobs:
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
           repositories: dokka
+          permission-contents: write
 
       - name: Checkout
         uses: actions/checkout@v6
