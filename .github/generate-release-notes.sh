@@ -27,11 +27,13 @@ while read -r sha; do
 
   type=$(echo "$msg" | cut -d':' -f1 | tr '[:upper:]' '[:lower:]')
 
-  pr_json=$(gh api "repos/${REPO}/commits/${sha}/pulls" \
-    --header "Accept: application/vnd.github+json" \
-    --silent 2>/dev/null || true)
+  scope=$(echo "$msg" | sed -n 's/^[a-z]*(\([^)]*\)).*/\1/p')
+  title=$(echo "$msg" | sed 's/^[a-z]*(\([^)]*\)):\s*//')
 
-  prs=$(echo "$pr_json" | jq -r '.[].number' 2>/dev/null | paste -sd "," -)
+  prs=$(gh api \
+    -H "Accept: application/vnd.github+json" \
+    "/repos/${REPO}/commits/${sha}/pulls" \
+    --jq '.[].number' 2>/dev/null | paste -sd "," -)
 
   if [ -n "${prs:-}" ]; then
     prs=" #${prs}"
@@ -39,23 +41,25 @@ while read -r sha; do
     prs=""
   fi
 
-  line="\`${shortsha}\`: ${msg} (${author})${prs}"
+  if [[ "$msg" == chore* && -n "$scope" ]]; then
+    line="**${scope}**: \`${shortsha}\`: ${title} (${author})${prs}"
+  else
+    line="\`${shortsha}\`: ${msg} (${author})${prs}"
+  fi
 
   if echo "$msg$body" | grep -q "BREAKING CHANGE"; then
     line="${line} **BREAKING**"
   fi
 
-  if [[ "$msg" == chore\(locales\)* ]]; then
-    CHORES+="**locales**: ${line}"$'\n'
-    continue
+  if [[ "$msg" == chore* ]]; then
+    CHORES+="${line}"$'\n'
+  elif [[ "$type" == feat* ]]; then
+    FEATURES+="${line}"$'\n'
+  elif [[ "$type" == fix* ]]; then
+    FIXES+="${line}"$'\n'
+  else
+    COMMITS_SECTION+="${line}"$'\n'
   fi
-
-  case "$type" in
-    feat*) FEATURES+="${line}"$'\n' ;;
-    fix*) FIXES+="${line}"$'\n' ;;
-    chore*) CHORES+="${line}"$'\n' ;;
-    *) COMMITS_SECTION+="${line}"$'\n' ;;
-  esac
 
 done <<< "$COMMITS"
 
