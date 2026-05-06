@@ -71,9 +71,7 @@ jobs:
       id: notes
       env:
         GH_TOKEN: ${{ steps.app-token.outputs.token }}
-      run: |
-        chmod +x .github/generate-release-notes.sh
-        .github/generate-release-notes.sh
+      run: bash .github/generate-release-notes.sh
 
     - name: Create pre-release
       uses: softprops/action-gh-release@v3
