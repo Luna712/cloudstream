@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import argparse
 import json
 import os
 import re
@@ -232,10 +233,14 @@ def require_env(name: str) -> str:
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Generate a changelog and write it to GITHUB_OUTPUT.')
+    parser.add_argument('--previous-tag', default='', help='Tag to compare from (auto-detected if omitted)')
+    args = parser.parse_args()
+
     ChangelogGenerator(
         token=require_env('GITHUB_TOKEN'),
         repository=require_env('GITHUB_REPOSITORY'),
         sha=os.environ.get('GITHUB_SHA') or subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
         ref=os.environ.get('GITHUB_REF', ''),
         output_path=require_env('GITHUB_OUTPUT'),
-    ).run(previous_tag=sys.argv[1] if len(sys.argv) > 1 else 'v4.0.1')
+    ).run(previous_tag=args.previous_tag)
