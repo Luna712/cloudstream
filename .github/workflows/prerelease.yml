@@ -72,39 +72,8 @@ jobs:
       env:
         GH_TOKEN: ${{ steps.app-token.outputs.token }}
       run: |
-        set -e
-
-        LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
-
-        if [ -z "$LAST_TAG" ]; then
-          COMMITS=$(git rev-list HEAD)
-        else
-          COMMITS=$(git rev-list ${LAST_TAG}..HEAD)
-        fi
-
-        echo "body<<EOF" >> $GITHUB_OUTPUT
-
-        for sha in $COMMITS; do
-          SHORT=$(echo $sha | cut -c1-7)
-
-          PR_JSON=$(gh api repos/${GITHUB_REPOSITORY}/commits/$sha/pulls -H "Accept: application/vnd.github.groot-preview+json" || true)
-
-          PR_NUMBER=$(echo "$PR_JSON" | jq -r '.[0].number // empty')
-          PR_TITLE=$(echo "$PR_JSON" | jq -r '.[0].title // empty')
-          PR_AUTHOR=$(echo "$PR_JSON" | jq -r '.[0].user.login // empty')
-
-          COMMIT_MSG=$(git show -s --format=%s $sha)
-          AUTHOR=$(git show -s --format=%an $sha)
-
-          if [ -n "$PR_NUMBER" ]; then
-            echo "- PR #$PR_NUMBER: $PR_TITLE (@$PR_AUTHOR) \`$SHORT\`" >> $GITHUB_OUTPUT
-          else
-            echo "- $COMMIT_MSG — $AUTHOR \`$SHORT\`" >> $GITHUB_OUTPUT
-          fi
-        done
-
-        echo "" >> $GITHUB_OUTPUT
-        echo "EOF" >> $GITHUB_OUTPUT
+        chmod +x .github/generate-release-notes.sh
+        .github/generate-release-notes.sh
 
     - name: Create pre-release
       uses: softprops/action-gh-release@v3
