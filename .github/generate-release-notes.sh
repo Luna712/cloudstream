@@ -14,7 +14,7 @@ fi
 FEATURES=""
 FIXES=""
 CHORES=""
-OTHER=""
+COMMITS=""
 
 for sha in $COMMITS; do
   shortsha="${sha:0:7}"
@@ -52,7 +52,7 @@ for sha in $COMMITS; do
     feat*) FEATURES+="${line}"$'\n' ;;
     fix*) FIXES+="${line}"$'\n' ;;
     chore*) CHORES+="${line}"$'\n' ;;
-    *) OTHER+="${line}"$'\n' ;;
+    *) COMMITS+="${line}"$'\n' ;;
   esac
 done
 
@@ -62,7 +62,7 @@ done
   [ -n "$FEATURES" ] && echo "## Features" && echo -e "$FEATURES"
   [ -n "$FIXES" ] && echo "## Bug Fixes" && echo -e "$FIXES"
   [ -n "$CHORES" ] && echo "## Chores" && echo -e "$CHORES"
-  [ -n "$OTHER" ] && echo "## Other" && echo -e "$OTHER"
+  [ -n "$COMMITS" ] && echo "## Commits" && echo -e "$COMMITS"
 
   echo ""
   echo "EOF"
