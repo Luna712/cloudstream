@@ -2,7 +2,7 @@ name: Pre-release
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, client-id ]
     paths-ignore:
       - '*.md'
       - '*.json'
