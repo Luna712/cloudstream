@@ -24,8 +24,8 @@ jobs:
           client-id: ${{ vars.APP_CLIENT_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
           owner: ${{ github.repository_owner }}
-          repositories: dokka
           permission-contents: write
+          repositories: dokka
 
       - name: Checkout
         uses: actions/checkout@v6
