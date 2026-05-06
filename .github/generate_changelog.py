@@ -95,7 +95,6 @@ class ChangelogGenerator:
             return []
 
     def current_tag(self) -> str:
-        return 'v4.0.1'
         m = re.match(r'^refs/tags/(.+)$', self.ref)
         if m:
             tag = m.group(1)
@@ -134,6 +133,10 @@ class ChangelogGenerator:
         return candidates[0] if candidates else ''
 
     def get_raw_commits(self, base: str) -> list[tuple[str, str]]:
+        try:
+            self.git('fetch', '--tags', '--unshallow')
+        except subprocess.CalledProcessError:
+            self.git('fetch', '--tags')
         if base:
             self.log(f'Getting commits between {base} and {self.sha}')
             raw = self.git('log', '--format=%H %s', f'{base}..{self.sha}')
@@ -235,4 +238,4 @@ if __name__ == '__main__':
         sha=os.environ.get('GITHUB_SHA') or subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
         ref=os.environ.get('GITHUB_REF', ''),
         output_path=require_env('GITHUB_OUTPUT'),
-    ).run(previous_tag=sys.argv[1] if len(sys.argv) > 1 else 'v3.5.0')
+    ).run(previous_tag=sys.argv[1] if len(sys.argv) > 1 else 'v4.0.1')
