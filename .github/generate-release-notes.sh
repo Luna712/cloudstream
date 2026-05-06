@@ -14,9 +14,11 @@ fi
 FEATURES=""
 FIXES=""
 CHORES=""
-COMMITS=""
+COMMITS_SECTION=""
 
-for sha in $COMMITS; do
+echo "$COMMITS" | while read -r sha; do
+  [ -z "$sha" ] && continue
+
   shortsha="${sha:0:7}"
 
   msg=$(git show -s --format=%s "$sha")
@@ -26,12 +28,12 @@ for sha in $COMMITS; do
   type=$(echo "$msg" | cut -d':' -f1 | tr '[:upper:]' '[:lower:]')
 
   pr_json=$(gh api "repos/${REPO}/commits/${sha}/pulls" \
-    -H "Accept: application/vnd.github.groot-preview+json" \
+    --header "Accept: application/vnd.github+json" \
     --silent 2>/dev/null || true)
 
   prs=$(echo "$pr_json" | jq -r '.[].number' 2>/dev/null | paste -sd "," -)
 
-  if [ -n "$prs" ]; then
+  if [ -n "${prs:-}" ]; then
     prs=" #${prs}"
   else
     prs=""
@@ -52,7 +54,7 @@ for sha in $COMMITS; do
     feat*) FEATURES+="${line}"$'\n' ;;
     fix*) FIXES+="${line}"$'\n' ;;
     chore*) CHORES+="${line}"$'\n' ;;
-    *) COMMITS+="${line}"$'\n' ;;
+    *) COMMITS_SECTION+="${line}"$'\n' ;;
   esac
 done
 
@@ -62,7 +64,7 @@ done
   [ -n "$FEATURES" ] && echo "## Features" && echo -e "$FEATURES"
   [ -n "$FIXES" ] && echo "## Bug Fixes" && echo -e "$FIXES"
   [ -n "$CHORES" ] && echo "## Chores" && echo -e "$CHORES"
-  [ -n "$COMMITS" ] && echo "## Commits" && echo -e "$COMMITS"
+  [ -n "$COMMITS_SECTION" ] && echo "## Commits" && echo -e "$COMMITS_SECTION"
 
   echo ""
   echo "EOF"
