@@ -212,7 +212,7 @@ class ChangelogGenerator:
 
         self.log(f"Previous tag: {previous_tag or '<none>'}")
 
-        raw_commits = self.get_raw_commits(previous_tag)
+        raw_commits = self.get_raw_commits(previous_tag or 'v4.0.1')
         commits = [c for sha, subject in raw_commits if (c := self.parse_commit(sha, subject))]
 
         changelog = self.build_changelog(commits) if commits else ''
