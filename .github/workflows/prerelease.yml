@@ -67,6 +67,11 @@ jobs:
         SIMKL_CLIENT_SECRET: ${{ secrets.SIMKL_CLIENT_SECRET }}
         MDL_API_KEY: ${{ secrets.MDL_API_KEY }}
 
+    - name: Delete existing pre-release
+      env:
+        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+      run: gh release delete pre-release --yes --cleanup-tag || true
+
     - name: Generate release notes
       id: notes
       env:
