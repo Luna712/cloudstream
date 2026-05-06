@@ -23,7 +23,8 @@ else
   COMMITS=$(git rev-list "${LAST_TAG}..HEAD")
 fi
 
-declare -A GROUPS
+declare -g -A GROUPS 2>/dev/null || true
+GROUPS=()
 
 # -----------------------------
 # PROCESS COMMITS
