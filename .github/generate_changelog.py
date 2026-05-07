@@ -135,10 +135,8 @@ class ChangelogGenerator:
 
     def tag_exists(self, tag: str) -> bool:
         try:
-            self.git('fetch', 'origin', '--unshallow', f'refs/tags/{tag}:refs/tags/{tag}')
-            # self.git('fetch', '--depth=1', 'origin', f'refs/tags/{tag}:refs/tags/{tag}')
-            # self.git('fetch', f'--shallow-exclude={tag}')
-            # self.git('fetch', 'origin', f'refs/tags/{tag}:refs/tags/{tag}', f'--shallow-exclude={tag}')
+            self.git('fetch', '--depth=1', 'origin', f'refs/tags/{tag}:refs/tags/{tag}')
+            self.git('fetch', f'--shallow-exclude={tag}')
             return True
         except subprocess.CalledProcessError:
             self.log(f'Tag {tag} not found, falling back to full history')
