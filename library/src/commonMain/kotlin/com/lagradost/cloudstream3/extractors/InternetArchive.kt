@@ -5,6 +5,7 @@ import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.newSubtitleFile
+import com.lagradost.cloudstream3.ksoupDocument
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.Qualities
@@ -34,7 +35,7 @@ open class InternetArchive : ExtractorApi() {
     ) {
         val document = archivedItems[url] ?: run {
             try {
-                val doc = app.get(url).document
+                val doc = app.get(url).ksoupDocument
                 archivedItems[url] = doc
                 doc
             } catch (e: Exception) {

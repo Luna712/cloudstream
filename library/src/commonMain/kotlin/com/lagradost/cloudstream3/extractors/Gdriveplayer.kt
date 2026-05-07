@@ -75,7 +75,7 @@ open class Gdriveplayer : ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ) {
-        val document = app.get(url).document
+        val document = app.get(url).ksoupDocument
 
         val eval = unpackJs(document)?.replace("\\", "") ?: return
         val data = Regex("data='(\\S+?)'").first(eval) ?: return
