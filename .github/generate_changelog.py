@@ -135,7 +135,7 @@ class ChangelogGenerator:
 
     def tag_exists(self, tag: str) -> bool:
         try:
-            self.git('fetch', 'origin', f'refs/tags/{tag}:refs/tags/{tag}')
+            self.git('fetch', 'origin', '--unshallow', f'refs/tags/{tag}:refs/tags/{tag}')
             # self.git('fetch', '--depth=1', 'origin', f'refs/tags/{tag}:refs/tags/{tag}')
             # self.git('fetch', f'--shallow-exclude={tag}')
             # self.git('fetch', 'origin', f'refs/tags/{tag}:refs/tags/{tag}', f'--shallow-exclude={tag}')
