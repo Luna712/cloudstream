@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream3.extractors
 
+import com.fleeksoft.ksoup.nodes.Document
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.mvvm.logError
@@ -9,7 +10,6 @@ import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.Qualities
 import com.lagradost.cloudstream3.utils.StringUtils.decodeUri
 import com.lagradost.cloudstream3.utils.newExtractorLink
-import org.jsoup.nodes.Document
 
 open class InternetArchive : ExtractorApi() {
     override val mainUrl = "https://archive.org"
