@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -26,10 +26,8 @@ jobs:
         client-id: ${{ vars.APP_CLIENT_ID }}
         private-key: ${{ secrets.APP_PRIVATE_KEY }}
         owner: ${{ github.repository_owner }}
-        permission-contents: write
-        repositories: |
-          cloudstream
-          secrets
+        permission-contents: read
+        repositories: secrets
 
     - uses: actions/checkout@v6
 
@@ -78,7 +76,7 @@ jobs:
     - name: Delete existing pre-release
       run: gh release delete pre-release --yes || true
       env:
-        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+        GITHUB_TOKEN: ${{ github.token }}
       
     - name: Create pre-release
       uses: softprops/action-gh-release@v3
@@ -87,7 +85,6 @@ jobs:
         name: Pre-release Build
         prerelease: true
         body: ${{ steps.notes.outputs.changelog }}
-        token: ${{ steps.app-token.outputs.token }}
         files: |
           app/build/outputs/apk/prerelease/release/*.apk
           app/build/libs/app-sources.jar
