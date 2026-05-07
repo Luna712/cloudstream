@@ -149,7 +149,7 @@ class ChangelogGenerator:
             return False
 
     def get_raw_commits(self, base: str) -> list[tuple[str, str]]:
-        if base and self.tag_exists(base):
+        if base:
             self.log(f'Getting commits between {base} and {self.sha}')
             raw = self.git('log', '--format=%H %s', '--max-count=500', f'{base}..{self.sha}')
         else:
