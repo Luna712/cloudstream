@@ -3,7 +3,7 @@ package com.lagradost.cloudstream3.utils
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.base64Decode
 import com.lagradost.cloudstream3.ksoupDocument
-import com.lagradost.nicehttp.NiceResponse
+import com.lagradost.nicehttp.kmp.NiceResponse
 import java.net.URI
 import java.net.URLDecoder
 

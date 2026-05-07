@@ -6,8 +6,8 @@ import androidx.annotation.AnyThread
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.mvvm.debugWarning
 import com.lagradost.cloudstream3.mvvm.safe
-import com.lagradost.nicehttp.Requests.Companion.await
-import com.lagradost.nicehttp.cookies
+import com.lagradost.nicehttp.kmp.Requests.Companion.await
+import com.lagradost.nicehttp.kmp.cookies
 import kotlinx.coroutines.runBlocking
 import okhttp3.Headers
 import okhttp3.Interceptor

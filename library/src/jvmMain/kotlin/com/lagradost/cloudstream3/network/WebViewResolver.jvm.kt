@@ -2,7 +2,7 @@ package com.lagradost.cloudstream3.network
 
 import com.lagradost.cloudstream3.mvvm.debugException
 import com.lagradost.cloudstream3.mvvm.logError
-import com.lagradost.nicehttp.requestCreator
+import com.lagradost.nicehttp.kmp.requestCreator
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response

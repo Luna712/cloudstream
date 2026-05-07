@@ -3,7 +3,7 @@ package com.lagradost.cloudstream3.ui.search
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.mvvm.logError
-import com.lagradost.nicehttp.NiceResponse
+import com.lagradost.nicehttp.kmp.NiceResponse
 
 /**
  * API for fetching search suggestions from external sources.

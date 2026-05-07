@@ -5,9 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fleeksoft.ksoup.Ksoup
 import com.fleeksoft.ksoup.nodes.Document
-import com.lagradost.nicehttp.NiceResponse
-import com.lagradost.nicehttp.Requests
-import com.lagradost.nicehttp.ResponseParser
+import com.lagradost.nicehttp.kmp.NiceResponse
+import com.lagradost.nicehttp.kmp.Requests
+import com.lagradost.nicehttp.kmp.ResponseParser
 import kotlin.reflect.KClass
 
 // Short name for requests client to make it nicer to use
