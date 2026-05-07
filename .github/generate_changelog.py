@@ -12,7 +12,7 @@ import urllib.request
 from dataclasses import dataclass, field
 
 
-MERGE_RE = re.compile(r'^Merge pull request #\d+ from ')
+MERGE_RE = re.compile(r'^Merge pull request #\d+ from |^Merge (remote-tracking )?branch ')
 CC_HEADER_RE = re.compile(r'^([a-z]+)(\([^)]*\))?(!)?:(.*)$')
 BREAKING_BODY_RE = re.compile(r'^BREAKING\s+CHANGES?:\s+', re.MULTILINE)
 
