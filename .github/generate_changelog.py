@@ -250,3 +250,4 @@ if __name__ == '__main__':
         sha=os.environ.get('GITHUB_SHA') or subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
         ref=os.environ.get('GITHUB_REF', ''),
         output_path=require_env('GITHUB_OUTPUT'),
+    ).run(previous_tag=args.previous_tag)
