@@ -149,10 +149,10 @@ class ChangelogGenerator:
     def get_raw_commits(self, base: str) -> list[tuple[str, str]]:
         if base:
             self.log(f'Getting commits between {base} and {self.sha}')
-            raw = self.git('log', '--format=%H %s', '--max-count=500', f'{base}..{self.sha}')
+            raw = self.git('log', '--format=%H %s', '--max-count=1000', f'{base}..{self.sha}')
         else:
             self.log(f'No previous tag - using full history to {self.sha}')
-            raw = self.git('log', '--format=%H %s', '--max-count=500', self.sha)
+            raw = self.git('log', '--format=%H %s', '--max-count=1000', self.sha)
         return [(line.split(' ', 1)[0], line.split(' ', 1)[1]) for line in raw.splitlines() if line.strip()]
 
     def parse_commit(self, sha: str, subject: str) -> Commit | None:
