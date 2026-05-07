@@ -143,7 +143,11 @@ class GeneratorPlayer : FullScreenPlayer() {
         const val STOP_ACTION = "stopcs3"
 
         private val generators = ConcurrentHashMap<String, VideoGenerator<*>>()
-        fun newInstance(generator: VideoGenerator<*>, index : Int, syncData: HashMap<String, String>? = null): Bundle {
+        fun newInstance(
+            generator: VideoGenerator<*>,
+            index: Int,
+            syncData: HashMap<String, String>? = null
+        ): Bundle {
             Log.i(TAG, "newInstance = $syncData")
             val uuid = UUID.randomUUID().toString()
             generators[uuid] = generator
@@ -178,12 +182,14 @@ class GeneratorPlayer : FullScreenPlayer() {
     private var isNextEpisode: Boolean = false // this is used to reset the watch time
 
     private var preferredAutoSelectSubtitles: String? = null // null means do nothing, "" means none
-    private val allMeta: List<ResultEpisode>? get() = viewModel.state.generatorState?.allMeta?.filterIsInstance<ResultEpisode>()?.map { episode ->
-        // Refresh all the episodes watch duration
-        getViewPos(episode.id)?.let { data ->
-            episode.copy(position = data.position, duration = data.duration)
-        } ?: episode
-    }
+    private val allMeta: List<ResultEpisode>?
+        get() = viewModel.state.generatorState?.allMeta?.filterIsInstance<ResultEpisode>()
+            ?.map { episode ->
+                // Refresh all the episodes watch duration
+                getViewPos(episode.id)?.let { data ->
+                    episode.copy(position = data.position, duration = data.duration)
+                } ?: episode
+            }
 
     private fun setSubtitles(subtitle: SubtitleData?, userInitiated: Boolean): Boolean {
         // If subtitle is changed and user initiated -> Save the language
@@ -1541,7 +1547,7 @@ class GeneratorPlayer : FullScreenPlayer() {
 
     private fun startPlayer() {
         // We don't want double load when you skip loading
-        if(isPlayerActive.get()) {
+        if (isPlayerActive.get()) {
             return
         }
 
@@ -2140,6 +2146,7 @@ class GeneratorPlayer : FullScreenPlayer() {
     fun releasePlayer() {
         player.release()
         currentSelectedSubtitles = null
+        currentSelectedLink = null
         isPlayerActive.set(false)
         binding?.overlayLoadingSkipButton?.isVisible = false
         binding?.playerLoadingOverlay?.isVisible = true
@@ -2152,19 +2159,31 @@ class GeneratorPlayer : FullScreenPlayer() {
         activity?.popCurrentPage()
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt("index", viewModel.episodeIndex)
+        super.onSaveInstanceState(outState)
+    }
+
     override fun onBindingCreated(binding: FragmentPlayerBinding, savedInstanceState: Bundle?) {
         viewModel = ViewModelProvider(this)[PlayerGeneratorViewModel::class.java]
         sync = ViewModelProvider(this)[SyncViewModel::class.java]
 
         val uuid = savedInstanceState?.getString("uuid") ?: arguments?.getString("uuid")
         val index = savedInstanceState?.getInt("index") ?: arguments?.getInt("index")
-
-        viewModel.attachGenerator(generators[uuid], index)
+        val generator = generators[uuid]
 
         unwrapBundle(savedInstanceState)
         unwrapBundle(arguments)
 
         super.onBindingCreated(binding, savedInstanceState)
+
+        // Avoid showing no links found
+        if (generator == null || index == null) {
+            exitPlayer()
+            return
+        }
+        viewModel.attachGenerator(generator, index)
+
         context?.let { ctx ->
             val settingsManager = PreferenceManager.getDefaultSharedPreferences(ctx)
             showName = settingsManager.getBoolean(ctx.getString(R.string.show_name_key), true)
@@ -2193,14 +2212,18 @@ class GeneratorPlayer : FullScreenPlayer() {
 
         preferredAutoSelectSubtitles = getAutoSelectLanguageTagIETF()
 
-        if (currentSelectedLink == null) {
+        val selectedLink = currentSelectedLink
+        if (selectedLink == null) {
             viewModel.loadLinks()
+        } else {
+            // Recreated view, so we need to recreate the
+            loadLink(selectedLink, true)
         }
 
         binding.overlayLoadingSkipButton.setOnClickListener {
             // Mark as "success" early
             viewModel.modifyState {
-                copy(loading = Resource.Success(true))
+                copy(loading = Resource.Success(Unit))
             }
         }
 
@@ -2218,11 +2241,13 @@ class GeneratorPlayer : FullScreenPlayer() {
             }
         }
 
-        observe(viewModel.currentStamps) { stamps ->
+        observe(viewModel.currentStamps) { (stamps, instance) ->
+            if (instance != viewModel.state.instance) return@observe // Outdated observe
             player.addTimeStamps(stamps)
         }
 
-        observe(viewModel.currentSubtitles) { subtitles ->
+        observe(viewModel.currentSubtitles) { (subtitles, instance) ->
+            if (instance != viewModel.state.instance) return@observe // Outdated observe
             player.setActiveSubtitles(subtitles)
 
             // If the file is downloaded then do not select auto select the subtitles
@@ -2233,7 +2258,9 @@ class GeneratorPlayer : FullScreenPlayer() {
                 autoSelectSubtitles()
             }
         }
-        observe(viewModel.loadingLinks) { loading ->
+        observe(viewModel.loadingLinks) { (loading, instance) ->
+            if (instance != viewModel.state.instance) return@observe // Outdated observe
+
             when (loading) {
                 is Resource.Loading -> {
                     releasePlayer()
@@ -2254,7 +2281,9 @@ class GeneratorPlayer : FullScreenPlayer() {
             }
         }
 
-        observe(viewModel.currentLinks) { links ->
+        observe(viewModel.currentLinks) { (links, instance) ->
+            if (instance != viewModel.state.instance) return@observe // Outdated observe
+
             val turnVisible = links.isNotEmpty() && viewModel.generator?.canSkipLoading == true
             val wasGone = binding.overlayLoadingSkipButton.isGone
 
@@ -2269,7 +2298,7 @@ class GeneratorPlayer : FullScreenPlayer() {
             }
 
             safe {
-                if (viewModel.state.links.any { link ->
+                if (!isPlayerActive.get() && viewModel.state.links.any { link ->
                         getLinkPriority(currentQualityProfile, link.first) >=
                                 QualityDataHelper.AUTO_SKIP_PRIORITY
                     }
