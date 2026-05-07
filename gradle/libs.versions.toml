@@ -103,7 +103,8 @@ navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.
 newpipeextractor = { module = "com.github.teamnewpipe:NewPipeExtractor", version.ref = "newpipeextractor" }
 nextlib-media3ext = { module = "io.github.anilbeesetti:nextlib-media3ext", version.ref = "nextlibMedia3" }
 nextlib-mediainfo = { module = "io.github.anilbeesetti:nextlib-mediainfo", version.ref = "nextlibMedia3" }
-nicehttp = { module = "com.github.Luna712:NiceHttp-kmp", version.ref = "nicehttp" }
+nicehttp = { module = "com.github.Luna712.NiceHttp-kmp:library-android", version.ref = "nicehttp" }
+nicehttp-jvm = { module = "com.github.Luna712.NiceHttp-kmp:library-jvm", version.ref = "nicehttp" }
 overlappingpanels = { module = "com.github.discord:OverlappingPanels", version.ref = "overlappingpanels" }
 palette-ktx = { module = "androidx.palette:palette-ktx", version.ref = "paletteKtx" }
 preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtx" }
