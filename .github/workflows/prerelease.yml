@@ -68,13 +68,13 @@ jobs:
         MDL_API_KEY: ${{ secrets.MDL_API_KEY }}
 
     - name: Delete existing pre-release
-      run: gh release delete pre-release --yes --cleanup-tag || true
+      run: gh release delete pre-release --yes || true
       env:
         GITHUB_TOKEN: ${{ github.token }}
 
     - name: Generate release notes
       id: notes
-      run: python .github/generate_changelog.py --previous-tag=pre-release
+      run: python .github/generate_changelog.py --previous-tag=4.0.1
       env:
         GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
       
