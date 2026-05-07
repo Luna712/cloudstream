@@ -133,10 +133,16 @@ class ChangelogGenerator:
         )
         return candidates[0] if candidates else ''
 
+    def ref_branch(self) -> str:
+        m = re.match(r'^refs/heads/(.+)$', self.ref)
+        return m.group(1) if m else ''
+
     def tag_exists(self, tag: str) -> bool:
         try:
-            self.git('fetch', '--depth=1', 'origin', f'refs/tags/{tag}:refs/tags/{tag}')
-            self.git('fetch', f'--shallow-exclude={tag}')
+            # self.git('fetch', '--depth=1', 'origin', f'refs/tags/{tag}:refs/tags/{tag}')
+            # self.git('fetch', f'--shallow-exclude={tag}')
+            self.git('fetch', '--depth=1', '--no-tags', 'origin', f'refs/tags/{tag}:refs/tags/{tag}')
+            self.git('fetch', '--no-tags', f'--shallow-exclude={tag}', 'origin', f'refs/heads/{self.ref_branch()}')
             return True
         except subprocess.CalledProcessError:
             self.log(f'Tag {tag} not found, falling back to full history')
