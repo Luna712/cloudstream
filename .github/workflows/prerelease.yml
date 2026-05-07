@@ -60,23 +60,23 @@ jobs:
     - name: Run Gradle
       run: ./gradlew assemblePrereleaseRelease androidSourcesJar makeJar
       env:
-        SIGNING_KEY_ALIAS: "key0"
+        SIGNING_KEY_ALIAS: key0
         SIGNING_KEY_PASSWORD: ${{ steps.fetch_keystore.outputs.key_pwd }}
         SIGNING_STORE_PASSWORD: ${{ steps.fetch_keystore.outputs.key_pwd }}
         SIMKL_CLIENT_ID: ${{ secrets.SIMKL_CLIENT_ID }}
         SIMKL_CLIENT_SECRET: ${{ secrets.SIMKL_CLIENT_SECRET }}
         MDL_API_KEY: ${{ secrets.MDL_API_KEY }}
 
+    - name: Generate release notes
+      id: notes
+      run: python .github/generate_changelog.py --previous-tag=pre-release
+      env:
+        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+
     - name: Delete existing pre-release
       run: gh release delete pre-release --yes || true
       env:
         GITHUB_TOKEN: ${{ github.token }}
-
-    - name: Generate release notes
-      id: notes
-      run: python .github/generate_changelog.py --previous-tag=v4.0.1
-      env:
-        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
       
     - name: Create pre-release
       uses: softprops/action-gh-release@v3
@@ -85,9 +85,8 @@ jobs:
         name: Pre-release Build
         prerelease: true
         body: ${{ steps.notes.outputs.changelog }}
+        token: ${{ steps.app-token.outputs.token }}
         files: |
           app/build/outputs/apk/prerelease/release/*.apk
           app/build/libs/app-sources.jar
           app/build/classes.jar
-      env:
-        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
