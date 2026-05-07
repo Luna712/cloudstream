@@ -135,8 +135,10 @@ class ChangelogGenerator:
 
     def tag_exists(self, tag: str) -> bool:
         try:
-            self.git('fetch', '--depth=1', 'origin', f'refs/tags/{tag}:refs/tags/{tag}')
-            self.git('fetch', 'origin', f'refs/tags/{tag}:refs/tags/{tag}', f'--shallow-exclude={tag}')
+            self.git('fetch', 'origin', f'refs/tags/{tag}:refs/tags/{tag}')
+            # self.git('fetch', '--depth=1', 'origin', f'refs/tags/{tag}:refs/tags/{tag}')
+            # self.git('fetch', f'--shallow-exclude={tag}')
+            # self.git('fetch', 'origin', f'refs/tags/{tag}:refs/tags/{tag}', f'--shallow-exclude={tag}')
             return True
         except subprocess.CalledProcessError:
             self.log(f'Tag {tag} not found, falling back to full history')
@@ -147,7 +149,7 @@ class ChangelogGenerator:
             self.log(f'Getting commits between {base} and {self.sha}')
             raw = self.git('log', '--format=%H %s', '--max-count=500', f'{base}..{self.sha}')
         else:
-            self.log(f'No previous tag — using full history to {self.sha}')
+            self.log(f'No previous tag - using full history to {self.sha}')
             raw = self.git('log', '--format=%H %s', '--max-count=500', self.sha)
         return [(line.split(' ', 1)[0], line.split(' ', 1)[1]) for line in raw.splitlines() if line.strip()]
 
