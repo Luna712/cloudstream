@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   build:
@@ -27,7 +27,9 @@ jobs:
         private-key: ${{ secrets.APP_PRIVATE_KEY }}
         owner: ${{ github.repository_owner }}
         permission-contents: write
-        repositories: secrets
+        repositories: |
+          cloudstream
+          secrets
 
     - uses: actions/checkout@v6
 
@@ -76,7 +78,7 @@ jobs:
     - name: Delete existing pre-release
       run: gh release delete pre-release --yes || true
       env:
-        GITHUB_TOKEN: ${{ github.token }}
+        GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
       
     - name: Create pre-release
       uses: softprops/action-gh-release@v3
