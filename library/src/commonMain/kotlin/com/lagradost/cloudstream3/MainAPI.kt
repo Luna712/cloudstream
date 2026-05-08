@@ -21,7 +21,9 @@ import com.lagradost.cloudstream3.utils.Coroutines.mainWork
 import com.lagradost.cloudstream3.utils.Coroutines.threadSafeListOf
 import com.lagradost.cloudstream3.utils.SubtitleHelper.fromCodeToLangTagIETF
 import com.lagradost.cloudstream3.utils.SubtitleHelper.fromLanguageToTagIETF
+import com.lagradost.nicehttp.kmp.JsonAsString
 import com.lagradost.nicehttp.kmp.RequestBodyTypes
+import com.lagradost.nicehttp.kmp.parsedSafe
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -298,9 +300,9 @@ object APIHolder {
                 "sort" to "SEARCH_MATCH",
                 "type" to "ANIME",
             )
-        ).toJson().toRequestBody(RequestBodyTypes.JSON.toMediaTypeOrNull())
+        ).toJson()
 
-        return app.post("https://graphql.anilist.co", requestBody = data)
+        return app.post("https://graphql.anilist.co", json = JsonAsString(data))
             .parsedSafe()
     }
 }
