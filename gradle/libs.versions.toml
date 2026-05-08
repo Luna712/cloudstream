@@ -35,7 +35,7 @@ media3 = "1.9.3"
 navigationKtx = "2.9.7"
 newpipeextractor = "v0.26.0"
 nextlibMedia3 = "1.9.3-0.12.0"
-nicehttp = "0.4.18"
+nicehttp = "ce4fb50a33"
 overlappingpanels = "0.1.5"
 paletteKtx = "1.0.0"
 preferenceKtx = "1.2.1"
@@ -103,7 +103,8 @@ navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.
 newpipeextractor = { module = "com.github.teamnewpipe:NewPipeExtractor", version.ref = "newpipeextractor" }
 nextlib-media3ext = { module = "io.github.anilbeesetti:nextlib-media3ext", version.ref = "nextlibMedia3" }
 nextlib-mediainfo = { module = "io.github.anilbeesetti:nextlib-mediainfo", version.ref = "nextlibMedia3" }
-nicehttp = { module = "com.github.Blatzar:NiceHttp", version.ref = "nicehttp" }
+nicehttp = { module = "com.github.Luna712.NiceHttp-kmp:library-android", version.ref = "nicehttp" }
+nicehttp-jvm = { module = "com.github.Luna712.NiceHttp-kmp:library-jvm", version.ref = "nicehttp" }
 overlappingpanels = { module = "com.github.discord:OverlappingPanels", version.ref = "overlappingpanels" }
 palette-ktx = { module = "androidx.palette:palette-ktx", version.ref = "paletteKtx" }
 preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtx" }
