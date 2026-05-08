@@ -28,8 +28,7 @@ import com.lagradost.cloudstream3.newTvSeriesLoadResponse
 import com.lagradost.cloudstream3.newTvSeriesSearchResponse
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
-import okhttp3.Interceptor
-import okhttp3.Response
+import com.lagradost.nicehttp.kmp.HeadersInterceptor
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -49,20 +48,12 @@ abstract class MyDramaListAPI : MainAPI() {
         val API_KEY: String = BuildConfig.MDL_API_KEY
         const val API_HOST = "https://api.mydramalist.com/v1"
         const val SITE_HOST = "https://mydramalist.com"
-        private val headerInterceptor = MyDramaListInterceptor()
-    }
-
-    /** Automatically adds required api headers */
-    private class MyDramaListInterceptor : Interceptor {
-        override fun intercept(chain: Interceptor.Chain): Response {
-            return chain.proceed(
-                chain.request().newBuilder()
-                    .removeHeader("user-agent")
-                    .addHeader("user-agent", "Dart/3.6 (dart:io)")
-                    .addHeader("mdl-api-key", API_KEY)
-                    .build()
+        private val headerInterceptor = HeadersInterceptor(
+            mapOf(
+                "user-agent" to "Dart/3.6 (dart:io)",
+                "mdl-api-key" to API_KEY,
             )
-        }
+        )
     }
 
     override val mainPage = mainPageOf(
