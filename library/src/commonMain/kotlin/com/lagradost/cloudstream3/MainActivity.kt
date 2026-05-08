@@ -36,7 +36,7 @@ private val jacksonResponseParser = object : ResponseParser {
 
 /** The default networking helper. This helper performs SSL checks.
  * If you need to make requests to websites with invalid SSL certificates use insecureApp instead. */
-var app = Requests(responseParser = jacksonResponseParser).apply {
+var app = (Requests(responseParser = jacksonResponseParser) as NiceResponse).apply {
     defaultHeaders = mapOf("user-agent" to USER_AGENT)
 }
 
@@ -48,6 +48,6 @@ val NiceResponse.ksoupDocument: Document
  * This should NEVER be used for sensitive networking operations such as logins. Only use this when required. */
 @Prerelease
 @UnsafeSSL
-var insecureApp = Requests(responseParser = jacksonResponseParser).apply {
+var insecureApp = (Requests(responseParser = jacksonResponseParser) as NiceResponse).apply {
     defaultHeaders = mapOf("user-agent" to USER_AGENT)
 }
