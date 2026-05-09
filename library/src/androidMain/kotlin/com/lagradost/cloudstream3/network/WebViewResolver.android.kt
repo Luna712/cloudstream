@@ -15,6 +15,7 @@ import com.lagradost.cloudstream3.utils.Coroutines.mainWork
 import com.lagradost.cloudstream3.utils.Coroutines.runOnMainThread
 import com.lagradost.cloudstream3.utils.Coroutines.threadSafeListOf
 import com.lagradost.nicehttp.kmp.requestCreator
+import io.ktor.http.HttpResponse
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
@@ -293,16 +294,16 @@ fun WebResourceRequest.toRequest(): Request? {
     }
 }
 
-fun Response.toWebResourceResponse(): WebResourceResponse {
-    val contentTypeValue = this.header("Content-Type")
+fun HttpResponse.toWebResourceResponse(): WebResourceResponse {
+    val contentTypeValue = headers["Content-Type"]
     // 1. contentType. 2. charset
     val typeRegex = Regex("""(.*);(?:.*charset=(.*)(?:|;)|)""")
     return if (contentTypeValue != null) {
         val found = typeRegex.find(contentTypeValue)
         val contentType = found?.groupValues?.getOrNull(1)?.ifBlank { null } ?: contentTypeValue
         val charset = found?.groupValues?.getOrNull(2)?.ifBlank { null }
-        WebResourceResponse(contentType, charset, this.body.byteStream())
+        WebResourceResponse(contentType, charset, runBlocking { readRawBytes() }.inputStream())
     } else {
-        WebResourceResponse("application/octet-stream", null, this.body.byteStream())
+        WebResourceResponse("application/octet-stream", null, runBlocking { readRawBytes() }.inputStream())
     }
 }
