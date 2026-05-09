@@ -10,6 +10,7 @@ import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.M3u8Helper
 import com.lagradost.cloudstream3.utils.getAndUnpack
 import com.lagradost.cloudstream3.utils.getPacked
+import com.lagradost.nicehttp.kmp.parsed
 
 open class Jeniusplay : ExtractorApi() {
     override val name = "Jeniusplay"
