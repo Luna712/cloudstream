@@ -18,6 +18,6 @@ open class WatchSB : ExtractorApi() {
             )
         )
 
-        return generateM3u8(name, response.url, url, headers = response.headers.toMap())
+        return generateM3u8(name, response.url, url, headers = response.headersMap)
     }
 }

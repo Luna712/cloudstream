@@ -22,7 +22,7 @@ open class PlayerVoxzer : ExtractorApi() {
                 name,
                 listm3,
                 url,
-                headers = app.get(url).headers.toMap()
+                headers = app.get(url).headersMap
             ).forEach { link ->
                 sources.add(link)
             }

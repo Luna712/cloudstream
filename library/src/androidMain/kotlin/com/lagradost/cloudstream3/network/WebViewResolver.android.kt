@@ -253,7 +253,7 @@ actual class WebViewResolver actual constructor(
                         handler?.proceed() // Ignore ssl issues
                     }
                 }
-                webView?.loadUrl(url, headers.toMap())
+                webView?.loadUrl(url, headersMap)
             } catch (e: Exception) {
                 logError(e)
             }

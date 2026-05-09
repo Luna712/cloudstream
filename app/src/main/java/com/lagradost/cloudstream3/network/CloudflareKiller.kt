@@ -101,7 +101,7 @@ class CloudflareKiller : Interceptor {
         } ?: emptyMap()
 
         val headers =
-            getHeaders(request.headers.toMap() + userAgentMap, cookies + request.cookies)
+            getHeaders(request.headersMap + userAgentMap, cookies + request.cookies)
         return app.baseClient.newCall(
             request.newBuilder()
                 .headers(headers)
