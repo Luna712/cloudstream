@@ -14,8 +14,8 @@ import com.lagradost.cloudstream3.utils.Coroutines.main
 import com.lagradost.cloudstream3.utils.Coroutines.mainWork
 import com.lagradost.cloudstream3.utils.Coroutines.runOnMainThread
 import com.lagradost.cloudstream3.utils.Coroutines.threadSafeListOf
+import com.lagradost.nicehttp.kmp.INiceResponse
 import com.lagradost.nicehttp.kmp.requestCreator
-import io.ktor.http.HttpResponse
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
@@ -228,12 +228,12 @@ actual class WebViewResolver actual constructor(
                                 useOkhttp && request.method == "GET" -> app.get(
                                     webViewUrl,
                                     headers = request.requestHeaders
-                                ).okhttpResponse.toWebResourceResponse()
+                                ).toWebResourceResponse()
 
                                 useOkhttp && request.method == "POST" -> app.post(
                                     webViewUrl,
                                     headers = request.requestHeaders
-                                ).okhttpResponse.toWebResourceResponse()
+                                ).toWebResourceResponse()
 
                                 else -> super.shouldInterceptRequest(
                                     view,
@@ -294,7 +294,7 @@ fun WebResourceRequest.toRequest(): Request? {
     }
 }
 
-fun HttpResponse.toWebResourceResponse(): WebResourceResponse {
+fun INiceResponse.toWebResourceResponse(): WebResourceResponse {
     val contentTypeValue = headers["Content-Type"]
     // 1. contentType. 2. charset
     val typeRegex = Regex("""(.*);(?:.*charset=(.*)(?:|;)|)""")
@@ -302,8 +302,8 @@ fun HttpResponse.toWebResourceResponse(): WebResourceResponse {
         val found = typeRegex.find(contentTypeValue)
         val contentType = found?.groupValues?.getOrNull(1)?.ifBlank { null } ?: contentTypeValue
         val charset = found?.groupValues?.getOrNull(2)?.ifBlank { null }
-        WebResourceResponse(contentType, charset, runBlocking { readRawBytes() }.inputStream())
+        WebResourceResponse(contentType, charset, body.bytes().inputStream())
     } else {
-        WebResourceResponse("application/octet-stream", null, runBlocking { readRawBytes() }.inputStream())
+        WebResourceResponse("application/octet-stream", null, body.bytes().inputStream())
     }
 }
