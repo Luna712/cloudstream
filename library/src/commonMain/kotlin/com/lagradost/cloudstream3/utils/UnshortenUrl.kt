@@ -3,7 +3,7 @@ package com.lagradost.cloudstream3.utils
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.base64Decode
 import com.lagradost.cloudstream3.ksoupDocument
-import com.lagradost.nicehttp.kmp.NiceResponse
+import com.lagradost.nicehttp.kmp.INiceResponse
 import java.net.URI
 import java.net.URLDecoder
 
@@ -108,7 +108,7 @@ object ShortLink {
     }
 
     suspend fun unshortenLinkup(uri: String): String {
-        var r: NiceResponse? = null
+        var r: INiceResponse? = null
         var uri = uri
         when {
             uri.contains("/tv/") -> uri = uri.replace("/tv/", "/tva/")
