@@ -3,7 +3,8 @@ package com.lagradost.cloudstream3.ui.search
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.mvvm.logError
-import com.lagradost.nicehttp.kmp.NiceResponse
+import com.lagradost.nicehttp.kmp.INiceResponse
+import com.lagradost.nicehttp.kmp.parsed
 
 /**
  * API for fetching search suggestions from external sources.
@@ -57,7 +58,7 @@ object SearchSuggestionApi {
      * Parses the TMDB search response and extracts movie/TV show titles.
      * Filters to only include movies, TV shows, and anime.
      */
-    private fun parseSuggestions(response: NiceResponse): List<String> {
+    private fun parseSuggestions(response: INiceResponse): List<String> {
         return try {
             val parsed = response.parsed<TmdbSearchResult>()
             parsed.results

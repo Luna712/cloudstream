@@ -4,6 +4,7 @@ package com.lagradost.cloudstream3.extractors
 
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.*
+import com.lagradost.nicehttp.kmp.parsedSafe
 import com.fasterxml.jackson.annotation.JsonProperty
 
 open class Sobreatsesuyp : ExtractorApi() {

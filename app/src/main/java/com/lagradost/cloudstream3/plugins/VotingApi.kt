@@ -6,6 +6,7 @@ import com.lagradost.cloudstream3.CloudStreamApp.Companion.context
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKey
 import com.lagradost.cloudstream3.R
+import com.lagradost.nicehttp.kmp.parsedSafe
 import java.security.MessageDigest
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.Coroutines.main

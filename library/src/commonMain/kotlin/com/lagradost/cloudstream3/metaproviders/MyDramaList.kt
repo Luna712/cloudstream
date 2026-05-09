@@ -29,6 +29,7 @@ import com.lagradost.cloudstream3.newTvSeriesSearchResponse
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.nicehttp.kmp.HeadersInterceptor
+import com.lagradost.nicehttp.kmp.parsedSafe
 import java.text.SimpleDateFormat
 import java.util.Locale
 

@@ -9,6 +9,7 @@ import com.lagradost.cloudstream3.APIHolder.apis
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
+import com.lagradost.nicehttp.kmp.parsed
 import java.util.concurrent.TimeUnit
 
 object SyncUtil {
