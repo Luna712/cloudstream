@@ -308,7 +308,6 @@ import com.lagradost.cloudstream3.extractors.Zplayer
 import com.lagradost.cloudstream3.extractors.ZplayerV2
 import com.lagradost.cloudstream3.extractors.Ztreamhub
 import com.lagradost.cloudstream3.mvvm.logError
-import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.ensureActive
@@ -650,7 +649,7 @@ constructor(
 
         videoSize = videoSize ?: runCatching {
             val response =
-                app.head(this.url, headers = headers, referer = referer, timeout = timeoutSeconds.seconds)
+                app.head(this.url, headers = headers, referer = referer, timeout = timeoutSeconds)
             response.headers["Content-Length"]?.toLong()
         }.getOrNull()
 
