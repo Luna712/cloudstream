@@ -5,6 +5,7 @@ import com.lagradost.cloudstream3.network.WebViewResolver
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.M3u8Helper
+import com.lagradost.nicehttp.kmp.toNiceInterceptor
 
 
 open class GenericM3U8 : ExtractorApi() {
@@ -16,7 +17,7 @@ open class GenericM3U8 : ExtractorApi() {
         val response = app.get(
             url, interceptor = WebViewResolver(
                 Regex("""master\.m3u8""")
-            )
+            ).toNiceInterceptor()
         )
         val sources = mutableListOf<ExtractorLink>()
         if (response.url.contains("m3u8"))
