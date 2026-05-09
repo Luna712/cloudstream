@@ -171,7 +171,8 @@ object APIHolder {
             val vToken =
                 app.get(
                     "https://www.google.com/recaptcha/api.js?render=$key",
-                    referer = referer
+                    referer = referer,
+                    cacheTime = 0
                 )
                     .text
                     .substringAfter("releases/")
@@ -190,7 +191,7 @@ object APIHolder {
                         "co" to domain,
                         "sa" to "",
                         "reason" to "q"
-                    )
+                    ), cacheTime = 0
                 ).text
                     .substringAfter("rresp\",\"")
                     .substringBefore("\"")
