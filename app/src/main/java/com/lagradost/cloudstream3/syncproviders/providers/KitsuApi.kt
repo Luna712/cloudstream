@@ -22,12 +22,9 @@ import com.lagradost.cloudstream3.ui.SyncWatchType
 import com.lagradost.cloudstream3.ui.library.ListSorting
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.txt
-import com.lagradost.nicehttp.kmp.toNiceInterceptor
+import com.lagradost.nicehttp.kmp.FallbackUrlInterceptor
 import com.lagradost.nicehttp.kmp.parsed
-import okhttp3.Interceptor
-import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.Response
 import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.LocalDate
@@ -65,32 +62,8 @@ class KitsuApi: SyncAPI() {
         email = true
     )
 
-    private class FallbackInterceptor(private val apiUrl: String, private val fallbackApiUrl: String) : Interceptor {
-        override fun intercept(chain: Interceptor.Chain): Response {
-            val request: Request = chain.request()
-
-            try {
-
-                val response = chain.proceed(request);
-
-                if (response.isSuccessful) return response
-
-                response.close()
-
-            } catch (_: Exception) {
-            }
-
-            val fallbackRequest: Request = request.newBuilder()
-                .url(request.url.toString().replaceFirst(apiUrl, fallbackApiUrl))
-                .build()
-
-            return chain.proceed(fallbackRequest)
-
-        }
-    }
-
-    private val apiFallbackInterceptor = FallbackInterceptor(apiUrl, fallbackApiUrl).toNiceInterceptor()
-    private val oauthFallbackInterceptor = FallbackInterceptor(oauthUrl, fallbackOauthUrl).toNiceInterceptor()
+    private val apiFallbackInterceptor = FallbackUrlInterceptor(apiUrl, fallbackApiUrl)
+    private val oauthFallbackInterceptor = FallbackUrlInterceptor(oauthUrl, fallbackOauthUrl)
 
     override suspend fun login(form: AuthLoginResponse): AuthToken? {
         val username = form.email ?: return null
