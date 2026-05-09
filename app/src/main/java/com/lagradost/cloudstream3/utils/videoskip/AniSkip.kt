@@ -7,6 +7,7 @@ import com.lagradost.cloudstream3.LoadResponse.Companion.getMalId
 import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.ui.result.ResultEpisode
+import com.lagradost.nicehttp.kmp.parsed
 
 // taken from https://github.com/saikou-app/saikou/blob/3803f8a7a59b826ca193664d46af3a22bbc989f7/app/src/main/java/ani/saikou/others/AniSkip.kt
 // the following is GPLv3 code https://github.com/saikou-app/saikou/blob/main/LICENSE.md
