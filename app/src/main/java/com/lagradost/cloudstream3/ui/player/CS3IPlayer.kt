@@ -735,7 +735,7 @@ class CS3IPlayer : IPlayer {
         // Create a small factory for small things, no cache, no cronet
         private fun createOnlineSource(
             headers: Map<String, String>?,
-            interceptor: com.lagradost.nicehttp.kmp.Interceptor?
+            interceptor: Interceptor?
         ): HttpDataSource.Factory {
             val okHttpClient = (app.baseClient.engine as? io.ktor.client.engine.okhttp.OkHttpEngine)
                 ?.config?.preconfigured ?: okhttp3.OkHttpClient()
@@ -744,7 +744,7 @@ class CS3IPlayer : IPlayer {
                 okHttpClient
             } else {
                 okHttpClient.newBuilder()
-                    .addInterceptor(interceptor.toOkHttpInterceptor())
+                    .addInterceptor(interceptor)
                     .build()
             }
 
@@ -793,7 +793,7 @@ class CS3IPlayer : IPlayer {
         private fun createVideoSource(
             link: ExtractorLink,
             engine: CronetEngine?,
-            interceptor: com.lagradost.nicehttp.kmp.Interceptor?,
+            interceptor: Interceptor?,
         ): HttpDataSource.Factory {
             val userAgent = link.headers.entries.find {
                 it.key.equals("User-Agent", ignoreCase = true)
@@ -819,7 +819,7 @@ class CS3IPlayer : IPlayer {
             } else {
                 Log.d(TAG, "Using OkHttpDataSource for $link")
                 val client = baseOkHttpClient.newBuilder()
-                    .addInterceptor(interceptor.toOkHttpInterceptor())
+                    .addInterceptor(toOkHttpInterceptor())
                     .build()
                 OkHttpDataSource.Factory(client).setUserAgent(userAgent)
             }
