@@ -732,18 +732,22 @@ class CS3IPlayer : IPlayer {
 
         private var simpleCache: SimpleCache? = null
 
-        /// Create a small factory for small things, no cache, no cronet
+        // Create a small factory for small things, no cache, no cronet
         private fun createOnlineSource(
             headers: Map<String, String>?,
-            interceptor: Interceptor?
+            interceptor: com.lagradost.nicehttp.kmp.Interceptor?
         ): HttpDataSource.Factory {
+            val okHttpClient = (app.baseClient.engine as? io.ktor.client.engine.okhttp.OkHttpEngine)
+                ?.config?.preconfigured ?: okhttp3.OkHttpClient()
+
             val client = if (interceptor == null) {
-                app.baseClient
+                okHttpClient
             } else {
-                app.baseClient.newBuilder()
-                    .addInterceptor(interceptor)
+                okHttpClient.newBuilder()
+                    .addInterceptor(interceptor.toOkHttpInterceptor())
                     .build()
             }
+
             val source = OkHttpDataSource.Factory(client).setUserAgent(USER_AGENT)
 
             if (!headers.isNullOrEmpty()) {
@@ -789,16 +793,20 @@ class CS3IPlayer : IPlayer {
         private fun createVideoSource(
             link: ExtractorLink,
             engine: CronetEngine?,
-            interceptor: Interceptor?,
+            interceptor: com.lagradost.nicehttp.kmp.Interceptor?,
         ): HttpDataSource.Factory {
             val userAgent = link.headers.entries.find {
                 it.key.equals("User-Agent", ignoreCase = true)
             }?.value ?: USER_AGENT
 
+            val baseOkHttpClient = (app.baseClient.engine as io.ktor.client.engine.okhttp.OkHttpEngine)
+                .config
+                .preconfigured
+
             val source = if (interceptor == null) {
                 if (engine == null) {
                     Log.d(TAG, "Using DefaultHttpDataSource for $link")
-                    OkHttpDataSource.Factory(app.baseClient).setUserAgent(userAgent)
+                    OkHttpDataSource.Factory(baseOkHttpClient).setUserAgent(userAgent)
                 } else {
                     Log.d(TAG, "Using CronetDataSource for $link")
                     CronetDataSource.Factory(engine, Executors.newSingleThreadExecutor())
@@ -810,13 +818,13 @@ class CS3IPlayer : IPlayer {
                 }
             } else {
                 Log.d(TAG, "Using OkHttpDataSource for $link")
-                val client = app.baseClient.newBuilder()
-                    .addInterceptor(interceptor)
+                val client = baseOkHttpClient.newBuilder()
+                    .addInterceptor(interceptor.toOkHttpInterceptor())
                     .build()
                 OkHttpDataSource.Factory(client).setUserAgent(userAgent)
             }
 
-            // Do no include empty referer, if the provider wants those they can use the header map.
+            // Do not include empty referer, if the provider wants those they can use the header map.
             val refererMap =
                 if (link.referer.isBlank()) emptyMap() else mapOf("referer" to link.referer)
 
