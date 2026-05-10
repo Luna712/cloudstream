@@ -102,7 +102,7 @@ open class FilemoonV2 : ExtractorApi() {
             val interceptedUrl = app.get(
                 iframeSrcUrl,
                 referer = referer,
-                interceptor = resolver.toNiceInterceptor()
+                interceptor = resolver
             ).url
 
             if (interceptedUrl.isNotEmpty()) {
