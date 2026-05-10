@@ -2,10 +2,11 @@ package com.lagradost.cloudstream3.network
 
 import androidx.annotation.AnyThread
 import com.lagradost.cloudstream3.app
-import com.lagradost.nicehttp.kmp.INiceResponse
+import com.lagradost.nicehttp.kmp.HttpSendInterceptorContext
 import com.lagradost.nicehttp.kmp.Interceptor
 import com.lagradost.nicehttp.kmp.Requests
 import com.lagradost.nicehttp.kmp.getRequestCookies
+import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 
@@ -20,20 +21,20 @@ class DdosGuardKiller(private val alwaysBypass: Boolean) : Interceptor {
 
     private var ddosBypassPath: String? = null
 
-    override suspend fun intercept(chain: Interceptor.Chain): INiceResponse {
-        val request = chain.request
-        if (alwaysBypass) return bypassDdosGuard(request, chain)
+    override suspend fun intercept(ctx: HttpSendInterceptorContext): HttpClientCall {
+        val request = ctx.request
+        if (alwaysBypass) return bypassDdosGuard(request, ctx)
 
-        val response = chain.proceed(request)
-        return if (response.code == 403) {
-            bypassDdosGuard(request, chain)
-        } else response
+        val call = ctx.proceed()
+        return if (call.response.status.value == 403) {
+            bypassDdosGuard(request, ctx)
+        } else call
     }
 
     private suspend fun bypassDdosGuard(
         request: HttpRequestBuilder,
-        chain: Interceptor.Chain,
-    ): INiceResponse {
+        ctx: HttpSendInterceptorContext,
+    ): HttpClientCall {
         ddosBypassPath = ddosBypassPath ?: Regex("'(.*?)'").find(
             app.get("https://check.ddos-guard.net/check.js").text()
         )?.groupValues?.get(1)
@@ -54,7 +55,7 @@ class DdosGuardKiller(private val alwaysBypass: Boolean) : Interceptor {
         val existingCookies = request.headers.build().getRequestCookies()
         val mergedCookies = existingCookies + cookies
 
-        val updatedRequest = HttpRequestBuilder().takeFrom(request).apply {
+        return ctx.proceed {
             headers.remove("Cookie")
             if (mergedCookies.isNotEmpty()) {
                 header(
@@ -63,7 +64,5 @@ class DdosGuardKiller(private val alwaysBypass: Boolean) : Interceptor {
                 )
             }
         }
-
-        return chain.proceed(updatedRequest)
     }
 }
