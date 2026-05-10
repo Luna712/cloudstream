@@ -196,7 +196,7 @@ object InAppUpdater {
             val sink: BufferedSink = downloadedFile.sink().buffer()
 
             updateLock.withLock {
-                sink.write(app.get(url).body.bytes())
+                sink.writeAll(app.get(url).body.source())
                 sink.close()
                 openApk(this, Uri.fromFile(downloadedFile))
             }

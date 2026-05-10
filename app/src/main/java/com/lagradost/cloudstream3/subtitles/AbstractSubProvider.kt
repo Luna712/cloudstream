@@ -4,7 +4,6 @@ import androidx.core.net.toUri
 import com.lagradost.cloudstream3.MainActivity.Companion.deleteFileOnExit
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.ui.player.SubtitleOrigin
-import okio.Buffer
 import okio.BufferedSource
 import okio.buffer
 import okio.sink
@@ -82,8 +81,8 @@ class SubtitleResource {
         url: String,
         nameGenerator: (String, File) -> String? = { _, _ -> null }
     ) {
-        val bytes = app.get(url).body.bytes()
-        val zip = downloadFile(Buffer().write(bytes))
+        val source = app.get(url).okhttpResponse.body.source()
+        val zip = downloadFile(source)
         val realFiles = unzip(zip)
         zip.deleteRecursively()
         realFiles.forEach { (name, subtitleFile) ->

@@ -820,7 +820,7 @@ object VideoDownloadManager {
                 referer = referer,
                 verify = false
             )
-            val requestStream = request.body.bytes().inputStream()
+            val requestStream = request.body.byteStream()
 
             val buffer = ByteArray(bufferSize)
             var read: Int

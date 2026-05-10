@@ -228,12 +228,12 @@ actual class WebViewResolver actual constructor(
                                 useOkhttp && request.method == "GET" -> app.get(
                                     webViewUrl,
                                     headers = request.requestHeaders
-                                ).toWebResourceResponse()
+                                ).okhttpResponse.toWebResourceResponse()
 
                                 useOkhttp && request.method == "POST" -> app.post(
                                     webViewUrl,
                                     headers = request.requestHeaders
-                                ).toWebResourceResponse()
+                                ).okhttpResponse.toWebResourceResponse()
 
                                 else -> super.shouldInterceptRequest(
                                     view,
@@ -302,8 +302,8 @@ fun NiceResponse.toWebResourceResponse(): WebResourceResponse {
         val found = typeRegex.find(contentTypeValue)
         val contentType = found?.groupValues?.getOrNull(1)?.ifBlank { null } ?: contentTypeValue
         val charset = found?.groupValues?.getOrNull(2)?.ifBlank { null }
-        WebResourceResponse(contentType, charset, body.bytes().inputStream())
+        WebResourceResponse(contentType, charset, this.body.byteStream())
     } else {
-        WebResourceResponse("application/octet-stream", null, body.bytes().inputStream())
+        WebResourceResponse("application/octet-stream", null, this.body.byteStream())
     }
 }
