@@ -14,7 +14,7 @@ import com.lagradost.cloudstream3.utils.Coroutines.main
 import com.lagradost.cloudstream3.utils.Coroutines.mainWork
 import com.lagradost.cloudstream3.utils.Coroutines.runOnMainThread
 import com.lagradost.cloudstream3.utils.Coroutines.threadSafeListOf
-import com.lagradost.nicehttp.kmp.INiceResponse
+import com.lagradost.nicehttp.kmp.NiceResponse
 import com.lagradost.nicehttp.kmp.requestCreator
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
@@ -294,7 +294,7 @@ fun WebResourceRequest.toRequest(): Request? {
     }
 }
 
-fun INiceResponse.toWebResourceResponse(): WebResourceResponse {
+fun NiceResponse.toWebResourceResponse(): WebResourceResponse {
     val contentTypeValue = headers["Content-Type"]
     // 1. contentType. 2. charset
     val typeRegex = Regex("""(.*);(?:.*charset=(.*)(?:|;)|)""")
