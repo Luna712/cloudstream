@@ -8,7 +8,6 @@ import com.lagradost.cloudstream3.LoadResponse.Companion.isMovie
 import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.ui.result.ResultEpisode
 import com.lagradost.cloudstream3.app
-import com.lagradost.nicehttp.kmp.parsed
 
 /** https://theintrodb.org/docs */
 class TheIntroDBSkip : SkipAPI() {

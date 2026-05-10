@@ -6,7 +6,6 @@ import com.lagradost.cloudstream3.LoadResponse.Companion.getImdbId
 import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.ui.result.ResultEpisode
-import com.lagradost.nicehttp.kmp.parsed
 
 class IntroDbSkip : SkipAPI() {
     override val name = "IntroDb"

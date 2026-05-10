@@ -17,7 +17,6 @@ import com.lagradost.cloudstream3.syncproviders.PlainAuthRepo
 import com.lagradost.cloudstream3.ui.result.ResultEpisode
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
-import com.lagradost.nicehttp.kmp.parsed
 import java.math.BigInteger
 import java.util.concurrent.ConcurrentHashMap
 import java.security.MessageDigest
