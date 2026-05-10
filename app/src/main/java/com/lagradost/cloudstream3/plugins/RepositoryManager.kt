@@ -178,7 +178,7 @@ object RepositoryManager {
             // Prevent corrupting the plugin file if the operation fails
             val tempFile = File.createTempFile(file.name, ".tmp", context.cacheDir)
 
-            val bodyBytes = app.get(convertRawGitUrl(pluginUrl)).body.bytes
+            val bodyBytes = app.get(convertRawGitUrl(pluginUrl)).body.bytes()
             tempFile.outputStream().use { fileStream ->
                 fileStream.write(bodyBytes)
             }
