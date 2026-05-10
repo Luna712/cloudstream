@@ -81,7 +81,7 @@ class PackageInstallerService : Service() {
                 )
 
                 val body = app.get(url).body
-                val inputStream = body.byteStream()
+                val inputStream = body.bytes().inputStream()
                 installer = ApkInstaller(this)
                 val totalSize = body.contentLength()
                 var currentSize = 0
