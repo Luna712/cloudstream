@@ -819,7 +819,7 @@ class CS3IPlayer : IPlayer {
             } else {
                 Log.d(TAG, "Using OkHttpDataSource for $link")
                 val client = baseOkHttpClient.newBuilder()
-                    .addInterceptor(toOkHttpInterceptor())
+                    .addInterceptor(interceptor)
                     .build()
                 OkHttpDataSource.Factory(client).setUserAgent(userAgent)
             }
