@@ -295,7 +295,7 @@ fun WebResourceRequest.toRequest(): Request? {
 }
 
 fun NiceResponse.toWebResourceResponse(): WebResourceResponse {
-    val contentTypeValue = headers["Content-Type"]
+    val contentTypeValue = this.header("Content-Type")
     // 1. contentType. 2. charset
     val typeRegex = Regex("""(.*);(?:.*charset=(.*)(?:|;)|)""")
     return if (contentTypeValue != null) {

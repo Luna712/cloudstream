@@ -19,6 +19,6 @@ open class WatchSB : ExtractorApi() {
             ).toNiceInterceptor()
         )
 
-        return generateM3u8(name, response.url, url, headers = response.headersMap)
+        return generateM3u8(name, response.url, url, headers = response.headers.toMap)
     }
 }

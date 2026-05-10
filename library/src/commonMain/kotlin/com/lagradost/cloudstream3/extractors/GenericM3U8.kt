@@ -25,7 +25,7 @@ open class GenericM3U8 : ExtractorApi() {
                 name,
                 response.url,
                 url,
-                headers = response.headersMap
+                headers = response.headers.toMap()
             ).forEach { link ->
                 sources.add(link)
             }
