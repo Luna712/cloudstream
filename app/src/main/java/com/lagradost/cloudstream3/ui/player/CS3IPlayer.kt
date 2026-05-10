@@ -801,7 +801,7 @@ class CS3IPlayer : IPlayer {
 
             val baseOkHttpClient = (app.baseClient.engine as io.ktor.client.engine.okhttp.OkHttpEngine)
                 .config
-                .preconfigured
+                .preconfigured!!
 
             val source = if (interceptor == null) {
                 if (engine == null) {
