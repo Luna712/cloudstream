@@ -8,7 +8,6 @@ import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.M3u8Helper
-import com.lagradost.nicehttp.kmp.parsedSafe
 import java.net.URI
 import java.nio.charset.StandardCharsets
 import javax.crypto.Cipher

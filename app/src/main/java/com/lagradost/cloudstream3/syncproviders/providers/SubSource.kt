@@ -10,7 +10,6 @@ import com.lagradost.cloudstream3.syncproviders.SubtitleAPI
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.SubtitleHelper
-import com.lagradost.nicehttp.kmp.parsedSafe
 
 class SubSourceApi : SubtitleAPI() {
     override val name = "SubSource"

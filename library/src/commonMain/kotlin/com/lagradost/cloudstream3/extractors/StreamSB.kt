@@ -7,7 +7,6 @@ import com.lagradost.cloudstream3.newSubtitleFile
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.M3u8Helper
-import com.lagradost.nicehttp.kmp.parsedSafe
 import kotlin.random.Random
 
 class Sblona : StreamSB() {

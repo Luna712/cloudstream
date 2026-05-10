@@ -3,7 +3,6 @@ package com.lagradost.cloudstream3.extractors
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.*
-import com.lagradost.nicehttp.kmp.parsedSafe
 
 open class Acefile : ExtractorApi() {
     override val name = "Acefile"

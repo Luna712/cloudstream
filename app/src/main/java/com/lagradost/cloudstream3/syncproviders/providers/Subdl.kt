@@ -12,8 +12,6 @@ import com.lagradost.cloudstream3.syncproviders.AuthToken
 import com.lagradost.cloudstream3.syncproviders.AuthUser
 import com.lagradost.cloudstream3.syncproviders.SubtitleAPI
 import com.lagradost.cloudstream3.TvType
-import com.lagradost.nicehttp.kmp.parsed
-import com.lagradost.nicehttp.kmp.parsedSafe
 
 class SubDlApi : SubtitleAPI() {
     override val name = "SubDL"

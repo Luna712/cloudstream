@@ -24,7 +24,6 @@ import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.nicehttp.kmp.JsonAsString
 import com.lagradost.nicehttp.kmp.toNiceInterceptor
-import com.lagradost.nicehttp.kmp.parsed
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody

@@ -9,7 +9,6 @@ import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream3.utils.newExtractorLink
-import com.lagradost.nicehttp.kmp.parsed
 import torrServer.TorrServer
 import java.io.File
 import java.net.ConnectException

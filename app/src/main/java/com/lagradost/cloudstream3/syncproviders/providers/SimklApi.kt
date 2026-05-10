@@ -32,8 +32,6 @@ import com.lagradost.cloudstream3.ui.library.ListSorting
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.DataStoreHelper.toYear
 import com.lagradost.cloudstream3.utils.txt
-import com.lagradost.nicehttp.kmp.parsed
-import com.lagradost.nicehttp.kmp.parsedSafe
 import java.math.BigInteger
 import java.security.SecureRandom
 import java.text.SimpleDateFormat

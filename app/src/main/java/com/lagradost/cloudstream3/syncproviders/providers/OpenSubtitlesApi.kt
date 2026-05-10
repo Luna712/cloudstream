@@ -18,7 +18,6 @@ import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.SubtitleHelper.fromCodeToLangTagIETF
 import com.lagradost.cloudstream3.utils.SubtitleHelper.fromCodeToOpenSubtitlesTag
-import com.lagradost.nicehttp.kmp.parsed
 
 class OpenSubtitlesApi : SubtitleAPI() {
     override val name = "OpenSubtitles"

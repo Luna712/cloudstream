@@ -2,7 +2,6 @@ package com.lagradost.cloudstream3.extractors.helper
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.app
-import com.lagradost.nicehttp.kmp.parsedSafe
 
 class WcoHelper {
     companion object {

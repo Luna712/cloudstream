@@ -10,7 +10,6 @@ import com.lagradost.cloudstream3.utils.newExtractorLink
 import com.lagradost.cloudstream3.utils.Qualities
 import com.lagradost.nicehttp.kmp.JsonAsString
 import com.lagradost.nicehttp.kmp.RequestBodyTypes
-import com.lagradost.nicehttp.kmp.parsed
 
 
 class Streamlare : Slmaxed() {

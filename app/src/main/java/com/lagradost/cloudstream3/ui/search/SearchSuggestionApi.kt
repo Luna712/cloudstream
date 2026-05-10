@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.nicehttp.kmp.NiceResponse
-import com.lagradost.nicehttp.kmp.parsed
 
 /**
  * API for fetching search suggestions from external sources.
