@@ -81,8 +81,8 @@ class SubtitleResource {
         url: String,
         nameGenerator: (String, File) -> String? = { _, _ -> null }
     ) {
-        val source = app.get(url).okhttpResponse.body.source()
-        val zip = downloadFile(source)
+        val bytes = app.get(url).body.bytes()
+        val zip = downloadFile(bytes.inputStream())
         val realFiles = unzip(zip)
         zip.deleteRecursively()
         realFiles.forEach { (name, subtitleFile) ->
