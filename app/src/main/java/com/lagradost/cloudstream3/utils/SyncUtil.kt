@@ -10,7 +10,7 @@ import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.nicehttp.kmp.parsed
-import java.util.concurrent.TimeUnit
+import kotlin.time.DurationUnit
 
 object SyncUtil {
     private val regexs = listOf(
@@ -71,7 +71,7 @@ object SyncUtil {
             //Gogoanime, Twistmoe and 9anime
             val url =
                 "https://raw.githubusercontent.com/MALSync/MAL-Sync-Backup/master/data/pages/$site/$slug.json"
-            val response = app.get(url, cacheTime = 1, cacheUnit = TimeUnit.DAYS).text
+            val response = app.get(url, cacheTime = 1, cacheUnit = DurationUnit.DAYS).text
             val mapped = parseJson<MalSyncPage?>(response)
 
             val overrideMal = mapped?.malId ?: mapped?.mal?.id ?: mapped?.anilist?.malId
@@ -90,7 +90,7 @@ object SyncUtil {
     suspend fun getUrlsFromId(id: String, type: String = "anilist"): List<String> {
         val url =
             "https://raw.githubusercontent.com/MALSync/MAL-Sync-Backup/master/data/$type/anime/$id.json"
-        val response = app.get(url, cacheTime = 1, cacheUnit = TimeUnit.DAYS).parsed<SyncPage>()
+        val response = app.get(url, cacheTime = 1, cacheUnit = DurationUnit.DAYS).parsed<SyncPage>()
         val pages = response.pages ?: return emptyList()
         val current =
             pages.gogoanime.values.union(pages.nineanime.values).union(pages.twistmoe.values)
