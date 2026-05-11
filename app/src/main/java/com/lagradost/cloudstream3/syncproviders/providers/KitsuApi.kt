@@ -22,7 +22,6 @@ import com.lagradost.cloudstream3.ui.SyncWatchType
 import com.lagradost.cloudstream3.ui.library.ListSorting
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.txt
-import com.lagradost.nicehttp.JsonAsString
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -356,7 +355,7 @@ class KitsuApi: SyncAPI() {
                 "content-type" to "application/vnd.api+json",
                 "Authorization" to "Bearer ${auth.token.accessToken}"
             ),
-            json = JsonAsString(data.toJson()),
+            requestBody = data.toJson().toRequestBody(),
             interceptor = apiFallbackInterceptor
         )
 
@@ -390,7 +389,7 @@ class KitsuApi: SyncAPI() {
                 "content-type" to "application/vnd.api+json",
                 "Authorization" to "Bearer ${auth.token.accessToken}"
             ),
-            json = JsonAsString(data.toJson()),
+            requestBody = data.toJson().toRequestBody(),
             interceptor = apiFallbackInterceptor
         )
 
