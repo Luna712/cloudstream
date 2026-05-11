@@ -12,7 +12,6 @@ import com.lagradost.cloudstream3.utils.M3u8Helper
 import com.lagradost.cloudstream3.utils.getAndUnpack
 import com.lagradost.cloudstream3.utils.getPacked
 import com.lagradost.cloudstream3.network.WebViewResolver
-import com.lagradost.nicehttp.toNiceInterceptor
 
 
 class Mwish : StreamWishExtractor() {
@@ -195,7 +194,7 @@ open class StreamWishExtractor : ExtractorApi() {
             val interceptedStreamUrl = app.get(
                 url,
                 referer = referer,
-                interceptor = webViewM3u8Resolver.toNiceInterceptor()
+                interceptor = webViewM3u8Resolver
             ).url
 
             if (interceptedStreamUrl.isNotEmpty()) {

@@ -23,7 +23,6 @@ import com.lagradost.cloudstream3.ui.library.ListSorting
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.nicehttp.JsonAsString
-import com.lagradost.nicehttp.toNiceInterceptor
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -89,8 +88,8 @@ class KitsuApi: SyncAPI() {
         }
     }
 
-    private val apiFallbackInterceptor = FallbackInterceptor(apiUrl, fallbackApiUrl).toNiceInterceptor()
-    private val oauthFallbackInterceptor = FallbackInterceptor(oauthUrl, fallbackOauthUrl).toNiceInterceptor()
+    private val apiFallbackInterceptor = FallbackInterceptor(apiUrl, fallbackApiUrl)
+    private val oauthFallbackInterceptor = FallbackInterceptor(oauthUrl, fallbackOauthUrl)
 
     override suspend fun login(form: AuthLoginResponse): AuthToken? {
         val username = form.email ?: return null
