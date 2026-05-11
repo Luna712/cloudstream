@@ -76,7 +76,7 @@ abstract class MyDramaListAPI : MainAPI() {
 
     override suspend fun search(query: String): List<SearchResponse>? {
         return app.post("$API_HOST/search/titles") {
-            data = mapOf("q" to query),
+            data = mapOf("q" to query)
             interceptor = headerInterceptor
         }.parsed<SearchResult>().map { element ->
             element.toSearchResponse()
