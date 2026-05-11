@@ -12,7 +12,7 @@ import com.lagradost.cloudstream3.utils.M3u8Helper
 import com.lagradost.cloudstream3.utils.getAndUnpack
 import com.lagradost.cloudstream3.utils.getPacked
 import com.lagradost.cloudstream3.network.WebViewResolver
-import com.lagradost.nicehttp.kmp.toNiceInterceptor
+import com.lagradost.nicehttp.toNiceInterceptor
 
 
 class Mwish : StreamWishExtractor() {

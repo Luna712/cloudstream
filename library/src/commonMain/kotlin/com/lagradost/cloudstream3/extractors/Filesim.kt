@@ -7,7 +7,7 @@ import com.lagradost.cloudstream3.utils.*
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.extractors.helper.JwPlayerHelper
 import com.lagradost.cloudstream3.network.WebViewResolver
-import com.lagradost.nicehttp.kmp.toNiceInterceptor
+import com.lagradost.nicehttp.toNiceInterceptor
 
 class Multimoviesshg : Filesim() {
     override var mainUrl = "https://multimoviesshg.com"

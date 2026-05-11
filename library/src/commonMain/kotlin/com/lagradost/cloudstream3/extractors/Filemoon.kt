@@ -10,7 +10,7 @@ import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.JsUnpacker
 import com.lagradost.cloudstream3.utils.M3u8Helper
-import com.lagradost.nicehttp.kmp.toNiceInterceptor
+import com.lagradost.nicehttp.toNiceInterceptor
 
 
 class FileMoon : FilemoonV2() {
@@ -102,7 +102,7 @@ open class FilemoonV2 : ExtractorApi() {
             val interceptedUrl = app.get(
                 iframeSrcUrl,
                 referer = referer,
-                interceptor = resolver
+                interceptor = resolver.toNiceInterceptor()
             ).url
 
             if (interceptedUrl.isNotEmpty()) {

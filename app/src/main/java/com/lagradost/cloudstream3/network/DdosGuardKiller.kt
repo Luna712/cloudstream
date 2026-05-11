@@ -2,10 +2,10 @@ package com.lagradost.cloudstream3.network
 
 import androidx.annotation.AnyThread
 import com.lagradost.cloudstream3.app
-import com.lagradost.nicehttp.kmp.HttpSendInterceptorContext
-import com.lagradost.nicehttp.kmp.Interceptor
-import com.lagradost.nicehttp.kmp.Requests
-import com.lagradost.nicehttp.kmp.getRequestCookies
+import com.lagradost.nicehttp.HttpSendInterceptorContext
+import com.lagradost.nicehttp.Interceptor
+import com.lagradost.nicehttp.Requests
+import com.lagradost.nicehttp.getRequestCookies
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*

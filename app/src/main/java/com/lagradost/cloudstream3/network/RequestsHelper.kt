@@ -6,8 +6,8 @@ import com.lagradost.cloudstream3.Prerelease
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.USER_AGENT
 import com.lagradost.cloudstream3.mvvm.safe
-import com.lagradost.nicehttp.kmp.Requests
-import com.lagradost.nicehttp.kmp.ignoreAllSSLErrors
+import com.lagradost.nicehttp.Requests
+import com.lagradost.nicehttp.ignoreAllSSLErrors
 import io.ktor.client.*
 import io.ktor.client.engine.okhttp.*
 import io.ktor.client.plugins.*

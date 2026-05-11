@@ -5,7 +5,7 @@ import com.lagradost.cloudstream3.network.WebViewResolver
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.M3u8Helper
-import com.lagradost.nicehttp.kmp.toNiceInterceptor
+import com.lagradost.nicehttp.toNiceInterceptor
 
 
 open class GenericM3U8 : ExtractorApi() {
