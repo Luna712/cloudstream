@@ -12,9 +12,9 @@ import io.ktor.client.*
 import io.ktor.client.engine.okhttp.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.cache.*
-import io.ktor.http.Headers
-import io.ktor.http.headers
 import okhttp3.Cache
+import okhttp3.Headers
+import okhttp3.Headers.Companion.toHeaders
 import okhttp3.OkHttpClient
 import org.conscrypt.Conscrypt
 import java.io.File
@@ -92,10 +92,13 @@ private val DEFAULT_HEADERS = mapOf("user-agent" to USER_AGENT)
  */
 fun getHeaders(
     headers: Map<String, String>,
-    cookie: Map<String, String>,
-): Headers = headers {
-    (DEFAULT_HEADERS + headers).forEach { (k, v) -> append(k, v) }
-    if (cookie.isNotEmpty()) {
-        append("Cookie", cookie.entries.joinToString(" ") { "${it.key}=${it.value};" })
-    }
+    cookie: Map<String, String>
+): Headers {
+    val cookieMap =
+        if (cookie.isNotEmpty()) mapOf(
+            "Cookie" to cookie.entries.joinToString(" ") {
+                "${it.key}=${it.value};"
+            }) else mapOf()
+    val tempHeaders = (DEFAULT_HEADERS + headers + cookieMap)
+    return tempHeaders.toHeaders()
 }
