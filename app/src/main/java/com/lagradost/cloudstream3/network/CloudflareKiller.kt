@@ -9,10 +9,8 @@ import com.lagradost.cloudstream3.mvvm.safe
 import com.lagradost.nicehttp.Requests.Companion.await
 import com.lagradost.nicehttp.cookies
 import kotlinx.coroutines.runBlocking
-import okhttp3.Headers
-import okhttp3.Interceptor
-import okhttp3.Request
-import okhttp3.Response
+import kotlinx.coroutines.suspendCancellableCoroutine
+import okhttp3.*
 import java.net.URI
 
 
@@ -27,6 +25,14 @@ class CloudflareKiller : Interceptor {
                 val split = it.split("=")
                 (split.getOrNull(0)?.trim() ?: "") to (split.getOrNull(1)?.trim() ?: "")
             }.filter { it.key.isNotBlank() && it.value.isNotBlank() }
+        }
+
+        suspend inline fun Call.await(): Response {
+            return suspendCancellableCoroutine { continuation ->
+                val callback = ContinuationCallback(this, continuation)
+                enqueue(callback)
+                continuation.invokeOnCancellation(callback)
+            }
         }
     }
 
