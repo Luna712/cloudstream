@@ -7,10 +7,49 @@ import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.mvvm.debugWarning
 import com.lagradost.cloudstream3.mvvm.safe
 import com.lagradost.nicehttp.cookies
+import kotlin.coroutines.resumeWithException
+import kotlinx.coroutines.CancellableContinuation
+import kotlinx.coroutines.CompletionHandler
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.suspendCancellableCoroutine
 import okhttp3.*
 import java.net.URI
+
+
+//Provides async-able Calls
+class ContinuationCallback(
+    private val call: Call,
+    private val continuation: CancellableContinuation<Response>
+) : Callback, CompletionHandler {
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    override fun onResponse(call: Call, response: Response) {
+        continuation.resume(response, null)
+    }
+
+    override fun onFailure(call: Call, e: java.io.IOException) {
+        // Cannot throw exception on SocketException since that can lead to un-catchable crashes
+        // when you exit an activity as a request
+        println("Exception in NiceHttp: ${e.javaClass.name} ${e.message}")
+        if (call.isCanceled()) {
+            // Must be able to throw errors, for example timeouts
+            if (e is java.io.InterruptedIOException)
+                continuation.cancel(e)
+            else
+                e.printStackTrace()
+        } else {
+            continuation.resumeWithException(e)
+        }
+    }
+
+    override fun invoke(cause: Throwable?) {
+        try {
+            call.cancel()
+        } catch (_: Throwable) {
+        }
+    }
+}
 
 
 @AnyThread
