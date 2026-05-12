@@ -268,7 +268,7 @@ dependencies {
 
     // Downloading & Networking
     implementation(libs.work.runtime.ktx)
-    implementation(libs.nicehttp) // HTTP Lib
+    implementation(libs.nicehttp.android) // HTTP Lib
 
     implementation(project(":library"))
 }
