@@ -279,7 +279,7 @@ actual class WebViewResolver actual constructor(
     }
 }
 
-suspend fun WebResourceRequest.toRequest(): Request? {
+fun WebResourceRequest.toRequest(): Request? {
     val webViewUrl = this.url.toString()
 
     // If invalid url then it can crash with
@@ -294,7 +294,7 @@ suspend fun WebResourceRequest.toRequest(): Request? {
     }
 }
 
-fun NiceResponse.toWebResourceResponse(): WebResourceResponse {
+suspend fun NiceResponse.toWebResourceResponse(): WebResourceResponse {
     val contentTypeValue = this.headers["Content-Type"]
     // 1. contentType. 2. charset
     val typeRegex = Regex("""(.*);(?:.*charset=(.*)(?:|;)|)""")
