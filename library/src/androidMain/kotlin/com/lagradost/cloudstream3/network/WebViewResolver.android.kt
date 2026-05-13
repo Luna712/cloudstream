@@ -279,7 +279,7 @@ actual class WebViewResolver actual constructor(
     }
 }
 
-fun WebResourceRequest.toRequest(): Request? {
+suspend fun WebResourceRequest.toRequest(): Request? {
     val webViewUrl = this.url.toString()
 
     // If invalid url then it can crash with
