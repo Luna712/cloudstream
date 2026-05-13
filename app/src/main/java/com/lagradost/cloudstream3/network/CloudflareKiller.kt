@@ -103,6 +103,7 @@ class CloudflareKiller : Interceptor {
 
         val headers =
             getHeaders(request.headers.toMap() + userAgentMap, cookies + request.cookies)
+        @Suppress("DEPRECATION_ERROR")
         return okHttpClient.newCall(
             request.newBuilder()
                 .headers(headers)
