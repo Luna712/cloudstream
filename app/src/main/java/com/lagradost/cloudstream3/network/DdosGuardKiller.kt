@@ -2,6 +2,7 @@ package com.lagradost.cloudstream3.network
 
 import androidx.annotation.AnyThread
 import com.lagradost.cloudstream3.app
+import com.lagradost.cloudstream3.okHttpClient
 import com.lagradost.nicehttp.Requests
 import com.lagradost.nicehttp.cookies
 import kotlinx.coroutines.runBlocking
@@ -48,8 +49,6 @@ class DdosGuardKiller(private val alwaysBypass: Boolean) : Interceptor {
                 }
 
         val headers = getHeaders(request.headers.toMap(), cookies + request.cookies)
-        val okHttpClient = (app.baseClient.engine as? io.ktor.client.engine.okhttp.OkHttpEngine)
-                ?.config?.preconfigured ?: okhttp3.OkHttpClient()
         return okHttpClient.newCall(
             request.newBuilder()
                 .headers(headers)
