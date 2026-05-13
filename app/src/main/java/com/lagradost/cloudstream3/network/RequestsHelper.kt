@@ -85,11 +85,6 @@ fun buildDefaultKtorClient(context: Context, ignoreSSL: Boolean = false): HttpCl
     }
 }
 
-// TODO: Remove usage of this by migrating interceptors and media3 to ktor
-@InternalAPI
-val okHttpClient = (app.baseClient.engine as? OkHttpEngine)
-    ?.config?.preconfigured ?: OkHttpClient()
-
 private val DEFAULT_HEADERS = mapOf("user-agent" to USER_AGENT)
 
 /**
