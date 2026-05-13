@@ -800,7 +800,7 @@ class CS3IPlayer : IPlayer {
             val source = if (interceptor == null) {
                 if (engine == null) {
                     Log.d(TAG, "Using DefaultHttpDataSource for $link")
-                    OkHttpDataSource.Factory(baseOkHttpClient).setUserAgent(userAgent)
+                    OkHttpDataSource.Factory(okHttpClient).setUserAgent(userAgent)
                 } else {
                     Log.d(TAG, "Using CronetDataSource for $link")
                     CronetDataSource.Factory(engine, Executors.newSingleThreadExecutor())
