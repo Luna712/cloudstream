@@ -55,7 +55,7 @@ open class PlayLtXyz: ExtractorApi() {
             val data = app.post(posturl, headers = ajaxHead, data = ajaxData)
             //Log.i(this.name, "Result => (posturl) $posturl")
             if (data.isSuccessful) {
-                val itemstr = data.text
+                val itemstr = data.text()
                 Log.i(this.name, "Result => (data) $itemstr")
                 tryParseJson<ResponseData?>(itemstr)?.let { item ->
                     val linkUrl = item.data ?: ""

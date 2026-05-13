@@ -13,7 +13,7 @@ open class PlayerVoxzer : ExtractorApi() {
 
     override suspend fun getUrl(url: String, referer: String?): List<ExtractorLink>? {
         val listurl = url.replace("/view/","/list/")
-        val urltext = app.get(listurl, referer = url).text
+        val urltext = app.get(listurl, referer = url).text()
         val m3u8regex = Regex("((https:|http:)\\/\\/.*\\.m3u8)")
         val sources = mutableListOf<ExtractorLink>()
         val listm3 = m3u8regex.find(urltext)?.value

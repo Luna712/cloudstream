@@ -2070,7 +2070,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             app.get(
                 "https://raw.githubusercontent.com/recloudstream/.github/master/connectivitycheck",
                 timeout = 5
-            ).text.trim() == "ok"
+            ).text().trim() == "ok"
         } catch (t: Throwable) {
             false
         }

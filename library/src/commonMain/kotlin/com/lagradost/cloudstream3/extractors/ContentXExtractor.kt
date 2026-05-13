@@ -14,7 +14,7 @@ open class ContentX : ExtractorApi() {
     override suspend fun getUrl(url: String, referer: String?, subtitleCallback: (SubtitleFile) -> Unit, callback: (ExtractorLink) -> Unit) {
         val extRef   = referer ?: ""
 
-        val iSource  = app.get(url, referer=extRef).text
+        val iSource  = app.get(url, referer=extRef).text()
         val iExtract = Regex("""window\.openPlayer\('([^']+)'""").find(iSource)!!.groups[1]?.value ?: throw ErrorLoadingException("iExtract is null")
 
         val subUrls = mutableSetOf<String>()
@@ -32,7 +32,7 @@ open class ContentX : ExtractorApi() {
             )
         }
 
-        val vidSource  = app.get("${mainUrl}/source2.php?v=${iExtract}", referer=extRef).text
+        val vidSource  = app.get("${mainUrl}/source2.php?v=${iExtract}", referer=extRef).text()
         val vidExtract = Regex("""file\":\"([^\"]+)""").find(vidSource)!!.groups[1]?.value ?: throw ErrorLoadingException("vidExtract is null")
         val m3uLink    = vidExtract.replace("\\", "")
 
@@ -50,7 +50,7 @@ open class ContentX : ExtractorApi() {
 
         val iDublaj = Regex(""",\"([^']+)\",\"Türkçe""").find(iSource)!!.groups[1]?.value
         if (iDublaj != null) {
-            val dublajSource  = app.get("${mainUrl}/source2.php?v=${iDublaj}", referer=extRef).text
+            val dublajSource  = app.get("${mainUrl}/source2.php?v=${iDublaj}", referer=extRef).text()
             val dublajExtract = Regex("""file\":\"([^\"]+)""").find(dublajSource)!!.groups[1]?.value ?: throw ErrorLoadingException("dublajExtract is null")
             val dublajLink    = dublajExtract.replace("\\", "")
 

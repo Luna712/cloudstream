@@ -65,7 +65,7 @@ class Addic7ed : SubtitleAPI() {
             )
         }
 
-        val response = app.get(url = "$HOST/search.php?search=$searchQuery&Submit=Search")
+        val response = app.get("$HOST/search.php?search=$searchQuery&Submit=Search")
         val hostDocument = response.document()
 
         // 1st case: found one movie or episode. Redirected to $HOST/movie/1234 or $HOST/serie/show-name/$seasonNum/$epNum/ep-name

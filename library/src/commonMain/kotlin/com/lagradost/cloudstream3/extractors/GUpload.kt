@@ -21,7 +21,7 @@ open class GUpload: ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ) {
-        val response = app.get(url, referer = referer).text
+        val response = app.get(url, referer = referer).text()
 
         val playerConfigEncoded = response.substringAfter("decodePayload('").substringBefore("');")
         val playerConfigString = base64Decode(playerConfigEncoded).substringAfter("|")

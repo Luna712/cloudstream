@@ -73,8 +73,8 @@ open class Filesim : ExtractorApi() {
             )
         }
 
-        val scriptData = if (!getPacked(pageResponse.text).isNullOrEmpty()) {
-            getAndUnpack(pageResponse.text)
+        val scriptData = if (!getPacked(pageResponse.text()).isNullOrEmpty()) {
+            getAndUnpack(pageResponse.text())
         } else {
             pageResponse.document().selectFirst("script:containsData(sources:)")?.data()
         }

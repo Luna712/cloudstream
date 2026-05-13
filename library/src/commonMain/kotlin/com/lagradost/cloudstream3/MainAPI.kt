@@ -172,7 +172,7 @@ object APIHolder {
                     referer = referer,
                     cacheTime = 0
                 )
-                    .text
+                    .text()
                     .substringAfter("releases/")
                     .substringBefore("/")
             val recapToken =
@@ -190,7 +190,7 @@ object APIHolder {
                         "sa" to "",
                         "reason" to "q"
                     ), cacheTime = 0
-                ).text
+                ).text()
                     .substringAfter("rresp\",\"")
                     .substringBefore("\"")
             }
