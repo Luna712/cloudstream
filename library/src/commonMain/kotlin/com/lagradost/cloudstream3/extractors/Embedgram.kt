@@ -2,7 +2,6 @@ package com.lagradost.cloudstream3.extractors
 
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
-import com.lagradost.cloudstream3.ksoupDocument
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.getQualityFromName
@@ -20,7 +19,7 @@ open class Embedgram : ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ) {
-        val document = app.get(url, referer = referer).ksoupDocument
+        val document = app.get(url, referer = referer).document()
         val link = document.select("video source:last-child").attr("src")
         val quality = document.select("video source:last-child").attr("title")
         callback.invoke(

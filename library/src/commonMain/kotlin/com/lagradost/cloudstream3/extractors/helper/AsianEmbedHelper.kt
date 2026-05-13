@@ -4,7 +4,6 @@ import com.lagradost.api.Log
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.amap
 import com.lagradost.cloudstream3.app
-import com.lagradost.cloudstream3.ksoupDocument
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.loadExtractor
 
@@ -16,7 +15,7 @@ class AsianEmbedHelper {
             callback: (ExtractorLink) -> Unit
         ) {
             // Fetch links
-            val doc = app.get(url).ksoupDocument
+            val doc = app.get(url).document()
             val links = doc.select("div#list-server-more > ul > li.linkserver")
             if (!links.isNullOrEmpty()) {
                 links.amap {

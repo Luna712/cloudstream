@@ -1,7 +1,6 @@
 package com.lagradost.cloudstream3.extractors
 
 import com.lagradost.cloudstream3.app
-import com.lagradost.cloudstream3.ksoupDocument
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.ExtractorLinkType
@@ -17,7 +16,7 @@ open class EmturbovidExtractor : ExtractorApi() {
         val response = app.get(
             url, referer = referer ?: "$mainUrl/"
         )
-        val playerScript = response.ksoupDocument
+        val playerScript = response.document()
             .select("script:contains(var urlPlay)")
             .html()
 

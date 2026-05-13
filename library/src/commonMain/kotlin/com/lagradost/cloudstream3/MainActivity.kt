@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fleeksoft.ksoup.Ksoup
 import com.fleeksoft.ksoup.nodes.Document
-import com.lagradost.nicehttp.NiceResponse
 import com.lagradost.nicehttp.Requests
 import com.lagradost.nicehttp.ResponseParser
 import kotlin.reflect.KClass
@@ -39,10 +38,6 @@ private val jacksonResponseParser = object : ResponseParser {
 var app = Requests(responseParser = jacksonResponseParser).apply {
     defaultHeaders = mapOf("user-agent" to USER_AGENT)
 }
-
-/** Parses the response body as a Ksoup Document. */
-val NiceResponse.ksoupDocument: Document
-    get() = Ksoup.parse(text)
 
 /** Same as the default app networking helper, but this instance ignores SSL certificates.
  * This should NEVER be used for sensitive networking operations such as logins. Only use this when required. */

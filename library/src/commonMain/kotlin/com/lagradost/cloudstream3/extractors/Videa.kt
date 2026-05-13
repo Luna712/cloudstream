@@ -75,7 +75,7 @@ class Videa : ExtractorApi() {
             // You tried to use a video here
             return null
         }
-        val html = response.text
+        val html = response.text()
 
         // Extract sl cookie if present
         response.headers["Set-Cookie"]?.let { cookieHeader ->
@@ -94,7 +94,7 @@ class Videa : ExtractorApi() {
 
         // Get player page to extract tokens
         val playerResponse = app.get(playerUrl)
-        val playerHtml = playerResponse.text
+        val playerHtml = playerResponse.text()
 
         // Update cookie from player response
         playerResponse.headers["Set-Cookie"]?.let { cookieHeader ->

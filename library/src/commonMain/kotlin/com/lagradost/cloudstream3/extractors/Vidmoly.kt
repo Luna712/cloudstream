@@ -4,7 +4,6 @@ import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.USER_AGENT
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.extractors.helper.JwPlayerHelper
-import com.lagradost.cloudstream3.ksoupDocument
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
 
@@ -41,7 +40,7 @@ open class Vidmoly : ExtractorApi() {
             else url
 
         val script = app.get(newUrl, headers = headers, referer = referer)
-            .ksoupDocument.select("script")
+            .document().select("script")
             .firstOrNull { it.data().contains("sources:") }
             ?.data()
 

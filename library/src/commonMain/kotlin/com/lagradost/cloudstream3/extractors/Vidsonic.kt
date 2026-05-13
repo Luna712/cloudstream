@@ -32,7 +32,7 @@ class Vidsonic() : ExtractorApi() {
         // };
         // const _0x7 = _0x2(_0x1); <-- now contains the stream URL
 
-        val response = app.get(url).text
+        val response = app.get(url).text()
         val encodedStreamUrl = response
             .substringAfter("const _0x1 = ")
             .substringBefore(";")

@@ -3,7 +3,6 @@ package com.lagradost.cloudstream3.extractors
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.USER_AGENT
 import com.lagradost.cloudstream3.app
-import com.lagradost.cloudstream3.ksoupDocument
 import com.lagradost.cloudstream3.utils.*
 
 open class StreamSilk : ExtractorApi() {
@@ -19,7 +18,7 @@ open class StreamSilk : ExtractorApi() {
         callback: (ExtractorLink) -> Unit
     ) {
         val response = app.get(url, headers = mapOf("Accept" to "*/*"))
-        response.ksoupDocument.select("script").firstOrNull {
+        response.document().select("script").firstOrNull {
             it.html().contains("h,u,n,t,e,r")
         }?.html()?.let { hunted ->
             JsHunter(hunted).dehunt()?.let { script ->

@@ -2,7 +2,6 @@ package com.lagradost.cloudstream3.extractors
 
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
-import com.lagradost.cloudstream3.ksoupDocument
 import com.lagradost.cloudstream3.newSubtitleFile
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
@@ -25,7 +24,7 @@ open class SecvideoOnline : ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ) {
-        val doc = app.get(url, referer = referer).ksoupDocument
+        val doc = app.get(url, referer = referer).document()
         for (script in doc.select("script")) {
             val files = fileListRegex.findAll(script.data())
                 .mapNotNull { it.groupValues.getOrNull(1)?.split(",") }

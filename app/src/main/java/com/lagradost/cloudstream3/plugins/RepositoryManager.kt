@@ -144,7 +144,7 @@ object RepositoryManager {
             val response = app.get(convertRawGitUrl(pluginUrls))
             // Normal parsed function not working?
             // return response.parsedSafe()
-            tryParseJson<Array<SitePlugin>>(response.text)?.toList() ?: emptyList()
+            tryParseJson<Array<SitePlugin>>(response.text())?.toList() ?: emptyList()
         } catch (t: Throwable) {
             logError(t)
             emptyList()

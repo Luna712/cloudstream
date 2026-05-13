@@ -2,7 +2,6 @@ package com.lagradost.cloudstream3.syncproviders.providers
 
 import com.lagradost.cloudstream3.AllLanguagesName
 import com.lagradost.cloudstream3.app
-import com.lagradost.cloudstream3.ksoupDocument
 import com.lagradost.cloudstream3.subtitles.AbstractSubtitleEntities.SubtitleEntity
 import com.lagradost.cloudstream3.subtitles.AbstractSubtitleEntities.SubtitleSearch
 import com.lagradost.cloudstream3.syncproviders.AuthData
@@ -67,7 +66,7 @@ class Addic7ed : SubtitleAPI() {
         }
 
         val response = app.get(url = "$HOST/search.php?search=$searchQuery&Submit=Search")
-        val hostDocument = response.ksoupDocument
+        val hostDocument = response.document()
 
         // 1st case: found one movie or episode. Redirected to $HOST/movie/1234 or $HOST/serie/show-name/$seasonNum/$epNum/ep-name
         if (response.url.contains("/movie/") || response.url.contains("/serie/"))
@@ -79,7 +78,7 @@ class Addic7ed : SubtitleAPI() {
             val doc = app.get(
                 "$HOST/ajax_loadShow.php?show=$showId&season=$seasonNum&langs=|$langNumAddic7ed|&hd=0&hi=0",
                 referer = "$HOST/"
-            ).ksoupDocument
+            ).document()
 
             // get direct subtitles links from list
             return doc.select("#season tbody tr").mapNotNull { node ->
@@ -106,7 +105,7 @@ class Addic7ed : SubtitleAPI() {
         // filter download page by language. Do not work for movies :/
         if (downloadPage.contains("/serie/"))
             downloadPage = downloadPage.substringBeforeLast("/") + "/$langNumAddic7ed"
-        val doc = app.get(url = downloadPage).ksoupDocument
+        val doc = app.get(url = downloadPage).document()
 
         // get subtitles links from download page
         return doc.select(".tabel95 .tabel95 tr:has(.language):contains($langName)").mapNotNull { node ->

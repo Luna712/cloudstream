@@ -128,7 +128,7 @@ object M3u8Helper2 {
         returnThis: Boolean = true
     ): List<M3u8Helper.M3u8Stream> {
         val list = mutableListOf<M3u8Helper.M3u8Stream>()
-        val response = app.get(m3u8.streamUrl, headers = m3u8.headers, verify = false).text
+        val response = app.get(m3u8.streamUrl, headers = m3u8.headers, verify = false).text()
         val parsed = HlsPlaylistParser.parse(
             m3u8.streamUrl,
             response,
@@ -266,7 +266,7 @@ object M3u8Helper2 {
                 playlistStream.streamUrl,
                 headers = playlistStream.headers,
                 verify = false
-            ).text
+            ).text()
 
         val parsed = HlsPlaylistParser.parse(playlistStream.streamUrl, playlistResponse)
         if (parsed != null) {
