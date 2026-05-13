@@ -9,29 +9,54 @@ import com.lagradost.nicehttp.Requests
 import com.lagradost.nicehttp.ResponseParser
 import io.ktor.client.engine.okhttp.OkHttpEngine
 import okhttp3.OkHttpClient
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonElement
+import kotlin.reflect.KClass
 import kotlin.reflect.KClass
 
 // Short name for requests client to make it nicer to use
+@OptIn(ExperimentalSerializationApi::class)
 private val jacksonResponseParser = object : ResponseParser {
     val mapper: ObjectMapper = jacksonObjectMapper().configure(
         DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
         false
     )
+    val kotlinxJson = Json { ignoreUnknownKeys = true }
 
     override fun <T : Any> parse(text: String, kClass: KClass<T>): T {
-        return mapper.readValue(text, kClass.java)
+        val serializer = kotlinxJson.serializersModule.getContextual(kClass)
+        return if (serializer != null) {
+            try {
+                kotlinxJson.decodeFromString(serializer, text)
+            } catch (e: Exception) {
+                mapper.readValue(text, kClass.java)
+            }
+        } else {
+            mapper.readValue(text, kClass.java)
+        }
     }
 
     override fun <T : Any> parseSafe(text: String, kClass: KClass<T>): T? {
         return try {
-            mapper.readValue(text, kClass.java)
+            parse(text, kClass)
         } catch (e: Exception) {
             null
         }
     }
 
     override fun writeValueAsString(obj: Any): String {
-        return mapper.writeValueAsString(obj)
+        val serializer = kotlinxJson.serializersModule.getContextual(obj::class)
+        return if (serializer != null) {
+            try {
+                // If it has a serializer, encode it safely via Kotlinx
+                kotlinxJson.encodeToString(kotlinxJson.serializersModule.serializer(obj::class.java), obj)
+            } catch (e: Exception) {
+                mapper.writeValueAsString(obj)
+            }
+        } else {
+            mapper.writeValueAsString(obj)
+        }
     }
 }
 
