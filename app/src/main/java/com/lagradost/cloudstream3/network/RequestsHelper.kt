@@ -2,6 +2,7 @@ package com.lagradost.cloudstream3.network
 
 import android.content.Context
 import androidx.preference.PreferenceManager
+import com.lagradost.cloudstream3.InternalAPI
 import com.lagradost.cloudstream3.Prerelease
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.USER_AGENT
@@ -83,6 +84,11 @@ fun buildDefaultKtorClient(context: Context, ignoreSSL: Boolean = false): HttpCl
         }
     }
 }
+
+// TODO: Remove usage of this by migrating interceptors and media3 to ktor
+@InternalAPI
+val okHttpClient = (app.baseClient.engine as? OkHttpEngine)
+    ?.config?.preconfigured ?: OkHttpClient()
 
 private val DEFAULT_HEADERS = mapOf("user-agent" to USER_AGENT)
 
