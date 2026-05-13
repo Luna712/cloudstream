@@ -6,6 +6,7 @@ import androidx.annotation.AnyThread
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.mvvm.debugWarning
 import com.lagradost.cloudstream3.mvvm.safe
+import com.lagradost.cloudstream3.okHttpClient
 import com.lagradost.nicehttp.RequestsCompat.*
 import com.lagradost.nicehttp.cookies
 import kotlinx.coroutines.runBlocking
@@ -102,7 +103,7 @@ class CloudflareKiller : Interceptor {
 
         val headers =
             getHeaders(request.headers.toMap() + userAgentMap, cookies + request.cookies)
-        return app.baseClient.newCall(
+        return okHttpClient.newCall(
             request.newBuilder()
                 .headers(headers)
                 .build()
