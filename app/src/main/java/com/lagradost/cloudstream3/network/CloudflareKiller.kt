@@ -6,50 +6,15 @@ import androidx.annotation.AnyThread
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.mvvm.debugWarning
 import com.lagradost.cloudstream3.mvvm.safe
+import com.lagradost.cloudstream3.okHttpClient
+import com.lagradost.nicehttp.RequestsCompat.await
 import com.lagradost.nicehttp.cookies
-import kotlin.coroutines.resumeWithException
-import kotlinx.coroutines.CancellableContinuation
-import kotlinx.coroutines.CompletionHandler
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.suspendCancellableCoroutine
-import okhttp3.*
+import okhttp3.Headers
+import okhttp3.Interceptor
+import okhttp3.Request
+import okhttp3.Response
 import java.net.URI
-
-
-//Provides async-able Calls
-class ContinuationCallback(
-    private val call: Call,
-    private val continuation: CancellableContinuation<Response>
-) : Callback, CompletionHandler {
-
-    @OptIn(ExperimentalCoroutinesApi::class)
-    override fun onResponse(call: Call, response: Response) {
-        continuation.resume(response, null)
-    }
-
-    override fun onFailure(call: Call, e: java.io.IOException) {
-        // Cannot throw exception on SocketException since that can lead to un-catchable crashes
-        // when you exit an activity as a request
-        println("Exception in NiceHttp: ${e.javaClass.name} ${e.message}")
-        if (call.isCanceled()) {
-            // Must be able to throw errors, for example timeouts
-            if (e is java.io.InterruptedIOException)
-                continuation.cancel(e)
-            else
-                e.printStackTrace()
-        } else {
-            continuation.resumeWithException(e)
-        }
-    }
-
-    override fun invoke(cause: Throwable?) {
-        try {
-            call.cancel()
-        } catch (_: Throwable) {
-        }
-    }
-}
 
 
 @AnyThread
@@ -63,14 +28,6 @@ class CloudflareKiller : Interceptor {
                 val split = it.split("=")
                 (split.getOrNull(0)?.trim() ?: "") to (split.getOrNull(1)?.trim() ?: "")
             }.filter { it.key.isNotBlank() && it.value.isNotBlank() }
-        }
-
-        suspend inline fun Call.await(): Response {
-            return suspendCancellableCoroutine { continuation ->
-                val callback = ContinuationCallback(this, continuation)
-                enqueue(callback)
-                continuation.invokeOnCancellation(callback)
-            }
         }
     }
 
@@ -146,8 +103,7 @@ class CloudflareKiller : Interceptor {
 
         val headers =
             getHeaders(request.headers.toMap() + userAgentMap, cookies + request.cookies)
-        val okHttpClient = (app.baseClient.engine as? io.ktor.client.engine.okhttp.OkHttpEngine)
-            ?.config?.preconfigured ?: okhttp3.OkHttpClient()
+        @Suppress("DEPRECATION_ERROR")
         return okHttpClient.newCall(
             request.newBuilder()
                 .headers(headers)

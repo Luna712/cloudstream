@@ -86,6 +86,7 @@ import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.mvvm.debugAssert
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.mvvm.safe
+import com.lagradost.cloudstream3.okHttpClient
 import com.lagradost.cloudstream3.ui.player.CustomDecoder.Companion.fixSubtitleAlignment
 import com.lagradost.cloudstream3.ui.player.live.LiveHelper
 import com.lagradost.cloudstream3.ui.player.live.PREFERRED_LIVE_OFFSET
@@ -737,9 +738,6 @@ class CS3IPlayer : IPlayer {
             headers: Map<String, String>?,
             interceptor: Interceptor?
         ): HttpDataSource.Factory {
-            val okHttpClient = (app.baseClient.engine as? io.ktor.client.engine.okhttp.OkHttpEngine)
-                ?.config?.preconfigured ?: okhttp3.OkHttpClient()
-
             val client = if (interceptor == null) {
                 okHttpClient
             } else {
@@ -799,14 +797,10 @@ class CS3IPlayer : IPlayer {
                 it.key.equals("User-Agent", ignoreCase = true)
             }?.value ?: USER_AGENT
 
-            val baseOkHttpClient = (app.baseClient.engine as io.ktor.client.engine.okhttp.OkHttpEngine)
-                .config
-                .preconfigured!!
-
             val source = if (interceptor == null) {
                 if (engine == null) {
                     Log.d(TAG, "Using DefaultHttpDataSource for $link")
-                    OkHttpDataSource.Factory(baseOkHttpClient).setUserAgent(userAgent)
+                    OkHttpDataSource.Factory(okHttpClient).setUserAgent(userAgent)
                 } else {
                     Log.d(TAG, "Using CronetDataSource for $link")
                     CronetDataSource.Factory(engine, Executors.newSingleThreadExecutor())
@@ -818,7 +812,7 @@ class CS3IPlayer : IPlayer {
                 }
             } else {
                 Log.d(TAG, "Using OkHttpDataSource for $link")
-                val client = baseOkHttpClient.newBuilder()
+                val client = okHttpClient.newBuilder()
                     .addInterceptor(interceptor)
                     .build()
                 OkHttpDataSource.Factory(client).setUserAgent(userAgent)
