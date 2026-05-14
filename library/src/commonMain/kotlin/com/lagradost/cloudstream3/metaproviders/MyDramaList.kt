@@ -2,6 +2,7 @@ package com.lagradost.cloudstream3.metaproviders
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonElement
 import com.lagradost.api.BuildConfig
 import com.lagradost.cloudstream3.APIHolder.unixTimeMS
 import com.lagradost.cloudstream3.Actor
@@ -262,7 +263,7 @@ abstract class MyDramaListAPI : MainAPI() {
         @SerialName("aired_start") val airedStart: String? = null,
         @SerialName("released") val released: String? = null,
         @SerialName("release_dates_fmt") val releaseDatesFmt: String,
-        @SerialName("genres") val genres: List<Any>? = null,
+        @SerialName("genres") val genres: List<JsonElement>? = null,
         @SerialName("trailer") val trailer: Trailer?,
         @SerialName("watchers") val watchers: Long,
         @SerialName("ranked") val ranked: Long,
