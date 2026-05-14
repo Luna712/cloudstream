@@ -13,6 +13,7 @@ import com.lagradost.cloudstream3.ui.subtitles.SaveCaptionStyle
 import com.lagradost.cloudstream3.ui.subtitles.SubtitlesFragment.Companion.setSubtitleViewStyle
 import com.lagradost.cloudstream3.utils.SubtitleHelper.fromLanguageToTagIETF
 import com.lagradost.cloudstream3.utils.UIHelper.toPx
+import kotlinx.serialization.Serializable
 
 enum class SubtitleStatus {
     IS_ACTIVE,
@@ -33,6 +34,7 @@ enum class SubtitleOrigin {
  * @param headers if empty it will use the base onlineDataSource headers else only the specified headers
  * @param languageCode usually, tags such as "en", "es-mx", or "zh-hant-TW". But it could be something like "English 4"
  * */
+@Serializable
 data class SubtitleData(
     val originalName: String,
     val nameSuffix: String,
