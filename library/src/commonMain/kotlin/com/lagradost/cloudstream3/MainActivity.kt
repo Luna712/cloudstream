@@ -1,13 +1,9 @@
 package com.lagradost.cloudstream3
 
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.lagradost.nicehttp.Requests
 import com.lagradost.nicehttp.ResponseParser
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.serializer
 import kotlinx.serialization.serializerOrNull
@@ -16,13 +12,6 @@ import kotlin.reflect.KClass
 // Short name for requests client to make it nicer to use
 @OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
 private val jsonResponseParser = object : ResponseParser {
-    val mapper: ObjectMapper = jacksonObjectMapper().configure(
-        DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
-        false
-    )
-
-    val json = Json { ignoreUnknownKeys = true }
-
     override fun <T : Any> parse(text: String, kClass: KClass<T>): T {
         // @Serializable generates a serializer at compile time; contextual serializers are
         // registered manually in serializersModule, we need both to support all cases
