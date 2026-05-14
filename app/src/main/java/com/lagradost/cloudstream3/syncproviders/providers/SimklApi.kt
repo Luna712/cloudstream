@@ -568,30 +568,30 @@ class SimklApi : SyncAPI() {
         }
 
         @Serializable
-        class HistoryMediaObject(
-            title: String? = null,
-            year: Int? = null,
-            ids: Ids? = null,
-            seasons: List<Season>? = null,
-            episodes: List<Season.Episode>? = null,
+        data class HistoryMediaObject(
+            @SerialName("title") val title: String? = null,
+            @SerialName("year") val year: Int? = null,
+            @SerialName("ids") val ids: Ids? = null,
+            @SerialName("seasons") val seasons: List<Season>? = null,
+            @SerialName("episodes") val episodes: List<Season.Episode>? = null,
             @SerialName("rating") val rating: Int? = null,
             @SerialName("rated_at") val ratedAt: String? = null,
         ) : MediaObject(title, year, ids, seasons = seasons, episodes = episodes)
 
         @Serializable
-        class RatingMediaObject(
-            title: String?,
-            year: Int?,
-            ids: Ids?,
+        data class RatingMediaObject(
+            @SerialName("title") val title: String?,
+            @SerialName("year") val year: Int?,
+            @SerialName("ids") val ids: Ids?,
             @SerialName("rating") val rating: Int,
             @SerialName("rated_at") val ratedAt: String? = getDateTime(unixTime)
         ) : MediaObject(title, year, ids)
 
         @Serializable
-        class StatusMediaObject(
-            title: String?,
-            year: Int?,
-            ids: Ids?,
+        data class StatusMediaObject(
+            @SerialName("title") val title: String?,
+            @SerialName("year") val year: Int?,
+            @SerialName("ids") val ids: Ids?,
             @SerialName("to") val to: String,
             @SerialName("watched_at") val watchedAt: String? = getDateTime(unixTime)
         ) : MediaObject(title, year, ids)
