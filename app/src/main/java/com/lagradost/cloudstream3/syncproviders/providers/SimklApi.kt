@@ -319,15 +319,15 @@ class SimklApi : SyncAPI() {
          */
         @Serializable
         open class MediaObject(
-            @SerialName("title") val title: String?,
-            @SerialName("year") val year: Int?,
-            @SerialName("ids") val ids: Ids?,
+            @SerialName("title") open val title: String?,
+            @SerialName("year") open val year: Int?,
+            @SerialName("ids") open val ids: Ids?,
             @SerialName("total_episodes") val totalEpisodes: Int? = null,
             @SerialName("status") val status: String? = null,
             @SerialName("poster") val poster: String? = null,
             @SerialName("type") val type: String? = null,
-            @SerialName("seasons") val seasons: List<Season>? = null,
-            @SerialName("episodes") val episodes: List<Season.Episode>? = null
+            @SerialName("seasons") open val seasons: List<Season>? = null,
+            @SerialName("episodes") open val episodes: List<Season.Episode>? = null
         ) {
             fun hasEnded(): Boolean {
                 return status == "released" || status == "ended"
@@ -581,18 +581,18 @@ class SimklApi : SyncAPI() {
 
         @Serializable
         data class RatingMediaObject(
-            @Transient override val title: String?,
-            @Transient override val year: Int?,
-            @Transient override val ids: Ids?,
+            @Transient override val title: String? = null,
+            @Transient override val year: Int? = null,
+            @Transient override val ids: Ids? = null,
             @SerialName("rating") val rating: Int,
             @SerialName("rated_at") val ratedAt: String? = getDateTime(unixTime)
         ) : MediaObject(title, year, ids)
 
         @Serializable
         data class StatusMediaObject(
-            @Transient override val title: String?,
-            @Transient override val year: Int?,
-            @Transient override val ids: Ids?,
+            @Transient override val title: String? = null,
+            @Transient override val year: Int? = null,
+            @Transient override val ids: Ids? = null,
             @SerialName("to") val to: String,
             @SerialName("watched_at") val watchedAt: String? = getDateTime(unixTime)
         ) : MediaObject(title, year, ids)
