@@ -76,7 +76,7 @@ class ErrorLoadingException(message: String? = null) : Exception(message)
 
 //val baseHeader = mapOf("User-Agent" to USER_AGENT)
 
-val json = Json { ignoreUnknownKeys = true }
+val appJson = Json { ignoreUnknownKeys = true }
 val mapper = JsonMapper.builder().addModule(kotlinModule())
     .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).build()!!
 
