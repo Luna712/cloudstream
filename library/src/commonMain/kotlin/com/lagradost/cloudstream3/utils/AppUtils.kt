@@ -31,7 +31,7 @@ object AppUtils {
         }
     }
 
-    inline fun <reified T : Any> parseJson(value: String): T {
+    inline fun <reified T> parseJson(value: String): T {
         // @Serializable generates a serializer at compile time; contextual serializers are
         // registered manually in serializersModule, we need both to support all cases
         val serializer = T::class.serializerOrNull() ?: json.serializersModule.getContextual(T::class)
@@ -46,12 +46,12 @@ object AppUtils {
         }
     }
 
-    inline fun <reified T : Any> parseJson(reader: Reader, valueType: Class<T>): T {
+    inline fun <reified T> parseJson(reader: Reader, valueType: Class<T>): T {
         // Reader-based parsing has no kotlinx equivalent, fall back to Jackson
         return mapper.readValue(reader, valueType)
     }
 
-    inline fun <reified T : Any> tryParseJson(value: String?): T? {
+    inline fun <reified T> tryParseJson(value: String?): T? {
         return try {
             parseJson(value ?: return null)
         } catch (_: Exception) {
