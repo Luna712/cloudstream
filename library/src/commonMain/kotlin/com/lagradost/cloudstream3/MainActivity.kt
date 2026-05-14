@@ -15,10 +15,10 @@ private val jsonResponseParser = object : ResponseParser {
     override fun <T : Any> parse(text: String, kClass: KClass<T>): T {
         // @Serializable generates a serializer at compile time; contextual serializers are
         // registered manually in serializersModule, we need both to support all cases
-        val serializer = kClass.serializerOrNull() ?: appJson.serializersModule.getContextual(kClass)
+        val serializer = kClass.serializerOrNull() ?: json.serializersModule.getContextual(kClass)
         return if (serializer != null) {
             try {
-                appJson.decodeFromString(serializer, text)
+                json.decodeFromString(serializer, text)
             } catch (_: Exception) {
                 mapper.readValue(text, kClass.java)
             }
@@ -38,11 +38,11 @@ private val jsonResponseParser = object : ResponseParser {
     override fun writeValueAsString(obj: Any): String {
         // @Serializable generates a serializer at compile time; contextual serializers are
         // registered manually in serializersModule, we need both to support all cases
-        val serializer = obj::class.serializerOrNull() ?: appJson.serializersModule.getContextual(obj::class)
+        val serializer = obj::class.serializerOrNull() ?: json.serializersModule.getContextual(obj::class)
         return if (serializer != null) {
             try {
                 // If it has a serializer, encode it safely via kotlinx.serialization
-                appJson.encodeToString(JsonElement.serializer(), appJson.parseToJsonElement(obj.toString()))
+                json.encodeToString(JsonElement.serializer(), json.parseToJsonElement(obj.toString()))
             } catch (_: Exception) {
                 mapper.writeValueAsString(obj)
             }
