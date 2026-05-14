@@ -28,7 +28,7 @@ object AppUtils {
         }
     }
 
-    @Deprecated("Use parseJson with a non-nullable type instead", level = DeprecationLevel.HIDDEN)
+    @Deprecated("Use parseJson with a non-nullable type instead", level = DeprecationLevel.ERROR)
     inline fun <reified T> parseJson(value: String): T {
         return mapper.readValue(value)
     }
