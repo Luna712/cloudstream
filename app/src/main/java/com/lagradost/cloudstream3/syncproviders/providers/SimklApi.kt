@@ -568,7 +568,7 @@ class SimklApi : SyncAPI() {
         }
 
         @Serializable
-        class HistoryMediaObject(
+        data class HistoryMediaObject(
             @SerialName("title") title: String? = null,
             @SerialName("year") year: Int? = null,
             @SerialName("ids") ids: Ids? = null,
@@ -579,7 +579,7 @@ class SimklApi : SyncAPI() {
         ) : MediaObject(title, year, ids, seasons = seasons, episodes = episodes)
 
         @Serializable
-        class RatingMediaObject(
+        data class RatingMediaObject(
             @SerialName("title") title: String?,
             @SerialName("year") year: Int?,
             @SerialName("ids") ids: Ids?,
@@ -588,7 +588,7 @@ class SimklApi : SyncAPI() {
         ) : MediaObject(title, year, ids)
 
         @Serializable
-        class StatusMediaObject(
+        data class StatusMediaObject(
             @SerialName("title") title: String?,
             @SerialName("year") year: Int?,
             @SerialName("ids") ids: Ids?,
