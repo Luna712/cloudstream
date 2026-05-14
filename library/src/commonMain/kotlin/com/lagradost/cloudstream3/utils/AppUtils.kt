@@ -29,6 +29,7 @@ object AppUtils {
     }
 
     inline fun <reified T : Any?> parseJson(value: String): T {
+        if (null is T) throw IllegalArgumentException("parseJson does not support nullable types, use tryParseJson instead")
         // @Serializable generates a serializer at compile time; contextual serializers are
         // registered manually in serializersModule, we need both to support all cases
         val serializer = T::class.serializerOrNull() ?: json.serializersModule.getContextual(T::class)
