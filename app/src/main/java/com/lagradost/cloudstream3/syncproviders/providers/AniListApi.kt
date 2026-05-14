@@ -744,8 +744,11 @@ class AniListApi : SyncAPI() {
     }
 
     /** Used to query a saved MediaItem on the list to get the id for removal */
+    @Serializable
     data class MediaListItemRoot(@SerialName("data") val data: MediaListItem? = null)
+    @Serializable
     data class MediaListItem(@SerialName("MediaList") val mediaList: MediaListId? = null)
+    @Serializable
     data class MediaListId(@SerialName("id") val id: Long? = null)
 
     private suspend fun postDataAboutId(
@@ -848,14 +851,17 @@ class AniListApi : SyncAPI() {
         return seasons.toList()
     }
 
+    @Serializable
     data class SeasonResponse(
         @SerialName("data") val data: SeasonData,
     )
 
+    @Serializable
     data class SeasonData(
         @SerialName("Media") val media: SeasonMedia,
     )
 
+    @Serializable
     data class SeasonMedia(
         @SerialName("id") val id: Int?,
         @SerialName("title") val title: MediaTitle?,
@@ -876,22 +882,26 @@ class AniListApi : SyncAPI() {
         @SerialName("recommendations") val recommendations: RecommendationConnection?,
     )
 
+    @Serializable
     data class RecommendationConnection(
         @SerialName("edges") val edges: List<RecommendationEdge> = emptyList(),
         @SerialName("nodes") val nodes: List<Recommendation> = emptyList(),
         //@SerialName("pageInfo") val pageInfo: PageInfo,
     )
 
+    @Serializable
     data class RecommendationEdge(
         //@SerialName("rating") val rating: Int,
         @SerialName("node") val node: Recommendation,
     )
 
+    @Serializable
     data class Recommendation(
         val id: Long,
         @SerialName("mediaRecommendation") val mediaRecommendation: SeasonMedia?,
     )
 
+    @Serializable
     data class CharacterName(
         @SerialName("name") val first: String?,
         @SerialName("middle") val middle: String?,
@@ -903,17 +913,20 @@ class AniListApi : SyncAPI() {
         @SerialName("userPreferred") val userPreferred: String?,
     )
 
+    @Serializable
     data class CharacterImage(
         @SerialName("large") val large: String?,
         @SerialName("medium") val medium: String?,
     )
 
+    @Serializable
     data class Character(
         @SerialName("name") val name: CharacterName?,
         @SerialName("age") val age: String?,
         @SerialName("image") val image: CharacterImage?,
     )
 
+    @Serializable
     data class CharacterEdge(
         @SerialName("id") val id: Int?,
         /**
@@ -934,11 +947,13 @@ class AniListApi : SyncAPI() {
         @SerialName("node") val node: Character?,
     )
 
+    @Serializable
     data class StaffImage(
         @SerialName("large") val large: String?,
         @SerialName("medium") val medium: String?,
     )
 
+    @Serializable
     data class StaffName(
         @SerialName("name") val first: String?,
         @SerialName("middle") val middle: String?,
@@ -949,24 +964,28 @@ class AniListApi : SyncAPI() {
         @SerialName("userPreferred") val userPreferred: String?,
     )
 
+    @Serializable
     data class Staff(
         @SerialName("image") val image: StaffImage?,
         @SerialName("name") val name: StaffName?,
         @SerialName("age") val age: Int?,
     )
 
+    @Serializable
     data class CharacterConnection(
         @SerialName("edges") val edges: List<CharacterEdge>?,
         @SerialName("nodes") val nodes: List<Character>?,
         //@SerialName("pageInfo")  pageInfo: PageInfo
     )
 
+    @Serializable
     data class MediaTrailer(
         @SerialName("id") val id: String?,
         @SerialName("site") val site: String?,
         @SerialName("thumbnail") val thumbnail: String?,
     )
 
+    @Serializable
     data class MediaCoverImage(
         @SerialName("extraLarge") val extraLarge: String?,
         @SerialName("large") val large: String?,
@@ -974,29 +993,35 @@ class AniListApi : SyncAPI() {
         @SerialName("color") val color: String?,
     )
 
+    @Serializable
     data class SeasonNextAiringEpisode(
         @SerialName("episode") val episode: Int?,
         @SerialName("timeUntilAiring") val timeUntilAiring: Int?,
     )
 
+    @Serializable
     data class SeasonEdges(
         @SerialName("edges") val edges: List<SeasonEdge>?,
     )
 
+    @Serializable
     data class SeasonEdge(
         @SerialName("id") val id: Int?,
         @SerialName("relationType") val relationType: String?,
         @SerialName("node") val node: SeasonNode?,
     )
 
+    @Serializable
     data class AniListFavoritesMediaConnection(
         @SerialName("nodes") val nodes: List<LikeNode>,
     )
 
+    @Serializable
     data class AniListFavourites(
         @SerialName("anime") val anime: AniListFavoritesMediaConnection,
     )
 
+    @Serializable
     data class MediaTitle(
         @SerialName("romaji") val romaji: String?,
         @SerialName("english") val english: String?,
@@ -1004,6 +1029,7 @@ class AniListApi : SyncAPI() {
         @SerialName("userPreferred") val userPreferred: String?,
     )
 
+    @Serializable
     data class SeasonNode(
         @SerialName("id") val id: Int,
         @SerialName("format") val format: String?,
@@ -1014,10 +1040,12 @@ class AniListApi : SyncAPI() {
 //        @SerialName("nextAiringEpisode") val nextAiringEpisode: SeasonNextAiringEpisode?,
     )
 
+    @Serializable
     data class AniListAvatar(
         @SerialName("large") val large: String?,
     )
 
+    @Serializable
     data class AniListViewer(
         @SerialName("id") val id: Int,
         @SerialName("name") val name: String,
@@ -1025,25 +1053,30 @@ class AniListApi : SyncAPI() {
         @SerialName("favourites") val favourites: AniListFavourites?,
     )
 
+    @Serializable
     data class AniListData(
         @SerialName("Viewer") val viewer: AniListViewer?,
     )
 
+    @Serializable
     data class AniListRoot(
         @SerialName("data") val data: AniListData?,
     )
 
+    @Serializable
     data class AniListUser(
         @SerialName("id") val id: Int,
         @SerialName("name") val name: String,
         @SerialName("picture") val picture: String?,
     )
 
+    @Serializable
     data class LikeNode(
         @SerialName("id") val id: Int?,
         //@SerialName("idMal") public int idMal;
     )
 
+    @Serializable
     data class LikePageInfo(
         @SerialName("total") val total: Int?,
         @SerialName("currentPage") val currentPage: Int?,
@@ -1052,27 +1085,33 @@ class AniListApi : SyncAPI() {
         @SerialName("hasNextPage") val hasNextPage: Boolean?,
     )
 
+    @Serializable
     data class LikeAnime(
         @SerialName("nodes") val nodes: List<LikeNode>?,
         @SerialName("pageInfo") val pageInfo: LikePageInfo?,
     )
 
+    @Serializable
     data class LikeFavourites(
         @SerialName("anime") val anime: LikeAnime?,
     )
 
+    @Serializable
     data class LikeViewer(
         @SerialName("favourites") val favourites: LikeFavourites?,
     )
 
+    @Serializable
     data class LikeData(
         @SerialName("Viewer") val viewer: LikeViewer?,
     )
 
+    @Serializable
     data class LikeRoot(
         @SerialName("data") val data: LikeData?,
     )
 
+    @Serializable
     data class AniListTitleHolder(
         @SerialName("title") val title: Title?,
         @SerialName("isFavourite") val isFavourite: Boolean?,
@@ -1083,17 +1122,20 @@ class AniListApi : SyncAPI() {
         @SerialName("type") val type: AniListStatusType?,
     )
 
+    @Serializable
     data class GetDataMediaListEntry(
         @SerialName("progress") val progress: Int?,
         @SerialName("status") val status: String?,
         @SerialName("score") val score: Int?,
     )
 
+    @Serializable
     data class Nodes(
         @SerialName("id") val id: Int?,
         @SerialName("mediaRecommendation") val mediaRecommendation: MediaRecommendation?
     )
 
+    @Serializable
     data class GetDataMedia(
         @SerialName("isFavourite") val isFavourite: Boolean?,
         @SerialName("episodes") val episodes: Int?,
@@ -1101,28 +1143,34 @@ class AniListApi : SyncAPI() {
         @SerialName("mediaListEntry") val mediaListEntry: GetDataMediaListEntry?
     )
 
+    @Serializable
     data class Recommendations(
         @SerialName("nodes") val nodes: List<Nodes>?
     )
 
+    @Serializable
     data class GetDataData(
         @SerialName("Media") val media: GetDataMedia?,
     )
 
+    @Serializable
     data class GetDataRoot(
         @SerialName("data") val data: GetDataData?,
     )
 
+    @Serializable
     data class GetSearchTitle(
         @SerialName("romaji") val romaji: String?,
     )
 
+    @Serializable
     data class TrailerObject(
         @SerialName("id") val id: String?,
         @SerialName("thumbnail") val thumbnail: String?,
         @SerialName("site") val site: String?,
     )
 
+    @Serializable
     data class GetSearchMedia(
         @SerialName("id") val id: Int,
         @SerialName("idMal") val idMal: Int?,
@@ -1138,14 +1186,17 @@ class AniListApi : SyncAPI() {
         @SerialName("relations") val relations: SeasonEdges?
     )
 
+    @Serializable
     data class GetSearchPage(
         @SerialName("Page") val page: GetSearchData?,
     )
 
+    @Serializable
     data class GetSearchData(
         @SerialName("media") val media: List<GetSearchMedia>?,
     )
 
+    @Serializable
     data class GetSearchRoot(
         @SerialName("data") val data: GetSearchPage?,
     )
