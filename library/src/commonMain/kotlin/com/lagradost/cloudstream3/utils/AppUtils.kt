@@ -46,7 +46,7 @@ object AppUtils {
         }
     }
 
-    inline fun <reified T : Any> parseJson(reader: Reader, valueType: Class<T>): T {
+    inline fun <reified T> parseJson(reader: Reader, valueType: Class<T>): T {
         // Reader-based parsing has no kotlinx equivalent, fall back to Jackson
         return mapper.readValue(reader, valueType)
     }
