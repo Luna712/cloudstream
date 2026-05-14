@@ -2,6 +2,7 @@ package com.lagradost.cloudstream3.extractors
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonElement
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.base64Decode
@@ -48,8 +49,8 @@ open class GUpload: ExtractorApi() {
         @SerialName("posterUrl") val posterUrl: String? = null,
         @SerialName("videoId") val videoId: String? = null,
         @SerialName("primaryColor") val primaryColor: String? = null,
-        @SerialName("audioTracks") val audioTracks: List<Any?> = emptyList(),
-        @SerialName("subtitleTracks") val subtitleTracks: List<Any?> = emptyList(),
+        @SerialName("audioTracks") val audioTracks: List<JsonElement> = emptyList(),
+        @SerialName("subtitleTracks") val subtitleTracks: List<JsonElement> = emptyList(),
         @SerialName("vastFallbackList") val vastFallbackList: List<String> = emptyList(),
         @SerialName("videoOwnerId") val videoOwnerId: Long = 0,
     )
