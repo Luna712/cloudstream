@@ -13,7 +13,6 @@ import com.lagradost.cloudstream3.InternalAPI
 import com.lagradost.cloudstream3.mvvm.logError
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
-import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.serializer
@@ -121,15 +120,13 @@ object DataStore {
         }
     }
 
-    @InternalAPI
-    @Suppress("UNCHECKED_CAST")
-    fun anyToJsonString(obj: Any): String {
+    private fun anyToJsonString(obj: Any): String {
         // @Serializable generates a serializer at compile time; contextual serializers are
         // registered manually in serializersModule, we need both to support all cases
-        val serializer = (obj::class.serializerOrNull() ?: json.serializersModule.getContextual(obj::class)) as? KSerializer<Any>
+        val serializer = obj::class.serializerOrNull() ?: json.serializersModule.getContextual(obj::class)
         return if (serializer != null) {
             try {
-                json.encodeToString(serializer, obj)
+                json.encodeToString(JsonElement.serializer(), json.parseToJsonElement(obj.toString()))
             } catch (_: Exception) {
                 mapper.writeValueAsString(obj)
             }
