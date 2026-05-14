@@ -28,11 +28,6 @@ object AppUtils {
         }
     }
 
-    @Deprecated("Use parseJson with a non-nullable type instead", level = DeprecationLevel.ERROR)
-    inline fun <reified T> parseJson(value: String): T {
-        return mapper.readValue(value)
-    }
-
     inline fun <reified T : Any> parseJson(value: String): T {
         // @Serializable generates a serializer at compile time; contextual serializers are
         // registered manually in serializersModule, we need both to support all cases
