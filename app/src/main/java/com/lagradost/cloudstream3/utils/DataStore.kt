@@ -103,7 +103,7 @@ object DataStore {
 
     val json = Json { ignoreUnknownKeys = true }
 
-    private fun <T : Any> String.parseToKotlinObject(kClass: KClass<T>): T {
+    internal fun <T : Any> String.parseToKotlinObject(kClass: KClass<T>): T {
         // @Serializable generates a serializer at compile time; contextual serializers are
         // registered manually in serializersModule, we need both to support all cases
         val serializer = kClass.serializerOrNull() ?: json.serializersModule.getContextual(kClass)
@@ -213,7 +213,7 @@ object DataStore {
         }
     }
 
-    fun <T> Context.getKey(path: String, valueType: Class<T>): T? {
+    fun <T : Any> Context.getKey(path: String, valueType: Class<T>): T? {
         try {
             val json: String = getSharedPrefs().getString(path, null) ?: return null
             return json.parseToKotlinObject(valueType.kotlin)
