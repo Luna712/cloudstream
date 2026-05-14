@@ -22,7 +22,9 @@ private val jsonResponseParser = object : ResponseParser {
     val json = Json { ignoreUnknownKeys = true }
 
     override fun <T : Any> parse(text: String, kClass: KClass<T>): T {
-        val serializer = json.serializersModule.getContextual(kClass)
+        // @Serializable generates a serializer at compile time; contextual serializers are
+        // registered manually in serializersModule, we need both to support all cases
+        val serializer = kClass.serializerOrNull() ?: json.serializersModule.getContextual(kClass)
         return if (serializer != null) {
             try {
                 json.decodeFromString(serializer, text)
@@ -43,7 +45,9 @@ private val jsonResponseParser = object : ResponseParser {
     }
 
     override fun writeValueAsString(obj: Any): String {
-        val serializer = json.serializersModule.getContextual(obj::class)
+        // @Serializable generates a serializer at compile time; contextual serializers are
+        // registered manually in serializersModule, we need both to support all cases
+        val serializer = kClass.serializerOrNull() ?: json.serializersModule.getContextual(obj::class)
         return if (serializer != null) {
             try {
                 // If it has a serializer, encode it safely via kotlinx.serialization
