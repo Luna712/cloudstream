@@ -787,18 +787,22 @@ query {
         return map
     }
 
+    @Serializable
     data class KitsuResponse(
         val data: Data? = null
     ) {
+        @Serializable
         data class Data(
             val lookupMapping: LookupMapping? = null
         )
 
+        @Serializable
         data class LookupMapping(
             val id: String? = null,
             val episodes: Episodes? = null
         )
 
+        @Serializable
         data class Episodes(
             val nodes: List<Node?>? = null
         )
@@ -812,18 +816,22 @@ query {
             val thumbnail: Thumbnail? = null
         )
 
+        @Serializable
         data class Description(
             val en: String? = null
         )
 
+        @Serializable
         data class Thumbnail(
             val original: Original? = null
         )
 
+        @Serializable
         data class Original(
             val url: String? = null
         )
 
+        @Serializable
         data class Titles(
             val canonical: String? = null
         )
