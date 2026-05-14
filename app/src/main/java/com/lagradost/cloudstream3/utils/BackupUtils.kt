@@ -23,6 +23,7 @@ import com.lagradost.cloudstream3.syncproviders.providers.AniListApi.Companion.A
 import com.lagradost.cloudstream3.syncproviders.providers.MALApi.Companion.MAL_CACHED_LIST
 import com.lagradost.cloudstream3.syncproviders.providers.KitsuApi.Companion.KITSU_CACHED_LIST
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
+import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream3.utils.Coroutines.main
 import com.lagradost.cloudstream3.utils.DataStore.getDefaultSharedPrefs
@@ -137,9 +138,7 @@ object BackupUtils {
     )
 
     @Suppress("UNCHECKED_CAST")
-    private fun getBackup(context: Context?): BackupFile? {
-        if (context == null) return null
-
+    private fun getBackup(context: Context): BackupFile {
         val allData = context.getSharedPrefs().all.filter { it.key.isTransferable() }
         val allSettings = context.getDefaultSharedPrefs().all.filter { it.key.isTransferable() }
 
@@ -218,7 +217,7 @@ object BackupUtils {
 
             fileStream = stream.openNew()
             printStream = PrintWriter(fileStream)
-            printStream.print(mapper.writeValueAsString(backupFile))
+            printStream.print(backupFile.toJson())
 
             showToast(
                 R.string.backup_success,
