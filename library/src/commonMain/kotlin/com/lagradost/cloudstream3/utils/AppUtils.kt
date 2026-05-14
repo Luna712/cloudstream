@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream3.utils
 
+import com.fasterxml.jackson.module.kotlin.readValue
 import com.lagradost.cloudstream3.json
 import com.lagradost.cloudstream3.mapper
 import kotlinx.serialization.ExperimentalSerializationApi
