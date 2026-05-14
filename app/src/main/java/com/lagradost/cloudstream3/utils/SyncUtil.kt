@@ -9,7 +9,6 @@ import com.lagradost.cloudstream3.APIHolder.apis
 //import com.lagradost.cloudstream3.animeproviders.AniflixProvider
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.mvvm.logError
-import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import java.util.concurrent.TimeUnit
 
 object SyncUtil {
@@ -71,11 +70,10 @@ object SyncUtil {
             //Gogoanime, Twistmoe and 9anime
             val url =
                 "https://raw.githubusercontent.com/MALSync/MAL-Sync-Backup/master/data/pages/$site/$slug.json"
-            val response = app.get(url, cacheTime = 1, cacheUnit = TimeUnit.DAYS).text()
-            val mapped = parseJson<MalSyncPage?>(response)
+            val response = app.get(url, cacheTime = 1, cacheUnit = TimeUnit.DAYS).parsed<MalSyncPage?>()
 
-            val overrideMal = mapped?.malId ?: mapped?.mal?.id ?: mapped?.anilist?.malId
-            val overrideAnilist = mapped?.aniId ?: mapped?.anilist?.id
+            val overrideMal = response?.malId ?: response?.mal?.id ?: response?.anilist?.malId
+            val overrideAnilist = response?.aniId ?: response?.anilist?.id
 
             if (overrideMal != null) {
                 return overrideMal.toString() to overrideAnilist?.toString()
