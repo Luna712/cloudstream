@@ -47,7 +47,7 @@ data class Repository(
  * 2: Slow
  * 3: Beta only
  * */
- @Serializable
+@Serializable
 data class SitePlugin(
     // Url to the .cs3 file
     @SerialName("url") val url: String,

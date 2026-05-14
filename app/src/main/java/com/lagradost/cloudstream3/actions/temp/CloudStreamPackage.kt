@@ -101,7 +101,7 @@ class CloudStreamPackage : OpenInAppAction(
             }
     }
 
-
+    @Serializable
     data class MinimalSubtitleLink(
         @SerialName("url")
         val url: String,

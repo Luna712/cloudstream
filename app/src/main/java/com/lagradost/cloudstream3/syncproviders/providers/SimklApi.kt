@@ -238,7 +238,7 @@ class SimklApi : SyncAPI() {
             @SerialName("account")
             val account: Account,
         ) {
-           @Serializable
+            @Serializable
             data class User(
                 @SerialName("name")
                 val name: String,
