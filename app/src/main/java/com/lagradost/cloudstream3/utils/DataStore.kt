@@ -120,7 +120,8 @@ object DataStore {
         }
     }
 
-    private fun anyToJsonString(obj: Any): String {
+    @InternalAPI
+    fun anyToJsonString(obj: Any): String {
         // @Serializable generates a serializer at compile time; contextual serializers are
         // registered manually in serializersModule, we need both to support all cases
         val serializer = obj::class.serializerOrNull() ?: json.serializersModule.getContextual(obj::class)
