@@ -10,26 +10,31 @@ import com.lagradost.nicehttp.ResponseParser
 import io.ktor.client.engine.okhttp.OkHttpEngine
 import okhttp3.OkHttpClient
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.serializer
+import kotlinx.serialization.serializerOrNull
 import kotlin.reflect.KClass
 
 // Short name for requests client to make it nicer to use
-@OptIn(ExperimentalSerializationApi::class)
-private val jacksonResponseParser = object : ResponseParser {
+@OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
+private val jsonResponseParser = object : ResponseParser {
     val mapper: ObjectMapper = jacksonObjectMapper().configure(
         DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
         false
     )
-    val kotlinxJson = Json { ignoreUnknownKeys = true }
+
+    val json = Json { ignoreUnknownKeys = true }
 
     override fun <T : Any> parse(text: String, kClass: KClass<T>): T {
-        val serializer = kotlinxJson.serializersModule.getContextual(kClass)
+        // @Serializable generates a serializer at compile time; contextual serializers are
+        // registered manually in serializersModule, we need both to support all cases
+        val serializer = kClass.serializerOrNull() ?: json.serializersModule.getContextual(kClass)
         return if (serializer != null) {
             try {
-                kotlinxJson.decodeFromString(serializer, text)
-            } catch (e: Exception) {
+                json.decodeFromString(serializer, text)
+            } catch (_: Exception) {
                 mapper.readValue(text, kClass.java)
             }
         } else {
@@ -40,18 +45,20 @@ private val jacksonResponseParser = object : ResponseParser {
     override fun <T : Any> parseSafe(text: String, kClass: KClass<T>): T? {
         return try {
             parse(text, kClass)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             null
         }
     }
 
     override fun writeValueAsString(obj: Any): String {
-        val serializer = kotlinxJson.serializersModule.getContextual(obj::class)
+        // @Serializable generates a serializer at compile time; contextual serializers are
+        // registered manually in serializersModule, we need both to support all cases
+        val serializer = obj::class.serializerOrNull() ?: json.serializersModule.getContextual(obj::class)
         return if (serializer != null) {
             try {
-                // If it has a serializer, encode it safely via Kotlinx
-                kotlinxJson.encodeToString(JsonElement.serializer(), kotlinxJson.parseToJsonElement(obj.toString()))
-            } catch (e: Exception) {
+                // If it has a serializer, encode it safely via kotlinx.serialization
+                json.encodeToString(JsonElement.serializer(), json.parseToJsonElement(obj.toString()))
+            } catch (_: Exception) {
                 mapper.writeValueAsString(obj)
             }
         } else {
@@ -59,10 +66,9 @@ private val jacksonResponseParser = object : ResponseParser {
         }
     }
 }
-
 /** The default networking helper. This helper performs SSL checks.
  * If you need to make requests to websites with invalid SSL certificates use insecureApp instead. */
-var app = Requests(responseParser = jacksonResponseParser).apply {
+var app = Requests(responseParser = jsonResponseParser).apply {
     defaultHeaders = mapOf("user-agent" to USER_AGENT)
 }
 
@@ -75,6 +81,6 @@ val okHttpClient = (app.baseClient.engine as? OkHttpEngine)
  * This should NEVER be used for sensitive networking operations such as logins. Only use this when required. */
 @Prerelease
 @UnsafeSSL
-var insecureApp = Requests(responseParser = jacksonResponseParser).apply {
+var insecureApp = Requests(responseParser = jsonResponseParser).apply {
     defaultHeaders = mapOf("user-agent" to USER_AGENT)
 }
