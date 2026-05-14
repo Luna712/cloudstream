@@ -2,6 +2,7 @@ package com.lagradost.cloudstream3.extractors
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonElement
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.base64DecodeArray
@@ -190,5 +191,5 @@ data class PlaybackDecryptSource(
     val url: String,
     @SerialName("bitrate_kbps")
     val bitrateKbps: Long,
-    val height: Any?,
+    val height: JsonElement?,
 )
