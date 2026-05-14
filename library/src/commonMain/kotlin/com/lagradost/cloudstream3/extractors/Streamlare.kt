@@ -29,18 +29,18 @@ open class Slmaxed : ExtractorApi() {
 
     @Serializable
     data class JsonResponse(
-        @SerialName val status: String? = null,
-        @SerialName val message: String? = null,
-        @SerialName val type: String? = null,
-        @SerialName val token: String? = null,
-        @SerialName val result: Map<String, Result>? = null
+        @SerialName("status") val status: String? = null,
+        @SerialName("message") val message: String? = null,
+        @SerialName("type") val type: String? = null,
+        @SerialName("token") val token: String? = null,
+        @SerialName("result") val result: Map<String, Result>? = null
     )
 
     @Serializable
     data class Result(
-        @SerialName val label: String? = null,
-        @SerialName val file: String? = null,
-        @SerialName val type: String? = null
+        @SerialName("label") val label: String? = null,
+        @SerialName("file") val file: String? = null,
+        @SerialName("type") val type: String? = null
     )
 
     override suspend fun getUrl(url: String, referer: String?): List<ExtractorLink>? {
