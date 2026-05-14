@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.extractors.helper
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.base64DecodeArray
 import com.lagradost.cloudstream3.base64Encode
 import com.lagradost.cloudstream3.utils.AppUtils
@@ -91,10 +92,11 @@ object AesHelper {
             .toByteArray()
     }
 
+    @Serializable
     private data class AesData(
-        @JsonProperty("ct") val ct: String,
-        @JsonProperty("iv") val iv: String,
-        @JsonProperty("s") val s: String
+        @SerialName("ct") val ct: String,
+        @SerialName("iv") val iv: String,
+        @SerialName("s") val s: String
     )
 
 }

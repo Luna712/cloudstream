@@ -1,7 +1,8 @@
 package com.lagradost.cloudstream3.utils.downloader
 
 import android.net.Uri
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.Score
 import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.services.DownloadQueueService
@@ -15,9 +16,10 @@ import java.util.Objects
 
 object DownloadObjects {
     /** An item can either be something to resume or something new to start */
+    @Serializable
     data class DownloadQueueWrapper(
-        @JsonProperty("resumePackage") val resumePackage: DownloadResumePackage?,
-        @JsonProperty("downloadItem") val downloadItem: DownloadQueueItem?,
+        @SerialName("resumePackage") val resumePackage: DownloadResumePackage?,
+        @SerialName("downloadItem") val downloadItem: DownloadQueueItem?,
     ) {
         init {
             assert(resumePackage != null || downloadItem != null) {
@@ -30,25 +32,26 @@ object DownloadObjects {
             return DownloadQueueService.downloadInstances.value.any { it.downloadQueueWrapper.id == this.id }
         }
 
-        @JsonProperty("id")
+        @SerialName("id")
         val id = resumePackage?.item?.ep?.id ?: downloadItem!!.episode.id
 
-        @JsonProperty("parentId")
+        @SerialName("parentId")
         val parentId = resumePackage?.item?.ep?.parentId ?: downloadItem!!.episode.parentId
     }
 
     /** General data about the episode and show to start a download from. */
+    @Serializable
     data class DownloadQueueItem(
-        @JsonProperty("episode") val episode: ResultEpisode,
-        @JsonProperty("isMovie") val isMovie: Boolean,
-        @JsonProperty("resultName") val resultName: String,
-        @JsonProperty("resultType") val resultType: TvType,
-        @JsonProperty("resultPoster") val resultPoster: String?,
-        @JsonProperty("apiName") val apiName: String,
-        @JsonProperty("resultId") val resultId: Int,
-        @JsonProperty("resultUrl") val resultUrl: String,
-        @JsonProperty("links") val links: List<ExtractorLink>? = null,
-        @JsonProperty("subs") val subs: List<SubtitleData>? = null,
+        @SerialName("episode") val episode: ResultEpisode,
+        @SerialName("isMovie") val isMovie: Boolean,
+        @SerialName("resultName") val resultName: String,
+        @SerialName("resultType") val resultType: TvType,
+        @SerialName("resultPoster") val resultPoster: String?,
+        @SerialName("apiName") val apiName: String,
+        @SerialName("resultId") val resultId: Int,
+        @SerialName("resultUrl") val resultUrl: String,
+        @SerialName("links") val links: List<ExtractorLink>? = null,
+        @SerialName("subs") val subs: List<SubtitleData>? = null,
     ) {
         fun toWrapper(): DownloadQueueWrapper {
             return DownloadQueueWrapper(null, this)
@@ -56,22 +59,24 @@ object DownloadObjects {
     }
 
 
+    @Serializable
     abstract class DownloadCached(
-        @JsonProperty("id") open val id: Int,
+        @SerialName("id") open val id: Int,
     )
 
+    @Serializable
     data class DownloadEpisodeCached(
-        @JsonProperty("name") val name: String?,
-        @JsonProperty("poster") val poster: String?,
-        @JsonProperty("episode") val episode: Int,
-        @JsonProperty("season") val season: Int?,
-        @JsonProperty("parentId") val parentId: Int,
-        @JsonProperty("score") var score: Score? = null,
-        @JsonProperty("description") val description: String?,
-        @JsonProperty("cacheTime") val cacheTime: Long,
+        @SerialName("name") val name: String?,
+        @SerialName("poster") val poster: String?,
+        @SerialName("episode") val episode: Int,
+        @SerialName("season") val season: Int?,
+        @SerialName("parentId") val parentId: Int,
+        @SerialName("score") var score: Score? = null,
+        @SerialName("description") val description: String?,
+        @SerialName("cacheTime") val cacheTime: Long,
         override val id: Int,
     ) : DownloadCached(id) {
-        @JsonProperty("rating", access = JsonProperty.Access.WRITE_ONLY)
+        @SerialName("rating")
         @Deprecated(
             "`rating` is the old scoring system, use score instead",
             replaceWith = ReplaceWith("score"),
@@ -87,71 +92,78 @@ object DownloadObjects {
     }
 
     /** What to display to the user for a downloaded show/movie. Includes info such as name, poster and url */
+    @Serializable
     data class DownloadHeaderCached(
-        @JsonProperty("apiName") val apiName: String,
-        @JsonProperty("url") val url: String,
-        @JsonProperty("type") val type: TvType,
-        @JsonProperty("name") val name: String,
-        @JsonProperty("poster") val poster: String?,
-        @JsonProperty("cacheTime") val cacheTime: Long,
+        @SerialName("apiName") val apiName: String,
+        @SerialName("url") val url: String,
+        @SerialName("type") val type: TvType,
+        @SerialName("name") val name: String,
+        @SerialName("poster") val poster: String?,
+        @SerialName("cacheTime") val cacheTime: Long,
         override val id: Int,
     ) : DownloadCached(id)
 
+    @Serializable
     data class DownloadResumePackage(
-        @JsonProperty("item") val item: DownloadItem,
+        @SerialName("item") val item: DownloadItem,
         /** Tills which link should get resumed */
-        @JsonProperty("linkIndex") val linkIndex: Int?,
+        @SerialName("linkIndex") val linkIndex: Int?,
     ) {
         fun toWrapper(): DownloadQueueWrapper {
             return DownloadQueueWrapper(this, null)
         }
     }
 
+    @Serializable
     data class DownloadItem(
-        @JsonProperty("source") val source: String?,
-        @JsonProperty("folder") val folder: String?,
-        @JsonProperty("ep") val ep: DownloadEpisodeMetadata,
-        @JsonProperty("links") val links: List<ExtractorLink>,
+        @SerialName("source") val source: String?,
+        @SerialName("folder") val folder: String?,
+        @SerialName("ep") val ep: DownloadEpisodeMetadata,
+        @SerialName("links") val links: List<ExtractorLink>,
     )
 
     /** Metadata for a specific episode and how to display it. */
+    @Serializable
     data class DownloadEpisodeMetadata(
-        @JsonProperty("id") val id: Int,
-        @JsonProperty("parentId") val parentId: Int,
-        @JsonProperty("mainName") val mainName: String,
-        @JsonProperty("sourceApiName") val sourceApiName: String?,
-        @JsonProperty("poster") val poster: String?,
-        @JsonProperty("name") val name: String?,
-        @JsonProperty("season") val season: Int?,
-        @JsonProperty("episode") val episode: Int?,
-        @JsonProperty("type") val type: TvType?,
+        @SerialName("id") val id: Int,
+        @SerialName("parentId") val parentId: Int,
+        @SerialName("mainName") val mainName: String,
+        @SerialName("sourceApiName") val sourceApiName: String?,
+        @SerialName("poster") val poster: String?,
+        @SerialName("name") val name: String?,
+        @SerialName("season") val season: Int?,
+        @SerialName("episode") val episode: Int?,
+        @SerialName("type") val type: TvType?,
     )
 
 
+    @Serializable
     data class DownloadedFileInfo(
-        @JsonProperty("totalBytes") val totalBytes: Long,
-        @JsonProperty("relativePath") val relativePath: String,
-        @JsonProperty("displayName") val displayName: String,
-        @JsonProperty("extraInfo") val extraInfo: String? = null,
-        @JsonProperty("basePath") val basePath: String? = null, // null is for legacy downloads. See getBasePath()
+        @SerialName("totalBytes") val totalBytes: Long,
+        @SerialName("relativePath") val relativePath: String,
+        @SerialName("displayName") val displayName: String,
+        @SerialName("extraInfo") val extraInfo: String? = null,
+        @SerialName("basePath") val basePath: String? = null, // null is for legacy downloads. See getBasePath()
         // Hash of the link associated with this DownloadFile, used so not override old data in the DownloadedFileInfo
-        @JsonProperty("linkHash") val linkHash : Int? = null
+        @SerialName("linkHash") val linkHash : Int? = null
     )
 
+    @Serializable
     data class DownloadedFileInfoResult(
-        @JsonProperty("fileLength") val fileLength: Long,
-        @JsonProperty("totalBytes") val totalBytes: Long,
-        @JsonProperty("path") val path: Uri,
+        @SerialName("fileLength") val fileLength: Long,
+        @SerialName("totalBytes") val totalBytes: Long,
+        @SerialName("path") val path: Uri,
     )
 
 
+    @Serializable
     data class ResumeWatching(
-        @JsonProperty("parentId") val parentId: Int,
-        @JsonProperty("episodeId") val episodeId: Int?,
-        @JsonProperty("episode") val episode: Int?,
-        @JsonProperty("season") val season: Int?,
-        @JsonProperty("updateTime") val updateTime: Long,
-        @JsonProperty("isFromDownload") val isFromDownload: Boolean,
+        @SerialName("parentId") val parentId: Int,
+        @SerialName("episodeId") val episodeId: Int?,
+        @SerialName("episode") val episode: Int?,
+        @SerialName("season") val season: Int?,
+        @SerialName("updateTime") val updateTime: Long,
+        @SerialName("isFromDownload") val isFromDownload: Boolean,
     )
 
 

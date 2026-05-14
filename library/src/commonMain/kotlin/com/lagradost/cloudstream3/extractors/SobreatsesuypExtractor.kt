@@ -4,7 +4,8 @@ package com.lagradost.cloudstream3.extractors
 
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.*
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 open class Sobreatsesuyp : ExtractorApi() {
     override val name            = "Sobreatsesuyp"
@@ -45,8 +46,9 @@ open class Sobreatsesuyp : ExtractorApi() {
         }
     }
 
+    @Serializable
     data class SobreatsesuypVideoData(
-        @JsonProperty("title") val title: String? = null,
-        @JsonProperty("file")  val file: String?  = null
+        @SerialName("title") val title: String? = null,
+        @SerialName("file")  val file: String?  = null
     )
 }

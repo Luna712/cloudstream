@@ -3,7 +3,8 @@ package com.lagradost.cloudstream3.ui.search
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isGone
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.databinding.SearchHistoryFooterBinding
 import com.lagradost.cloudstream3.databinding.SearchHistoryItemBinding
@@ -14,11 +15,12 @@ import com.lagradost.cloudstream3.ui.settings.Globals.EMULATOR
 import com.lagradost.cloudstream3.ui.settings.Globals.TV
 import com.lagradost.cloudstream3.ui.settings.Globals.isLayout
 
+@Serializable
 data class SearchHistoryItem(
-    @JsonProperty("searchedAt") val searchedAt: Long,
-    @JsonProperty("searchText") val searchText: String,
-    @JsonProperty("type") val type: List<TvType>,
-    @JsonProperty("key") val key: String,
+    @SerialName("searchedAt") val searchedAt: Long,
+    @SerialName("searchText") val searchText: String,
+    @SerialName("type") val type: List<TvType>,
+    @SerialName("key") val key: String,
 )
 
 data class SearchHistoryCallback(

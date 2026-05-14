@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.newSubtitleFile
@@ -52,18 +53,20 @@ open class Streamup() : ExtractorApi() {
         }
     }
 
+    @Serializable
     private data class StreamUpFileInfo(
         val title: String,
         val thumbnail: String,
-        @JsonProperty("streaming_url")
+        @SerialName("streaming_url")
         val streamingUrl: String,
         val subtitles: List<StreamUpSubtitle>?
     )
 
+    @Serializable
     private data class StreamUpSubtitle(
-        @JsonProperty("file_path")
+        @SerialName("file_path")
         val filePath: String,
-        @JsonProperty("language")
+        @SerialName("language")
         val language: String,
     )
 }

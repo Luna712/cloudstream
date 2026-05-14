@@ -47,22 +47,25 @@ class AniSkip : SkipAPI() {
         }
     }
 
+    @Serializable
     data class AniSkipResponse(
-        @JsonSerialize val found: Boolean,
-        @JsonSerialize val results: List<Stamp>?,
-        @JsonSerialize val message: String?,
-        @JsonSerialize val statusCode: Int
+        val found: Boolean,
+        val results: List<Stamp>?,
+        val message: String?,
+        val statusCode: Int
     )
 
+    @Serializable
     data class Stamp(
-        @JsonSerialize val interval: AniSkipInterval,
-        @JsonSerialize val skipType: String,
-        @JsonSerialize val skipId: String,
-        @JsonSerialize val episodeLength: Double
+        val interval: AniSkipInterval,
+        val skipType: String,
+        val skipId: String,
+        val episodeLength: Double
     )
 
+    @Serializable
     data class AniSkipInterval(
-        @JsonSerialize val startTime: Double,
-        @JsonSerialize val endTime: Double
+        val startTime: Double,
+        val endTime: Double
     )
 }

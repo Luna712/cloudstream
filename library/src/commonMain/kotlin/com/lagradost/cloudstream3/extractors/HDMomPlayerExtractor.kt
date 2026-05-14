@@ -6,7 +6,8 @@ import com.lagradost.api.Log
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.*
 import com.lagradost.cloudstream3.extractors.helper.AesHelper
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 
@@ -61,11 +62,12 @@ open class HDMomPlayer : ExtractorApi() {
         )
     }
 
+    @Serializable
     data class Track(
-        @JsonProperty("file")     val file: String?,
-        @JsonProperty("label")    val label: String?,
-        @JsonProperty("kind")     val kind: String?,
-        @JsonProperty("language") val language: String?,
-        @JsonProperty("default")  val default: String?
+        @SerialName("file")     val file: String?,
+        @SerialName("label")    val label: String?,
+        @SerialName("kind")     val kind: String?,
+        @SerialName("language") val language: String?,
+        @SerialName("default")  val default: String?
     )
 }

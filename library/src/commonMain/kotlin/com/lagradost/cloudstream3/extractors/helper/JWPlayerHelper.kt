@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.extractors.helper
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.Prerelease
 import com.lagradost.cloudstream3.SubtitleFile
@@ -141,15 +142,17 @@ object JwPlayerHelper {
         return this.replace(Regex("\"?$str\"?"), "\"$str\"")
     }
 
+    @Serializable
     private data class Source(
-        @JsonProperty("file") val file: String,
-        @JsonProperty("label") val label: String?,
-        @JsonProperty("type") val type: String?,
+        @SerialName("file") val file: String,
+        @SerialName("label") val label: String?,
+        @SerialName("type") val type: String?,
     )
 
+    @Serializable
     data class Track(
-        @JsonProperty("file") val file: String? = null,
-        @JsonProperty("label") val label: String? = null,
-        @JsonProperty("kind") val kind: String? = null,
+        @SerialName("file") val file: String? = null,
+        @SerialName("label") val label: String? = null,
+        @SerialName("kind") val kind: String? = null,
     )
 }

@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.ExtractorApi
@@ -36,22 +37,26 @@ open class Linkbox : ExtractorApi() {
             }
     }
 
+    @Serializable
     data class Resolutions(
-        @JsonProperty("url") val url: String? = null,
-        @JsonProperty("resolution") val resolution: String? = null,
+        @SerialName("url") val url: String? = null,
+        @SerialName("resolution") val resolution: String? = null,
     )
 
+    @Serializable
     data class ItemInfo(
-        @JsonProperty("resolutionList") val resolutionList: ArrayList<Resolutions>? = arrayListOf(),
+        @SerialName("resolutionList") val resolutionList: ArrayList<Resolutions>? = arrayListOf(),
     )
 
+    @Serializable
     data class Data(
-        @JsonProperty("itemInfo") val itemInfo: ItemInfo? = null,
-        @JsonProperty("itemId") val itemId: String? = null,
+        @SerialName("itemInfo") val itemInfo: ItemInfo? = null,
+        @SerialName("itemId") val itemId: String? = null,
     )
 
+    @Serializable
     data class Responses(
-        @JsonProperty("data") val data: Data? = null,
+        @SerialName("data") val data: Data? = null,
     )
 
 }

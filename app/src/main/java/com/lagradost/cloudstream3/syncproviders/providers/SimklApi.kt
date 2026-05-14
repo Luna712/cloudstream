@@ -3,7 +3,8 @@ package com.lagradost.cloudstream3.syncproviders.providers
 import androidx.annotation.StringRes
 import androidx.core.net.toUri
 import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.BuildConfig
 import com.lagradost.cloudstream3.CloudStreamApp
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
@@ -74,10 +75,11 @@ class SimklApi : SyncAPI() {
             ThirtyMinutes("30m")
         }
 
+        @Serializable
         private class SimklCacheWrapper<T>(
-            @JsonProperty("obj") val obj: T?,
-            @JsonProperty("validUntil") val validUntil: Long,
-            @JsonProperty("cacheTime") val cacheTime: Long = unixTime,
+            @SerialName("obj") val obj: T?,
+            @SerialName("validUntil") val validUntil: Long,
+            @SerialName("cacheTime") val cacheTime: Long = unixTime,
         ) {
             /** Returns true if cache is newer than cacheDays */
             fun isFresh(): Boolean {
@@ -209,81 +211,89 @@ class SimklApi : SyncAPI() {
         }
 
         // -------------------
-        @JsonInclude(JsonInclude.Include.NON_EMPTY)
+        @Serializable
         data class TokenRequest(
-            @JsonProperty("code") val code: String,
-            @JsonProperty("client_id") val clientId: String = CLIENT_ID,
-            @JsonProperty("client_secret") val clientSecret: String = CLIENT_SECRET,
-            @JsonProperty("redirect_uri") val redirectUri: String = "$APP_STRING://simkl",
-            @JsonProperty("grant_type") val grantType: String = "authorization_code"
+            @SerialName("code") val code: String,
+            @SerialName("client_id") val clientId: String = CLIENT_ID,
+            @SerialName("client_secret") val clientSecret: String = CLIENT_SECRET,
+            @SerialName("redirect_uri") val redirectUri: String = "$APP_STRING://simkl",
+            @SerialName("grant_type") val grantType: String = "authorization_code"
         )
 
+        @Serializable
         data class TokenResponse(
             /** No expiration date */
-            @JsonProperty("access_token") val accessToken: String,
-            @JsonProperty("token_type") val tokenType: String,
-            @JsonProperty("scope") val scope: String
+            @SerialName("access_token") val accessToken: String,
+            @SerialName("token_type") val tokenType: String,
+            @SerialName("scope") val scope: String
         )
         // -------------------
 
         /** https://simkl.docs.apiary.io/#reference/users/settings/receive-settings */
+        @Serializable
         data class SettingsResponse(
-            @JsonProperty("user")
+            @SerialName("user")
             val user: User,
-            @JsonProperty("account")
+            @SerialName("account")
             val account: Account,
         ) {
+           @Serializable
             data class User(
-                @JsonProperty("name")
+                @SerialName("name")
                 val name: String,
                 /** Url */
-                @JsonProperty("avatar")
+                @SerialName("avatar")
                 val avatar: String
             )
 
+            @Serializable
             data class Account(
-                @JsonProperty("id")
+                @SerialName("id")
                 val id: Int,
             )
         }
 
+        @Serializable
         data class PinAuthResponse(
-            @JsonProperty("result") val result: String,
-            @JsonProperty("device_code") val deviceCode: String,
-            @JsonProperty("user_code") val userCode: String,
-            @JsonProperty("verification_url") val verificationUrl: String,
-            @JsonProperty("expires_in") val expiresIn: Int,
-            @JsonProperty("interval") val interval: Int,
+            @SerialName("result") val result: String,
+            @SerialName("device_code") val deviceCode: String,
+            @SerialName("user_code") val userCode: String,
+            @SerialName("verification_url") val verificationUrl: String,
+            @SerialName("expires_in") val expiresIn: Int,
+            @SerialName("interval") val interval: Int,
         )
 
+        @Serializable
         data class PinExchangeResponse(
-            @JsonProperty("result") val result: String,
-            @JsonProperty("message") val message: String? = null,
-            @JsonProperty("access_token") val accessToken: String? = null,
+            @SerialName("result") val result: String,
+            @SerialName("message") val message: String? = null,
+            @SerialName("access_token") val accessToken: String? = null,
         )
 
         // -------------------
+        @Serializable
         data class ActivitiesResponse(
-            @JsonProperty("all") val all: String?,
-            @JsonProperty("tv_shows") val tvShows: UpdatedAt,
-            @JsonProperty("anime") val anime: UpdatedAt,
-            @JsonProperty("movies") val movies: UpdatedAt,
+            @SerialName("all") val all: String?,
+            @SerialName("tv_shows") val tvShows: UpdatedAt,
+            @SerialName("anime") val anime: UpdatedAt,
+            @SerialName("movies") val movies: UpdatedAt,
         ) {
+            @Serializable
             data class UpdatedAt(
-                @JsonProperty("all") val all: String?,
-                @JsonProperty("removed_from_list") val removedFromList: String?,
-                @JsonProperty("rated_at") val ratedAt: String?,
+                @SerialName("all") val all: String?,
+                @SerialName("removed_from_list") val removedFromList: String?,
+                @SerialName("rated_at") val ratedAt: String?,
             )
         }
 
         /** https://simkl.docs.apiary.io/#reference/tv/episodes/get-tv-show-episodes */
-        @JsonInclude(JsonInclude.Include.NON_EMPTY)
+        @Serializable
         data class EpisodeMetadata(
-            @JsonProperty("title") val title: String?,
-            @JsonProperty("description") val description: String?,
-            @JsonProperty("season") val season: Int?,
-            @JsonProperty("episode") val episode: Int,
-            @JsonProperty("img") val img: String?
+            @SerialName("title") val title: String?,
+            @SerialName("description") val description: String?,
+            @SerialName("season") val season: Int?,
+            @SerialName("episode") val episode: Int,
+            @SerialName("img") val img: String?
         ) {
             companion object {
                 fun convertToEpisodes(list: List<EpisodeMetadata>?): List<MediaObject.Season.Episode>? {
@@ -306,37 +316,38 @@ class SimklApi : SyncAPI() {
          * https://simkl.docs.apiary.io/#introduction/about-simkl-api/standard-media-objects
          * Useful for finding shows from metadata
          */
-        @JsonInclude(JsonInclude.Include.NON_EMPTY)
+        @Serializable
         open class MediaObject(
-            @JsonProperty("title") val title: String?,
-            @JsonProperty("year") val year: Int?,
-            @JsonProperty("ids") val ids: Ids?,
-            @JsonProperty("total_episodes") val totalEpisodes: Int? = null,
-            @JsonProperty("status") val status: String? = null,
-            @JsonProperty("poster") val poster: String? = null,
-            @JsonProperty("type") val type: String? = null,
-            @JsonProperty("seasons") val seasons: List<Season>? = null,
-            @JsonProperty("episodes") val episodes: List<Season.Episode>? = null
+            @SerialName("title") val title: String?,
+            @SerialName("year") val year: Int?,
+            @SerialName("ids") val ids: Ids?,
+            @SerialName("total_episodes") val totalEpisodes: Int? = null,
+            @SerialName("status") val status: String? = null,
+            @SerialName("poster") val poster: String? = null,
+            @SerialName("type") val type: String? = null,
+            @SerialName("seasons") val seasons: List<Season>? = null,
+            @SerialName("episodes") val episodes: List<Season.Episode>? = null
         ) {
             fun hasEnded(): Boolean {
                 return status == "released" || status == "ended"
             }
 
-            @JsonInclude(JsonInclude.Include.NON_EMPTY)
+            @Serializable
             data class Season(
-                @JsonProperty("number") val number: Int,
-                @JsonProperty("episodes") val episodes: List<Episode>
+                @SerialName("number") val number: Int,
+                @SerialName("episodes") val episodes: List<Episode>
             ) {
-                data class Episode(@JsonProperty("number") val number: Int)
+                @Serializable
+                data class Episode(@SerialName("number") val number: Int)
             }
 
-            @JsonInclude(JsonInclude.Include.NON_EMPTY)
+            @Serializable
             data class Ids(
-                @JsonProperty("simkl") val simkl: Int?,
-                @JsonProperty("imdb") val imdb: String? = null,
-                @JsonProperty("tmdb") val tmdb: String? = null,
-                @JsonProperty("mal") val mal: String? = null,
-                @JsonProperty("anilist") val anilist: String? = null,
+                @SerialName("simkl") val simkl: Int?,
+                @SerialName("imdb") val imdb: String? = null,
+                @SerialName("tmdb") val tmdb: String? = null,
+                @SerialName("mal") val mal: String? = null,
+                @SerialName("anilist") val anilist: String? = null,
             ) {
                 companion object {
                     fun fromMap(map: Map<SimklSyncServices, String>): Ids {
@@ -556,48 +567,49 @@ class SimklApi : SyncAPI() {
                 }
         }
 
-        @JsonInclude(JsonInclude.Include.NON_EMPTY)
+        @Serializable
         class HistoryMediaObject(
-            @JsonProperty("title") title: String? = null,
-            @JsonProperty("year") year: Int? = null,
-            @JsonProperty("ids") ids: Ids? = null,
-            @JsonProperty("seasons") seasons: List<Season>? = null,
-            @JsonProperty("episodes") episodes: List<Season.Episode>? = null,
-            @JsonProperty("rating") val rating: Int? = null,
-            @JsonProperty("rated_at") val ratedAt: String? = null,
+            @SerialName("title") title: String? = null,
+            @SerialName("year") year: Int? = null,
+            @SerialName("ids") ids: Ids? = null,
+            @SerialName("seasons") seasons: List<Season>? = null,
+            @SerialName("episodes") episodes: List<Season.Episode>? = null,
+            @SerialName("rating") val rating: Int? = null,
+            @SerialName("rated_at") val ratedAt: String? = null,
         ) : MediaObject(title, year, ids, seasons = seasons, episodes = episodes)
 
-        @JsonInclude(JsonInclude.Include.NON_EMPTY)
+        @Serializable
         class RatingMediaObject(
-            @JsonProperty("title") title: String?,
-            @JsonProperty("year") year: Int?,
-            @JsonProperty("ids") ids: Ids?,
-            @JsonProperty("rating") val rating: Int,
-            @JsonProperty("rated_at") val ratedAt: String? = getDateTime(unixTime)
+            @SerialName("title") title: String?,
+            @SerialName("year") year: Int?,
+            @SerialName("ids") ids: Ids?,
+            @SerialName("rating") val rating: Int,
+            @SerialName("rated_at") val ratedAt: String? = getDateTime(unixTime)
         ) : MediaObject(title, year, ids)
 
-        @JsonInclude(JsonInclude.Include.NON_EMPTY)
+        @Serializable
         class StatusMediaObject(
-            @JsonProperty("title") title: String?,
-            @JsonProperty("year") year: Int?,
-            @JsonProperty("ids") ids: Ids?,
-            @JsonProperty("to") val to: String,
-            @JsonProperty("watched_at") val watchedAt: String? = getDateTime(unixTime)
+            @SerialName("title") title: String?,
+            @SerialName("year") year: Int?,
+            @SerialName("ids") ids: Ids?,
+            @SerialName("to") val to: String,
+            @SerialName("watched_at") val watchedAt: String? = getDateTime(unixTime)
         ) : MediaObject(title, year, ids)
 
-        @JsonInclude(JsonInclude.Include.NON_EMPTY)
+        @Serializable
         data class StatusRequest(
-            @JsonProperty("movies") val movies: List<MediaObject>,
-            @JsonProperty("shows") val shows: List<MediaObject>
+            @SerialName("movies") val movies: List<MediaObject>,
+            @SerialName("shows") val shows: List<MediaObject>
         )
 
         /** https://simkl.docs.apiary.io/#reference/sync/get-all-items/get-all-items-in-the-user's-watchlist */
+        @Serializable
         data class AllItemsResponse(
-            @JsonProperty("shows")
+            @SerialName("shows")
             val shows: List<ShowMetadata> = emptyList(),
-            @JsonProperty("anime")
+            @SerialName("anime")
             val anime: List<ShowMetadata> = emptyList(),
-            @JsonProperty("movies")
+            @SerialName("movies")
             val movies: List<MovieMetadata> = emptyList(),
         ) {
             companion object {
@@ -648,13 +660,14 @@ class SimklApi : SyncAPI() {
                 fun toLibraryItem(): SyncAPI.LibraryItem
             }
 
+            @Serializable
             data class MovieMetadata(
-                @JsonProperty("last_watched_at") override val lastWatchedAt: String?,
-                @JsonProperty("status") override val status: String,
-                @JsonProperty("user_rating") override val userRating: Int?,
-                @JsonProperty("last_watched") override val lastWatched: String?,
-                @JsonProperty("watched_episodes_count") override val watchedEpisodesCount: Int?,
-                @JsonProperty("total_episodes_count") override val totalEpisodesCount: Int?,
+                @SerialName("last_watched_at") override val lastWatchedAt: String?,
+                @SerialName("status") override val status: String,
+                @SerialName("user_rating") override val userRating: Int?,
+                @SerialName("last_watched") override val lastWatched: String?,
+                @SerialName("watched_episodes_count") override val watchedEpisodesCount: Int?,
+                @SerialName("total_episodes_count") override val totalEpisodesCount: Int?,
                 val movie: ShowMetadata.Show
             ) : Metadata {
                 override fun getIds(): ShowMetadata.Show.Ids {
@@ -681,14 +694,15 @@ class SimklApi : SyncAPI() {
                 }
             }
 
+            @Serializable
             data class ShowMetadata(
-                @JsonProperty("last_watched_at") override val lastWatchedAt: String?,
-                @JsonProperty("status") override val status: String,
-                @JsonProperty("user_rating") override val userRating: Int?,
-                @JsonProperty("last_watched") override val lastWatched: String?,
-                @JsonProperty("watched_episodes_count") override val watchedEpisodesCount: Int?,
-                @JsonProperty("total_episodes_count") override val totalEpisodesCount: Int?,
-                @JsonProperty("show") val show: Show
+                @SerialName("last_watched_at") override val lastWatchedAt: String?,
+                @SerialName("status") override val status: String,
+                @SerialName("user_rating") override val userRating: Int?,
+                @SerialName("last_watched") override val lastWatched: String?,
+                @SerialName("watched_episodes_count") override val watchedEpisodesCount: Int?,
+                @SerialName("total_episodes_count") override val totalEpisodesCount: Int?,
+                @SerialName("show") val show: Show
             ) : Metadata {
                 override fun getIds(): Show.Ids {
                     return this.show.ids
@@ -713,24 +727,26 @@ class SimklApi : SyncAPI() {
                     )
                 }
 
+                @Serializable
                 data class Show(
-                    @JsonProperty("title") val title: String,
-                    @JsonProperty("poster") val poster: String?,
-                    @JsonProperty("year") val year: Int?,
-                    @JsonProperty("ids") val ids: Ids,
+                    @SerialName("title") val title: String,
+                    @SerialName("poster") val poster: String?,
+                    @SerialName("year") val year: Int?,
+                    @SerialName("ids") val ids: Ids,
                 ) {
+                    @Serializable
                     data class Ids(
-                        @JsonProperty("simkl") val simkl: Int,
-                        @JsonProperty("slug") val slug: String?,
-                        @JsonProperty("imdb") val imdb: String?,
-                        @JsonProperty("zap2it") val zap2it: String?,
-                        @JsonProperty("tmdb") val tmdb: String?,
-                        @JsonProperty("offen") val offen: String?,
-                        @JsonProperty("tvdb") val tvdb: String?,
-                        @JsonProperty("mal") val mal: String?,
-                        @JsonProperty("anidb") val anidb: String?,
-                        @JsonProperty("anilist") val anilist: String?,
-                        @JsonProperty("traktslug") val traktslug: String?
+                        @SerialName("simkl") val simkl: Int,
+                        @SerialName("slug") val slug: String?,
+                        @SerialName("imdb") val imdb: String?,
+                        @SerialName("zap2it") val zap2it: String?,
+                        @SerialName("tmdb") val tmdb: String?,
+                        @SerialName("offen") val offen: String?,
+                        @SerialName("tvdb") val tvdb: String?,
+                        @SerialName("mal") val mal: String?,
+                        @SerialName("anidb") val anidb: String?,
+                        @SerialName("anilist") val anilist: String?,
+                        @SerialName("traktslug") val traktslug: String?
                     ) {
                         fun matchesId(database: SimklSyncServices, id: String): Boolean {
                             return when (database) {

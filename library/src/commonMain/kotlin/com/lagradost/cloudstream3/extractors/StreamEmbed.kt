@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
@@ -30,14 +31,15 @@ open class StreamEmbed : ExtractorApi() {
         ).forEach(callback)
     }
 
+    @Serializable
     private data class Details(
-        @JsonProperty("id") val id: String,
-        @JsonProperty("uid") val uid: String,
-        @JsonProperty("slug") val slug: String,
-        @JsonProperty("title") val title: String,
-        @JsonProperty("quality") val quality: String,
-        @JsonProperty("type") val type: String,
-        @JsonProperty("status") val status: String,
-        @JsonProperty("md5") val md5: String,
+        @SerialName("id") val id: String,
+        @SerialName("uid") val uid: String,
+        @SerialName("slug") val slug: String,
+        @SerialName("title") val title: String,
+        @SerialName("quality") val quality: String,
+        @SerialName("type") val type: String,
+        @SerialName("status") val status: String,
+        @SerialName("md5") val md5: String,
     )
 }

@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.AppUtils
@@ -44,10 +45,11 @@ open class Uservideo : ExtractorApi() {
 
     }
 
+    @Serializable
     data class Sources(
-        @JsonProperty("src") val src: String? = null,
-        @JsonProperty("type") val type: String? = null,
-        @JsonProperty("label") val label: String? = null,
+        @SerialName("src") val src: String? = null,
+        @SerialName("type") val type: String? = null,
+        @SerialName("label") val label: String? = null,
     )
 
 }

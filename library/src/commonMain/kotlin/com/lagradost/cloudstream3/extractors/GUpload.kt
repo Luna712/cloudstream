@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.base64Decode
@@ -41,14 +42,15 @@ open class GUpload: ExtractorApi() {
         )
     }
 
+    @Serializable
     private data class VideoInfo(
-        @JsonProperty("videoUrl") val videoUrl: String,
-        @JsonProperty("posterUrl") val posterUrl: String? = null,
-        @JsonProperty("videoId") val videoId: String? = null,
-        @JsonProperty("primaryColor") val primaryColor: String? = null,
-        @JsonProperty("audioTracks") val audioTracks: List<Any?> = emptyList(),
-        @JsonProperty("subtitleTracks") val subtitleTracks: List<Any?> = emptyList(),
-        @JsonProperty("vastFallbackList") val vastFallbackList: List<String> = emptyList(),
-        @JsonProperty("videoOwnerId") val videoOwnerId: Long = 0,
+        @SerialName("videoUrl") val videoUrl: String,
+        @SerialName("posterUrl") val posterUrl: String? = null,
+        @SerialName("videoId") val videoId: String? = null,
+        @SerialName("primaryColor") val primaryColor: String? = null,
+        @SerialName("audioTracks") val audioTracks: List<Any?> = emptyList(),
+        @SerialName("subtitleTracks") val subtitleTracks: List<Any?> = emptyList(),
+        @SerialName("vastFallbackList") val vastFallbackList: List<String> = emptyList(),
+        @SerialName("videoOwnerId") val videoOwnerId: Long = 0,
     )
 }

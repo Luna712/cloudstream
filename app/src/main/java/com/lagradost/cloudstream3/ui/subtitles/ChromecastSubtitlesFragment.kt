@@ -13,7 +13,8 @@ import android.widget.Toast
 import androidx.annotation.OptIn
 import androidx.media3.common.text.Cue
 import androidx.media3.common.util.UnstableApi
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.google.android.gms.cast.TextTrackStyle.EDGE_TYPE_DEPRESSED
 import com.google.android.gms.cast.TextTrackStyle.EDGE_TYPE_DROP_SHADOW
 import com.google.android.gms.cast.TextTrackStyle.EDGE_TYPE_NONE
@@ -41,15 +42,16 @@ import com.lagradost.cloudstream3.utils.UIHelper.popCurrentPage
 
 const val CHROME_SUBTITLE_KEY = "chome_subtitle_settings"
 
+@Serializable
 data class SaveChromeCaptionStyle(
-    @JsonProperty("fontFamily") var fontFamily: String? = null,
-    @JsonProperty("fontGenericFamily") var fontGenericFamily: Int? = null,
-    @JsonProperty("backgroundColor") var backgroundColor: Int = 0x00FFFFFF, // transparent
-    @JsonProperty("edgeColor") var edgeColor: Int = Color.BLACK, // BLACK
-    @JsonProperty("edgeType") var edgeType: Int = EDGE_TYPE_OUTLINE,
-    @JsonProperty("foregroundColor") var foregroundColor: Int = Color.WHITE,
-    @JsonProperty("fontScale") var fontScale: Float = 1.05f,
-    @JsonProperty("windowColor") var windowColor: Int = Color.TRANSPARENT,
+    @SerialName("fontFamily") var fontFamily: String? = null,
+    @SerialName("fontGenericFamily") var fontGenericFamily: Int? = null,
+    @SerialName("backgroundColor") var backgroundColor: Int = 0x00FFFFFF, // transparent
+    @SerialName("edgeColor") var edgeColor: Int = Color.BLACK, // BLACK
+    @SerialName("edgeType") var edgeType: Int = EDGE_TYPE_OUTLINE,
+    @SerialName("foregroundColor") var foregroundColor: Int = Color.WHITE,
+    @SerialName("fontScale") var fontScale: Float = 1.05f,
+    @SerialName("windowColor") var windowColor: Int = Color.TRANSPARENT,
 )
 
 class ChromecastSubtitlesFragment : BaseFragment<ChromecastSubtitleSettingsBinding>(
