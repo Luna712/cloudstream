@@ -184,9 +184,9 @@ class KitsuApi: SyncAPI() {
             return null
         }
 
+        @Serializable
         data class KitsuResponse(
-            @field:JsonProperty(value = "data")
-            val data: KitsuNode,
+            @SerialName("data") val data: KitsuNode,
         )
 
         val url =
