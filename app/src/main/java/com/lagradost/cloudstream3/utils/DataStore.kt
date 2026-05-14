@@ -9,6 +9,7 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKeyClass
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.removeKey
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKeyClass
+import com.lagradost.cloudstream3.InternalAPI
 import com.lagradost.cloudstream3.mvvm.logError
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
@@ -103,7 +104,8 @@ object DataStore {
 
     val json = Json { ignoreUnknownKeys = true }
 
-    internal fun <T : Any> String.parseToKotlinObject(kClass: KClass<T>): T {
+    @InternalAPI
+    fun <T : Any> String.parseToKotlinObject(kClass: KClass<T>): T {
         // @Serializable generates a serializer at compile time; contextual serializers are
         // registered manually in serializersModule, we need both to support all cases
         val serializer = kClass.serializerOrNull() ?: json.serializersModule.getContextual(kClass)
