@@ -50,7 +50,7 @@ private val jacksonResponseParser = object : ResponseParser {
         return if (serializer != null) {
             try {
                 // If it has a serializer, encode it safely via Kotlinx
-                kotlinxJson.encodeToString(kotlinxJson.serializersModule.serializer(obj::class.java), obj)
+                kotlinxJson.encodeToString(JsonElement.serializer(), kotlinxJson.parseToJsonElement(obj.toString()))
             } catch (e: Exception) {
                 mapper.writeValueAsString(obj)
             }
