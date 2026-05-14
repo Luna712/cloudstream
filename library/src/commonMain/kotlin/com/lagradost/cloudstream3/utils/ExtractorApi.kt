@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.utils
 
-import kotlinx.serialization.Transient
 import com.fleeksoft.ksoup.Ksoup
 import com.lagradost.cloudstream3.AudioFile
 import com.lagradost.cloudstream3.IDownloadableMinimum
@@ -656,7 +655,6 @@ constructor(
         return videoSize
     }
 
-    @Transient
     fun getAllHeaders(): Map<String, String> {
         if (referer.isBlank()) {
             return headers
