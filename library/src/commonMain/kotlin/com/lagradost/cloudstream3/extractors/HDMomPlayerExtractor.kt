@@ -2,6 +2,7 @@
 
 package com.lagradost.cloudstream3.extractors
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.extractors.helper.AesHelper
