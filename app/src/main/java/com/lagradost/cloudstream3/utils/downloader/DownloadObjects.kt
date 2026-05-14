@@ -3,6 +3,7 @@ package com.lagradost.cloudstream3.utils.downloader
 import android.net.Uri
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import com.lagradost.cloudstream3.Score
 import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.services.DownloadQueueService
@@ -74,7 +75,7 @@ object DownloadObjects {
         @SerialName("score") var score: Score? = null,
         @SerialName("description") val description: String?,
         @SerialName("cacheTime") val cacheTime: Long,
-        override val id: Int,
+        @Transient override val id: Int = 0,
     ) : DownloadCached(id) {
         @SerialName("rating")
         @Deprecated(
@@ -100,7 +101,7 @@ object DownloadObjects {
         @SerialName("name") val name: String,
         @SerialName("poster") val poster: String?,
         @SerialName("cacheTime") val cacheTime: Long,
-        override val id: Int,
+        @Transient override val id: Int = 0,
     ) : DownloadCached(id)
 
     @Serializable
