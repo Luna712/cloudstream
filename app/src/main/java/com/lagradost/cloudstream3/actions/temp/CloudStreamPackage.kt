@@ -23,6 +23,7 @@ import com.lagradost.cloudstream3.utils.newExtractorLink
 import com.lagradost.cloudstream3.utils.Qualities
 import com.lagradost.cloudstream3.utils.SubtitleHelper.fromCodeToLangTagIETF
 import com.lagradost.cloudstream3.utils.SubtitleHelper.fromLanguageToTagIETF
+import com.lagradost.cloudstream3.utils.serializer.UriSerializer
 import com.lagradost.cloudstream3.utils.txt
 
 /**
@@ -53,6 +54,7 @@ class CloudStreamPackage : OpenInAppAction(
     @Serializable
     data class MinimalVideoLink(
         @SerialName("uri")
+        @Serializable(with = UriSerializer::class)
         val uri: Uri?,
         @SerialName("url")
         val url: String?,
