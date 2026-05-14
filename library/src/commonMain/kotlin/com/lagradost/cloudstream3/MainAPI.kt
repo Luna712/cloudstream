@@ -6,7 +6,6 @@
 
 package com.lagradost.cloudstream3
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import com.fasterxml.jackson.databind.DeserializationFeature
@@ -1173,6 +1172,7 @@ suspend fun newSubtitleFile(
  * @see newAudioFile
  * */
 @ConsistentCopyVisibility
+@Serializable
 data class AudioFile internal constructor(
     var url: String,
     var headers: Map<String, String>? = null
