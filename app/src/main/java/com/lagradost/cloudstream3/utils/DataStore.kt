@@ -121,13 +121,14 @@ object DataStore {
     }
 
     @InternalAPI
+    @Suppress("UNCHECKED_CAST")
     fun anyToJsonString(obj: Any): String {
         // @Serializable generates a serializer at compile time; contextual serializers are
         // registered manually in serializersModule, we need both to support all cases
-        val serializer = obj::class.serializerOrNull() ?: json.serializersModule.getContextual(obj::class)
+        val serializer = (obj::class.serializerOrNull() ?: json.serializersModule.getContextual(obj::class)) as? KSerializer<Any>
         return if (serializer != null) {
             try {
-                json.encodeToString(JsonElement.serializer(), json.parseToJsonElement(obj.toString()))
+                json.encodeToString(serializer, obj)
             } catch (_: Exception) {
                 mapper.writeValueAsString(obj)
             }
