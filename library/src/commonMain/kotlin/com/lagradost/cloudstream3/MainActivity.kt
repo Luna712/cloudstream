@@ -37,7 +37,7 @@ private val jsonResponseParser = object : ResponseParser {
     override fun <T : Any> parseSafe(text: String, kClass: KClass<T>): T? {
         return try {
             parse(text, kClass)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             null
         }
     }
@@ -48,7 +48,7 @@ private val jsonResponseParser = object : ResponseParser {
             try {
                 // If it has a serializer, encode it safely via kotlinx.serialization
                 json.encodeToString(JsonElement.serializer(), json.parseToJsonElement(obj.toString()))
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 mapper.writeValueAsString(obj)
             }
         } else {
