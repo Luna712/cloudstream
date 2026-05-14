@@ -364,11 +364,12 @@ class SimklApi : SyncAPI() {
             }
 
             fun toSyncSearchResult(): SyncAPI.SyncSearchResult? {
+                val currentIds = this.ids
                 return SyncAPI.SyncSearchResult(
                     this.title ?: return null,
                     "Simkl",
-                    this.ids?.simkl?.toString() ?: return null,
-                    getUrlFromId(this.ids.simkl),
+                    currentIds?.simkl?.toString() ?: return null,
+                    getUrlFromId(currentIds.simkl),
                     this.poster?.let { getPosterUrl(it) },
                     if (this.type == "movie") TvType.Movie else TvType.TvSeries
                 )
