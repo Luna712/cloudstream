@@ -127,6 +127,7 @@ buildkonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildkonfigG
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokkaGradlePlugin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm" , version.ref = "kotlinGradlePlugin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlinGradlePlugin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinGradlePlugin" }
 
 [bundles]
 coil = ["coil", "coil-network-ktor3"]
