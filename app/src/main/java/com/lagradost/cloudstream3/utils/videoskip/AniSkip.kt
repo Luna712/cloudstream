@@ -1,6 +1,6 @@
 package com.lagradost.cloudstream3.utils.videoskip
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.AnimeLoadResponse
 import com.lagradost.cloudstream3.LoadResponse
 import com.lagradost.cloudstream3.LoadResponse.Companion.getMalId
