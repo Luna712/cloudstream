@@ -20,7 +20,7 @@ open class Streamhub : ExtractorApi() {
     }
 
     override suspend fun getUrl(url: String, referer: String?): List<ExtractorLink>? {
-        val response = app.get(url).text
+        val response = app.get(url).text()
         Regex("eval((.|\\n)*?)</script>").find(response)?.groupValues?.get(1)?.let { jsEval ->
             JsUnpacker("eval$jsEval").unpack()?.let { unPacked ->
                 Regex("sources:\\[\\{src:\"(.*?)\"").find(unPacked)?.groupValues?.get(1)?.let { link ->

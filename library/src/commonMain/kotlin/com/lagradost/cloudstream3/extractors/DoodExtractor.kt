@@ -109,7 +109,7 @@ open class DoodLaExtractor : ExtractorApi() {
         val embedUrl = url.replace("/d/", "/e/")
         val req = app.get(embedUrl)
         val host = getBaseUrl(req.url)
-        val response0 = req.text
+        val response0 = req.text()
         val md5 = host + (Regex("/pass_md5/[^']*").find(response0)?.value ?: return)
         val trueUrl = app.get(md5, referer = req.url).text + createHashTable() + "?token=" + md5.substringAfterLast("/")
         val quality = Regex("\\d{3,4}p")

@@ -13,7 +13,7 @@ open class SibNet : ExtractorApi() {
 
     override suspend fun getUrl(url: String, referer: String?, subtitleCallback: (SubtitleFile) -> Unit, callback: (ExtractorLink) -> Unit) {
         val extRef  = referer ?: ""
-        val iSource = app.get(url, referer=extRef).text
+        val iSource = app.get(url, referer=extRef).text()
         var m3uLink = Regex("""player.src\(\[\{src: \"([^\"]+)""").find(iSource)?.groupValues?.get(1) ?: throw ErrorLoadingException("m3u link not found")
 
         m3uLink = "${mainUrl}${m3uLink}"

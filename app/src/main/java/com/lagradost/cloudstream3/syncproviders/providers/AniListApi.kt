@@ -270,7 +270,7 @@ class AniListApi : SyncAPI() {
                     //headers = mapOf(),
                     data = data,//(if (vars == null) mapOf("query" to q) else mapOf("query" to q, "variables" to vars))
                     timeout = 5000 // REASONABLE TIMEOUT
-                ).text.replace("\\", "")
+                ).text().replace("\\", "")
                 return res.toKotlinObject()
             } catch (e: Exception) {
                 logError(e)
@@ -453,7 +453,7 @@ class AniListApi : SyncAPI() {
                 "https://graphql.anilist.co",
                 data = mapOf("query" to q),
                 cacheTime = 0,
-            ).text
+            ).text()
 
             return tryParseJson(data) ?: throw ErrorLoadingException("Error parsing $data")
         }
@@ -521,7 +521,7 @@ class AniListApi : SyncAPI() {
                 )
             ), //(if (vars == null) mapOf("query" to q) else mapOf("query" to q, "variables" to vars))
             timeout = 5 // REASONABLE TIMEOUT
-        ).text.replace("\\/", "/")
+        ).text().replace("\\/", "/")
     }
 
 

@@ -2,7 +2,6 @@ package com.lagradost.cloudstream3.extractors
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.app
-import com.lagradost.cloudstream3.ksoupDocument
 import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
@@ -16,7 +15,7 @@ open class YourUpload: ExtractorApi() {
 
     override suspend fun getUrl(url: String, referer: String?): List<ExtractorLink> {
         val sources = mutableListOf<ExtractorLink>()
-        with(app.get(url).ksoupDocument) {
+        with(app.get(url).document()) {
             val quality = Regex("\\d{3,4}p").find(this.select("title").text())?.groupValues?.get(0)
             this.select("script").map { script ->
                 if (script.data().contains("var jwplayerOptions = {")) {

@@ -20,7 +20,7 @@ open class VideoSeyred : ExtractorApi() {
         val videoUrl = "${mainUrl}/playlist/${videoId}.json"
 
         val responseRaw                          = app.get(videoUrl)
-        val responseList:List<VideoSeyredSource> = jacksonObjectMapper().readValue(responseRaw.text) ?: throw ErrorLoadingException("VideoSeyred")
+        val responseList:List<VideoSeyredSource> = jacksonObjectMapper().readValue(responseRaw.text()) ?: throw ErrorLoadingException("VideoSeyred")
         val response                              = responseList[0]
 
         for (track in response.tracks) {

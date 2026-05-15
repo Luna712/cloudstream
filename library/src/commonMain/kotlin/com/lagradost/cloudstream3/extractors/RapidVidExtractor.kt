@@ -13,7 +13,7 @@ open class RapidVid : ExtractorApi() {
 
     override suspend fun getUrl(url: String, referer: String?, subtitleCallback: (SubtitleFile) -> Unit, callback: (ExtractorLink) -> Unit) {
         val extRef   = referer ?: ""
-        val videoReq = app.get(url, referer=extRef).text
+        val videoReq = app.get(url, referer=extRef).text()
 
         val subUrls = mutableSetOf<String>()
         Regex("""captions\",\"file\":\"([^\"]+)\",\"label\":\"([^\"]+)\"""").findAll(videoReq).forEach {

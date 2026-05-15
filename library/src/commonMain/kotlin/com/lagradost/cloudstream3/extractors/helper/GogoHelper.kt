@@ -6,7 +6,6 @@ import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.base64Decode
 import com.lagradost.cloudstream3.base64DecodeArray
 import com.lagradost.cloudstream3.base64Encode
-import com.lagradost.cloudstream3.ksoupDocument
 import com.lagradost.cloudstream3.mvvm.safe
 import com.lagradost.cloudstream3.mvvm.safeApiCall
 import com.lagradost.cloudstream3.utils.AppUtils
@@ -83,7 +82,7 @@ object GogoHelper {
 
         var document: Document? = iframeDocument
         val foundIv =
-            iv ?: (document ?: app.get(iframeUrl).ksoupDocument.also { document = it })
+            iv ?: (document ?: app.get(iframeUrl).document().also { document = it })
                 .select("""div.wrapper[class*=container]""")
                 .attr("class").split("-").lastOrNull() ?: return@safeApiCall
         val foundKey = secretKey ?: getKey(base64Decode(id) + foundIv) ?: return@safeApiCall
@@ -95,7 +94,7 @@ object GogoHelper {
         val encryptedId = cryptoHandler(id, foundIv, foundKey)
         val encryptRequestData = if (isUsingAdaptiveData) {
             // Only fetch the document if necessary
-            val realDocument = document ?: app.get(iframeUrl).ksoupDocument
+            val realDocument = document ?: app.get(iframeUrl).document()
             val dataEncrypted =
                 realDocument.select("script[data-name='episode']").attr("data-value")
             val headers = cryptoHandler(dataEncrypted, foundIv, foundKey, false)

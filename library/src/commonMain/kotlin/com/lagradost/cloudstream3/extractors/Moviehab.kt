@@ -2,7 +2,6 @@ package com.lagradost.cloudstream3.extractors
 
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
-import com.lagradost.cloudstream3.ksoupDocument
 import com.lagradost.cloudstream3.newSubtitleFile
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
@@ -24,7 +23,7 @@ open class Moviehab : ExtractorApi() {
         callback: (ExtractorLink) -> Unit
     ) {
         val res = app.get(url)
-        res.ksoupDocument.select("video#player").let {
+        res.document().select("video#player").let {
             //should redirect first for making it works
             val link = app.get("$mainUrl/${it.select("source").attr("src")}", referer = url).url
             M3u8Helper.generateM3u8(

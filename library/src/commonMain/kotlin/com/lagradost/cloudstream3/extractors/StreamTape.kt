@@ -1,7 +1,6 @@
 package com.lagradost.cloudstream3.extractors
 
 import com.lagradost.cloudstream3.app
-import com.lagradost.cloudstream3.ksoupDocument
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.Qualities
@@ -32,7 +31,7 @@ open class StreamTape : ExtractorApi() {
     override suspend fun getUrl(url: String, referer: String?): List<ExtractorLink>? {
         with(app.get(url)) {
             var result =
-                this.ksoupDocument.select("script").firstOrNull { it.html().contains("botlink').innerHTML") }
+                this.document().select("script").firstOrNull { it.html().contains("botlink').innerHTML") }
                     ?.html()?.lines()?.firstOrNull{ it.contains("botlink').innerHTML") }?.let {
                         val scriptContent =
                             it.substringAfter(").innerHTML").replaceFirst("=", "var url =")

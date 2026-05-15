@@ -128,7 +128,7 @@ object M3u8Helper2 {
         returnThis: Boolean = true
     ): List<M3u8Helper.M3u8Stream> {
         val list = mutableListOf<M3u8Helper.M3u8Stream>()
-        val response = app.get(m3u8.streamUrl, headers = m3u8.headers, verify = false).text
+        val response = app.get(m3u8.streamUrl, headers = m3u8.headers, verify = false).text()
         val parsed = HlsPlaylistParser.parse(
             m3u8.streamUrl,
             response,
@@ -233,9 +233,8 @@ object M3u8Helper2 {
             val ts = allTsLinks[index]
 
             val tsResponse = app.get(ts.url, headers = headers, verify = false)
-            val body = tsResponse.body
+            val body = tsResponse.body()
             val tsData = body.bytes()
-            body.close()
             if (tsData.isEmpty()) throw ErrorLoadingException("no data")
 
             return if (isEncrypted) {
@@ -266,7 +265,7 @@ object M3u8Helper2 {
                 playlistStream.streamUrl,
                 headers = playlistStream.headers,
                 verify = false
-            ).text
+            ).text()
 
         val parsed = HlsPlaylistParser.parse(playlistStream.streamUrl, playlistResponse)
         if (parsed != null) {
@@ -331,9 +330,8 @@ object M3u8Helper2 {
             encryptionIv = match[3].toByteArray()
             val encryptionKeyResponse =
                 app.get(encryptionUri, headers = playlistStream.headers, verify = false)
-            val body = encryptionKeyResponse.body
+            val body = encryptionKeyResponse.body()
             encryptionData = body.bytes()
-            body.close()
         } else {
             encryptionState = false
         }

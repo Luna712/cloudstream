@@ -35,7 +35,7 @@ class DdosGuardKiller(private val alwaysBypass: Boolean) : Interceptor {
         ddosBypassPath = ddosBypassPath ?: Regex("'(.*?)'").find(
             app.get(
                 "https://check.ddos-guard.net/check.js"
-            ).text
+            ).text()
         )?.groupValues?.get(1)
 
         val cookies =

@@ -3,7 +3,6 @@ package com.lagradost.cloudstream3.extractors
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.utils.*
 import com.lagradost.cloudstream3.app
-import com.lagradost.cloudstream3.ksoupDocument
 import com.lagradost.cloudstream3.utils.M3u8Helper.Companion.generateM3u8
 
 open class Sendvid : ExtractorApi() {
@@ -16,7 +15,7 @@ open class Sendvid : ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ) {
-        val doc = app.get(url).ksoupDocument
+        val doc = app.get(url).document()
         val urlString = doc.select("head meta[property=og:video:secure_url]").attr("content")
         if (urlString.contains("m3u8"))  {
             generateM3u8(

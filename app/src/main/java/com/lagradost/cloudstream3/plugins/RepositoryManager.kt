@@ -144,7 +144,7 @@ object RepositoryManager {
             val response = app.get(convertRawGitUrl(pluginUrls))
             // Normal parsed function not working?
             // return response.parsedSafe()
-            tryParseJson<Array<SitePlugin>>(response.text)?.toList() ?: emptyList()
+            tryParseJson<Array<SitePlugin>>(response.text())?.toList() ?: emptyList()
         } catch (t: Throwable) {
             logError(t)
             emptyList()
@@ -177,7 +177,7 @@ object RepositoryManager {
             // Prevent corrupting the plugin file if the operation fails
             val tempFile = File.createTempFile(file.name, ".tmp", context.cacheDir)
 
-            val body = app.get(convertRawGitUrl(pluginUrl)).okhttpResponse.body
+            val body = app.get(convertRawGitUrl(pluginUrl)).body()
 
             body.byteStream().use { body ->
                 tempFile.outputStream().use { fileSteam ->

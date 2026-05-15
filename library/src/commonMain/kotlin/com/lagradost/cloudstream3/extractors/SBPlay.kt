@@ -24,7 +24,7 @@ open class SBPlay : ExtractorApi() {
     override val requiresReferer = false
 
     override suspend fun getUrl(url: String, referer: String?): List<ExtractorLink> {
-        val response = app.get(url, referer = referer).text
+        val response = app.get(url, referer = referer).text()
         val document = Ksoup.parse(response)
 
         val links = ArrayList<ExtractorLink>()
@@ -39,7 +39,7 @@ open class SBPlay : ExtractorApi() {
                     val mode = it.groupValues[2]
                     val hash = it.groupValues[3]
                     val href = "https://sbplay.one/dl?op=download_orig&id=$id&mode=$mode&hash=$hash"
-                    val hrefResponse = app.get(href).text
+                    val hrefResponse = app.get(href).text()
                     app.post(
                         "https://sbplay.one/?op=notifications&open=&_=$unixTimeMS",
                         referer = href

@@ -18,7 +18,7 @@ open class HDMomPlayer : ExtractorApi() {
     override suspend fun getUrl(url: String, referer: String?, subtitleCallback: (SubtitleFile) -> Unit, callback: (ExtractorLink) -> Unit) {
         val m3uLink:String?
         val extRef  = referer ?: ""
-        val iSource = app.get(url, referer=extRef).text
+        val iSource = app.get(url, referer=extRef).text()
 
         val bePlayer = Regex("""bePlayer\('([^']+)',\s*'(\{[^\}]+\})'\);""").find(iSource)?.groupValues
         if (bePlayer != null) {
