@@ -3,7 +3,7 @@ package com.lagradost.cloudstream3
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
-import dalvik.system.DexFile
+import io.github.classgraph.ClassGraph
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
@@ -105,22 +105,14 @@ class SerializationClassTester {
             .getInstrumentation()
             .targetContext
 
-        val dexFile = DexFile(context.packageCodePath)
-
-        return dexFile.entries()
-            .toList()
-            .filter { it.startsWith(packageName) }
-            .mapNotNull {
-                runCatching { Class.forName(it).kotlin }
-                    .onFailure { e ->
-                        // Log.e("DEX", "Failed loading $it", e)
-                    }
-                    .getOrNull()
-            }.filter { kClass ->
-                kClass.java.annotations.any {
-                    it is Serializable
-                }
-            }
+        return ClassGraph()
+            .enableClassInfo()
+            .enableAnnotationInfo()
+            .overrideClassLoaders(context.classLoader)
+            .acceptPackages(packageName)
+            .scan()
+            .getClassesWithAnnotation(Serializable::class.java.name)
+            .mapNotNull { runCatching { Class.forName(it.name, false, context.classLoader).kotlin }.getOrNull() }
     }
 
     @OptIn(InternalSerializationApi::class)
