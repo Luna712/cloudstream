@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.extractors.helper
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.fleeksoft.ksoup.nodes.Document
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.base64Decode
@@ -145,19 +146,22 @@ object GogoHelper {
         }
     }
 
+    @Serializable
     data class GogoSources(
-        @JsonProperty("source") val source: List<GogoSource>?,
-        @JsonProperty("sourceBk") val sourceBk: List<GogoSource>?,
+        @SerialName("source") val source: List<GogoSource>?,
+        @SerialName("sourceBk") val sourceBk: List<GogoSource>?,
     )
 
+    @Serializable
     data class GogoSource(
-        @JsonProperty("file") val file: String,
-        @JsonProperty("label") val label: String?,
-        @JsonProperty("type") val type: String?,
-        @JsonProperty("default") val default: String? = null
+        @SerialName("file") val file: String,
+        @SerialName("label") val label: String?,
+        @SerialName("type") val type: String?,
+        @SerialName("default") val default: String? = null
     )
 
+    @Serializable
     data class GogoJsonData(
-        @JsonProperty("data") val data: String? = null
+        @SerialName("data") val data: String? = null
     )
 }

@@ -1,6 +1,6 @@
 package com.lagradost.cloudstream3.utils
 
-import com.fasterxml.jackson.annotation.JsonIgnore
+import kotlinx.serialization.Serializable
 import com.fleeksoft.ksoup.Ksoup
 import com.lagradost.cloudstream3.AudioFile
 import com.lagradost.cloudstream3.IDownloadableMinimum
@@ -618,6 +618,7 @@ open class DrmExtractorLink private constructor(
  * @property audioTracks List of separate audio tracks that can be used with this video
  * @see newExtractorLink
  * */
+@Serializable
 open class ExtractorLink
 @Deprecated("Use newExtractorLink", level = DeprecationLevel.WARNING)
 constructor(
@@ -656,7 +657,6 @@ constructor(
         return videoSize
     }
 
-    @JsonIgnore
     fun getAllHeaders(): Map<String, String> {
         if (referer.isBlank()) {
             return headers

@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.newSubtitleFile
@@ -76,28 +77,32 @@ open class XStreamCdn : ExtractorApi() {
     override val requiresReferer = false
     open var domainUrl: String = "embedsito.com"
 
+    @Serializable
     private data class ResponseData(
-        @JsonProperty("file") val file: String,
-        @JsonProperty("label") val label: String,
+        @SerialName("file") val file: String,
+        @SerialName("label") val label: String,
         //val type: String // Mp4
     )
 
+    @Serializable
     private data class Player(
-        @JsonProperty("poster_file") val poster_file: String? = null,
+        @SerialName("poster_file") val poster_file: String? = null,
     )
 
+    @Serializable
     private data class ResponseJson(
-        @JsonProperty("success") val success: Boolean,
-        @JsonProperty("player") val player: Player? = null,
-        @JsonProperty("data") val data: List<ResponseData>?,
-        @JsonProperty("captions") val captions: List<Captions?>?,
+        @SerialName("success") val success: Boolean,
+        @SerialName("player") val player: Player? = null,
+        @SerialName("data") val data: List<ResponseData>?,
+        @SerialName("captions") val captions: List<Captions?>?,
     )
 
+    @Serializable
     private data class Captions(
-        @JsonProperty("id") val id: String,
-        @JsonProperty("hash") val hash: String,
-        @JsonProperty("language") val language: String,
-        @JsonProperty("extension") val extension: String
+        @SerialName("id") val id: String,
+        @SerialName("hash") val hash: String,
+        @SerialName("language") val language: String,
+        @SerialName("extension") val extension: String
     )
 
     override fun getExtractorUrl(id: String): String {

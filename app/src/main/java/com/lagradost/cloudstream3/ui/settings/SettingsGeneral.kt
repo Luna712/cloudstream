@@ -10,7 +10,8 @@ import androidx.core.content.edit
 import androidx.core.os.ConfigurationCompat
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.APIHolder.allProviders
 import com.lagradost.cloudstream3.CloudStreamApp
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
@@ -145,14 +146,15 @@ class SettingsGeneral : BasePreferenceFragmentCompat() {
         setToolBarScrollFlags()
     }
 
+    @Serializable
     data class CustomSite(
-        @JsonProperty("parentJavaClass") // javaClass.simpleName
+        @SerialName("parentJavaClass") // javaClass.simpleName
         val parentJavaClass: String,
-        @JsonProperty("name")
+        @SerialName("name")
         val name: String,
-        @JsonProperty("url")
+        @SerialName("url")
         val url: String,
-        @JsonProperty("lang")
+        @SerialName("lang")
         val lang: String,
     )
 

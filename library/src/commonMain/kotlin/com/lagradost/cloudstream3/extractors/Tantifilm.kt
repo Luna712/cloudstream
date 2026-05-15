@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
@@ -12,17 +13,19 @@ open class Tantifilm : ExtractorApi() {
     override var mainUrl = "https://cercafilm.net"
     override val requiresReferer = false
 
+    @Serializable
     data class TantifilmJsonData (
-        @JsonProperty("success") val success : Boolean,
-        @JsonProperty("data") val data : List<TantifilmData>,
-        @JsonProperty("captions")val captions : List<String>,
-        @JsonProperty("is_vr") val is_vr : Boolean
+        @SerialName("success") val success : Boolean,
+        @SerialName("data") val data : List<TantifilmData>,
+        @SerialName("captions")val captions : List<String>,
+        @SerialName("is_vr") val is_vr : Boolean
     )
 
+    @Serializable
     data class TantifilmData (
-        @JsonProperty("file") val file : String,
-        @JsonProperty("label") val label : String,
-        @JsonProperty("type") val type : String
+        @SerialName("file") val file : String,
+        @SerialName("label") val label : String,
+        @SerialName("type") val type : String
     )
 
     override suspend fun getUrl(url: String, referer: String?): List<ExtractorLink>? {

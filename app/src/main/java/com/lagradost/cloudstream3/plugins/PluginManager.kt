@@ -18,7 +18,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.FragmentActivity
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.APIHolder
 import com.lagradost.cloudstream3.APIHolder.removePluginMapping
 import com.lagradost.cloudstream3.AllLanguagesName
@@ -73,12 +74,13 @@ const val EXTENSIONS_CHANNEL_NAME = "Extensions"
 const val EXTENSIONS_CHANNEL_DESCRIPT = "Extension notification channel"
 
 // Data class for internal storage
+@Serializable
 data class PluginData(
-    @JsonProperty("internalName") val internalName: String,
-    @JsonProperty("url") val url: String?,
-    @JsonProperty("isOnline") val isOnline: Boolean,
-    @JsonProperty("filePath") val filePath: String,
-    @JsonProperty("version") val version: Int,
+    @SerialName("internalName") val internalName: String,
+    @SerialName("url") val url: String?,
+    @SerialName("isOnline") val isOnline: Boolean,
+    @SerialName("filePath") val filePath: String,
+    @SerialName("version") val version: Int,
 ) {
     @WorkerThread
     fun toSitePlugin(): SitePlugin {
@@ -610,7 +612,7 @@ object PluginManager {
                     return false
                 }
                 InputStreamReader(stream).use { reader ->
-                    manifest = parseJson(reader, BasePlugin.Manifest::class.java)
+                    manifest = parseJson<BasePlugin.Manifest>(reader.readText())
                 }
             }
 

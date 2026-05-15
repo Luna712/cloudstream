@@ -21,6 +21,7 @@ import com.lagradost.cloudstream3.utils.DataStoreHelper.getViewPos
 import com.lagradost.cloudstream3.utils.Event
 import com.lagradost.cloudstream3.utils.ImageLoader.loadImage
 import com.lagradost.cloudstream3.utils.UiImage
+import kotlinx.serialization.Serializable
 
 const val START_ACTION_RESUME_LATEST = 1
 const val START_ACTION_LOAD_EP = 2
@@ -34,6 +35,7 @@ enum class VideoWatchState {
     Watched
 }
 
+@Serializable
 data class ResultEpisode(
     val headerName: String,
     val name: String?,

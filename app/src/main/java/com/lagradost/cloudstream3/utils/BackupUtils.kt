@@ -9,7 +9,8 @@ import androidx.annotation.WorkerThread
 import androidx.core.net.toUri
 import androidx.fragment.app.FragmentActivity
 import androidx.preference.PreferenceManager
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getActivity
 import com.lagradost.cloudstream3.CommonActivity.showToast
@@ -21,6 +22,8 @@ import com.lagradost.cloudstream3.syncproviders.AccountManager
 import com.lagradost.cloudstream3.syncproviders.providers.AniListApi.Companion.ANILIST_CACHED_LIST
 import com.lagradost.cloudstream3.syncproviders.providers.MALApi.Companion.MAL_CACHED_LIST
 import com.lagradost.cloudstream3.syncproviders.providers.KitsuApi.Companion.KITSU_CACHED_LIST
+import com.lagradost.cloudstream3.utils.AppUtils.parseJson
+import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream3.utils.Coroutines.main
 import com.lagradost.cloudstream3.utils.DataStore.getDefaultSharedPrefs
@@ -118,24 +121,24 @@ object BackupUtils {
     private var restoreFileSelector: ActivityResultLauncher<Array<String>>? = null
 
     // Kinda hack, but I couldn't think of a better way
+    @Serializable
     data class BackupVars(
-        @JsonProperty("_Bool") val bool: Map<String, Boolean>?,
-        @JsonProperty("_Int") val int: Map<String, Int>?,
-        @JsonProperty("_String") val string: Map<String, String>?,
-        @JsonProperty("_Float") val float: Map<String, Float>?,
-        @JsonProperty("_Long") val long: Map<String, Long>?,
-        @JsonProperty("_StringSet") val stringSet: Map<String, Set<String>?>?,
+        @SerialName("_Bool") val bool: Map<String, Boolean>?,
+        @SerialName("_Int") val int: Map<String, Int>?,
+        @SerialName("_String") val string: Map<String, String>?,
+        @SerialName("_Float") val float: Map<String, Float>?,
+        @SerialName("_Long") val long: Map<String, Long>?,
+        @SerialName("_StringSet") val stringSet: Map<String, Set<String>?>?,
     )
 
+    @Serializable
     data class BackupFile(
-        @JsonProperty("datastore") val datastore: BackupVars,
-        @JsonProperty("settings") val settings: BackupVars
+        @SerialName("datastore") val datastore: BackupVars,
+        @SerialName("settings") val settings: BackupVars
     )
 
     @Suppress("UNCHECKED_CAST")
-    private fun getBackup(context: Context?): BackupFile? {
-        if (context == null) return null
-
+    private fun getBackup(context: Context): BackupFile {
         val allData = context.getSharedPrefs().all.filter { it.key.isTransferable() }
         val allSettings = context.getDefaultSharedPrefs().all.filter { it.key.isTransferable() }
 
@@ -214,7 +217,7 @@ object BackupUtils {
 
             fileStream = stream.openNew()
             printStream = PrintWriter(fileStream)
-            printStream.print(mapper.writeValueAsString(backupFile))
+            printStream.print(backupFile.toJson())
 
             showToast(
                 R.string.backup_success,
@@ -259,8 +262,8 @@ object BackupUtils {
                             val input = activity.contentResolver.openInputStream(uri)
                                 ?: return@ioSafe
 
-                            val restoredValue =
-                                mapper.readValue<BackupFile>(input)
+                            val text = input.bufferedReader().readText()
+                            val restoredValue = parseJson<BackupFile>(text)
 
                             restore(
                                 activity,

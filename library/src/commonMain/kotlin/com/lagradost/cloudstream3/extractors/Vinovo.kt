@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.APIHolder
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
@@ -59,8 +60,9 @@ open class VinovoTo : ExtractorApi() {
         )
     }
 
+    @Serializable
     private data class VinovoFileResp(
-        @JsonProperty("status") val status: String,
-        @JsonProperty("token") val token: String,
+        @SerialName("status") val status: String,
+        @SerialName("token") val token: String,
     )
 }

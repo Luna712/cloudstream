@@ -5,7 +5,8 @@ package com.lagradost.cloudstream3.extractors
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.*
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 open class HDPlayerSystem : ExtractorApi() {
     override val name            = "HDPlayerSystem"
@@ -48,10 +49,11 @@ open class HDPlayerSystem : ExtractorApi() {
         )
     }
 
+    @Serializable
     data class SystemResponse(
-        @JsonProperty("hls")         val hls: String,
-        @JsonProperty("videoImage")  val videoImage: String? = null,
-        @JsonProperty("videoSource") val videoSource: String,
-        @JsonProperty("securedLink") val securedLink: String
+        @SerialName("hls")         val hls: String,
+        @SerialName("videoImage")  val videoImage: String? = null,
+        @SerialName("videoSource") val videoSource: String,
+        @SerialName("securedLink") val securedLink: String
     )
 }

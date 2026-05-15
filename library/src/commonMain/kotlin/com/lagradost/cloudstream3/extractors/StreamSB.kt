@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.newSubtitleFile
@@ -189,25 +190,28 @@ open class StreamSB : ExtractorApi() {
         }
     }
 
+    @Serializable
     data class Subs (
-        @JsonProperty("file") val file: String? = null,
-        @JsonProperty("label") val label: String? = null,
+        @SerialName("file") val file: String? = null,
+        @SerialName("label") val label: String? = null,
     )
 
+    @Serializable
     data class StreamData (
-        @JsonProperty("file") val file: String,
-        @JsonProperty("cdn_img") val cdnImg: String,
-        @JsonProperty("hash") val hash: String,
-        @JsonProperty("subs") val subs: ArrayList<Subs>? = arrayListOf(),
-        @JsonProperty("length") val length: String,
-        @JsonProperty("id") val id: String,
-        @JsonProperty("title") val title: String,
-        @JsonProperty("backup") val backup: String,
+        @SerialName("file") val file: String,
+        @SerialName("cdn_img") val cdnImg: String,
+        @SerialName("hash") val hash: String,
+        @SerialName("subs") val subs: ArrayList<Subs>? = arrayListOf(),
+        @SerialName("length") val length: String,
+        @SerialName("id") val id: String,
+        @SerialName("title") val title: String,
+        @SerialName("backup") val backup: String,
     )
 
+    @Serializable
     data class Main (
-        @JsonProperty("stream_data") val streamData: StreamData,
-        @JsonProperty("status_code") val statusCode: Int,
+        @SerialName("stream_data") val streamData: StreamData,
+        @SerialName("status_code") val statusCode: Int,
     )
 
 }
