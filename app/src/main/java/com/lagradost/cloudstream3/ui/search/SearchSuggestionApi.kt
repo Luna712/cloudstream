@@ -57,7 +57,7 @@ object SearchSuggestionApi {
      * Parses the TMDB search response and extracts movie/TV show titles.
      * Filters to only include movies, TV shows, and anime.
      */
-    private fun parseSuggestions(response: NiceResponse): List<String> {
+    private suspend fun parseSuggestions(response: NiceResponse): List<String> {
         return try {
             val parsed = response.parsed<TmdbSearchResult>()
             parsed.results

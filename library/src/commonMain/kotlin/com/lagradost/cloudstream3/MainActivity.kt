@@ -8,6 +8,8 @@ import com.fleeksoft.ksoup.nodes.Document
 import com.lagradost.nicehttp.NiceResponse
 import com.lagradost.nicehttp.Requests
 import com.lagradost.nicehttp.ResponseParser
+import io.ktor.client.engine.okhttp.OkHttpEngine
+import okhttp3.OkHttpClient
 import kotlin.reflect.KClass
 
 // Short name for requests client to make it nicer to use
@@ -39,6 +41,11 @@ private val jacksonResponseParser = object : ResponseParser {
 var app = Requests(responseParser = jacksonResponseParser).apply {
     defaultHeaders = mapOf("user-agent" to USER_AGENT)
 }
+
+// TODO: Remove usage of this by migrating interceptors and media3 to ktor
+@InternalAPI
+val okHttpClient = (app.baseClient.engine as? OkHttpEngine)
+    ?.config?.preconfigured ?: OkHttpClient()
 
 /** Parses the response body as a Ksoup Document. */
 val NiceResponse.ksoupDocument: Document

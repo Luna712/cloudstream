@@ -86,6 +86,7 @@ import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.mvvm.debugAssert
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.mvvm.safe
+import com.lagradost.cloudstream3.okHttpClient
 import com.lagradost.cloudstream3.ui.player.CustomDecoder.Companion.fixSubtitleAlignment
 import com.lagradost.cloudstream3.ui.player.live.LiveHelper
 import com.lagradost.cloudstream3.ui.player.live.PREFERRED_LIVE_OFFSET
@@ -732,18 +733,19 @@ class CS3IPlayer : IPlayer {
 
         private var simpleCache: SimpleCache? = null
 
-        /// Create a small factory for small things, no cache, no cronet
+        // Create a small factory for small things, no cache, no cronet
         private fun createOnlineSource(
             headers: Map<String, String>?,
             interceptor: Interceptor?
         ): HttpDataSource.Factory {
             val client = if (interceptor == null) {
-                app.baseClient
+                okHttpClient
             } else {
-                app.baseClient.newBuilder()
+                okHttpClient.newBuilder()
                     .addInterceptor(interceptor)
                     .build()
             }
+
             val source = OkHttpDataSource.Factory(client).setUserAgent(USER_AGENT)
 
             if (!headers.isNullOrEmpty()) {
@@ -798,7 +800,7 @@ class CS3IPlayer : IPlayer {
             val source = if (interceptor == null) {
                 if (engine == null) {
                     Log.d(TAG, "Using DefaultHttpDataSource for $link")
-                    OkHttpDataSource.Factory(app.baseClient).setUserAgent(userAgent)
+                    OkHttpDataSource.Factory(okHttpClient).setUserAgent(userAgent)
                 } else {
                     Log.d(TAG, "Using CronetDataSource for $link")
                     CronetDataSource.Factory(engine, Executors.newSingleThreadExecutor())
@@ -810,13 +812,13 @@ class CS3IPlayer : IPlayer {
                 }
             } else {
                 Log.d(TAG, "Using OkHttpDataSource for $link")
-                val client = app.baseClient.newBuilder()
+                val client = okHttpClient.newBuilder()
                     .addInterceptor(interceptor)
                     .build()
                 OkHttpDataSource.Factory(client).setUserAgent(userAgent)
             }
 
-            // Do no include empty referer, if the provider wants those they can use the header map.
+            // Do not include empty referer, if the provider wants those they can use the header map.
             val refererMap =
                 if (link.referer.isBlank()) emptyMap() else mapOf("referer" to link.referer)
 
