@@ -58,7 +58,7 @@ jobs:
     - name: Get target SDK
       id: sdk
       run: |
-        TARGET_SDK=$(grep -r "targetSdk" app/build.gradle.kts | grep -o '[0-9]\+' | head -1)
+        TARGET_SDK=$(grep 'targetSdk' gradle/libs.versions.toml | grep -o '[0-9]\+' | head -1)
         echo "version=$TARGET_SDK" >> $GITHUB_OUTPUT
 
     - name: Enable KVM
