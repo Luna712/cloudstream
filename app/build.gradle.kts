@@ -210,6 +210,7 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.kotlin.test)
+    androidTestImplementation(libs.classgraph)
     androidTestImplementation(libs.instancio.core)
     implementation(libs.junit.ktx)
 
