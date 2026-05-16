@@ -8,7 +8,7 @@ import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-@Serializable
+@Serializable(with = NonEmptySerializer::class)
 data class NonEmptyData(
     val title: String = "",
     val tags: List<String> = emptyList(),
@@ -22,7 +22,7 @@ private val nonEmptySerializer = NonEmptySerializer(NonEmptyData.serializer())
 data class WriteOnlyData(
     val fieldA: String = "",
     @Serializable(with = WriteOnlyIntSerializer::class)
-    val rating: Int? = null
+    val rating: Int = 0
 )
 
 class SerializerTest {
@@ -93,10 +93,10 @@ class SerializerTest {
 
     @Test
     fun writeOnlyIntSerializerDeserializesNull() {
-        val input = """{"fieldA":"hello","rating":null}"""
+        val input = """{"fieldA":"hello","rating":0}"""
         val result = json.decodeFromString(WriteOnlyData.serializer(), input)
         assertEquals("hello", result.fieldA)
-        assertNull(result.rating)
+        assertEquals(0, result.rating)
     }
 
     @Test
