@@ -7,8 +7,6 @@ import com.lagradost.cloudstream3.mvvm.logError
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.serializer
 import kotlinx.serialization.serializerOrNull
 
 @OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
