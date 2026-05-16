@@ -4,6 +4,7 @@ import com.lagradost.cloudstream3.json
 import kotlinx.serialization.Serializable
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -20,8 +21,8 @@ private val nonEmptySerializer = NonEmptySerializer(NonEmptyData.serializer())
 @Serializable
 data class WriteOnlyData(
     val fieldA: String = "",
-    @Serializable(with = WriteOnlyFloatSerializer::class)
-    val rating: Float = 0f
+    @Serializable(with = WriteOnlyIntSerializer::class)
+    val rating: Int? = null
 )
 
 class SerializerTest {
@@ -71,22 +72,38 @@ class SerializerTest {
 
     // endregion
 
-    // region WriteOnlyFloatSerializer
+    // region WriteOnlyIntSerializer
 
     @Test
-    fun writeOnlyFloatSerializerOmitsFieldOnSerialize() {
-        val data = WriteOnlyData(fieldA = "hello", rating = 4.5f)
+    fun writeOnlyIntSerializerOmitsFieldOnSerialize() {
+        val data = WriteOnlyData(fieldA = "hello", rating = 5)
         val result = json.encodeToString(WriteOnlyData.serializer(), data)
         assertTrue(result.contains("fieldA"))
         assertFalse(result.contains("rating"))
     }
 
     @Test
-    fun writeOnlyFloatSerializerDeserializesNormally() {
-        val input = """{"fieldA":"hello","rating":4.5}"""
+    fun writeOnlyIntSerializerDeserializesNormally() {
+        val input = """{"fieldA":"hello","rating":5}"""
         val result = json.decodeFromString(WriteOnlyData.serializer(), input)
         assertEquals("hello", result.fieldA)
-        assertEquals(4.5f, result.rating)
+        assertEquals(5, result.rating)
+    }
+
+    @Test
+    fun writeOnlyIntSerializerDeserializesNull() {
+        val input = """{"fieldA":"hello","rating":null}"""
+        val result = json.decodeFromString(WriteOnlyData.serializer(), input)
+        assertEquals("hello", result.fieldA)
+        assertNull(result.rating)
+    }
+
+    @Test
+    fun writeOnlyIntSerializerDeserializesMissingAsNull() {
+        val input = """{"fieldA":"hello"}"""
+        val result = json.decodeFromString(WriteOnlyData.serializer(), input)
+        assertEquals("hello", result.fieldA)
+        assertNull(result.rating)
     }
 
     // endregion
