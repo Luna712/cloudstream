@@ -9,8 +9,6 @@ import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-object MyDataNonEmptySerializer : NonEmptySerializer<MyData>(MyData.serializer())
-
 @KeepGeneratedSerializer
 @Serializable(with = NonEmptyData.Serializer::class)
 data class NonEmptyData(
