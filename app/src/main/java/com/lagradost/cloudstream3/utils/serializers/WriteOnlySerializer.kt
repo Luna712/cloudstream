@@ -16,17 +16,17 @@ import kotlinx.serialization.json.JsonTransformingSerializer
  *   @Serializable(with = MyData.Serializer::class)
  *   data class MyData(
  *       val fieldA: String,
- *       val fieldB: String
+ *       val fieldB: String,
  *   ) {
  *       object Serializer : WriteOnlySerializer<MyData>(
  *           MyData.serializer(),
- *           setOf("fieldB")
+ *           setOf("fieldB"),
  *       )
  *   }
  */
 abstract class WriteOnlySerializer<T : Any>(
     tSerializer: KSerializer<T>,
-    private val keysToIgnore: Set<String>
+    private val keysToIgnore: Set<String>,
 ) : JsonTransformingSerializer<T>(tSerializer) {
 
     override fun transformSerialize(element: JsonElement): JsonElement {
