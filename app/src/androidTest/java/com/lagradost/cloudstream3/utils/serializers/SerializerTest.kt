@@ -24,7 +24,7 @@ data class WriteOnlyData(
     val fieldB: String = ""
 ) {
     object Serializer : WriteOnlySerializer<WriteOnlyData>(
-        WriteOnlyData.serializer(),
+        { WriteOnlyData.serializer() },
         setOf("fieldB")
     )
 }
@@ -36,7 +36,7 @@ data class MultiWriteOnly(
     val fieldC: String = ""
 ) {
     object Serializer : WriteOnlySerializer<MultiWriteOnly>(
-        MultiWriteOnly.serializer(),
+        { MultiWriteOnly.serializer() },
         setOf("fieldB", "fieldC")
     )
 }
