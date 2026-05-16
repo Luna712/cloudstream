@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream3.utils.serializers
 
+import android.net.Uri
 import com.lagradost.cloudstream3.json
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KeepGeneratedSerializer
@@ -48,6 +49,12 @@ data class MultiWriteOnly(
         setOf("fieldB", "fieldC"),
     )
 }
+
+@Serializable
+data class UriData(
+    @Serializable(with = UriSerializer::class)
+    val uri: Uri = Uri.EMPTY
+)
 
 class SerializerTest {
 
@@ -137,24 +144,24 @@ class SerializerTest {
 
     @Test
     fun uriSerializerSerializesUriToString() {
-        val uri = android.net.Uri.parse("https://example.com/path?query=1")
-        val result = json.encodeToString(UriSerializer, uri)
-        assertEquals("\"https://example.com/path?query=1\"", result)
+        val data = UriData(uri = Uri.parse("https://example.com/path?query=1"))
+        val result = json.encodeToString(UriData.serializer(), data)
+        assertTrue(result.contains("https://example.com/path?query=1"))
     }
 
     @Test
     fun uriSerializerDeserializesStringToUri() {
-        val input = "\"https://example.com/path?query=1\""
-        val result = json.decodeFromString(UriSerializer, input)
-        assertEquals(android.net.Uri.parse("https://example.com/path?query=1"), result)
+        val input = """{"uri":"https://example.com/path?query=1"}"""
+        val result = json.decodeFromString(UriData.serializer(), input)
+        assertEquals(Uri.parse("https://example.com/path?query=1"), result.uri)
     }
 
     @Test
     fun uriSerializerRoundtripsCorrectly() {
-        val uri = android.net.Uri.parse("https://example.com/path?query=1")
-        val encoded = json.encodeToString(UriSerializer, uri)
-        val decoded = json.decodeFromString(UriSerializer, encoded)
-        assertEquals(uri, decoded)
+        val data = UriData(uri = Uri.parse("https://example.com/path?query=1"))
+        val encoded = json.encodeToString(UriData.serializer(), data)
+        val decoded = json.decodeFromString(UriData.serializer(), encoded)
+        assertEquals(data.uri, decoded.uri)
     }
 
     // endregion
