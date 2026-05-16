@@ -14,14 +14,18 @@ import kotlinx.serialization.json.JsonTransformingSerializer
  * output. Requires the enclosing Json instance to have encodeDefaults = true,
  * which is already in our default global Json instance.
  *
- * Can be applied to a single property or to the entire class to cover all properties:
+ * Usage:
  *
- *   @Serializable(with = NonEmptySerializer::class)
+ *   @OptIn(ExperimentalSerializationApi::class)
+ *   @KeepGeneratedSerializer
+ *   @Serializable(with = MyData.Serializer::class)
  *   data class MyData(
  *       val tags: List<String> = emptyList(),
  *       val title: String = "",
- *       val meta: Map<String, String> = emptyMap()
- *   )
+ *       val meta: Map<String, String> = emptyMap(),
+ *   ) {
+ *       object Serializer : NonEmptySerializer<MyData>(MyData.generatedSerializer())
+ *   }
  */
 abstract class NonEmptySerializer<T : Any>(tSerializer: KSerializer<T>) :
     JsonTransformingSerializer<T>(tSerializer) {
