@@ -3,6 +3,7 @@ package com.lagradost.cloudstream3.utils
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.lagradost.cloudstream3.json
 import com.lagradost.cloudstream3.mapper
+import com.lagradost.cloudstream3.mvvm.logError
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.json.JsonElement
@@ -19,8 +20,9 @@ object AppUtils {
         val serializer = this::class.serializerOrNull() ?: json.serializersModule.getContextual(this::class)
         return if (serializer != null) {
             try {
-                json.encodeToString(JsonElement.serializer(), json.parseToJsonElement(this.toString()))
-            } catch (_: Exception) {
+                json.encodeToString(serializer, this)
+            } catch (e: Exception) {
+                logError(e)
                 mapper.writeValueAsString(this)
             }
         } else {
@@ -35,7 +37,8 @@ object AppUtils {
         return if (serializer != null) {
             try {
                 json.decodeFromString(serializer, value)
-            } catch (_: Exception) {
+            } catch (e: Exception) {
+                logError(e)
                 mapper.readValue(value)
             }
         } else {
