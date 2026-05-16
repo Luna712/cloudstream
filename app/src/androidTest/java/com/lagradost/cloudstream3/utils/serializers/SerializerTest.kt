@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.utils.serializers
 
 import com.lagradost.cloudstream3.json
+import kotlinx.serialization.KeepGeneratedSerializer
 import kotlinx.serialization.Serializable
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -8,13 +9,18 @@ import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-@Serializable(with = NonEmptySerializer::class)
-data class NonEmptyData<T>(
+object MyDataNonEmptySerializer : NonEmptySerializer<MyData>(MyData.serializer())
+
+@KeepGeneratedSerializer
+@Serializable(with = MyData.Serializer::class)
+data class NonEmptyData(
     val title: String = "",
     val tags: List<String> = emptyList(),
     val meta: Map<String, String> = emptyMap(),
     val name: String = "hello"
-)
+) {
+    object Serializer : NonEmptySerializer<MyData>(MyData.generatedSerializer())
+}
 
 private val nonEmptySerializer = NonEmptySerializer(NonEmptyData.serializer())
 
