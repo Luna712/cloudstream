@@ -8,7 +8,7 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
 /**
- * Replicates Jackson's @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) behaviour for Float.
+ * Replicates Jackson's @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) behaviour for Int?.
  * The annotated property is deserialized normally but omitted from serialized output.
  *
  * Usage:
@@ -16,19 +16,22 @@ import kotlinx.serialization.encoding.Encoder
  *   @Serializable
  *   data class MyData(
  *       val fieldA: String = "",
- *       @Serializable(with = WriteOnlyFloatSerializer::class)
- *       val rating: Float = 0f
+ *       @Serializable(with = WriteOnlyIntSerializer::class)
+ *       val rating: Int? = null
  *   )
  */
-object WriteOnlyFloatSerializer : KSerializer<Float> {
+object WriteOnlyIntSerializer : KSerializer<Int?> {
     override val descriptor: SerialDescriptor =
-        PrimitiveSerialDescriptor("WriteOnlyFloat", PrimitiveKind.FLOAT)
+        PrimitiveSerialDescriptor("WriteOnlyInt", PrimitiveKind.INT).nullable
 
-    override fun serialize(encoder: Encoder, value: Float) {
+    override fun serialize(encoder: Encoder, value: Int?) {
         // Do nothing, this property is intentionally omitted from serialization.
     }
 
-    override fun deserialize(decoder: Decoder): Float {
-        return decoder.decodeFloat()
+    override fun deserialize(decoder: Decoder): Int? {
+        if (decoder.decodeNotNullMark()) {
+            return decoder.decodeInt()
+        }
+        return decoder.decodeNull()
     }
 }
