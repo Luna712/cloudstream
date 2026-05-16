@@ -23,7 +23,7 @@ import kotlinx.serialization.json.JsonTransformingSerializer
  *       val meta: Map<String, String> = emptyMap()
  *   )
  */
-class NonEmptySerializer<T : Any>(tSerializer: KSerializer<T>) :
+abstract class NonEmptySerializer<T : Any>(tSerializer: KSerializer<T>) :
     JsonTransformingSerializer<T>(tSerializer) {
 
     override fun transformSerialize(element: JsonElement): JsonElement {
