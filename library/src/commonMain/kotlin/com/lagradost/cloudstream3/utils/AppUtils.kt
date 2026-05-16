@@ -6,6 +6,7 @@ import com.lagradost.cloudstream3.mapper
 import com.lagradost.cloudstream3.mvvm.logError
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.serializer
 import kotlinx.serialization.serializerOrNull
@@ -20,7 +21,8 @@ object AppUtils {
         val serializer = this::class.serializerOrNull() ?: json.serializersModule.getContextual(this::class)
         return if (serializer != null) {
             try {
-                json.encodeToString(serializer, this)
+                @Suppress("UNCHECKED_CAST")
+                json.encodeToString(serializer as KSerializer<Any>, this)
             } catch (e: Exception) {
                 logError(e)
                 mapper.writeValueAsString(this)
