@@ -7,6 +7,7 @@ import com.lagradost.cloudstream3.mvvm.logError
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.serializerOrNull
 import kotlin.reflect.KClass
 
@@ -22,7 +23,7 @@ object AppUtils {
             try {
                 @Suppress("UNCHECKED_CAST")
                 json.encodeToString(serializer as KSerializer<Any>, this)
-            } catch (e: Exception) {
+            } catch (e: SerializationException) {
                 logError(e)
                 mapper.writeValueAsString(this)
             }
@@ -38,7 +39,7 @@ object AppUtils {
         return if (serializer != null) {
             try {
                 json.decodeFromString(serializer, value)
-            } catch (e: Exception) {
+            } catch (e: SerializationException) {
                 logError(e)
                 mapper.readValue(value)
             }
@@ -54,7 +55,7 @@ object AppUtils {
         return if (serializer != null) {
             try {
                 json.decodeFromString(serializer, value)
-            } catch (e: Exception) {
+            } catch (e: SerializationException) {
                 logError(e)
                 mapper.readValue(value, kClass.java)
             }
