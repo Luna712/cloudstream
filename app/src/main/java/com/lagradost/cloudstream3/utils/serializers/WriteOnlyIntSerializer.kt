@@ -1,38 +1,21 @@
 package com.lagradost.cloudstream3.utils.serializers
 
-import kotlinx.serialization.KSerializer
-import kotlinx.serialization.descriptors.PrimitiveKind
-import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
-import kotlinx.serialization.descriptors.SerialDescriptor
-import kotlinx.serialization.descriptors.nullable
-import kotlinx.serialization.encoding.Decoder
-import kotlinx.serialization.encoding.Encoder
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonNull
+import kotlinx.serialization.json.JsonTransformingSerializer
 
 /**
- * Replicates Jackson's @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) behaviour for Int?.
+ * Replicates Jackson's @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) behaviour for Int.
  * The annotated property is deserialized normally but omitted from serialized output.
- *
- * Usage:
  *
  *   @Serializable
  *   data class MyData(
  *       val fieldA: String = "",
  *       @Serializable(with = WriteOnlyIntSerializer::class)
- *       val rating: Int? = null
+ *       val rating: Int = 0
  *   )
  */
-object WriteOnlyIntSerializer : KSerializer<Int?> {
-    override val descriptor: SerialDescriptor =
-        PrimitiveSerialDescriptor("WriteOnlyInt", PrimitiveKind.INT).nullable
-
-    override fun serialize(encoder: Encoder, value: Int?) {
-        // Do nothing, this property is intentionally omitted from serialization.
-    }
-
-    override fun deserialize(decoder: Decoder): Int? {
-        if (decoder.decodeNotNullMark()) {
-            return decoder.decodeInt()
-        }
-        return decoder.decodeNull()
-    }
+object WriteOnlyIntSerializer : JsonTransformingSerializer<Int?>(Int.serializer()) {
+    override fun transformSerialize(element: JsonElement): JsonElement = JsonNull
 }
