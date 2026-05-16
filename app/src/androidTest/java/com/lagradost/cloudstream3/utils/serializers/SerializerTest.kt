@@ -53,7 +53,7 @@ data class MultiWriteOnly(
 @Serializable
 data class UriData(
     @Serializable(with = UriSerializer::class)
-    val uri: Uri = Uri.EMPTY
+    val uri: Uri = Uri.EMPTY,
 )
 
 class SerializerTest {
