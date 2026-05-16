@@ -19,6 +19,7 @@ import kotlinx.serialization.encoding.Encoder
  * serialization behavior remains visible.
  *
  * Usage:
+ *
  *   @Serializable
  *   data class MyData(
  *       @Serializable(with = UriSerializer::class)
