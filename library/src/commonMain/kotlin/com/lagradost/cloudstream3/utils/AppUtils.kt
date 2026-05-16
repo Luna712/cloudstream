@@ -69,7 +69,7 @@ object AppUtils {
     }
 
     @InternalAPI
-    inline fun <T : Any> parseJson(value: String, kClass: KClass<T>): T {
+    fun <T : Any> parseJson(value: String, kClass: KClass<T>): T {
         // @Serializable generates a serializer at compile time; contextual serializers are
         // registered manually in serializersModule, we need both to support all cases
         val serializer = kClass.serializerOrNull() ?: json.serializersModule.getContextual(kClass)
