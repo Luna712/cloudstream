@@ -8,22 +8,47 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
+@Serializable
+data class NonEmptyData(
+    val title: String = "",
+    val tags: List<String> = emptyList(),
+    val meta: Map<String, String> = emptyMap(),
+    val name: String = "hello"
+)
+
+private val nonEmptySerializer = NonEmptySerializer(NonEmptyData.serializer())
+
+@Serializable(with = WriteOnlyData.Serializer::class)
+data class WriteOnlyData(
+    val fieldA: String = "",
+    val fieldB: String = ""
+) {
+    object Serializer : WriteOnlySerializer<WriteOnlyData>(
+        WriteOnlyData.serializer(),
+        setOf("fieldB")
+    )
+}
+
+@Serializable(with = MultiWriteOnly.Serializer::class)
+data class MultiWriteOnly(
+    val fieldA: String = "",
+    val fieldB: String = "",
+    val fieldC: String = ""
+) {
+    object Serializer : WriteOnlySerializer<MultiWriteOnly>(
+        MultiWriteOnly.serializer(),
+        setOf("fieldB", "fieldC")
+    )
+}
+
 class SerializerTest {
 
     // region NonEmptySerializer
 
-    @Serializable(with = NonEmptySerializer::class)
-    data class NonEmptyData(
-        val title: String = "",
-        val tags: List<String> = emptyList(),
-        val meta: Map<String, String> = emptyMap(),
-        val name: String = "hello"
-    )
-
     @Test
     fun `NonEmptySerializer omits empty strings`() {
         val data = NonEmptyData(title = "", name = "hello")
-        val result = json.encodeToString(NonEmptySerializer(NonEmptyData.serializer()), data)
+        val result = json.encodeToString(nonEmptySerializer, data)
         assertFalse(result.contains("title"))
         assertTrue(result.contains("name"))
     }
@@ -31,21 +56,21 @@ class SerializerTest {
     @Test
     fun `NonEmptySerializer omits empty lists`() {
         val data = NonEmptyData(tags = emptyList(), name = "hello")
-        val result = json.encodeToString(NonEmptySerializer(NonEmptyData.serializer()), data)
+        val result = json.encodeToString(nonEmptySerializer, data)
         assertFalse(result.contains("tags"))
     }
 
     @Test
     fun `NonEmptySerializer omits empty maps`() {
         val data = NonEmptyData(meta = emptyMap(), name = "hello")
-        val result = json.encodeToString(NonEmptySerializer(NonEmptyData.serializer()), data)
+        val result = json.encodeToString(nonEmptySerializer, data)
         assertFalse(result.contains("meta"))
     }
 
     @Test
     fun `NonEmptySerializer keeps non-empty fields`() {
         val data = NonEmptyData(title = "hello", tags = listOf("a"), meta = mapOf("k" to "v"))
-        val result = json.encodeToString(NonEmptySerializer(NonEmptyData.serializer()), data)
+        val result = json.encodeToString(nonEmptySerializer, data)
         assertTrue(result.contains("title"))
         assertTrue(result.contains("tags"))
         assertTrue(result.contains("meta"))
@@ -54,7 +79,7 @@ class SerializerTest {
     @Test
     fun `NonEmptySerializer does not affect deserialization`() {
         val input = """{"title":"hello","tags":["a"],"meta":{"k":"v"},"name":"world"}"""
-        val result = json.decodeFromString(NonEmptySerializer(NonEmptyData.serializer()), input)
+        val result = json.decodeFromString(nonEmptySerializer, input)
         assertEquals("hello", result.title)
         assertEquals(listOf("a"), result.tags)
         assertEquals(mapOf("k" to "v"), result.meta)
@@ -64,17 +89,6 @@ class SerializerTest {
     // endregion
 
     // region WriteOnlySerializer
-
-    @Serializable(with = WriteOnlyData.Serializer::class)
-    data class WriteOnlyData(
-        val fieldA: String = "",
-        val fieldB: String = ""
-    ) {
-        object Serializer : WriteOnlySerializer<WriteOnlyData>(
-            WriteOnlyData.serializer(),
-            setOf("fieldB")
-        )
-    }
 
     @Test
     fun `WriteOnlySerializer omits write-only field on serialize`() {
@@ -94,18 +108,6 @@ class SerializerTest {
 
     @Test
     fun `WriteOnlySerializer handles multiple keys`() {
-        @Serializable(with = MultiWriteOnly.Serializer::class)
-        data class MultiWriteOnly(
-            val fieldA: String = "",
-            val fieldB: String = "",
-            val fieldC: String = ""
-        ) {
-            object Serializer : WriteOnlySerializer<MultiWriteOnly>(
-                MultiWriteOnly.serializer(),
-                setOf("fieldB", "fieldC")
-            )
-        }
-
         val data = MultiWriteOnly(fieldA = "hello", fieldB = "secret1", fieldC = "secret2")
         val result = json.encodeToString(MultiWriteOnly.serializer(), data)
         assertTrue(result.contains("fieldA"))
