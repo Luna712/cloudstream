@@ -87,6 +87,18 @@ data class Editor(
 }
 
 object DataStore {
+    // Extensions shouldn't have really been using this version of it, but it seems
+    // some have. Since there has always been a very easy alternative, we won't
+    // need to deprecate it that long, and should be able to fully remove it
+    // once extensions at least use the other version.
+    @Deprecated(
+        "Please do not use the mapper version from DataStore. Preferably use methods from AppUtils " +
+            "to parse JSON. However, you can use the stable-API version of the mapper at " +
+            "com.lagradost.cloudstream3.mapper to access the mapper directly if necessary.",
+        level = DeprecationLevel.ERROR,
+        replaceWith = ReplaceWith("com.lagradost.cloudstream3.mapper")
+    val mapper = com.lagradost.cloudstream3.mapper
+
     private fun getPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
     }
