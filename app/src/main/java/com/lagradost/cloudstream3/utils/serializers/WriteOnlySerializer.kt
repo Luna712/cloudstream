@@ -17,9 +17,7 @@ import kotlinx.serialization.encoding.Encoder
  *       val fieldB: String = ""
  *   )
  */
-class WriteOnlySerializer<T>(
-    private val serializer: KSerializer<T>
-) : KSerializer<T> by serializer {
+object WriteOnlySerializer : KSerializer<Any?> {
 
     override fun serialize(encoder: Encoder, value: T) {
         // Do nothing, this property is intentionally omitted from serialization.
