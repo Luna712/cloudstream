@@ -25,9 +25,9 @@ import kotlinx.serialization.json.JsonTransformingSerializer
  *   }
  */
 abstract class WriteOnlySerializer<T : Any>(
-    tSerializer: KSerializer<T>,
+    tSerializerProducer: () -> KSerializer<T>,
     private val keysToIgnore: Set<String>,
-) : JsonTransformingSerializer<T>(tSerializer) {
+) : JsonTransformingSerializer<T>(tSerializerProducer()) {
 
     override fun transformSerialize(element: JsonElement): JsonElement {
         if (element !is JsonObject) return element
