@@ -20,8 +20,6 @@ data class NonEmptyData(
     object Serializer : NonEmptySerializer<NonEmptyData>(NonEmptyData.generatedSerializer())
 }
 
-private val nonEmptySerializer = NonEmptySerializer(NonEmptyData.serializer())
-
 @Serializable
 data class WriteOnlyData(
     val fieldA: String = "",
@@ -36,7 +34,7 @@ class SerializerTest {
     @Test
     fun nonEmptySerializerOmitsEmptyStrings() {
         val data = NonEmptyData(title = "", name = "hello")
-        val result = json.encodeToString(nonEmptySerializer, data)
+        val result = json.encodeToString(NonEmptyData.serializer(), data)
         assertFalse(result.contains("title"))
         assertTrue(result.contains("name"))
     }
@@ -44,21 +42,21 @@ class SerializerTest {
     @Test
     fun nonEmptySerializerOmitsEmptyLists() {
         val data = NonEmptyData(tags = emptyList(), name = "hello")
-        val result = json.encodeToString(nonEmptySerializer, data)
+        val result = json.encodeToString(NonEmptyData.serializer(), data)
         assertFalse(result.contains("tags"))
     }
 
     @Test
     fun nonEmptySerializerOmitsEmptyMaps() {
         val data = NonEmptyData(meta = emptyMap(), name = "hello")
-        val result = json.encodeToString(nonEmptySerializer, data)
+        val result = json.encodeToString(NonEmptyData.serializer(), data)
         assertFalse(result.contains("meta"))
     }
 
     @Test
     fun nonEmptySerializerKeepsNonEmptyFields() {
         val data = NonEmptyData(title = "hello", tags = listOf("a"), meta = mapOf("k" to "v"))
-        val result = json.encodeToString(nonEmptySerializer, data)
+        val result = json.encodeToString(NonEmptyData.serializer(), data)
         assertTrue(result.contains("title"))
         assertTrue(result.contains("tags"))
         assertTrue(result.contains("meta"))
@@ -67,7 +65,7 @@ class SerializerTest {
     @Test
     fun nonEmptySerializerDoesNotAffectDeserialization() {
         val input = """{"title":"hello","tags":["a"],"meta":{"k":"v"},"name":"world"}"""
-        val result = json.decodeFromString(nonEmptySerializer, input)
+        val result = json.decodeFromString(NonEmptyData.serializer(), input)
         assertEquals("hello", result.title)
         assertEquals(listOf("a"), result.tags)
         assertEquals(mapOf("k" to "v"), result.meta)
