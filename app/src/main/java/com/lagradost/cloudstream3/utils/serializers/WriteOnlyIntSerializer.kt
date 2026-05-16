@@ -16,6 +16,6 @@ import kotlinx.serialization.json.JsonTransformingSerializer
  *       val rating: Int = 0
  *   )
  */
-object WriteOnlyIntSerializer : JsonTransformingSerializer<Int?>(Int.serializer()) {
+object WriteOnlyIntSerializer : JsonTransformingSerializer<Int>(Int.serializer()) {
     override fun transformSerialize(element: JsonElement): JsonElement = JsonNull
 }
