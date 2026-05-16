@@ -12,14 +12,14 @@ import org.junit.Test
 object MyDataNonEmptySerializer : NonEmptySerializer<MyData>(MyData.serializer())
 
 @KeepGeneratedSerializer
-@Serializable(with = MyData.Serializer::class)
+@Serializable(with = NonEmptyData.Serializer::class)
 data class NonEmptyData(
     val title: String = "",
     val tags: List<String> = emptyList(),
     val meta: Map<String, String> = emptyMap(),
     val name: String = "hello"
 ) {
-    object Serializer : NonEmptySerializer<MyData>(MyData.generatedSerializer())
+    object Serializer : NonEmptySerializer<NonEmptyData>(NonEmptyData.generatedSerializer())
 }
 
 private val nonEmptySerializer = NonEmptySerializer(NonEmptyData.serializer())
