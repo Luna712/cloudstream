@@ -78,9 +78,9 @@ class SerializerTest {
     fun writeOnlyIntSerializerOmitsFieldOnSerialize() {
         val data = WriteOnlyData(fieldA = "hello", rating = 5)
         val result = json.encodeToString(WriteOnlyData.serializer(), data)
-        System.err.println("result: $result")
         assertTrue(result.contains("fieldA"))
-        assertFalse(result.contains("rating"))
+        // assertFalse(result.contains("rating"))
+        assertFalse("Expected result to not contain 'rating' but got: $result", result.contains("rating"))
     }
 
     @Test
