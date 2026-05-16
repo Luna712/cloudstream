@@ -1,7 +1,8 @@
 package com.lagradost.cloudstream3.utils.serializers
 
 import android.net.Uri
-import com.lagradost.cloudstream3.json
+import com.lagradost.cloudstream3.utils.AppUtils.parseJson
+import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KeepGeneratedSerializer
 import kotlinx.serialization.Serializable
@@ -63,7 +64,7 @@ class SerializerTest {
     @Test
     fun nonEmptySerializerOmitsEmptyStrings() {
         val data = NonEmptyData(title = "", name = "hello")
-        val result = json.encodeToString(NonEmptyData.serializer(), data)
+        val result = data.toJson()
         assertFalse(result.contains("title"))
         assertTrue(result.contains("name"))
     }
@@ -71,21 +72,21 @@ class SerializerTest {
     @Test
     fun nonEmptySerializerOmitsEmptyLists() {
         val data = NonEmptyData(tags = emptyList(), name = "hello")
-        val result = json.encodeToString(NonEmptyData.serializer(), data)
+        val result = data.toJson()
         assertFalse(result.contains("tags"))
     }
 
     @Test
     fun nonEmptySerializerOmitsEmptyMaps() {
         val data = NonEmptyData(meta = emptyMap(), name = "hello")
-        val result = json.encodeToString(NonEmptyData.serializer(), data)
+        val result = data.toJson()
         assertFalse(result.contains("meta"))
     }
 
     @Test
     fun nonEmptySerializerKeepsNonEmptyFields() {
         val data = NonEmptyData(title = "hello", tags = listOf("a"), meta = mapOf("k" to "v"))
-        val result = json.encodeToString(NonEmptyData.serializer(), data)
+        val result = data.toJson()
         assertTrue(result.contains("title"))
         assertTrue(result.contains("tags"))
         assertTrue(result.contains("meta"))
@@ -94,7 +95,7 @@ class SerializerTest {
     @Test
     fun nonEmptySerializerDoesNotAffectDeserialization() {
         val input = """{"title":"hello","tags":["a"],"meta":{"k":"v"},"name":"world"}"""
-        val result = json.decodeFromString(NonEmptyData.serializer(), input)
+        val result = parseJson<NonEmptyData>(input)
         assertEquals("hello", result.title)
         assertEquals(listOf("a"), result.tags)
         assertEquals(mapOf("k" to "v"), result.meta)
@@ -108,7 +109,7 @@ class SerializerTest {
     @Test
     fun writeOnlySerializerOmitsFieldOnSerialize() {
         val data = WriteOnlyData(fieldA = "hello", fieldB = "secret")
-        val result = json.encodeToString(WriteOnlyData.serializer(), data)
+        val result = data.toJson()
         assertTrue(result.contains("fieldA"))
         assertFalse(result.contains("fieldB"))
     }
@@ -116,7 +117,7 @@ class SerializerTest {
     @Test
     fun writeOnlySerializerDeserializesNormally() {
         val input = """{"fieldA":"hello","fieldB":"secret"}"""
-        val result = json.decodeFromString(WriteOnlyData.serializer(), input)
+        val result = parseJson<WriteOnlyData>(input)
         assertEquals("hello", result.fieldA)
         assertEquals("secret", result.fieldB)
     }
@@ -124,7 +125,7 @@ class SerializerTest {
     @Test
     fun writeOnlySerializerDeserializesMissingAsDefault() {
         val input = """{"fieldA":"hello"}"""
-        val result = json.decodeFromString(WriteOnlyData.serializer(), input)
+        val result = parseJson<WriteOnlyData>(input)
         assertEquals("hello", result.fieldA)
         assertEquals("", result.fieldB)
     }
@@ -132,7 +133,7 @@ class SerializerTest {
     @Test
     fun writeOnlySerializerHandlesMultipleKeys() {
         val data = MultiWriteOnly(fieldA = "hello", fieldB = "secret1", fieldC = "secret2")
-        val result = json.encodeToString(MultiWriteOnly.serializer(), data)
+        val result = data.toJson()
         assertTrue(result.contains("fieldA"))
         assertFalse(result.contains("fieldB"))
         assertFalse(result.contains("fieldC"))
@@ -145,22 +146,22 @@ class SerializerTest {
     @Test
     fun uriSerializerSerializesUriToString() {
         val data = UriData(uri = Uri.parse("https://example.com/path?query=1"))
-        val result = json.encodeToString(UriData.serializer(), data)
+        val result = data.toJson()
         assertTrue(result.contains("https://example.com/path?query=1"))
     }
 
     @Test
     fun uriSerializerDeserializesStringToUri() {
         val input = """{"uri":"https://example.com/path?query=1"}"""
-        val result = json.decodeFromString(UriData.serializer(), input)
+        val result = parseJson<UriData>(input)
         assertEquals(Uri.parse("https://example.com/path?query=1"), result.uri)
     }
 
     @Test
     fun uriSerializerRoundtripsCorrectly() {
         val data = UriData(uri = Uri.parse("https://example.com/path?query=1"))
-        val encoded = json.encodeToString(UriData.serializer(), data)
-        val decoded = json.decodeFromString(UriData.serializer(), encoded)
+        val encoded = data.toJson()
+        val decoded = parseJson<UriData>(encoded)
         assertEquals(data.uri, decoded.uri)
     }
 
