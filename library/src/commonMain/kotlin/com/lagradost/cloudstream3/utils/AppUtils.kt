@@ -46,6 +46,22 @@ object AppUtils {
         }
     }
 
+    fun <T : Any> parseJson(value: String, kClass: KClass<T>): T {
+        // @Serializable generates a serializer at compile time; contextual serializers are
+        // registered manually in serializersModule, we need both to support all cases
+        val serializer = kClass.serializerOrNull() ?: json.serializersModule.getContextual(kClass)
+        return if (serializer != null) {
+            try {
+                json.decodeFromString(serializer, value)
+            } catch (e: Exception) {
+                logError(e)
+                mapper.readValue(value, kClass.java)
+            }
+        } else {
+            mapper.readValue(value, kClass.java)
+        }
+    }
+
     @Deprecated(
         "This overload was only ever used for BasePlugin.Manifest which has since been migrated. " +
             "No other code should be using this. Use reader.readText() and call parseJson(String) instead.",
