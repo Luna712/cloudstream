@@ -9,7 +9,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 @Serializable(with = NonEmptySerializer::class)
-data class NonEmptyData(
+data class NonEmptyData<T>(
     val title: String = "",
     val tags: List<String> = emptyList(),
     val meta: Map<String, String> = emptyMap(),
