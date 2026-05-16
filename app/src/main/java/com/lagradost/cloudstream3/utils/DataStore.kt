@@ -96,7 +96,8 @@ object DataStore {
             "to parse JSON. However, you can use the stable-API version of the mapper at " +
             "com.lagradost.cloudstream3.mapper to access the mapper directly if necessary.",
         level = DeprecationLevel.ERROR,
-        replaceWith = ReplaceWith("com.lagradost.cloudstream3.mapper")
+        replaceWith = ReplaceWith("com.lagradost.cloudstream3.mapper"),
+    )
     val mapper = com.lagradost.cloudstream3.mapper
 
     private fun getPreferences(context: Context): SharedPreferences {
