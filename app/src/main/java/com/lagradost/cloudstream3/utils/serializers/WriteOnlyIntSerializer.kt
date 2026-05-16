@@ -2,7 +2,6 @@ package com.lagradost.cloudstream3.utils.serializers
 
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind
-import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
@@ -22,7 +21,7 @@ import kotlinx.serialization.encoding.Encoder
  */
 object WriteOnlyIntSerializer : KSerializer<Int?> {
     override val descriptor: SerialDescriptor =
-        PrimitiveSerialDescriptor("WriteOnlyInt", PrimitiveKind.INT).nullable
+        buildSerialDescriptor("WriteOnlyInt", PrimitiveKind.INT) {}.nullable
 
     override fun serialize(encoder: Encoder, value: Int?) {
         // Do nothing, this property is intentionally omitted from serialization.
