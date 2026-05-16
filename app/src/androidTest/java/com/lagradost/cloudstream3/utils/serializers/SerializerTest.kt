@@ -21,25 +21,18 @@ private val nonEmptySerializer = NonEmptySerializer(NonEmptyData.serializer())
 @Serializable
 data class WriteOnlyData(
     val fieldA: String = "",
+    @Serializable(with = WriteOnlySerializer::class)
     val fieldB: String = ""
 )
-
-private val writeOnlySerializer = object : WriteOnlySerializer<WriteOnlyData>(
-    WriteOnlyData.serializer(),
-    setOf("fieldB")
-) {}
 
 @Serializable
 data class MultiWriteOnly(
     val fieldA: String = "",
+    @Serializable(with = WriteOnlySerializer::class)
     val fieldB: String = "",
+    @Serializable(with = WriteOnlySerializer::class)
     val fieldC: String = ""
 )
-
-private val multiWriteOnlySerializer = object : WriteOnlySerializer<MultiWriteOnly>(
-    MultiWriteOnly.serializer(),
-    setOf("fieldB", "fieldC")
-) {}
 
 class SerializerTest {
 
@@ -93,7 +86,7 @@ class SerializerTest {
     @Test
     fun writeOnlySerializerOmitsWriteOnlyFieldOnSerialize() {
         val data = WriteOnlyData(fieldA = "hello", fieldB = "secret")
-        val result = json.encodeToString(writeOnlySerializer, data)
+        val result = json.encodeToString(WriteOnlyData.serializer(), data)
         assertTrue(result.contains("fieldA"))
         assertFalse(result.contains("fieldB"))
     }
@@ -101,7 +94,7 @@ class SerializerTest {
     @Test
     fun writeOnlySerializerDeserializesWriteOnlyFieldNormally() {
         val input = """{"fieldA":"hello","fieldB":"secret"}"""
-        val result = json.decodeFromString(writeOnlySerializer, input)
+        val result = json.decodeFromString(WriteOnlyData.serializer(), input)
         assertEquals("hello", result.fieldA)
         assertEquals("secret", result.fieldB)
     }
@@ -109,7 +102,7 @@ class SerializerTest {
     @Test
     fun writeOnlySerializerHandlesMultipleKeys() {
         val data = MultiWriteOnly(fieldA = "hello", fieldB = "secret1", fieldC = "secret2")
-        val result = json.encodeToString(multiWriteOnlySerializer, data)
+        val result = json.encodeToString(MultiWriteOnly.serializer(), data)
         assertTrue(result.contains("fieldA"))
         assertFalse(result.contains("fieldB"))
         assertFalse(result.contains("fieldC"))
