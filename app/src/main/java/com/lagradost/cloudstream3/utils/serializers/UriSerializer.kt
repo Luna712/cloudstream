@@ -23,7 +23,7 @@ import kotlinx.serialization.encoding.Encoder
  *   @Serializable
  *   data class MyData(
  *       @Serializable(with = UriSerializer::class)
- *       val uri: Uri
+ *       val uri: Uri,
  *   )
  */
 object UriSerializer : KSerializer<Uri> {
