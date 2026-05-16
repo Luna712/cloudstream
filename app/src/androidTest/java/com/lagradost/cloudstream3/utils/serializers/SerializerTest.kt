@@ -18,28 +18,28 @@ data class NonEmptyData(
 
 private val nonEmptySerializer = NonEmptySerializer(NonEmptyData.serializer())
 
-@Serializable(with = WriteOnlyData.Serializer::class)
+@Serializable
 data class WriteOnlyData(
     val fieldA: String = "",
     val fieldB: String = ""
-) {
-    object Serializer : WriteOnlySerializer<WriteOnlyData>(
-        { WriteOnlyData.serializer() },
-        setOf("fieldB")
-    )
-}
+)
 
-@Serializable(with = MultiWriteOnly.Serializer::class)
+private val writeOnlySerializer = object : WriteOnlySerializer<WriteOnlyData>(
+    WriteOnlyData.serializer(),
+    setOf("fieldB")
+) {}
+
+@Serializable
 data class MultiWriteOnly(
     val fieldA: String = "",
     val fieldB: String = "",
     val fieldC: String = ""
-) {
-    object Serializer : WriteOnlySerializer<MultiWriteOnly>(
-        { MultiWriteOnly.serializer() },
-        setOf("fieldB", "fieldC")
-    )
-}
+)
+
+private val multiWriteOnlySerializer = object : WriteOnlySerializer<MultiWriteOnly>(
+    MultiWriteOnly.serializer(),
+    setOf("fieldB", "fieldC")
+) {}
 
 class SerializerTest {
 
@@ -93,7 +93,7 @@ class SerializerTest {
     @Test
     fun writeOnlySerializerOmitsWriteOnlyFieldOnSerialize() {
         val data = WriteOnlyData(fieldA = "hello", fieldB = "secret")
-        val result = json.encodeToString(WriteOnlyData.serializer(), data)
+        val result = json.encodeToString(writeOnlySerializer, data)
         assertTrue(result.contains("fieldA"))
         assertFalse(result.contains("fieldB"))
     }
@@ -101,7 +101,7 @@ class SerializerTest {
     @Test
     fun writeOnlySerializerDeserializesWriteOnlyFieldNormally() {
         val input = """{"fieldA":"hello","fieldB":"secret"}"""
-        val result = json.decodeFromString(WriteOnlyData.serializer(), input)
+        val result = json.decodeFromString(writeOnlySerializer, input)
         assertEquals("hello", result.fieldA)
         assertEquals("secret", result.fieldB)
     }
@@ -109,7 +109,7 @@ class SerializerTest {
     @Test
     fun writeOnlySerializerHandlesMultipleKeys() {
         val data = MultiWriteOnly(fieldA = "hello", fieldB = "secret1", fieldC = "secret2")
-        val result = json.encodeToString(MultiWriteOnly.serializer(), data)
+        val result = json.encodeToString(multiWriteOnlySerializer, data)
         assertTrue(result.contains("fieldA"))
         assertFalse(result.contains("fieldB"))
         assertFalse(result.contains("fieldC"))
