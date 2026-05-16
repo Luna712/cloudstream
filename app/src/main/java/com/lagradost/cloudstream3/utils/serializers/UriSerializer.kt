@@ -24,11 +24,6 @@ import kotlinx.serialization.encoding.Encoder
  *       @Serializable(with = UriSerializer::class)
  *       val uri: Uri
  *   )
- *
- * Or for just a direct Uri value:
- *
- *   val encoded = json.encodeToString(UriSerializer, uri)
- *   val decoded = json.decodeFromString(UriSerializer, encoded)
  */
 object UriSerializer : KSerializer<Uri> {
     override val descriptor: SerialDescriptor = 
