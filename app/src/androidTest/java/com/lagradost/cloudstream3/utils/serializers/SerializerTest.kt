@@ -59,8 +59,6 @@ data class UriData(
 
 class SerializerTest {
 
-    // region NonEmptySerializer
-
     @Test
     fun nonEmptySerializerOmitsEmptyStrings() {
         val data = NonEmptyData(title = "", name = "hello")
@@ -102,10 +100,6 @@ class SerializerTest {
         assertEquals("world", result.name)
     }
 
-    // endregion
-
-    // region WriteOnlySerializer
-
     @Test
     fun writeOnlySerializerOmitsFieldOnSerialize() {
         val data = WriteOnlyData(fieldA = "hello", fieldB = "secret")
@@ -139,10 +133,6 @@ class SerializerTest {
         assertFalse(result.contains("fieldC"))
     }
 
-    // endregion
-
-    // region UriSerializer
-
     @Test
     fun uriSerializerSerializesUriToString() {
         val data = UriData(uri = Uri.parse("https://example.com/path?query=1"))
@@ -164,6 +154,4 @@ class SerializerTest {
         val decoded = parseJson<UriData>(encoded)
         assertEquals(data.uri, decoded.uri)
     }
-
-    // endregion
 }
