@@ -10,14 +10,14 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 @KeepGeneratedSerializer
-@Serializable(with = NonEmptyData.Serializer::class)
+@Serializable(with = NonEmptySerializer::class)
 data class NonEmptyData(
     val title: String = "",
     val tags: List<String> = emptyList(),
     val meta: Map<String, String> = emptyMap(),
     val name: String = "hello"
 ) {
-    object Serializer : NonEmptySerializer<NonEmptyData>(NonEmptyData.generatedSerializer())
+    // object Serializer : NonEmptySerializer<NonEmptyData>(NonEmptyData.generatedSerializer())
 }
 
 private val nonEmptySerializer = NonEmptySerializer(NonEmptyData.serializer())
