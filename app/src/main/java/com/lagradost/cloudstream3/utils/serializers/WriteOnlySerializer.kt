@@ -10,24 +10,27 @@ import kotlinx.serialization.json.JsonTransformingSerializer
  * Properties in [keysToIgnore] are deserialized normally but omitted from serialized output.
  *
  * Cannot be used directly with @Serializable(with = ...) since annotations don't support
- * constructor arguments. Instead, create a named object in the target class that extends
- * this and passes the keys to ignore:
+ * constructor arguments, and the nested object pattern causes class initialization ordering
+ * issues on Android. Instead, create a top-level anonymous object:
  *
- *   @Serializable(with = MyData.Serializer::class)
+ *   @Serializable
  *   data class MyData(
- *       val fieldA: String,
- *       val fieldB: String,
- *   ) {
- *       object Serializer : WriteOnlySerializer<MyData>(
- *           MyData.serializer(),
- *           setOf("fieldB"),
- *       )
- *   }
+ *       val fieldA: String = "",
+ *       val fieldB: String = ""
+ *   )
+ *
+ *   val myDataSerializer = object : WriteOnlySerializer<MyData>(
+ *       MyData.serializer(),
+ *       setOf("fieldB")
+ *   ) {}
+ *
+ *   val encoded = json.encodeToString(myDataSerializer, MyData(fieldA = "hello", fieldB = "secret"))
+ *   val decoded = json.decodeFromString(myDataSerializer, encoded)
  */
 abstract class WriteOnlySerializer<T : Any>(
-    tSerializerProducer: () -> KSerializer<T>,
-    private val keysToIgnore: Set<String>,
-) : JsonTransformingSerializer<T>(tSerializerProducer()) {
+    tSerializer: KSerializer<T>,
+    private val keysToIgnore: Set<String>
+) : JsonTransformingSerializer<T>(tSerializer) {
 
     override fun transformSerialize(element: JsonElement): JsonElement {
         if (element !is JsonObject) return element
