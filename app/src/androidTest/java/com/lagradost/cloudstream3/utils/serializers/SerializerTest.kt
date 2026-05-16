@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.utils.serializers
 
 import com.lagradost.cloudstream3.json
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KeepGeneratedSerializer
 import kotlinx.serialization.Serializable
 import org.junit.Assert.assertEquals
@@ -9,23 +10,44 @@ import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
+@OptIn(ExperimentalSerializationApi::class)
 @KeepGeneratedSerializer
 @Serializable(with = NonEmptyData.Serializer::class)
 data class NonEmptyData(
     val title: String = "",
     val tags: List<String> = emptyList(),
     val meta: Map<String, String> = emptyMap(),
-    val name: String = "hello"
+    val name: String = "hello",
 ) {
     object Serializer : NonEmptySerializer<NonEmptyData>(NonEmptyData.generatedSerializer())
 }
 
-@Serializable
+@OptIn(ExperimentalSerializationApi::class)
+@KeepGeneratedSerializer
+@Serializable(with = WriteOnlyData.Serializer::class)
 data class WriteOnlyData(
     val fieldA: String = "",
-    @Serializable(with = WriteOnlyIntSerializer::class)
-    val rating: Int = 0
-)
+    val fieldB: String = "",
+) {
+    object Serializer : WriteOnlySerializer<WriteOnlyData>(
+        WriteOnlyData.generatedSerializer(),
+        setOf("fieldB"),
+    )
+}
+
+@OptIn(ExperimentalSerializationApi::class)
+@KeepGeneratedSerializer
+@Serializable(with = MultiWriteOnly.Serializer::class)
+data class MultiWriteOnly(
+    val fieldA: String = "",
+    val fieldB: String = "",
+    val fieldC: String = "",
+) {
+    object Serializer : WriteOnlySerializer<MultiWriteOnly>(
+        MultiWriteOnly.generatedSerializer(),
+        setOf("fieldB", "fieldC"),
+    )
+}
 
 class SerializerTest {
 
@@ -74,39 +96,39 @@ class SerializerTest {
 
     // endregion
 
-    // region WriteOnlyIntSerializer
+    // region WriteOnlySerializer
 
     @Test
-    fun writeOnlyIntSerializerOmitsFieldOnSerialize() {
-        val data = WriteOnlyData(fieldA = "hello", rating = 5)
+    fun writeOnlySerializerOmitsFieldOnSerialize() {
+        val data = WriteOnlyData(fieldA = "hello", fieldB = "secret")
         val result = json.encodeToString(WriteOnlyData.serializer(), data)
         assertTrue(result.contains("fieldA"))
-        // assertFalse(result.contains("rating"))
-        assertFalse("Expected result to not contain 'rating' but got: $result", result.contains("rating"))
+        assertFalse("Expected result to not contain 'fieldB' but got: $result", result.contains("fieldB"))
     }
 
     @Test
-    fun writeOnlyIntSerializerDeserializesNormally() {
-        val input = """{"fieldA":"hello","rating":5}"""
+    fun writeOnlySerializerDeserializesNormally() {
+        val input = """{"fieldA":"hello","fieldB":"secret"}"""
         val result = json.decodeFromString(WriteOnlyData.serializer(), input)
         assertEquals("hello", result.fieldA)
-        assertEquals(5, result.rating)
+        assertEquals("secret", result.fieldB)
     }
 
     @Test
-    fun writeOnlyIntSerializerDeserializesNull() {
-        val input = """{"fieldA":"hello","rating":0}"""
-        val result = json.decodeFromString(WriteOnlyData.serializer(), input)
-        assertEquals("hello", result.fieldA)
-        assertEquals(0, result.rating)
-    }
-
-    @Test
-    fun writeOnlyIntSerializerDeserializesMissingAsNull() {
+    fun writeOnlySerializerDeserializesMissingAsDefault() {
         val input = """{"fieldA":"hello"}"""
         val result = json.decodeFromString(WriteOnlyData.serializer(), input)
         assertEquals("hello", result.fieldA)
-        assertNull(result.rating)
+        assertEquals("", result.fieldB)
+    }
+
+    @Test
+    fun writeOnlySerializerHandlesMultipleKeys() {
+        val data = MultiWriteOnly(fieldA = "hello", fieldB = "secret1", fieldC = "secret2")
+        val result = json.encodeToString(MultiWriteOnly.serializer(), data)
+        assertTrue(result.contains("fieldA"))
+        assertFalse("Expected result to not contain 'fieldB' but got: $result", result.contains("fieldB"))
+        assertFalse("Expected result to not contain 'fieldC' but got: $result", result.contains("fieldC"))
     }
 
     // endregion
