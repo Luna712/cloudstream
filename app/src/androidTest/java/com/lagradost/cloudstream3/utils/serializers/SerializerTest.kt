@@ -110,7 +110,7 @@ class SerializerTest {
         val data = WriteOnlyData(fieldA = "hello", fieldB = "secret")
         val result = json.encodeToString(WriteOnlyData.serializer(), data)
         assertTrue(result.contains("fieldA"))
-        assertFalse("Expected result to not contain 'fieldB' but got: $result", result.contains("fieldB"))
+        assertFalse(result.contains("fieldB"))
     }
 
     @Test
@@ -134,8 +134,8 @@ class SerializerTest {
         val data = MultiWriteOnly(fieldA = "hello", fieldB = "secret1", fieldC = "secret2")
         val result = json.encodeToString(MultiWriteOnly.serializer(), data)
         assertTrue(result.contains("fieldA"))
-        assertFalse("Expected result to not contain 'fieldB' but got: $result", result.contains("fieldB"))
-        assertFalse("Expected result to not contain 'fieldC' but got: $result", result.contains("fieldC"))
+        assertFalse(result.contains("fieldB"))
+        assertFalse(result.contains("fieldC"))
     }
 
     // endregion
