@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.utils
 
 import com.fasterxml.jackson.module.kotlin.readValue
+import com.lagradost.cloudstream3.InternalAPI
 import com.lagradost.cloudstream3.json
 import com.lagradost.cloudstream3.mapper
 import com.lagradost.cloudstream3.mvvm.logError
@@ -48,22 +49,6 @@ object AppUtils {
         }
     }
 
-    fun <T : Any> parseJson(value: String, kClass: KClass<T>): T {
-        // @Serializable generates a serializer at compile time; contextual serializers are
-        // registered manually in serializersModule, we need both to support all cases
-        val serializer = kClass.serializerOrNull() ?: json.serializersModule.getContextual(kClass)
-        return if (serializer != null) {
-            try {
-                json.decodeFromString(serializer, value)
-            } catch (e: SerializationException) {
-                logError(e)
-                mapper.readValue(value, kClass.java)
-            }
-        } else {
-            mapper.readValue(value, kClass.java)
-        }
-    }
-
     @Deprecated(
         "This overload was only ever used for BasePlugin.Manifest which has since been migrated. " +
             "No other code should be using this. Use reader.readText() and call parseJson(String) instead.",
@@ -80,6 +65,23 @@ object AppUtils {
             parseJson(value ?: return null)
         } catch (_: Exception) {
             null
+        }
+    }
+
+    @InternalAPI
+    inline fun <T : Any> parseJson(value: String, kClass: KClass<T>): T {
+        // @Serializable generates a serializer at compile time; contextual serializers are
+        // registered manually in serializersModule, we need both to support all cases
+        val serializer = kClass.serializerOrNull() ?: json.serializersModule.getContextual(kClass)
+        return if (serializer != null) {
+            try {
+                json.decodeFromString(serializer, value)
+            } catch (e: SerializationException) {
+                logError(e)
+                mapper.readValue(value, kClass.java)
+            }
+        } else {
+            mapper.readValue(value, kClass.java)
         }
     }
 }
