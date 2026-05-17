@@ -18,6 +18,7 @@ import com.lagradost.cloudstream3.ShowStatus
 import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.addDate
 import com.lagradost.cloudstream3.app
+import com.lagradost.cloudstream3.isUpcoming
 import com.lagradost.cloudstream3.mainPageOf
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.newEpisode
@@ -30,9 +31,6 @@ import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import okhttp3.Interceptor
 import okhttp3.Response
-import kotlinx.datetime.LocalDate
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.atStartOfDayIn
 
 //Reference: https://mydramalist.github.io/MDL-API/
 abstract class MyDramaListAPI : MainAPI() {
@@ -191,15 +189,6 @@ abstract class MyDramaListAPI : MainAPI() {
             )
         )
         return this
-    }
-
-    private fun isUpcoming(dateString: String?): Boolean {
-        return runCatching {
-            val dateTime = dateString?.let {
-                LocalDate.parse(it).atStartOfDayIn(TimeZone.currentSystemDefault()).toEpochMilliseconds()
-            } ?: return false
-            unixTimeMS < dateTime
-        }.onFailure { logError(it) }.getOrElse { false }
     }
 
     private fun getStatus(status: String?): ShowStatus? {
