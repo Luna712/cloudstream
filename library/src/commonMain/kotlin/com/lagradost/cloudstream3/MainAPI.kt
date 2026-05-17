@@ -33,6 +33,7 @@ import kotlinx.datetime.format.DateTimeComponents
 import kotlinx.datetime.format.FormatStringsInDatetimeFormats
 import kotlinx.datetime.format.byUnicodePattern
 import kotlinx.datetime.format.parse
+import kotlinx.datetime.toInstant
 import java.net.URI
 import java.util.*
 import kotlin.io.encoding.Base64
@@ -2548,17 +2549,18 @@ constructor(
 fun Episode.addDate(date: String?, format: String = "yyyy-MM-dd") {
     if (date == null) return
     this.date = runCatching {
-        val dynamicFormat = DateTimeComponents.Format { byUnicodePattern(format) }
-        val components = DateTimeComponents.parse(date, dynamicFormat)
+        val components = DateTimeComponents.parse(
+            date,
+            DateTimeComponents.Format { byUnicodePattern(format) }
+        )
 
-        val localDate = components.toLocalDate()
-        val localTime = runCatching { components.toLocalTime() }.getOrElse { LocalTime(0, 0) }
-
-        val targetTimeZone = TimeZone.currentSystemDefault()
-        localDate.atTime(localTime).toInstant(targetTimeZone).toEpochMilliseconds()
-    }.onFailure { 
-        logError(it) 
-    }.getOrNull()
+        runCatching { components.toInstantUsingOffset().toEpochMilliseconds() }
+            .getOrElse {
+                components.toLocalDateTime().toInstant(
+                    TimeZone.currentSystemDefault()
+                ).toEpochMilliseconds()
+            }
+    }.onFailure { logError(it) }.getOrNull()
 }
 
 fun Episode.addDate(date: LocalDate?) {
