@@ -98,7 +98,7 @@ class EpisodeDateTest {
     @Test
     fun addDateNullLocalDateLeavesDateNull() {
         val ep = episode()
-        ep.addDate(null as? LocalDate)
+        ep.addDate(null as LocalDate?)
         assertNull(ep.date)
     }
 
@@ -113,7 +113,7 @@ class EpisodeDateTest {
     @Test
     fun addDateNullInstantLeavesDateNull() {
         val ep = episode()
-        ep.addDate(null as? Instant)
+        ep.addDate(null as Instant?)
         assertNull(ep.date)
     }
 }
