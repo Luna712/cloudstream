@@ -2548,7 +2548,7 @@ fun Episode.addDate(date: String?, format: String = "yyyy-MM-dd") {
     if (date == null) return
     this.date = runCatching {
         val dynamicFormat = DateTimeComponents.Format { byUnicodePattern(format) }
-        val components = DateTimeComponents.parse(date, dynamicFormat)
+        val components = DateTimeComponents.Companion.parse(date, dynamicFormat)
 
         val localDate = components.toLocalDate()
         val localTime = runCatching { components.toLocalTime() }.getOrElse { LocalTime(0, 0) }
