@@ -239,7 +239,7 @@ open class TraktProvider : MainAPI() {
                             //this.rating = episode.rating?.times(10)?.roundToInt()
                             this.score = Score.from10(episode.rating)
 
-                            this.addDate(Instant.parse(episode.firstAired))
+                            this.addDate(episode.firstAired?.let { Instant.parse(it) })
                             if (nextAir == null && this.date != null && this.date!! > unixTimeMS && this.season != 0) {
                                 nextAir = NextAiring(
                                     episode = this.episode!!,
