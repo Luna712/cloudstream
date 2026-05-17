@@ -34,7 +34,7 @@ class EpisodeDateTest {
     @Test
     fun addDateNullDoesNotSetDate() {
         val ep = episode()
-        ep.addDate(null)
+        ep.addDate(null as String?)
         assertNull(ep.date)
     }
 
