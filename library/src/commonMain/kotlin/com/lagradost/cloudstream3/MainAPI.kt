@@ -2718,7 +2718,8 @@ fun isUpcoming(dateString: String?): Boolean {
         }
         val components = DateTimeComponents.parse(dateString ?: return false, fmt)
         val instant = runCatching { components.toInstantUsingOffset() }
-            .getOrElse { components.toLocalDateTime().toInstant(TimeZone.currentSystemDefault()) }
+            .recoverCatching { components.toLocalDateTime().toInstant(TimeZone.currentSystemDefault()) }
+            .getOrElse { components.toLocalDate().atStartOfDayIn(TimeZone.currentSystemDefault()) }
         Clock.System.now() < instant
     }.onFailure { logError(it) }.getOrElse { false }
 }
