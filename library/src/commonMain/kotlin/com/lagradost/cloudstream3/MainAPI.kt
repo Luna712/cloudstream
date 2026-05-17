@@ -2556,18 +2556,21 @@ fun Episode.addDate(date: String?, format: String = "yyyy-MM-dd") {
     }.onFailure { logError(it) }.getOrNull()
 }
 
+@Prerelease
 fun Episode.addDate(date: LocalDate?) {
     this.date = date?.atStartOfDayIn(TimeZone.currentSystemDefault())?.toEpochMilliseconds()
 }
 
+@Prerelease
 fun Episode.addDate(date: Instant?) {
     this.date = date?.toEpochMilliseconds()
 }
 
-@Deprecated(
+// Deprecate after next stable
+/* @Deprecated(
     message = "Use addDate with LocalDate, Instant, or String instead.",
     level = DeprecationLevel.WARNING,
-)
+) */
 fun Episode.addDate(date: Date?) {
     this.date = date?.time
 }
