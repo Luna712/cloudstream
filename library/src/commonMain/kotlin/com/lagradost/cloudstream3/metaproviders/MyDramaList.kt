@@ -30,8 +30,9 @@ import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import okhttp3.Interceptor
 import okhttp3.Response
-import java.text.SimpleDateFormat
-import java.util.Locale
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.atStartOfDayIn
 
 //Reference: https://mydramalist.github.io/MDL-API/
 abstract class MyDramaListAPI : MainAPI() {
@@ -193,14 +194,12 @@ abstract class MyDramaListAPI : MainAPI() {
     }
 
     private fun isUpcoming(dateString: String?): Boolean {
-        return try {
-            val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            val dateTime = dateString?.let { format.parse(it)?.time } ?: return false
+        return runCatching {
+            val dateTime = dateString?.let {
+                LocalDate.parse(it).atStartOfDayIn(TimeZone.currentSystemDefault()).toEpochMilliseconds()
+            } ?: return false
             unixTimeMS < dateTime
-        } catch (t: Throwable) {
-            logError(t)
-            false
-        }
+        }.onFailure { logError(it) }.getOrElse { false }
     }
 
     private fun getStatus(status: String?): ShowStatus? {

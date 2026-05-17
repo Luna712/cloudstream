@@ -25,13 +25,21 @@ import com.lagradost.nicehttp.RequestBodyTypes
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.atStartOfDayIn
+import kotlinx.datetime.format.DateTimeComponents
+import kotlinx.datetime.format.FormatStringsInDatetimeFormats
+import kotlinx.datetime.format.byUnicodePattern
 import java.net.URI
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 import kotlin.math.absoluteValue
 import kotlin.math.roundToInt
+import kotlin.time.Clock
+import kotlin.time.Instant
 
 /**
  * API available only on prerelease builds.
@@ -78,10 +86,10 @@ val mapper = JsonMapper.builder().addModule(kotlinModule())
     .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).build()!!
 
 object APIHolder {
-    val unixTime: Long
-        get() = System.currentTimeMillis() / 1000L
     val unixTimeMS: Long
-        get() = System.currentTimeMillis()
+        get() = Clock.System.now().toEpochMilliseconds()
+    val unixTime: Long
+        get() = unixTimeMS / 1000L
 
     // ConcurrentModificationException is possible!!!
     val allProviders = threadSafeListOf<MainAPI>()
@@ -2535,14 +2543,35 @@ constructor(
         get() = score?.toInt(100)
 }
 
+@OptIn(FormatStringsInDatetimeFormats::class)
 fun Episode.addDate(date: String?, format: String = "yyyy-MM-dd") {
-    try {
-        this.date = SimpleDateFormat(format, Locale.getDefault()).parse(date ?: return)?.time
-    } catch (e: Exception) {
-        logError(e)
-    }
+    if (date == null) return
+    this.date = runCatching {
+        val dynamicFormat = DateTimeComponents.Format { byUnicodePattern(format) }
+        val components = DateTimeComponents.parse(date, dynamicFormat)
+
+        val localDate = components.toLocalDate()
+        val localTime = runCatching { components.toLocalTime() }.getOrElse { LocalTime(0, 0) }
+
+        val targetTimeZone = TimeZone.currentSystemDefault()
+        localDate.atTime(localTime).toInstant(targetTimeZone).toEpochMilliseconds()
+    }.onFailure { 
+        logError(it) 
+    }.getOrNull()
 }
 
+fun Episode.addDate(date: LocalDate?) {
+    this.date = date?.atStartOfDayIn(TimeZone.UTC)?.toEpochMilliseconds()
+}
+
+fun Episode.addDate(date: Instant?) {
+    this.date = date?.toEpochMilliseconds()
+}
+
+@Deprecated(
+    message = "Use addDate with LocalDate, Instant, or String instead.",
+    level = DeprecationLevel.WARNING,
+)
 fun Episode.addDate(date: Date?) {
     this.date = date?.time
 }

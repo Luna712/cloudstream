@@ -33,8 +33,10 @@ import com.lagradost.cloudstream3.newTvSeriesLoadResponse
 import com.lagradost.cloudstream3.newTvSeriesSearchResponse
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
-import java.text.SimpleDateFormat
-import java.util.Locale
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.atStartOfDayIn
+import kotlin.time.Instant
 
 open class TraktProvider : MainAPI() {
     override var name = "Trakt"
@@ -237,7 +239,7 @@ open class TraktProvider : MainAPI() {
                             //this.rating = episode.rating?.times(10)?.roundToInt()
                             this.score = Score.from10(episode.rating)
 
-                            this.addDate(episode.firstAired, "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+                            this.addDate(Instant.parse(episode.firstAired))
                             if (nextAir == null && this.date != null && this.date!! > unixTimeMS && this.season != 0) {
                                 nextAir = NextAiring(
                                     episode = this.episode!!,
@@ -293,14 +295,12 @@ open class TraktProvider : MainAPI() {
     }
 
     private fun isUpcoming(dateString: String?): Boolean {
-        return try {
-            val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            val dateTime = dateString?.let { format.parse(it)?.time } ?: return false
+        return runCatching {
+            val dateTime = dateString?.let {
+                LocalDate.parse(it).atStartOfDayIn(TimeZone.currentSystemDefault()).toEpochMilliseconds()
+            } ?: return false
             unixTimeMS < dateTime
-        } catch (t: Throwable) {
-            logError(t)
-            false
-        }
+        }.onFailure { logError(it) }.getOrElse { false }
     }
 
     private fun getStatus(t: String?): ShowStatus {
