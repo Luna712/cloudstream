@@ -2553,7 +2553,8 @@ fun Episode.addDate(date: String?, format: String = "yyyy-MM-dd") {
         val fmt = DateTimeComponents.Format { byUnicodePattern(format) }
         val components = DateTimeComponents.parse(date, fmt)
         runCatching { components.toInstantUsingOffset().toEpochMilliseconds() }
-            .getOrElse { components.toLocalDateTime().toInstant(TimeZone.currentSystemDefault()).toEpochMilliseconds() }
+            .recoverCatching { components.toLocalDateTime().toInstant(TimeZone.currentSystemDefault()).toEpochMilliseconds() }
+            .getOrElse { components.toLocalDate().atStartOfDayIn(TimeZone.currentSystemDefault()).toEpochMilliseconds() }
     }.onFailure { logError(it) }.getOrNull()
 }
 
