@@ -2561,7 +2561,7 @@ fun Episode.addDate(date: String?, format: String = "yyyy-MM-dd") {
 }
 
 fun Episode.addDate(date: LocalDate?) {
-    this.date = date?.atStartOfDayIn(TimeZone.UTC)?.toEpochMilliseconds()
+    this.date = date?.atStartOfDayIn(TimeZone.currentSystemDefault())?.toEpochMilliseconds()
 }
 
 fun Episode.addDate(date: Instant?) {
