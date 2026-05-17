@@ -2549,17 +2549,10 @@ constructor(
 fun Episode.addDate(date: String?, format: String = "yyyy-MM-dd") {
     if (date == null) return
     this.date = runCatching {
-        val components = DateTimeComponents.parse(
-            date,
-            DateTimeComponents.Format { byUnicodePattern(format) }
-        )
-
+        val fmt = DateTimeComponents.Format { byUnicodePattern(format) }
+        val components = DateTimeComponents.parse(date, fmt)
         runCatching { components.toInstantUsingOffset().toEpochMilliseconds() }
-            .getOrElse {
-                components.toLocalDateTime().toInstant(
-                    TimeZone.currentSystemDefault()
-                ).toEpochMilliseconds()
-            }
+            .getOrElse { components.toLocalDateTime().toInstant(TimeZone.currentSystemDefault()).toEpochMilliseconds() }
     }.onFailure { logError(it) }.getOrNull()
 }
 
