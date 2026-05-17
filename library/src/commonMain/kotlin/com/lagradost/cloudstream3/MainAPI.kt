@@ -32,6 +32,7 @@ import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.format.DateTimeComponents
 import kotlinx.datetime.format.FormatStringsInDatetimeFormats
 import kotlinx.datetime.format.byUnicodePattern
+import kotlinx.datetime.format.char
 import kotlinx.datetime.format.parse
 import kotlinx.datetime.toInstant
 import java.net.URI
@@ -2711,7 +2712,9 @@ fun fetchUrls(text: String?): List<String> {
 @Prerelease
 fun isUpcoming(dateString: String?): Boolean {
     return runCatching {
-        val fmt = DateTimeComponents.Format { byUnicodePattern("yyyy-MM-dd") }
+        val fmt = DateTimeComponents.Format {
+            year(); char('-'); monthNumber(); char('-'); day()
+        }
         val components = DateTimeComponents.parse(dateString ?: return false, fmt)
         val instant = runCatching { components.toInstantUsingOffset() }
             .getOrElse { components.toLocalDateTime().toInstant(TimeZone.currentSystemDefault()) }
