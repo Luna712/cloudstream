@@ -2708,6 +2708,17 @@ fun fetchUrls(text: String?): List<String> {
     return linkRegex.findAll(text).map { it.value.trim().removeSurrounding("\"") }.toList()
 }
 
+@Prerelease
+fun isUpcoming(dateString: String?): Boolean {
+    return runCatching {
+        val fmt = DateTimeComponents.Format { byUnicodePattern("yyyy-MM-dd") }
+        val components = DateTimeComponents.parse(dateString ?: return false, fmt)
+        val instant = runCatching { components.toInstantUsingOffset() }
+            .getOrElse { components.toLocalDateTime().toInstant(TimeZone.currentSystemDefault()) }
+        Clock.System.now() < instant
+    }.onFailure { logError(it) }.getOrElse { false }
+}
+
 @Deprecated(
     "toRatingInt() is deprecated. Use new score API instead.",
     level = DeprecationLevel.ERROR
