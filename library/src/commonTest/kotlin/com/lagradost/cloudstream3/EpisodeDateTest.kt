@@ -28,8 +28,8 @@ class EpisodeDateTest {
     @Test
     fun addDateDefaultFormatParsesIsoDate() {
         val ep = episode()
-        ep.addDate("2024-03-15")
-        val expected = LocalDate(2024, 3, 15)
+        ep.addDate("2026-05-17")
+        val expected = LocalDate(2026, 5, 17)
             .atStartOfDayIn(TimeZone.currentSystemDefault())
             .toEpochMilliseconds()
         assertEquals(expected, ep.date)
@@ -38,7 +38,7 @@ class EpisodeDateTest {
     @Test
     fun addDateNullDoesNotSetDate() {
         val ep = episode()
-        ep.addDate(null as String?)
+        ep.addDate(null)
         assertNull(ep.date)
     }
 
@@ -52,8 +52,8 @@ class EpisodeDateTest {
     @Test
     fun addDateCustomFormatParsesSlashDate() {
         val ep = episode()
-        ep.addDate("15/03/2024", "dd/MM/yyyy")
-        val expected = LocalDate(2024, 3, 15)
+        ep.addDate("17/05/2026", "dd/MM/yyyy")
+        val expected = LocalDate(2026, 5, 17)
             .atStartOfDayIn(TimeZone.currentSystemDefault())
             .toEpochMilliseconds()
         assertEquals(expected, ep.date)
@@ -62,24 +62,24 @@ class EpisodeDateTest {
     @Test
     fun addDateIsoDateTimeWithOffsetUsesExactInstant() {
         val ep = episode()
-        ep.addDate("2024-03-15T10:30:00.000+05:00", "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-        val expected = Instant.parse("2024-03-15T10:30:00.000+05:00").toEpochMilliseconds()
+        ep.addDate("2026-05-17T10:30:00.000+05:00", "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+        val expected = Instant.parse("2026-05-17T10:30:00.000+05:00").toEpochMilliseconds()
         assertEquals(expected, ep.date)
     }
 
     @Test
     fun addDateUtcDateTimeUsesExactInstant() {
         val ep = episode()
-        ep.addDate("2024-03-15T10:30:00.000Z", "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
-        val expected = Instant.parse("2024-03-15T10:30:00.000Z").toEpochMilliseconds()
+        ep.addDate("2026-05-17T10:30:00.000Z", "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+        val expected = Instant.parse("2026-05-17T10:30:00.000Z").toEpochMilliseconds()
         assertEquals(expected, ep.date)
     }
 
     @Test
     fun addDateDateTimeNoOffsetUsesSystemTimezone() {
         val ep = episode()
-        ep.addDate("2024-03-15T10:30:00", "yyyy-MM-dd'T'HH:mm:ss")
-        val expected = LocalDateTime(2024, 3, 15, 10, 30, 0)
+        ep.addDate("2026-05-17T10:30:00", "yyyy-MM-dd'T'HH:mm:ss")
+        val expected = LocalDateTime(2026, 5, 17, 10, 30, 0)
             .toInstant(TimeZone.currentSystemDefault())
             .toEpochMilliseconds()
         assertEquals(expected, ep.date)
@@ -88,33 +88,19 @@ class EpisodeDateTest {
     @Test
     fun addDateLocalDateSetsCorrectEpochMillis() {
         val ep = episode()
-        ep.addDate(LocalDate(2024, 3, 15))
-        val expected = LocalDate(2024, 3, 15)
+        ep.addDate(LocalDate(2026, 5, 17))
+        val expected = LocalDate(2026, 5, 17)
             .atStartOfDayIn(TimeZone.currentSystemDefault())
             .toEpochMilliseconds()
         assertEquals(expected, ep.date)
     }
 
     @Test
-    fun addDateNullLocalDateLeavesDateNull() {
-        val ep = episode()
-        ep.addDate(null as LocalDate?)
-        assertNull(ep.date)
-    }
-
-    @Test
     fun addDateInstantSetsCorrectEpochMillis() {
         val ep = episode()
-        val instant = Instant.parse("2024-03-15T10:30:00Z")
+        val instant = Instant.parse("2026-05-17T10:30:00Z")
         ep.addDate(instant)
         assertEquals(instant.toEpochMilliseconds(), ep.date)
-    }
-
-    @Test
-    fun addDateNullInstantLeavesDateNull() {
-        val ep = episode()
-        ep.addDate(null as Instant?)
-        assertNull(ep.date)
     }
 }
 
