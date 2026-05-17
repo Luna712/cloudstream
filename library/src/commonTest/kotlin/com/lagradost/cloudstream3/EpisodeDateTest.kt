@@ -92,11 +92,25 @@ class EpisodeDateTest {
     }
 
     @Test
+    fun addDateNullLocalDateLeavesDateNull() {
+        val ep = episode()
+        ep.addDate(null as LocalDate?)
+        assertNull(ep.date)
+    }
+
+    @Test
     fun addDateInstantSetsCorrectEpochMillis() {
         val ep = episode()
         val instant = Instant.parse("2026-05-17T10:30:00Z")
         ep.addDate(instant)
         assertEquals(instant.toEpochMilliseconds(), ep.date)
+    }
+
+    @Test
+    fun addDateNullInstantLeavesDateNull() {
+        val ep = episode()
+        ep.addDate(null as Instant?)
+        assertNull(ep.date)
     }
 }
 
