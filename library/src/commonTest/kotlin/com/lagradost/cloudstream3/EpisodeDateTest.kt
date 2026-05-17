@@ -18,7 +18,12 @@ import kotlin.test.assertTrue
 
 class EpisodeDateTest {
 
-    private fun episode() = newEpisode("")
+    private val api = object : MainAPI() {
+        override var name = "Test"
+        override var mainUrl = "https://test.com"
+    }
+
+    private fun episode() = api.newEpisode("")
 
     @Test
     fun addDateDefaultFormatParsesIsoDate() {
