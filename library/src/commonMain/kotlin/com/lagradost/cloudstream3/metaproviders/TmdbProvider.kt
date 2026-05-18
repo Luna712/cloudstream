@@ -228,7 +228,7 @@ open class TmdbProvider : MainAPI() {
         return app.get(
             url = "$tmdbApiUrl$path",
             params = params,
-        ).toString()
+        ).text
     }
 
     private fun TmdbSearchResult.toSearchResponse() = if (isTv) {
