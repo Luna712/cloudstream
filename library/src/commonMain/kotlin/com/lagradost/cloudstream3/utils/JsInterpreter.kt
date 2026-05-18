@@ -685,7 +685,7 @@ class JsInterpreter {
             "PI" to Math.PI, "E" to Math.E,
             "floor" to nativeFn { args -> floor(toNumber(args.getOrNull(0))) },
             "ceil" to nativeFn { args -> ceil(toNumber(args.getOrNull(0))) },
-            "round" to nativeFn { args -> round(toNumber(args.getOrNull(0))).toDouble() },
+            "round" to nativeFn { args -> round(toNumber(args.getOrNull(0))) },
             "abs" to nativeFn { args -> abs(toNumber(args.getOrNull(0))) },
             "sqrt" to nativeFn { args -> sqrt(toNumber(args.getOrNull(0))) },
             "pow" to nativeFn { args -> toNumber(args.getOrNull(0)).pow(toNumber(args.getOrNull(1))) },
