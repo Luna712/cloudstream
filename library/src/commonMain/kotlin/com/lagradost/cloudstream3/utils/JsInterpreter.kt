@@ -754,16 +754,7 @@ class JsInterpreter {
         globalScope.define("console", consoleObj)
     }
 
-    private fun nativeFn(fn: (List<Any?>) -> Any?): JsFunction =
-        JsFunction(null, emptyList(), emptyList(), globalScope).also { dummy ->
-            // We store Kotlin lambdas using a special JsObject wrapper
-            // We'll special-case this in callFunction
-            @Suppress("UNCHECKED_CAST")
-            (dummy as Any) // just a type alias trick below
-        }.let { _ ->
-            // Use JsObject to box the lambda
-            NativeFn(fn)
-        }
+    private fun nativeFn(fn: (List<Any?>) -> Any?): Any? = NativeFn(fn)
 
     fun eval(code: String): Any? {
         return try {
@@ -986,7 +977,11 @@ class JsInterpreter {
                 val key = if (target.computed) toJsString(evalExpr(target.prop, scope)) else (target.prop as StrLit).v
                 when (obj) {
                     is JsObject -> obj.props[key] = value
-                    is JsList -> key.toIntOrNull()?.let { obj[it] = value } ?: if (key == "length") obj.length = toNumber(value).toInt()
+                    is JsList -> {
+                        val idx = key.toIntOrNull()
+                        if (idx != null) obj[idx] = value
+                        else if (key == "length") obj.length = toNumber(value).toInt()
+                    }
                     else -> {}
                 }
             }
