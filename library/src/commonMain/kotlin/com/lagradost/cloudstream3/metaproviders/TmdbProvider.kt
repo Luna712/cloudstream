@@ -107,7 +107,7 @@ open class TmdbProvider : MainAPI() {
         @JsonProperty("media_type") val mediaType: String? = null,  // for multi-search
     ) {
         val isTv get() = name != null || mediaType == "tv"
-        val displayTitle get() = title ?: originalTitle ?: name ?: originalName
+        val displayTitle get() = title ?: originalTitle ?: name ?: originalName ?: ""
         val year get() = (releaseDate ?: firstAirDate)?.take(4)?.toIntOrNull()
     }
 
@@ -184,7 +184,7 @@ open class TmdbProvider : MainAPI() {
         @JsonProperty("similar") val similar: TmdbPageResult<TmdbSearchResult>? = null,
         @JsonProperty("content_ratings") val contentRatings: TmdbContentRatings? = null,
     ) {
-        val displayTitle get() = name ?: originalName
+        val displayTitle get() = name ?: originalName ?: ""
         val year get() = firstAirDate?.take(4)?.toIntOrNull()
     }
 
@@ -206,7 +206,7 @@ open class TmdbProvider : MainAPI() {
         @JsonProperty("similar") val similar: TmdbPageResult<TmdbSearchResult>? = null,
         @JsonProperty("release_dates") val releaseDates: TmdbReleaseDates? = null,
     ) {
-        val displayTitle get() = title ?: originalTitle
+        val displayTitle get() = title ?: originalTitle ?: ""
         val year get() = releaseDate?.take(4)?.toIntOrNull()
     }
 
