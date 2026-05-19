@@ -126,24 +126,21 @@ object APIHolder {
 
     fun getApiFromNameNull(apiName: String?): MainAPI? {
         if (apiName == null) return null
-        allProviders.withLock {
+        return allProviders.withLock {
             initMap()
             apis.withLock {
-                return apiMap?.get(apiName)?.let { apis.getOrNull(it) }
+                apiMap?.get(apiName)?.let { apis.getOrNull(it) }
                 // Leave the ?. null check, it can crash regardless
-                    ?: allProviders.firstOrNull { it.name == apiName }
+                ?: allProviders.firstOrNull { it.name == apiName }
             }
         }
     }
 
     fun getApiFromUrlNull(url: String?): MainAPI? {
         if (url == null) return null
-        allProviders.withLock {
-            allProviders.forEach { api ->
-                if (url.startsWith(api.mainUrl)) return api
-            }
+        return allProviders.withLock {
+            allProviders.firstOrNull { url.startsWith(it.mainUrl) }
         }
-        return null
     }
 
     /**
