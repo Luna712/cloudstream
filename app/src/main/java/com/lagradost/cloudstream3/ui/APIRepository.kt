@@ -89,15 +89,19 @@ class APIRepository(val api: MainAPI) {
                 val fixedUrl = api.fixUrl(url)
                 val lookingForHash = Pair(api.name, fixedUrl)
 
-                cache.withLock {
+                val cached = cache.withLock {
+                    var found: LoadResponse? = null
                     for (item in cache) {
                         // 10 min save
                         if (item.hash == lookingForHash && (unixTime - item.unixTime) < 60 * 10) {
-                            return@withTimeout item.response
+                            found = item.response
+                            break
                         }
                     }
+                    found
                 }
 
+                if (cached != null) return@withTimeout cached
                 api.load(fixedUrl)?.also { response ->
                     // Remove all blank tags as early as possible
                     response.tags = response.tags?.filter { it.isNotBlank() }
