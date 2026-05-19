@@ -408,13 +408,10 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
                                 return true
                             }
 
-                            apis.withLock {
-                                for (api in apis) {
-                                    if (str.startsWith(api.mainUrl)) {
-                                        loadResult(str, api.name, "")
-                                        return@with true
-                                    }
-                                }
+                            val matchedApi = apis.filter { str.startsWith(it.mainUrl) }.firstOrNull()
+                            if (matchedApi != null) {
+                                loadResult(str, matchedApi.name, "")
+                                return true
                             }
                         }
                     }
