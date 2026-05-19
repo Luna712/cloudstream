@@ -33,14 +33,18 @@ class SubtitleRepo(override val api: SubtitleAPI) : AuthRepo(api) {
 
     @WorkerThread
     suspend fun resource(data: SubtitleEntity): Result<SubtitleResource> = runCatching {
-        resourceCache.withLock {
+        val cached = resourceCache.withLock {
+            var found: SubtitleResource? = null
             for (item in resourceCache) {
                 // 20 min save
                 if (item.query == data && (unixTime - item.unixTime) < 60 * 20) {
-                    return@runCatching item.response
+                    found = item.response
+                    break
                 }
             }
+            found
         }
+        if (cached != null) return@runCatching cached
 
         val returnValue = api.resource(freshAuth(), data)
         resourceCache.withLock {
@@ -58,17 +62,20 @@ class SubtitleRepo(override val api: SubtitleAPI) : AuthRepo(api) {
     @WorkerThread
     suspend fun search(query: SubtitleSearch): Result<List<SubtitleEntity>> {
         return runCatching {
-            searchCache.withLock {
+            val cached = searchCache.withLock {
+                var found: List<SubtitleEntity>? = null
                 for (item in searchCache) {
                     // 120 min save
                     if (item.query == query && (unixTime - item.unixTime) < 60 * 120) {
-                        return@runCatching item.response
+                        found = item.response
+                        break
                     }
                 }
+                found
             }
 
-            val returnValue =
-                api.search(freshAuth(), query) ?: emptyList()
+            if (cached != null) return@runCatching cached
+            val returnValue = api.search(freshAuth(), query) ?: emptyList()
 
             // only cache valid return values
             if (returnValue.isNotEmpty()) {
