@@ -97,7 +97,7 @@ object APIHolder {
 
     /** String extension function to Capitalize first char of string.*/
     fun String.capitalize(): String {
-        return this.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+        return this.replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }
     }
 
     var apis: List<MainAPI> = threadSafeListOf()
