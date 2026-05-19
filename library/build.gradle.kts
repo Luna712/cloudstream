@@ -12,7 +12,6 @@ plugins {
     alias(libs.plugins.android.multiplatform.library)
     alias(libs.plugins.buildkonfig)
     alias(libs.plugins.dokka)
-    alias(libs.plugins.kotlinx.atomicfu)
 }
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
