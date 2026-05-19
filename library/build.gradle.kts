@@ -12,6 +12,7 @@ plugins {
     alias(libs.plugins.android.multiplatform.library)
     alias(libs.plugins.buildkonfig)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.kotlinx.atomicfu)
 }
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
@@ -56,6 +57,7 @@ kotlin {
             implementation(libs.annotation) // Annotations
             implementation(libs.nicehttp) // HTTP Lib
             implementation(libs.jackson.module.kotlin) // JSON Parser
+            implementation(libs.kotlinx.atomicfu)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.fuzzywuzzy) // Match Extractors
             implementation(libs.jsoup) // HTML Parser

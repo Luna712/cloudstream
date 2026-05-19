@@ -17,8 +17,9 @@ import com.lagradost.cloudstream3.syncproviders.SyncIdName
 import com.lagradost.cloudstream3.utils.*
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
+import com.lagradost.cloudstream3.utils.AtomicList
+import com.lagradost.cloudstream3.utils.Coroutines.atomicListOf
 import com.lagradost.cloudstream3.utils.Coroutines.mainWork
-import com.lagradost.cloudstream3.utils.Coroutines.threadSafeListOf
 import com.lagradost.cloudstream3.utils.SubtitleHelper.fromCodeToLangTagIETF
 import com.lagradost.cloudstream3.utils.SubtitleHelper.fromLanguageToTagIETF
 import com.lagradost.nicehttp.RequestBodyTypes
@@ -83,11 +84,10 @@ object APIHolder {
     val unixTimeMS: Long
         get() = System.currentTimeMillis()
 
-    // ConcurrentModificationException is possible!!!
-    val allProviders = threadSafeListOf<MainAPI>()
+    val allProviders = atomicListOf<MainAPI>()
 
     fun initAll() {
-        synchronized(allProviders) {
+        allProviders.withLock {
             for (api in allProviders) {
                 api.init()
             }
@@ -100,25 +100,25 @@ object APIHolder {
         return this.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
     }
 
-    var apis: List<MainAPI> = threadSafeListOf()
+    var apis: AtomicList<MainAPI> = atomicListOf()
     var apiMap: Map<String, Int>? = null
 
     fun addPluginMapping(plugin: MainAPI) {
-        synchronized(apis) {
+        apis.withLock {
             apis = apis + plugin
         }
         initMap(true)
     }
 
     fun removePluginMapping(plugin: MainAPI) {
-        synchronized(apis) {
+        apis.withLock {
             apis = apis.filter { it != plugin }
         }
         initMap(true)
     }
 
     private fun initMap(forcedUpdate: Boolean = false) {
-        synchronized(apis) {
+        apis.withLock {
             if (apiMap == null || forcedUpdate)
                 apiMap = apis.mapIndexed { index, api -> api.name to index }.toMap()
         }
@@ -126,9 +126,9 @@ object APIHolder {
 
     fun getApiFromNameNull(apiName: String?): MainAPI? {
         if (apiName == null) return null
-        synchronized(allProviders) {
+        allProviders.withLock {
             initMap()
-            synchronized(apis) {
+            apis.withLock {
                 return apiMap?.get(apiName)?.let { apis.getOrNull(it) }
                 // Leave the ?. null check, it can crash regardless
                     ?: allProviders.firstOrNull { it.name == apiName }
@@ -138,7 +138,7 @@ object APIHolder {
 
     fun getApiFromUrlNull(url: String?): MainAPI? {
         if (url == null) return null
-        synchronized(allProviders) {
+        allProviders.withLock {
             allProviders.forEach { api ->
                 if (url.startsWith(api.mainUrl)) return api
             }

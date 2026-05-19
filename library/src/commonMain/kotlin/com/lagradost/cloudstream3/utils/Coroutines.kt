@@ -6,7 +6,6 @@ import androidx.annotation.WorkerThread
 import com.lagradost.cloudstream3.mvvm.launchSafe
 import com.lagradost.cloudstream3.mvvm.logError
 import kotlinx.coroutines.*
-import java.util.Collections.synchronizedList
 
 @AnyThread
 expect fun runOnMainThreadNative(@MainThread work: (() -> Unit))
@@ -64,9 +63,16 @@ object Coroutines {
     /**
      * Safe to add and remove how you want
      * If you want to iterate over the list then you need to do:
-     * synchronized(allProviders) { code here }
+     * list.withLock { code here }
      */
-    fun <T> threadSafeListOf(vararg items: T): MutableList<T> {
-        return synchronizedList(items.toMutableList())
+    fun <T> atomicListOf(vararg items: T): AtomicMutableList<T> {
+        return AtomicMutableList(items.toMutableList())
     }
+
+    @Deprecated(
+        message = "Use atomicListOf() instead.",
+        replaceWith = ReplaceWith("atomicListOf(*items)"),
+        level = DeprecationLevel.WARNING,
+    )
+    fun <T> threadSafeListOf(vararg items: T): MutableList<T> = atomicListOf(*items)
 }
