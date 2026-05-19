@@ -6,10 +6,9 @@ import kotlinx.atomicfu.locks.synchronized
 /**
  * A thread-safe list backed by [SynchronizedObject].
  *
- * For iteration, wrap your block in [withLock] to hold the lock for the duration:
- * ```
- * list.withLock { list.forEach { ... } }
- * ```
+ * For iteration, wrap block in [withLock] to hold the lock for the duration:
+ *   list.withLock { list.forEach { ... } }
+ * 
  */
 open class AtomicList<T>(
     protected var delegate: List<T> = emptyList()
