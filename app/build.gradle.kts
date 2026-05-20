@@ -201,15 +201,6 @@ android {
     }
 
     namespace = "com.lagradost.cloudstream3"
-
-    sourceSets {
-        getByName("main") {
-            assets.srcDirs(
-                project(":composeApp").layout.buildDirectory
-                    .dir("generated/compose/resourceGenerator/assets")
-            )
-        }
-    }
 }
 
 dependencies {
