@@ -29,9 +29,14 @@ import com.lagradost.cloudstream3.compose.generated.resources.extensions
 import com.lagradost.cloudstream3.compose.theme.CloudStreamTheme
 import org.jetbrains.compose.resources.stringResource
 
+enum class ProfileImage {
+    DARK_BLUE, BLUE, ORANGE, PINK, PURPLE, RED, TEAL;
+}
+
 data class SettingsProfileState(
     val name: String,
     val profilePictureUrl: String? = null,
+    val profileImage: ProfileImage = ProfileImage.DARK_BLUE,
 )
 
 data class SettingsVersionState(
