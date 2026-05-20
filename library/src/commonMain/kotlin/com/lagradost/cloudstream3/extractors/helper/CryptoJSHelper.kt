@@ -17,13 +17,14 @@ import kotlin.math.min
 object CryptoJS {
 
     private const val KEY_SIZE = 256
-    private const val IV_SIZE  = 128
+    private const val IV_SIZE = 128
 
     // Seriously crypto-js, what's wrong with you?
     private const val APPEND = "Salted__"
 
     private val provider = CryptographyProvider.Default
     private val aesCbc = provider.get(AES.CBC)
+    @OptIn(DelicateCryptographyApi::class)
     private val md5Hasher = provider.get(MD5).hasher()
 
     /**
@@ -34,8 +35,8 @@ object CryptoJS {
     @OptIn(DelicateCryptographyApi::class)
     fun encrypt(password: String, plainText: String): String {
         val saltBytes = generateSalt(8)
-        val key       = ByteArray(KEY_SIZE / 8)
-        val iv        = ByteArray(IV_SIZE / 8)
+        val key = ByteArray(KEY_SIZE / 8)
+        val iv = ByteArray(IV_SIZE / 8)
         evpkdf(password.toByteArray(), KEY_SIZE, IV_SIZE, saltBytes, key, iv)
 
         val aesKey = aesCbc.keyDecoder().decodeFromByteArrayBlocking(AES.Key.Format.RAW, key)
@@ -60,12 +61,12 @@ object CryptoJS {
      */
     @OptIn(DelicateCryptographyApi::class)
     fun decrypt(password: String, cipherText: String): String {
-        val ctBytes         = base64DecodeArray(cipherText)
-        val saltBytes       = ctBytes.copyOfRange(8, 16)
+        val ctBytes = base64DecodeArray(cipherText)
+        val saltBytes = ctBytes.copyOfRange(8, 16)
         val cipherTextBytes = ctBytes.copyOfRange(16, ctBytes.size)
 
         val key = ByteArray(KEY_SIZE / 8)
-        val iv  = ByteArray(IV_SIZE / 8)
+        val iv = ByteArray(IV_SIZE / 8)
         evpkdf(password.toByteArray(), KEY_SIZE, IV_SIZE, saltBytes, key, iv)
 
         val aesKey = aesCbc.keyDecoder().decodeFromByteArrayBlocking(AES.Key.Format.RAW, key)
@@ -93,12 +94,12 @@ object CryptoJS {
         resultKey: ByteArray,
         resultIv: ByteArray,
     ): ByteArray {
-        val keySize              = keySize / 32
-        val ivSize               = ivSize / 32
-        val targetKeySize        = keySize + ivSize
-        val derivedBytes         = ByteArray(targetKeySize * 4)
+        val keySize = keySize / 32
+        val ivSize = ivSize / 32
+        val targetKeySize = keySize + ivSize
+        val derivedBytes = ByteArray(targetKeySize * 4)
         var numberOfDerivedWords = 0
-        var block: ByteArray?    = null
+        var block: ByteArray? = null
 
         while (numberOfDerivedWords < targetKeySize) {
             val hashFn = md5Hasher.createHashFunction()
