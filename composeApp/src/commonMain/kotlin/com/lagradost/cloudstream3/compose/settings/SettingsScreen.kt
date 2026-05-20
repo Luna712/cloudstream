@@ -186,7 +186,7 @@ private fun VersionChip(text: String) {
     Text(
         text = text,
         modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
-        color = CloudStreamTheme.colors.onBackground.copy(alpha = 0.5f),
+        color = CloudStreamTheme.colors.onBackground,
         fontSize = 12.sp,
         textAlign = TextAlign.Center,
     )
@@ -196,7 +196,7 @@ private fun VersionChip(text: String) {
 private fun VersionDot() {
     Text(
         text = "•",
-        color = CloudStreamTheme.colors.onBackground.copy(alpha = 0.5f),
+        color = CloudStreamTheme.colors.onBackground,
         fontSize = 12.sp,
     )
 }
