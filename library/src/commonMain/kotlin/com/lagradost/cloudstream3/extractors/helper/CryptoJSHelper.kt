@@ -114,7 +114,7 @@ object CryptoJS {
                 block = iterFn.hashToByteArray()
             }
 
-            block!!.copyInto(
+            block.copyInto(
                 destination = derivedBytes,
                 destinationOffset = numberOfDerivedWords * 4,
                 startIndex = 0,
