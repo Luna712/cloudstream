@@ -58,6 +58,7 @@ kotlin {
             implementation(libs.jackson.module.kotlin) // JSON Parser
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.fuzzywuzzy) // Match Extractors
+            implementation(libs.bundles.cryptography.kotlin) // Cryptography
             implementation(libs.jsoup) // HTML Parser
             implementation(libs.rhino) // Run JavaScript
             implementation(libs.newpipeextractor)
