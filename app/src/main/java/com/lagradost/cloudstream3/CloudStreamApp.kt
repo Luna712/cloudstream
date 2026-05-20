@@ -29,7 +29,6 @@ import com.lagradost.cloudstream3.utils.DataStore.removeKey
 import com.lagradost.cloudstream3.utils.DataStore.removeKeys
 import com.lagradost.cloudstream3.utils.DataStore.setKey
 import com.lagradost.cloudstream3.utils.ImageLoader.buildImageLoader
-import org.jetbrains.compose.resources.AndroidContextProvider
 import kotlinx.coroutines.runBlocking
 import java.io.File
 import java.io.FileNotFoundException
@@ -85,7 +84,6 @@ class CloudStreamApp : Application(), SingletonImageLoader.Factory {
         }
 
         AppDebug.isDebug = BuildConfig.DEBUG
-        AndroidContextProvider.setApplicationContext(this)
     }
 
     override fun attachBaseContext(base: Context?) {
