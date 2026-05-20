@@ -27,7 +27,9 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
-// TODO: Move to composeApp once we have shared logic available
+// TODO: Move to composeApp once we have shared logic available in the
+// :core module and we have migrated to navigation3 (which we can not
+// do until all fragments have migrated to compose).
 class SettingsComposeFragment : Fragment() {
 
     override fun onCreateView(
