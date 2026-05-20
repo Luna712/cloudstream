@@ -72,11 +72,11 @@ fun SettingsScreen(
     onVersionLongClick: () -> Unit = {},
 ) {
     val colors = CloudStreamTheme.colors
-
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(colors.background)
+            .windowInsetsPadding(WindowInsets.safeDrawing)
             .verticalScroll(rememberScrollState())
     ) {
         SettingsProfileHeader(profile = profile, avatarContent = avatarContent)
@@ -165,10 +165,12 @@ private fun SettingsCategoryRow(label: String, onClick: () -> Unit) {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun SettingsVersionFooter(version: SettingsVersionState, onLongClick: () -> Unit) {
+    val colors = CloudStreamTheme.colors
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .combinedClickable(onLongClick = onLongClick, onClick = {})
+            .background(colors.surfaceContainer)
             .padding(vertical = 4.dp),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
@@ -194,5 +196,9 @@ private fun VersionChip(text: String) {
 
 @Composable
 private fun VersionDot() {
-    Text(text = "•", color = CloudStreamTheme.colors.onSurfaceVariant, fontSize = 12.sp)
+    Text(
+        text = "•",
+        color = CloudStreamTheme.colors.onSurfaceVariant,
+        fontSize = 12.sp,
+    )
 }
