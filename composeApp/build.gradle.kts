@@ -20,7 +20,9 @@ kotlin {
             jvmTarget.set(javaTarget)
         }
 
-        withAndroidResources()
+        androidResources {
+            enabled = true
+        }
     }
 
     jvm()
