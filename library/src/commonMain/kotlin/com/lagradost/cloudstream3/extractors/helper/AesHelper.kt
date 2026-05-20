@@ -13,6 +13,7 @@ object AesHelper {
 
     private val provider = CryptographyProvider.Default
     private val aesCbc = provider.get(AES.CBC)
+    @OptIn(DelicateCryptographyApi::class)
     private val md5Hasher = provider.get(MD5).hasher()
 
     @OptIn(DelicateCryptographyApi::class)
