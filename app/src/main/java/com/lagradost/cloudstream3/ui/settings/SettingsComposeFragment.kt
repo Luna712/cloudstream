@@ -20,6 +20,7 @@ import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.GitInfo.currentCommitHash
 import com.lagradost.cloudstream3.utils.UIHelper.clipboardHelper
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
+import com.lagradost.cloudstream3.utils.UiImage
 import com.lagradost.cloudstream3.utils.txt
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -79,7 +80,10 @@ class SettingsComposeFragment : Fragment() {
             } ?: DataStoreHelper.getDefaultAccount(requireActivity())
         }.getOrNull()
 
-        return SettingsProfileState(name = account?.name ?: "", profilePictureUrl = account?.image?.url)
+        return SettingsProfileState(
+            name = account?.name ?: "",
+            profilePictureUrl = (account?.image as? UiImage.Image)?.url,
+        )
     }
 
     private fun buildVersionState(): SettingsVersionState {
