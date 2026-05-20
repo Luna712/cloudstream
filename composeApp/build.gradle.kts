@@ -30,11 +30,13 @@ kotlin {
             implementation(compose.material3)
             implementation(compose.ui)
             implementation(compose.components.resources)
+            implementation(project(":core"))
         }
 
         androidMain.dependencies {
             implementation(libs.activity.compose)
             implementation(libs.coil.compose)
+            implementation(libs.preference.ktx)
         }
     }
 }
