@@ -79,7 +79,8 @@ open class Rabbitstream : ExtractorApi() {
     open val embed = "ajax/embed-4"
     open val key = "https://raw.githubusercontent.com/eatmynerds/key/e4/key.txt"
 
-    private val aesCbc    = CryptographyProvider.Default.get(AES.CBC)
+    private val aesCbc = CryptographyProvider.Default.get(AES.CBC)
+    @OptIn(DelicateCryptographyApi::class)
     private val md5Hasher = CryptographyProvider.Default.get(MD5).hasher()
 
     override suspend fun getUrl(
