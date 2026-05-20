@@ -21,7 +21,7 @@ kotlin {
         }
 
         androidResources {
-            enabled = true
+            enable = true
         }
     }
 
