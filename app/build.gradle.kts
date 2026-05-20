@@ -7,6 +7,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.dokka)
 }
 
@@ -275,7 +276,11 @@ dependencies {
     implementation(project(":composeApp"))
     implementation(libs.activity.compose)
     implementation(libs.coil.compose)
-    implementation(libs.compose.foundation)  
+    implementation(libs.compose.runtime)
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.resources)
 }
 
 tasks.register<Jar>("androidSourcesJar") {
