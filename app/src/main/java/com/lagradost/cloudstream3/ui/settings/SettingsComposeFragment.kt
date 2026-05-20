@@ -41,23 +41,27 @@ class SettingsComposeFragment : Fragment() {
         setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
 
         setContent {
+            val profile = buildProfileState()
+            val version = buildVersionState()
             CloudStreamTheme(mode = context.loadCloudStreamThemeMode()) {
                 SettingsScreen(
-                    profile = buildProfileState(),
-                    version = buildVersionState(),
-                    avatarContent = { profilePic ->
-                        AsyncImage(
-                            model = profilePic,
-                            contentDescription = getString(R.string.account),
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize(),
-                        )
+                    profile = profile,
+                    version = version,
+                    avatarContent = {
+                        profile.profilePictureUrl?.let { url ->
+                            AsyncImage(
+                                model = url,
+                                contentDescription = getString(R.string.account),
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxSize(),
+                            )
+                        }
                     },
                     onNavigate = ::navigateTo,
                     onVersionLongClick = {
-                        val v = BuildConfig.VERSION_NAME
-                        val h = activity?.currentCommitHash() ?: ""
-                        val d = buildVersionState().buildDate
+                        val v = version.appVersion
+                        val h = version.commitHash
+                        val d = version.buildDate
                         clipboardHelper(txt(R.string.extension_version), "$v $h $d")
                     },
                 )
@@ -68,7 +72,7 @@ class SettingsComposeFragment : Fragment() {
     private fun buildProfileState(): SettingsProfileState {
         for (syncApi in AccountManager.allApis) {
             val login = syncApi.authUser() ?: continue
-            return SettingsProfileState(name = login.name, profilePictureUrl = login.profilePicture)
+            return SettingsProfileState(name = login.name ?: "", profilePictureUrl = login.profilePicture)
         }
         val account = runCatching {
             DataStoreHelper.accounts.firstOrNull {
@@ -76,7 +80,7 @@ class SettingsComposeFragment : Fragment() {
             } ?: DataStoreHelper.getDefaultAccount(requireActivity())
         }.getOrNull()
 
-        return SettingsProfileState(name = account?.name ?: "", profilePictureUrl = account?.image)
+        return SettingsProfileState(name = account?.name ?: "", profilePictureUrl = account?.image?.url)
     }
 
     private fun buildVersionState(): SettingsVersionState {
@@ -106,18 +110,3 @@ class SettingsComposeFragment : Fragment() {
         activity?.navigate(actionId, Bundle())
     }
 }
-
-@Suppress("FunctionName")
-private fun SettingsScreen(
-    profile: SettingsProfileState,
-    version: SettingsVersionState,
-    avatarContent: @Composable (profilePicUrl: String) -> Unit,
-    onNavigate: (SettingsCategory) -> Unit,
-    onVersionLongClick: () -> Unit,
-) = SettingsScreen(
-    profile = profile,
-    version = version,
-    avatarContent = { profile.profilePictureUrl?.let { avatarContent(it) } ?: Unit },
-    onNavigate = onNavigate,
-    onVersionLongClick = onVersionLongClick,
-)
