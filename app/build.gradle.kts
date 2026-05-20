@@ -270,6 +270,9 @@ dependencies {
     implementation(libs.nicehttp) // HTTP Lib
 
     implementation(project(":library"))
+
+    implementation(project(":composeApp"))
+    implementation(libs.activity.compose)
 }
 
 tasks.register<Jar>("androidSourcesJar") {
