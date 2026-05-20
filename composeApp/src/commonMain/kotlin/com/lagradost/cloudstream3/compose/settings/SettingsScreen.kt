@@ -165,12 +165,10 @@ private fun SettingsCategoryRow(label: String, onClick: () -> Unit) {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun SettingsVersionFooter(version: SettingsVersionState, onLongClick: () -> Unit) {
-    val colors = CloudStreamTheme.colors
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .combinedClickable(onLongClick = onLongClick, onClick = {})
-            .background(colors.surfaceContainer)
             .padding(vertical = 4.dp),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
