@@ -19,6 +19,8 @@ kotlin {
         compilerOptions {
             jvmTarget.set(javaTarget)
         }
+
+        withAndroidResources()
     }
 
     jvm()
