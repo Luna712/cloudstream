@@ -39,6 +39,12 @@ kotlin {
     }
 }
 
+compose.resources {
+    publicResClass = false
+    packageOfResClass = "com.lagradost.cloudstream3.compose.resources"
+    generateResClass = auto
+}
+
 tasks.withType<KotlinJvmCompile> {
     compilerOptions {
         jvmTarget.set(javaTarget)
