@@ -2,8 +2,8 @@
     <string name="category_general">General</string>
     <string name="category_player">Player</string>
     <string name="category_providers">Providers</string>
-    <string name="category_ui">UI</string>
-    <string name="category_updates">Updates</string>
-    <string name="category_account">Account</string>
+    <string name="category_ui">Layout</string>
+    <string name="category_updates">Updates and Backup</string>
+    <string name="category_account">Accounts and Security</string>
     <string name="extensions">Extensions</string>
 </resources>
