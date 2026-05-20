@@ -13,11 +13,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.lagradost.cloudstream3.compose.generated.resources.Res
+import com.lagradost.cloudstream3.compose.generated.resources.category_account
+import com.lagradost.cloudstream3.compose.generated.resources.category_general
+import com.lagradost.cloudstream3.compose.generated.resources.category_player
+import com.lagradost.cloudstream3.compose.generated.resources.category_providers
+import com.lagradost.cloudstream3.compose.generated.resources.category_ui
+import com.lagradost.cloudstream3.compose.generated.resources.category_updates
+import com.lagradost.cloudstream3.compose.generated.resources.extensions
 import com.lagradost.cloudstream3.compose.theme.CloudStreamTheme
+import org.jetbrains.compose.resources.stringResource
 
 data class SettingsProfileState(
     val name: String,
@@ -40,7 +50,18 @@ enum class SettingsCategory {
     EXTENSIONS,
 }
 
-expect fun SettingsCategory.label(): String
+@Composable
+fun SettingsCategory.label(): String = stringResource(
+    when (this) {
+        SettingsCategory.GENERAL    -> Res.string.category_general
+        SettingsCategory.PLAYER     -> Res.string.category_player
+        SettingsCategory.PROVIDERS  -> Res.string.category_providers
+        SettingsCategory.UI         -> Res.string.category_ui
+        SettingsCategory.UPDATES    -> Res.string.category_updates
+        SettingsCategory.ACCOUNT    -> Res.string.category_account
+        SettingsCategory.EXTENSIONS -> Res.string.extensions
+    }
+)
 
 @Composable
 fun SettingsScreen(
