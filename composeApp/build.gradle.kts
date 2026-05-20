@@ -45,6 +45,7 @@ compose.resources {
     publicResClass = false
     packageOfResClass = "com.lagradost.cloudstream3.compose.generated.resources"
     generateResClass = auto
+    collectAllTransitiveResources = true
 }
 
 tasks.withType<KotlinJvmCompile> {
