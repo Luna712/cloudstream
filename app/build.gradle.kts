@@ -273,6 +273,8 @@ dependencies {
 
     implementation(project(":composeApp"))
     implementation(libs.activity.compose)
+    implementation(libs.coil.compose)
+    implementation(libs.compose.foundation)  
 }
 
 tasks.register<Jar>("androidSourcesJar") {
