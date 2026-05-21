@@ -16,22 +16,6 @@ actual fun resolveDynamicTheme(): CloudStreamColorScheme {
     else darkScheme()
 }
 
-@Composable
-actual fun resolveDynamicPrimaryColor(): Color {
-    val context = LocalContext.current
-    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
-        Color(context.getColor(android.R.color.system_accent1_200))
-    else CloudStreamPrimaryColor.NORMAL.color
-}
-
-@Composable
-actual fun resolveDynamicSecondaryColor(): Color {
-    val context = LocalContext.current
-    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
-        Color(context.getColor(android.R.color.system_accent2_200))
-    else CloudStreamPrimaryColor.NORMAL.color
-}
-
 @RequiresApi(Build.VERSION_CODES.S)
 fun Context.buildMonetScheme(): CloudStreamColorScheme {
     val isSystemDark = (resources.configuration.uiMode and
