@@ -222,7 +222,7 @@ private fun SettingsCategoryRow(
     ) {
         Icon(
             imageVector = icon,
-            contentDescription = null,
+            contentDescription = label,
             tint = colors.onBackground,
             modifier = Modifier.size(28.dp),
         )
