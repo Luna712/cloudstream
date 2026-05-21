@@ -85,7 +85,7 @@ class CloudStreamApp : Application(), SingletonImageLoader.Factory {
         }
 
         AppDebug.isDebug = BuildConfig.DEBUG
-        DynamicColors.applyToActivityIfAvailable(this)
+        DynamicColors.applyToActivitiesIfAvailable(this)
     }
 
     override fun attachBaseContext(base: Context?) {
