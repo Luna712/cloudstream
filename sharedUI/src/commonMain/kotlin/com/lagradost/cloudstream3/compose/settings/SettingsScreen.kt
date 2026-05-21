@@ -41,6 +41,7 @@ import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_pink
 import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_purple
 import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_red
 import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_teal
+import com.lagradost.cloudstream3.shared.generated.resources.profile_picture_desc
 import com.lagradost.cloudstream3.shared.ui.icons.account_circle
 import com.lagradost.cloudstream3.shared.ui.icons.extension
 import com.lagradost.cloudstream3.shared.ui.icons.mobile_arrow_down
@@ -183,7 +184,7 @@ private fun SettingsProfileHeader(
             } else {
                 Image(
                     painter = painterResource(profile.profileImage.toRes()),
-                    contentDescription = null,
+                    contentDescription = stringResource(Res.string.profile_picture_desc),
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.fillMaxSize(),
                 )
