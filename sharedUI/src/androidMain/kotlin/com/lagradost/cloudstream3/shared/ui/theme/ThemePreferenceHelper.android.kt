@@ -5,7 +5,7 @@ import android.os.Build
 import androidx.preference.PreferenceManager
 import com.lagradost.cloudstream3.shared.preferences.PreferenceKeys
 
-fun Context.loadCloudStreamThemeMode(): CloudStreamThemeMode {
+fun Context.loadThemeMode(): CloudStreamThemeMode {
     val prefs = PreferenceManager.getDefaultSharedPreferences(this)
     return when (prefs.getString(PreferenceKeys.APP_THEME, "AmoledLight")) {
         "System"      -> CloudStreamThemeMode.FollowSystem
@@ -47,10 +47,10 @@ fun Context.loadPrimaryColor(): CloudStreamPrimaryColor {
         "CoolBlue"        -> CloudStreamPrimaryColor.COOL_BLUE
         "Lavender"        -> CloudStreamPrimaryColor.LAVENDER
         "Monet"           -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
-                                 CloudStreamPrimaryColor.MONET
+                                 CloudStreamPrimaryColor.DYNAMIC
                              else CloudStreamPrimaryColor.NORMAL
         "Monet2"          -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
-                                 CloudStreamPrimaryColor.MONET_TWO
+                                 CloudStreamPrimaryColor.DYNAMIC_TWO
                              else CloudStreamPrimaryColor.NORMAL
         else              -> CloudStreamPrimaryColor.NORMAL
     }
