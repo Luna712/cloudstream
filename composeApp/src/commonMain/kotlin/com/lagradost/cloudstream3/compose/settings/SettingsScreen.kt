@@ -13,7 +13,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -27,14 +27,6 @@ import com.lagradost.cloudstream3.compose.generated.resources.category_providers
 import com.lagradost.cloudstream3.compose.generated.resources.category_ui
 import com.lagradost.cloudstream3.compose.generated.resources.category_updates
 import com.lagradost.cloudstream3.compose.generated.resources.extensions
-import com.lagradost.cloudstream3.compose.generated.resources.ic_account_circle
-import com.lagradost.cloudstream3.compose.generated.resources.ic_arrow_forward_ios
-import com.lagradost.cloudstream3.compose.generated.resources.ic_extension
-import com.lagradost.cloudstream3.compose.generated.resources.ic_palette
-import com.lagradost.cloudstream3.compose.generated.resources.ic_play_circle
-import com.lagradost.cloudstream3.compose.generated.resources.ic_storage
-import com.lagradost.cloudstream3.compose.generated.resources.ic_system_update
-import com.lagradost.cloudstream3.compose.generated.resources.ic_tune
 import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_blue
 import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_dark_blue
 import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_orange
@@ -42,6 +34,14 @@ import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_pink
 import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_purple
 import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_red
 import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_teal
+import com.lagradost.cloudstream3.compose.icons.account_circle
+import com.lagradost.cloudstream3.compose.icons.arrow_forward_ios
+import com.lagradost.cloudstream3.compose.icons.extension
+import com.lagradost.cloudstream3.compose.icons.mobile_arrow_down
+import com.lagradost.cloudstream3.compose.icons.palette
+import com.lagradost.cloudstream3.compose.icons.play_circle
+import com.lagradost.cloudstream3.compose.icons.storage
+import com.lagradost.cloudstream3.compose.icons.tune
 import com.lagradost.cloudstream3.compose.theme.CloudStreamTheme
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -85,18 +85,15 @@ fun SettingsCategory.label(): String = stringResource(
     }
 )
 
-@Composable
-private fun SettingsCategory.iconPainter() = painterResource(
-    when (this) {
-        SettingsCategory.GENERAL    -> Res.drawable.ic_tune
-        SettingsCategory.PLAYER     -> Res.drawable.ic_play_circle
-        SettingsCategory.PROVIDERS  -> Res.drawable.ic_storage
-        SettingsCategory.UI         -> Res.drawable.ic_palette
-        SettingsCategory.UPDATES    -> Res.drawable.ic_system_update
-        SettingsCategory.ACCOUNT    -> Res.drawable.ic_account_circle
-        SettingsCategory.EXTENSIONS -> Res.drawable.ic_extension
-    }
-)
+private fun SettingsCategory.icon(): ImageVector = when (this) {
+    SettingsCategory.GENERAL    -> tune
+    SettingsCategory.PLAYER     -> play_circle
+    SettingsCategory.PROVIDERS  -> storage
+    SettingsCategory.UI         -> palette
+    SettingsCategory.UPDATES    -> mobile_arrow_down
+    SettingsCategory.ACCOUNT    -> account_circle
+    SettingsCategory.EXTENSIONS -> extension
+}
 
 @Composable
 fun SettingsScreen(
@@ -121,7 +118,7 @@ fun SettingsScreen(
         SettingsCategory.entries.forEach { category ->
             SettingsCategoryRow(
                 label = category.label(),
-                icon = category.iconPainter(),
+                icon = category.icon(),
                 onClick = { onNavigate(category) },
             )
         }
@@ -185,7 +182,7 @@ private fun ProfileImage.toRes() = when (this) {
 }
 
 @Composable
-private fun SettingsCategoryRow(label: String, icon: Painter, onClick: () -> Unit) {
+private fun SettingsCategoryRow(label: String, icon: ImageVector, onClick: () -> Unit) {
     val colors = CloudStreamTheme.colors
     Row(
         modifier = Modifier
@@ -195,7 +192,7 @@ private fun SettingsCategoryRow(label: String, icon: Painter, onClick: () -> Uni
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
-            painter = icon,
+            imageVector = icon,
             contentDescription = null,
             tint = colors.icon,
             modifier = Modifier.size(24.dp),
@@ -208,7 +205,7 @@ private fun SettingsCategoryRow(label: String, icon: Painter, onClick: () -> Uni
             modifier = Modifier.weight(1f),
         )
         Icon(
-            painter = painterResource(Res.drawable.ic_arrow_forward_ios),
+            imageVector = arrow_forward_ios,
             contentDescription = null,
             tint = colors.icon,
             modifier = Modifier.size(16.dp),
