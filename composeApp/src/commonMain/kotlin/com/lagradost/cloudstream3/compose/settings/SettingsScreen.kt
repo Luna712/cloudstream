@@ -215,7 +215,7 @@ private fun SettingsCategoryRow(
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = colors.primary,
+            tint = colors.icon,
             modifier = Modifier.size(28.dp),
         )
         Spacer(modifier = Modifier.width(24.dp))
