@@ -3,7 +3,7 @@ package com.lagradost.cloudstream3.shared.ui.theme
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.ui.graphics.Color
 import androidx.preference.PreferenceManager
 import com.lagradost.cloudstream3.shared.preferences.PreferenceKeys
 
@@ -60,16 +60,15 @@ fun Context.loadPrimaryColor(): CloudStreamPrimaryColor {
 
 @RequiresApi(Build.VERSION_CODES.S)
 fun Context.buildMonetScheme(): CloudStreamColorScheme {
-    val dynamic = dynamicDarkColorScheme(this)
-    return CloudStreamColorScheme(
-        background       = dynamic.background,
-        surfaceVariant   = dynamic.surfaceVariant,
-        surface          = dynamic.surface,
-        surfaceContainer = dynamic.surfaceContainer,
-        onBackground     = dynamic.onBackground,
-        onSurfaceVariant = dynamic.onSurfaceVariant,
-        icon             = dynamic.onSurfaceVariant,
-        primary          = dynamic.primary,
+    CloudStreamColorScheme(
+        background       = Color(getColor(android.R.color.system_neutral1_900)),
+        surfaceVariant   = Color(getColor(android.R.color.system_neutral1_800)),
+        surface          = Color(getColor(android.R.color.system_neutral1_800)),
+        surfaceContainer = Color(getColor(android.R.color.system_neutral1_800)),
+        onBackground     = Color(getColor(android.R.color.system_neutral1_100)),
+        onSurfaceVariant = Color(getColor(android.R.color.system_neutral2_400)),
+        icon             = Color(getColor(android.R.color.system_neutral1_100)),
+        primary          = Color(getColor(android.R.color.system_accent1_200)),
         ongoing          = CloudStreamPalette.Ongoing,
         isLight          = false,
     )
