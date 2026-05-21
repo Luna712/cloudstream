@@ -13,4 +13,5 @@
     <string name="category_providers_subtitle">Content language &amp; media type</string>
     <string name="category_updates">Updates and Backup</string>
     <string name="category_updates_subtitle">Updates, backup &amp; restore</string>
+    <string name="profile_picture_desc">Profile picture</string>
 </resources>
