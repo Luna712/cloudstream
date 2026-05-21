@@ -1,13 +1,6 @@
 package com.lagradost.cloudstream3.shared.ui.theme
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 
 @Composable
 expect fun resolveDynamicTheme(): CloudStreamColorScheme
-
-@Composable
-expect fun resolveDynamicPrimaryColor(): Color
-
-@Composable
-expect fun resolveDynamicSecondaryColor(): Color
