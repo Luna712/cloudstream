@@ -5,12 +5,14 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -208,7 +210,11 @@ private fun SettingsCategoryRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = onClick)
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = ripple(),
+                onClick = onClick,
+            )
             .padding(horizontal = 16.dp, vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -227,7 +233,7 @@ private fun SettingsCategoryRow(
             )
             Text(
                 text = subtitle,
-                color = colors.onSurfaceVariant,
+                color = colors.onBackground.copy(alpha = 0.6f),
                 style = MaterialTheme.typography.bodyMedium,
             )
         }
@@ -258,7 +264,7 @@ private fun VersionChip(text: String) {
     Text(
         text = text,
         modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
-        color = CloudStreamTheme.colors.onSurfaceVariant,
+        color = CloudStreamTheme.colors.onBackground.copy(alpha = 0.6f),
         style = MaterialTheme.typography.bodySmall,
         textAlign = TextAlign.Center,
     )
@@ -268,7 +274,7 @@ private fun VersionChip(text: String) {
 private fun VersionDot() {
     Text(
         text = "•",
-        color = CloudStreamTheme.colors.onSurfaceVariant,
+        color = CloudStreamTheme.colors.onBackground.copy(alpha = 0.6f),
         style = MaterialTheme.typography.bodySmall,
     )
 }
