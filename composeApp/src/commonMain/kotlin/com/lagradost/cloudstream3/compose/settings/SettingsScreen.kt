@@ -17,15 +17,21 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.lagradost.cloudstream3.compose.generated.resources.Res
-import com.lagradost.cloudstream3.compose.generated.resources.category_account
+import com.lagradost.cloudstream3.compose.generated.resources.category_accounts
+import com.lagradost.cloudstream3.compose.generated.resources.category_accounts_subtitle
 import com.lagradost.cloudstream3.compose.generated.resources.category_extensions
+import com.lagradost.cloudstream3.compose.generated.resources.category_extensions_subtitle
 import com.lagradost.cloudstream3.compose.generated.resources.category_general
+import com.lagradost.cloudstream3.compose.generated.resources.category_general_subtitle
 import com.lagradost.cloudstream3.compose.generated.resources.category_player
+import com.lagradost.cloudstream3.compose.generated.resources.category_player_subtitle
 import com.lagradost.cloudstream3.compose.generated.resources.category_providers
+import com.lagradost.cloudstream3.compose.generated.resources.category_providers_subtitle
 import com.lagradost.cloudstream3.compose.generated.resources.category_ui
+import com.lagradost.cloudstream3.compose.generated.resources.category_ui_subtitle
 import com.lagradost.cloudstream3.compose.generated.resources.category_updates
+import com.lagradost.cloudstream3.compose.generated.resources.category_updates_subtitle
 import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_blue
 import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_dark_blue
 import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_orange
@@ -66,7 +72,7 @@ enum class SettingsCategory {
     PROVIDERS,
     UI,
     UPDATES,
-    ACCOUNT,
+    ACCOUNTS,
     EXTENSIONS,
 }
 
@@ -78,8 +84,21 @@ fun SettingsCategory.label(): String = stringResource(
         SettingsCategory.PROVIDERS  -> Res.string.category_providers
         SettingsCategory.UI         -> Res.string.category_ui
         SettingsCategory.UPDATES    -> Res.string.category_updates
-        SettingsCategory.ACCOUNT    -> Res.string.category_accounts
+        SettingsCategory.ACCOUNTS   -> Res.string.category_accounts
         SettingsCategory.EXTENSIONS -> Res.string.category_extensions
+    }
+)
+
+@Composable
+fun SettingsCategory.subtitle(): String = stringResource(
+    when (this) {
+        SettingsCategory.GENERAL    -> Res.string.category_general_subtitle
+        SettingsCategory.PLAYER     -> Res.string.category_player_subtitle
+        SettingsCategory.PROVIDERS  -> Res.string.category_providers_subtitle
+        SettingsCategory.UI         -> Res.string.category_ui_subtitle
+        SettingsCategory.UPDATES    -> Res.string.category_updates_subtitle
+        SettingsCategory.ACCOUNTS   -> Res.string.category_accounts_subtitle
+        SettingsCategory.EXTENSIONS -> Res.string.category_extensions_subtitle
     }
 )
 
@@ -89,7 +108,7 @@ private fun SettingsCategory.icon(): ImageVector = when (this) {
     SettingsCategory.PROVIDERS  -> storage
     SettingsCategory.UI         -> palette
     SettingsCategory.UPDATES    -> mobile_arrow_down
-    SettingsCategory.ACCOUNT    -> account_circle
+    SettingsCategory.ACCOUNTS   -> account_circle
     SettingsCategory.EXTENSIONS -> extension
 }
 
@@ -114,6 +133,7 @@ fun SettingsScreen(
         SettingsCategory.entries.forEach { category ->
             SettingsCategoryRow(
                 label = category.label(),
+                subtitle = category.subtitle(),
                 icon = category.icon(),
                 onClick = { onNavigate(category) },
             )
@@ -178,7 +198,12 @@ private fun ProfileImage.toRes() = when (this) {
 }
 
 @Composable
-private fun SettingsCategoryRow(label: String, icon: ImageVector, onClick: () -> Unit) {
+private fun SettingsCategoryRow(
+    label: String,
+    subtitle: String,
+    icon: ImageVector,
+    onClick: () -> Unit,
+) {
     val colors = CloudStreamTheme.colors
     Row(
         modifier = Modifier
@@ -190,16 +215,22 @@ private fun SettingsCategoryRow(label: String, icon: ImageVector, onClick: () ->
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = colors.icon,
-            modifier = Modifier.size(24.dp),
+            tint = colors.primary,
+            modifier = Modifier.size(28.dp),
         )
         Spacer(modifier = Modifier.width(24.dp))
-        Text(
-            text = label,
-            color = colors.onBackground,
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.weight(1f),
-        )
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = label,
+                color = colors.onBackground,
+                style = MaterialTheme.typography.bodyLarge,
+            )
+            Text(
+                text = subtitle,
+                color = colors.onSurfaceVariant,
+                style = MaterialTheme.typography.bodyMedium,
+            )
+        }
     }
 }
 
