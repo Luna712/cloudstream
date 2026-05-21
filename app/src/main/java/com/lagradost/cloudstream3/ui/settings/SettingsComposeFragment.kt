@@ -72,17 +72,33 @@ class SettingsComposeFragment : Fragment() {
     private fun buildProfileState(): SettingsProfileState {
         for (syncApi in AccountManager.allApis) {
             val login = syncApi.authUser() ?: continue
-            return SettingsProfileState(name = login.name ?: "", profilePictureUrl = login.profilePicture)
+            return SettingsProfileState(
+                name = login.name ?: "",
+                profilePictureUrl = login.profilePicture,
+            )
         }
+
         val account = runCatching {
             DataStoreHelper.accounts.firstOrNull {
                 it.keyIndex == DataStoreHelper.selectedKeyIndex
             } ?: DataStoreHelper.getDefaultAccount(requireActivity())
         }.getOrNull()
 
+        val profileImage = when (account?.defaultImageIndex) {
+            0 -> ProfileImage.DARK_BLUE
+            1 -> ProfileImage.BLUE
+            2 -> ProfileImage.ORANGE
+            3 -> ProfileImage.PINK
+            4 -> ProfileImage.PURPLE
+            5 -> ProfileImage.RED
+            6 -> ProfileImage.TEAL
+            else -> ProfileImage.DARK_BLUE
+        }
+
         return SettingsProfileState(
             name = account?.name ?: "",
             profilePictureUrl = (account?.image as? UiImage.Image)?.url,
+            profileImage = profileImage,
         )
     }
 
