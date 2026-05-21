@@ -119,7 +119,7 @@ fun SettingsProvidersScreen(
         item {
             SettingsItem(
                 title = stringResource(Res.string.display_subbed_dubbed_settings),
-                icon = record_voice_over_off,
+                icon = voice_over_off,
                 onClick = { openDialog = ProvidersDialog.SUB_DUB },
             )
         }
