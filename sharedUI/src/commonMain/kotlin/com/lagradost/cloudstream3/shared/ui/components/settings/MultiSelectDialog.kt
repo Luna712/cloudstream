@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream3.shared.ui.components.settings
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -9,10 +10,13 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream3.shared.generated.resources.Res
+import com.lagradost.cloudstream3.shared.generated.resources.apply
 import com.lagradost.cloudstream3.shared.generated.resources.cancel
-import com.lagradost.cloudstream3.shared.generated.resources.confirm
+import com.lagradost.cloudstream3.shared.ui.icons.check
 import com.lagradost.cloudstream3.shared.ui.theme.CloudStreamTheme
 import org.jetbrains.compose.resources.stringResource
 
@@ -40,6 +44,7 @@ fun MultiSelectDialog(
         text = {
             LazyColumn {
                 itemsIndexed(items) { index, item ->
+                    val isSelected = selected.contains(index)
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -47,45 +52,51 @@ fun MultiSelectDialog(
                                 interactionSource = remember { MutableInteractionSource() },
                                 indication = ripple(),
                             ) {
-                                if (selected.contains(index)) selected.remove(index)
+                                if (isSelected) selected.remove(index)
                                 else selected.add(index)
                             }
-                            .padding(vertical = 4.dp),
+                            .padding(vertical = 12.dp, horizontal = 4.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Checkbox(
-                            checked = selected.contains(index),
-                            onCheckedChange = {
-                                if (it) selected.add(index) else selected.remove(index)
-                            },
-                            colors = CheckboxDefaults.colors(
-                                checkedColor = colors.primary,
-                                uncheckedColor = colors.onSurfaceVariant,
-                            ),
+                        Icon(
+                            imageVector = check,
+                            contentDescription = null,
+                            tint = if (isSelected) colors.primary
+                                   else Color.Transparent,
+                            modifier = Modifier.size(20.dp),
                         )
-                        Spacer(modifier = Modifier.width(8.dp))
+                        Spacer(modifier = Modifier.width(16.dp))
                         Text(
                             text = item,
                             color = colors.onBackground,
-                            style = MaterialTheme.typography.bodyMedium,
+                            style = if (isSelected)
+                                MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold)
+                            else
+                                MaterialTheme.typography.bodyMedium,
                         )
                     }
                 }
             }
         },
         confirmButton = {
-            TextButton(onClick = { onConfirm(selected.toList()) }) {
-                Text(
-                    text = stringResource(Res.string.confirm),
-                    color = colors.primary,
-                )
+            Button(
+                onClick = { onConfirm(selected.toList()) },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = colors.primary,
+                    contentColor = Color.White,
+                ),
+            ) {
+                Text(stringResource(Res.string.apply))
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) {
+            OutlinedButton(
+                onClick = onDismiss,
+                border = BorderStroke(1.dp, colors.onBackground.copy(alpha = 0.3f)),
+            ) {
                 Text(
                     text = stringResource(Res.string.cancel),
-                    color = colors.onBackground.copy(alpha = 0.6f),
+                    color = colors.onBackground,
                 )
             }
         },
