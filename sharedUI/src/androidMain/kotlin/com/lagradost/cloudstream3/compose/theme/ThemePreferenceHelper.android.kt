@@ -23,3 +23,36 @@ fun Context.loadCloudStreamThemeMode(): CloudStreamThemeMode {
         else          -> CloudStreamThemeMode.Dark
     }
 }
+
+fun Context.loadPrimaryColor(): CloudStreamPrimaryColor {
+    val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+    return when (prefs.getString(PreferenceKeys.PRIMARY_COLOR, "Normal")) {
+        "Normal"          -> CloudStreamPrimaryColor.NORMAL
+        "Blue"            -> CloudStreamPrimaryColor.BLUE
+        "Purple"          -> CloudStreamPrimaryColor.PURPLE
+        "Green"           -> CloudStreamPrimaryColor.GREEN
+        "GreenApple"      -> CloudStreamPrimaryColor.GREEN_APPLE
+        "Red"             -> CloudStreamPrimaryColor.RED
+        "Banana"          -> CloudStreamPrimaryColor.BANANA
+        "Party"           -> CloudStreamPrimaryColor.PARTY
+        "Pink"            -> CloudStreamPrimaryColor.PINK
+        "CarnationPink"   -> CloudStreamPrimaryColor.CARNATION_PINK
+        "Maroon"          -> CloudStreamPrimaryColor.MAROON
+        "DarkGreen"       -> CloudStreamPrimaryColor.DARK_GREEN
+        "NavyBlue"        -> CloudStreamPrimaryColor.NAVY_BLUE
+        "Grey"            -> CloudStreamPrimaryColor.GREY
+        "White"           -> CloudStreamPrimaryColor.WHITE
+        "Brown"           -> CloudStreamPrimaryColor.BROWN
+        "Orange"          -> CloudStreamPrimaryColor.ORANGE
+        "DandelionYellow" -> CloudStreamPrimaryColor.DANDELION_YELLOW
+        "CoolBlue"        -> CloudStreamPrimaryColor.COOL_BLUE
+        "Lavender"        -> CloudStreamPrimaryColor.LAVENDER
+        "Monet"           -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+                                 CloudStreamPrimaryColor.MONET
+                             else CloudStreamPrimaryColor.NORMAL
+        "Monet2"          -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+                                 CloudStreamPrimaryColor.MONET_TWO
+                             else CloudStreamPrimaryColor.NORMAL
+        else              -> CloudStreamPrimaryColor.NORMAL
+    }
+}
