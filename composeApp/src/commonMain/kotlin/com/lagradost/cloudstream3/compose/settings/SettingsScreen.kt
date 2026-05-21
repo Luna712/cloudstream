@@ -9,10 +9,20 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.ArrowForwardIos
+import androidx.compose.material.icons.outlined.AccountCircle
+import androidx.compose.material.icons.outlined.Extension
+import androidx.compose.material.icons.outlined.Palette
+import androidx.compose.material.icons.outlined.PlayCircle
+import androidx.compose.material.icons.outlined.Storage
+import androidx.compose.material.icons.outlined.SystemUpdate
+import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -76,6 +86,16 @@ fun SettingsCategory.label(): String = stringResource(
     }
 )
 
+private fun SettingsCategory.icon(): ImageVector = when (this) {
+    SettingsCategory.GENERAL    -> Icons.Outlined.Tune
+    SettingsCategory.PLAYER     -> Icons.Outlined.PlayCircle
+    SettingsCategory.PROVIDERS  -> Icons.Outlined.Storage
+    SettingsCategory.UI         -> Icons.Outlined.Palette
+    SettingsCategory.UPDATES    -> Icons.Outlined.SystemUpdate
+    SettingsCategory.ACCOUNT    -> Icons.Outlined.AccountCircle
+    SettingsCategory.EXTENSIONS -> Icons.Outlined.Extension
+}
+
 @Composable
 fun SettingsScreen(
     profile: SettingsProfileState,
@@ -99,6 +119,7 @@ fun SettingsScreen(
         SettingsCategory.entries.forEach { category ->
             SettingsCategoryRow(
                 label = category.label(),
+                icon = category.icon(),
                 onClick = { onNavigate(category) },
             )
         }
@@ -162,21 +183,49 @@ private fun ProfileImage.toRes() = when (this) {
 }
 
 @Composable
-private fun SettingsCategoryRow(label: String, onClick: () -> Unit) {
+private fun SettingsCategoryRow(label: String, icon: ImageVector, onClick: () -> Unit) {
     val colors = CloudStreamTheme.colors
-    Text(
-        text = label,
+    Row(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = onClick)
-            .padding(horizontal = 16.dp, vertical = 18.dp),
-        color = colors.onBackground,
-        fontSize = 16.sp,
-    )
+            .padding(horizontal = 16.dp, vertical = 14.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = colors.icon,
+            modifier = Modifier.size(24.dp),
+        )
+        Spacer(modifier = Modifier.width(16.dp))
+        Text(
+            text = label,
+            color = colors.onBackground,
+            fontSize = 16.sp,
+            modifier = Modifier.weight(1f),
+        )
+        Icon(
+            imageVector = Icons.AutoMirrored.Outlined.ArrowForwardIos,
+            contentDescription = null,
+            tint = colors.icon,
+            modifier = Modifier.size(16.dp),
+        )
+    }
     HorizontalDivider(
         modifier = Modifier.padding(horizontal = 16.dp),
         color = colors.surfaceVariant,
     )
+}
+
+private fun SettingsCategory.icon(): ImageVector = when (this) {
+    SettingsCategory.GENERAL    -> Icons.Outlined.Tune
+    SettingsCategory.PLAYER     -> Icons.Outlined.PlayCircle
+    SettingsCategory.PROVIDERS  -> Icons.Outlined.Storage
+    SettingsCategory.UI         -> Icons.Outlined.Palette
+    SettingsCategory.UPDATES    -> Icons.Outlined.SystemUpdate
+    SettingsCategory.ACCOUNT    -> Icons.Outlined.AccountCircle
+    SettingsCategory.EXTENSIONS -> Icons.Outlined.Extension
 }
 
 @OptIn(ExperimentalFoundationApi::class)
