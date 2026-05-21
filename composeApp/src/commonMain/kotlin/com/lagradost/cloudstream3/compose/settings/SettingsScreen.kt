@@ -78,8 +78,8 @@ fun SettingsCategory.label(): String = stringResource(
         SettingsCategory.PROVIDERS  -> Res.string.category_providers
         SettingsCategory.UI         -> Res.string.category_ui
         SettingsCategory.UPDATES    -> Res.string.category_updates
-        SettingsCategory.ACCOUNT    -> Res.string.category_account
-        SettingsCategory.EXTENSIONS -> Res.string.extensions
+        SettingsCategory.ACCOUNT    -> Res.string.category_accounts
+        SettingsCategory.EXTENSIONS -> Res.string.category_extensions
     }
 )
 
