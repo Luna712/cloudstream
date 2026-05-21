@@ -7,10 +7,6 @@ import kotlin.random.Random
 
 object TestingUtils {
 
-    private fun fail(message: String): Nothing = throw AssertionError(message)
-    private fun assertTrue(message: String, condition: Boolean) { if (!condition) fail(message) }
-    private fun assertNotNull(message: String, value: Any?) { if (value == null) fail(message) }
-
     open class TestResult(val success: Boolean) {
         companion object {
             val Pass = TestResult(true)
@@ -52,6 +48,10 @@ object TestingUtils {
             messageLog.add(Message(LogLevel.Error, message))
         }
     }
+    
+    private fun fail(message: String): Nothing = throw AssertionError(message)
+    private fun assertTrue(message: String, condition: Boolean) { if (!condition) fail(message) }
+    private fun assertNotNull(message: String, value: Any?) { if (value == null) fail(message) }
 
     class TestResultList(val results: List<SearchResponse>) : TestResult(true)
     class TestResultLoad(val extractorData: String, val shouldLoadLinks: Boolean) : TestResult(true)
