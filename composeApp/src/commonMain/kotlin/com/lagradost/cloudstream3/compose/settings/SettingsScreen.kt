@@ -20,12 +20,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lagradost.cloudstream3.compose.generated.resources.Res
 import com.lagradost.cloudstream3.compose.generated.resources.category_account
+import com.lagradost.cloudstream3.compose.generated.resources.category_extensions
 import com.lagradost.cloudstream3.compose.generated.resources.category_general
 import com.lagradost.cloudstream3.compose.generated.resources.category_player
 import com.lagradost.cloudstream3.compose.generated.resources.category_providers
 import com.lagradost.cloudstream3.compose.generated.resources.category_ui
 import com.lagradost.cloudstream3.compose.generated.resources.category_updates
-import com.lagradost.cloudstream3.compose.generated.resources.extensions
 import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_blue
 import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_dark_blue
 import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_orange
