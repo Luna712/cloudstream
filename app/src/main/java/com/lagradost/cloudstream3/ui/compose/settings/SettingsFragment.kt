@@ -15,8 +15,8 @@ import com.lagradost.cloudstream3.BuildConfig
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.shared.ui.settings.*
 import com.lagradost.cloudstream3.shared.ui.theme.CloudStreamTheme
-import com.lagradost.cloudstream3.shared.ui.theme.loadCloudStreamThemeMode
 import com.lagradost.cloudstream3.shared.ui.theme.loadPrimaryColor
+import com.lagradost.cloudstream3.shared.ui.theme.loadThemeMode
 import com.lagradost.cloudstream3.syncproviders.AccountManager
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.GitInfo.currentCommitHash
@@ -46,7 +46,7 @@ class SettingsFragment : Fragment() {
             val profile = buildProfileState()
             val version = buildVersionState()
             CloudStreamTheme(
-                mode = context.loadCloudStreamThemeMode(),
+                mode = context.loadThemeMode(),
                 primaryColor = context.loadPrimaryColor(),
             ) {
                 SettingsScreen(
