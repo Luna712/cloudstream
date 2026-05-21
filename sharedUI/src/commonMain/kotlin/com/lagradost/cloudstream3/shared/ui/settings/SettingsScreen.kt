@@ -232,6 +232,7 @@ private fun SettingsCategoryRow(
                 if (focusRequester != null) Modifier.focusRequester(focusRequester)
                 else Modifier
             )
+            .focusable()
             .onFocusChanged { isFocused = it.isFocused }
             .background(
                 if (isFocused && isTV) colors.primary.copy(alpha = 0.15f)
