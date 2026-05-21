@@ -11,14 +11,18 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.lagradost.cloudstream3.shared.DeviceLayout
 import com.lagradost.cloudstream3.shared.generated.resources.Res
 import com.lagradost.cloudstream3.shared.generated.resources.category_accounts
 import com.lagradost.cloudstream3.shared.generated.resources.category_accounts_subtitle
@@ -135,22 +139,30 @@ fun SettingsScreen(
     onVersionLongClick: () -> Unit = {},
 ) {
     val colors = CloudStreamTheme.colors
+    val isTV = remember { DeviceLayout.isLayout(DeviceLayout.TV) }
+    val firstItemFocusRequester = remember { FocusRequester() }
+
+    LaunchedEffect(Unit) {
+        if (isTV) firstItemFocusRequester.requestFocus()
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(colors.background)
-            // The bottom padding would be handled by our bottom nav itself.
             .windowInsetsPadding(WindowInsets.statusBars)
             .verticalScroll(rememberScrollState())
     ) {
         SettingsProfileHeader(profile = profile, avatarContent = avatarContent)
 
-        SettingsCategory.entries.forEach { category ->
+        SettingsCategory.entries.forEachIndexed { index, category ->
             SettingsCategoryRow(
                 label = category.label(),
                 subtitle = category.subtitle(),
                 icon = category.icon(),
                 onClick = { onNavigate(category) },
+                focusRequester = if (index == 0) firstItemFocusRequester else null,
+                isTV = isTV,
             )
         }
 
@@ -207,11 +219,24 @@ private fun SettingsCategoryRow(
     subtitle: String,
     icon: ImageVector,
     onClick: () -> Unit,
+    focusRequester: FocusRequester? = null,
+    isTV: Boolean = false,
 ) {
     val colors = CloudStreamTheme.colors
+    var isFocused by remember { mutableStateOf(false) }
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .then(
+                if (focusRequester != null) Modifier.focusRequester(focusRequester)
+                else Modifier
+            )
+            .onFocusChanged { isFocused = it.isFocused }
+            .background(
+                if (isFocused && isTV) colors.primary.copy(alpha = 0.15f)
+                else Color.Transparent
+            )
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = ripple(),
@@ -223,14 +248,14 @@ private fun SettingsCategoryRow(
         Icon(
             imageVector = icon,
             contentDescription = label,
-            tint = colors.onBackground,
+            tint = if (isFocused && isTV) colors.primary else colors.icon,
             modifier = Modifier.size(28.dp),
         )
         Spacer(modifier = Modifier.width(24.dp))
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = label,
-                color = colors.onBackground,
+                color = if (isFocused && isTV) colors.primary else colors.onBackground,
                 style = MaterialTheme.typography.bodyLarge,
             )
             Text(
