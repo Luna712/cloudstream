@@ -218,16 +218,6 @@ private fun SettingsCategoryRow(label: String, icon: ImageVector, onClick: () ->
     )
 }
 
-private fun SettingsCategory.icon(): ImageVector = when (this) {
-    SettingsCategory.GENERAL    -> Icons.Outlined.Tune
-    SettingsCategory.PLAYER     -> Icons.Outlined.PlayCircle
-    SettingsCategory.PROVIDERS  -> Icons.Outlined.Storage
-    SettingsCategory.UI         -> Icons.Outlined.Palette
-    SettingsCategory.UPDATES    -> Icons.Outlined.SystemUpdate
-    SettingsCategory.ACCOUNT    -> Icons.Outlined.AccountCircle
-    SettingsCategory.EXTENSIONS -> Icons.Outlined.Extension
-}
-
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun SettingsVersionFooter(version: SettingsVersionState, onLongClick: () -> Unit) {
