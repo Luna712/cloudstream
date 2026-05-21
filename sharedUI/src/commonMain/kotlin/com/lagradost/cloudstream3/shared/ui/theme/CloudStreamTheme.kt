@@ -51,7 +51,10 @@ fun CloudStreamTheme(
     val systemDark = isSystemInDarkTheme()
     val dynamicTheme = resolveDynamicTheme()
 
-    val csColors = remember(mode, primaryColor, systemDark, dynamicTheme) {
+    val dynamicPrimary = resolveDynamicPrimaryColor()
+    val dynamicSecondary = resolveDynamicSecondaryColor()
+
+    val csColors = remember(mode, primaryColor, systemDark, dynamicTheme, dynamicPrimary, dynamicSecondary) {
         val base = when (mode) {
             CloudStreamThemeMode.Dark         -> darkScheme()
             CloudStreamThemeMode.Amoled       -> amoledScheme()
@@ -62,8 +65,12 @@ fun CloudStreamTheme(
             CloudStreamThemeMode.FollowSystem -> if (systemDark) darkScheme() else lightScheme()
             CloudStreamThemeMode.Dynamic      -> dynamicTheme
         }
-        if (mode == CloudStreamThemeMode.Dynamic) base
-        else base.copy(primary = primaryColor.color)
+        when {
+            mode == CloudStreamThemeMode.Dynamic -> base
+            primaryColor == CloudStreamPrimaryColor.DYNAMIC     -> base.copy(primary = dynamicPrimary)
+            primaryColor == CloudStreamPrimaryColor.DYNAMIC_TWO -> base.copy(primary = dynamicSecondary)
+            else -> base.copy(primary = primaryColor.color)
+        }
     }
 
     CompositionLocalProvider(LocalCloudStreamColors provides csColors) {
