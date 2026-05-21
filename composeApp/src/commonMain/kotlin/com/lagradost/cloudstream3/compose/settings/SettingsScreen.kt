@@ -190,7 +190,7 @@ private fun SettingsCategoryRow(label: String, icon: ImageVector, onClick: () ->
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = colors.primary,
+            tint = colors.icon,
             modifier = Modifier.size(24.dp),
         )
         Spacer(modifier = Modifier.width(24.dp))
