@@ -208,9 +208,9 @@ dependencies {
     testImplementation(libs.junit)
     testImplementation(libs.json)
     androidTestImplementation(libs.core)
-    androidTestImplementation(libs.junit.ktx)
-    androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.junit.ktx)
 
     // Android Core & Lifecycle
     implementation(libs.core.ktx)
