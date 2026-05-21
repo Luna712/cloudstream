@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentActivity
 import coil3.ImageLoader
 import coil3.PlatformContext
 import coil3.SingletonImageLoader
+import com.google.android.material.color.DynamicColors
 import com.lagradost.api.setContext
 import com.lagradost.cloudstream3.BuildConfig
 import com.lagradost.cloudstream3.mvvm.safe
@@ -84,6 +85,7 @@ class CloudStreamApp : Application(), SingletonImageLoader.Factory {
         }
 
         AppDebug.isDebug = BuildConfig.DEBUG
+        DynamicColors.applyToActivityIfAvailable(this)
     }
 
     override fun attachBaseContext(base: Context?) {
