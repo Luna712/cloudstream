@@ -22,7 +22,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -36,6 +36,14 @@ import com.lagradost.cloudstream3.compose.generated.resources.category_providers
 import com.lagradost.cloudstream3.compose.generated.resources.category_ui
 import com.lagradost.cloudstream3.compose.generated.resources.category_updates
 import com.lagradost.cloudstream3.compose.generated.resources.extensions
+import com.lagradost.cloudstream3.compose.generated.resources.ic_tune
+import com.lagradost.cloudstream3.compose.generated.resources.ic_play_circle
+import com.lagradost.cloudstream3.compose.generated.resources.ic_storage
+import com.lagradost.cloudstream3.compose.generated.resources.ic_palette
+import com.lagradost.cloudstream3.compose.generated.resources.ic_system_update
+import com.lagradost.cloudstream3.compose.generated.resources.ic_account_circle
+import com.lagradost.cloudstream3.compose.generated.resources.ic_extension
+import com.lagradost.cloudstream3.compose.generated.resources.ic_arrow_forward_ios
 import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_blue
 import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_dark_blue
 import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_orange
@@ -86,15 +94,18 @@ fun SettingsCategory.label(): String = stringResource(
     }
 )
 
-private fun SettingsCategory.icon(): ImageVector = when (this) {
-    SettingsCategory.GENERAL    -> Icons.Outlined.Tune
-    SettingsCategory.PLAYER     -> Icons.Outlined.PlayCircle
-    SettingsCategory.PROVIDERS  -> Icons.Outlined.Storage
-    SettingsCategory.UI         -> Icons.Outlined.Palette
-    SettingsCategory.UPDATES    -> Icons.Outlined.SystemUpdate
-    SettingsCategory.ACCOUNT    -> Icons.Outlined.AccountCircle
-    SettingsCategory.EXTENSIONS -> Icons.Outlined.Extension
-}
+@Composable
+private fun SettingsCategory.iconPainter() = painterResource(
+    when (this) {
+        SettingsCategory.GENERAL    -> Res.drawable.ic_tune
+        SettingsCategory.PLAYER     -> Res.drawable.ic_play_circle
+        SettingsCategory.PROVIDERS  -> Res.drawable.ic_storage
+        SettingsCategory.UI         -> Res.drawable.ic_palette
+        SettingsCategory.UPDATES    -> Res.drawable.ic_system_update
+        SettingsCategory.ACCOUNT    -> Res.drawable.ic_account_circle
+        SettingsCategory.EXTENSIONS -> Res.drawable.ic_extension
+    }
+)
 
 @Composable
 fun SettingsScreen(
@@ -119,7 +130,7 @@ fun SettingsScreen(
         SettingsCategory.entries.forEach { category ->
             SettingsCategoryRow(
                 label = category.label(),
-                icon = category.icon(),
+                icon = category.iconPainter(),
                 onClick = { onNavigate(category) },
             )
         }
@@ -183,7 +194,7 @@ private fun ProfileImage.toRes() = when (this) {
 }
 
 @Composable
-private fun SettingsCategoryRow(label: String, icon: ImageVector, onClick: () -> Unit) {
+private fun SettingsCategoryRow(label: String, icon: Painter, onClick: () -> Unit) {
     val colors = CloudStreamTheme.colors
     Row(
         modifier = Modifier
@@ -193,7 +204,7 @@ private fun SettingsCategoryRow(label: String, icon: ImageVector, onClick: () ->
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
-            imageVector = icon,
+            painter = icon,
             contentDescription = null,
             tint = colors.icon,
             modifier = Modifier.size(24.dp),
@@ -206,7 +217,7 @@ private fun SettingsCategoryRow(label: String, icon: ImageVector, onClick: () ->
             modifier = Modifier.weight(1f),
         )
         Icon(
-            imageVector = Icons.AutoMirrored.Outlined.ArrowForwardIos,
+            painter = painterResource(Res.drawable.ic_arrow_forward_ios),
             contentDescription = null,
             tint = colors.icon,
             modifier = Modifier.size(16.dp),
