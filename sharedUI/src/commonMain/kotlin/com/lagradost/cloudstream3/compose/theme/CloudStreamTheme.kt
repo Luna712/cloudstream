@@ -46,12 +46,13 @@ private fun CloudStreamColorScheme.toMaterial3ColorScheme() = if (isLight) {
 @Composable
 fun CloudStreamTheme(
     mode: CloudStreamThemeMode = CloudStreamThemeMode.FollowSystem,
+    primaryColor: CloudStreamPrimaryColor = CloudStreamPrimaryColor.NORMAL,
     content: @Composable () -> Unit,
 ) {
     val systemDark = isSystemInDarkTheme()
 
     val csColors = remember(mode, systemDark) {
-        when (mode) {
+        val base = when (mode) {
             CloudStreamThemeMode.Dark        -> darkScheme()
             CloudStreamThemeMode.Amoled      -> amoledScheme()
             CloudStreamThemeMode.Light       -> lightScheme()
@@ -60,6 +61,7 @@ fun CloudStreamTheme(
             CloudStreamThemeMode.SilentBlue  -> silentBlueScheme()
             CloudStreamThemeMode.FollowSystem -> if (systemDark) darkScheme() else lightScheme()
         }
+        base.copy(primary = primaryColor.color)
     }
 
     CompositionLocalProvider(LocalCloudStreamColors provides csColors) {
