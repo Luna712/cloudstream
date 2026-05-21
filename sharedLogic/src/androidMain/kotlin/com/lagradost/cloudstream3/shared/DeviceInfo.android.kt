@@ -14,13 +14,13 @@ internal actual object DeviceInfo {
     actual fun getModel(): String = Build.MODEL
 
     actual fun getUIMode(): Int {
-        val context = getContext() ?: return 0
+        val context = getContext() as? Context ?: return 0
         val uiModeManager = context.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager?
         return uiModeManager?.currentModeType ?: 0
     }
 
     actual fun getLayoutPreference(): Int {
-        val context = getContext() ?: return -1
+        val context = getContext() as? Context ?: return -1
         return PreferenceManager.getDefaultSharedPreferences(context)
             .getInt(PreferenceKeys.APP_LAYOUT, -1)
     }
