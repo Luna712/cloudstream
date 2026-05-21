@@ -127,7 +127,8 @@ fun SettingsScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(colors.background)
-            .windowInsetsPadding(WindowInsets.safeDrawing)
+            // The bottom padding would be handled by our bottom nav itself.
+            .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal))
             .verticalScroll(rememberScrollState())
     ) {
         SettingsProfileHeader(profile = profile, avatarContent = avatarContent)
