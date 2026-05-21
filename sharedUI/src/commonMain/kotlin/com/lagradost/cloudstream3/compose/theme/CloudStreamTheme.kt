@@ -16,7 +16,6 @@ object CloudStreamTheme {
         get() = LocalCloudStreamColors.current
 }
 
-
 private fun CloudStreamColorScheme.toMaterial3ColorScheme() = if (isLight) {
     lightColorScheme(
         primary          = primary,
@@ -47,12 +46,13 @@ private fun CloudStreamColorScheme.toMaterial3ColorScheme() = if (isLight) {
 fun CloudStreamTheme(
     mode: CloudStreamThemeMode = CloudStreamThemeMode.FollowSystem,
     primaryColor: CloudStreamPrimaryColor = CloudStreamPrimaryColor.NORMAL,
+    schemeOverride: CloudStreamColorScheme? = null,
     content: @Composable () -> Unit,
 ) {
     val systemDark = isSystemInDarkTheme()
 
-    val csColors = remember(mode, systemDark) {
-        val base = when (mode) {
+    val csColors = remember(mode, primaryColor, systemDark, schemeOverride) {
+        val base = schemeOverride ?: when (mode) {
             CloudStreamThemeMode.Dark        -> darkScheme()
             CloudStreamThemeMode.Amoled      -> amoledScheme()
             CloudStreamThemeMode.Light       -> lightScheme()
@@ -60,8 +60,13 @@ fun CloudStreamTheme(
             CloudStreamThemeMode.Lavender    -> lavenderScheme()
             CloudStreamThemeMode.SilentBlue  -> silentBlueScheme()
             CloudStreamThemeMode.FollowSystem -> if (systemDark) darkScheme() else lightScheme()
+            // Monet scheme is always provided via schemeOverride from androidMain
+            // Falls back to dark if called without override.
+            CloudStreamThemeMode.Monet       -> if (systemDark) darkScheme() else lightScheme()
         }
-        base.copy(primary = primaryColor.color)
+        // Don't override primary for Monet, it's already baked into the scheme
+        if (mode == CloudStreamThemeMode.Monet) base
+        else base.copy(primary = primaryColor.color)
     }
 
     CompositionLocalProvider(LocalCloudStreamColors provides csColors) {
