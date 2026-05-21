@@ -42,9 +42,9 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
-class SettingsFragment : BaseFragment<MainSettingsBinding>(
-    BaseFragment.BindingCreator.Inflate(MainSettingsBinding::inflate)
-) {
+// Moved to SettingsComposeFragment
+// TODO: Move companion methods to helpers and remove this class entirely
+class SettingsFragment {
     companion object {
         fun PreferenceFragmentCompat?.getPref(id: Int): Preference? {
             if (this == null) return null
@@ -166,100 +166,6 @@ class SettingsFragment : BaseFragment<MainSettingsBinding>(
             }
 
             return size
-        }
-    }
-
-    override fun fixLayout(view: View) {
-        fixSystemBarsPadding(
-            view,
-            padBottom = isLandscape(),
-            padLeft = isLayout(TV or EMULATOR)
-        )
-    }
-
-    override fun onBindingCreated(binding: MainSettingsBinding) {
-        fun navigate(id: Int) {
-            activity?.navigate(id, Bundle())
-        }
-
-        /** used to debug leaks
-        showToast(activity,"${VideoDownloadManager.downloadStatusEvent.size} :
-        ${VideoDownloadManager.downloadProgressEvent.size}") **/
-
-        fun hasProfilePictureFromAccountManagers(accountManagers: Array<AuthRepo>): Boolean {
-            for (syncApi in accountManagers) {
-                val login = syncApi.authUser()
-                val pic = login?.profilePicture ?: continue
-
-                binding.settingsProfilePic.let { imageView ->
-                    imageView.loadImage(pic) {
-                        // Fallback to random error drawable
-                        error { getImageFromDrawable(context ?: return@error null, errorProfilePic) }
-                    }
-                }
-                binding.settingsProfileText.text = login.name
-                return true // sync profile exists
-            }
-            return false // not syncing
-        }
-
-        // display local account information if not syncing
-        if (!hasProfilePictureFromAccountManagers(AccountManager.allApis)) {
-            val activity = activity ?: return
-            val currentAccount = try {
-                DataStoreHelper.accounts.firstOrNull {
-                    it.keyIndex == DataStoreHelper.selectedKeyIndex
-                } ?: activity.let { DataStoreHelper.getDefaultAccount(activity) }
-
-            } catch (t: IllegalStateException) {
-                Log.e("AccountManager", "Activity not found", t)
-                null
-            }
-
-            binding.settingsProfilePic.loadImage(currentAccount?.image)
-            binding.settingsProfileText.text = currentAccount?.name
-        }
-
-        binding.apply {
-            listOf(
-                settingsGeneral to R.id.action_navigation_global_to_navigation_settings_general,
-                settingsPlayer to R.id.action_navigation_global_to_navigation_settings_player,
-                settingsCredits to R.id.action_navigation_global_to_navigation_settings_account,
-                settingsUi to R.id.action_navigation_global_to_navigation_settings_ui,
-                settingsProviders to R.id.action_navigation_global_to_navigation_settings_providers,
-                settingsUpdates to R.id.action_navigation_global_to_navigation_settings_updates,
-                settingsExtensions to R.id.action_navigation_global_to_navigation_settings_extensions,
-            ).forEach { (view, navigationId) ->
-                view.apply {
-                    setOnClickListener {
-                        navigate(navigationId)
-                    }
-                    if (isLayout(TV)) {
-                        isFocusable = true
-                        isFocusableInTouchMode = true
-                    }
-                }
-            }
-
-            // Default focus on TV
-            if (isLayout(TV)) {
-                settingsGeneral.requestFocus()
-            }
-        }
-
-        val appVersion = BuildConfig.VERSION_NAME
-        val commitHash = activity?.currentCommitHash() ?: ""
-        val buildTimestamp = SimpleDateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG,
-            Locale.getDefault()
-        ).apply { timeZone = TimeZone.getTimeZone("UTC")
-        }.format(Date(BuildConfig.BUILD_DATE)).replace("UTC", "")
-
-        binding.appVersion.text = appVersion
-        binding.buildDate.text = buildTimestamp
-        binding.commitHash.text = commitHash
-        binding.appVersionInfo.setOnLongClickListener {
-            clipboardHelper(txt(R.string.extension_version), "$appVersion $commitHash $buildTimestamp")
-            true
         }
     }
 }
