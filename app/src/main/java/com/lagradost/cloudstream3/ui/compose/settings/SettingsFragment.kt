@@ -126,7 +126,7 @@ class SettingsFragment : Fragment() {
             SettingsCategory.GENERAL    -> R.id.action_navigation_global_to_navigation_settings_general
             SettingsCategory.PLAYER     -> R.id.action_navigation_global_to_navigation_settings_player
             SettingsCategory.PROVIDERS  -> R.id.action_navigation_global_to_navigation_settings_providers
-            SettingsCategory.UI         -> R.id.action_navigation_global_to_navigation_settings_ui
+            SettingsCategory.LAYOUT     -> R.id.action_navigation_global_to_navigation_settings_ui
             SettingsCategory.UPDATES    -> R.id.action_navigation_global_to_navigation_settings_updates
             SettingsCategory.ACCOUNTS   -> R.id.action_navigation_global_to_navigation_settings_account
             SettingsCategory.EXTENSIONS -> R.id.action_navigation_global_to_navigation_settings_extensions
