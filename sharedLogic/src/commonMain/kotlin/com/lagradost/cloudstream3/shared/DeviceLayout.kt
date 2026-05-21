@@ -21,7 +21,7 @@ object DeviceLayout {
 
     private fun isAutoTv(): Boolean {
         val model = DeviceInfo.getModel().lowercase()
-        return DeviceInfo.getUiMode() == DeviceInfo.UI_MODE_TELEVISION
+        return DeviceInfo.getUIMode() == DeviceInfo.UI_MODE_TELEVISION
             || DeviceInfo.getModel().contains("AFT")
             || model.contains("firestick")
             || model.contains("fire tv")
