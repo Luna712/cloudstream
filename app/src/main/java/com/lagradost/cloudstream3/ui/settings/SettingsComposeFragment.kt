@@ -1,4 +1,4 @@
-package com.lagradost.cloudstream3.compose.settings
+package com.lagradost.cloudstream3.shared.ui.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,8 +13,8 @@ import androidx.fragment.app.Fragment
 import coil3.compose.AsyncImage
 import com.lagradost.cloudstream3.BuildConfig
 import com.lagradost.cloudstream3.R
-import com.lagradost.cloudstream3.compose.theme.CloudStreamTheme
-import com.lagradost.cloudstream3.compose.theme.loadCloudStreamThemeMode
+import com.lagradost.cloudstream3.shared.ui.theme.CloudStreamTheme
+import com.lagradost.cloudstream3.shared.ui.theme.loadCloudStreamThemeMode
 import com.lagradost.cloudstream3.syncproviders.AccountManager
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.GitInfo.currentCommitHash
@@ -29,7 +29,7 @@ import java.util.Locale
 import java.util.TimeZone
 
 // TODO: Move to composeApp once we have shared logic available in the
-// :core module and we have migrated to navigation3 (which we can not
+// :sharedLogic module and we have migrated to navigation3 (which we can not
 // do until all fragments have migrated to compose).
 class SettingsComposeFragment : Fragment() {
 
