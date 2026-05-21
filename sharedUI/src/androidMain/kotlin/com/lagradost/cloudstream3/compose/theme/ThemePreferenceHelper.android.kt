@@ -2,6 +2,8 @@ package com.lagradost.cloudstream3.shared.ui.theme
 
 import android.content.Context
 import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.compose.ui.graphics.Color
 import androidx.preference.PreferenceManager
 import com.lagradost.cloudstream3.shared.preferences.PreferenceKeys
 
@@ -16,9 +18,8 @@ fun Context.loadCloudStreamThemeMode(): CloudStreamThemeMode {
         "Dracula"     -> CloudStreamThemeMode.Dracula
         "Lavender"    -> CloudStreamThemeMode.Lavender
         "SilentBlue"  -> CloudStreamThemeMode.SilentBlue
-        // Monet requires API 31+ dynamic colors; fall back to system for now
         "Monet"       -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
-                             CloudStreamThemeMode.FollowSystem
+                             CloudStreamThemeMode.Monet
                          else CloudStreamThemeMode.Dark
         else          -> CloudStreamThemeMode.Dark
     }
@@ -55,4 +56,20 @@ fun Context.loadPrimaryColor(): CloudStreamPrimaryColor {
                              else CloudStreamPrimaryColor.NORMAL
         else              -> CloudStreamPrimaryColor.NORMAL
     }
+}
+
+@RequiresApi(Build.VERSION_CODES.S)
+fun Context.buildMonetScheme(): CloudStreamColorScheme {
+    return CloudStreamColorScheme(
+        background       = Color(getColor(android.R.color.system_neutral1_900)),
+        surfaceVariant   = Color(getColor(android.R.color.system_neutral1_800)),
+        surface          = Color(getColor(android.R.color.system_neutral1_800)),
+        surfaceContainer = Color(getColor(android.R.color.system_neutral1_800)),
+        onBackground     = Color(getColor(android.R.color.system_neutral1_100)),
+        onSurfaceVariant = Color(getColor(android.R.color.system_neutral2_400)),
+        icon             = Color(getColor(android.R.color.system_neutral1_100)),
+        primary          = Color(getColor(android.R.color.system_accent1_200)),
+        ongoing          = CloudStreamPalette.Ongoing,
+        isLight          = false,
+    )
 }
