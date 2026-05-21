@@ -15,7 +15,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,7 +34,6 @@ import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_purple
 import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_red
 import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_teal
 import com.lagradost.cloudstream3.compose.icons.account_circle
-import com.lagradost.cloudstream3.compose.icons.arrow_forward_ios
 import com.lagradost.cloudstream3.compose.icons.extension
 import com.lagradost.cloudstream3.compose.icons.mobile_arrow_down
 import com.lagradost.cloudstream3.compose.icons.palette
@@ -113,8 +111,6 @@ fun SettingsScreen(
     ) {
         SettingsProfileHeader(profile = profile, avatarContent = avatarContent)
 
-        Spacer(modifier = Modifier.height(8.dp))
-
         SettingsCategory.entries.forEach { category ->
             SettingsCategoryRow(
                 label = category.label(),
@@ -140,12 +136,12 @@ private fun SettingsProfileHeader(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(20.dp),
+            .padding(horizontal = 16.dp, vertical = 24.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Card(
             shape = CircleShape,
-            modifier = Modifier.size(50.dp),
+            modifier = Modifier.size(56.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
         ) {
             if (profile.profilePictureUrl != null) {
@@ -160,12 +156,12 @@ private fun SettingsProfileHeader(
             }
         }
 
-        Spacer(modifier = Modifier.width(10.dp))
+        Spacer(modifier = Modifier.width(16.dp))
 
         Text(
             text = profile.name,
             color = colors.onBackground,
-            fontSize = 18.sp,
+            style = MaterialTheme.typography.titleMedium,
         )
     }
 }
@@ -188,33 +184,23 @@ private fun SettingsCategoryRow(label: String, icon: ImageVector, onClick: () ->
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = onClick)
-            .padding(horizontal = 16.dp, vertical = 14.dp),
+            .padding(horizontal = 16.dp, vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = colors.icon,
+            tint = colors.primary,
             modifier = Modifier.size(24.dp),
         )
-        Spacer(modifier = Modifier.width(16.dp))
+        Spacer(modifier = Modifier.width(24.dp))
         Text(
             text = label,
             color = colors.onBackground,
-            fontSize = 16.sp,
+            style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier.weight(1f),
         )
-        Icon(
-            imageVector = arrow_forward_ios,
-            contentDescription = null,
-            tint = colors.icon,
-            modifier = Modifier.size(16.dp),
-        )
     }
-    HorizontalDivider(
-        modifier = Modifier.padding(horizontal = 16.dp),
-        color = colors.surfaceVariant,
-    )
 }
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -241,8 +227,8 @@ private fun VersionChip(text: String) {
     Text(
         text = text,
         modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
-        color = CloudStreamTheme.colors.onBackground,
-        fontSize = 12.sp,
+        color = CloudStreamTheme.colors.onSurfaceVariant,
+        style = MaterialTheme.typography.bodySmall,
         textAlign = TextAlign.Center,
     )
 }
@@ -251,7 +237,7 @@ private fun VersionChip(text: String) {
 private fun VersionDot() {
     Text(
         text = "•",
-        color = CloudStreamTheme.colors.onBackground,
-        fontSize = 12.sp,
+        color = CloudStreamTheme.colors.onSurfaceVariant,
+        style = MaterialTheme.typography.bodySmall,
     )
 }
