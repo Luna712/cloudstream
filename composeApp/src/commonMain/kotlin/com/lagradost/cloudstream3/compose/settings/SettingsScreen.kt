@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.compose.settings
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
@@ -13,7 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -26,7 +26,15 @@ import com.lagradost.cloudstream3.compose.generated.resources.category_providers
 import com.lagradost.cloudstream3.compose.generated.resources.category_ui
 import com.lagradost.cloudstream3.compose.generated.resources.category_updates
 import com.lagradost.cloudstream3.compose.generated.resources.extensions
+import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_blue
+import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_dark_blue
+import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_orange
+import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_pink
+import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_purple
+import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_red
+import com.lagradost.cloudstream3.compose.generated.resources.profile_bg_teal
 import com.lagradost.cloudstream3.compose.theme.CloudStreamTheme
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 enum class ProfileImage {
