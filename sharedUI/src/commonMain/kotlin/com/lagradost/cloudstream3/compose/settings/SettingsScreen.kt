@@ -79,6 +79,17 @@ enum class SettingsCategory {
 }
 
 @Composable
+private fun ProfileImage.toRes() = when (this) {
+    ProfileImage.DARK_BLUE -> Res.drawable.profile_bg_dark_blue
+    ProfileImage.BLUE      -> Res.drawable.profile_bg_blue
+    ProfileImage.ORANGE    -> Res.drawable.profile_bg_orange
+    ProfileImage.PINK      -> Res.drawable.profile_bg_pink
+    ProfileImage.PURPLE    -> Res.drawable.profile_bg_purple
+    ProfileImage.RED       -> Res.drawable.profile_bg_red
+    ProfileImage.TEAL      -> Res.drawable.profile_bg_teal
+}
+
+@Composable
 fun SettingsCategory.label(): String = stringResource(
     when (this) {
         SettingsCategory.GENERAL    -> Res.string.category_general
@@ -128,7 +139,7 @@ fun SettingsScreen(
             .fillMaxSize()
             .background(colors.background)
             // The bottom padding would be handled by our bottom nav itself.
-            .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal))
+            .windowInsetsPadding(WindowInsets.statusBars)
             .verticalScroll(rememberScrollState())
     ) {
         SettingsProfileHeader(profile = profile, avatarContent = avatarContent)
@@ -187,17 +198,6 @@ private fun SettingsProfileHeader(
             style = MaterialTheme.typography.titleMedium,
         )
     }
-}
-
-@Composable
-private fun ProfileImage.toRes() = when (this) {
-    ProfileImage.DARK_BLUE -> Res.drawable.profile_bg_dark_blue
-    ProfileImage.BLUE      -> Res.drawable.profile_bg_blue
-    ProfileImage.ORANGE    -> Res.drawable.profile_bg_orange
-    ProfileImage.PINK      -> Res.drawable.profile_bg_pink
-    ProfileImage.PURPLE    -> Res.drawable.profile_bg_purple
-    ProfileImage.RED       -> Res.drawable.profile_bg_red
-    ProfileImage.TEAL      -> Res.drawable.profile_bg_teal
 }
 
 @Composable
