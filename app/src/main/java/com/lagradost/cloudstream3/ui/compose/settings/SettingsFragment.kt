@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.ui.compose.settings
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,8 +15,6 @@ import com.lagradost.cloudstream3.BuildConfig
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.shared.ui.settings.*
 import com.lagradost.cloudstream3.shared.ui.theme.CloudStreamTheme
-import com.lagradost.cloudstream3.shared.ui.theme.CloudStreamThemeMode
-import com.lagradost.cloudstream3.shared.ui.theme.buildMonetScheme
 import com.lagradost.cloudstream3.shared.ui.theme.loadCloudStreamThemeMode
 import com.lagradost.cloudstream3.shared.ui.theme.loadPrimaryColor
 import com.lagradost.cloudstream3.syncproviders.AccountManager
@@ -48,15 +45,9 @@ class SettingsFragment : Fragment() {
         setContent {
             val profile = buildProfileState()
             val version = buildVersionState()
-            val mode = context.loadCloudStreamThemeMode()
-            val schemeOverride = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
-                mode == CloudStreamThemeMode.Monet)
-                context.buildMonetScheme() else null
-
             CloudStreamTheme(
-                mode = mode,
+                mode = context.loadCloudStreamThemeMode(),
                 primaryColor = context.loadPrimaryColor(),
-                schemeOverride = schemeOverride,
             ) {
                 SettingsScreen(
                     profile = profile,
