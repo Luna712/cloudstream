@@ -26,12 +26,12 @@ import com.lagradost.cloudstream3.shared.generated.resources.category_extensions
 import com.lagradost.cloudstream3.shared.generated.resources.category_extensions_subtitle
 import com.lagradost.cloudstream3.shared.generated.resources.category_general
 import com.lagradost.cloudstream3.shared.generated.resources.category_general_subtitle
+import com.lagradost.cloudstream3.shared.generated.resources.category_layout
+import com.lagradost.cloudstream3.shared.generated.resources.category_layout_subtitle
 import com.lagradost.cloudstream3.shared.generated.resources.category_player
 import com.lagradost.cloudstream3.shared.generated.resources.category_player_subtitle
 import com.lagradost.cloudstream3.shared.generated.resources.category_providers
 import com.lagradost.cloudstream3.shared.generated.resources.category_providers_subtitle
-import com.lagradost.cloudstream3.shared.generated.resources.category_ui
-import com.lagradost.cloudstream3.shared.generated.resources.category_ui_subtitle
 import com.lagradost.cloudstream3.shared.generated.resources.category_updates
 import com.lagradost.cloudstream3.shared.generated.resources.category_updates_subtitle
 import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_blue
@@ -72,7 +72,7 @@ enum class SettingsCategory {
     GENERAL,
     PLAYER,
     PROVIDERS,
-    UI,
+    LAYOUT,
     UPDATES,
     ACCOUNTS,
     EXTENSIONS,
@@ -95,7 +95,7 @@ fun SettingsCategory.label(): String = stringResource(
         SettingsCategory.GENERAL    -> Res.string.category_general
         SettingsCategory.PLAYER     -> Res.string.category_player
         SettingsCategory.PROVIDERS  -> Res.string.category_providers
-        SettingsCategory.UI         -> Res.string.category_ui
+        SettingsCategory.LAYOUT     -> Res.string.category_layout
         SettingsCategory.UPDATES    -> Res.string.category_updates
         SettingsCategory.ACCOUNTS   -> Res.string.category_accounts
         SettingsCategory.EXTENSIONS -> Res.string.category_extensions
@@ -108,7 +108,7 @@ fun SettingsCategory.subtitle(): String = stringResource(
         SettingsCategory.GENERAL    -> Res.string.category_general_subtitle
         SettingsCategory.PLAYER     -> Res.string.category_player_subtitle
         SettingsCategory.PROVIDERS  -> Res.string.category_providers_subtitle
-        SettingsCategory.UI         -> Res.string.category_ui_subtitle
+        SettingsCategory.LAYOUT     -> Res.string.category_layout_subtitle
         SettingsCategory.UPDATES    -> Res.string.category_updates_subtitle
         SettingsCategory.ACCOUNTS   -> Res.string.category_accounts_subtitle
         SettingsCategory.EXTENSIONS -> Res.string.category_extensions_subtitle
@@ -119,7 +119,7 @@ private fun SettingsCategory.icon(): ImageVector = when (this) {
     SettingsCategory.GENERAL    -> tune
     SettingsCategory.PLAYER     -> play_circle
     SettingsCategory.PROVIDERS  -> storage
-    SettingsCategory.UI         -> palette
+    SettingsCategory.LAYOUT     -> palette
     SettingsCategory.UPDATES    -> mobile_arrow_down
     SettingsCategory.ACCOUNTS   -> account_circle
     SettingsCategory.EXTENSIONS -> extension
