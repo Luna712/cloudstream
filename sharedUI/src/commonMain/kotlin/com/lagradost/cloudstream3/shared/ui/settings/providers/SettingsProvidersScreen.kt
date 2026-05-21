@@ -23,7 +23,7 @@ import com.lagradost.cloudstream3.shared.ui.icons.extension
 import com.lagradost.cloudstream3.shared.ui.icons.language
 import com.lagradost.cloudstream3.shared.ui.icons.network_ping
 import com.lagradost.cloudstream3.shared.ui.icons.play_circle
-import com.lagradost.cloudstream3.shared.ui.icons.record_voice_over_off
+import com.lagradost.cloudstream3.shared.ui.icons.voice_over_off
 import com.lagradost.cloudstream3.utils.SubtitleHelper.getNameNextToFlagEmoji
 import org.jetbrains.compose.resources.stringResource
 
