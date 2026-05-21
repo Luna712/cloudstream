@@ -15,4 +15,6 @@ enum class CloudStreamThemeMode {
     SilentBlue,
     /** "System" resolved on each platform via [isSystemInDarkTheme] */
     FollowSystem,
+    /** "Monet" Material You dynamic colors, Android API 31+ only, falls back to [Dark] */
+    Monet,
 }
