@@ -60,7 +60,7 @@ fun Context.loadPrimaryColor(): CloudStreamPrimaryColor {
 
 @RequiresApi(Build.VERSION_CODES.S)
 fun Context.buildMonetScheme(): CloudStreamColorScheme {
-    CloudStreamColorScheme(
+    return CloudStreamColorScheme(
         background       = Color(getColor(android.R.color.system_neutral1_900)),
         surfaceVariant   = Color(getColor(android.R.color.system_neutral1_800)),
         surface          = Color(getColor(android.R.color.system_neutral1_800)),
