@@ -9,13 +9,17 @@ import com.lagradost.api.getContext
 import com.lagradost.cloudstream3.shared.preferences.PreferenceKeys
 
 internal actual object DeviceInfo {
-    actual fun isUIModeTV(): Boolean {
+    actual fun isTVDevice(): Boolean {
         val context = getContext() as? Context ?: return false
         val uiModeManager = context.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager?
-        return uiModeManager?.currentModeType == Configuration.UI_MODE_TYPE_TELEVISION
+        val isTelevisionMode = uiModeManager?.currentModeType == Configuration.UI_MODE_TYPE_TELEVISION
+        val model = Build.MODEL.lowercase()
+        return isTelevisionMode
+            || Build.MODEL.contains("AFT")
+            || model.contains("firestick")
+            || model.contains("fire tv")
+            || model.contains("chromecast")
     }
-
-    actual fun getModel(): String = Build.MODEL
 
     actual fun getLayoutPreference(): Int {
         val context = getContext() as? Context ?: return -1
