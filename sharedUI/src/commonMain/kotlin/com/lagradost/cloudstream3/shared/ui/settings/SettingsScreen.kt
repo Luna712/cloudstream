@@ -149,7 +149,7 @@ fun SettingsScreen(
             .fillMaxSize()
             .background(colors.background)
             .windowInsetsPadding(WindowInsets.statusBars)
-            .windowInsetsPadding(WindowInsets.navigationBars.only(WindowInsetsSides.Horizontal))
+            // .windowInsetsPadding(WindowInsets.navigationBars.only(WindowInsetsSides.Horizontal))
             .verticalScroll(rememberScrollState())
     ) {
         SettingsProfileHeader(profile = profile, avatarContent = avatarContent)
