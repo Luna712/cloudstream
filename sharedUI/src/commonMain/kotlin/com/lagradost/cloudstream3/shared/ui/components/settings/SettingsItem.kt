@@ -37,7 +37,7 @@ fun SettingsItem(
                 interactionSource = interactionSource,
             )
             .cloudStreamRipple(interactionSource)
-            .padding(horizontal = 16.dp, vertical = 14.dp),
+            .padding(horizontal = 16.dp, vertical = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         if (icon != null) {
