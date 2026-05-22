@@ -146,7 +146,7 @@ fun SettingsScreen(
         if (isTV) firstItemFocusRequester.requestFocus()
     }
 
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .background(colors.background)
@@ -155,26 +155,32 @@ fun SettingsScreen(
                 if (isTV) Modifier.windowInsetsPadding(
                     WindowInsets.systemBars.only(WindowInsetsSides.Horizontal)
                 ) else Modifier
-            )
-            .verticalScroll(rememberScrollState())
+            ),
+        contentAlignment = Alignment.Center,
     ) {
-        SettingsProfileHeader(profile = profile, avatarContent = avatarContent)
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
+        ) {
+            SettingsProfileHeader(profile = profile, avatarContent = avatarContent)
 
-        SettingsCategory.entries.forEachIndexed { index, category ->
-            SettingsItem(
-                title = category.label(),
-                subtitle = category.subtitle(),
-                icon = category.icon(),
-                focusRequester = if (index == 0) firstItemFocusRequester else null,
-                onClick = { onNavigate(category) },
-            )
+            SettingsCategory.entries.forEachIndexed { index, category ->
+                SettingsItem(
+                    title = category.label(),
+                    subtitle = category.subtitle(),
+                    icon = category.icon(),
+                    focusRequester = if (index == 0) firstItemFocusRequester else null,
+                    onClick = { onNavigate(category) },
+                )
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            SettingsVersionFooter(version = version, onLongClick = onVersionLongClick)
+
+            Spacer(modifier = Modifier.height(16.dp))
         }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        SettingsVersionFooter(version = version, onLongClick = onVersionLongClick)
-
-        Spacer(modifier = Modifier.height(24.dp))
     }
 }
 
@@ -187,7 +193,7 @@ private fun SettingsProfileHeader(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 24.dp),
+            .padding(horizontal = 16.dp, vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Box(
