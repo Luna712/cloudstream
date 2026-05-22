@@ -47,6 +47,7 @@ import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_purple
 import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_red
 import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_teal
 import com.lagradost.cloudstream3.shared.generated.resources.profile_picture_desc
+import com.lagradost.cloudstream3.shared.ui.components.tvFocusBorder
 import com.lagradost.cloudstream3.shared.ui.icons.account_circle
 import com.lagradost.cloudstream3.shared.ui.icons.extension
 import com.lagradost.cloudstream3.shared.ui.icons.mobile_arrow_down
@@ -235,10 +236,7 @@ private fun SettingsCategoryRow(
             )
             .focusable()
             .onFocusChanged { isFocused = it.isFocused }
-            .background(
-                if (isFocused && isTV) colors.primary.copy(alpha = 0.15f)
-                else Color.Transparent
-            )
+            .tvFocusBorder(isFocused = isFocused && isTV)
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = ripple(),
