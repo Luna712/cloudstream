@@ -107,7 +107,6 @@ private fun SettingsCategory.icon(): ImageVector = when (this) {
 fun SettingsScreen(
     profile: SettingsProfileState,
     version: SettingsVersionState,
-    avatarContent: @Composable () -> Unit,
     onNavigate: (SettingsCategory) -> Unit,
     onVersionLongClick: () -> Unit = {},
 ) {
@@ -160,7 +159,6 @@ fun SettingsScreen(
 @Composable
 private fun SettingsProfileHeader(
     profile: SettingsProfileState,
-    avatarContent: @Composable () -> Unit,
 ) {
     val colors = CloudStreamTheme.colors
     Row(
@@ -172,7 +170,6 @@ private fun SettingsProfileHeader(
         ProfilePicture(
             profileImage = profile.profileImage,
             profilePictureUrl = profile.profilePictureUrl,
-            avatarContent = avatarContent,
             size = 50.dp,
         )
 
