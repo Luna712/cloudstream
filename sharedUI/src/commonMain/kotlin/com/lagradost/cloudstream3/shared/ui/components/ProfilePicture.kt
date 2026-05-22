@@ -20,10 +20,13 @@ import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_pink
 import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_purple
 import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_red
 import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_teal
-import com.lagradost.cloudstream3.shared.ui.settings.ProfileImage
 import com.lagradost.cloudstream3.shared.ui.theme.CloudStreamTheme
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
+
+enum class ProfileImage {
+    DARK_BLUE, BLUE, ORANGE, PINK, PURPLE, RED, TEAL;
+}
 
 @Composable
 private fun ProfileImage.toRes(): DrawableResource = when (this) {
@@ -44,7 +47,7 @@ private fun ProfileImage.toRes(): DrawableResource = when (this) {
  *
  * @param profileImage Local background image fallback
  * @param size Diameter of the circle, default 50.dp
- * @param profilePictureUrl Optional URL — if present [avatarContent] is shown
+ * @param profilePictureUrl Optional URL, if present [avatarContent] is shown
  * @param avatarContent Platform-provided image loader (e.g. Coil AsyncImage on Android)
  */
 @Composable
