@@ -19,7 +19,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.lagradost.cloudstream3.shared.DeviceLayout
 import com.lagradost.cloudstream3.shared.generated.resources.Res
 import com.lagradost.cloudstream3.shared.generated.resources.category_accounts
@@ -209,7 +208,7 @@ private fun SettingsProfileHeader(
         Text(
             text = profile.name,
             color = colors.onBackground,
-            style = MaterialTheme.typography.bodyLarge.copy(fontSize = 18.sp),
+            style = MaterialTheme.typography.bodyLarge,
         )
     }
 }
