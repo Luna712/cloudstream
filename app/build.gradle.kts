@@ -273,7 +273,7 @@ dependencies {
 
     implementation(project(":library"))
 
-    implementation(project(":sharedUI"))
+    implementation(project(":composeApp"))
     implementation(libs.activity.compose)
     implementation(libs.coil.compose)
     implementation(libs.compose.runtime)

@@ -9,14 +9,14 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import com.lagradost.cloudstream3.BuildConfig
 import com.lagradost.cloudstream3.R
-import com.lagradost.cloudstream3.shared.ui.components.ProfileImage
-import com.lagradost.cloudstream3.shared.ui.screens.settings.SettingsCategory
-import com.lagradost.cloudstream3.shared.ui.screens.settings.SettingsProfileState
-import com.lagradost.cloudstream3.shared.ui.screens.settings.SettingsScreen
-import com.lagradost.cloudstream3.shared.ui.screens.settings.SettingsVersionState
-import com.lagradost.cloudstream3.shared.ui.theme.CloudStreamTheme
-import com.lagradost.cloudstream3.shared.ui.theme.loadPrimaryColor
-import com.lagradost.cloudstream3.shared.ui.theme.loadThemeMode
+import com.lagradost.cloudstream3.compose.components.ProfileImage
+import com.lagradost.cloudstream3.compose.screens.settings.SettingsCategory
+import com.lagradost.cloudstream3.compose.screens.settings.SettingsProfileState
+import com.lagradost.cloudstream3.compose.screens.settings.SettingsScreen
+import com.lagradost.cloudstream3.compose.screens.settings.SettingsVersionState
+import com.lagradost.cloudstream3.compose.theme.CloudStreamTheme
+import com.lagradost.cloudstream3.compose.theme.loadPrimaryColor
+import com.lagradost.cloudstream3.compose.theme.loadThemeMode
 import com.lagradost.cloudstream3.syncproviders.AccountManager
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.GitInfo.currentCommitHash
@@ -30,9 +30,9 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
-// TODO: Move to sharedUI once we have shared logic available in the
-// :sharedLogic module and we have migrated to navigation3 (which we can not
-// do until all fragments have migrated to compose).
+// TODO: Move to composeApp once we have shared logic available in the
+// and we have migrated to navigation3 (which we can not do until
+// all fragments have migrated to compose).
 class SettingsFragment : Fragment() {
 
     override fun onCreateView(
