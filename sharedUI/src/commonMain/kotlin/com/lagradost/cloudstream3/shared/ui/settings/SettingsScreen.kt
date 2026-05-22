@@ -31,6 +31,7 @@ import com.lagradost.cloudstream3.shared.generated.resources.category_providers
 import com.lagradost.cloudstream3.shared.generated.resources.category_providers_subtitle
 import com.lagradost.cloudstream3.shared.generated.resources.category_updates
 import com.lagradost.cloudstream3.shared.generated.resources.category_updates_subtitle
+import com.lagradost.cloudstream3.shared.ui.components.ProfileImage
 import com.lagradost.cloudstream3.shared.ui.components.ProfilePicture
 import com.lagradost.cloudstream3.shared.ui.components.cloudStreamRipple
 import com.lagradost.cloudstream3.shared.ui.components.settings.SettingsItem
@@ -43,10 +44,6 @@ import com.lagradost.cloudstream3.shared.ui.icons.storage
 import com.lagradost.cloudstream3.shared.ui.icons.tune
 import com.lagradost.cloudstream3.shared.ui.theme.CloudStreamTheme
 import org.jetbrains.compose.resources.stringResource
-
-enum class ProfileImage {
-    DARK_BLUE, BLUE, ORANGE, PINK, PURPLE, RED, TEAL;
-}
 
 data class SettingsProfileState(
     val name: String,
