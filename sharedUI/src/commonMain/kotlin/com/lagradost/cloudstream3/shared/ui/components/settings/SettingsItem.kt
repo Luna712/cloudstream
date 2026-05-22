@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.shared.ui.components.settings
 
-import androidx.compose.foundation.indication
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -11,6 +10,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream3.shared.DeviceLayout
+import com.lagradost.cloudstream3.shared.ui.components.cloudStreamRipple
 import com.lagradost.cloudstream3.shared.ui.components.tvFocusable
 import com.lagradost.cloudstream3.shared.ui.theme.CloudStreamTheme
 
@@ -36,10 +36,7 @@ fun SettingsItem(
                 focusRequester = focusRequester,
                 interactionSource = interactionSource,
             )
-            .indication(
-                interactionSource,
-                ripple(bounded = true, color = colors.onBackground)
-            )
+            .cloudStreamRipple(interactionSource)
             .padding(horizontal = 16.dp, vertical = 14.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
