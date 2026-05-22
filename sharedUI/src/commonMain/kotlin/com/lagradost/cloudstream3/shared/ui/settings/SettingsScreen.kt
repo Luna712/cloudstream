@@ -260,7 +260,7 @@ private fun SettingsCategoryRow(
             Text(
                 text = label,
                 color = colors.onBackground,
-                style = MaterialTheme.typography.bodyLarge,
+                style = MaterialTheme.typography.bodyMedium,
             )
             Text(
                 text = subtitle,
