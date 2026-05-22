@@ -6,12 +6,11 @@ object DeviceLayout {
     const val EMULATOR : Int = 0b100
 
     private val layoutId: Int get() = resolveLayout()
-
     fun isLayout(flags: Int): Boolean = (layoutId and flags) != 0
 
     private fun resolveLayout(): Int {
         return when (DeviceInfo.getLayoutPreference()) {
-            -1   -> if (isAutoTv()) TV else PHONE
+            -1   -> if (isAutoTV()) TV else PHONE
             0    -> PHONE
             1    -> TV
             2    -> EMULATOR
@@ -19,9 +18,9 @@ object DeviceLayout {
         }
     }
 
-    private fun isAutoTv(): Boolean {
+    private fun isAutoTV(): Boolean {
         val model = DeviceInfo.getModel().lowercase()
-        return DeviceInfo.getUIMode() == DeviceInfo.UI_MODE_TELEVISION
+        return DeviceInfo.isUIModeTV()
             || DeviceInfo.getModel().contains("AFT")
             || model.contains("firestick")
             || model.contains("fire tv")
