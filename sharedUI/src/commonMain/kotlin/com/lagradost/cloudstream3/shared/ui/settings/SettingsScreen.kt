@@ -1,23 +1,18 @@
 package com.lagradost.cloudstream3.shared.ui.settings
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream3.shared.DeviceLayout
@@ -36,14 +31,7 @@ import com.lagradost.cloudstream3.shared.generated.resources.category_providers
 import com.lagradost.cloudstream3.shared.generated.resources.category_providers_subtitle
 import com.lagradost.cloudstream3.shared.generated.resources.category_updates
 import com.lagradost.cloudstream3.shared.generated.resources.category_updates_subtitle
-import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_blue
-import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_dark_blue
-import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_orange
-import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_pink
-import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_purple
-import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_red
-import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_teal
-import com.lagradost.cloudstream3.shared.generated.resources.profile_picture_desc
+import com.lagradost.cloudstream3.shared.ui.components.ProfilePicture
 import com.lagradost.cloudstream3.shared.ui.components.cloudStreamRipple
 import com.lagradost.cloudstream3.shared.ui.components.settings.SettingsItem
 import com.lagradost.cloudstream3.shared.ui.icons.account_circle
@@ -54,7 +42,6 @@ import com.lagradost.cloudstream3.shared.ui.icons.play_circle
 import com.lagradost.cloudstream3.shared.ui.icons.storage
 import com.lagradost.cloudstream3.shared.ui.icons.tune
 import com.lagradost.cloudstream3.shared.ui.theme.CloudStreamTheme
-import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 enum class ProfileImage {
@@ -81,17 +68,6 @@ enum class SettingsCategory {
     UPDATES,
     ACCOUNTS,
     EXTENSIONS,
-}
-
-@Composable
-private fun ProfileImage.toRes() = when (this) {
-    ProfileImage.DARK_BLUE -> Res.drawable.profile_bg_dark_blue
-    ProfileImage.BLUE      -> Res.drawable.profile_bg_blue
-    ProfileImage.ORANGE    -> Res.drawable.profile_bg_orange
-    ProfileImage.PINK      -> Res.drawable.profile_bg_pink
-    ProfileImage.PURPLE    -> Res.drawable.profile_bg_purple
-    ProfileImage.RED       -> Res.drawable.profile_bg_red
-    ProfileImage.TEAL      -> Res.drawable.profile_bg_teal
 }
 
 @Composable
@@ -196,23 +172,12 @@ private fun SettingsProfileHeader(
             .padding(horizontal = 16.dp, vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Box(
-            modifier = Modifier
-                .size(50.dp)
-                .border(2.dp, colors.onBackground.copy(alpha = 0.2f), CircleShape)
-                .clip(CircleShape),
-        ) {
-            if (profile.profilePictureUrl != null) {
-                avatarContent()
-            } else {
-                Image(
-                    painter = painterResource(profile.profileImage.toRes()),
-                    contentDescription = stringResource(Res.string.profile_picture_desc),
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxSize(),
-                )
-            }
-        }
+        ProfilePicture(
+            profileImage = profile.profileImage,
+            profilePictureUrl = profile.profilePictureUrl,
+            avatarContent = avatarContent,
+            size = 50.dp,
+        )
 
         Spacer(modifier = Modifier.width(16.dp))
 
