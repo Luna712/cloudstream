@@ -1,3 +1,4 @@
+import com.codingfeline.buildkonfig.compiler.FieldSpec
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
@@ -8,25 +9,6 @@ plugins {
 }
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
-
-val headFileProvider = layout.projectDirectory.dir("../.git").file("HEAD")
-val headContentProvider = providers.fileContents(headFileProvider).asText.map { it.trim() }
-
-val gitHashProvider = headContentProvider.map { headContent ->
-    try {
-        if (headContent.startsWith("ref:")) {
-            val refPath = headContent.substring(5)
-            val commitFile = File(layout.projectDirectory.dir("../.git").asFile, refPath)
-            if (commitFile.exists()) commitFile.readText().trim() else ""
-        } else {
-            headContent
-        }
-    } catch (_: Throwable) {
-        ""
-    }.take(7)
-}.orElse("")
-
-val buildDateProvider = providers.provider { System.currentTimeMillis() }
 
 kotlin {
     android {
@@ -55,18 +37,37 @@ kotlin {
     }
 }
 
-buildKonfig {
+tasks.withType<KotlinJvmCompile> {
+    compilerOptions {
+        jvmTarget.set(javaTarget)
+    }
+}
+
+val headFileProvider = layout.projectDirectory.dir("../.git").file("HEAD")
+val headContentProvider = providers.fileContents(headFileProvider).asText.map { it.trim() }
+
+val gitHashProvider = headContentProvider.map { headContent ->
+    try {
+        if (headContent.startsWith("ref:")) {
+            val refPath = headContent.substring(5)
+            val commitFile = File(layout.projectDirectory.dir("../.git").asFile, refPath)
+            if (commitFile.exists()) commitFile.readText().trim() else ""
+        } else {
+            headContent
+        }
+    } catch (_: Throwable) {
+        ""
+    }.take(7)
+}.orElse("")
+
+val buildDateProvider = providers.provider { System.currentTimeMillis() }
+
+buildkonfig {
     packageName = "com.lagradost.cloudstream3.shared"
     exposeObjectWithName = "BuildConfig"
     
     defaultConfigs {
-        buildConfigField("String", "GIT_HASH", gitHashProvider)
-        buildConfigField("Long", "BUILD_DATE", buildDateProvider)
-    }
-}
-
-tasks.withType<KotlinJvmCompile> {
-    compilerOptions {
-        jvmTarget.set(javaTarget)
+        buildConfigField(FieldSpec.Type.STRING, "GIT_HASH", gitHashProvider)
+        buildConfigField(FieldSpec.Type.LONG, "BUILD_DATE", buildDateProvider)
     }
 }
