@@ -40,7 +40,7 @@ fun SettingsItem(
                 interactionSource,
                 ripple(bounded = true, color = colors.onBackground)
             )
-            .padding(horizontal = 16.dp, vertical = 16.dp),
+            .padding(horizontal = 16.dp, vertical = 14.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         if (icon != null) {
