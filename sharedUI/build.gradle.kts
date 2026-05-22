@@ -29,6 +29,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(libs.coil.compose)
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)
@@ -40,7 +41,6 @@ kotlin {
 
         androidMain.dependencies {
             implementation(libs.activity.compose)
-            implementation(libs.coil.compose)
             implementation(libs.preference.ktx)
         }
     }
