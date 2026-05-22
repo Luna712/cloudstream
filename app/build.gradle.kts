@@ -13,52 +13,6 @@ plugins {
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 
-abstract class GenerateGitHashTask : DefaultTask() {
-
-    @get:InputFile
-    @get:PathSensitive(PathSensitivity.RELATIVE)
-    abstract val headFile: RegularFileProperty
-
-    @get:InputDirectory
-    @get:PathSensitive(PathSensitivity.RELATIVE)
-    abstract val headsDir: DirectoryProperty
-
-    @get:OutputDirectory
-    abstract val outputDir: DirectoryProperty
-
-    @TaskAction
-    fun generate() {
-        val head = headFile.get().asFile
-
-        val hash = try {
-            if (head.exists()) {
-                // Read the commit hash from .git/HEAD
-                val headContent = head.readText().trim()
-                if (headContent.startsWith("ref:")) {
-                    val refPath = headContent.substring(5) // e.g., refs/heads/main
-                    val commitFile = File(head.parentFile, refPath)
-                    if (commitFile.exists()) commitFile.readText().trim() else ""
-                } else headContent // If it's a detached HEAD (commit hash directly)
-            } else "" // If .git/HEAD doesn't exist
-        } catch (_: Throwable) {
-            "" // Just set to an empty string if any exception occurs
-        }.take(7) // Get the short commit hash
-
-        val outFile = outputDir.file("git-hash.txt").get().asFile
-        outFile.parentFile.mkdirs()
-        outFile.writeText(hash)
-    }
-}
-
-val generateGitHash = tasks.register<GenerateGitHashTask>("generateGitHash") {
-    val gitDir = layout.projectDirectory.dir("../.git")
-
-    headFile.set(gitDir.file("HEAD"))
-    headsDir.set(gitDir.dir("refs/heads"))
-
-    outputDir.set(layout.buildDirectory.dir("generated/git"))
-}
-
 android {
     @Suppress("UnstableApiUsage")
     testOptions {
@@ -71,15 +25,6 @@ android {
         includeInApk = false
         // Disables dependency metadata when building Android App Bundles.
         includeInBundle = false
-    }
-
-    androidComponents {
-        onVariants { variant ->
-            variant.sources.assets?.addGeneratedSourceDirectory(
-                generateGitHash,
-                GenerateGitHashTask::outputDir
-            )
-        }
     }
 
     signingConfigs {
@@ -273,6 +218,7 @@ dependencies {
 
     implementation(project(":library"))
 
+    implementation(project(":sharedLogic"))
     implementation(project(":sharedUI"))
     implementation(libs.activity.compose)
     implementation(libs.coil.compose)
