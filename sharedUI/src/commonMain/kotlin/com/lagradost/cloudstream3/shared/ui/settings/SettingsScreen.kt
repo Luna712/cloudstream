@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -43,6 +44,7 @@ import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_purple
 import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_red
 import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_teal
 import com.lagradost.cloudstream3.shared.generated.resources.profile_picture_desc
+import com.lagradost.cloudstream3.shared.ui.components.cloudStreamRipple
 import com.lagradost.cloudstream3.shared.ui.components.settings.SettingsItem
 import com.lagradost.cloudstream3.shared.ui.icons.account_circle
 import com.lagradost.cloudstream3.shared.ui.icons.extension
@@ -149,7 +151,11 @@ fun SettingsScreen(
             .fillMaxSize()
             .background(colors.background)
             .windowInsetsPadding(WindowInsets.statusBars)
-            // .windowInsetsPadding(WindowInsets.navigationBars.only(WindowInsetsSides.Horizontal))
+            .then(
+                if (isTV) Modifier.windowInsetsPadding(
+                    WindowInsets.systemBars.only(WindowInsetsSides.Horizontal)
+                ) else Modifier
+            )
             .verticalScroll(rememberScrollState())
     ) {
         SettingsProfileHeader(profile = profile, avatarContent = avatarContent)
@@ -187,7 +193,7 @@ private fun SettingsProfileHeader(
         Box(
             modifier = Modifier
                 .size(50.dp)
-                .border(2.dp, colors.onBackground, CircleShape)
+                .border(1.dp, colors.onBackground.copy(alpha = 0.2f), CircleShape)
                 .clip(CircleShape),
         ) {
             if (profile.profilePictureUrl != null) {
@@ -215,10 +221,17 @@ private fun SettingsProfileHeader(
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun SettingsVersionFooter(version: SettingsVersionState, onLongClick: () -> Unit) {
+    val interactionSource = remember { MutableInteractionSource() }
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .combinedClickable(onLongClick = onLongClick, onClick = {})
+            .combinedClickable(
+                interactionSource = interactionSource,
+                indication = null,
+                onLongClick = onLongClick,
+                onClick = {},
+            )
+            .cloudStreamRipple(interactionSource)
             .padding(vertical = 4.dp),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
