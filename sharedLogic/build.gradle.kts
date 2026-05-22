@@ -69,7 +69,7 @@ buildkonfig {
     exposeObjectWithName = "BuildConfig"
     
     defaultConfigs {
-        buildConfigField(FieldSpec.Type.STRING, "GIT_HASH", gitHashProvider.get(), const = true)
         buildConfigField(FieldSpec.Type.LONG, "BUILD_DATE", buildDateProvider.get().toString(), const = true)
+        buildConfigField(FieldSpec.Type.STRING, "GIT_HASH", gitHashProvider.get(), const = true)
     }
 }
