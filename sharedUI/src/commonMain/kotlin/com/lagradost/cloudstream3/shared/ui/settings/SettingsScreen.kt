@@ -137,7 +137,7 @@ fun SettingsScreen(
     onVersionLongClick: () -> Unit = {},
 ) {
     val colors = CloudStreamTheme.colors
-    val isTV = remember { DeviceLayout.isLayout(DeviceLayout.TV or DeviceLayout.PHONE) }
+    val isTV = remember { DeviceLayout.isLayout(DeviceLayout.TV) }
     val firstItemFocusRequester = remember { FocusRequester() }
 
     LaunchedEffect(Unit) {
