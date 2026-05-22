@@ -12,7 +12,8 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 
 kotlin {
     android {
-        namespace = "com.lagradost.cloudstream3"
+        // Must be unique
+        namespace = "com.lagradost.cloudstream3.compose"
         compileSdk = libs.versions.compileSdk.get().toInt()
         minSdk = libs.versions.minSdk.get().toInt()
 
