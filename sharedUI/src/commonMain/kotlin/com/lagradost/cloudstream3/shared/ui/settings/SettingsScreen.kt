@@ -43,7 +43,7 @@ import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_purple
 import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_red
 import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_teal
 import com.lagradost.cloudstream3.shared.generated.resources.profile_picture_desc
-import com.lagradost.cloudstream3.shared.ui.components.tvFocusable
+import com.lagradost.cloudstream3.shared.ui.components.settings.SettingsItem
 import com.lagradost.cloudstream3.shared.ui.icons.account_circle
 import com.lagradost.cloudstream3.shared.ui.icons.extension
 import com.lagradost.cloudstream3.shared.ui.icons.mobile_arrow_down
@@ -155,13 +155,12 @@ fun SettingsScreen(
         SettingsProfileHeader(profile = profile, avatarContent = avatarContent)
 
         SettingsCategory.entries.forEachIndexed { index, category ->
-            SettingsCategoryRow(
-                label = category.label(),
+            SettingsItem(
+                title = category.label(),
                 subtitle = category.subtitle(),
                 icon = category.icon(),
-                onClick = { onNavigate(category) },
                 focusRequester = if (index == 0) firstItemFocusRequester else null,
-                isTV = isTV,
+                onClick = { onNavigate(category) },
             )
         }
 
@@ -210,52 +209,6 @@ private fun SettingsProfileHeader(
             color = colors.onBackground,
             style = MaterialTheme.typography.bodyLarge,
         )
-    }
-}
-
-@Composable
-private fun SettingsCategoryRow(
-    label: String,
-    subtitle: String,
-    icon: ImageVector,
-    onClick: () -> Unit,
-    focusRequester: FocusRequester? = null,
-    isTV: Boolean = false,
-) {
-    var isFocused by remember { mutableStateOf(false) }
-    val colors = CloudStreamTheme.colors
-
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .tvFocusable(
-                isTV = isTV,
-                onClick = onClick,
-                focusRequester = focusRequester,
-                onFocusChanged = { isFocused = it },
-            )
-            .padding(horizontal = 16.dp, vertical = 16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Icon(
-            imageVector = icon,
-            contentDescription = label,
-            tint = colors.onBackground,
-            modifier = Modifier.size(28.dp),
-        )
-        Spacer(modifier = Modifier.width(24.dp))
-        Column(modifier = Modifier.weight(1f)) {
-            Text(
-                text = label,
-                color = colors.onBackground,
-                style = MaterialTheme.typography.bodyLarge,
-            )
-            Text(
-                text = subtitle,
-                color = colors.onBackground.copy(alpha = 0.6f),
-                style = MaterialTheme.typography.bodyMedium,
-            )
-        }
     }
 }
 
