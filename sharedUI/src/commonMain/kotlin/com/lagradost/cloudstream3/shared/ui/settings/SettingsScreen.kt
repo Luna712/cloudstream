@@ -187,7 +187,7 @@ private fun SettingsProfileHeader(
     ) {
         Box(
             modifier = Modifier
-                .size(40.dp)
+                .size(50.dp)
                 .border(2.dp, colors.onBackground, CircleShape)
                 .clip(CircleShape),
         ) {
