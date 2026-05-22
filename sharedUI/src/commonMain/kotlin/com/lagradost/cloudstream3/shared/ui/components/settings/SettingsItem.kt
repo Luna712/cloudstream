@@ -36,7 +36,10 @@ fun SettingsItem(
                 focusRequester = focusRequester,
                 interactionSource = interactionSource,
             )
-            .indication(interactionSource, ripple(bounded = true))
+            .indication(
+                interactionSource,
+                ripple(bounded = true, color = colors.onBackground)
+            )
             .padding(horizontal = 16.dp, vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
