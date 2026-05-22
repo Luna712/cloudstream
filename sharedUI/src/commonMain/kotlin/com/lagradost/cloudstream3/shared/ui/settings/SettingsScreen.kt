@@ -265,7 +265,7 @@ private fun SettingsCategoryRow(
             Text(
                 text = subtitle,
                 color = colors.onBackground.copy(alpha = 0.6f),
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodySmall,
             )
         }
     }
