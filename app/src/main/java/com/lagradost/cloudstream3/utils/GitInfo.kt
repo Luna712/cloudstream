@@ -3,6 +3,7 @@ package com.lagradost.cloudstream3.utils
 import android.content.Context
 import com.lagradost.cloudstream3.shared.BuildConfig
 
+
 /**
  * Simple helper to get the short commit hash from assets.
  * The hash is generated at build and stored as an asset
