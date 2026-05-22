@@ -229,21 +229,20 @@ private fun SettingsCategoryRow(
 ) {
     val colors = CloudStreamTheme.colors
     var isFocused by remember { mutableStateOf(false) }
+    val focusRequesterLocal = remember { FocusRequester() }
+    val effectiveFocusRequester = focusRequester ?: focusRequesterLocal
 
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .then(
-                if (focusRequester != null) Modifier.focusRequester(focusRequester)
-                else Modifier
-            )
+            .focusRequester(effectiveFocusRequester)
             .onFocusChanged { isFocused = it.isFocused }
             .focusable()
             .tvFocusBorder(isFocused = isFocused && isTV)
             .pointerInput(isFocused, isTV) {
                 detectTapGestures {
                     if (isTV && !isFocused) {
-                        // first tap focuses, does nothing else
+                        effectiveFocusRequester.requestFocus()
                     } else {
                         onClick()
                     }
