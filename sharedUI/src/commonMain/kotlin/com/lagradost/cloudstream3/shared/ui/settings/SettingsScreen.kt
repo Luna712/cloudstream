@@ -5,8 +5,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
-import androidx.compose.foundation.focusable
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -17,10 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -48,7 +43,7 @@ import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_purple
 import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_red
 import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_teal
 import com.lagradost.cloudstream3.shared.generated.resources.profile_picture_desc
-import com.lagradost.cloudstream3.shared.ui.components.tvFocusBorder
+import com.lagradost.cloudstream3.shared.ui.components.tvFocusable
 import com.lagradost.cloudstream3.shared.ui.icons.account_circle
 import com.lagradost.cloudstream3.shared.ui.icons.extension
 import com.lagradost.cloudstream3.shared.ui.icons.mobile_arrow_down
@@ -227,27 +222,18 @@ private fun SettingsCategoryRow(
     focusRequester: FocusRequester? = null,
     isTV: Boolean = false,
 ) {
-    val colors = CloudStreamTheme.colors
     var isFocused by remember { mutableStateOf(false) }
-    val focusRequesterLocal = remember { FocusRequester() }
-    val effectiveFocusRequester = focusRequester ?: focusRequesterLocal
+    val colors = CloudStreamTheme.colors
 
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .focusRequester(effectiveFocusRequester)
-            .onFocusChanged { isFocused = it.isFocused }
-            .focusable()
-            .tvFocusBorder(isFocused = isFocused && isTV)
-            .pointerInput(isFocused, isTV) {
-                detectTapGestures {
-                    if (isTV && !isFocused) {
-                        effectiveFocusRequester.requestFocus()
-                    } else {
-                        onClick()
-                    }
-                }
-            }
+            .tvFocusable(
+                isTV = isTV,
+                onClick = onClick,
+                focusRequester = focusRequester,
+                onFocusChanged = { isFocused = it },
+            )
             .padding(horizontal = 16.dp, vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
