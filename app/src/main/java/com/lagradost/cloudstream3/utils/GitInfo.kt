@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.utils
 
 import android.content.Context
+import com.lagradost.cloudstream3.shared.BuildConfig
 
 /**
  * Simple helper to get the short commit hash from assets.
@@ -10,10 +11,7 @@ import android.content.Context
  */
 object GitInfo {
     fun Context.currentCommitHash(): String = try {
-        assets.open("git-hash.txt")
-            .bufferedReader()
-            .readText()
-            .trim()
+        BuildConfig.GIT_HASH
     } catch (_: Exception) {
         ""
     }
