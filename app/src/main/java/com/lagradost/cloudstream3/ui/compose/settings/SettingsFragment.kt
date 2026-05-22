@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment
 import com.lagradost.cloudstream3.BuildConfig
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.shared.ui.components.ProfileImage
+import com.lagradost.cloudstream3.shared.ui.screens.settings.SettingsScreen
 import com.lagradost.cloudstream3.shared.ui.settings.SettingsCategory
 import com.lagradost.cloudstream3.shared.ui.settings.SettingsProfileState
-import com.lagradost.cloudstream3.shared.ui.settings.SettingsScreen
 import com.lagradost.cloudstream3.shared.ui.settings.SettingsVersionState
 import com.lagradost.cloudstream3.shared.ui.theme.CloudStreamTheme
 import com.lagradost.cloudstream3.shared.ui.theme.loadPrimaryColor
