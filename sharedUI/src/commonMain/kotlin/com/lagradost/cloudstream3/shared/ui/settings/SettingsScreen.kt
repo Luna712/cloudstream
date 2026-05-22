@@ -143,7 +143,7 @@ fun SettingsScreen(
     onVersionLongClick: () -> Unit = {},
 ) {
     val colors = CloudStreamTheme.colors
-    val isTV = remember { DeviceLayout.isLayout(DeviceLayout.TV) }
+    val isTV = remember { DeviceLayout.isLayout(DeviceLayout.TV or DeviceLayout.PHONE) }
     val firstItemFocusRequester = remember { FocusRequester() }
 
     LaunchedEffect(Unit) {
@@ -260,7 +260,7 @@ private fun SettingsCategoryRow(
             Text(
                 text = label,
                 color = colors.onBackground,
-                style = MaterialTheme.typography.bodyLarge,
+                style = MaterialTheme.typography.bodyLarge.copy(letterSpacing = 0.sp),
             )
             Text(
                 text = subtitle,
