@@ -153,7 +153,7 @@ fun SettingsScreen(
             .windowInsetsPadding(WindowInsets.statusBars)
             .then(
                 if (isTV) Modifier.windowInsetsPadding(
-                    WindowInsets.systemBars.only(WindowInsetsSides.Horizontal)
+                    WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)
                 ) else Modifier
             ),
         contentAlignment = Alignment.Center,
