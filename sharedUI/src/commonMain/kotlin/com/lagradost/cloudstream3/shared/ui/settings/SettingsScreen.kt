@@ -193,7 +193,7 @@ private fun SettingsProfileHeader(
         Box(
             modifier = Modifier
                 .size(50.dp)
-                .border(1.dp, colors.onBackground.copy(alpha = 0.2f), CircleShape)
+                .border(2.dp, colors.onBackground.copy(alpha = 0.2f), CircleShape)
                 .clip(CircleShape),
         ) {
             if (profile.profilePictureUrl != null) {
