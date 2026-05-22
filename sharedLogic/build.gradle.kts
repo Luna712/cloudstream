@@ -28,16 +28,6 @@ val gitHashProvider = headContentProvider.map { headContent ->
 
 val buildDateProvider = providers.provider { System.currentTimeMillis() }
 
-buildKonfig {
-    packageName = "com.lagradost.cloudstream3.shared"
-    exposeObjectWithName = "BuildConfig"
-    
-    defaultConfigs {
-        buildConfigField("String", "GIT_HASH", gitHashProvider)
-        buildConfigField("Long", "BUILD_DATE", buildDateProvider)
-    }
-}
-
 kotlin {
     android {
         namespace = "com.lagradost.cloudstream3.shared"
@@ -62,6 +52,16 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.preference.ktx)
         }
+    }
+}
+
+buildKonfig {
+    packageName = "com.lagradost.cloudstream3.shared"
+    exposeObjectWithName = "BuildConfig"
+    
+    defaultConfigs {
+        buildConfigField("String", "GIT_HASH", gitHashProvider)
+        buildConfigField("Long", "BUILD_DATE", buildDateProvider)
     }
 }
 
