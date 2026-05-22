@@ -77,6 +77,7 @@ class SettingsFragment : Fragment() {
     private fun buildProfileState(): SettingsProfileState {
         for (syncApi in AccountManager.allApis) {
             val login = syncApi.authUser() ?: continue
+            if (login.profilePicture.isNullOrEmpty()) continue
             return SettingsProfileState(
                 name = login.name ?: "",
                 profilePictureUrl = login.profilePicture,
