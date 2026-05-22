@@ -1,4 +1,4 @@
-package com.lagradost.cloudstream3.shared.ui.settings
+package com.lagradost.cloudstream3.shared.ui.screens.settings
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
