@@ -193,7 +193,7 @@ private fun SettingsProfileHeader(
             shape = CircleShape,
             modifier = Modifier
                 .size(56.dp)
-                .border(2.dp, colors.onBackground.copy(alpha = 0.2f),
+                .border(2.dp, colors.onBackground.copy(alpha = 0.2f)),
             elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
         ) {
             if (profile.profilePictureUrl != null) {
