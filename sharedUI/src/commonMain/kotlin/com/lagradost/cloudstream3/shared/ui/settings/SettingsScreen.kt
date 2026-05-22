@@ -214,7 +214,7 @@ private fun SettingsProfileHeader(
         Text(
             text = profile.name,
             color = colors.onBackground,
-            style = MaterialTheme.typography.bodyMedium,
+            style = MaterialTheme.typography.bodyLarge,
         )
     }
 }
@@ -260,12 +260,12 @@ private fun SettingsCategoryRow(
             Text(
                 text = label,
                 color = colors.onBackground,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodyLarge,
             )
             Text(
                 text = subtitle,
                 color = colors.onBackground.copy(alpha = 0.6f),
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.bodyMedium,
             )
         }
     }
