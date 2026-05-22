@@ -135,7 +135,7 @@ fun SettingsScreen(
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
         ) {
-            SettingsProfileHeader(profile = profile, avatarContent = avatarContent)
+            SettingsProfileHeader(profile)
 
             SettingsCategory.entries.forEachIndexed { index, category ->
                 SettingsItem(
@@ -157,9 +157,7 @@ fun SettingsScreen(
 }
 
 @Composable
-private fun SettingsProfileHeader(
-    profile: SettingsProfileState,
-) {
+private fun SettingsProfileHeader(profile: SettingsProfileState) {
     val colors = CloudStreamTheme.colors
     Row(
         modifier = Modifier
