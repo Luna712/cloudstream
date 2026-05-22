@@ -230,6 +230,7 @@ private fun SettingsCategoryRow(
 ) {
     val colors = CloudStreamTheme.colors
     var isFocused by remember { mutableStateOf(false) }
+    var justFocused by remember { mutableStateOf(false) }
 
     Row(
         modifier = Modifier
@@ -238,13 +239,22 @@ private fun SettingsCategoryRow(
                 if (focusRequester != null) Modifier.focusRequester(focusRequester)
                 else Modifier
             )
-            .onFocusChanged { isFocused = it.isFocused }
+            .onFocusChanged {
+                if (!isFocused && it.isFocused) justFocused = true
+                isFocused = it.isFocused
+            }
             .focusable()
             .tvFocusBorder(isFocused = isFocused && isTV)
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = ripple(),
-                onClick = onClick,
+                onClick = {
+                    if (isTV && justFocused) {
+                        justFocused = false
+                    } else {
+                        onClick()
+                    }
+                },
             )
             .padding(horizontal = 16.dp, vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
