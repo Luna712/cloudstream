@@ -23,12 +23,14 @@ kotlin {
 
     jvm()
 
+    compilerOptions {
+        freeCompilerArgs.add("-Xexpect-actual-classes")
+    }
+
     sourceSets {
-        commonMain {
-            dependencies {
-                implementation(libs.kotlinx.coroutines.core)
-                implementation(project(":library"))
-            }
+        commonMain.dependencies {
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(project(":library"))
         }
 
         androidMain.dependencies {
