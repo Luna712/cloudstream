@@ -34,6 +34,7 @@ fun SettingsItem(
                 isTV = isTV,
                 onClick = onClick,
                 focusRequester = focusRequester,
+                interactionSource = interactionSource,
             )
             .indication(interactionSource, ripple())
             .padding(horizontal = 16.dp, vertical = 16.dp),
