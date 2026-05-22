@@ -8,6 +8,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -25,7 +26,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.lagradost.cloudstream3.shared.DeviceLayout
 import com.lagradost.cloudstream3.shared.generated.resources.Res
 import com.lagradost.cloudstream3.shared.generated.resources.category_accounts
@@ -230,7 +230,8 @@ private fun SettingsCategoryRow(
     isTV: Boolean = false,
 ) {
     val colors = CloudStreamTheme.colors
-    var isFocused by remember { mutableStateOf(false) }
+    val interactionSource = remember { MutableInteractionSource() }
+    val isFocused by interactionSource.collectIsFocusedAsState()
 
     Row(
         modifier = Modifier
@@ -239,11 +240,9 @@ private fun SettingsCategoryRow(
                 if (focusRequester != null) Modifier.focusRequester(focusRequester)
                 else Modifier
             )
-            .focusable()
-            .onFocusChanged { isFocused = it.isFocused }
             .tvFocusBorder(isFocused = isFocused && isTV)
             .clickable(
-                interactionSource = remember { MutableInteractionSource() },
+                interactionSource = interactionSource,
                 indication = ripple(),
                 onClick = onClick,
             )
@@ -261,7 +260,7 @@ private fun SettingsCategoryRow(
             Text(
                 text = label,
                 color = colors.onBackground,
-                style = MaterialTheme.typography.bodyLarge.copy(letterSpacing = 0.sp),
+                style = MaterialTheme.typography.bodyLarge,
             )
             Text(
                 text = subtitle,
