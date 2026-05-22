@@ -153,6 +153,7 @@ fun SettingsScreen(
             .fillMaxSize()
             .background(colors.background)
             .windowInsetsPadding(WindowInsets.statusBars)
+            .windowInsetsPadding(WindowInsets.systemBars.only(WindowInsetsSides.Horizontal))
             .verticalScroll(rememberScrollState())
     ) {
         SettingsProfileHeader(profile = profile, avatarContent = avatarContent)
@@ -190,7 +191,9 @@ private fun SettingsProfileHeader(
     ) {
         Card(
             shape = CircleShape,
-            modifier = Modifier.size(56.dp),
+            modifier = Modifier
+                .size(56.dp)
+                .border(2.dp, colors.onBackground.copy(alpha = 0.2f),
             elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
         ) {
             if (profile.profilePictureUrl != null) {
@@ -248,14 +251,14 @@ private fun SettingsCategoryRow(
         Icon(
             imageVector = icon,
             contentDescription = label,
-            tint = if (isFocused && isTV) colors.primary else colors.icon,
+            tint = colors.onBackground,
             modifier = Modifier.size(28.dp),
         )
         Spacer(modifier = Modifier.width(24.dp))
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = label,
-                color = if (isFocused && isTV) colors.primary else colors.onBackground,
+                color = colors.onBackground,
                 style = MaterialTheme.typography.bodyLarge,
             )
             Text(
