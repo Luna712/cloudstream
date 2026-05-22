@@ -4,16 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
-import coil3.compose.AsyncImage
 import com.lagradost.cloudstream3.BuildConfig
 import com.lagradost.cloudstream3.R
-import com.lagradost.cloudstream3.shared.ui.settings.*
+import com.lagradost.cloudstream3.shared.ui.components.ProfileImage
+import com.lagradost.cloudstream3.shared.ui.settings.SettingsCategory
+import com.lagradost.cloudstream3.shared.ui.settings.SettingsProfileState
+import com.lagradost.cloudstream3.shared.ui.settings.SettingsScreen
+import com.lagradost.cloudstream3.shared.ui.settings.SettingsVersionState
 import com.lagradost.cloudstream3.shared.ui.theme.CloudStreamTheme
 import com.lagradost.cloudstream3.shared.ui.theme.loadPrimaryColor
 import com.lagradost.cloudstream3.shared.ui.theme.loadThemeMode
@@ -52,16 +52,6 @@ class SettingsFragment : Fragment() {
                 SettingsScreen(
                     profile = profile,
                     version = version,
-                    avatarContent = {
-                        profile.profilePictureUrl?.let { url ->
-                            AsyncImage(
-                                model = url,
-                                contentDescription = getString(R.string.account),
-                                contentScale = ContentScale.Crop,
-                                modifier = Modifier.fillMaxSize(),
-                            )
-                        }
-                    },
                     onNavigate = ::navigateTo,
                     onVersionLongClick = {
                         val v = version.appVersion
