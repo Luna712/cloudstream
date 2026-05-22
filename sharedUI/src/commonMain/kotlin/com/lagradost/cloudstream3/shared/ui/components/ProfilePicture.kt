@@ -12,6 +12,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
 import com.lagradost.cloudstream3.shared.generated.resources.Res
 import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_blue
 import com.lagradost.cloudstream3.shared.generated.resources.profile_bg_dark_blue
@@ -42,30 +43,33 @@ private fun ProfileImage.toRes(): DrawableResource = when (this) {
 /**
  * Circular profile picture component.
  *
- * Shows [avatarContent] if [profilePictureUrl] is not null,
+ * Shows [AsyncImage] from [profilePictureUrl] if not null,
  * otherwise falls back to the local [profileImage] background.
  *
  * @param profileImage Local background image fallback
  * @param size Diameter of the circle, default 50.dp
- * @param profilePictureUrl Optional URL, if present [avatarContent] is shown
- * @param avatarContent Platform-provided image loader (e.g. Coil AsyncImage on Android)
+ * @param profilePictureUrl Optional remote URL to load via Coil
  */
 @Composable
 fun ProfilePicture(
     profileImage: ProfileImage,
     size: Dp = 50.dp,
     profilePictureUrl: String? = null,
-    avatarContent: (@Composable () -> Unit)? = null,
 ) {
     val colors = CloudStreamTheme.colors
     Box(
         modifier = Modifier
             .size(size)
-            .border(2.dp, colors.onBackground.copy(alpha = 0.2f), CircleShape)
+            .border(1.dp, colors.onBackground.copy(alpha = 0.2f), CircleShape)
             .clip(CircleShape),
     ) {
-        if (avatarContent != null && profilePictureUrl != null) {
-            avatarContent()
+        if (profilePictureUrl != null) {
+            AsyncImage(
+                model = profilePictureUrl,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize(),
+            )
         } else {
             Image(
                 painter = painterResource(profileImage.toRes()),
