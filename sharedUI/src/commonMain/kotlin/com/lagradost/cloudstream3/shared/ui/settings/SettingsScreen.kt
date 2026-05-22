@@ -149,7 +149,7 @@ fun SettingsScreen(
             .fillMaxSize()
             .background(colors.background)
             .windowInsetsPadding(WindowInsets.statusBars)
-            .windowInsetsPadding(WindowInsets.systemBars.only(WindowInsetsSides.Horizontal))
+            .windowInsetsPadding(WindowInsets.navigationBars.only(WindowInsetsSides.Horizontal))
             .verticalScroll(rememberScrollState())
     ) {
         SettingsProfileHeader(profile = profile, avatarContent = avatarContent)
@@ -187,7 +187,7 @@ private fun SettingsProfileHeader(
     ) {
         Box(
             modifier = Modifier
-                .size(56.dp)
+                .size(40.dp)
                 .border(2.dp, colors.onBackground, CircleShape)
                 .clip(CircleShape),
         ) {
