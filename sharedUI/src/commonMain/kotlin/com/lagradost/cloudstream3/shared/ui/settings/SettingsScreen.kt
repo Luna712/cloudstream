@@ -190,12 +190,11 @@ private fun SettingsProfileHeader(
             .padding(horizontal = 16.dp, vertical = 24.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Card(
-            shape = CircleShape,
+        Box(
             modifier = Modifier
                 .size(56.dp)
-                .border(2.dp, colors.onBackground.copy(alpha = 0.2f)),
-            elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
+                .border(2.dp, colors.onBackground, CircleShape)
+                .clip(CircleShape),
         ) {
             if (profile.profilePictureUrl != null) {
                 avatarContent()
@@ -214,7 +213,7 @@ private fun SettingsProfileHeader(
         Text(
             text = profile.name,
             color = colors.onBackground,
-            style = MaterialTheme.typography.titleMedium,
+            style = MaterialTheme.typography.bodyMedium,
         )
     }
 }
