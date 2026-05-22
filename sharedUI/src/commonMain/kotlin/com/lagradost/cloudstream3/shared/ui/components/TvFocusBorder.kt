@@ -20,14 +20,9 @@ fun Modifier.tvFocusBorder(
     shape: RoundedCornerShape = RoundedCornerShape(4.dp),
 ): Modifier {
     val colors = CloudStreamTheme.colors
-    return this
-        .background(
-            color = if (isFocused) colors.primary.copy(alpha = 0.15f) else Color.Transparent,
-            shape = shape,
-        )
-        .border(
-            width = if (isFocused) 2.dp else 0.dp,
-            color = if (isFocused) colors.onBackground else Color.Transparent,
-            shape = shape,
-        )
+    return this.border(
+        width = if (isFocused) 2.dp else 0.dp,
+        color = if (isFocused) colors.onBackground else Color.Transparent,
+        shape = shape,
+    )
 }
