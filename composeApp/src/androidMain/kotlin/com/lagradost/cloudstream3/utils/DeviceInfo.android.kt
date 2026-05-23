@@ -6,6 +6,7 @@ import android.content.res.Configuration
 import android.os.Build
 import androidx.preference.PreferenceManager
 import com.lagradost.api.getContext
+import com.lagradost.cloudstream3.preferences.PreferenceDefaults
 import com.lagradost.cloudstream3.preferences.PreferenceKeys
 
 internal actual object DeviceInfo {
@@ -27,8 +28,8 @@ internal actual object DeviceInfo {
     }
 
     actual fun getLayoutPreference(): Int {
-        val context = getContext() as? Context ?: return -1
+        val context = getContext() as? Context ?: return PreferenceDefaults.APP_LAYOUT
         return PreferenceManager.getDefaultSharedPreferences(context)
-            .getInt(PreferenceKeys.APP_LAYOUT, -1)
+            .getInt(PreferenceKeys.APP_LAYOUT, PreferenceDefaults.APP_LAYOUT)
     }
 }
