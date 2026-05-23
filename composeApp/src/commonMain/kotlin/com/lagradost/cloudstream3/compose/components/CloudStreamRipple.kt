@@ -8,8 +8,7 @@ import androidx.compose.ui.composed
 import com.lagradost.cloudstream3.compose.theme.CloudStreamTheme
 
 /**
- * Applies a ripple indication styled to match the app's theme.
- * Replaces ?attr/focusBackground from the View system.
+ * Applies a ripple indication styled to match the app's selected theme.
  */
 fun Modifier.cloudStreamRipple(
     interactionSource: MutableInteractionSource,
@@ -18,6 +17,6 @@ fun Modifier.cloudStreamRipple(
     val colors = CloudStreamTheme.colors
     this.indication(
         interactionSource = interactionSource,
-        indication = ripple(bounded = bounded/*, color = colors.onBackground*/),
+        indication = ripple(bounded = bounded, color = colors.onBackground),
     )
 }
