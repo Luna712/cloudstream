@@ -15,7 +15,7 @@ internal actual object DeviceInfo {
         val isTelevisionMode = uiModeManager?.currentModeType == Configuration.UI_MODE_TYPE_TELEVISION
         val model = Build.MODEL.lowercase()
         return isTelevisionMode
-            || Build.MODEL.contains("AFT")
+            || Build.MODEL.contains("AFT") // AFT = Fire TV
             || model.contains("firestick")
             || model.contains("fire tv")
             || model.contains("chromecast")
