@@ -18,24 +18,12 @@ kotlin {
         compileSdk = libs.versions.compileSdk.get().toInt()
         minSdk = libs.versions.minSdk.get().toInt()
 
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
-        }
-
         androidResources {
             enable = true
         }
     }
 
-    jvm {
-        compilations.all {
-            compileTaskProvider.configure {
-                compilerOptions {
-                    jvmTarget.set(JvmTarget.JVM_11)
-                }
-            }
-        }
-    }
+    jvm()
 
     compilerOptions {
         freeCompilerArgs.add("-Xexpect-actual-classes")
@@ -65,8 +53,8 @@ compose.resources {
     generateResClass = auto
 }
 
-tasks.withType<KotlinJvmCompile> {
-    compilerOptions {
-        jvmTarget.set(JvmTarget.JVM_11)
+configurations.all {
+    resolutionStrategy {
+        force("org.jetbrains.skiko:skiko:0.144.6")
     }
 }
