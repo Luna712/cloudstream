@@ -12,7 +12,6 @@ plugins {
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 
 kotlin {
-    jvmToolchain(libs.versions.jdkToolchain.get().toInt())
     android {
         // Must be unique
         namespace = "com.lagradost.cloudstream3.compose"
@@ -20,7 +19,7 @@ kotlin {
         minSdk = libs.versions.minSdk.get().toInt()
 
         compilerOptions {
-            jvmTarget.set(javaTarget)
+            jvmTarget.set(JvmTarget.JVM_11)
         }
 
         androidResources {
@@ -68,6 +67,6 @@ compose.resources {
 
 tasks.withType<KotlinJvmCompile> {
     compilerOptions {
-        jvmTarget.set(javaTarget)
+        jvmTarget.set(JvmTarget.JVM_11)
     }
 }
