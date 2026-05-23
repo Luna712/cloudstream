@@ -3,11 +3,12 @@ package com.lagradost.cloudstream3.compose.theme
 import android.content.Context
 import android.os.Build
 import androidx.preference.PreferenceManager
+import com.lagradost.cloudstream3.preferences.PreferenceDefaults
 import com.lagradost.cloudstream3.preferences.PreferenceKeys
 
 fun Context.loadThemeMode(): CloudStreamThemeMode {
     val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-    return when (prefs.getString(PreferenceKeys.APP_THEME, "AmoledLight")) {
+    return when (prefs.getString(PreferenceKeys.APP_THEME, PreferenceDefaults.APP_THEME)) {
         "System"      -> CloudStreamThemeMode.FollowSystem
         "Black"       -> CloudStreamThemeMode.Dark
         "Light"       -> CloudStreamThemeMode.Light
@@ -25,7 +26,7 @@ fun Context.loadThemeMode(): CloudStreamThemeMode {
 
 fun Context.loadPrimaryColor(): CloudStreamPrimaryColor {
     val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-    return when (prefs.getString(PreferenceKeys.PRIMARY_COLOR, "Normal")) {
+    return when (prefs.getString(PreferenceKeys.PRIMARY_COLOR, PreferenceDefaults.PRIMARY_COLOR)) {
         "Normal"          -> CloudStreamPrimaryColor.NORMAL
         "Blue"            -> CloudStreamPrimaryColor.BLUE
         "Purple"          -> CloudStreamPrimaryColor.PURPLE
