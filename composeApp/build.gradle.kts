@@ -32,7 +32,7 @@ kotlin {
         compilations.all {
             compileTaskProvider.configure {
                 compilerOptions {
-                    jvmTarget.set(javaTarget)
+                    jvmTarget.set(JvmTarget.JVM_11)
                 }
             }
         }
