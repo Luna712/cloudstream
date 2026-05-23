@@ -30,9 +30,16 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
-// TODO: Move to composeApp once we have shared logic available in the
-// and we have migrated to navigation3 (which we can not do until
-// all fragments have migrated to compose).
+/**
+ * TODO: This Fragment is a temporary bridge between the old View-based navigation system
+ * and the new Compose UI. It will be removed as part of the Navigation3 migration, which
+ * replaces the NavGraph/Fragment back stack with a fully KMP-compatible navigation system.
+ * At that point, screens will be called directly as composables with no Fragment
+ * or NavGraph involvement, once:
+ * 1. All fragments have been migrated to Compose screens in :composeApp
+ * 2. Navigation3 has been adopted, replacing the NavGraph action ID system
+ * 3. More shared logic is available in :composeApp
+ */
 class SettingsFragment : Fragment() {
 
     override fun onCreateView(
