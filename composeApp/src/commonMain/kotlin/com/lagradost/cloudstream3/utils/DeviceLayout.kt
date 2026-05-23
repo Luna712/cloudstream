@@ -1,9 +1,10 @@
 package com.lagradost.cloudstream3
 
 object DeviceLayout {
-    const val PHONE: Int = 0b001
-    const val TV: Int = 0b010
-    const val EMULATOR: Int = 0b100
+    const val PHONE: Int = 0b00001
+    const val TV: Int = 0b00010
+    const val EMULATOR: Int = 0b00100
+    const val COMPUTER: Int = 0b01000
 
     private var layoutId = -1
     // TODO when fully on Compose
@@ -27,10 +28,15 @@ object DeviceLayout {
 
     private fun resolveLayout(): Int {
         return when (DeviceInfo.getLayoutPreference()) {
-            -1   -> if (DeviceInfo.isTVDevice()) TV else PHONE
-            0    -> PHONE
-            1    -> TV
-            2    -> EMULATOR
+            -1 -> when (DeviceInfo.getDeviceType()) {
+                DeviceType.TV       -> TV
+                DeviceType.EMULATOR -> EMULATOR
+                DeviceType.COMPUTER -> COMPUTER
+                DeviceType.PHONE    -> PHONE
+            }
+            0 -> PHONE
+            1 -> TV
+            2 -> EMULATOR
             else -> PHONE
         }
     }
