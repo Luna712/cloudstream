@@ -18,27 +18,27 @@ object CloudStreamTheme {
 
 private fun CloudStreamColorScheme.toMaterial3ColorScheme() = if (isLight) {
     lightColorScheme(
-        primary          = primary,
-        background       = background,
-        surface          = surface,
-        surfaceVariant   = surfaceVariant,
+        primary = primary,
+        background = background,
+        surface = surface,
+        surfaceVariant = surfaceVariant,
         surfaceContainer = surfaceContainer,
-        onBackground     = onBackground,
-        onSurface        = onBackground,
+        onBackground = onBackground,
+        onSurface = onBackground,
         onSurfaceVariant = onSurfaceVariant,
-        onPrimary        = Color.White,
+        onPrimary = Color.White,
     )
 } else {
     darkColorScheme(
-        primary          = primary,
-        background       = background,
-        surface          = surface,
-        surfaceVariant   = surfaceVariant,
+        primary = primary,
+        background = background,
+        surface = surface,
+        surfaceVariant = surfaceVariant,
         surfaceContainer = surfaceContainer,
-        onBackground     = onBackground,
-        onSurface        = onBackground,
+        onBackground = onBackground,
+        onSurface = onBackground,
         onSurfaceVariant = onSurfaceVariant,
-        onPrimary        = Color.White,
+        onPrimary = Color.White,
     )
 }
 
@@ -56,18 +56,18 @@ fun CloudStreamTheme(
 
     val csColors = remember(mode, primaryColor, systemDark, dynamicTheme, dynamicPrimary, dynamicSecondary) {
         val base = when (mode) {
-            CloudStreamThemeMode.Dark         -> darkScheme()
-            CloudStreamThemeMode.Amoled       -> amoledScheme()
-            CloudStreamThemeMode.Light        -> lightScheme()
-            CloudStreamThemeMode.Dracula      -> draculaScheme()
-            CloudStreamThemeMode.Lavender     -> lavenderScheme()
-            CloudStreamThemeMode.SilentBlue   -> silentBlueScheme()
+            CloudStreamThemeMode.Dark -> darkScheme()
+            CloudStreamThemeMode.Amoled -> amoledScheme()
+            CloudStreamThemeMode.Light -> lightScheme()
+            CloudStreamThemeMode.Dracula -> draculaScheme()
+            CloudStreamThemeMode.Lavender -> lavenderScheme()
+            CloudStreamThemeMode.SilentBlue -> silentBlueScheme()
             CloudStreamThemeMode.FollowSystem -> if (systemDark) darkScheme() else lightScheme()
-            CloudStreamThemeMode.Dynamic      -> dynamicTheme
+            CloudStreamThemeMode.Dynamic -> dynamicTheme
         }
         when {
             mode == CloudStreamThemeMode.Dynamic -> base
-            primaryColor == CloudStreamPrimaryColor.DYNAMIC     -> base.copy(primary = dynamicPrimary)
+            primaryColor == CloudStreamPrimaryColor.DYNAMIC -> base.copy(primary = dynamicPrimary)
             primaryColor == CloudStreamPrimaryColor.DYNAMIC_TWO -> base.copy(primary = dynamicSecondary)
             else -> base.copy(primary = primaryColor.color)
         }
