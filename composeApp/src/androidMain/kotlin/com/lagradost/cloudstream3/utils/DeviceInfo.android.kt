@@ -21,6 +21,11 @@ internal actual object DeviceInfo {
             || model.contains("chromecast")
     }
 
+    actual fun isLandscape(): Boolean {
+        val context = getContext() as? Context ?: return false
+        return context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+    }
+
     actual fun getLayoutPreference(): Int {
         val context = getContext() as? Context ?: return -1
         return PreferenceManager.getDefaultSharedPreferences(context)
