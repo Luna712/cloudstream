@@ -10,16 +10,19 @@ import com.lagradost.cloudstream3.preferences.PreferenceDefaults
 import com.lagradost.cloudstream3.preferences.PreferenceKeys
 
 internal actual object DeviceInfo {
-    actual fun isTVDevice(): Boolean {
-        val context = getContext() as? Context ?: return false
+    actual fun getDeviceType(): DeviceType {
+        val context = getContext() as? Context ?: return DeviceType.PHONE
         val uiModeManager = context.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager?
         val isTelevisionMode = uiModeManager?.currentModeType == Configuration.UI_MODE_TYPE_TELEVISION
         val model = Build.MODEL.lowercase()
-        return isTelevisionMode
-            || Build.MODEL.contains("AFT") // AFT = Fire TV
-            || model.contains("firestick")
-            || model.contains("fire tv")
-            || model.contains("chromecast")
+        return when {
+            isTelevisionMode
+                || Build.MODEL.contains("AFT") // AFT = Fire TV
+                || model.contains("firestick")
+                || model.contains("fire tv")
+                || model.contains("chromecast") -> DeviceType.TV
+            else -> DeviceType.PHONE
+        }
     }
 
     actual fun isLandscape(): Boolean {
