@@ -70,12 +70,12 @@ enum class SettingsCategory {
 @Composable
 fun SettingsCategory.label(): String = stringResource(
     when (this) {
-        SettingsCategory.GENERAL    -> Res.string.category_general
-        SettingsCategory.PLAYER     -> Res.string.category_player
-        SettingsCategory.PROVIDERS  -> Res.string.category_providers
-        SettingsCategory.LAYOUT     -> Res.string.category_layout
-        SettingsCategory.UPDATES    -> Res.string.category_updates
-        SettingsCategory.ACCOUNTS   -> Res.string.category_accounts
+        SettingsCategory.GENERAL -> Res.string.category_general
+        SettingsCategory.PLAYER -> Res.string.category_player
+        SettingsCategory.PROVIDERS -> Res.string.category_providers
+        SettingsCategory.LAYOUT -> Res.string.category_layout
+        SettingsCategory.UPDATES -> Res.string.category_updates
+        SettingsCategory.ACCOUNTS -> Res.string.category_accounts
         SettingsCategory.EXTENSIONS -> Res.string.category_extensions
     }
 )
@@ -83,23 +83,23 @@ fun SettingsCategory.label(): String = stringResource(
 @Composable
 fun SettingsCategory.subtitle(): String = stringResource(
     when (this) {
-        SettingsCategory.GENERAL    -> Res.string.category_general_subtitle
-        SettingsCategory.PLAYER     -> Res.string.category_player_subtitle
-        SettingsCategory.PROVIDERS  -> Res.string.category_providers_subtitle
-        SettingsCategory.LAYOUT     -> Res.string.category_layout_subtitle
-        SettingsCategory.UPDATES    -> Res.string.category_updates_subtitle
-        SettingsCategory.ACCOUNTS   -> Res.string.category_accounts_subtitle
+        SettingsCategory.GENERAL -> Res.string.category_general_subtitle
+        SettingsCategory.PLAYER -> Res.string.category_player_subtitle
+        SettingsCategory.PROVIDERS -> Res.string.category_providers_subtitle
+        SettingsCategory.LAYOUT -> Res.string.category_layout_subtitle
+        SettingsCategory.UPDATES -> Res.string.category_updates_subtitle
+        SettingsCategory.ACCOUNTS -> Res.string.category_accounts_subtitle
         SettingsCategory.EXTENSIONS -> Res.string.category_extensions_subtitle
     }
 )
 
 private fun SettingsCategory.icon(): ImageVector = when (this) {
-    SettingsCategory.GENERAL    -> tune
-    SettingsCategory.PLAYER     -> play_circle
-    SettingsCategory.PROVIDERS  -> storage
-    SettingsCategory.LAYOUT     -> palette
-    SettingsCategory.UPDATES    -> mobile_arrow_down
-    SettingsCategory.ACCOUNTS   -> account_circle
+    SettingsCategory.GENERAL -> tune
+    SettingsCategory.PLAYER -> play_circle
+    SettingsCategory.PROVIDERS -> storage
+    SettingsCategory.LAYOUT -> palette
+    SettingsCategory.UPDATES -> mobile_arrow_down
+    SettingsCategory.ACCOUNTS -> account_circle
     SettingsCategory.EXTENSIONS -> extension
 }
 
