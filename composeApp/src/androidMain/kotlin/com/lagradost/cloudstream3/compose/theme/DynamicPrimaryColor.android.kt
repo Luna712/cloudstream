@@ -7,16 +7,16 @@ import androidx.compose.ui.platform.LocalContext
 
 @Composable
 actual fun resolveDynamicPrimaryColor(): Color {
-    val context = LocalContext.current
+    val resources = LocalContext.current.resources
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
-        Color(context.getColor(android.R.color.system_accent1_200))
+        Color(resources.getColor(android.R.color.system_accent1_200, null))
     else CloudStreamPrimaryColor.NORMAL.color
 }
 
 @Composable
 actual fun resolveDynamicSecondaryColor(): Color {
-    val context = LocalContext.current
+    val resources = LocalContext.current.resources
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
-        Color(context.getColor(android.R.color.system_accent2_200))
+        Color(resources.getColor(android.R.color.system_accent2_200, null))
     else CloudStreamPrimaryColor.NORMAL.color
 }
