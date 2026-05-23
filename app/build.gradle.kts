@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.dokka)
 }
 
+
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 
 abstract class GenerateGitHashTask : DefaultTask() {
