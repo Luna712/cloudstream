@@ -5,6 +5,8 @@ import androidx.compose.ui.graphics.Color
 
 /**
  * Maps to the XML custom attrs declared in attrs.xml:
+ * TODO: Remove this comment when we migrate fully
+ *  and attrs.xml will no longer be used at all.
  *
  * | XML ?attr                | Here               |
  * |--------------------------|--------------------|
