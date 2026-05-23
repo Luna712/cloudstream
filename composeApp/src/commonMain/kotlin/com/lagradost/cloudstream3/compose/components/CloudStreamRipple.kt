@@ -18,6 +18,6 @@ fun Modifier.cloudStreamRipple(
     val colors = CloudStreamTheme.colors
     this.indication(
         interactionSource = interactionSource,
-        indication = ripple(bounded = bounded, color = colors.onBackground),
+        indication = ripple(bounded = bounded/*, color = colors.onBackground*/),
     )
 }
