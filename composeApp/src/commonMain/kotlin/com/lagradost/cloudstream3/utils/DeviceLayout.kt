@@ -6,12 +6,21 @@ object DeviceLayout {
     const val EMULATOR: Int = 0b100
 
     private var layoutId = -1
+    // TODO when fully on Compose
+    // private val layoutId: Int get() = resolveLayout()
 
     fun isLayout(flags: Int): Boolean = (layoutId and flags) != 0
 
     fun isLandscape(): Boolean =
         isLayout(TV or EMULATOR) || DeviceInfo.isLandscape()
 
+    /**
+     * Updates the cached layout ID from preferences and device detection.
+     *
+     * TODO: Remove caching once fully migrated to Compose, layout will be read
+     * directly via [DeviceInfo] during composition where caching is handled by
+     * the Compose runtime.
+     */
     fun update() {
         layoutId = resolveLayout()
     }
