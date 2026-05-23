@@ -17,9 +17,9 @@ fun Context.loadThemeMode(): CloudStreamThemeMode {
         "Dracula" -> CloudStreamThemeMode.Dracula
         "Lavender" -> CloudStreamThemeMode.Lavender
         "SilentBlue" -> CloudStreamThemeMode.SilentBlue
-        "Monet" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
-                CloudStreamThemeMode.Dynamic
-            else CloudStreamThemeMode.Dark
+        "Monet" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            CloudStreamThemeMode.Dynamic
+        } else CloudStreamThemeMode.Dark
         else -> CloudStreamThemeMode.Dark
     }
 }
@@ -47,12 +47,12 @@ fun Context.loadPrimaryColor(): CloudStreamPrimaryColor {
         "DandelionYellow" -> CloudStreamPrimaryColor.DANDELION_YELLOW
         "CoolBlue" -> CloudStreamPrimaryColor.COOL_BLUE
         "Lavender" -> CloudStreamPrimaryColor.LAVENDER
-        "Monet" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
-                CloudStreamPrimaryColor.DYNAMIC
-            else CloudStreamPrimaryColor.NORMAL
-        "Monet2" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
-                CloudStreamPrimaryColor.DYNAMIC_TWO
-            else CloudStreamPrimaryColor.NORMAL
+        "Monet" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            CloudStreamPrimaryColor.DYNAMIC
+        } else CloudStreamPrimaryColor.NORMAL
+        "Monet2" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            CloudStreamPrimaryColor.DYNAMIC_TWO
+        } else CloudStreamPrimaryColor.NORMAL
         else -> CloudStreamPrimaryColor.NORMAL
     }
 }
