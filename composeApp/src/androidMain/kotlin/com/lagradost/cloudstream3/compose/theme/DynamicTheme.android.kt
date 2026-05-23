@@ -23,29 +23,29 @@ fun Context.buildMonetScheme(): CloudStreamColorScheme {
 
     return if (isSystemDark) {
         CloudStreamColorScheme(
-            background       = Color(getColor(android.R.color.system_neutral1_900)),
-            surfaceVariant   = Color(getColor(android.R.color.system_neutral1_800)),
-            surface          = Color(getColor(android.R.color.system_neutral1_800)),
+            background = Color(getColor(android.R.color.system_neutral1_900)),
+            surfaceVariant = Color(getColor(android.R.color.system_neutral1_800)),
+            surface = Color(getColor(android.R.color.system_neutral1_800)),
             surfaceContainer = Color(getColor(android.R.color.system_neutral1_800)),
-            onBackground     = Color(getColor(android.R.color.system_neutral1_100)),
+            onBackground = Color(getColor(android.R.color.system_neutral1_100)),
             onSurfaceVariant = Color(getColor(android.R.color.system_neutral2_400)),
-            icon             = Color(getColor(android.R.color.system_neutral1_100)),
-            primary          = Color(getColor(android.R.color.system_accent1_200)),
-            ongoing          = CloudStreamPalette.Ongoing,
-            isLight          = false,
+            icon = Color(getColor(android.R.color.system_neutral1_100)),
+            primary = Color(getColor(android.R.color.system_accent1_200)),
+            ongoing = CloudStreamPalette.Ongoing,
+            isLight = false,
         )
     } else {
         CloudStreamColorScheme(
-            background       = Color(getColor(android.R.color.system_neutral1_10)),
-            surfaceVariant   = Color(getColor(android.R.color.system_neutral1_100)),
-            surface          = Color(getColor(android.R.color.system_neutral1_100)),
+            background = Color(getColor(android.R.color.system_neutral1_10)),
+            surfaceVariant = Color(getColor(android.R.color.system_neutral1_100)),
+            surface = Color(getColor(android.R.color.system_neutral1_100)),
             surfaceContainer = Color(getColor(android.R.color.system_neutral1_100)),
-            onBackground     = Color(getColor(android.R.color.system_neutral1_900)),
+            onBackground = Color(getColor(android.R.color.system_neutral1_900)),
             onSurfaceVariant = Color(getColor(android.R.color.system_neutral2_600)),
-            icon             = Color(getColor(android.R.color.system_neutral1_900)),
-            primary          = Color(getColor(android.R.color.system_accent1_600)),
-            ongoing          = CloudStreamPalette.Ongoing,
-            isLight          = true,
+            icon = Color(getColor(android.R.color.system_neutral1_900)),
+            primary = Color(getColor(android.R.color.system_accent1_600)),
+            ongoing = CloudStreamPalette.Ongoing,
+            isLight = true,
         )
     }
 }
