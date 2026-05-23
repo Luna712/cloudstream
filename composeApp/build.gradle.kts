@@ -12,6 +12,7 @@ plugins {
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 
 kotlin {
+    jvmToolchain(libs.versions.jdkToolchain.get().toInt())
     android {
         // Must be unique
         namespace = "com.lagradost.cloudstream3.compose"
