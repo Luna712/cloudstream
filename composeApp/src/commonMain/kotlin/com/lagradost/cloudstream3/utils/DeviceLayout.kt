@@ -39,10 +39,10 @@ object DeviceLayout {
     private fun resolveLayout(): Int {
         return when (DeviceInfo.getLayoutPreference()) {
             -1 -> when (DeviceInfo.getDeviceType()) {
-                DeviceType.TV       -> TV
-                DeviceType.EMULATOR -> EMULATOR
                 DeviceType.COMPUTER -> COMPUTER
-                DeviceType.PHONE    -> PHONE
+                DeviceType.EMULATOR -> EMULATOR
+                DeviceType.PHONE -> PHONE
+                DeviceType.TV -> TV
             }
             0 -> PHONE
             1 -> TV
