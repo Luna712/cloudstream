@@ -21,9 +21,11 @@ import com.lagradost.cloudstream3.generated.resources.profile_bg_pink
 import com.lagradost.cloudstream3.generated.resources.profile_bg_purple
 import com.lagradost.cloudstream3.generated.resources.profile_bg_red
 import com.lagradost.cloudstream3.generated.resources.profile_bg_teal
+import com.lagradost.cloudstream3.generated.resources.profile_picture_desc
 import com.lagradost.cloudstream3.compose.theme.CloudStreamTheme
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 
 enum class ProfileImage {
     DARK_BLUE, BLUE, ORANGE, PINK, PURPLE, RED, TEAL;
@@ -66,14 +68,14 @@ fun ProfilePicture(
         if (profilePictureUrl != null) {
             AsyncImage(
                 model = profilePictureUrl,
-                contentDescription = null,
+                contentDescription = stringResource(Res.string.profile_picture_desc),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize(),
             )
         } else {
             Image(
                 painter = painterResource(profileImage.toRes()),
-                contentDescription = null,
+                contentDescription = stringResource(Res.string.profile_picture_desc),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize(),
             )
