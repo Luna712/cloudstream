@@ -13,6 +13,7 @@ plugins {
 
 val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 
+// TODO: Move to composeApp, into composeResources
 abstract class GenerateGitHashTask : DefaultTask() {
 
     @get:InputFile
@@ -112,6 +113,7 @@ android {
         // Reads local.properties
         val localProperties = gradleLocalProperties(rootDir, project.providers)
 
+        // TODO: Move BUILD_DATE to composeApp via buildkonfig
         buildConfigField(
             "long",
             "BUILD_DATE",
