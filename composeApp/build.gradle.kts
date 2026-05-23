@@ -1,6 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
-
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.lint)
@@ -8,8 +5,6 @@ plugins {
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.compose.compiler)
 }
-
-val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 
 kotlin {
     android {
@@ -31,7 +26,9 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.coil.compose)
+            implementation(libs.coil.compose) {
+                exclude(group = "org.jetbrains.skiko")
+            }
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)
@@ -51,10 +48,4 @@ compose.resources {
     publicResClass = false
     packageOfResClass = "com.lagradost.cloudstream3.generated.resources"
     generateResClass = auto
-}
-
-configurations.all {
-    resolutionStrategy {
-        force("org.jetbrains.skiko:skiko:0.144.6")
-    }
 }
