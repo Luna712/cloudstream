@@ -10,8 +10,18 @@ object DeviceLayout {
     // TODO when fully on Compose
     // private val layoutId: Int get() = resolveLayout()
 
+    /**
+     * Returns true if the layout is any of the flags, so
+     * so isLayout(TV or EMULATOR) is a valid statement 
+     * for checking if the layout is in the emulator
+     * or tv. Auto will become the "TV" or the
+     * "PHONE" layout.
+     *
+     * Valid flags are: PHONE, TV, EMULATOR, or COMPUTER
+     */
     fun isLayout(flags: Int): Boolean = (layoutId and flags) != 0
 
+    /** Returns true if the current orientation is landscape. */
     fun isLandscape(): Boolean =
         isLayout(TV or EMULATOR) || DeviceInfo.isLandscape()
 
