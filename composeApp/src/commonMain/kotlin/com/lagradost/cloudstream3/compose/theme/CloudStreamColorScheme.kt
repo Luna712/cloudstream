@@ -36,28 +36,28 @@ class CloudStreamColorScheme(
     ongoing: Color,
     isLight: Boolean,
 ) {
-    var background       by mutableStateOf(background,       structuralEqualityPolicy())
-    var surfaceVariant   by mutableStateOf(surfaceVariant,   structuralEqualityPolicy())
-    var surface          by mutableStateOf(surface,          structuralEqualityPolicy())
+    var background by mutableStateOf(background, structuralEqualityPolicy())
+    var surfaceVariant by mutableStateOf(surfaceVariant, structuralEqualityPolicy())
+    var surface by mutableStateOf(surface, structuralEqualityPolicy())
     var surfaceContainer by mutableStateOf(surfaceContainer, structuralEqualityPolicy())
-    var onBackground     by mutableStateOf(onBackground,     structuralEqualityPolicy())
+    var onBackground by mutableStateOf(onBackground, structuralEqualityPolicy())
     var onSurfaceVariant by mutableStateOf(onSurfaceVariant, structuralEqualityPolicy())
-    var icon             by mutableStateOf(icon,             structuralEqualityPolicy())
-    var primary          by mutableStateOf(primary,          structuralEqualityPolicy())
-    var ongoing          by mutableStateOf(ongoing,          structuralEqualityPolicy())
-    var isLight          by mutableStateOf(isLight,          structuralEqualityPolicy())
+    var icon by mutableStateOf(icon, structuralEqualityPolicy())
+    var primary by mutableStateOf(primary, structuralEqualityPolicy())
+    var ongoing by mutableStateOf(ongoing, structuralEqualityPolicy())
+    var isLight by mutableStateOf(isLight, structuralEqualityPolicy())
 
     fun copy(
-        background: Color       = this.background,
-        surfaceVariant: Color   = this.surfaceVariant,
-        surface: Color          = this.surface,
+        background: Color = this.background,
+        surfaceVariant: Color = this.surfaceVariant,
+        surface: Color = this.surface,
         surfaceContainer: Color = this.surfaceContainer,
-        onBackground: Color     = this.onBackground,
+        onBackground: Color = this.onBackground,
         onSurfaceVariant: Color = this.onSurfaceVariant,
-        icon: Color             = this.icon,
-        primary: Color          = this.primary,
-        ongoing: Color          = this.ongoing,
-        isLight: Boolean        = this.isLight,
+        icon: Color = this.icon,
+        primary: Color = this.primary,
+        ongoing: Color = this.ongoing,
+        isLight: Boolean = this.isLight,
     ) = CloudStreamColorScheme(
         background, surfaceVariant, surface, surfaceContainer,
         onBackground, onSurfaceVariant, icon, primary, ongoing, isLight,
@@ -65,73 +65,73 @@ class CloudStreamColorScheme(
 }
 
 internal fun darkScheme() = CloudStreamColorScheme(
-    background       = CloudStreamPalette.DarkBlackBg,
-    surfaceVariant   = CloudStreamPalette.DarkPrimaryGrayBg,
-    surface          = CloudStreamPalette.DarkIconGrayBg,
+    background = CloudStreamPalette.DarkBlackBg,
+    surfaceVariant = CloudStreamPalette.DarkPrimaryGrayBg,
+    surface = CloudStreamPalette.DarkIconGrayBg,
     surfaceContainer = CloudStreamPalette.DarkBoxItemBg,
-    onBackground     = CloudStreamPalette.DarkText,
+    onBackground = CloudStreamPalette.DarkText,
     onSurfaceVariant = CloudStreamPalette.DarkGrayText,
-    icon             = CloudStreamPalette.DarkIcon,
-    primary          = CloudStreamPalette.Primary,
-    ongoing          = CloudStreamPalette.Ongoing,
-    isLight          = false,
+    icon = CloudStreamPalette.DarkIcon,
+    primary = CloudStreamPalette.Primary,
+    ongoing = CloudStreamPalette.Ongoing,
+    isLight = false,
 )
 
 internal fun amoledScheme() = darkScheme().copy(
-    background       = CloudStreamPalette.AmoledBlack,
-    surface          = CloudStreamPalette.AmoledBlack,
-    surfaceVariant   = CloudStreamPalette.AmoledBlack,
+    background = CloudStreamPalette.AmoledBlack,
+    surface = CloudStreamPalette.AmoledBlack,
+    surfaceVariant = CloudStreamPalette.AmoledBlack,
     surfaceContainer = CloudStreamPalette.AmoledBlack,
 )
 
 internal fun lightScheme() = CloudStreamColorScheme(
-    background       = CloudStreamPalette.LightBlackBg,
-    surfaceVariant   = CloudStreamPalette.LightPrimaryGrayBg,
-    surface          = CloudStreamPalette.LightIconGrayBg,
+    background = CloudStreamPalette.LightBlackBg,
+    surfaceVariant = CloudStreamPalette.LightPrimaryGrayBg,
+    surface = CloudStreamPalette.LightIconGrayBg,
     surfaceContainer = CloudStreamPalette.LightBoxItemBg,
-    onBackground     = CloudStreamPalette.LightText,
+    onBackground = CloudStreamPalette.LightText,
     onSurfaceVariant = CloudStreamPalette.LightGrayText,
-    icon             = CloudStreamPalette.LightIcon,
-    primary          = CloudStreamPalette.Primary,
-    ongoing          = CloudStreamPalette.Ongoing,
-    isLight          = true,
+    icon = CloudStreamPalette.LightIcon,
+    primary = CloudStreamPalette.Primary,
+    ongoing = CloudStreamPalette.Ongoing,
+    isLight = true,
 )
 
 internal fun draculaScheme() = CloudStreamColorScheme(
-    background       = CloudStreamPalette.DraculaBlackBg,
-    surfaceVariant   = CloudStreamPalette.DraculaPrimaryGrayBg,
-    surface          = CloudStreamPalette.DraculaIconGrayBg,
+    background = CloudStreamPalette.DraculaBlackBg,
+    surfaceVariant = CloudStreamPalette.DraculaPrimaryGrayBg,
+    surface = CloudStreamPalette.DraculaIconGrayBg,
     surfaceContainer = CloudStreamPalette.DraculaBoxItemBg,
-    onBackground     = CloudStreamPalette.DraculaText,
+    onBackground = CloudStreamPalette.DraculaText,
     onSurfaceVariant = CloudStreamPalette.DraculaGrayText,
-    icon             = CloudStreamPalette.DraculaIcon,
-    primary          = CloudStreamPalette.Primary,
-    ongoing          = CloudStreamPalette.Ongoing,
-    isLight          = false,
+    icon = CloudStreamPalette.DraculaIcon,
+    primary = CloudStreamPalette.Primary,
+    ongoing = CloudStreamPalette.Ongoing,
+    isLight = false,
 )
 
 internal fun lavenderScheme() = CloudStreamColorScheme(
-    background       = CloudStreamPalette.LavenderBlackBg,
-    surfaceVariant   = CloudStreamPalette.LavenderPrimaryGrayBg,
-    surface          = CloudStreamPalette.LavenderIconGrayBg,
+    background = CloudStreamPalette.LavenderBlackBg,
+    surfaceVariant = CloudStreamPalette.LavenderPrimaryGrayBg,
+    surface = CloudStreamPalette.LavenderIconGrayBg,
     surfaceContainer = CloudStreamPalette.LavenderBoxItemBg,
-    onBackground     = CloudStreamPalette.LavenderText,
+    onBackground = CloudStreamPalette.LavenderText,
     onSurfaceVariant = CloudStreamPalette.LavenderGrayText,
-    icon             = CloudStreamPalette.LavenderIcon,
-    primary          = CloudStreamPalette.Primary,
-    ongoing          = CloudStreamPalette.Ongoing,
-    isLight          = true,
+    icon = CloudStreamPalette.LavenderIcon,
+    primary = CloudStreamPalette.Primary,
+    ongoing = CloudStreamPalette.Ongoing,
+    isLight = true,
 )
 
 internal fun silentBlueScheme() = CloudStreamColorScheme(
-    background       = CloudStreamPalette.SilentBlueBlackBg,
-    surfaceVariant   = CloudStreamPalette.SilentBluePrimaryGrayBg,
-    surface          = CloudStreamPalette.SilentBlueIconGrayBg,
+    background = CloudStreamPalette.SilentBlueBlackBg,
+    surfaceVariant = CloudStreamPalette.SilentBluePrimaryGrayBg,
+    surface = CloudStreamPalette.SilentBlueIconGrayBg,
     surfaceContainer = CloudStreamPalette.SilentBlueBoxItemBg,
-    onBackground     = CloudStreamPalette.SilentBlueText,
+    onBackground = CloudStreamPalette.SilentBlueText,
     onSurfaceVariant = CloudStreamPalette.SilentBlueGrayText,
-    icon             = CloudStreamPalette.SilentBlueIcon,
-    primary          = CloudStreamPalette.Primary,
-    ongoing          = CloudStreamPalette.Ongoing,
-    isLight          = false,
+    icon = CloudStreamPalette.SilentBlueIcon,
+    primary = CloudStreamPalette.Primary,
+    ongoing = CloudStreamPalette.Ongoing,
+    isLight = false,
 )
