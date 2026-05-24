@@ -98,14 +98,23 @@ fun CloudStreamTheme(
             Box(modifier = Modifier.fillMaxSize()) {
                 content()
                 if (isRoot) {
-                    val wrapWidth = (hostState.currentSnackbarData?.visuals as? ToastVisuals)?.event?.wrapWidth ?: true
-                    SnackbarHost(
-                        hostState = hostState,
-                        modifier = Modifier
-                            .align(Alignment.BottomCenter)
-                            .then(if (wrapWidth) Modifier.wrapContentWidth() else Modifier.fillMaxWidth()),
-                        snackbar = { CloudStreamSnackbar(it) },
-                    )
+                    val currentData = hostState.currentSnackbarData
+                    val wrapWidth = (currentData?.visuals as? ToastVisuals)?.event?.wrapWidth ?: true
+                    if (wrapWidth && currentData != null) {
+                        Box(
+                            modifier = Modifier
+                                .align(Alignment.BottomCenter)
+                                .wrapContentWidth()
+                        ) {
+                            CloudStreamSnackbar(currentData)
+                        }
+                    } else {
+                        SnackbarHost(
+                            hostState = hostState,
+                            modifier = Modifier.align(Alignment.BottomCenter),
+                            snackbar = { CloudStreamSnackbar(it) },
+                        )
+                    }
                 }
             }
         }
