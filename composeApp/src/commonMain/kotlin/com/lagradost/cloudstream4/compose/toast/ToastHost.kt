@@ -24,6 +24,7 @@ internal class ToastVisuals(val event: ToastEvent) : SnackbarVisuals {
 internal fun ToastEffectHost(hostState: SnackbarHostState) {
     LaunchedEffect(hostState) {
         ToastController.events.collect { event ->
+            if (!event.queue) hostState.currentSnackbarData?.dismiss()
             val result = hostState.showSnackbar(ToastVisuals(event))
             if (result == SnackbarResult.ActionPerformed) event.onAction?.invoke()
         }
