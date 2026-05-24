@@ -3,8 +3,6 @@ package com.lagradost.cloudstream4.compose.theme
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -16,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.lagradost.cloudstream4.compose.toast.CloudStreamSnackbar
 import com.lagradost.cloudstream4.compose.toast.ToastEffectHost
-import com.lagradost.cloudstream4.compose.toast.ToastVisuals
 
 val LocalCloudStreamColors = staticCompositionLocalOf { darkScheme() }
 val LocalSnackbarHostState = compositionLocalOf<SnackbarHostState?> { null }
@@ -98,23 +95,11 @@ fun CloudStreamTheme(
             Box(modifier = Modifier.fillMaxSize()) {
                 content()
                 if (isRoot) {
-                    val currentData = hostState.currentSnackbarData
-                    val wrapWidth = (currentData?.visuals as? ToastVisuals)?.event?.wrapWidth ?: true
-                    if (wrapWidth && currentData != null) {
-                        Box(
-                            modifier = Modifier
-                                .align(Alignment.BottomCenter)
-                                .wrapContentWidth()
-                        ) {
-                            CloudStreamSnackbar(currentData)
-                        }
-                    } else {
-                        SnackbarHost(
-                            hostState = hostState,
-                            modifier = Modifier.align(Alignment.BottomCenter),
-                            snackbar = { CloudStreamSnackbar(it) },
-                        )
-                    }
+                    SnackbarHost(
+                        hostState = hostState,
+                        modifier = Modifier.align(Alignment.BottomCenter),
+                        snackbar = { CloudStreamSnackbar(it) },
+                    )
                 }
             }
         }
