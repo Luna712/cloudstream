@@ -20,6 +20,8 @@ object ToastController {
     private val _events = Channel<ToastEvent>(Channel.BUFFERED)
     internal val events = _events.receiveAsFlow()
 
+    internal fun drain(): ToastEvent? = _events.tryReceive().getOrNull()
+
     fun post(
         message: String,
         type: ToastType = ToastType.Info,
