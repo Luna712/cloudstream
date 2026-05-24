@@ -37,8 +37,10 @@ internal fun ToastEffectHost(hostState: SnackbarHostState) {
                 showingMessage = latest.message
                 val result = hostState.showSnackbar(ToastVisuals(latest))
                 if (result == SnackbarResult.ActionPerformed) latest.onAction?.invoke()
+                ToastController.drain()
                 showingMessage = null
             } else {
+                showingMessage = null
                 val result = hostState.showSnackbar(ToastVisuals(event))
                 if (result == SnackbarResult.ActionPerformed) event.onAction?.invoke()
             }
