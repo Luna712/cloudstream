@@ -34,7 +34,7 @@ internal fun ToastEffectHost(hostState: SnackbarHostState) {
 private fun ToastType.containerColor(): Color {
     val c = CloudStreamTheme.colors
     return when (this) {
-        ToastType.Info -> c.surfaceVariant
+        ToastType.Info -> c.surface
         ToastType.Success -> c.primary.copy(alpha = 0.90f)
         ToastType.Warning -> Color(0xFFB45309)
         ToastType.Error -> Color(0xFFB91C1C)
@@ -43,7 +43,7 @@ private fun ToastType.containerColor(): Color {
 
 @Composable
 private fun ToastType.contentColor(): Color = when (this) {
-    ToastType.Info -> CloudStreamTheme.colors.onSurfaceVariant
+    ToastType.Info -> CloudStreamTheme.colors.onSurface
     else -> Color.White
 }
 
