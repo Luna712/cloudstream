@@ -26,6 +26,7 @@ internal class ToastVisuals(val event: ToastEvent) : SnackbarVisuals {
 @Composable
 internal fun ToastEffectHost(hostState: SnackbarHostState) {
     LaunchedEffect(hostState) {
+        var lastMessage: String? = null
         ToastController.events.collect { event ->
             if (!event.queue) {
                 hostState.currentSnackbarData?.dismiss()
@@ -35,8 +36,11 @@ internal fun ToastEffectHost(hostState: SnackbarHostState) {
                     latest = next
                     next = ToastController.drain()
                 }
+                if (latest.message == lastMessage) return@collect
+                lastMessage = latest.message
                 val result = hostState.showSnackbar(ToastVisuals(latest))
                 if (result == SnackbarResult.ActionPerformed) latest.onAction?.invoke()
+                lastMessage = null
             } else {
                 val result = hostState.showSnackbar(ToastVisuals(event))
                 if (result == SnackbarResult.ActionPerformed) event.onAction?.invoke()
