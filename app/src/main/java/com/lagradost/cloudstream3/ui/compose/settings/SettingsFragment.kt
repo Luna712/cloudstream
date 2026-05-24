@@ -64,7 +64,8 @@ class SettingsFragment : Fragment() {
                         val v = version.appVersion
                         val h = version.commitHash
                         val d = version.buildDate
-                        clipboardHelper(txt(R.string.extension_version), "$v $h $d")
+                        // clipboardHelper(txt(R.string.extension_version), "$v $h $d")
+                        com.lagradost.cloudstream4.compose.toast.ToastController.post("Test")
                     },
                 )
             }
