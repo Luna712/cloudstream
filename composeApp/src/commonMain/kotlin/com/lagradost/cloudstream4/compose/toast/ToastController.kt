@@ -18,6 +18,23 @@ object ToastController {
     private val _events = Channel<ToastEvent>(Channel.BUFFERED)
     internal val events = _events.receiveAsFlow()
 
+    fun post(
+        message: String,
+        type: ToastType = ToastType.Info,
+        duration: SnackbarDuration = SnackbarDuration.Short,
+        actionLabel: String? = null,
+        onAction: (() -> Unit)? = null,
+    ) { _events.trySend(ToastEvent(message, type, duration, actionLabel, onAction)) }
+
+    fun postSuccess(message: String, duration: SnackbarDuration = SnackbarDuration.Short) =
+        post(message, ToastType.Success, duration)
+
+    fun postWarning(message: String, duration: SnackbarDuration = SnackbarDuration.Short) =
+        post(message, ToastType.Warning, duration)
+
+    fun postError(message: String, duration: SnackbarDuration = SnackbarDuration.Long) =
+        post(message, ToastType.Error, duration)
+
     suspend fun show(
         message: String,
         type: ToastType = ToastType.Info,
