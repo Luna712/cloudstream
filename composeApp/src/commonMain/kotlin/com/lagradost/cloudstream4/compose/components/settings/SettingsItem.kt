@@ -9,10 +9,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import com.lagradost.cloudstream3.DeviceLayout
 import com.lagradost.cloudstream4.compose.components.cloudStreamRipple
 import com.lagradost.cloudstream4.compose.components.tvFocusable
 import com.lagradost.cloudstream4.compose.theme.CloudStreamTheme
+import com.lagradost.cloudstream4.utils.DeviceLayout
 
 @Composable
 fun SettingsItem(
