@@ -165,13 +165,6 @@ fun <T> throwAbleToResource(
     throwable: Throwable
 ): Resource<T> {
     return when (throwable) {
-        is NoSuchElementException -> {
-            Resource.Failure(
-                false,
-                "App or extension is outdated, update the app or try pre-release.\n${throwable.message}" // todo add exact version?
-            )
-        }
-
         is NullPointerException -> {
             val traceLine = throwable.stackTraceToString()
                 .lines()
