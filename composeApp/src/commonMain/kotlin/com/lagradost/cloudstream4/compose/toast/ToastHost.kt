@@ -1,7 +1,5 @@
 package com.lagradost.cloudstream4.compose.toast
 
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarData
@@ -11,7 +9,6 @@ import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.SnackbarVisuals
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.compose.theme.CloudStreamTheme
@@ -26,7 +23,7 @@ internal class ToastVisuals(val event: ToastEvent) : SnackbarVisuals {
 @Composable
 internal fun ToastEffectHost(hostState: SnackbarHostState) {
     LaunchedEffect(hostState) {
-        var lastMessage: String? = null
+        var showingMessage: String? = null
         ToastController.events.collect { event ->
             if (!event.queue) {
                 hostState.currentSnackbarData?.dismiss()
@@ -36,11 +33,11 @@ internal fun ToastEffectHost(hostState: SnackbarHostState) {
                     latest = next
                     next = ToastController.drain()
                 }
-                if (latest.message == lastMessage) return@collect
-                lastMessage = latest.message
+                if (latest.message == showingMessage) return@collect
+                showingMessage = latest.message
                 val result = hostState.showSnackbar(ToastVisuals(latest))
                 if (result == SnackbarResult.ActionPerformed) latest.onAction?.invoke()
-                lastMessage = null
+                showingMessage = null
             } else {
                 val result = hostState.showSnackbar(ToastVisuals(event))
                 if (result == SnackbarResult.ActionPerformed) event.onAction?.invoke()
@@ -70,7 +67,6 @@ private fun ToastType.contentColor(): Color = when (this) {
 fun CloudStreamSnackbar(data: SnackbarData) {
     val event = (data.visuals as? ToastVisuals)?.event
     val type = event?.type ?: ToastType.Info
-    val wrapWidth = event?.wrapWidth ?: true
     Snackbar(
         snackbarData = data,
         shape = RoundedCornerShape(12.dp),
@@ -78,6 +74,5 @@ fun CloudStreamSnackbar(data: SnackbarData) {
         contentColor = type.contentColor(),
         actionColor = type.contentColor(),
         dismissActionContentColor = type.contentColor(),
-        modifier = if (wrapWidth) Modifier.wrapContentWidth() else Modifier.fillMaxWidth(),
     )
 }
