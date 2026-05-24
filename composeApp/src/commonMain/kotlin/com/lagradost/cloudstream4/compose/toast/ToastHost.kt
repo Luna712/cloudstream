@@ -17,7 +17,7 @@ internal class ToastVisuals(val event: ToastEvent) : SnackbarVisuals {
     override val message: String = event.message
     override val actionLabel: String? = event.actionLabel
     override val duration: SnackbarDuration = event.duration
-    override val withDismissAction: Boolean = event.actionLabel == null
+    override val withDismissAction: Boolean = event.dismissable
 }
 
 @Composable
