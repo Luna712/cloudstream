@@ -28,19 +28,24 @@ internal fun ToastEffectHost(hostState: SnackbarHostState) {
             if (!event.queue) {
                 hostState.currentSnackbarData?.dismiss()
                 var latest = event
+                val queued = mutableListOf<ToastEvent>()
                 var next = ToastController.drain()
                 while (next != null) {
-                    latest = next
+                    if (next.queue) queued.add(next)
+                    else latest = next
                     next = ToastController.drain()
                 }
-                if (latest.message == showingMessage) return@collect
-                showingMessage = latest.message
-                val result = hostState.showSnackbar(ToastVisuals(latest))
-                if (result == SnackbarResult.ActionPerformed) latest.onAction?.invoke()
-                ToastController.drain()
-                showingMessage = null
+                if (latest.message != showingMessage) {
+                    showingMessage = latest.message
+                    val result = hostState.showSnackbar(ToastVisuals(latest))
+                    if (result == SnackbarResult.ActionPerformed) latest.onAction?.invoke()
+                    showingMessage = null
+                }
+                for (q in queued) {
+                    val result = hostState.showSnackbar(ToastVisuals(q))
+                    if (result == SnackbarResult.ActionPerformed) q.onAction?.invoke()
+                }
             } else {
-                showingMessage = null
                 val result = hostState.showSnackbar(ToastVisuals(event))
                 if (result == SnackbarResult.ActionPerformed) event.onAction?.invoke()
             }
