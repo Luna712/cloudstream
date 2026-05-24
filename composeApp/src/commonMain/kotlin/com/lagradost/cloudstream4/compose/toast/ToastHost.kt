@@ -24,9 +24,20 @@ internal class ToastVisuals(val event: ToastEvent) : SnackbarVisuals {
 internal fun ToastEffectHost(hostState: SnackbarHostState) {
     LaunchedEffect(hostState) {
         ToastController.events.collect { event ->
-            if (!event.queue) hostState.currentSnackbarData?.dismiss()
-            val result = hostState.showSnackbar(ToastVisuals(event))
-            if (result == SnackbarResult.ActionPerformed) event.onAction?.invoke()
+            if (!event.queue) {
+                hostState.currentSnackbarData?.dismiss()
+                var latest = event
+                var next = ToastController.drain()
+                while (next != null) {
+                    latest = next
+                    next = ToastController.drain()
+                }
+                val result = hostState.showSnackbar(ToastVisuals(latest))
+                if (result == SnackbarResult.ActionPerformed) latest.onAction?.invoke()
+            } else {
+                val result = hostState.showSnackbar(ToastVisuals(event))
+                if (result == SnackbarResult.ActionPerformed) event.onAction?.invoke()
+            }
         }
     }
 }
