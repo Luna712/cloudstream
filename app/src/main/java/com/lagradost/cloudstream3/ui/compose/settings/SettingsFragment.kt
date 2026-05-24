@@ -65,7 +65,10 @@ class SettingsFragment : Fragment() {
                         val h = version.commitHash
                         val d = version.buildDate
                         // clipboardHelper(txt(R.string.extension_version), "$v $h $d")
-                        com.lagradost.cloudstream4.compose.toast.ToastController.post("Test")
+                        com.lagradost.cloudstream4.compose.toast.ToastController.post("Test default")
+                        com.lagradost.cloudstream4.compose.toast.ToastController.postSuccess("Test success")
+                        com.lagradost.cloudstream4.compose.toast.ToastController.postError("Test error")
+                        com.lagradost.cloudstream4.compose.toast.ToastController.postWarning("Test warning")
                     },
                 )
             }
