@@ -73,6 +73,7 @@ sealed class Resource<out T> {
 
 fun logError(throwable: Throwable) {
     Log.d("ApiError", "-------------------------------------------------------------------")
+    // localizedMessage is JVM only - remove and just use message?
     Log.d("ApiError", "safeApiCall: " + throwable.localizedMessage)
     Log.d("ApiError", "safeApiCall: " + throwable.message)
     throwable.printStackTrace()
@@ -130,11 +131,14 @@ suspend fun <T> suspendSafeApiCall(apiCall: suspend () -> T): T? {
 }
 
 fun Throwable.getAllMessages(): String {
+    // localizedMessage is JVM only - just use message?
     return (this.localizedMessage ?: "") + (this.cause?.getAllMessages()?.let { "\n$it" } ?: "")
 }
 
 fun Throwable.getStackTracePretty(showMessage: Boolean = true): String {
+    // localizedMessage is JVM only - just use message?
     val prefix = if (showMessage) this.localizedMessage?.let { "\n$it" } ?: "" else ""
+    // stackTrace is JVM only - maybe use stackTraceToString?
     return prefix + this.stackTrace.joinToString(
         separator = "\n"
     ) {
@@ -167,6 +171,7 @@ fun <T> throwAbleToResource(
     throwable: Throwable
 ): Resource<T> {
     return when (throwable) {
+        // JVM only - maybe use NoSuchElementException?
         is NoSuchMethodException, is NoSuchFieldException, is NoSuchMethodError, is NoSuchFieldError, is NoSuchPropertyException -> {
             Resource.Failure(
                 false,
@@ -175,6 +180,7 @@ fun <T> throwAbleToResource(
         }
 
         is NullPointerException -> {
+            // stackTrace is JVM only - maybe use stackTraceToString?
             for (line in throwable.stackTrace) {
                 if (line?.fileName?.endsWith("provider.kt", ignoreCase = true) == true) {
                     return Resource.Failure(
@@ -186,13 +192,13 @@ fun <T> throwAbleToResource(
             safeFail(throwable)
         }
 
-        is SocketTimeoutException, is InterruptedIOException -> {
+        is SocketTimeoutException, is InterruptedIOException -> { // JVM only
             Resource.Failure(
                 true,
                 "Connection Timeout\nPlease try again later."
             )
         }
-        is UnknownHostException -> {
+        is UnknownHostException -> { // JVM only
             Resource.Failure(
                 true,
                 "Cannot connect to server, try again later.\n${throwable.message}"
@@ -210,7 +216,7 @@ fun <T> throwAbleToResource(
             Resource.Failure(false, "This operation is not implemented.")
         }
 
-        is SSLHandshakeException -> {
+        is SSLHandshakeException -> { // JVM only
             Resource.Failure(
                 true,
                 (throwable.message ?: "SSLHandshakeException") + "\nTry a VPN or DNS."
@@ -231,9 +237,9 @@ fun <T> throwAbleToResource(
 suspend fun <T> safeApiCall(
     @WorkerThread apiCall: suspend () -> T,
 ): Resource<T> {
-    return ioWork {
+    return apiCall.ioWork {
         try {
-            Resource.Success(apiCall())
+            Resource.Success(it())
         } catch (throwable: Throwable) {
             logError(throwable)
             throwAbleToResource(throwable)
