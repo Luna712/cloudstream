@@ -97,8 +97,7 @@ fun CloudStreamTheme(
                 if (isRoot) {
                     SnackbarHost(
                         hostState = hostState,
-                        modifier = Modifier
-                            .align(Alignment.BottomCenter)
+                        modifier = Modifier.align(Alignment.BottomCenter),
                         snackbar = { CloudStreamSnackbar(it) },
                     )
                 }
