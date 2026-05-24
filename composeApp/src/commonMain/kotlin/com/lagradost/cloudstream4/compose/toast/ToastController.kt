@@ -38,22 +38,22 @@ object ToastController {
     fun postSuccess(
         message: String,
         duration: SnackbarDuration = SnackbarDuration.Short,
-        dismissable: Boolean = false,
-        queue: Boolean = false,
+        dismissable: Boolean = true,
+        queue: Boolean = true,
     ) = post(message, ToastType.Success, duration, dismissable = dismissable, queue = queue)
 
     fun postWarning(
         message: String,
         duration: SnackbarDuration = SnackbarDuration.Short,
-        dismissable: Boolean = false,
-        queue: Boolean = false,
+        dismissable: Boolean = true,
+        queue: Boolean = true,
     ) = post(message, ToastType.Warning, duration, dismissable = dismissable, queue = queue)
 
     fun postError(
         message: String,
         duration: SnackbarDuration = SnackbarDuration.Long,
-        dismissable: Boolean = false,
-        queue: Boolean = false,
+        dismissable: Boolean = true,
+        queue: Boolean = true,
     ) = post(message, ToastType.Error, duration, dismissable = dismissable, queue = queue)
 
     suspend fun show(
@@ -72,21 +72,21 @@ object ToastController {
     suspend fun showSuccess(
         message: String,
         duration: SnackbarDuration = SnackbarDuration.Short,
-        dismissable: Boolean = false,
-        queue: Boolean = false,
+        dismissable: Boolean = true,
+        queue: Boolean = true,
     ) = show(message, ToastType.Success, duration, dismissable = dismissable, queue = queue)
 
     suspend fun showWarning(
         message: String,
         duration: SnackbarDuration = SnackbarDuration.Short,
-        dismissable: Boolean = false,
-        queue: Boolean = false,
+        dismissable: Boolean = true,
+        queue: Boolean = true,
     ) = show(message, ToastType.Warning, duration, dismissable = dismissable, queue = queue)
 
     suspend fun showError(
         message: String,
         duration: SnackbarDuration = SnackbarDuration.Long,
-        dismissable: Boolean = false,
-        queue: Boolean = false,
+        dismissable: Boolean = true,
+        queue: Boolean = true,
     ) = show(message, ToastType.Error, duration, dismissable = dismissable, queue = queue)
 }
