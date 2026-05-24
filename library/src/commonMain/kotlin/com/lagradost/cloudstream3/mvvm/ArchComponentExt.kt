@@ -1,8 +1,11 @@
 package com.lagradost.cloudstream3.mvvm
 
+import androidx.annotation.AnyThread
+import androidx.annotation.WorkerThread
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.ErrorLoadingException
 import com.lagradost.cloudstream3.utils.AppDebug
+import com.lagradost.cloudstream3.utils.Coroutines.ioWork
 import kotlinx.coroutines.*
 import java.io.InterruptedIOException
 import java.net.SocketTimeoutException
@@ -189,14 +192,6 @@ fun <T> throwAbleToResource(
                 "Connection Timeout\nPlease try again later."
             )
         }
-//        is HttpException -> {
-//            Resource.Failure(
-//                false,
-//                throwable.statusCode,
-//                null,
-//                throwable.message ?: "HttpException"
-//            )
-//        }
         is UnknownHostException -> {
             Resource.Failure(
                 true,
@@ -232,12 +227,13 @@ fun <T> throwAbleToResource(
     }
 }
 
+@AnyThread
 suspend fun <T> safeApiCall(
-    apiCall: suspend () -> T,
+    @WorkerThread apiCall: suspend () -> T,
 ): Resource<T> {
-    return withContext(Dispatchers.IO) {
+    return ioWork {
         try {
-            Resource.Success(apiCall.invoke())
+            Resource.Success(apiCall())
         } catch (throwable: Throwable) {
             logError(throwable)
             throwAbleToResource(throwable)
