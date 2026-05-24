@@ -1,5 +1,7 @@
 package com.lagradost.cloudstream4.compose.toast
 
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarData
@@ -9,6 +11,7 @@ import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.SnackbarVisuals
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.compose.theme.CloudStreamTheme
@@ -61,7 +64,9 @@ private fun ToastType.contentColor(): Color = when (this) {
 
 @Composable
 fun CloudStreamSnackbar(data: SnackbarData) {
-    val type = (data.visuals as? ToastVisuals)?.event?.type ?: ToastType.Info
+    val event = (data.visuals as? ToastVisuals)?.event
+    val type = event?.type ?: ToastType.Info
+    val wrapWidth = event?.wrapWidth ?: true
     Snackbar(
         snackbarData = data,
         shape = RoundedCornerShape(12.dp),
@@ -69,5 +74,6 @@ fun CloudStreamSnackbar(data: SnackbarData) {
         contentColor = type.contentColor(),
         actionColor = type.contentColor(),
         dismissActionContentColor = type.contentColor(),
+        modifier = if (wrapWidth) Modifier.wrapContentWidth() else Modifier.fillMaxWidth(),
     )
 }
