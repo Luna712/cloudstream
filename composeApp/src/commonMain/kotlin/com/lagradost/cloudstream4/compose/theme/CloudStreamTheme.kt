@@ -2,12 +2,7 @@ package com.lagradost.cloudstream4.compose.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.only
-import androidx.compose.foundation.layout.systemBars
-import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -104,7 +99,6 @@ fun CloudStreamTheme(
                         hostState = hostState,
                         modifier = Modifier
                             .align(Alignment.BottomCenter)
-                            .windowInsetsPadding(WindowInsets.systemBars.only(WindowInsetsSides.Bottom)),
                         snackbar = { CloudStreamSnackbar(it) },
                     )
                 }
