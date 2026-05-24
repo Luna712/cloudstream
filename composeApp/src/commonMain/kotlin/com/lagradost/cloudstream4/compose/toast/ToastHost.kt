@@ -65,8 +65,7 @@ private fun ToastType.contentColor(): Color = when (this) {
 
 @Composable
 fun CloudStreamSnackbar(data: SnackbarData) {
-    val event = (data.visuals as? ToastVisuals)?.event
-    val type = event?.type ?: ToastType.Info
+    val type = (data.visuals as? ToastVisuals)?.event?.type ?: ToastType.Info
     Snackbar(
         snackbarData = data,
         shape = RoundedCornerShape(12.dp),
