@@ -18,6 +18,7 @@ import com.lagradost.cloudstream4.compose.toast.CloudStreamSnackbar
 import com.lagradost.cloudstream4.compose.toast.ToastEffectHost
 
 val LocalCloudStreamColors = staticCompositionLocalOf { darkScheme() }
+val LocalSnackbarHostState = compositionLocalOf<SnackbarHostState?> { null }
 
 object CloudStreamTheme {
     val colors: CloudStreamColorScheme
@@ -60,7 +61,6 @@ fun CloudStreamTheme(
 ) {
     val systemDark = isSystemInDarkTheme()
     val dynamicTheme = resolveDynamicTheme()
-
     val dynamicPrimary = resolveDynamicPrimaryColor()
     val dynamicSecondary = resolveDynamicSecondaryColor()
 
@@ -83,20 +83,28 @@ fun CloudStreamTheme(
         }
     }
 
-    val snackbarHostState = remember { SnackbarHostState() }
-    ToastEffectHost(snackbarHostState)
+    val parentHostState = LocalSnackbarHostState.current
+    val isRoot = parentHostState == null
+    val hostState = remember { parentHostState ?: SnackbarHostState() }
 
-    CompositionLocalProvider(LocalCloudStreamColors provides csColors) {
+    if (isRoot) ToastEffectHost(hostState)
+
+    CompositionLocalProvider(
+        LocalCloudStreamColors provides csColors,
+        LocalSnackbarHostState provides hostState,
+    ) {
         MaterialTheme(colorScheme = csColors.toMaterial3ColorScheme()) {
             Box(modifier = Modifier.fillMaxSize()) {
                 content()
-                SnackbarHost(
-                    hostState = snackbarHostState,
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .padding(bottom = 16.dp, start = 16.dp, end = 16.dp),
-                    snackbar = { CloudStreamSnackbar(it) },
-                )
+                if (isRoot) {
+                    SnackbarHost(
+                        hostState = hostState,
+                        modifier = Modifier
+                            .align(Alignment.BottomCenter)
+                            .padding(bottom = 16.dp, start = 16.dp, end = 16.dp),
+                        snackbar = { CloudStreamSnackbar(it) },
+                    )
+                }
             }
         }
     }
