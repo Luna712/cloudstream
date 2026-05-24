@@ -13,6 +13,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import com.lagradost.cloudstream4.compose.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.generated.resources.Res
 import com.lagradost.cloudstream4.generated.resources.profile_bg_blue
 import com.lagradost.cloudstream4.generated.resources.profile_bg_dark_blue
@@ -22,7 +23,6 @@ import com.lagradost.cloudstream4.generated.resources.profile_bg_purple
 import com.lagradost.cloudstream4.generated.resources.profile_bg_red
 import com.lagradost.cloudstream4.generated.resources.profile_bg_teal
 import com.lagradost.cloudstream4.generated.resources.profile_picture_desc
-import com.lagradost.cloudstream4.compose.theme.CloudStreamTheme
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
