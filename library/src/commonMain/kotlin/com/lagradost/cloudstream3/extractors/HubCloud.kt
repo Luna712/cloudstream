@@ -161,7 +161,7 @@ class HubCloud : ExtractorApi() {
 
     private fun getBaseUrl(url: String): String {
         return try {
-            Url(url).hostWithProtocol
+            Url(url).let { "${it.protocol.name}://${it.host}" }
         } catch (_: Exception) {
             ""
         }
