@@ -30,7 +30,7 @@ open class Userload : ExtractorApi() {
     }
 
     private fun evaluateMath(mathExpression: String): String {
-        return jsValueToString(evalJs("eval($mathExpression)").getOrNull())
+        return jsValueToString(evalJs("eval($mathExpression)"))
     }
 
     private fun decodeVideoJs(text: String): List<String> {
