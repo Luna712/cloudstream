@@ -70,12 +70,12 @@ class JsContext {
  *
  * @param js The JavaScript code to evaluate.
  * @param variable Optional variable name to retrieve from the scope after evaluation.
- * @return A [Result] wrapping the last expression value, or the named variable value.
- *         Use [Result.getOrNull] to get the value or null on failure,
- *         or [Result.getOrThrow] to rethrow any exception.
+ * @return The last expression value, or the named variable value if [variable] is specified.
+ *         Returns [Unit] on evaluation failure. Note that JS null is represented as Kotlin null,
+ *         and JS undefined is represented as [Unit].
  */
 @Prerelease
-fun evalJs(js: String, variable: String? = null): Result<Any?> = runCatching {
+fun evalJs(js: String, variable: String? = null): Any? {
     val interpreter = JsInterpreter()
     val result = interpreter.eval(js)
     if (variable != null) interpreter.getVar(variable) else result
