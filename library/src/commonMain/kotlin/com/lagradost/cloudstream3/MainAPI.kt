@@ -1320,7 +1320,7 @@ fun MainAPI.updateUrl(url: String): String {
         val original = Url(url)
         val updated = Url(mainUrl)
 
-        URLBuilder {
+        URLBuilder().apply {
             takeFrom(updated)
             user = original.user
             encodedPath = original.encodedPath
