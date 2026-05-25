@@ -25,7 +25,6 @@ import com.lagradost.nicehttp.RequestBodyTypes
 import io.ktor.http.Url
 import io.ktor.http.URLBuilder
 import io.ktor.http.encodedPath
-import io.ktor.http.encodedQuery
 import io.ktor.http.takeFrom
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -1321,12 +1320,15 @@ fun MainAPI.updateUrl(url: String): String {
         val original = Url(url)
         val updated = Url(mainUrl)
 
-        URLBuilder().apply {
+        URLBuilder {
             takeFrom(updated)
             user = original.user
             encodedPath = original.encodedPath
             encodedQuery = original.encodedQuery
             fragment = original.fragment
+
+            parameters.clear()
+            parameters.appendAll(original.parameters)
         }.buildString()
     } catch (t: Throwable) {
         logError(t)
