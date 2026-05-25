@@ -59,7 +59,6 @@ object ShortLink {
 
             val domain =
                 Url(currentUrl.trim()).host
-                    ?: throw IllegalArgumentException("No domain found in URL!")
             currentUrl = shortList.firstOrNull {
                 it.regex.find(domain) != null || type == it.type
             }?.function?.let { it(currentUrl) } ?: break
