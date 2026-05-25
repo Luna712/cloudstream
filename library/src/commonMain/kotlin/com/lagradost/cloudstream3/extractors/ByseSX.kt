@@ -45,7 +45,7 @@ open class ByseSX : ExtractorApi() {
     }
 
     private fun getBaseUrl(url: String): String {
-        return Url(url).hostWithProtocol
+        return Url(url).let { "${it.protocol.name}://${it.host}" }
     }
 
     private fun getCodeFromUrl(url: String): String {
