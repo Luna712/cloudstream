@@ -22,7 +22,7 @@ open class Streamplay : ExtractorApi() {
     ) {
         val request = app.get(url, referer = referer)
         val redirectUrl = request.url
-        val mainServer = Url(redirectUrl).hostWithProtocol
+        val mainServer = Url(redirectUrl).let { "${it.protocol.name}://${it.host}" }
         val key = redirectUrl.substringAfter("embed-").substringBefore(".html")
         val token =
             request.document.select("script").find { it.data().contains("sitekey:") }?.data()
