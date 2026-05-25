@@ -163,7 +163,7 @@ object APIHolder {
         try {
             val _url = Url(url)
             val domain = base64Encode(
-                ("${_url.hostWithProtocol}:443").encodeToByteArray(),
+                (_url.protocol.name + "://" + _url.host + ":443").encodeToByteArray(),
             ).replace("\n", "").replace("=", ".")
 
             val vToken =
