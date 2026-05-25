@@ -2,6 +2,7 @@ package com.lagradost.cloudstream3.utils
 
 import io.ktor.http.Url
 import io.ktor.http.URLBuilder
+import io.ktor.http.path
 
 object StringUtils {
     fun String.decodeUrl(): String {
