@@ -12,11 +12,11 @@ object StringUtils {
                 protocol = parsed.protocol
                 host = parsed.host
                 port = parsed.port
-                path(*parsed.pathSegments.toTypedArray())
+                path(*parsed.segments.toTypedArray())
                 parameters.appendAll(parsed.parameters)
                 fragment = parsed.fragment
             }.buildString()
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             this
         }
     }
@@ -24,7 +24,7 @@ object StringUtils {
     fun String.encodeUrl(): String {
         return try {
             URLBuilder(Url(this)).buildString()
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             // Fallback for malformed URLs
             this 
         }
