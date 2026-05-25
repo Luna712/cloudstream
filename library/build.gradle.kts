@@ -64,10 +64,6 @@ kotlin {
             implementation(libs.newpipeextractor)
             implementation(libs.tmdb.java) // TMDB API v3 Wrapper Made with RetroFit
         }
-
-        commonTest.dependencies {
-            implementation(kotlin("test"))
-        }
     }
 }
 
