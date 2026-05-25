@@ -24,6 +24,8 @@ import com.lagradost.cloudstream3.utils.SubtitleHelper.fromLanguageToTagIETF
 import com.lagradost.nicehttp.RequestBodyTypes
 import io.ktor.http.Url
 import io.ktor.http.URLBuilder
+import io.ktor.http.encodedPath
+import io.ktor.http.encodedQuery
 import io.ktor.http.takeFrom
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
