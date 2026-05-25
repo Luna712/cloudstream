@@ -1,14 +1,14 @@
 package com.lagradost.cloudstream3.extractors
 
+import com.lagradost.cloudstream3.ErrorLoadingException
 import com.lagradost.cloudstream3.SubtitleFile
+import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.newAudioFile
 import com.lagradost.cloudstream3.newSubtitleFile
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
-import com.lagradost.cloudstream3.utils.newExtractorLink
 import com.lagradost.cloudstream3.utils.ExtractorLinkType
-import org.schabi.newpipe.extractor.stream.StreamInfo
-import org.schabi.newpipe.extractor.stream.StreamType
+import com.lagradost.cloudstream3.utils.newExtractorLink
 
 class YoutubeShortLinkExtractor : YoutubeExtractor() {
     override val mainUrl = "https://youtu.be"
@@ -22,81 +22,159 @@ class YoutubeNoCookieExtractor : YoutubeExtractor() {
     override val mainUrl = "https://www.youtube-nocookie.com"
 }
 
+private data class PlayerResponse(
+    val streamingData: StreamingData? = null,
+    val videoDetails: VideoDetails? = null,
+    val captions: CaptionsHolder? = null,
+)
+
+private data class StreamingData(
+    val hlsManifestUrl: String? = null,
+    val adaptiveFormats: List<Format> = emptyList(),
+)
+
+private data class Format(
+    val itag: Int = 0,
+    val url: String? = null,
+    val mimeType: String? = null,   // e.g. "video/webm; codecs=\"vp9\""
+    val width: Int? = null,
+    val height: Int? = null,
+    val audioSampleRate: String? = null,
+    val audioChannels: Int? = null,
+)
+
+private data class VideoDetails(
+    val isLive: Boolean = false,
+    val isLiveContent: Boolean = false,
+)
+
+private data class CaptionsHolder(
+    val playerCaptionsTracklistRenderer: CaptionTracklistRenderer? = null,
+)
+
+private data class CaptionTracklistRenderer(
+    val captionTracks: List<CaptionTrack> = emptyList(),
+)
+
+private data class CaptionTrack(
+    val baseUrl: String? = null,
+    val name: RunsHolder? = null,
+    val languageCode: String? = null,
+)
+
+private data class RunsHolder(
+    val runs: List<Run> = emptyList(),
+)
+
+private data class Run(val text: String? = null)
+
 open class YoutubeExtractor : ExtractorApi() {
 
     override val mainUrl = "https://www.youtube.com"
     override val name = "YouTube"
     override val requiresReferer = false
 
+    // Innertube constants (web client)
+    private val INNERTUBE_API_KEY = "AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8"
+    private val INNERTUBE_CLIENT = mapOf(
+        "clientName" to "WEB",
+        "clientVersion" to "2.20240101.00.00",
+    )
+
     override suspend fun getUrl(
         url: String,
         referer: String?,
         subtitleCallback: (SubtitleFile) -> Unit,
-        callback: (ExtractorLink) -> Unit
+        callback: (ExtractorLink) -> Unit,
     ) {
         val videoId = extractYouTubeId(url)
-        val watchUrl = "$mainUrl/watch?v=$videoId"
+        val response = fetchPlayerResponse(videoId)
 
-        val info = StreamInfo.getInfo(watchUrl)
+        val isLive = response.videoDetails?.isLive == true
+            || response.videoDetails?.isLiveContent == true
 
-        val isLive =
-            info.streamType == StreamType.LIVE_STREAM
-                    || info.streamType == StreamType.AUDIO_LIVE_STREAM
-                    || info.streamType == StreamType.POST_LIVE_STREAM
-                    || info.streamType == StreamType.POST_LIVE_AUDIO_STREAM
+        val hlsUrl = response.streamingData?.hlsManifestUrl
 
-        if (isLive && info.hlsUrl != null) {
+        if (isLive && hlsUrl != null) {
             callback(
                 newExtractorLink(
                     source = name,
-                    name = "YouTube Live",
-                    url = info.hlsUrl
+                    name   = "YouTube Live",
+                    url    = hlsUrl,
                 ) {
                     type = ExtractorLinkType.M3U8
                 }
             )
-        } else {
-            processVideo(info, subtitleCallback, callback)
+            return
         }
+
+        processVideo(response, subtitleCallback, callback)
     }
 
-    private suspend fun processVideo(
-        info: StreamInfo,
+    private suspend fun fetchPlayerResponse(videoId: String): PlayerResponse {
+        val endpoint = "https://www.youtube.com/youtubei/v1/player?key=$INNERTUBE_API_KEY"
+
+        val body = mapOf(
+            "videoId" to videoId,
+            "context" to mapOf("client" to INNERTUBE_CLIENT),
+            "params" to "2AMBCgIQBg==", // tells Innertube to include adaptive formats
+        )
+
+        return app.post(
+            url = endpoint,
+            json = body,
+            headers = mapOf(
+                "Content-Type" to "application/json",
+                "User-Agent" to "Mozilla/5.0",
+                "Origin" to "https://www.youtube.com",
+                "Referer" to "https://www.youtube.com/watch?v=$videoId",
+            ),
+        ).parsedSafe<PlayerResponse>()
+            ?: throw ErrorLoadingException("Failed parsing player response")
+    }
+
+    private fun processVideo(
+        response: PlayerResponse,
         subtitleCallback: (SubtitleFile) -> Unit,
-        callback: (ExtractorLink) -> Unit
+        callback: (ExtractorLink) -> Unit,
     ): Boolean {
+        val formats = response.streamingData?.adaptiveFormats.orEmpty()
 
-        val videoStreams = info.videoOnlyStreams.orEmpty()
+        val videoFormats = formats.filter { it.width != null && it.height != null && it.url != null }
+        val audioFormats = formats.filter { it.audioSampleRate != null && it.url != null }
 
-        if (videoStreams.isEmpty()) return false
+        if (videoFormats.isEmpty()) return false
 
-        val audioStreams = info.audioStreams.orEmpty()
+        val audioTracks = audioFormats.map { newAudioFile(it.url!!) }
 
-        videoStreams.forEach { video ->
+        videoFormats.forEach { video ->
+            val codec = codecFromMimeType(video.mimeType)
+            val quality = video.height ?: 0
 
             callback(
                 newExtractorLink(
                     source = name,
-                    name = "YouTube ${normalizeCodec(video.codec)}",
-                    url = video.content
+                    name = "YouTube ${normalizeCodec(codec)}",
+                    url = video.url!!,
                 ) {
-                    quality = video.height
-                    audioTracks = audioStreams.map { newAudioFile(it.content) }
+                    this.quality = quality
+                    this.audioTracks = audioTracks
                 }
             )
         }
 
+        // Subtitles
+        response.captions
+            ?.playerCaptionsTracklistRenderer
+            ?.captionTracks
+            ?.forEach { track ->
+                val captionUrl = track.baseUrl ?: return@forEach
+                val lang = track.name?.runs?.firstOrNull()?.text
+                    ?: track.languageCode
+                    ?: "Unknown"
 
-        info.subtitles.forEach { subtitle ->
-            subtitleCallback(
-                newSubtitleFile(
-                    lang = subtitle.displayLanguageName
-                        ?: subtitle.languageTag
-                        ?: "Unknown",
-                    url = subtitle.content
-                )
-            )
-        }
+                subtitleCallback(newSubtitleFile(lang = lang, url = captionUrl))
+            }
 
         return true
     }
@@ -111,11 +189,16 @@ open class YoutubeExtractor : ExtractorApi() {
             ?: throw IllegalArgumentException("Invalid YouTube URL: $url")
     }
 
+    /** Pulls the codec string out of a mimeType like `video/webm; codecs="vp9"` */
+    private fun codecFromMimeType(mimeType: String?): String? {
+        if (mimeType.isNullOrBlank()) return null
+        val match = Regex("""codecs="([^"]+)"""").find(mimeType) ?: return null
+        return match.groupValues[1].split(',').firstOrNull()?.trim()
+    }
+
     private fun normalizeCodec(codec: String?): String {
         if (codec.isNullOrBlank()) return ""
-
         val c = codec.lowercase()
-
         return when {
             c.startsWith("av01") -> "AV1"
             c.startsWith("vp9") -> "VP9"
