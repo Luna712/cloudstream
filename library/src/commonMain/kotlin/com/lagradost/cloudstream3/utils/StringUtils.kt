@@ -12,7 +12,7 @@ object StringUtils {
                 protocol = parsed.protocol
                 host = parsed.host
                 port = parsed.port
-                path(parsed.pathSegments)
+                path(*parsed.pathSegments.toTypedArray())
                 parameters.appendAll(parsed.parameters)
                 fragment = parsed.fragment
             }.buildString()
