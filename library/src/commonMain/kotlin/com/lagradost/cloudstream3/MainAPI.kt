@@ -1315,7 +1315,7 @@ fun getQualityFromString(string: String?): SearchQuality? {
  * ```
  */
 fun MainAPI.updateUrl(url: String): String {
-    try {
+    return try {
         val original = Url(url)
         val updated = Url(mainUrl)
 
@@ -1328,7 +1328,7 @@ fun MainAPI.updateUrl(url: String): String {
         }.buildString()
     } catch (t: Throwable) {
         logError(t)
-        return url
+        url
     }
 }
 
