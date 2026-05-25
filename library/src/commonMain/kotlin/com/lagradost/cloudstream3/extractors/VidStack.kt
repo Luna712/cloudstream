@@ -84,7 +84,7 @@ open class VidStack : ExtractorApi() {
 
     private fun getBaseUrl(url: String): String {
         return try {
-            Url(url).hostWithProtocol
+            Url(url).let { "${it.protocol.name}://${it.host}" }
         } catch (e: Exception) {
             Log.e("Vidstack", "getBaseUrl fallback: ${e.message}")
             mainUrl
