@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream3.utils
 
+import kotlin.math.abs
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -13,7 +14,7 @@ class JsInterpreterTest {
     private fun bool(code: String) = evalJs(code) as? Boolean ?: false
 
     private fun assertApprox(expected: Double, actual: Double, tol: Double = 1e-9) {
-        assertTrue(kotlin.math.abs(actual - expected) <= tol, "Expected $expected ± $tol but was $actual")
+        assertTrue(abs(actual - expected) <= tol, "Expected $expected ± $tol but was $actual")
     }
 
     @Test
@@ -726,7 +727,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun urlExtraction() {
+    fun jsContextUrlExtractionPattern() {
         val scriptContent = "var url = '/e/abc123?t=' + (1000+337) + '&s=xyz'"
         val ctx = JsContext()
         ctx.eval(scriptContent)
@@ -747,6 +748,48 @@ class JsInterpreterTest {
     fun evaluateMathProducesCharCode() {
         val code = "eval(1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1)"
         assertEquals(65.0, (evalJs(code) as? Double) ?: 0.0)
+    }
+
+    @Test
+    fun evalJsWithVariableReturnsNamedVar() {
+        val result = evalJs("var x = 42", "x")
+        assertEquals(42.0, result as? Double)
+    }
+
+    @Test
+    fun evalJsWithVariableReturnsNullForUndefined() {
+        val result = evalJs("var x = 42", "y")
+        assertNull(result)
+    }
+
+    @Test
+    fun evalJsWithVariableAfterComputation() {
+        val result = evalJs("var x = 1 + 2 * 3", "x")
+        assertEquals(7.0, result as? Double)
+    }
+
+    @Test
+    fun evalJsWithVariableStringValue() {
+        val result = evalJs("var url = 'https://example.com'", "url")
+        assertEquals("https://example.com", result as? String)
+    }
+
+    @Test
+    fun evalJsWithVariableNullValue() {
+        val result = evalJs("var x = null", "x")
+        assertNull(result)
+    }
+
+    @Test
+    fun evalJsWithVariableUnitWhenNoVariable() {
+        val result = evalJs("var x = 42")
+        assertEquals(Unit, result)
+    }
+
+    @Test
+    fun evalJsWithVariableAfterMultipleStatements() {
+        val result = evalJs("var x = 0; for(var i=1;i<=5;i++){x+=i}", "x")
+        assertEquals(15.0, result as? Double)
     }
 
     @Test
