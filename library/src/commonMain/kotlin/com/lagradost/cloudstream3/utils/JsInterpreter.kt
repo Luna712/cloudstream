@@ -64,11 +64,22 @@ class JsContext {
 }
 
 /**
- * Evaluate [js] and return its last value.  Convenience wrapper for one-shot
- * evaluations, equivalent to the old `rhino.evaluateString(scope, js, ...)`.
+ * Evaluate [js] and return its last value, or the value of [variable] if specified.
+ * Convenience wrapper for one-shot evaluations, equivalent to the old
+ * `rhino.evaluateString(scope, js, ...)`.
+ *
+ * @param js The JavaScript code to evaluate.
+ * @param variable Optional variable name to retrieve from the scope after evaluation.
+ * @return A [Result] wrapping the last expression value, or the named variable value.
+ *         Use [Result.getOrNull] to get the value or null on failure,
+ *         or [Result.getOrThrow] to rethrow any exception.
  */
 @Prerelease
-fun evalJs(js: String): Any? = JsInterpreter().eval(js)
+fun evalJs(js: String, variable: String? = null): Result<Any?> = runCatching {
+    val interpreter = JsInterpreter()
+    val result = interpreter.eval(js)
+    if (variable != null) interpreter.getVar(variable) else result
+}
 
 private enum class TT {
     NUMBER, STRING, IDENT, PLUS, MINUS, STAR, SLASH, PERCENT, EQ, EQEQ, EQEQEQ,
