@@ -103,7 +103,7 @@ open class GDMirrorbot : ExtractorApi() {
     }
 
     private fun getBaseUrl(url: String): String {
-        return Url(url).hostWithProtocol
+        return Url(url).let { "${it.protocol.name}://${it.host}" }
     }
 }
 
