@@ -9,9 +9,9 @@ import kotlin.test.assertFalse
 
 class JsInterpreterTest {
 
-    private fun num(code: String) = (evalJs(code) as? Double) ?: Double.NaN
-    private fun str(code: String) = jsValueToString(evalJs(code))
-    private fun bool(code: String) = evalJs(code) as? Boolean ?: false
+    private fun num(code: String, variable: String? = null) = (evalJs(code, variable) as? Double) ?: Double.NaN
+    private fun str(code: String, variable: String? = null) = jsValueToString(evalJs(code, variable))
+    private fun bool(code: String, variable: String? = null) = evalJs(code, variable) as? Boolean ?: false
 
     private fun assertApprox(expected: Double, actual: Double, tol: Double = 1e-9) {
         assertTrue(abs(actual - expected) <= tol, "Expected $expected ± $tol but was $actual")
@@ -752,44 +752,37 @@ class JsInterpreterTest {
 
     @Test
     fun evalJsWithVariableReturnsNamedVar() {
-        val result = evalJs("var x = 42", "x")
-        assertEquals(42.0, result as? Double)
-    }
-
-    @Test
-    fun evalJsWithVariableReturnsNullForUndefined() {
-        val result = evalJs("var x = 42", "y")
-        assertNull(result)
+        assertEquals(42.0, num("var x = 42", "x"))
     }
 
     @Test
     fun evalJsWithVariableAfterComputation() {
-        val result = evalJs("var x = 1 + 2 * 3", "x")
-        assertEquals(7.0, result as? Double)
+        assertEquals(7.0, num("var x = 1 + 2 * 3", "x"))
     }
 
     @Test
     fun evalJsWithVariableStringValue() {
-        val result = evalJs("var url = 'https://example.com'", "url")
-        assertEquals("https://example.com", result as? String)
+        assertEquals("https://example.com", str("var url = 'https://example.com'", "url"))
     }
 
     @Test
     fun evalJsWithVariableNullValue() {
-        val result = evalJs("var x = null", "x")
-        assertNull(result)
+        assertNull(evalJs("var x = null", "x"))
+    }
+
+    @Test
+    fun evalJsWithVariableReturnsNullForUndefined() {
+        assertNull(evalJs("var x = 42", "y"))
     }
 
     @Test
     fun evalJsWithVariableUnitWhenNoVariable() {
-        val result = evalJs("var x = 42")
-        assertEquals(Unit, result)
+        assertEquals(Unit, evalJs("var x = 42"))
     }
 
     @Test
     fun evalJsWithVariableAfterMultipleStatements() {
-        val result = evalJs("var x = 0; for(var i=1;i<=5;i++){x+=i}", "x")
-        assertEquals(15.0, result as? Double)
+        assertEquals(15.0, num("var x = 0; for(var i=1;i<=5;i++){x+=i}", "x"))
     }
 
     @Test
