@@ -1324,7 +1324,6 @@ fun MainAPI.updateUrl(url: String): String {
             takeFrom(updated)
             user = original.user
             encodedPath = original.encodedPath
-            encodedQuery = original.encodedQuery
             fragment = original.fragment
 
             parameters.clear()
