@@ -228,7 +228,8 @@ private fun VersionDot() {
     )
 }
 
-@Preview
+@Preview(name = "Dark", showBackground = true, backgroundColor = 0xFF111111) // Dark background
+@Preview(name = "Light", showBackground = true, backgroundColor = 0xFFFFFFFF) // Light background
 @Composable
 private fun SettingsScreenPreview() {
     CloudStreamTheme {
