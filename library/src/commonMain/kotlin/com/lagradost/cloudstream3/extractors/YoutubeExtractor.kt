@@ -133,7 +133,7 @@ open class YoutubeExtractor : ExtractorApi() {
             ?: throw ErrorLoadingException("Failed parsing player response")
     }
 
-    private fun processVideo(
+    private suspend fun processVideo(
         response: PlayerResponse,
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit,
