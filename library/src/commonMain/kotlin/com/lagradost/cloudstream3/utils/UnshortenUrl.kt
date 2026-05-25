@@ -57,8 +57,7 @@ object ShortLink {
             visitedUrls += currentUrl
             count -= 1
 
-            val domain =
-                Url(currentUrl.trim()).host
+            val domain = Url(currentUrl.trim()).host
             currentUrl = shortList.firstOrNull {
                 it.regex.find(domain) != null || type == it.type
             }?.function?.let { it(currentUrl) } ?: break
