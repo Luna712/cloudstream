@@ -5,7 +5,7 @@ import kotlin.jvm.JvmInline
 
 object DeviceLayout {
     @JvmInline // This still works but has no affect on non-JVM targets
-    value class Layout private constructor(private val value: Int) {
+    value class Layout(private val value: Int) {
         infix fun or(other: Layout) = Layout(value or other.value)
         internal fun and(other: Layout) = (value and other.value) != 0
     }
