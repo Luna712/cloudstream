@@ -10,7 +10,7 @@ import com.lagradost.cloudstream4.preferences.PreferenceDefaults
 import com.lagradost.cloudstream4.preferences.PreferenceKeys
 
 internal actual object DeviceInfo {
-    actual fun getDeviceType(): Int {
+    actual fun getDeviceLayout(): Int {
         val context = getContext() as? Context ?: return DeviceLayout.PHONE
         val uiModeManager = context.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager?
         val isTelevisionMode = uiModeManager?.currentModeType == Configuration.UI_MODE_TYPE_TELEVISION
