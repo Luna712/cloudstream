@@ -4,22 +4,15 @@ import com.lagradost.cloudstream4.preferences.PreferenceDefaults
 import kotlin.jvm.JvmInline
 
 object DeviceLayout {
-    val PHONE = Layout.PHONE
-    val TV = Layout.TV
-    val EMULATOR = Layout.EMULATOR
-    val COMPUTER = Layout.COMPUTER
-
     @JvmInline // This still works but bas no affect on non-JVM targets
     value class Layout(val value: Int) {
-        companion object {
-            val PHONE = Layout(0b00001)
-            val TV = Layout(0b00010)
-            val EMULATOR = Layout(0b00100)
-            val COMPUTER = Layout(0b01000)
-        }
-
         infix fun or(other: Layout) = Layout(value or other.value)
     }
+
+    val PHONE = Layout(0b00001)
+    val TV = Layout(0b00010)
+    val EMULATOR = Layout(0b00100)
+    val COMPUTER = Layout(0b01000)
 
     private var layoutId = Layout(PreferenceDefaults.APP_LAYOUT)
     // TODO when fully on Compose
