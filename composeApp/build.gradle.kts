@@ -19,6 +19,7 @@ kotlin {
     }
 
     jvm()
+    mingwX64()
 
     compilerOptions {
         freeCompilerArgs.add("-Xexpect-actual-classes")
