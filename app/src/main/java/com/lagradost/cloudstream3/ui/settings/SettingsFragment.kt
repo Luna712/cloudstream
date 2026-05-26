@@ -20,6 +20,7 @@ import com.lagradost.cloudstream3.ui.settings.Globals.isLandscape
 import com.lagradost.cloudstream3.ui.settings.Globals.isLayout
 import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 import com.lagradost.cloudstream3.utils.UIHelper.toPx
+import com.lagradost.cloudstream4.utils.DeviceLayout
 import java.io.File
 
 // Moved to com.lagradost.cloudstream3.ui.compose.settings.SettingsFragment
@@ -39,7 +40,7 @@ class SettingsFragment {
         /**
          * Hide many Preferences on selected layouts.
          **/
-        fun PreferenceFragmentCompat?.hidePrefs(ids: List<Int>, layoutFlags: Int) {
+        fun PreferenceFragmentCompat?.hidePrefs(ids: List<Int>, layoutFlags: DeviceLayout.Layout) {
             if (this == null) return
 
             try {
@@ -58,7 +59,7 @@ class SettingsFragment {
          * [hideOn] is usually followed by some actions on the preference which are mostly
          * unnecessary when the preference is disabled for the said layout thus returning null.
          **/
-        fun Preference?.hideOn(layoutFlags: Int): Preference? {
+        fun Preference?.hideOn(layoutFlags: DeviceLayout.Layout): Preference? {
             if (this == null) return null
             this.isVisible = !isLayout(layoutFlags)
             return if(this.isVisible) this else null
