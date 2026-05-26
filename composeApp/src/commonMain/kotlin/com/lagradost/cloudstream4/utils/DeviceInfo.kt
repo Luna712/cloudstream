@@ -6,6 +6,11 @@ internal expect object DeviceInfo {
     fun getLayoutPreference(): Int
 }
 
-enum class DeviceType {
+// HIDDEN prevents this from showing up in auto completion at all.
+@Deprecated(
+    message = "Use DeviceLayout.isLayout() instead",
+    level = DeprecationLevel.HIDDEN,
+)
+internal enum class DeviceType {
     PHONE, TV, EMULATOR, COMPUTER
 }
