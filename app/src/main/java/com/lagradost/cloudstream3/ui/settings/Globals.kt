@@ -3,6 +3,9 @@ package com.lagradost.cloudstream3.ui.settings
 import android.content.Context
 import com.lagradost.cloudstream4.utils.DeviceLayout
 
+// TODO: remove and use DeviceLayout directly.
+// this currently just acts as a wrapper to
+// avoid changing so much at once.
 object Globals {
     var beneneCount = 0
 
