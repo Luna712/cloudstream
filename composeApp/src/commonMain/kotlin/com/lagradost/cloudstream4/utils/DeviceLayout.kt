@@ -3,10 +3,16 @@ package com.lagradost.cloudstream4.utils
 import com.lagradost.cloudstream4.preferences.PreferenceDefaults
 
 object DeviceLayout {
-    const val PHONE: Int = 0b00001
-    const val TV: Int = 0b00010
-    const val EMULATOR: Int = 0b00100
-    const val COMPUTER: Int = 0b01000
+    value class Layout(val value: Int) {
+        companion object {
+            val PHONE = Layout(0b00001)
+            val TV = Layout(0b00010)
+            val EMULATOR = Layout(0b00100)
+            val COMPUTER = Layout(0b01000)
+        }
+
+        infix fun or(other: Layout) = Layout(value or other.value)
+    }
 
     private var layoutId = -1
     // TODO when fully on Compose
@@ -21,7 +27,7 @@ object DeviceLayout {
      *
      * Valid flags are: PHONE, TV, EMULATOR, or COMPUTER
      */
-    fun isLayout(flags: Int): Boolean = (layoutId and flags) != 0
+    fun isLayout(flags: Layout): Boolean = (layoutId and flags.value) != 0
 
     /** Returns true if the current orientation is landscape. */
     fun isLandscape(): Boolean =
