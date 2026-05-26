@@ -3,6 +3,7 @@ package com.lagradost.cloudstream4.utils
 import java.awt.Toolkit
 
 internal actual object DeviceInfo {
+    @Suppress("DEPRECATION", "DEPRECATION_ERROR")
     actual fun getDeviceType(): DeviceType = DeviceType.COMPUTER
 
     actual fun isLandscape(): Boolean {
