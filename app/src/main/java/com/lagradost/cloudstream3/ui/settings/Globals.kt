@@ -6,9 +6,9 @@ import com.lagradost.cloudstream4.utils.DeviceLayout
 object Globals {
     var beneneCount = 0
 
-    const val PHONE: Int = DeviceLayout.PHONE
-    const val TV: Int = DeviceLayout.TV
-    const val EMULATOR: Int = DeviceLayout.EMULATOR
+    val PHONE = DeviceLayout.PHONE
+    val TV = DeviceLayout.TV
+    val EMULATOR = DeviceLayout.EMULATOR
 
     fun Context.updateTv() {
         DeviceLayout.update()
@@ -16,5 +16,5 @@ object Globals {
 
     fun isLandscape(): Boolean = DeviceLayout.isLandscape()
 
-    fun isLayout(flags: Int): Boolean = DeviceLayout.isLayout(flags)
+    fun isLayout(flags: DeviceLayout.Layout): Boolean = DeviceLayout.isLayout(flags)
 }
