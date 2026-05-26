@@ -10,6 +10,7 @@ import com.lagradost.cloudstream4.preferences.PreferenceDefaults
 import com.lagradost.cloudstream4.preferences.PreferenceKeys
 
 internal actual object DeviceInfo {
+    @Suppress("DEPRECATION", "DEPRECATION_ERROR")
     actual fun getDeviceType(): DeviceType {
         val context = getContext() as? Context ?: return DeviceType.PHONE
         val uiModeManager = context.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager?
