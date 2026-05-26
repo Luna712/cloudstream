@@ -11,6 +11,7 @@ internal enum class DeviceType {
 }
 
 internal expect object DeviceInfo {
+    @Suppress("DEPRECATION", "DEPRECATION_ERROR")
     fun getDeviceType(): DeviceType
     fun isLandscape(): Boolean
     fun getLayoutPreference(): Int
