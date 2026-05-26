@@ -14,7 +14,7 @@ object DeviceLayout {
         infix fun or(other: Layout) = Layout(value or other.value)
     }
 
-    private var layoutId = -1
+    private var layoutId = Layout(-1)
     // TODO when fully on Compose
     // private val layoutId: Int get() = resolveLayout()
 
@@ -27,7 +27,7 @@ object DeviceLayout {
      *
      * Valid flags are: PHONE, TV, EMULATOR, or COMPUTER
      */
-    fun isLayout(flags: Layout): Boolean = (layoutId and flags.value) != 0
+    fun isLayout(flags: Layout): Boolean = (layoutId.value and flags.value) != 0
 
     /** Returns true if the current orientation is landscape. */
     fun isLandscape(): Boolean =
@@ -44,7 +44,7 @@ object DeviceLayout {
         layoutId = resolveLayout()
     }
 
-    private fun resolveLayout(): Int {
+    private fun resolveLayout(): Layout {
         return when (DeviceInfo.getLayoutPreference()) {
             PreferenceDefaults.APP_LAYOUT -> DeviceInfo.getDeviceLayout()
             0 -> PHONE
