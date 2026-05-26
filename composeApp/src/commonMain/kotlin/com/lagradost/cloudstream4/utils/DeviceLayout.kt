@@ -14,6 +14,11 @@ object DeviceLayout {
         infix fun or(other: Layout) = Layout(value or other.value)
     }
 
+    val PHONE = Layout.PHONE
+    val TV = Layout.TV
+    val EMULATOR = Layout.EMULATOR
+    val COMPUTER = Layout.COMPUTER
+
     private var layoutId = Layout(-1)
     // TODO when fully on Compose
     // private val layoutId: Int get() = resolveLayout()
