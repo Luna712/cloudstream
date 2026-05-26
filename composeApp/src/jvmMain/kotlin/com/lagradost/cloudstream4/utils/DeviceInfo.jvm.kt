@@ -3,7 +3,7 @@ package com.lagradost.cloudstream4.utils
 import java.awt.Toolkit
 
 internal actual object DeviceInfo {
-    actual fun getDeviceType(): Int = DeviceLayout.COMPUTER
+    actual fun getDeviceLayout(): Int = DeviceLayout.COMPUTER
 
     actual fun isLandscape(): Boolean {
         return try {
