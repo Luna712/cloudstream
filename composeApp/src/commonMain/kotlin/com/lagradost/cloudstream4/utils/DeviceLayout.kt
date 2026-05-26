@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream4.utils
 
 import com.lagradost.cloudstream4.preferences.PreferenceDefaults
+import kotlin.jvm.JvmInline
 
 object DeviceLayout {
     @JvmInline
