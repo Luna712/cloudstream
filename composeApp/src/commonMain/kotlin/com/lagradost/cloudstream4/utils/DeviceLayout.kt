@@ -36,6 +36,7 @@ object DeviceLayout {
         layoutId = resolveLayout()
     }
 
+    @Suppress("DEPRECATION", "DEPRECATION_ERROR")
     private fun resolveLayout(): Int {
         return when (DeviceInfo.getLayoutPreference()) {
             -1 -> when (DeviceInfo.getDeviceType()) {
