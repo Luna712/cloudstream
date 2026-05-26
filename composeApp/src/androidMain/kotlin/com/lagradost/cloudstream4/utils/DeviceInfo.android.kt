@@ -11,8 +11,8 @@ import com.lagradost.cloudstream4.preferences.PreferenceKeys
 
 internal actual object DeviceInfo {
     @Suppress("DEPRECATION", "DEPRECATION_ERROR")
-    actual fun getDeviceType(): DeviceType {
-        val context = getContext() as? Context ?: return DeviceType.PHONE
+    actual fun getDeviceType(): Int {
+        val context = getContext() as? Context ?: return DeviceLayout.PHONE
         val uiModeManager = context.getSystemService(Context.UI_MODE_SERVICE) as UiModeManager?
         val isTelevisionMode = uiModeManager?.currentModeType == Configuration.UI_MODE_TYPE_TELEVISION
         val model = Build.MODEL.lowercase()
@@ -21,8 +21,8 @@ internal actual object DeviceInfo {
                 || Build.MODEL.contains("AFT") // AFT = Fire TV
                 || model.contains("firestick")
                 || model.contains("fire tv")
-                || model.contains("chromecast") -> DeviceType.TV
-            else -> DeviceType.PHONE
+                || model.contains("chromecast") -> DeviceLayout.TV
+            else -> DeviceLayout.PHONE
         }
     }
 
