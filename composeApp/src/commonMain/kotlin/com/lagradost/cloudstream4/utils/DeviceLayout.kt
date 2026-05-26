@@ -36,15 +36,9 @@ object DeviceLayout {
         layoutId = resolveLayout()
     }
 
-    @Suppress("DEPRECATION", "DEPRECATION_ERROR")
     private fun resolveLayout(): Int {
         return when (DeviceInfo.getLayoutPreference()) {
-            -1 -> when (DeviceInfo.getDeviceType()) {
-                DeviceType.COMPUTER -> COMPUTER
-                DeviceType.EMULATOR -> EMULATOR
-                DeviceType.PHONE -> PHONE
-                DeviceType.TV -> TV
-            }
+            -1 -> DeviceInfo.getDeviceType()
             0 -> PHONE
             1 -> TV
             2 -> EMULATOR
