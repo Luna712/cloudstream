@@ -4,11 +4,6 @@ import com.lagradost.cloudstream4.preferences.PreferenceDefaults
 import kotlin.jvm.JvmInline
 
 object DeviceLayout {
-    @JvmInline // This still works but bas no affect on non-JVM targets
-    value class Layout(val value: Int) {
-        infix fun or(other: Layout) = Layout(value or other.value)
-    }
-
     val PHONE = Layout(0b00001)
     val TV = Layout(0b00010)
     val EMULATOR = Layout(0b00100)
@@ -17,6 +12,11 @@ object DeviceLayout {
     private var layoutId = Layout(PreferenceDefaults.APP_LAYOUT)
     // TODO when fully on Compose
     // private val layoutId: Int get() = resolveLayout()
+
+    @JvmInline // This still works but bas no affect on non-JVM targets
+    value class Layout(val value: Int) {
+        infix fun or(other: Layout) = Layout(value or other.value)
+    }
 
     /**
      * Returns true if the layout is any of the flags, so
