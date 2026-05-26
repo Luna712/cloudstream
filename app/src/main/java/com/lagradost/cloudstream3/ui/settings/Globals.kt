@@ -9,9 +9,9 @@ import com.lagradost.cloudstream4.utils.DeviceLayout
 object Globals {
     var beneneCount = 0
 
-    val PHONE: Int = DeviceLayout.PHONE.value
-    val TV: Int = DeviceLayout.TV.value
-    val EMULATOR: Int = DeviceLayout.EMULATOR.value
+    const val PHONE: Int = 0b00001
+    const val TV: Int = 0b00010
+    const val EMULATOR: Int = 0b00100
 
     fun Context.updateTv() {
         DeviceLayout.update()
