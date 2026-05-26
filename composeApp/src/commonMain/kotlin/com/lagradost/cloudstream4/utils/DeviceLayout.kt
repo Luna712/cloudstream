@@ -38,7 +38,7 @@ object DeviceLayout {
 
     private fun resolveLayout(): Int {
         return when (DeviceInfo.getLayoutPreference()) {
-            -1 -> DeviceInfo.getDeviceType()
+            -1 -> DeviceInfo.getDeviceLayout()
             0 -> PHONE
             1 -> TV
             2 -> EMULATOR
