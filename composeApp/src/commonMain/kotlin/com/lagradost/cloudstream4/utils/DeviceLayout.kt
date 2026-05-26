@@ -5,8 +5,9 @@ import kotlin.jvm.JvmInline
 
 object DeviceLayout {
     @JvmInline // This still works but has no affect on non-JVM targets
-    internal value class Layout(val value: Int) {
+    value class Layout private constructor(private val value: Int) {
         infix fun or(other: Layout) = Layout(value or other.value)
+        internal fun and(other: Layout) = (value and other.value) != 0
     }
 
     val PHONE = Layout(0b00001)
@@ -27,7 +28,7 @@ object DeviceLayout {
      *
      * Valid flags are: PHONE, TV, EMULATOR, or COMPUTER
      */
-    fun isLayout(flags: Layout): Boolean = (layoutId.value and flags.value) != 0
+    fun isLayout(flags: Layout): Boolean = layoutId.and(flags)
 
     /** Returns true if the current orientation is landscape. */
     fun isLandscape(): Boolean =
