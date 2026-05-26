@@ -4,7 +4,7 @@ import com.lagradost.cloudstream4.preferences.PreferenceDefaults
 import kotlin.jvm.JvmInline
 
 object DeviceLayout {
-    @JvmInline
+    @JvmInline // This still works but bas no affect on non-JVM targets
     value class Layout(val value: Int) {
         companion object {
             val PHONE = Layout(0b00001)
