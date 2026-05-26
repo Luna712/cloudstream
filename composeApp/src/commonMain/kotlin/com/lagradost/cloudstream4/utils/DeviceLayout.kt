@@ -1,5 +1,7 @@
 package com.lagradost.cloudstream4.utils
 
+import com.lagradost.cloudstream4.preferences.PreferenceDefaults
+
 object DeviceLayout {
     const val PHONE: Int = 0b00001
     const val TV: Int = 0b00010
@@ -38,7 +40,7 @@ object DeviceLayout {
 
     private fun resolveLayout(): Int {
         return when (DeviceInfo.getLayoutPreference()) {
-            -1 -> DeviceInfo.getDeviceLayout()
+            PreferenceDefaults.APP_LAYOUT -> DeviceInfo.getDeviceLayout()
             0 -> PHONE
             1 -> TV
             2 -> EMULATOR
