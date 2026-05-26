@@ -3,6 +3,7 @@ package com.lagradost.cloudstream4.utils
 import com.lagradost.cloudstream4.preferences.PreferenceDefaults
 
 object DeviceLayout {
+    @JvmInline
     value class Layout(val value: Int) {
         companion object {
             val PHONE = Layout(0b00001)
