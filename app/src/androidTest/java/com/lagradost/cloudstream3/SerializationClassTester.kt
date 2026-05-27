@@ -108,11 +108,17 @@ class SerializationClassTester {
         return ClassGraph()
             .enableClassInfo()
             .enableAnnotationInfo()
-            .overrideClassLoaders(context.classLoader)
+            .overrideClasspath(context.packageCodePath)
             .acceptPackages(packageName)
             .scan()
             .getClassesWithAnnotation(Serializable::class.java.name)
-            .mapNotNull { runCatching { Class.forName(it.name, false, context.classLoader).kotlin }.getOrNull() }
+            .mapNotNull {
+                runCatching {
+                    Class.forName(it.name, true, context.classLoader).kotlin
+                }.onFailure { err ->
+                    println("LOAD FAILED: ${it.name} -> $err")
+                }.getOrNull()
+            }
     }
 
     @OptIn(InternalSerializationApi::class)
