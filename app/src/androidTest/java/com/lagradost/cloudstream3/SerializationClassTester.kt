@@ -27,7 +27,7 @@ class SerializationClassTester {
     @Test
     fun isIdenticalSerialization() {
         val serializableClasses = findSerializableClasses("com.lagradost")
-        assertNotNull(null, "Number of serializable classes: ${serializableClasses.size}")
+        println("Number of serializable classes: ${serializableClasses.size}")
 
         serializableClasses.forEach { kClass ->
             val instance = Instancio.create(kClass.java)
@@ -119,15 +119,20 @@ class SerializationClassTester {
         val allClasses = scanResult.allClasses.map { it.name }
         val serializableClasses = scanResult.getClassesWithAnnotation(Serializable::class.java.name).map { it.name }
 
-        instrumentation.targetContext.getExternalFilesDir(null)
-            ?.resolve("classgraph_debug.txt")
-            ?.writeText(
-                """
-                Classpaths: $classpaths
-                All scanned classes (${allClasses.size}): $allClasses
-                Serializable classes (${serializableClasses.size}): $serializableClasses
-                """.trimIndent()
-            )
+        check(allClasses.isNotEmpty()) {
+            """
+            ClassGraph found no classes at all!
+            Classpaths: $classpaths
+            """.trimIndent()
+        }
+
+        check(serializableClasses.isNotEmpty()) {
+            """
+            ClassGraph found no @Serializable classes!
+            Classpaths: $classpaths
+            All scanned classes (${allClasses.size}): $allClasses
+            """.trimIndent()
+        }
 
         return scanResult
             .getClassesWithAnnotation(Serializable::class.java.name)
@@ -135,9 +140,7 @@ class SerializationClassTester {
                 runCatching {
                     Class.forName(it.name, true, classLoader).kotlin
                 }.onFailure { err ->
-                    instrumentation.targetContext.getExternalFilesDir(null)
-                        ?.resolve("classgraph_load_failures.txt")
-                        ?.appendText("LOAD FAILED: ${it.name} -> $err\n")
+                    error("LOAD FAILED: ${it.name} -> $err")
                 }.getOrNull()
             }
     }
