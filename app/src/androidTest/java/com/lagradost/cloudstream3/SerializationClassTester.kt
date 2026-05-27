@@ -101,20 +101,24 @@ class SerializationClassTester {
     }
 
     private fun findSerializableClasses(packageName: String): List<KClass<*>> {
-        val context = InstrumentationRegistry
-            .getInstrumentation()
-            .targetContext
+        val instrumentation = InstrumentationRegistry.getInstrumentation()
+        val classLoader = instrumentation.targetContext.classLoader
+
+        val classpaths = listOfNotNull(
+            instrumentation.context.packageCodePath,
+            instrumentation.targetContext.packageCodePath,
+        ).distinct()
 
         return ClassGraph()
             .enableClassInfo()
             .enableAnnotationInfo()
-            .overrideClasspath(context.packageCodePath)
+            .overrideClasspath(*classpaths.toTypedArray())
             .acceptPackages(packageName)
             .scan()
             .getClassesWithAnnotation(Serializable::class.java.name)
             .mapNotNull {
                 runCatching {
-                    Class.forName(it.name, true, context.classLoader).kotlin
+                    Class.forName(it.name, true, classLoader).kotlin
                 }.onFailure { err ->
                     println("LOAD FAILED: ${it.name} -> $err")
                 }.getOrNull()
