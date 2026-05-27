@@ -8,6 +8,8 @@ import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.M3u8Helper
 import kotlin.random.Random
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.SerialName
 
 class Sblona : StreamSB() {
     override var name = "Sblona"
@@ -189,9 +191,10 @@ open class StreamSB : ExtractorApi() {
         }
     }
 
+    @Serializable
     data class Subs (
-        @JsonProperty("file") val file: String? = null,
-        @JsonProperty("label") val label: String? = null,
+        @SerialName("file2") val file: String? = null,
+        @SerialName("label") val label: String? = null,
     )
 
     data class StreamData (
