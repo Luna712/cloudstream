@@ -109,18 +109,35 @@ class SerializationClassTester {
             instrumentation.targetContext.packageCodePath,
         ).distinct()
 
-        return ClassGraph()
+        val scanResult = ClassGraph()
             .enableClassInfo()
             .enableAnnotationInfo()
             .overrideClasspath(*classpaths.toTypedArray())
             .acceptPackages(packageName)
             .scan()
+
+        val allClasses = scanResult.allClasses.map { it.name }
+        val serializableClasses = scanResult.getClassesWithAnnotation(Serializable::class.java.name).map { it.name }
+
+        instrumentation.targetContext.getExternalFilesDir(null)
+            ?.resolve("classgraph_debug.txt")
+            ?.writeText(
+                """
+                Classpaths: $classpaths
+                All scanned classes (${allClasses.size}): $allClasses
+                Serializable classes (${serializableClasses.size}): $serializableClasses
+                """.trimIndent()
+            )
+
+        return scanResult
             .getClassesWithAnnotation(Serializable::class.java.name)
             .mapNotNull {
                 runCatching {
                     Class.forName(it.name, true, classLoader).kotlin
                 }.onFailure { err ->
-                    println("LOAD FAILED: ${it.name} -> $err")
+                    instrumentation.targetContext.getExternalFilesDir(null)
+                        ?.resolve("classgraph_load_failures.txt")
+                        ?.appendText("LOAD FAILED: ${it.name} -> $err\n")
                 }.getOrNull()
             }
     }
