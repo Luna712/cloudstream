@@ -14,7 +14,7 @@ import kotlin.reflect.KClass
 
 @OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
 object AppUtils {
-    /** Any object as JSON string */
+    /** Any object as a JSON string */
     fun Any.toJson(): String {
         if (this is String) return this
         return toJsonLiteral()
