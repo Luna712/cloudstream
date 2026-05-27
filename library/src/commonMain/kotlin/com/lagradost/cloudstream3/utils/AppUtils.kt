@@ -14,7 +14,7 @@ import kotlin.reflect.KClass
 
 @OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
 object AppUtils {
-    /** Any object as json string */
+    /** Any object as JSON string */
     fun Any.toJson(): String {
         if (this is String) return this
         return toJsonLiteral()
@@ -55,6 +55,7 @@ object AppUtils {
         }
     }
 
+    /** Sometimes we want to encode as JSON even if it is already a String. */
     @InternalAPI
     fun Any.toJsonLiteral(): String {
         // @Serializable generates a serializer at compile time; contextual serializers are
