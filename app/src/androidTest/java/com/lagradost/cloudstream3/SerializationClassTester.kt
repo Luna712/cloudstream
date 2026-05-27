@@ -27,7 +27,7 @@ class SerializationClassTester {
     @Test
     fun isIdenticalSerialization() {
         val serializableClasses = findSerializableClasses("com.lagradost")
-        println("Number of serializable classes: ${serializableClasses.size}")
+        assertNotNull(null, "Number of serializable classes: ${serializableClasses.size}")
 
         serializableClasses.forEach { kClass ->
             val instance = Instancio.create(kClass.java)
