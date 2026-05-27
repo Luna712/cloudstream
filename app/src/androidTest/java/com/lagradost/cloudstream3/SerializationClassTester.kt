@@ -113,6 +113,8 @@ class SerializationClassTester {
             .enableClassInfo()
             .enableAnnotationInfo()
             .overrideClasspath(*classpaths.toTypedArray())
+            .overrideClassLoaders(classLoader)
+            .ignoreParentClassLoaders()
             .acceptPackages(packageName)
             .scan()
 
