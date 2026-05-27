@@ -173,7 +173,7 @@ object DataStore {
     fun <T> Context.setKey(path: String, value: T) {
         try {
             getSharedPrefs().edit {
-                putString(path, value.toJsonLiteral())
+                putString(path, value?.toJsonLiteral())
             }
         } catch (e: Exception) {
             logError(e)
