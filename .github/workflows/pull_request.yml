@@ -81,3 +81,18 @@ jobs:
       with:
         name: instrumented-test-results
         path: '**/build/reports/androidTests/'
+
+    - name: Pull debug logs
+      if: always()
+      run: |
+        adb pull /sdcard/Android/data/com.lagradost.cloudstream3/files/classgraph_debug.txt || true
+        adb pull /sdcard/Android/data/com.lagradost.cloudstream3/files/classgraph_load_failures.txt || true
+
+    - name: Upload debug logs
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: classgraph-debug
+        path: |
+          classgraph_debug.txt
+          classgraph_load_failures.txt
