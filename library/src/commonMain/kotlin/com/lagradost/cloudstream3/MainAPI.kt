@@ -2531,10 +2531,10 @@ fun Episode.addDate(date: String?, format: String = "yyyy-MM-dd") {
                 val fmt = DateTimeComponents.Format { byUnicodePattern(format) }
                 val components = DateTimeComponents.parse(date, fmt)
                 /**
-                 * Try multiple conversions in order of precision, since the date string format
-                 * may or may not include time and/or timezone offset information:
-                 * 1. If the string has a UTC offset (e.g. "2026-05-17T14:35+02:00"), use it directly
-                 * 2. If it has time but no offset (e.g. "2026-05-17T14:35"), fall back to device timezone
+                 * Try multiple conversions in order of precision for non-ISO-8601 formats,
+                 * since the date string may or may not include time and/or timezone offset:
+                 * 1. If the custom format produced a UTC offset (e.g. "2026-05-17 14:35+02:00"), use it directly
+                 * 2. If it has time but no offset (e.g. "2026-05-17 14:35"), fall back to device timezone
                  * 3. If it's date-only (e.g. "2026-05-17"), use start of day in device timezone
                  */
                 runCatching { components.toInstantUsingOffset().toEpochMilliseconds() }
