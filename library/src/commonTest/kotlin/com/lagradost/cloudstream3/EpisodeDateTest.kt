@@ -112,6 +112,36 @@ class EpisodeDateTest {
         ep.addDate(null as Instant?)
         assertNull(ep.date)
     }
+
+    @Test
+    fun addDateIsoWithMillisAndZUsesExactInstant() {
+        val ep = episode()
+        ep.addDate("2026-01-01T12:30:00.000Z")
+        assertEquals(1751370600000L, ep.date)
+    }
+
+    @Test
+    fun addDateIsoWithZNoMillisUsesExactInstant() {
+        val ep = episode()
+        ep.addDate("2026-01-01T12:30:00Z")
+        assertEquals(1751370600000L, ep.date)
+    }
+
+    @Test
+    fun addDateIsoWithPositiveOffsetUsesExactInstant() {
+        val ep = episode()
+        ep.addDate("2026-05-17T14:35:00+02:00")
+        // 14:35 +02:00 = 12:35 UTC = 2026-05-17T12:35:00Z
+        assertEquals(1747481700000L, ep.date)
+    }
+
+    @Test
+    fun addDateIsoWithNegativeOffsetUsesExactInstant() {
+        val ep = episode()
+        ep.addDate("2026-05-17T09:35:00-05:00")
+        // 09:35 -05:00 = 14:35 UTC = 2026-05-17T14:35:00Z
+        assertEquals(1747489500000L, ep.date)
+    }
 }
 
 class IsUpcomingTest {
