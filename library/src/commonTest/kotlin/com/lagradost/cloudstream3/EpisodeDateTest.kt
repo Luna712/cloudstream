@@ -142,6 +142,34 @@ class EpisodeDateTest {
         // 09:35 -05:00 = 14:35 UTC = 2026-05-17T14:35:00Z
         assertEquals(1779028500000L, ep.date)
     }
+
+    @Test
+    fun addDateCustomFormatWithOffsetUsesExactInstant() {
+        val ep = episode()
+        ep.addDate("17/05/2026 14:35+02:00", "dd/MM/yyyy HH:mmXXX")
+        // 14:35 +02:00 = 12:35 UTC = 2026-05-17T12:35:00Z
+        assertEquals(1779021300000L, ep.date)
+    }
+
+    @Test
+    fun addDateCustomFormatDateTimeNoOffsetUsesSystemTimezone() {
+        val ep = episode()
+        ep.addDate("17/05/2026 14:35", "dd/MM/yyyy HH:mm")
+        val expected = LocalDateTime(2026, 5, 17, 14, 35, 0)
+            .toInstant(TimeZone.currentSystemDefault())
+            .toEpochMilliseconds()
+        assertEquals(expected, ep.date)
+    }
+
+    @Test
+    fun addDateCustomFormatDateOnlyUsesStartOfDay() {
+        val ep = episode()
+        ep.addDate("17/05/2026", "dd/MM/yyyy")
+        val expected = LocalDate(2026, 5, 17)
+            .atStartOfDayIn(TimeZone.currentSystemDefault())
+            .toEpochMilliseconds()
+        assertEquals(expected, ep.date)
+    }
 }
 
 class IsUpcomingTest {
