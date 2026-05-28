@@ -148,7 +148,7 @@ class EpisodeDateTest {
         val ep = episode()
         ep.addDate("17/05/2026 14:35+02:00", "dd/MM/yyyy HH:mmXXX")
         // 14:35 +02:00 = 12:35 UTC = 2026-05-17T12:35:00Z
-        assertEquals(17790213000010L, ep.date) // 1779021300000L
+        assertEquals(1779021300000L, ep.date)
     }
 
     @Test
