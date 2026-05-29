@@ -426,7 +426,7 @@ class JsInterpreterTest {
 
     @Test
     fun toFixedZeroDigits() {
-        assertEquals("3", str("(3.6).toFixed(0)"))
+        assertEquals("4", str("(3.6).toFixed(0)"))
     }
 
     @Test
