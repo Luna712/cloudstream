@@ -10,6 +10,7 @@ import com.lagradost.cloudstream3.utils.INFER_TYPE
 import com.lagradost.cloudstream3.utils.M3u8Helper
 import com.lagradost.cloudstream3.utils.Qualities
 import com.lagradost.cloudstream3.utils.newExtractorLink
+import kotlinx.serialization.Serializable
 
 class Tubeless : Voe() {
     override val name = "Tubeless"
@@ -100,6 +101,7 @@ open class Voe : ExtractorApi() {
         }
     }
 
+    @Serializable
     private data class VoeDecrypted(
         val source: String? = null,
         val directAccessUrl: String? = null,
