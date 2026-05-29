@@ -1191,8 +1191,15 @@ private class JsInterpreter {
                 if (radix == 10) toJsString(obj) else obj.toLong().toString(radix)
             }
             "toFixed" -> nativeFn { args ->
-                val digits = args.getOrNull(0)?.let { toNumber(it).toInt() } ?: 0
-                "%.${digits}f".format(obj)
+                val digits = (args.getOrNull(0)?.let { toNumber(it).toInt() } ?: 0).coerceIn(0, 20)
+                val factor = 10.0.pow(digits)
+                val rounded = round(obj * factor) / factor
+                val sign = if (rounded < 0) "-" else ""
+                val absVal = abs(rounded)
+                val intPart = absVal.toLong()
+                val fracPart = round((absVal - intPart) * factor).toLong()
+                val fracStr = fracPart.toString().padStart(digits, '0')
+                if (digits == 0) "$sign$intPart" else "$sign$intPart.$fracStr"
             }
             else -> Unit
         }
