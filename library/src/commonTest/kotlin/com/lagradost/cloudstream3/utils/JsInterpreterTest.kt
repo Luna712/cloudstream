@@ -9,7 +9,7 @@ import kotlin.test.assertFalse
 
 class JsInterpreterTest {
 
-    private fun num(code: String, variable: String? = null) = (evalJs(code, variable) as? Double) ?: Double.NaN
+    private fun num(code: String, variable: String? = null) = evalJs(code, variable) as? Double ?: Double.NaN
     private fun str(code: String, variable: String? = null) = jsValueToString(evalJs(code, variable))
     private fun bool(code: String, variable: String? = null) = evalJs(code, variable) as? Boolean ?: false
 
