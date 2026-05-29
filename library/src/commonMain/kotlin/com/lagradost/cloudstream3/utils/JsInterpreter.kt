@@ -2,6 +2,8 @@ package com.lagradost.cloudstream3.utils
 
 import com.lagradost.cloudstream3.Prerelease
 import com.lagradost.cloudstream3.mvvm.logError
+import com.lagradost.cloudstream3.utils.StringUtils.decodeUri
+import com.lagradost.cloudstream3.utils.StringUtils.encodeUri
 import kotlin.math.*
 
 /**
@@ -739,10 +741,10 @@ private class JsInterpreter {
         globalScope.define("parseFloat", nativeFn { args -> toNumber(args.getOrNull(0)) })
         globalScope.define("isNaN", nativeFn { args -> toNumber(args.getOrNull(0)).isNaN() })
         globalScope.define("isFinite", nativeFn { args -> toNumber(args.getOrNull(0)).isFinite() })
-        globalScope.define("decodeURIComponent", nativeFn { args -> java.net.URLDecoder.decode(toJsString(args.getOrNull(0)), "UTF-8") })
-        globalScope.define("encodeURIComponent", nativeFn { args -> java.net.URLEncoder.encode(toJsString(args.getOrNull(0)), "UTF-8") })
-        globalScope.define("escape", nativeFn { args -> java.net.URLEncoder.encode(toJsString(args.getOrNull(0)), "UTF-8") })
-        globalScope.define("unescape", nativeFn { args -> java.net.URLDecoder.decode(toJsString(args.getOrNull(0)), "UTF-8") })
+        globalScope.define("decodeURIComponent", nativeFn { args -> toJsString(args.getOrNull(0)).decodeUri() })
+        globalScope.define("encodeURIComponent", nativeFn { args -> toJsString(args.getOrNull(0)).encodeUri() })
+        globalScope.define("escape", nativeFn { args -> toJsString(args.getOrNull(0)).encodeUri() })
+        globalScope.define("unescape", nativeFn { args -> toJsString(args.getOrNull(0)).decodeUri() })
         globalScope.define("eval", nativeFn { args -> eval(toJsString(args.getOrNull(0))) })
         globalScope.define("undefined", Unit)
         globalScope.define("NaN", Double.NaN)
