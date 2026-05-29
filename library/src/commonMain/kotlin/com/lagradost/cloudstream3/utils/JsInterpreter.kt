@@ -5,6 +5,7 @@ import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.utils.StringUtils.decodeUri
 import com.lagradost.cloudstream3.utils.StringUtils.encodeUri
 import kotlin.math.*
+import kotlin.random.Random.nextDouble
 
 /**
  * Lightweight pure-Kotlin JavaScript interpreter designed to replace Rhino for
@@ -707,7 +708,7 @@ private class JsInterpreter {
 
     private fun installGlobals() {
         val mathObj = JsObject(mutableMapOf(
-            "PI" to Math.PI, "E" to Math.E,
+            "PI" to PI, "E" to E,
             "floor" to nativeFn { args -> floor(toNumber(args.getOrNull(0))) },
             "ceil" to nativeFn { args -> ceil(toNumber(args.getOrNull(0))) },
             "round" to nativeFn { args -> round(toNumber(args.getOrNull(0))) },
@@ -720,7 +721,7 @@ private class JsInterpreter {
             "tan" to nativeFn { args -> tan(toNumber(args.getOrNull(0))) },
             "max" to nativeFn { args -> args.maxOfOrNull { toNumber(it) } ?: Double.NEGATIVE_INFINITY },
             "min" to nativeFn { args -> args.minOfOrNull { toNumber(it) } ?: Double.POSITIVE_INFINITY },
-            "random" to nativeFn { _ -> Math.random() },
+            "random" to nativeFn { _ -> nextDouble() },
             "trunc" to nativeFn { args -> truncate(toNumber(args.getOrNull(0))) },
             "log2" to nativeFn { args -> log2(toNumber(args.getOrNull(0))) },
             "log10" to nativeFn { args -> log10(toNumber(args.getOrNull(0))) },
