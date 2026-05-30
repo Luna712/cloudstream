@@ -1921,7 +1921,7 @@ class CS3IPlayer : IPlayer {
                             drm = DrmMetadata(
                                 kid = link.kid,
                                 key = link.key,
-                                uuid = link.uuid,
+                                uuid = link.uuid.toJavaUUID(),
                                 kty = link.kty,
                                 licenseUrl = link.licenseUrl,
                                 keyRequestParameters = link.keyRequestParameters,
