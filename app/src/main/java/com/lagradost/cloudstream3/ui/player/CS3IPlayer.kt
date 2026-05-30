@@ -119,6 +119,7 @@ import javax.net.ssl.HttpsURLConnection
 import javax.net.ssl.SSLContext
 import javax.net.ssl.SSLSession
 import kotlin.uuid.Uuid
+import kotlin.uuid.toJavaUuid
 
 const val TAG = "CS3ExoPlayer"
 const val PREFERRED_AUDIO_LANGUAGE_KEY = "preferred_audio_language"
@@ -246,10 +247,6 @@ class CS3IPlayer : IPlayer {
             isPlayerActive = true
             activePlayers += 1
         }
-    }
-
-    private fun Uuid.toJavaUUID(): UUID {
-        return UUID.fromString(this.toString())
     }
 
     fun String.stripTrackId(): String {
