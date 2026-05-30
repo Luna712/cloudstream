@@ -251,7 +251,7 @@ class CS3IPlayer : IPlayer {
     }
 
     private fun Uuid.toJavaUUID(): UUID {
-        return UUID(mostSignificantBits, leastSignificantBits)
+        return UUID.fromString(this.toString())
     }
 
     fun String.stripTrackId(): String {
