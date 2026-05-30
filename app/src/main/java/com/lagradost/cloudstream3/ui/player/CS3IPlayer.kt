@@ -1,5 +1,4 @@
 @file:Suppress("DEPRECATION")
-@file:OptIn(kotlin.uuid.ExperimentalUuidApi::class)
 
 package com.lagradost.cloudstream3.ui.player
 
@@ -119,7 +118,6 @@ import java.util.concurrent.Executors
 import javax.net.ssl.HttpsURLConnection
 import javax.net.ssl.SSLContext
 import javax.net.ssl.SSLSession
-import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 const val TAG = "CS3ExoPlayer"
