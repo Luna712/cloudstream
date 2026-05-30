@@ -1,5 +1,5 @@
-@file:OptIn(kotlin.uuid.ExperimentalUuidApi::class)
 @file:Suppress("DEPRECATION")
+@file:OptIn(kotlin.uuid.ExperimentalUuidApi::class)
 
 package com.lagradost.cloudstream3.ui.player
 
