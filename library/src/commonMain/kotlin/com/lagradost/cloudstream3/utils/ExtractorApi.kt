@@ -317,10 +317,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.ensureActive
 import org.jsoup.Jsoup
 import java.net.URI
-import java.util.UUID
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
+import kotlin.uuid.toKotlinUuid
 
 /**
  * For use in the ConcatenatingMediaSource.
@@ -491,13 +491,9 @@ suspend fun newDrmExtractorLink(
     name: String,
     url: String,
     type: ExtractorLinkType? = null,
-    uuid: UUID,
+    uuid: java.util.UUID,
     initializer: suspend DrmExtractorLink.() -> Unit = { }
 ): DrmExtractorLink {
-    fun UUID.toKotlinUuid(): Uuid {
-        return Uuid.fromLongs(mostSignificantBits, leastSignificantBits)
-    }
-
     @Suppress("DEPRECATION_ERROR")
     val builder =
         DrmExtractorLink(
@@ -519,7 +515,7 @@ suspend fun newDrmExtractorLink(
     url: String,
     type: ExtractorLinkType? = null,
     uuid: Uuid,
-    initializer: suspend DrmExtractorLink.() -> Unit = { }
+    initializer: suspend DrmExtractorLink.() -> Unit = {},
 ): DrmExtractorLink {
     @Suppress("DEPRECATION_ERROR")
     val builder =
