@@ -96,7 +96,7 @@ import com.lagradost.cloudstream3.ui.subtitles.SaveCaptionStyle
 import com.lagradost.cloudstream3.ui.subtitles.SubtitlesFragment.Companion.applyStyle
 import com.lagradost.cloudstream3.utils.AppContextUtils.isUsingMobileData
 import com.lagradost.cloudstream3.utils.AppContextUtils.setDefaultFocus
-import com.lagradost.cloudstream3.utils.CLEARKEY_UUID
+import com.lagradost.cloudstream3.utils.CLEARKEY_DRM_UUID
 import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream3.utils.Coroutines.runOnMainThread
 import com.lagradost.cloudstream3.utils.DataStoreHelper.currentAccount
@@ -104,9 +104,9 @@ import com.lagradost.cloudstream3.utils.DrmExtractorLink
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.ExtractorLinkPlayList
 import com.lagradost.cloudstream3.utils.ExtractorLinkType
-import com.lagradost.cloudstream3.utils.PLAYREADY_UUID
+import com.lagradost.cloudstream3.utils.PLAYREADY_DRM_UUID
 import com.lagradost.cloudstream3.utils.SubtitleHelper.fromTagToLanguageName
-import com.lagradost.cloudstream3.utils.WIDEVINE_UUID
+import com.lagradost.cloudstream3.utils.WIDEVINE_DRM_UUID
 import com.lagradost.cloudstream3.utils.videoskip.VideoSkipStamp
 import kotlinx.coroutines.delay
 import okhttp3.Interceptor
@@ -1279,7 +1279,7 @@ class CS3IPlayer : IPlayer {
 
             item.drm?.let { drm ->
                 when (drm.uuid) {
-                    CLEARKEY_UUID.toJavaUuid() -> {
+                    CLEARKEY_DRM_UUID.toJavaUuid() -> {
                         // Use headers from DrmMetadata for media requests
                         val client = dataSourceFactory
                             ?: throw IllegalArgumentException("Must supply onlineSource")
@@ -1300,8 +1300,8 @@ class CS3IPlayer : IPlayer {
                             .createMediaSource(item.mediaItem)
                     }
 
-                    WIDEVINE_UUID.toJavaUuid(),
-                    PLAYREADY_UUID.toJavaUuid() -> {
+                    WIDEVINE_DRM_UUID.toJavaUuid(),
+                    PLAYREADY_DRM_UUID.toJavaUuid() -> {
                         // Use headers from DrmMetadata for media requests
                         val client = dataSourceFactory
                             ?: throw IllegalArgumentException("Must supply onlineSource")

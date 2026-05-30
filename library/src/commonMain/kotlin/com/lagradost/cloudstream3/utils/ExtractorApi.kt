@@ -320,6 +320,7 @@ import java.net.URI
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
+import kotlin.uuid.toJavaUuid
 import kotlin.uuid.toKotlinUuid
 
 /**
@@ -441,7 +442,7 @@ val INFER_TYPE: ExtractorLinkType? = null
  *
  * ClearKey is supported on Android devices running Android 5.0 (API Level 21) and up.
  */
-val CLEARKEY_UUID = Uuid.fromLongs(-0x1d8e62a7567a4c37L, 0x781AB030AF78D30EL)
+val CLEARKEY_DRM_UUID = Uuid.fromLongs(-0x1d8e62a7567a4c37L, 0x781AB030AF78D30EL)
 
 /**
  * [Uuid] for the Widevine DRM scheme.
@@ -449,7 +450,7 @@ val CLEARKEY_UUID = Uuid.fromLongs(-0x1d8e62a7567a4c37L, 0x781AB030AF78D30EL)
  *
  * Widevine is supported on Android devices running Android 4.3 (API Level 18) and up.
  */
-val WIDEVINE_UUID = Uuid.fromLongs(-0x121074568629b532L, -0x5c37d8232ae2de13L)
+val WIDEVINE_DRM_UUID = Uuid.fromLongs(-0x121074568629b532L, -0x5c37d8232ae2de13L)
 
 /**
  * [Uuid] for the PlayReady DRM scheme.
@@ -458,7 +459,18 @@ val WIDEVINE_UUID = Uuid.fromLongs(-0x121074568629b532L, -0x5c37d8232ae2de13L)
  * PlayReady is supported on all AndroidTV devices. Note that most other Android devices do not
  * provide PlayReady support.
  */
-val PLAYREADY_UUID = Uuid.fromLongs(-0x65fb0f8667bfbd7aL, -0x546d19a41f77a06bL)
+val PLAYREADY_DRM_UUID = Uuid.fromLongs(-0x65fb0f8667bfbd7aL, -0x546d19a41f77a06bL)
+
+// Deprecate after next stable
+
+// @Deprecated("Use CLEARKEY_DRM_UUID", ReplaceWith("CLEARKEY_DRM_UUID"), level = DeprecationLevel.WARNING)
+val CLEARKEY_UUID = CLEARKEY_DRM_UUID.toJavaUuid()
+
+// @Deprecated("Use WIDEVINE_DRM_UUID", ReplaceWith("WIDEVINE_DRM_UUID"), level = DeprecationLevel.WARNING)
+val WIDEVINE_UUID = WIDEVINE_DRM_UUID.toJavaUuid()
+
+// @Deprecated("Use PLAYREADY_DRM_UUID", ReplaceWith("PLAYREADY_DRM_UUID"), level = DeprecationLevel.WARNING)
+val PLAYREADY_UUID = PLAYREADY_DRM_UUID.toJavaUuid()
 
 suspend fun newExtractorLink(
     source: String,
@@ -542,7 +554,7 @@ suspend fun newDrmExtractorLink(
  * @property type the type of the media, use [INFER_TYPE] if you want to auto infer the type from the url
  * @property kid  Base64 value of The KID element (Key Id) contains the identifier of the key associated with a license.
  * @property key Base64 value of Key to be used to decrypt the media file.
- * @property uuid Drm [Uuid] [WIDEVINE_UUID], [PLAYREADY_UUID], [CLEARKEY_UUID] (by default) .. etc
+ * @property uuid Drm [Uuid] [WIDEVINE_DRM_UUID], [PLAYREADY_DRM_UUID], [CLEARKEY_DRM_UUID] (by default) .. etc
  * @property kty Key type "oct" (octet sequence) by default
  * @property keyRequestParameters Parameters that will used to request the key.
  * @see newDrmExtractorLink
@@ -582,7 +594,7 @@ open class DrmExtractorLink private constructor(
         extractorData: String? = null,
         kid: String? = null,
         key: String? = null,
-        uuid: Uuid = CLEARKEY_UUID,
+        uuid: Uuid = CLEARKEY_DRM_UUID,
         kty: String? = "oct",
         keyRequestParameters: HashMap<String, String> = hashMapOf(),
         licenseUrl: String? = null,
@@ -617,7 +629,7 @@ open class DrmExtractorLink private constructor(
         extractorData: String? = null,
         kid: String? = null,
         key: String? = null,
-        uuid: Uuid = CLEARKEY_UUID,
+        uuid: Uuid = CLEARKEY_DRM_UUID,
         kty: String? = "oct",
         keyRequestParameters: HashMap<String, String> = hashMapOf(),
         licenseUrl: String? = null,
