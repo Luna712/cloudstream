@@ -118,7 +118,6 @@ import java.util.concurrent.Executors
 import javax.net.ssl.HttpsURLConnection
 import javax.net.ssl.SSLContext
 import javax.net.ssl.SSLSession
-import kotlin.uuid.Uuid
 import kotlin.uuid.toJavaUuid
 
 const val TAG = "CS3ExoPlayer"
