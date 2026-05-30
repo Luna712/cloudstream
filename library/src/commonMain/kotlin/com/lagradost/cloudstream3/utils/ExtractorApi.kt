@@ -5,6 +5,7 @@ package com.lagradost.cloudstream3.utils
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.lagradost.cloudstream3.AudioFile
 import com.lagradost.cloudstream3.IDownloadableMinimum
+import com.lagradost.cloudstream3.Prerelease
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.USER_AGENT
 import com.lagradost.cloudstream3.app
@@ -511,6 +512,7 @@ suspend fun newDrmExtractorLink(
     return builder
 }
 
+@Prerelease
 suspend fun newDrmExtractorLink(
     source: String,
     name: String,
