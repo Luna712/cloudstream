@@ -118,6 +118,8 @@ import java.util.concurrent.Executors
 import javax.net.ssl.HttpsURLConnection
 import javax.net.ssl.SSLContext
 import javax.net.ssl.SSLSession
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 const val TAG = "CS3ExoPlayer"
 const val PREFERRED_AUDIO_LANGUAGE_KEY = "preferred_audio_language"
@@ -245,6 +247,11 @@ class CS3IPlayer : IPlayer {
             isPlayerActive = true
             activePlayers += 1
         }
+    }
+
+    @OptIn(ExperimentalUuidApi::class)
+    private fun Uuid.toJavaUUID(): UUID {
+        return UUID(mostSignificantBits, leastSignificantBits)
     }
 
     fun String.stripTrackId(): String {
@@ -1278,7 +1285,7 @@ class CS3IPlayer : IPlayer {
 
             item.drm?.let { drm ->
                 when (drm.uuid) {
-                    CLEARKEY_UUID -> {
+                    CLEARKEY_UUID.toJavaUUID() -> {
                         // Use headers from DrmMetadata for media requests
                         val client = dataSourceFactory
                             ?: throw IllegalArgumentException("Must supply onlineSource")
@@ -1299,8 +1306,8 @@ class CS3IPlayer : IPlayer {
                             .createMediaSource(item.mediaItem)
                     }
 
-                    WIDEVINE_UUID,
-                    PLAYREADY_UUID -> {
+                    WIDEVINE_UUID.toJavaUUID(),
+                    PLAYREADY_UUID.toJavaUUID() -> {
                         // Use headers from DrmMetadata for media requests
                         val client = dataSourceFactory
                             ?: throw IllegalArgumentException("Must supply onlineSource")
