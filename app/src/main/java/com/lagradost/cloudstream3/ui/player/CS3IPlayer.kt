@@ -1279,7 +1279,7 @@ class CS3IPlayer : IPlayer {
 
             item.drm?.let { drm ->
                 when (drm.uuid) {
-                    CLEARKEY_UUID.toJavaUUID() -> {
+                    CLEARKEY_UUID.toJavaUuid() -> {
                         // Use headers from DrmMetadata for media requests
                         val client = dataSourceFactory
                             ?: throw IllegalArgumentException("Must supply onlineSource")
@@ -1300,8 +1300,8 @@ class CS3IPlayer : IPlayer {
                             .createMediaSource(item.mediaItem)
                     }
 
-                    WIDEVINE_UUID.toJavaUUID(),
-                    PLAYREADY_UUID.toJavaUUID() -> {
+                    WIDEVINE_UUID.toJavaUuid(),
+                    PLAYREADY_UUID.toJavaUuid() -> {
                         // Use headers from DrmMetadata for media requests
                         val client = dataSourceFactory
                             ?: throw IllegalArgumentException("Must supply onlineSource")
@@ -1915,7 +1915,7 @@ class CS3IPlayer : IPlayer {
                             drm = DrmMetadata(
                                 kid = link.kid,
                                 key = link.key,
-                                uuid = link.uuid.toJavaUUID(),
+                                uuid = link.uuid.toJavaUuid(),
                                 kty = link.kty,
                                 licenseUrl = link.licenseUrl,
                                 keyRequestParameters = link.keyRequestParameters,
