@@ -480,7 +480,11 @@ suspend fun newExtractorLink(
     return builder
 }
 
-// Deprecate
+// Deprecate after next stable
+/* @Deprecated(
+    message = "Use Kotlin Uuid (kotlin.uuid.Uuid) instead of Java UUID.",
+    level = DeprecationLevel.WARNING,
+) */
 suspend fun newDrmExtractorLink(
     source: String,
     name: String,
