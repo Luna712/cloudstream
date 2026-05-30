@@ -554,7 +554,7 @@ suspend fun newDrmExtractorLink(
  * @property type the type of the media, use [INFER_TYPE] if you want to auto infer the type from the url
  * @property kid  Base64 value of The KID element (Key Id) contains the identifier of the key associated with a license.
  * @property key Base64 value of Key to be used to decrypt the media file.
- * @property uuid Drm [Uuid] [WIDEVINE_UUID], [PLAYREADY_UUID], [CLEARKEY_UUID] (by default) .. etc
+ * @property uuid Drm [Uuid] [WIDEVINE_DRM_UUID], [PLAYREADY_DRM_UUID], [CLEARKEY_DRM_UUID] (by default) .. etc
  * @property kty Key type "oct" (octet sequence) by default
  * @property keyRequestParameters Parameters that will used to request the key.
  * @see newDrmExtractorLink
