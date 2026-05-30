@@ -1,3 +1,4 @@
+@file:OptIn(ExperimentalUuidApi::class)
 @file:Suppress("DEPRECATION")
 
 package com.lagradost.cloudstream3.ui.player
@@ -249,7 +250,6 @@ class CS3IPlayer : IPlayer {
         }
     }
 
-    @OptIn(ExperimentalUuidApi::class)
     private fun Uuid.toJavaUUID(): UUID {
         return UUID(mostSignificantBits, leastSignificantBits)
     }
