@@ -21,8 +21,6 @@ object AesHelper {
         data: String,
         pass: ByteArray,
         encrypt: Boolean = true,
-        // padding parameter kept for API compatibility; PKCS7 is always used
-        @Suppress("UNUSED_PARAMETER") padding: String = "AES/CBC/PKCS5PADDING",
     ): String? {
         val parse = AppUtils.tryParseJson<AesData>(data) ?: return null
         val (key, iv) = generateKeyAndIv(
@@ -42,6 +40,14 @@ object AesHelper {
             base64Encode(cipher.encryptWithIvBlocking(iv, parse.ct.toByteArray()))
         }
     }
+
+    @Deprecated(message = "Don't set padding", level = DeprecationLevel.HIDDEN)
+    fun cryptoAESHandler(
+        data: String,
+        pass: ByteArray,
+        encrypt: Boolean = true,
+        padding: String,
+    ): String? = cryptoAESHandler(data, pass, encrypt)
 
     // https://stackoverflow.com/a/41434590/8166854
     fun generateKeyAndIv(
