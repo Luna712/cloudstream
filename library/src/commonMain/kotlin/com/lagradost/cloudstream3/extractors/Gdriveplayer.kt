@@ -116,13 +116,11 @@ open class Gdriveplayer : ExtractorApi() {
                 )
             }
         }
-
     }
 
     data class Tracks(
         @JsonProperty("file") val file: String,
         @JsonProperty("kind") val kind: String,
-        @JsonProperty("label") val label: String
+        @JsonProperty("label") val label: String,
     )
-
 }
