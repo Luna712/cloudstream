@@ -55,7 +55,7 @@ object AesHelper {
         // If it ends with NoPadding (e.g. "AES/CBC/NoPadding"), then it
         // doesn't have padding, otherwise we treat as if it does.
         val hasPadding = !padding.endsWith("NoPadding")
-        cryptoAESHandler(data, pass, encrypt, hasPadding)
+        return cryptoAESHandler(data, pass, encrypt, hasPadding)
     }
 
     // https://stackoverflow.com/a/41434590/8166854
