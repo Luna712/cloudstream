@@ -85,7 +85,7 @@ open class Gdriveplayer : ExtractorApi() {
                 Char(it.toInt()).toString()
             }.let { Regex("var pass = \"(\\S+?)\"").first(it ?: return)?.toByteArray() }
             ?: throw ErrorLoadingException("can't find password")
-        val decryptedData = cryptoAESHandler(data, password, false, "AES/CBC/NoPadding")?.let { getAndUnpack(it) }?.replace("\\", "")
+        val decryptedData = cryptoAESHandler(data, password, false, false)?.let { getAndUnpack(it) }?.replace("\\", "")
 
         val sourceData = decryptedData?.substringAfter("sources:[")?.substringBefore("],")
         val subData = decryptedData?.substringAfter("tracks:[")?.substringBefore("],")
