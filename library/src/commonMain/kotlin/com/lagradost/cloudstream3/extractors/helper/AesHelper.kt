@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.extractors.helper
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.lagradost.cloudstream3.Prerelease
 import com.lagradost.cloudstream3.base64DecodeArray
 import com.lagradost.cloudstream3.base64Encode
 import com.lagradost.cloudstream3.utils.AppUtils
@@ -17,10 +18,12 @@ object AesHelper {
     private val md5Hasher = provider.get(MD5).hasher()
 
     @OptIn(DelicateCryptographyApi::class)
+    @Prerelease
     fun cryptoAESHandler(
         data: String,
         pass: ByteArray,
         encrypt: Boolean = true,
+        padding: Boolean = true,
     ): String? {
         val parse = AppUtils.tryParseJson<AesData>(data) ?: return null
         val (key, iv) = generateKeyAndIv(
@@ -31,7 +34,7 @@ object AesHelper {
         ) ?: return null
 
         val aesKey = aesCbc.keyDecoder().decodeFromByteArrayBlocking(AES.Key.Format.RAW, key)
-        val cipher = aesKey.cipher(padding = true)
+        val cipher = aesKey.cipher(padding = padding)
 
         return if (!encrypt) {
             val plainBytes = cipher.decryptWithIvBlocking(iv, base64DecodeArray(parse.ct))
@@ -41,13 +44,19 @@ object AesHelper {
         }
     }
 
-    @Deprecated(message = "Don't set padding", level = DeprecationLevel.HIDDEN)
+    // Deprecate after next stable
+    @Deprecated(message = "Use true/false for padding", level = DeprecationLevel.WARNING)
     fun cryptoAESHandler(
         data: String,
         pass: ByteArray,
         encrypt: Boolean = true,
         padding: String,
-    ): String? = cryptoAESHandler(data, pass, encrypt)
+    ): String? {
+        // If it ends with NoPadding (e.g. "AES/CBC/NoPadding"), then it
+        // doesn't have padding, otherwise we treat as if it does.
+        val hasPadding = !padding.endsWith("NoPadding")
+        cryptoAESHandler(data, pass, encrypt, hasPadding)
+    }
 
     // https://stackoverflow.com/a/41434590/8166854
     fun generateKeyAndIv(
