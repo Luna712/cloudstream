@@ -80,8 +80,8 @@ kotlin {
             }
         }
 
-        androidMain.dependsOn(jvmCommonMain)
-        jvmMain.dependsOn(jvmCommonMain)
+        androidMain { dependsOn(jvmCommonMain) }
+        jvmMain { dependsOn(jvmCommonMain) }
     }
 }
 
