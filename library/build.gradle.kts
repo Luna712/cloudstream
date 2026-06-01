@@ -1,7 +1,9 @@
+import com.android.build.api.withAndroid
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.codingfeline.buildkonfig.compiler.FieldSpec
 import org.jetbrains.dokka.gradle.engine.parameters.KotlinPlatform
 import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
@@ -45,6 +47,17 @@ kotlin {
         )
     }
 
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+    applyDefaultHierarchyTemplate {
+        common {
+            withCompilations { true }
+            group("jvmCommon") {
+                withAndroid()
+                withJvm()
+            }
+        }
+    }
+
     sourceSets {
         all {
             languageSettings {
@@ -73,15 +86,10 @@ kotlin {
             implementation(libs.kotlin.test)
         }
 
-        val jvmCommonMain by creating {
-            dependsOn(commonMain.get())
-            dependencies {
-                implementation(libs.newpipeextractor)
-            }
+        val jvmCommonMain by getting
+        jvmCommonMain.dependencies {
+            implementation(libs.newpipeextractor)
         }
-
-        androidMain { dependsOn(jvmCommonMain) }
-        jvmMain { dependsOn(jvmCommonMain) }
     }
 }
 
