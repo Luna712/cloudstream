@@ -45,17 +45,17 @@ kotlin {
         )
     }
 
-    sourceSets {
-        applyDefaultHierarchyTemplate {
-            common {
-                withCompilations { true }
-                group("jvmCommon") {
-                    withAndroid()
-                    withJvm()
-                }
+    applyDefaultHierarchyTemplate {
+        common {
+            withCompilations { true }
+            group("jvmCommon") {
+                withAndroid()
+                withJvm()
             }
         }
+    }
 
+    sourceSets {
         all {
             languageSettings {
                 optIn("com.lagradost.cloudstream3.InternalAPI")
