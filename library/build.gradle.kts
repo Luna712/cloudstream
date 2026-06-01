@@ -46,6 +46,16 @@ kotlin {
     }
 
     sourceSets {
+        applyDefaultHierarchyTemplate {
+            common {
+                withCompilations { true }
+                group("jvmCommon") {
+                    withAndroid()
+                    withJvm()
+                }
+            }
+        }
+
         all {
             languageSettings {
                 optIn("com.lagradost.cloudstream3.InternalAPI")
@@ -73,13 +83,8 @@ kotlin {
             implementation(libs.kotlin.test)
         }
 
-        // We will eventually add a new jvmCommonMain source set
-        // for things shared between Android and JVM.
-        androidMain.dependencies {
-            implementation(libs.newpipeextractor)
-        }
-
-        jvmMain.dependencies {
+        val jvmCommonMain by getting
+        jvmCommonMain.dependencies {
             implementation(libs.newpipeextractor)
         }
     }
