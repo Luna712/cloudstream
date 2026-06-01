@@ -1,9 +1,7 @@
-import com.android.build.api.withAndroid
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.codingfeline.buildkonfig.compiler.FieldSpec
 import org.jetbrains.dokka.gradle.engine.parameters.KotlinPlatform
 import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
@@ -21,6 +19,8 @@ val javaTarget = JvmTarget.fromTarget(libs.versions.jvmTarget.get())
 
 kotlin {
     version = "1.0.1"
+
+    applyDefaultHierarchyTemplate()
 
     android {
         // If this is the same com.lagradost.cloudstream3.R stops working
@@ -45,17 +45,6 @@ kotlin {
             "-Xexpect-actual-classes",
             "-Xannotation-default-target=param-property"
         )
-    }
-
-    @OptIn(ExperimentalKotlinGradlePluginApi::class)
-    applyDefaultHierarchyTemplate {
-        common {
-            withCompilations { true }
-            group("jvmCommon") {
-                withAndroid()
-                withJvm()
-            }
-        }
     }
 
     sourceSets {
@@ -86,10 +75,15 @@ kotlin {
             implementation(libs.kotlin.test)
         }
 
-        val jvmCommonMain by getting
-        jvmCommonMain.dependencies {
-            implementation(libs.newpipeextractor)
+        val jvmCommonMain by creating {
+            dependsOn(commonMain.get())
+            dependencies {
+                implementation(libs.newpipeextractor)
+            }
         }
+
+        androidMain { dependsOn(jvmCommonMain) }
+        jvmMain { dependsOn(jvmCommonMain) }
     }
 }
 
