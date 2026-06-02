@@ -40,7 +40,7 @@ object AesHelper {
             val plainBytes = cipher.decryptWithIvBlocking(iv, base64DecodeArray(parse.ct))
             plainBytes.decodeToString()
         } else {
-            base64Encode(cipher.encryptWithIvBlocking(iv, parse.ct.toByteArray()))
+            base64Encode(cipher.encryptWithIvBlocking(iv, parse.ct.encodeToByteArray()))
         }
     }
 
@@ -109,7 +109,7 @@ object AesHelper {
         check(length % 2 == 0) { "Must have an even length" }
         return chunked(2)
             .map { it.toInt(16).toByte() }
-            .toByteArray()
+            .encodeToByteArray()
     }
 
     private data class AesData(
