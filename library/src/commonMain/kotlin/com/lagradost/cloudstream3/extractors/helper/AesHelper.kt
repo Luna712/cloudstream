@@ -109,7 +109,7 @@ object AesHelper {
         check(length % 2 == 0) { "Must have an even length" }
         return chunked(2)
             .map { it.toInt(16).toByte() }
-            .encodeToByteArray()
+            .toByteArray()
     }
 
     private data class AesData(
