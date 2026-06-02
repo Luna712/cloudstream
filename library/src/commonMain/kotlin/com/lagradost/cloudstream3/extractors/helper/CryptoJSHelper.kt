@@ -72,7 +72,7 @@ object CryptoJS {
         val aesKey = aesCbc.keyDecoder().decodeFromByteArrayBlocking(AES.Key.Format.RAW, key)
         val cipher = aesKey.cipher(padding = true)
         val plainText = cipher.decryptWithIvBlocking(iv, cipherTextBytes)
-        return String(plainText)
+        return plainText.decodeToString()
     }
 
     private fun evpkdf(
