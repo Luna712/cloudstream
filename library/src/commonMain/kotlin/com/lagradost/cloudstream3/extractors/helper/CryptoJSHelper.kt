@@ -37,14 +37,14 @@ object CryptoJS {
         val saltBytes = generateSalt(8)
         val key = ByteArray(KEY_SIZE / 8)
         val iv = ByteArray(IV_SIZE / 8)
-        evpkdf(password.toByteArray(), KEY_SIZE, IV_SIZE, saltBytes, key, iv)
+        evpkdf(password.encodeToByteArray(), KEY_SIZE, IV_SIZE, saltBytes, key, iv)
 
         val aesKey = aesCbc.keyDecoder().decodeFromByteArrayBlocking(AES.Key.Format.RAW, key)
         val cipher = aesKey.cipher(padding = true)
-        val cipherText = cipher.encryptWithIvBlocking(iv, plainText.toByteArray())
+        val cipherText = cipher.encryptWithIvBlocking(iv, plainText.encodeToByteArray())
 
         // Create CryptoJS-like encrypted: "Salted__" || salt || ciphertext
-        val sBytes = APPEND.toByteArray()
+        val sBytes = APPEND.encodeToByteArray()
         val b = ByteArray(sBytes.size + saltBytes.size + cipherText.size)
         sBytes.copyInto(destination = b, destinationOffset = 0)
         saltBytes.copyInto(destination = b, destinationOffset = sBytes.size)
@@ -67,7 +67,7 @@ object CryptoJS {
 
         val key = ByteArray(KEY_SIZE / 8)
         val iv = ByteArray(IV_SIZE / 8)
-        evpkdf(password.toByteArray(), KEY_SIZE, IV_SIZE, saltBytes, key, iv)
+        evpkdf(password.encodeToByteArray(), KEY_SIZE, IV_SIZE, saltBytes, key, iv)
 
         val aesKey = aesCbc.keyDecoder().decodeFromByteArrayBlocking(AES.Key.Format.RAW, key)
         val cipher = aesKey.cipher(padding = true)
