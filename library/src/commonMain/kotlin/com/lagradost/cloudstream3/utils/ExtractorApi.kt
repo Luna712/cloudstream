@@ -328,7 +328,6 @@ import kotlin.uuid.toKotlinUuid
  * If features are missing (headers), please report and we can add it.
  * @param durationUs use Long.toUs() for easier input
  * */
-@Serializable
 data class PlayListItem(
     val url: String,
     val durationUs: Long,
@@ -345,7 +344,6 @@ fun Long.toUs(): Long {
  * If your site has an unorthodox m3u8-like system where there are multiple smaller videos concatenated
  * use this.
  * */
-@Serializable
 @Suppress("DEPRECATION")
 data class ExtractorLinkPlayList(
     override val source: String,
@@ -564,7 +562,6 @@ suspend fun newDrmExtractorLink(
  * @property keyRequestParameters Parameters that will used to request the key.
  * @see newDrmExtractorLink
  * */
-@Serializable
 @Suppress("DEPRECATION")
 open class DrmExtractorLink private constructor(
     override val source: String,
