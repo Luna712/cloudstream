@@ -7,7 +7,6 @@ import androidx.preference.PreferenceManager
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKeyClass
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.removeKey
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKeyClass
-import com.lagradost.cloudstream3.InternalAPI
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJsonLiteral
@@ -87,7 +86,6 @@ data class Editor(
     }
 }
 
-@OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
 object DataStore {
     // Extensions shouldn't have really been using this version of it, but it seems
     // some have. Since there has always been a very easy alternative, we won't
