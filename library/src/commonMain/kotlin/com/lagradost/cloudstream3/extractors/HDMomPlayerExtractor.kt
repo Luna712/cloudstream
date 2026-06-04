@@ -4,12 +4,11 @@ package com.lagradost.cloudstream3.extractors
 
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.*
-import com.lagradost.cloudstream3.utils.*
 import com.lagradost.cloudstream3.extractors.helper.AesHelper
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
+import com.lagradost.cloudstream3.utils.*
+import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 
 open class HDMomPlayer : ExtractorApi() {
     override val name            = "HDMomPlayer"
@@ -25,7 +24,7 @@ open class HDMomPlayer : ExtractorApi() {
         if (bePlayer != null) {
             val bePlayerPass = bePlayer.get(1)
             val bePlayerData = bePlayer.get(2)
-            val encrypted    = AesHelper.cryptoAESHandler(bePlayerData, bePlayerPass.toByteArray(), false)?.replace("\\", "") ?: throw ErrorLoadingException("failed to decrypt")
+            val encrypted    = AesHelper.cryptoAESHandler(bePlayerData, bePlayerPass.encodeToByteArray(), false)?.replace("\\", "") ?: throw ErrorLoadingException("failed to decrypt")
 
             m3uLink = Regex("""video_location\":\"([^\"]+)""").find(encrypted)?.groupValues?.get(1)
         } else {
@@ -33,7 +32,7 @@ open class HDMomPlayer : ExtractorApi() {
 
             val trackStr = Regex("""tracks:\[([^\]]+)""").find(iSource)?.groupValues?.get(1)
             if (trackStr != null) {
-                val tracks:List<Track> = jacksonObjectMapper().readValue("[${trackStr}]")
+                val tracks:List<Track> = parseJson<List<Track>>("[${trackStr}]")
 
                 for (track in tracks) {
                     if (track.file == null || track.label == null) continue

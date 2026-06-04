@@ -31,10 +31,8 @@ class CrossTmdbProvider : TmdbProvider() {
     }
 
     private val validApis
-        get() =
-            synchronized(apis) { apis.filter { it.lang == this.lang && it::class.java != this::class.java } }
+        get() = apis.filter { it.lang == this.lang && it::class != this::class }
     //.distinctBy { it.uniqueId }
-
 
     @Serializable
     data class CrossMetaData(

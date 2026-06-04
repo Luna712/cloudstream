@@ -7,8 +7,7 @@ import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.*
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
+import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
 
 open class VideoSeyred : ExtractorApi() {
     override val name            = "VideoSeyred"
@@ -21,7 +20,7 @@ open class VideoSeyred : ExtractorApi() {
         val videoUrl = "${mainUrl}/playlist/${videoId}.json"
 
         val responseRaw                          = app.get(videoUrl)
-        val responseList:List<VideoSeyredSource> = jacksonObjectMapper().readValue(responseRaw.text()) ?: throw ErrorLoadingException("VideoSeyred")
+        val responseList: List<VideoSeyredSource> = tryParseJson<List<VideoSeyredSource>>(responseRaw.text()) ?: throw ErrorLoadingException("VideoSeyred")
         val response                              = responseList[0]
 
         for (track in response.tracks) {

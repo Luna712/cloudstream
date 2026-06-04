@@ -2,6 +2,7 @@ package com.lagradost.cloudstream3.extractors
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import com.lagradost.cloudstream3.APIHolder.unixTimeMS
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.ExtractorApi
@@ -22,7 +23,7 @@ open class Vicloud : ExtractorApi() {
     ) {
         val id = Regex("\"apiQuery\":\"(.*?)\"").find(app.get(url).text())?.groupValues?.getOrNull(1)
         app.get(
-            "$mainUrl/api/?$id=&_=${System.currentTimeMillis()}",
+            "$mainUrl/api/?$id=&_=$unixTimeMS",
             headers = mapOf(
                 "X-Requested-With" to "XMLHttpRequest"
             ),

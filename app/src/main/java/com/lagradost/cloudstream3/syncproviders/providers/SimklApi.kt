@@ -120,7 +120,6 @@ class SimklApi : SyncAPI() {
          * Gets cached object, if object is not fresh returns null and removes it from cache
          */
         inline fun <reified T : Any> getKey(path: String): T? {
-            // Required for generic otherwise "LinkedHashMap cannot be cast to MediaObject"
             val cache = getKey<String>(SIMKL_CACHE_KEY, path)?.let {
                 tryParseJson<SimklCacheWrapper<T>>(it)
             }

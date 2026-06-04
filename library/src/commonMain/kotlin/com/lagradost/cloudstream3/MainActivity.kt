@@ -1,10 +1,7 @@
 package com.lagradost.cloudstream3
 
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fleeksoft.ksoup.Ksoup
-import com.fleeksoft.ksoup.nodes.Document
+import com.lagradost.cloudstream3.utils.AppUtils.parseJson
+import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.nicehttp.Requests
 import com.lagradost.nicehttp.ResponseParser
 import io.ktor.client.engine.okhttp.OkHttpEngine
@@ -18,28 +15,9 @@ import kotlinx.serialization.serializerOrNull
 import kotlin.reflect.KClass
 
 // Short name for requests client to make it nicer to use
-@OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
 private val jsonResponseParser = object : ResponseParser {
-    val mapper: ObjectMapper = jacksonObjectMapper().configure(
-        DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
-        false
-    )
-
-    val json = Json { ignoreUnknownKeys = true }
-
     override fun <T : Any> parse(text: String, kClass: KClass<T>): T {
-        // @Serializable generates a serializer at compile time; contextual serializers are
-        // registered manually in serializersModule, we need both to support all cases
-        val serializer = kClass.serializerOrNull() ?: json.serializersModule.getContextual(kClass)
-        return if (serializer != null) {
-            try {
-                json.decodeFromString(serializer, text)
-            } catch (_: Exception) {
-                mapper.readValue(text, kClass.java)
-            }
-        } else {
-            mapper.readValue(text, kClass.java)
-        }
+        return parseJson(text, kClass)
     }
 
     override fun <T : Any> parseSafe(text: String, kClass: KClass<T>): T? {
@@ -51,19 +29,7 @@ private val jsonResponseParser = object : ResponseParser {
     }
 
     override fun writeValueAsString(obj: Any): String {
-        // @Serializable generates a serializer at compile time; contextual serializers are
-        // registered manually in serializersModule, we need both to support all cases
-        val serializer = obj::class.serializerOrNull() ?: json.serializersModule.getContextual(obj::class)
-        return if (serializer != null) {
-            try {
-                // If it has a serializer, encode it safely via kotlinx.serialization
-                json.encodeToString(JsonElement.serializer(), json.parseToJsonElement(obj.toString()))
-            } catch (_: Exception) {
-                mapper.writeValueAsString(obj)
-            }
-        } else {
-            mapper.writeValueAsString(obj)
-        }
+        return obj.toJson()
     }
 }
 /** The default networking helper. This helper performs SSL checks.
