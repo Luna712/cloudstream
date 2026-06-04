@@ -10,7 +10,7 @@ import com.lagradost.cloudstream3.services.DownloadQueueService
 import com.lagradost.cloudstream3.ui.player.SubtitleData
 import com.lagradost.cloudstream3.ui.result.ResultEpisode
 import com.lagradost.cloudstream3.utils.ExtractorLink
-import com.lagradost.cloudstream3.utils.serializer.UriSerializer
+import com.lagradost.cloudstream3.utils.serializers.UriSerializer
 import com.lagradost.safefile.SafeFile
 import java.io.IOException
 import java.io.OutputStream
