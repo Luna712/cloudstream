@@ -46,7 +46,7 @@ class Videa : ExtractorApi() {
                     rawBytes[4] == 0x6C.toByte()     // 'l'
 
             val videaXml = if (isXml) {
-                String(rawBytes, Charsets.UTF_8)
+                rawBytes.decodeToString()
             } else {
                 // Handle encrypted XML response
                 val xsHeader = response.headers["X-Videa-Xs"] ?: return
@@ -178,7 +178,7 @@ class Videa : ExtractorApi() {
         }
 
         val actualEncryptedBytes = if (isBase64) {
-            val base64String = String(encryptedBytes, Charsets.UTF_8)
+            val base64String = encryptedBytes.decodeToString()
                 .replace("\r", "")
                 .replace("\n", "")
                 .replace(" ", "")
@@ -188,7 +188,7 @@ class Videa : ExtractorApi() {
             encryptedBytes
         }
 
-        val keyBytes = key.toByteArray(Charsets.UTF_8)
+        val keyBytes = key.encodeToByteArray()
 
         // RC4 key-scheduling algorithm (KSA)
         val s = IntArray(256) { it }
@@ -210,6 +210,6 @@ class Videa : ExtractorApi() {
             result[k] = ((actualEncryptedBytes[k].toInt() and 0xFF) xor keyStreamByte).toByte()
         }
 
-        return String(result, Charsets.UTF_8)
+        return result.decodeToString()
     }
 }
