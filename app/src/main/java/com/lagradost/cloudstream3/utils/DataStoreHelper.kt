@@ -3,6 +3,7 @@ package com.lagradost.cloudstream3.utils
 import android.content.Context
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import com.lagradost.cloudstream3.APIHolder.unixTimeMS
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.context
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
@@ -255,22 +256,24 @@ object DataStoreHelper {
     /**
      * Used to display notifications on new episodes and posters in library.
      **/
+    @Serializable
     abstract class LibrarySearchResponse(
-        override var id: Int?,
-        open val latestUpdatedTime: Long,
-        override val name: String,
-        override val url: String,
-        override val apiName: String,
-        override var type: TvType?,
-        override var posterUrl: String?,
-        open val year: Int?,
-        open val syncData: Map<String, String>?,
-        override var quality: SearchQuality?,
-        override var posterHeaders: Map<String, String>?,
-        open val plot: String? = null,
-        override var score: Score? = null,
-        open val tags: List<String>? = null,
+        @Transient override var id: Int? = null,
+        @Transient open val latestUpdatedTime: Long = 0L,
+        @Transient override val name: String = "",
+        @Transient override val url: String = "",
+        @Transient override val apiName: String = "",
+        @Transient override var type: TvType? = null,
+        @Transient override var posterUrl: String? = null,
+        @Transient open val year: Int? = null,
+        @Transient open val syncData: Map<String, String>? = null,
+        @Transient override var quality: SearchQuality? = null,
+        @Transient override var posterHeaders: Map<String, String>? = null,
+        @Transient open val plot: String? = null,
+        @Transient override var score: Score? = null,
+        @Transient open val tags: List<String>? = null,
     ) : SearchResponse {
+        @SerialName("rating")
         @Deprecated(
             "`rating` is the old scoring system, use score instead",
             replaceWith = ReplaceWith("score"),
