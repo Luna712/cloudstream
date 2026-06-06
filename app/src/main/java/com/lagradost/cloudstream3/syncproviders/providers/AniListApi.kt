@@ -258,12 +258,11 @@ class AniListApi : SyncAPI() {
                 val data =
                     mapOf(
                         "query" to query,
-                        "variables" to
-                                mapOf(
-                                    "search" to name,
-                                    "page" to 1,
-                                    "type" to "ANIME"
-                                ).toJson()
+                        "variables" to Variables(
+							search = name,
+							page = 1,
+							type = "ANIME",
+						).toJson()
                     )
 
                 val res = app.post(
@@ -272,7 +271,7 @@ class AniListApi : SyncAPI() {
                     data = data,//(if (vars == null) mapOf("query" to q) else mapOf("query" to q, "variables" to vars))
                     timeout = 5000 // REASONABLE TIMEOUT
                 ).text.replace("\\", "")
-                return res.toKotlinObject()
+                return parseJson<GetSearchRoot>(res)
             } catch (e: Exception) {
                 logError(e)
             }
@@ -525,6 +524,12 @@ class AniListApi : SyncAPI() {
         ).text.replace("\\/", "/")
     }
 
+	@Serializable
+	data class Variables(
+		@SerialName("search") val search: String,
+		@SerialName("page") val page: Int,
+		@SerialName("type") val type: String,
+	)
 
     @Serializable
     data class MediaRecommendation(
