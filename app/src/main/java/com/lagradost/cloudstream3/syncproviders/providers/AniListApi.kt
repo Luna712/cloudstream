@@ -24,7 +24,6 @@ import com.lagradost.cloudstream3.ui.library.ListSorting
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
-import com.lagradost.cloudstream3.utils.DataStore.toKotlinObject
 import com.lagradost.cloudstream3.utils.DataStoreHelper.toYear
 import com.lagradost.cloudstream3.utils.txt
 import kotlinx.serialization.SerialName
@@ -727,7 +726,7 @@ class AniListApi : SyncAPI() {
                     }
             """
         val text = postApi(auth.token, query)
-        return text?.toKotlinObject()
+        return tryParseJson<FullAnilistList>(text)
     }
 
     suspend fun toggleLike(auth : AuthData, id: Int): Boolean {
