@@ -55,7 +55,8 @@ object AppUtils {
     inline fun <reified T> tryParseJson(value: String?): T? {
         return try {
             parseJson(value ?: return null)
-        } catch (_: Exception) {
+        } catch (e: Exception) {
+            logError(e)
             null
         }
     }
