@@ -9,10 +9,11 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerializationException
-import kotlinx.serialization.builtins.ListSerializer
-import kotlinx.serialization.builtins.MapSerializer
-import kotlinx.serialization.builtins.SetSerializer
-import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonNull
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.serializer
 import kotlinx.serialization.serializerOrNull
 import kotlin.reflect.KClass
@@ -41,45 +42,47 @@ object AppUtils {
                 return mapper.writeValueAsString(this)
             }
         }
-        // Handle generic collection/map types where type params are erased at runtime
-        // and no serializer can be found via reflection alone
+        // Handle generic collection/map types where type params are erased at runtime.
+        // Convert to JsonElement to support mixed types within collections.
         return try {
-            @Suppress("UNCHECKED_CAST")
-            when (this) {
-                is Array<*> -> json.encodeToString(ListSerializer(elementSerializer()), this.toList())
-                is Set<*> -> json.encodeToString(SetSerializer(elementSerializer()), this)
-                is List<*> -> json.encodeToString(ListSerializer(elementSerializer()), this)
-                is Collection<*> -> json.encodeToString(ListSerializer(elementSerializer()), this.toList())
-                is Map<*, *> -> json.encodeToString(MapSerializer(String.serializer(), valueSerializer()), this as Map<String, Any?>)
-                else -> mapper.writeValueAsString(this)
-            }
+            json.encodeToString(JsonElement.serializer(), toJsonElement())
         } catch (e: SerializationException) {
-            logError(e)
+            // Uncomment when we want to encourage migration more for extensions
+            // logError(e)
             mapper.writeValueAsString(this)
         }
     }
 
-    private fun elementSerializerForClass(kClass: KClass<*>): KSerializer<Any?> {
-        val serializer = kClass.serializerOrNull()
-            ?: json.serializersModule.getContextual(kClass)
-            ?: throw SerializationException("No serializer found for element type ${kClass.simpleName}")
-        @Suppress("UNCHECKED_CAST")
-        return serializer as KSerializer<Any?>
-    }
-
-    private fun Collection<*>.elementSerializer(): KSerializer<Any?> {
-        val elementClass = this.firstOrNull()?.let { it::class } ?: String::class
-        return elementSerializerForClass(elementClass)
-    }
-
-    private fun Array<*>.elementSerializer(): KSerializer<Any?> {
-        val elementClass = this.firstOrNull()?.let { it::class } ?: String::class
-        return elementSerializerForClass(elementClass)
-    }
-
-    private fun Map<*, *>.valueSerializer(): KSerializer<Any?> {
-        val elementClass = this.values.firstOrNull()?.let { it::class } ?: String::class
-        return elementSerializerForClass(elementClass)
+    /**
+     * Recursively converts any value to a [JsonElement], supporting mixed-type
+     * collections, nested maps, nulls, primitives, and @Serializable objects.
+     * Do we want to make this a public API; may eventually have other uses?
+     */
+    private fun Any?.toJsonElement(): JsonElement {
+        if (this == null) return JsonNull
+        // Try kotlinx serializer first (handles @Serializable and primitives)
+        val serializer = this::class.serializerOrNull()
+            ?: json.serializersModule.getContextual(this::class)
+        if (serializer != null) {
+            try {
+                @Suppress("UNCHECKED_CAST")
+                return json.encodeToJsonElement(serializer as KSerializer<Any>, this)
+            } catch (_: SerializationException) {
+                // fall through to manual handling
+            }
+        }
+        return when (this) {
+            is Boolean -> JsonPrimitive(this)
+            is Number -> JsonPrimitive(this)
+            is String -> JsonPrimitive(this)
+            is Enum<*> -> JsonPrimitive(this.name)
+            is Array<*> -> JsonArray(this.map { it.toJsonElement() })
+            is Collection<*> -> JsonArray(this.map { it.toJsonElement() })
+            is Map<*, *> -> JsonObject(this.entries.associate { (k, v) ->
+                k.toString() to v.toJsonElement()
+            })
+            else -> throw SerializationException("No serializer found for ${this::class.simpleName}")
+        }
     }
 
     @InternalAPI
