@@ -89,8 +89,9 @@ class ErrorLoadingException(message: String? = null) : Exception(message)
 
 @Prerelease
 val json = Json {
+    coerceInputValues = true
     encodeDefaults = true
-    // explicitNulls = false
+    explicitNulls = false
     ignoreUnknownKeys = true
 }
 
