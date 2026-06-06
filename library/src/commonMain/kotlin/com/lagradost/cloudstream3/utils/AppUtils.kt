@@ -1,7 +1,9 @@
 package com.lagradost.cloudstream3.utils
 
+import com.fasterxml.jackson.module.kotlin.readValue
 import com.lagradost.cloudstream3.InternalAPI
 import com.lagradost.cloudstream3.json
+import com.lagradost.cloudstream3.mapper
 import com.lagradost.cloudstream3.mvvm.logError
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
@@ -37,18 +39,24 @@ object AppUtils {
                 return json.encodeToString(serializer as KSerializer<Any>, this)
             } catch (e: SerializationException) {
                 logError(e)
+                return mapper.writeValueAsString(this)
             }
         }
         // Handle generic collection/map types where type params are erased at runtime.
         // Convert to JsonElement to support mixed types within collections.
-        return json.encodeToString(JsonElement.serializer(), toJsonElement())
+        return try {
+            json.encodeToString(JsonElement.serializer(), toJsonElement())
+        } catch (e: SerializationException) {
+            logError(e)
+            mapper.writeValueAsString(this)
+        }
     }
 
     /**
      * Recursively converts any value to a [JsonElement], supporting mixed-type
      * collections, nested maps, nulls, primitives, and @Serializable objects.
      */
-    fun Any?.toJsonElement(): JsonElement {
+    private fun Any?.toJsonElement(): JsonElement {
         if (this == null) return JsonNull
         // Try kotlinx serializer first (handles @Serializable and primitives)
         val serializer = this::class.serializerOrNull()
@@ -77,10 +85,16 @@ object AppUtils {
 
     @InternalAPI
     fun <T : Any> parseJson(value: String, kClass: KClass<T>): T {
-        val serializer = kClass.serializerOrNull()
-            ?: json.serializersModule.getContextual(kClass)
-            ?: throw SerializationException("No serializer found for ${kClass.simpleName}")
-        return json.decodeFromString(serializer, value)
+        val serializer = kClass.serializerOrNull() ?: json.serializersModule.getContextual(kClass)
+        if (serializer != null) {
+            try {
+                return json.decodeFromString(serializer, value)
+            } catch (e: SerializationException) {
+                logError(e)
+            }
+        }
+
+        return mapper.readValue(value, kClass.java)
     }
 
     // This is inlined code and can easily cause breakage in extensions!
@@ -90,8 +104,17 @@ object AppUtils {
         // registered manually in serializersModule, we need both to support all cases
         val serializer = runCatching { serializer<T>() }.getOrNull()
             ?: json.serializersModule.getContextual(T::class)
-            ?: throw SerializationException("No serializer found for ${T::class.simpleName}")
-        return json.decodeFromString(serializer, value)
+
+        // Prefer Kotlin Serialization over Jackson
+        if (serializer != null) {
+            try {
+                return json.decodeFromString(serializer, value)
+            } catch (e: SerializationException) {
+                logError(e)
+            }
+        }
+
+        return mapper.readValue(value)
     }
 
     @Deprecated(
@@ -101,14 +124,14 @@ object AppUtils {
         replaceWith = ReplaceWith("parseJson<T>(reader.readText())")
     )
     inline fun <reified T> parseJson(reader: java.io.Reader, valueType: Class<T>): T {
-        throw UnsupportedOperationException("Jackson removed. Use parseJson<T>(reader.readText()) instead.")
+        // Reader-based parsing has no kotlinx equivalent, fall back to Jackson
+        return mapper.readValue(reader, valueType)
     }
 
     inline fun <reified T> tryParseJson(value: String?): T? {
         return try {
             parseJson(value ?: return null)
-        } catch (e: Exception) {
-            logError(e)
+        } catch (_: Exception) {
             null
         }
     }
