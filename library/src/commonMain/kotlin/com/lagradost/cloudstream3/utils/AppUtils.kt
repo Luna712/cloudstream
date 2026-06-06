@@ -6,10 +6,12 @@ import com.lagradost.cloudstream3.mvvm.logError
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.builtins.ListSerializer
-import kotlinx.serialization.builtins.MapSerializer
-import kotlinx.serialization.builtins.SetSerializer
-import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.SerializationException
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonNull
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.serializer
 import kotlinx.serialization.serializerOrNull
 import kotlin.reflect.KClass
@@ -25,56 +27,70 @@ object AppUtils {
     /** Sometimes we want to encode as JSON even if it is already a String. */
     @InternalAPI
     fun Any.toJsonLiteral(): String {
+        // @Serializable generates a serializer at compile time; contextual serializers are
+        // registered manually in serializersModule, we need both to support all cases
         val serializer =
             this::class.serializerOrNull() ?: json.serializersModule.getContextual(this::class)
         if (serializer != null) {
-            @Suppress("UNCHECKED_CAST")
-            return json.encodeToString(serializer as KSerializer<Any>, this)
+            try {
+                @Suppress("UNCHECKED_CAST")
+                return json.encodeToString(serializer as KSerializer<Any>, this)
+            } catch (e: SerializationException) {
+                logError(e)
+            }
+        }
+        // Handle generic collection/map types where type params are erased at runtime.
+        // Convert to JsonElement to support mixed types within collections.
+        return json.encodeToString(JsonElement.serializer(), toJsonElement())
+    }
+
+    /**
+     * Recursively converts any value to a [JsonElement], supporting mixed-type
+     * collections, nested maps, nulls, primitives, and @Serializable objects.
+     */
+    fun Any?.toJsonElement(): JsonElement {
+        if (this == null) return JsonNull
+        // Try kotlinx serializer first (handles @Serializable and primitives)
+        val serializer = this::class.serializerOrNull()
+            ?: json.serializersModule.getContextual(this::class)
+        if (serializer != null) {
+            try {
+                @Suppress("UNCHECKED_CAST")
+                return json.encodeToJsonElement(serializer as KSerializer<Any>, this)
+            } catch (_: SerializationException) {
+                // fall through to manual handling
+            }
         }
         return when (this) {
-            is Array<*> -> json.encodeToString(ListSerializer(elementSerializer()), this.toList() as List<Any?>)
-            is Set<*> -> json.encodeToString(SetSerializer(elementSerializer()), this as Set<Any?>)
-            is List<*> -> json.encodeToString(ListSerializer(elementSerializer()), this as List<Any?>)
-            is Collection<*> -> json.encodeToString(ListSerializer(elementSerializer()), this.toList() as List<Any?>)
-            is Map<*, *> -> json.encodeToString(MapSerializer(String.serializer(), valueSerializer()), this as Map<String, Any?>)
-            else -> error("No serializer found for ${this::class.simpleName}")
+            is Boolean -> JsonPrimitive(this)
+            is Number -> JsonPrimitive(this)
+            is String -> JsonPrimitive(this)
+            is Enum<*> -> JsonPrimitive(this.name)
+            is Array<*> -> JsonArray(this.map { it.toJsonElement() })
+            is Collection<*> -> JsonArray(this.map { it.toJsonElement() })
+            is Map<*, *> -> JsonObject(this.entries.associate { (k, v) ->
+                k.toString() to v.toJsonElement()
+            })
+            else -> throw SerializationException("No serializer found for ${this::class.simpleName}")
         }
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    private fun elementSerializerForClass(kClass: KClass<*>): KSerializer<Any?> {
-        val serializer = kClass.serializerOrNull()
-            ?: json.serializersModule.getContextual(kClass)
-            ?: error("No serializer found for element type ${kClass.simpleName}")
-        return serializer as KSerializer<Any?>
-    }
-
-    private fun Collection<*>.elementSerializer(): KSerializer<Any?> {
-        val elementClass = this.firstOrNull()?.let { it::class } ?: String::class
-        return elementSerializerForClass(elementClass)
-    }
-
-    private fun Array<*>.elementSerializer(): KSerializer<Any?> {
-        val elementClass = this.firstOrNull()?.let { it::class } ?: String::class
-        return elementSerializerForClass(elementClass)
-    }
-
-    private fun Map<*, *>.valueSerializer(): KSerializer<Any?> {
-        val elementClass = this.values.firstOrNull()?.let { it::class } ?: String::class
-        return elementSerializerForClass(elementClass)
     }
 
     @InternalAPI
     fun <T : Any> parseJson(value: String, kClass: KClass<T>): T {
-        val serializer = kClass.serializerOrNull() ?: json.serializersModule.getContextual(kClass)
-            ?: error("No serializer found for ${kClass.simpleName}")
+        val serializer = kClass.serializerOrNull()
+            ?: json.serializersModule.getContextual(kClass)
+            ?: throw SerializationException("No serializer found for ${kClass.simpleName}")
         return json.decodeFromString(serializer, value)
     }
 
+    // This is inlined code and can easily cause breakage in extensions!
+    // Watch out when editing this to make sure stable also supports all inlined code!
     inline fun <reified T : Any> parseJson(value: String): T {
+        // @Serializable generates a serializer at compile time; contextual serializers are
+        // registered manually in serializersModule, we need both to support all cases
         val serializer = runCatching { serializer<T>() }.getOrNull()
             ?: json.serializersModule.getContextual(T::class)
-            ?: error("No serializer found for ${T::class.simpleName}")
+            ?: throw SerializationException("No serializer found for ${T::class.simpleName}")
         return json.decodeFromString(serializer, value)
     }
 
