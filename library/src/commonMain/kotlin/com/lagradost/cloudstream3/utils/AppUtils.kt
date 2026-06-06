@@ -32,6 +32,7 @@ object AppUtils {
             return json.encodeToString(serializer as KSerializer<Any>, this)
         }
         return when (this) {
+            is Array<*> -> json.encodeToString(ListSerializer(elementSerializer()), this.toList() as List<Any?>)
             is Set<*> -> json.encodeToString(SetSerializer(elementSerializer()), this as Set<Any?>)
             is List<*> -> json.encodeToString(ListSerializer(elementSerializer()), this as List<Any?>)
             is Collection<*> -> json.encodeToString(ListSerializer(elementSerializer()), this.toList() as List<Any?>)
@@ -49,6 +50,11 @@ object AppUtils {
     }
 
     private fun Collection<*>.elementSerializer(): KSerializer<Any?> {
+        val elementClass = this.firstOrNull()?.let { it::class } ?: String::class
+        return elementSerializerForClass(elementClass)
+    }
+
+    private fun Array<*>.elementSerializer(): KSerializer<Any?> {
         val elementClass = this.firstOrNull()?.let { it::class } ?: String::class
         return elementSerializerForClass(elementClass)
     }
