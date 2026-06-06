@@ -6,7 +6,10 @@ import com.lagradost.cloudstream3.mvvm.logError
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.SerializationException
+import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.builtins.MapSerializer
+import kotlinx.serialization.builtins.SetSerializer
+import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.serializer
 import kotlinx.serialization.serializerOrNull
 import kotlin.reflect.KClass
@@ -24,12 +27,35 @@ object AppUtils {
     fun Any.toJsonLiteral(): String {
         val serializer =
             this::class.serializerOrNull() ?: json.serializersModule.getContextual(this::class)
-        return if (serializer != null) {
+        if (serializer != null) {
             @Suppress("UNCHECKED_CAST")
-            json.encodeToString(serializer as KSerializer<Any>, this)
-        } else {
-            json.encodeToString(kotlinx.serialization.json.JsonElement.serializer(), json.encodeToJsonElement(kotlinx.serialization.json.JsonElement.serializer(), this as kotlinx.serialization.json.JsonElement))
+            return json.encodeToString(serializer as KSerializer<Any>, this)
         }
+        return when (this) {
+            is Set<*> -> json.encodeToString(SetSerializer(elementSerializer()), this as Set<Any?>)
+            is List<*> -> json.encodeToString(ListSerializer(elementSerializer()), this as List<Any?>)
+            is Collection<*> -> json.encodeToString(ListSerializer(elementSerializer()), this.toList() as List<Any?>)
+            is Map<*, *> -> json.encodeToString(MapSerializer(String.serializer(), valueSerializer()), this as Map<String, Any?>)
+            else -> error("No serializer found for ${this::class.simpleName}")
+        }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun elementSerializerForClass(kClass: KClass<*>): KSerializer<Any?> {
+        val serializer = kClass.serializerOrNull()
+            ?: json.serializersModule.getContextual(kClass)
+            ?: error("No serializer found for element type ${kClass.simpleName}")
+        return serializer as KSerializer<Any?>
+    }
+
+    private fun Collection<*>.elementSerializer(): KSerializer<Any?> {
+        val elementClass = this.firstOrNull()?.let { it::class } ?: String::class
+        return elementSerializerForClass(elementClass)
+    }
+
+    private fun Map<*, *>.valueSerializer(): KSerializer<Any?> {
+        val elementClass = this.values.firstOrNull()?.let { it::class } ?: String::class
+        return elementSerializerForClass(elementClass)
     }
 
     @InternalAPI
