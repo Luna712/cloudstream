@@ -24,8 +24,12 @@ object AppUtils {
     fun Any.toJsonLiteral(): String {
         val serializer =
             this::class.serializerOrNull() ?: json.serializersModule.getContextual(this::class)
-        @Suppress("UNCHECKED_CAST")
-        return json.encodeToString(serializer as KSerializer<Any>, this)
+        return if (serializer != null) {
+            @Suppress("UNCHECKED_CAST")
+            json.encodeToString(serializer as KSerializer<Any>, this)
+        } else {
+            json.encodeToString(kotlinx.serialization.json.JsonElement.serializer(), json.encodeToJsonElement(kotlinx.serialization.json.JsonElement.serializer(), this as kotlinx.serialization.json.JsonElement))
+        }
     }
 
     @InternalAPI
