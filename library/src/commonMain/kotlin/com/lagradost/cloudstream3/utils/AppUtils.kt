@@ -9,6 +9,7 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerializationException
+import kotlinx.serialization.builtins.ArraySerializer
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.MapSerializer
 import kotlinx.serialization.builtins.SetSerializer
@@ -46,15 +47,16 @@ object AppUtils {
         return try {
             @Suppress("UNCHECKED_CAST")
             when (this) {
-                is Array<*> -> json.encodeToString(ListSerializer(elementSerializer()), this.toList())
+                is Array<*> -> json.encodeToString(ArraySerializer(elementSerializer()), this)
                 is Set<*> -> json.encodeToString(SetSerializer(elementSerializer()), this)
                 is List<*> -> json.encodeToString(ListSerializer(elementSerializer()), this)
                 is Collection<*> -> json.encodeToString(ListSerializer(elementSerializer()), this.toList())
                 is Map<*, *> -> json.encodeToString(MapSerializer(String.serializer(), valueSerializer()), this as Map<String, Any?>)
-                else -> mapper.writeValueAsString(this)
+                else -> throw SerializationException("No serializer found for ${this::class.simpleName}")
             }
         } catch (e: SerializationException) {
-            logError(e)
+            // Uncomment when we want to encourage migration more for extensions
+            // logError(e)
             mapper.writeValueAsString(this)
         }
     }
