@@ -16,18 +16,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.lagradost.cloudstream4.ui.components.ProfileImage
-import com.lagradost.cloudstream4.ui.components.ProfilePicture
-import com.lagradost.cloudstream4.ui.components.cloudStreamRipple
-import com.lagradost.cloudstream4.ui.components.settings.SettingsItem
-import com.lagradost.cloudstream4.ui.icons.account_circle
-import com.lagradost.cloudstream4.ui.icons.extension
-import com.lagradost.cloudstream4.ui.icons.mobile_arrow_down
-import com.lagradost.cloudstream4.ui.icons.palette
-import com.lagradost.cloudstream4.ui.icons.play_circle
-import com.lagradost.cloudstream4.ui.icons.storage
-import com.lagradost.cloudstream4.ui.icons.tune
-import com.lagradost.cloudstream4.ui.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.generated.resources.Res
 import com.lagradost.cloudstream4.generated.resources.category_accounts
 import com.lagradost.cloudstream4.generated.resources.category_accounts_subtitle
@@ -43,6 +31,18 @@ import com.lagradost.cloudstream4.generated.resources.category_providers
 import com.lagradost.cloudstream4.generated.resources.category_providers_subtitle
 import com.lagradost.cloudstream4.generated.resources.category_updates
 import com.lagradost.cloudstream4.generated.resources.category_updates_subtitle
+import com.lagradost.cloudstream4.ui.components.ProfileImage
+import com.lagradost.cloudstream4.ui.components.ProfilePicture
+import com.lagradost.cloudstream4.ui.components.cloudStreamRipple
+import com.lagradost.cloudstream4.ui.components.settings.SettingsItem
+import com.lagradost.cloudstream4.ui.icons.account_circle
+import com.lagradost.cloudstream4.ui.icons.extension
+import com.lagradost.cloudstream4.ui.icons.mobile_arrow_down
+import com.lagradost.cloudstream4.ui.icons.palette
+import com.lagradost.cloudstream4.ui.icons.play_circle
+import com.lagradost.cloudstream4.ui.icons.storage
+import com.lagradost.cloudstream4.ui.icons.tune
+import com.lagradost.cloudstream4.ui.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.utils.DeviceLayout
 import org.jetbrains.compose.resources.stringResource
 
