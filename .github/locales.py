@@ -8,7 +8,7 @@ SETTINGS_PATH = "app/src/main/java/com/lagradost/cloudstream3/ui/settings/Settin
 START_MARKER = "/* begin language list */"
 END_MARKER = "/* end language list */"
 XML_NAME = "app/src/main/res/values-b+"
-COMPOSE_XML_NAME = "composeApp/src/commonMain/composeResources/values-"
+COMPOSE_XML_NAME = "composeApp/src/commonMain/composeResources/values-b+"
 ISO_MAP_URL = "https://raw.githubusercontent.com/haliaeetus/iso-639/master/data/iso_639-1.min.json"
 INDENT = " "*4
 
