@@ -25,19 +25,13 @@ for lang in re.finditer(r'Pair\("(.*)", "(.*)"\)', rest):
     name, iso = lang.groups()
     languages[iso] = name
 
-# Add not yet added langs from app/src/main/res (BCP 47 format: values-b+xx)
-for folder in glob.glob(f"{XML_NAME}*"):
-    iso = folder[len(XML_NAME):].replace("+", "-")
+# Add not yet added langs from app/src/main/res and composeResources
+for folder in glob.glob(f"{XML_NAME}*") + glob.glob(f"{COMPOSE_XML_NAME}*"):
+    prefix = XML_NAME if folder.startswith(XML_NAME) else COMPOSE_XML_NAME
+    iso = folder[len(prefix):].replace("+", "-")
     if iso not in languages.keys():
         entry = iso_map.get(iso.lower(), {'nativeName': iso}) # fallback to iso code if not found
         languages[iso] = entry['nativeName'].split(',')[0] # first name if there are multiple
-
-# Add not yet added langs from composeResources (simple ISO 639-1 format: values-xx)
-for folder in glob.glob(f"{COMPOSE_XML_NAME}*"):
-    iso = folder[len(COMPOSE_XML_NAME):]
-    if iso not in languages.keys():
-        entry = iso_map.get(iso.lower(), {'nativeName': iso})
-        languages[iso] = entry['nativeName'].split(',')[0]
 
 # Create pairs
 pairs = []
