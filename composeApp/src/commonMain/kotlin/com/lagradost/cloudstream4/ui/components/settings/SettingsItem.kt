@@ -10,13 +10,13 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.lagradost.cloudstream4.generated.resources.Res
+import com.lagradost.cloudstream4.generated.resources.category_general
+import com.lagradost.cloudstream4.generated.resources.category_general_subtitle
 import com.lagradost.cloudstream4.ui.components.cloudStreamRipple
 import com.lagradost.cloudstream4.ui.components.tvFocusable
 import com.lagradost.cloudstream4.ui.icons.tune
 import com.lagradost.cloudstream4.ui.theme.CloudStreamTheme
-import com.lagradost.cloudstream4.generated.resources.Res
-import com.lagradost.cloudstream4.generated.resources.category_general
-import com.lagradost.cloudstream4.generated.resources.category_general_subtitle
 import com.lagradost.cloudstream4.utils.DeviceLayout
 import org.jetbrains.compose.resources.stringResource
 
