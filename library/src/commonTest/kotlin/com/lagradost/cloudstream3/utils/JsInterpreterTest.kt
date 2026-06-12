@@ -273,9 +273,59 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun instanceofReturnsFalse() {
-        // Our interpreter always returns false for instanceof
-        assertFalse(bool("[] instanceof Array"))
+    fun instanceofArrayTrue() {
+        assertTrue(bool("[] instanceof Array"))
+    }
+
+    @Test
+    fun instanceofArrayFalseForObject() {
+        assertFalse(bool("({}) instanceof Array"))
+    }
+
+    @Test
+    fun instanceofObjectTrueForPlainObject() {
+        assertTrue(bool("({}) instanceof Object"))
+    }
+
+    @Test
+    fun instanceofObjectTrueForArray() {
+        // Arrays are objects in JS
+        assertTrue(bool("[] instanceof Object"))
+    }
+
+    @Test
+    fun instanceofFunctionTrue() {
+        assertTrue(bool("(function(){}) instanceof Function"))
+    }
+
+    @Test
+    fun instanceofFunctionFalseForArray() {
+        assertFalse(bool("[] instanceof Function"))
+    }
+
+    @Test
+    fun instanceofUserDefinedConstructorTrue() {
+        assertTrue(bool("function Dog(){} var d = new Dog(); d instanceof Dog"))
+    }
+
+    @Test
+    fun instanceofUserDefinedConstructorFalseForOtherClass() {
+        assertFalse(bool("function Cat(){} function Dog(){} var d = new Dog(); d instanceof Cat"))
+    }
+
+    @Test
+    fun instanceofUserDefinedConstructorFalseForPlainObject() {
+        assertFalse(bool("function Dog(){} ({}) instanceof Dog"))
+    }
+
+    @Test
+    fun instanceofUserDefinedConstructorWithProperties() {
+        val code = """
+            function Point(x, y) { this.x = x; this.y = y; }
+            var p = new Point(1, 2);
+            (p instanceof Point) && p.x === 1 && p.y === 2
+        """.trimIndent()
+        assertTrue(bool(code))
     }
 
     @Test
