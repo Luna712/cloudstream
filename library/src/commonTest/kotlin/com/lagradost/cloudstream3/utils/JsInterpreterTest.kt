@@ -948,7 +948,7 @@ class JsInterpreterTest {
 
     @Test
     fun newArrayWithSize() {
-        assertEquals(5.0, num("var a = new Array(5); a.length"))
+        assertEquals(5.0, num("new Array(5).length"))
     }
 
     @Test
