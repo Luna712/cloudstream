@@ -676,7 +676,7 @@ private fun toJsString(v: Any?): String = when (v) {
     is JsList -> v.elements.joinToString(",") { toJsString(it) }
     is JsObject -> "[object Object]"
     is NativeFn -> v.toString()
-    is JsFunction -> "function ${v.name ?: ""}() { [native code] }"
+    is JsFunction -> "function ${v.name}() { [native code] }"
     else -> v.toString()
 }
 
