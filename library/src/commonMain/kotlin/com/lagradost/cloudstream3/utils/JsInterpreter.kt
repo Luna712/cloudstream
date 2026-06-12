@@ -795,7 +795,15 @@ private class JsInterpreter {
             else JsList(args.toMutableList())
         })
 
-        globalScope.define("Object", JsObject(mutableMapOf(
+        globalScope.define("Object", NativeFn({ args ->
+            // Object() called as a function, wrap primitive or return object as-is
+            when (val v = args.getOrNull(0)) {
+                null, is Unit -> JsObject()
+                is JsObject -> v
+                is JsList -> v
+                else -> JsObject()
+            }
+        }, "Object", mutableMapOf(
             "keys" to nativeFn("keys") { args ->
                 when (val o = args.getOrNull(0)) {
                     is JsObject -> JsList(o.props.keys.map { it as Any? }.toMutableList())
@@ -809,6 +817,10 @@ private class JsInterpreter {
                 }
             }
         )))
+
+        globalScope.define("Function", nativeFn("Function") { _ -> nativeFn("anonymous") { Unit } })
+        globalScope.define("Number", nativeFn("Number") { args -> toNumber(args.getOrNull(0)) })
+        globalScope.define("Boolean", nativeFn("Boolean") { args -> toBoolean(args.getOrNull(0)) })
 
         // console.log (no-op for silence, but avoids errors)
         val consoleObj = JsObject(mutableMapOf(
@@ -1074,6 +1086,7 @@ private class JsInterpreter {
     }
 
     private fun getMember(obj: Any?, key: String): Any? = when (obj) {
+        is NativeFn -> obj.props[key] ?: Unit
         is JsObject -> obj.props[key] ?: Unit
         is JsList -> when (key) {
             "length" -> obj.length.toDouble()
@@ -1305,6 +1318,6 @@ private class JsInterpreter {
 }
 
 // Wrapper so we can store Kotlin lambdas as "callable" values
-private class NativeFn(val fn: (List<Any?>) -> Any?, val name: String) {
+private class NativeFn(val fn: (List<Any?>) -> Any?, val name: String, val props: MutableMap<String, Any?> = mutableMapOf()) {
     override fun toString() = "function $name() { [native code] }"
 }
