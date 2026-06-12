@@ -460,7 +460,21 @@ private class Parser(private val lex: Lexer) {
     private fun parseBitxor() = parseBin(::parseBitand, TT.CARET to "^")
     private fun parseBitand() = parseBin(::parseEq, TT.AMP to "&")
     private fun parseEq() = parseBin(::parseRel, TT.EQEQ to "==", TT.EQEQEQ to "===", TT.NEQ to "!=", TT.NEQEQ to "!==")
-    private fun parseRel() = parseBin(::parseShift, TT.LT to "<", TT.LTEQ to "<=", TT.GT to ">", TT.GTEQ to ">=")
+    private fun parseRel(): Node {
+        var left = parseShift()
+        while (true) {
+            left = when {
+                lex.peek().type == TT.LT -> { lex.consume(); BinExpr("<", left, parseShift()) }
+                lex.peek().type == TT.LTEQ -> { lex.consume(); BinExpr("<=", left, parseShift()) }
+                lex.peek().type == TT.GT -> { lex.consume(); BinExpr(">", left, parseShift()) }
+                lex.peek().type == TT.GTEQ -> { lex.consume(); BinExpr(">=", left, parseShift()) }
+                lex.peek().type == TT.IDENT && lex.peek().raw == "in" -> { lex.consume(); BinExpr("in", left, parseShift()) }
+                lex.peek().type == TT.IDENT && lex.peek().raw == "instanceof" -> { lex.consume(); BinExpr("instanceof", left, parseShift()) }
+                else -> break
+            }
+        }
+        return left
+    }
     private fun parseShift() = parseBin(::parseAdd, TT.LSHIFT to "<<", TT.RSHIFT to ">>", TT.URSHIFT to ">>>")
     private fun parseAdd() = parseBin(::parseMul, TT.PLUS to "+", TT.MINUS to "-")
     private fun parseMul() = parseBin(::parseUnary, TT.STAR to "*", TT.SLASH to "/", TT.PERCENT to "%")
@@ -497,7 +511,26 @@ private class Parser(private val lex: Lexer) {
         lex.consume() // "new"
         val callee = parsePrimary()
         val args = if (lex.peek().type == TT.LPAREN) parseArgs() else emptyList()
-        return NewExpr(callee, args)
+        var expr: Node = NewExpr(callee, args)
+        // Allow member access and calls on the constructed object: new Foo().bar, new Foo()[0]
+        while (true) {
+            expr = when (lex.peek().type) {
+                TT.DOT -> {
+                    lex.consume()
+                    val prop = lex.expect(TT.IDENT).raw
+                    MemberExpr(expr, StrLit(prop), false)
+                }
+                TT.LBRACKET -> {
+                    lex.consume()
+                    val prop = parseAssign()
+                    lex.expect(TT.RBRACKET)
+                    MemberExpr(expr, prop, true)
+                }
+                TT.LPAREN -> CallExpr(expr, parseArgs())
+                else -> break
+            }
+        }
+        return expr
     }
 
     private fun parsePostfix(): Node {
@@ -658,6 +691,10 @@ private fun strictEq(a: Any?, b: Any?): Boolean = when {
 
 private fun looseEq(a: Any?, b: Any?): Boolean {
     if (strictEq(a, b)) return true
+    // null == undefined
+    val aNullish = a == null || a is Unit
+    val bNullish = b == null || b is Unit
+    if (aNullish || bNullish) return aNullish && bNullish
     // number coercion
     val an = a is Double || a is Boolean
     val bn = b is Double || b is Boolean
@@ -782,7 +819,7 @@ private class JsInterpreter {
         globalScope.define("console", consoleObj)
     }
 
-    private fun nativeFn(name: String = "", fn: (List<Any?>) -> Any?): Any? = NativeFn(fn, name)
+    private fun nativeFn(name: String, fn: (List<Any?>) -> Any?): Any? = NativeFn(fn, name)
 
     fun eval(code: String): Any? {
         return try {
@@ -970,7 +1007,7 @@ private class JsInterpreter {
             "^" -> (toNumber(l).toLong() xor toNumber(r).toLong()).toDouble()
             "<<" -> (toNumber(l).toLong() shl toNumber(r).toInt()).toDouble()
             ">>" -> (toNumber(l).toLong() shr toNumber(r).toInt()).toDouble()
-            ">>>" -> (toNumber(l).toLong() ushr toNumber(r).toInt()).toDouble()
+            ">>>" -> (toNumber(l).toInt().toLong() and 0xFFFFFFFFL ushr toNumber(r).toInt()).toDouble()
             "instanceof" -> false
             "in" -> when (r) {
                 is JsObject -> toJsString(l) in r.props
@@ -1228,8 +1265,10 @@ private class JsInterpreter {
     private fun evalNew(node: NewExpr, scope: Scope): Any? {
         val callee = evalExpr(node.callee, scope)
         val args = node.args.map { evalExpr(it, scope) }
-        // Just call it
-        return callAny(callee, args, JsObject())
+        val thisVal = JsObject()
+        val result = callAny(callee, args, thisVal)
+        // JS 'new' returns the constructed object unless the constructor explicitly returns an object
+        return if (result is JsObject) result else thisVal
     }
 
     private fun callAny(callee: Any?, args: List<Any?>, thisVal: Any?): Any? = when (callee) {
@@ -1252,6 +1291,6 @@ private class JsInterpreter {
 }
 
 // Wrapper so we can store Kotlin lambdas as "callable" values
-private class NativeFn(val fn: (List<Any?>) -> Any?, val name: String = "") {
+private class NativeFn(val fn: (List<Any?>) -> Any?, val name: String) {
     override fun toString() = "function $name() { [native code] }"
 }
