@@ -712,7 +712,7 @@ private class JsList(val elements: MutableList<Any?> = mutableListOf()) {
     operator fun set(idx: Int, v: Any?) { while (elements.size <= idx) elements.add(Unit); elements[idx] = v }
 }
 
-private class JsObject(val props: MutableMap<String, Any?> = mutableMapOf())
+private class JsObject(val props: MutableMap<String, Any?> = mutableMapOf(), var constructor: JsFunction? = null)
 
 private class JsFunction(
     val name: String?,
@@ -1008,7 +1008,19 @@ private class JsInterpreter {
             "<<" -> (toNumber(l).toLong() shl toNumber(r).toInt()).toDouble()
             ">>" -> (toNumber(l).toLong() shr toNumber(r).toInt()).toDouble()
             ">>>" -> (toNumber(l).toInt().toLong() and 0xFFFFFFFFL ushr toNumber(r).toInt()).toDouble()
-            "instanceof" -> false
+            "instanceof" -> when (r) {
+                is NativeFn -> when (r.name) {
+                    "Array" -> l is JsList
+                    "Object" -> l is JsObject || l is JsList
+                    "Function" -> l is JsFunction || l is NativeFn
+                    "String" -> l is String
+                    "Number" -> l is Double
+                    "Boolean" -> l is Boolean
+                    else -> false
+                }
+                is JsFunction -> l is JsObject && l.constructor === r
+                else -> false
+            }
             "in" -> when (r) {
                 is JsObject -> toJsString(l) in r.props
                 is JsList -> toNumber(l).toInt().let { it >= 0 && it < r.elements.size }
@@ -1267,7 +1279,7 @@ private class JsInterpreter {
         val args = node.args.map { evalExpr(it, scope) }
         // NativeFn constructors (e.g. Array) return their value directly
         if (callee is NativeFn) return callee.fn(args)
-        val thisVal = JsObject()
+        val thisVal = JsObject(constructor = callee as? JsFunction)
         val result = callAny(callee, args, thisVal)
         // JS 'new' returns the constructed object unless the constructor explicitly returns an object
         return if (result is JsObject) result else thisVal
