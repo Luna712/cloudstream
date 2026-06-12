@@ -1265,6 +1265,8 @@ private class JsInterpreter {
     private fun evalNew(node: NewExpr, scope: Scope): Any? {
         val callee = evalExpr(node.callee, scope)
         val args = node.args.map { evalExpr(it, scope) }
+        // NativeFn constructors (e.g. Array) return their value directly
+        if (callee is NativeFn) return callee.fn(args)
         val thisVal = JsObject()
         val result = callAny(callee, args, thisVal)
         // JS 'new' returns the constructed object unless the constructor explicitly returns an object
