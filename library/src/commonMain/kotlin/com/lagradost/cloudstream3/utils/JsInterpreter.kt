@@ -791,10 +791,35 @@ private class JsInterpreter {
         globalScope.define("NaN", Double.NaN)
         globalScope.define("Infinity", Double.POSITIVE_INFINITY)
 
-        globalScope.define("Array", nativeFn("Array") { args ->
+        val arrayFn = NativeFn({ args ->
             if (args.size == 1 && args[0] is Double) JsList(MutableList((args[0] as Double).toInt()) { Unit })
             else JsList(args.toMutableList())
-        })
+        }, "Array", mutableMapOf(
+            "isArray" to nativeFn("isArray") { args -> args.getOrNull(0) is JsList },
+            "of" to nativeFn("of") { args -> JsList(args.toMutableList()) },
+            "from" to nativeFn("from") { args ->
+                val src = args.getOrNull(0)
+                val mapFn = args.getOrNull(1)
+                // Build base list from iterable/array-like
+                val base: MutableList<Any?> = when (src) {
+                    is JsList -> src.elements.toMutableList()
+                    is String -> src.map { it.toString() as Any? }.toMutableList()
+                    is JsObject -> {
+                        // array-like: {length: n, 0: v0, 1: v1, ...}
+                        val len = (src.props["length"]?.let { toNumber(it) } ?: 0.0).toInt()
+                        MutableList(len) { i -> src.props[i.toString()] ?: Unit }
+                    }
+                    else -> mutableListOf()
+                }
+                // Apply optional mapping function
+                if (mapFn != null && mapFn !is Unit) {
+                    JsList(base.mapIndexed { i, v -> callAny(mapFn, listOf(v, i.toDouble()), null) }.toMutableList())
+                } else {
+                    JsList(base)
+                }
+            }
+        ))
+        globalScope.define("Array", arrayFn)
 
         globalScope.define("Object", NativeFn({ args ->
             // Object() called as a function, wrap primitive or return object as-is
