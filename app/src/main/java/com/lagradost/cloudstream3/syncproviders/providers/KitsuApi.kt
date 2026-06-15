@@ -3,6 +3,7 @@ package com.lagradost.cloudstream3.syncproviders.providers
 
 import androidx.annotation.StringRes
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.lagradost.cloudstream3.APIHolder.unixTime
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKey
 import com.lagradost.cloudstream3.R

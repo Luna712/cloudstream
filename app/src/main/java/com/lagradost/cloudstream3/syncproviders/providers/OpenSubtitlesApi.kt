@@ -2,9 +2,11 @@ package com.lagradost.cloudstream3.syncproviders.providers
 
 import android.util.Log
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.lagradost.cloudstream3.app
+import com.lagradost.cloudstream3.APIHolder.unixTime
+import com.lagradost.cloudstream3.APIHolder.unixTimeMS
 import com.lagradost.cloudstream3.ErrorLoadingException
 import com.lagradost.cloudstream3.R
+import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.subtitles.AbstractSubtitleEntities
 import com.lagradost.cloudstream3.syncproviders.AuthData
 import com.lagradost.cloudstream3.syncproviders.AuthLoginRequirement
@@ -43,17 +45,17 @@ class OpenSubtitlesApi : SubtitleAPI() {
     }
 
     private fun canDoRequest(): Boolean {
-        return unixTimeMs > currentCoolDown
+        return unixTimeMS > currentCoolDown
     }
 
     private fun throwIfCantDoRequest() {
         if (!canDoRequest()) {
-            throw ErrorLoadingException("Too many requests wait for ${(currentCoolDown - unixTimeMs) / 1000L}s")
+            throw ErrorLoadingException("Too many requests wait for ${(currentCoolDown - unixTimeMS) / 1000L}s")
         }
     }
 
     private fun throwGotTooManyRequests() {
-        currentCoolDown = unixTimeMs + COOLDOWN_DURATION
+        currentCoolDown = unixTimeMS + COOLDOWN_DURATION
         throw ErrorLoadingException("Too many requests")
     }
 
