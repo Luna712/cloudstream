@@ -144,8 +144,8 @@ abstract class AuthAPI {
         @Deprecated(
             message = "Use APIHolder.unixTime instead",
             replaceWith = ReplaceWith(
-                expression = "unixTime",
-                imports = ["com.lagradost.cloudstream3.APIHolder.unixTime"]
+                expression = "APIHolder.unixTime",
+                imports = ["com.lagradost.cloudstream3.APIHolder"]
             ),
             level = DeprecationLevel.WARNING,
         )

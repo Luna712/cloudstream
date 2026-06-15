@@ -2,7 +2,7 @@ package com.lagradost.cloudstream3.syncproviders.providers
 
 import android.util.Log
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.lagradost.cloudstream3.APIHolder.unixTime
+import com.lagradost.cloudstream3.APIHolder
 import com.lagradost.cloudstream3.APIHolder.unixTimeMS
 import com.lagradost.cloudstream3.ErrorLoadingException
 import com.lagradost.cloudstream3.R
@@ -91,7 +91,7 @@ class OpenSubtitlesApi : SubtitleAPI() {
             accessToken = response.token
                 ?: throw ErrorLoadingException("Invalid password or username"),
             /// JWT token is valid 24 hours after successfully authentication of user
-            accessTokenLifetime = unixTime + 60 * 60 * 24,
+            accessTokenLifetime = APIHolder.unixTime + 60 * 60 * 24,
             payload = form.toJson()
         )
     }
