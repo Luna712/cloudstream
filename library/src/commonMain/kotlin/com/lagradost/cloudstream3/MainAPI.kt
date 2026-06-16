@@ -755,18 +755,44 @@ fun MainAPI.fixUrl(url: String): String {
     }
 }
 
-/** Sort the urls based on quality
+/**
+ * Sort the urls based on quality
+ *
  * @param urls Set of [ExtractorLink]
- * */
+ */
 fun sortUrls(urls: Set<ExtractorLink>): List<ExtractorLink> {
     return urls.sortedBy { t -> -t.quality }
 }
 
-/** Capitalize the first letter of string.
+/**
+ * Splits the query string of a [Url] into a map of key-value pairs.
+ *
+ * Unlike a manual `split("&")` / `split("=")` implementation, this relies on Ktor's
+ * built-in query parser ([Url.parameters]), which already handles URL-decoding,
+ * malformed pairs, and parameters without a value.
+ *
+ * Note: if a key appears multiple times in the query string (e.g. `?a=1&a=2`),
+ * only the **first** value is kept, since the return type is `Map<String, String>`.
+ * Use [Url.parameters] directly if you need all values for repeated keys.
+ *
+ * @param url the [Url] whose query parameters should be extracted.
+ * @return a map of decoded query parameter names to their first decoded value.
+ *
+ * @sample
+ * splitQuery(Url("https://example.com/path?foo=bar&baz=qux"))
+ * // returns {"foo": "bar", "baz": "qux"}
+ */
+fun splitQuery(url: Url): Map<String, String> {
+    return url.parameters.entries().associate { (key, values) -> key to values.first() }
+}
+
+/**
+ * Capitalize the first letter of string.
+ *
  * @param str String to be capitalized
  * @return non-nullable String
  * @see capitalizeStringNullable
- * */
+ */
 fun capitalizeString(str: String): String {
     return capitalizeStringNullable(str) ?: str
 }
