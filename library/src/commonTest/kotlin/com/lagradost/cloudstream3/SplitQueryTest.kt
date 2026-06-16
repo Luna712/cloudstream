@@ -40,7 +40,7 @@ class SplitQueryTest {
         val url = Url("https://example.com/path?flag&foo=bar")
         val result = splitQuery(url)
         assertEquals("bar", result["foo"])
-        assertTrue(result.containsKey("flag"))
+        assertEquals("", result["flag"])
     }
 
     @Test
@@ -71,6 +71,6 @@ class SplitQueryTest {
     fun stringOverloadHandlesParameterWithNoValue() {
         val result = splitQuery("https://example.com/path?flag&foo=bar")
         assertEquals("bar", result["foo"])
-        assertTrue(result.containsKey("flag"))
+        assertEquals("", result["flag"])
     }
 }
