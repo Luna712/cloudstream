@@ -39,7 +39,7 @@ import com.lagradost.cloudstream3.utils.AppContextUtils.splitQuery
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.UiText
 import com.lagradost.cloudstream3.utils.txt
-import java.net.URL
+import io.ktor.http.Url
 import java.security.SecureRandom
 import java.util.Date
 import java.util.concurrent.TimeUnit
@@ -183,11 +183,9 @@ abstract class AuthAPI {
             get() = System.currentTimeMillis()
 
         fun splitRedirectUrl(redirectUrl: String): Map<String, String> {
-            return splitQuery(
-                URL(
-                    redirectUrl.replace(APP_STRING, "https").replace("/#", "?")
-                )
-            )
+            return splitQuery(Url(
+                redirectUrl.replace(APP_STRING, "https").replace("/#", "?")
+            ))
         }
 
         fun generateCodeVerifier(): String {
