@@ -91,7 +91,6 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import okhttp3.Cache
 import java.io.File
-import java.net.URL
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
@@ -638,7 +637,7 @@ object AppContextUtils {
         ),
         level = DeprecationLevel.WARNING,
     ) */
-    fun splitQuery(url: URL): Map<String, String> {
+    fun splitQuery(url: java.net.URL): Map<String, String> {
         return com.lagradost.cloudstream3.splitQuery(Url(url.toString()))
     }
 
