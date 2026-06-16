@@ -86,15 +86,14 @@ import com.lagradost.cloudstream3.utils.FillerEpisodeCheck.toClassDir
 import com.lagradost.cloudstream3.utils.JsUnpacker.Companion.load
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects
+import io.ktor.http.Url
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import okhttp3.Cache
 import java.io.File
 import java.net.URL
-import java.net.URLDecoder
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
-
 
 object AppContextUtils {
     fun RecyclerView.isRecyclerScrollable(): Boolean {
@@ -630,16 +629,16 @@ object AppContextUtils {
         }
     }
 
+    @Deprecated(
+        message = "Use Ktor 'Url' based splitQuery instead.",
+        replaceWith = ReplaceWith(
+            expression = "splitQuery(Url(url.toString()))",
+            imports = ["com.lagradost.cloudstream3.splitQuery", "io.ktor.http.Url"],
+        ),
+        level = DeprecationLevel.WARNING,
+    )
     fun splitQuery(url: URL): Map<String, String> {
-        val queryPairs: MutableMap<String, String> = LinkedHashMap()
-        val query: String = url.query
-        val pairs = query.split("&").toTypedArray()
-        for (pair in pairs) {
-            val idx = pair.indexOf("=")
-            queryPairs[URLDecoder.decode(pair.substring(0, idx), "UTF-8")] =
-                URLDecoder.decode(pair.substring(idx + 1), "UTF-8")
-        }
-        return queryPairs
+        return com.lagradost.cloudstream3.splitQuery(Url(url.toString()))
     }
 
     /**| S1:E2 Hello World
