@@ -784,7 +784,7 @@ fun sortUrls(urls: Set<ExtractorLink>): List<ExtractorLink> {
  */
 @Prerelease
 fun splitQuery(url: Url): Map<String, String> {
-    return url.parameters.entries().associate { (key, values) -> key to values.first() }
+    return url.parameters.entries().associate { (key, values) -> key to values.firstOrNull().orEmpty() }
 }
 
 /**
