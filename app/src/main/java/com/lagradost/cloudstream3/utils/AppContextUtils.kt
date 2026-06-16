@@ -629,14 +629,15 @@ object AppContextUtils {
         }
     }
 
-    @Deprecated(
+    // Deprecate after next stable
+    /* @Deprecated(
         message = "Use Ktor 'Url' based splitQuery instead.",
         replaceWith = ReplaceWith(
             expression = "splitQuery(Url(url.toString()))",
             imports = ["com.lagradost.cloudstream3.splitQuery", "io.ktor.http.Url"],
         ),
         level = DeprecationLevel.WARNING,
-    )
+    ) */
     fun splitQuery(url: URL): Map<String, String> {
         return com.lagradost.cloudstream3.splitQuery(Url(url.toString()))
     }
