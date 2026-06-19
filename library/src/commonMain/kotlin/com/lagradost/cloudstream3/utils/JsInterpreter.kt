@@ -440,7 +440,9 @@ private class Parser(private val lex: Lexer) {
     }
 
     private fun parseAssign(): Node {
+        if (++depth > maxDepth) { depth--; return UndefinedLit }
         val left = parseTernary()
+        depth--
         val op = when (lex.peek().type) {
             TT.EQ -> "="; TT.PLUSEQ -> "+="; TT.MINUSEQ -> "-="; TT.STAREQ -> "*="; TT.SLASHEQ -> "/="; TT.PERCENTEQ -> "%="
             else -> return left
@@ -596,9 +598,7 @@ private class Parser(private val lex: Lexer) {
             TT.STRING -> { lex.consume(); StrLit(tok.raw) }
             TT.LPAREN -> {
                 lex.consume()
-                if (++depth > maxDepth) { depth--; return UndefinedLit }
                 val expr = parseSeq()
-                depth--
                 lex.expect(TT.RPAREN)
                 expr
             }
