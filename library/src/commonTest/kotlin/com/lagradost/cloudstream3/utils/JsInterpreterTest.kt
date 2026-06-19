@@ -1832,4 +1832,49 @@ class JsInterpreterTest {
     fun bitwiseTruncationPattern() {
         assertEquals(5.0, num("(11/2)|0"))
     }
+
+    @Test
+    fun deeplyNestedParenthesesDoesNotStackOverflow() {
+        val open  = "(".repeat(600)
+        val close = ")".repeat(600)
+        val result = evalJs("${open}42${close}")
+        assertTrue(result == Unit || result == 42.0)
+    }
+
+    @Test
+    fun extremelyDeeplyNestedParenthesesDoesNotStackOverflow() {
+        val open  = "(".repeat(2000)
+        val close = ")".repeat(2000)
+        val result = evalJs("${open}1${close}")
+        assertTrue(result == Unit || result == 1.0)
+    }
+
+    @Test
+    fun deeplyRecursiveFunctionDoesNotStackOverflow() {
+        val code = """
+            function f(n) { return n <= 0 ? 0 : f(n-1) + 1; }
+            f(600)
+        """.trimIndent()
+        val result = evalJs(code)
+        assertTrue(result == Unit || result is Double)
+    }
+
+    @Test
+    fun infiniteRecursionDoesNotStackOverflow() {
+        val code = """
+            function inf() { return inf(); }
+            inf()
+        """.trimIndent()
+        val result = evalJs(code)
+        assertTrue(result == Unit || result is Double)
+    }
+
+    @Test
+    fun deeplyNestedFunctionCallsDoNotStackOverflow() {
+        val depth = 300
+        val decls = (1..depth).joinToString("\n") { "function f$it(x){return x+1;}" }
+        val call = (1 until depth).fold("f${depth}(0)") { acc, i -> "f$i($acc)" }
+        val result = evalJs("$decls\n$call")
+        assertTrue(result == Unit || result is Double)
+    }
 }
