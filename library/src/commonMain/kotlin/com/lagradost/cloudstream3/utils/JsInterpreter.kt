@@ -269,6 +269,8 @@ private data class TryCatch(val body: List<Node>, val catchParam: String?, val c
 private data class ThrowStmt(val expr: Node) : Node()
 
 private class Parser(private val lex: Lexer) {
+    private var depth = 0
+    private val maxDepth = 500
 
     fun parseProgram(): List<Node> {
         val stmts = mutableListOf<Node>()
@@ -594,7 +596,9 @@ private class Parser(private val lex: Lexer) {
             TT.STRING -> { lex.consume(); StrLit(tok.raw) }
             TT.LPAREN -> {
                 lex.consume()
+                if (++depth > maxDepth) { depth--; return UndefinedLit }
                 val expr = parseSeq()
+                depth--
                 lex.expect(TT.RPAREN)
                 expr
             }
@@ -743,6 +747,8 @@ private class Scope(val parent: Scope? = null) {
 
 private class JsInterpreter {
     private val globalScope = Scope()
+    private var evalDepth = 0
+    private val maxEvalDepth = 500
 
     init { installGlobals() }
 
@@ -929,7 +935,14 @@ private class JsInterpreter {
         else -> evalExpr(node, scope)
     }
 
-    private fun evalExpr(node: Node, scope: Scope): Any? = when (node) {
+    private fun evalExpr(node: Node, scope: Scope): Any? {
+        if (++evalDepth > maxEvalDepth) { evalDepth--; return Unit }
+        val result = evalExprInner(node, scope)
+        evalDepth--
+        return result
+    }
+
+    private fun evalExprInner(node: Node, scope: Scope): Any? = when (node) {
         is NumLit -> node.v
         is StrLit -> node.v
         is BoolLit -> node.v
