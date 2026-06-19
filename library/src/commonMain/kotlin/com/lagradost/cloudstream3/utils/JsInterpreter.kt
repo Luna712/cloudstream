@@ -270,7 +270,7 @@ private data class ThrowStmt(val expr: Node) : Node()
 
 private class Parser(private val lex: Lexer) {
     private var depth = 0
-    private val maxDepth = 500
+    private val maxDepth = 25
 
     fun parseProgram(): List<Node> {
         val stmts = mutableListOf<Node>()
@@ -748,7 +748,7 @@ private class Scope(val parent: Scope? = null) {
 private class JsInterpreter {
     private val globalScope = Scope()
     private var evalDepth = 0
-    private val maxEvalDepth = 500
+    private val maxEvalDepth = 200
 
     init { installGlobals() }
 
@@ -859,7 +859,14 @@ private class JsInterpreter {
     fun getVar(name: String): Any? = globalScope.get(name).let { if (it is Unit) null else it }
     fun setVar(name: String, value: Any?) = globalScope.define(name, value)
 
-    private fun execNode(node: Node, scope: Scope): Any? = when (node) {
+    private fun execNode(node: Node, scope: Scope): Any? {
+        if (++evalDepth > maxEvalDepth) { evalDepth--; return Unit }
+        val result = execNodeInner(node, scope)
+        evalDepth--
+        return result
+    }
+
+    private fun execNodeInner(node: Node, scope: Scope): Any? = when (node) {
         is VarDecl -> {
             for ((name, init) in node.decls) scope.define(name, init?.let { evalExpr(it, scope) })
             Unit
