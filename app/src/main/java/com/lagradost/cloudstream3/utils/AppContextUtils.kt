@@ -629,15 +629,15 @@ object AppContextUtils {
 
     // Deprecate after next stable
     /* @Deprecated(
-        message = "Use Ktor 'Url' or String based splitQuery instead.",
+        message = "Use parseUrlParameters instead.",
         replaceWith = ReplaceWith(
-            expression = "splitQuery(url.toString())",
-            imports = ["com.lagradost.cloudstream3.splitQuery"],
+            expression = "parseUrlParameters(url.toString())",
+            imports = ["com.lagradost.cloudstream3.parseUrlParameters"],
         ),
         level = DeprecationLevel.WARNING,
     ) */
     fun splitQuery(url: java.net.URL): Map<String, String> {
-        return com.lagradost.cloudstream3.splitQuery(url.toString())
+        return com.lagradost.cloudstream3.parseUrlParameters(url.toString())
     }
 
     /**| S1:E2 Hello World
