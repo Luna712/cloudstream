@@ -7,7 +7,7 @@ import com.lagradost.cloudstream3.utils.StringUtils.encodeUrl
 import kotlin.math.*
 import kotlin.random.Random
 import kotlin.time.Duration
-import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 import kotlin.time.TimeMark
 import kotlin.time.TimeSource
 
@@ -37,7 +37,7 @@ import kotlin.time.TimeSource
  *  - typeof
  *
  * Every evaluation is bounded by an execution budget (wall-clock time and/or instruction
- * count, see [JS_DEFAULT_MAX_EXECUTION_MS] / [JS_DEFAULT_MAX_INSTRUCTIONS]) so that
+ * count, see [JS_DEFAULT_MAX_EXECUTION_TIME] / [JS_DEFAULT_MAX_INSTRUCTIONS]) so that
  * untrusted/obfuscated scripts containing an infinite loop (such as `while(true){}`)
  * cannot hang the calling thread forever. Note that since evaluation is synchronous, wrapping a call
  * in `withTimeout` will *not* pre-empt it mid-flight (there's no suspension point for the
@@ -57,8 +57,8 @@ import kotlin.time.TimeSource
  *   val url = evalJs("var url = 'https:' + computeSuffix()", "url")
  */
 
-/** Default wall-clock budget (ms) for a single [evalJs] / [JsContext.eval] call before it's aborted. */
-const val JS_DEFAULT_MAX_EXECUTION_MS = 5_000L
+/** Default wall-clock budget for a single [evalJs] / [JsContext.eval] call before it's aborted. */
+val JS_DEFAULT_MAX_EXECUTION_TIME: Duration = 5.seconds
 
 /** Hard backstop on statements/expressions executed, independent of wall-clock time. */
 const val JS_DEFAULT_MAX_INSTRUCTIONS = 50_000_000L
@@ -74,16 +74,16 @@ fun jsValueToString(v: Any?): String = toJsString(v)
  * Stateful JS execution context.  Keeps variables alive between [eval] calls,
  * mimicking the Rhino "scope" object that extensions used to hold on to.
  *
- * @param maxExecutionMs wall-clock budget (ms) given to *each* [eval] call.
+ * @param maxExecutionTime wall-clock budget given to *each* [eval] call.
  * @param maxInstructions hard cap on statements/expressions executed per [eval] call,
  *        independent of wall-clock time.
  */
 @Prerelease
 class JsContext(
-    maxExecutionMs: Long = JS_DEFAULT_MAX_EXECUTION_MS,
+    maxExecutionTime: Duration = JS_DEFAULT_MAX_EXECUTION_TIME,
     maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
 ) {
-    private val interpreter = JsInterpreter(maxExecutionMs, maxInstructions)
+    private val interpreter = JsInterpreter(maxExecutionTime, maxInstructions)
 
     /** Evaluate [code] in this context.  Returns the last expression value. */
     fun eval(code: String): Any? = interpreter.eval(code)
@@ -102,8 +102,8 @@ class JsContext(
  *
  * @param js The JavaScript code to evaluate.
  * @param variable Optional variable name to retrieve from the scope after evaluation.
- * @param maxExecutionMs wall-clock budget (ms) before the script is forcibly aborted.
- *        Defaults to [JS_DEFAULT_MAX_EXECUTION_MS]; pass a smaller value for time-sensitive
+ * @param maxExecutionTime wall-clock budget before the script is forcibly aborted.
+ *        Defaults to [JS_DEFAULT_MAX_EXECUTION_TIME]; pass a smaller value for time-sensitive
  *        call sites (e.g. inside a `withTimeout`, which cannot itself interrupt this call).
  * @param maxInstructions hard cap on statements/expressions executed, independent of
  *        wall-clock time. Defaults to [JS_DEFAULT_MAX_INSTRUCTIONS].
@@ -115,10 +115,10 @@ class JsContext(
 fun evalJs(
     js: String,
     variable: String? = null,
-    maxExecutionMs: Long = JS_DEFAULT_MAX_EXECUTION_MS,
+    maxExecutionTime: Duration = JS_DEFAULT_MAX_EXECUTION_TIME,
     maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
 ): Any? {
-    val interpreter = JsInterpreter(maxExecutionMs, maxInstructions)
+    val interpreter = JsInterpreter(maxExecutionTime, maxInstructions)
     val result = interpreter.eval(js)
     return if (variable != null) interpreter.getVar(variable) else result
 }
@@ -849,14 +849,13 @@ private class Scope(val parent: Scope? = null) {
 }
 
 private class JsInterpreter(
-    private val maxExecutionMs: Long = JS_DEFAULT_MAX_EXECUTION_MS,
+    private val maxExecutionTime: Duration = JS_DEFAULT_MAX_EXECUTION_TIME,
     private val maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
 ) {
     private val globalScope = Scope()
 
     // Execution budget, reset at the start of every top-level eval() call.
     private var instructionCount = 0L
-    private val maxDuration: Duration = maxExecutionMs.milliseconds
     private var startMark: TimeMark = TimeSource.Monotonic.markNow()
 
     init { installGlobals() }
@@ -1010,8 +1009,8 @@ private class JsInterpreter(
         }
         // Only sample the clock every 1024 ticks - calling elapsedNow() on every single
         // statement would add measurable overhead to normal (non-runaway) scripts.
-        if (instructionCount and 0x3FFL == 0L && startMark.elapsedNow() >= maxDuration) {
-            throw JsExecutionLimitExceeded("script exceeded max execution time of ${maxExecutionMs}ms")
+        if (instructionCount and 0x3FFL == 0L && startMark.elapsedNow() >= maxExecutionTime) {
+            throw JsExecutionLimitExceeded("script exceeded max execution time of $maxExecutionTime")
         }
     }
 
