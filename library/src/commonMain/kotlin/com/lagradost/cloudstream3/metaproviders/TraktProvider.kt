@@ -26,7 +26,6 @@ import com.lagradost.cloudstream3.addDate
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.isUpcoming
 import com.lagradost.cloudstream3.mainPageOf
-import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.newEpisode
 import com.lagradost.cloudstream3.newHomePageResponse
 import com.lagradost.cloudstream3.newMovieLoadResponse
@@ -49,7 +48,7 @@ open class TraktProvider : MainAPI() {
 
     private val traktApiUrl = "https://api.trakt.tv"
 
-    val traktClientId: String = BuildConfig.TRAKT_CLIENT_ID
+    private val traktClientId: String = BuildConfig.TRAKT_CLIENT_ID
 
     override val mainPage = mainPageOf(
         "$traktApiUrl/movies/trending" to "Trending Movies", //Most watched movies right now
@@ -115,6 +114,7 @@ open class TraktProvider : MainAPI() {
 
         val posterUrl = fixPath(mediaDetails?.images?.poster?.firstOrNull())
         val backDropUrl = fixPath(mediaDetails?.images?.fanart?.firstOrNull())
+        val logoUrl = fixPath(mediaDetails?.images?.logo?.firstOrNull())
 
         val resActor =
             getApi("$traktApiUrl/$moviesOrShows/${mediaDetails?.ids?.trakt}/people?extended=full,images")
@@ -184,6 +184,7 @@ open class TraktProvider : MainAPI() {
                 this.comingSoon = isUpcoming(mediaDetails.released)
                 //posterHeaders
                 this.backgroundPosterUrl = backDropUrl
+                this.logoUrl = logoUrl
                 this.contentRating = mediaDetails.certification
                 addTrailer(mediaDetails.trailer)
                 addImdbId(mediaDetails.ids?.imdb)
@@ -274,6 +275,7 @@ open class TraktProvider : MainAPI() {
                 //posterHeaders
                 this.nextAiring = nextAir
                 this.backgroundPosterUrl = backDropUrl
+                this.logoUrl = logoUrl
                 this.contentRating = mediaDetails.certification
                 addTrailer(mediaDetails.trailer)
                 addImdbId(mediaDetails.ids?.imdb)

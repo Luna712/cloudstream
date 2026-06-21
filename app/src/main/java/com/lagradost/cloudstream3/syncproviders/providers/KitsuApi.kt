@@ -2,8 +2,8 @@ package com.lagradost.cloudstream3.syncproviders.providers
 
 
 import androidx.annotation.StringRes
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.lagradost.cloudstream3.APIHolder
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKey
 import com.lagradost.cloudstream3.R
@@ -23,6 +23,8 @@ import com.lagradost.cloudstream3.ui.SyncWatchType
 import com.lagradost.cloudstream3.ui.library.ListSorting
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.txt
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -107,7 +109,7 @@ class KitsuApi: SyncAPI() {
         ).parsed<ResponseToken>()
 
         return AuthToken(
-            accessTokenLifetime = unixTime + token.expiresIn.toLong(),
+            accessTokenLifetime = APIHolder.unixTime + token.expiresIn.toLong(),
             refreshToken = token.refreshToken,
             accessToken = token.accessToken,
         )
@@ -126,7 +128,7 @@ class KitsuApi: SyncAPI() {
         return AuthToken(
             accessToken = res.accessToken,
             refreshToken = res.refreshToken,
-            accessTokenLifetime = unixTime + res.expiresIn.toLong()
+            accessTokenLifetime = APIHolder.unixTime + res.expiresIn.toLong()
         )
     }
 
