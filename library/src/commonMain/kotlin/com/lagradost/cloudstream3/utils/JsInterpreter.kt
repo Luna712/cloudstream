@@ -992,7 +992,7 @@ private class JsInterpreter(
             last
         } catch (r: ReturnSignal) {
             r.value
-        } catch (e: Throwable) {
+        } catch (e: Exception) {
             logError(e)
             Unit
         }
