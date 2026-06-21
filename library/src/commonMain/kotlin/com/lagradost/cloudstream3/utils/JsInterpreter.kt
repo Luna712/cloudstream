@@ -714,7 +714,7 @@ private class ThrowSignal(val value: Any?) : Throwable()
 
 /**
  * Internal signal thrown once a script exceeds its execution budget (time or instruction
- * count). Deliberately extends [Throwable] rather than [Exception] - the interpreter's own
+ * count). Deliberately extends [Throwable] rather than [Exception]. The interpreter's own
  * `try`/`catch` node handling (see [JsInterpreter.execNode]'s `TryCatch` branch) only catches
  * `Exception`, so a JS script can't wrap an infinite loop in its own try/catch and swallow this,
  * keeping the loop alive forever.
