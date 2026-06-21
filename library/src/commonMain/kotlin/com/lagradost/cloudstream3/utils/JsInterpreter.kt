@@ -40,7 +40,7 @@ import kotlin.time.TimeSource
  * count, see [JS_DEFAULT_MAX_EXECUTION_TIME] / [JS_DEFAULT_MAX_INSTRUCTIONS]) so that
  * untrusted/obfuscated scripts containing an infinite loop (such as `while(true){}`)
  * cannot hang the calling thread forever. Note that since evaluation is synchronous, wrapping a call
- * in `withTimeout` will *not* pre-empt it mid-flight (there's no suspension point for the
+ * in `withTimeout` will not pre-empt it mid-flight (there's no suspension point for the
  * coroutine machinery to act on) - the budget below is what actually guarantees the call
  * returns.
  *
@@ -74,7 +74,7 @@ fun jsValueToString(v: Any?): String = toJsString(v)
  * Stateful JS execution context.  Keeps variables alive between [eval] calls,
  * mimicking the Rhino "scope" object that extensions used to hold on to.
  *
- * @param maxExecutionTime wall-clock budget given to *each* [eval] call.
+ * @param maxExecutionTime wall-clock budget given to each [eval] call.
  * @param maxInstructions hard cap on statements/expressions executed per [eval] call,
  *        independent of wall-clock time.
  */
@@ -924,7 +924,7 @@ private class JsInterpreter(
         globalScope.define("encodeURIComponent", nativeFn("encodeURIComponent") { args -> toJsString(args.getOrNull(0)).encodeUrl() })
         globalScope.define("escape", nativeFn("escape") { args -> toJsString(args.getOrNull(0)).encodeUrl() })
         globalScope.define("unescape", nativeFn("unescape") { args -> toJsString(args.getOrNull(0)).decodeUrl() })
-        // Nested eval() reuses the *current* budget rather than resetting it - otherwise a
+        // Nested eval() reuses the current budget rather than resetting it, otherwise a
         // script could keep itself alive forever via `while(true){ eval("1") }`.
         globalScope.define("eval", nativeFn("eval") { args -> evalInternal(toJsString(args.getOrNull(0))) })
         globalScope.define("undefined", Unit)
@@ -980,7 +980,7 @@ private class JsInterpreter(
         return evalInternal(code)
     }
 
-    /** Runs [code] against the *current* budget, without resetting it. */
+    /** Runs [code] against the current budget, without resetting it. */
     private fun evalInternal(code: String): Any? {
         return try {
             val lexer = Lexer(code)
@@ -999,7 +999,7 @@ private class JsInterpreter(
 
     /**
      * Called on every statement execution. Throws [JsExecutionLimitExceeded] once the
-     * script has used up its time or instruction budget - this is what lets
+     * script has used up its time or instruction budget. This is what lets
      * `evalJs("while(true){}")` return instead of burning the CPU forever.
      */
     private fun checkBudget() {
@@ -1007,7 +1007,7 @@ private class JsInterpreter(
         if (instructionCount >= maxInstructions) {
             throw JsExecutionLimitExceeded("script exceeded max instruction count of $maxInstructions")
         }
-        // Only sample the clock every 1024 ticks - calling elapsedNow() on every single
+        // Only sample the clock every 1024 ticks. Calling elapsedNow() on every single
         // statement would add measurable overhead to normal (non-runaway) scripts.
         if (instructionCount and 0x3FFL == 0L && startMark.elapsedNow() >= maxExecutionTime) {
             throw JsExecutionLimitExceeded("script exceeded max execution time of $maxExecutionTime")
@@ -1246,7 +1246,7 @@ private class JsInterpreter(
                 }
             }
             // Anything else (e.g. `true++` or `5 = 3`) is not a valid assignment target in
-            // JS - this would be a SyntaxError/ReferenceError there, so we fail the same way
+            // JS. This would be a SyntaxError/ReferenceError there, so we fail the same way
             // here rather than silently doing nothing.
             else -> throw RuntimeException("Invalid assignment target: $target")
         }
