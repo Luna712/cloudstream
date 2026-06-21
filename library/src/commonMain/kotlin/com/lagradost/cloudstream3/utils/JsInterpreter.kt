@@ -8,7 +8,6 @@ import kotlin.math.*
 import kotlin.random.Random
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
-import kotlin.time.ExperimentalTime
 import kotlin.time.TimeMark
 import kotlin.time.TimeSource
 
@@ -849,7 +848,6 @@ private class Scope(val parent: Scope? = null) {
         if (vars.containsKey(name)) this else parent?.findOwner(name)
 }
 
-@OptIn(ExperimentalTime::class)
 private class JsInterpreter(
     private val maxExecutionMs: Long = JS_DEFAULT_MAX_EXECUTION_MS,
     private val maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
