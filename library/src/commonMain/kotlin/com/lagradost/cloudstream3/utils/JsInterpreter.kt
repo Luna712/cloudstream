@@ -1228,6 +1228,7 @@ private class JsInterpreter {
                 val i = args.getOrNull(0)?.let { toNumber(it).toInt() } ?: 0
                 if (i < 0 || i >= obj.length) Double.NaN else obj[i].code.toDouble()
             }
+            // Eventually we should properly split Locale variants.
             "toUpperCase", "toLocaleUpperCase" -> nativeFn("toUpperCase") { _ -> obj.uppercase() }
             "toLowerCase", "toLocaleLowerCase" -> nativeFn("toLowerCase") { _ -> obj.lowercase() }
             "trim" -> nativeFn("trim") { _ -> obj.trim() }
