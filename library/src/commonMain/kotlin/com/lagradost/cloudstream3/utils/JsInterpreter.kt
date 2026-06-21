@@ -716,14 +716,14 @@ private class ThrowSignal(val value: Any?) : Throwable()
  * Internal signal thrown once a script exceeds its execution budget (time or instruction
  * count). Deliberately extends [Throwable] rather than [Exception] - the interpreter's own
  * `try`/`catch` node handling (see [JsInterpreter.execNode]'s `TryCatch` branch) only catches
- * `Exception`, so a script can't wrap an infinite loop in its own try/catch and swallow this,
+ * `Exception`, so a JS script can't wrap an infinite loop in its own try/catch and swallow this,
  * keeping the loop alive forever.
  */
 private class JsExecutionLimitExceeded(message: String) : Throwable(message)
 
 private fun toNumber(v: Any?): Double = when (v) {
-    null -> 0.0 // In JS, Number(null) === 0
-    is Unit -> Double.NaN // In JS, Number(undefined) === NaN
+    null -> 0.0 // In JS Number(null) === 0
+    is Unit -> Double.NaN // In JS Number(undefined) === NaN
     is Double -> v
     is Boolean -> if (v) 1.0 else 0.0
     is String -> stringToNumber(v)
@@ -749,7 +749,7 @@ private fun digitValue(c: Char, radix: Int): Int {
 /** Mirrors the JS ToNumber(string) abstract operation closely enough for our use-cases. */
 private fun stringToNumber(s: String): Double {
     val trimmed = s.trim()
-    if (trimmed.isEmpty()) return 0.0 // In JS, Number("") === 0, Number("   ") === 0
+    if (trimmed.isEmpty()) return 0.0 // In JS Number("") === 0, Number("   ") === 0
     when (trimmed) {
         "Infinity", "+Infinity" -> return Double.POSITIVE_INFINITY
         "-Infinity" -> return Double.NEGATIVE_INFINITY
