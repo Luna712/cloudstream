@@ -8,6 +8,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlin.test.assertFalse
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.TimeSource
 
@@ -1843,17 +1844,17 @@ class JsInterpreterTest {
     @Test
     fun infiniteLoopIsAbortedByTimeBudget() {
         val mark = TimeSource.Monotonic.markNow()
-        val result = evalJs("while(true){}", maxExecutionMs = 200)
+        val result = evalJs("while(true){}", maxExecutionTime = 200.milliseconds)
         assertEquals(Unit, result)
-        // Generous upper bound just to avoid flakiness on slow CI machines.
+        // Generous upper bound just to avoid flakiness on slow machines.
         assertTrue(mark.elapsedNow() < 2.seconds)
     }
 
     @Test
     fun infiniteLoopIsAbortedByTinyInstructionBudget() {
-        // A tiny instruction cap but a generous time budget - the instruction count is what
+        // A tiny instruction cap but a generous time budget, the instruction count is what
         // should abort this, not the clock.
-        assertEquals(Unit, evalJs("while(true){}", maxExecutionMs = 60_000, maxInstructions = 1000))
+        assertEquals(Unit, evalJs("while(true){}", maxExecutionTime = 60.seconds, maxInstructions = 1000))
     }
 
     @Test
