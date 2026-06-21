@@ -750,7 +750,7 @@ private fun digitValue(c: Char, radix: Int): Int {
 /** Mirrors the JS ToNumber(string) abstract operation closely enough for our use-cases. */
 private fun stringToNumber(s: String): Double {
     val trimmed = s.trim()
-    if (trimmed.isEmpty()) return 0.0 // JS: Number("") === 0, Number("   ") === 0
+    if (trimmed.isEmpty()) return 0.0 // In JS, Number("") === 0, Number("   ") === 0
     when (trimmed) {
         "Infinity", "+Infinity" -> return Double.POSITIVE_INFINITY
         "-Infinity" -> return Double.NEGATIVE_INFINITY
@@ -856,9 +856,7 @@ private class JsInterpreter(
 ) {
     private val globalScope = Scope()
 
-    // Execution budget bookkeeping - reset at the start of every top-level eval() call.
-    // Uses kotlin.time (multiplatform) rather than System.nanoTime() (JVM-only) so this
-    // works on JS/Native/etc targets too.
+    // Execution budget, reset at the start of every top-level eval() call.
     private var instructionCount = 0L
     private val maxDuration: Duration = maxExecutionMs.milliseconds
     private var startMark: TimeMark = TimeSource.Monotonic.markNow()
@@ -887,7 +885,7 @@ private class JsInterpreter(
         ))
         globalScope.define("Math", mathObj)
 
-        // for String.fromCharCode
+        // For String.fromCharCode
         val stringObj = JsObject(mutableMapOf(
             "fromCharCode" to nativeFn("fromCharCode") { args -> args.joinToString("") { toNumber(it).toInt().toChar().toString() } }
         ))
