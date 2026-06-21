@@ -41,7 +41,7 @@ import kotlin.time.TimeSource
  * untrusted/obfuscated scripts containing an infinite loop (such as `while(true){}`)
  * cannot hang the calling thread forever. Note that since evaluation is synchronous, wrapping a call
  * in `withTimeout` will not pre-empt it mid-flight (there's no suspension point for the
- * coroutine machinery to act on) - the budget below is what actually guarantees the call
+ * coroutine machinery to act on) so the budget below is what actually guarantees the call
  * returns.
  *
  * Usage:
