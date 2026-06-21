@@ -1980,4 +1980,84 @@ class JsInterpreterTest {
         // back to Unit instead of returning a bogus number.
         assertEquals(Unit, evalJs("true++"))
     }
+
+    @Test
+    fun booleanAdditionCoercesToNumber() {
+        assertEquals(1.0, num("true + false"))
+    }
+
+    @Test
+    fun arrayPlusArrayConcatenatesAsStrings() {
+        assertEquals("1,2,34,5,6", str("[1, 2, 3] + [4, 5, 6]"))
+    }
+
+    @Test
+    fun commaOperatorWithTwoOperands() {
+        assertEquals(2.0, num("10,2"))
+    }
+
+    @Test
+    fun doubleNegationOfEmptyStringIsFalse() {
+        assertFalse(bool("!!\"\""))
+    }
+
+    @Test
+    fun looseEqualityBooleanVsNonNumericStringIsFalse() {
+        assertFalse(bool("true == \"true\""))
+    }
+
+    @Test
+    fun nullPlusZeroIsZero() {
+        assertEquals(0.0, num("null + 0"))
+    }
+
+    @Test
+    fun zeroDividedByZeroIsNaN() {
+        assertTrue(num("0/0").isNaN())
+    }
+
+    @Test
+    fun exponentiationInfinityComparisonIsFalse() {
+        assertFalse(bool("1/0 > 10 ** 1000"))
+    }
+
+    @Test
+    fun nullMinusZeroThenStringConcat() {
+        assertEquals("00", str("(null - 0) + \"0\""))
+    }
+
+    @Test
+    fun nonNumericStringMinusNumberThenAddBoolean() {
+        assertTrue(num("true + (\"true\" - 0) ").isNaN())
+    }
+
+    @Test
+    fun negatedTruthyNumbersSumToZero() {
+        assertEquals(0.0, num("!5 + !5"))
+    }
+
+    @Test
+    fun numberAdditionThenStringConcatenation() {
+        assertEquals("33", str("1 + 2 + \"3\""))
+    }
+
+    @Test
+    fun typeofNaNIsNumber() {
+        assertEquals("number", str("typeof NaN"))
+    }
+
+    @Test
+    fun undefinedPlusFalseIsNaN() {
+        assertTrue(num("undefined + false").isNaN())
+    }
+
+    @Test
+    fun logicalAndShortCircuitsOnFalsyEmptyString() {
+        assertEquals("", str("\"\" && -0"))
+    }
+
+    @Test
+    fun combinedCoercionOfNaNEmptyStringAndArrayHoleIsZero() {
+        assertEquals(0.0, evalJs("+!!NaN * \"\" - - [,]"))
+    }
 }
