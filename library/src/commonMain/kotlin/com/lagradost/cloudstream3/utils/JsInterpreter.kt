@@ -23,8 +23,8 @@ import kotlin.time.TimeSource
  *  - String methods: split, join, reverse, replace, charAt, charCodeAt,
  *                    fromCharCode, substr, substring, slice, indexOf,
  *                    trim, toLowerCase, toUpperCase, toString, length
- *  - Array literals (including elisions, e.g. `[1,,3]`) and methods: join, reverse, split,
- *                                 push, pop, map, filter, forEach, length
+ *  - Array literals and methods: join, reverse, split, push, pop,
+ *                                map, filter, forEach, length
  *  - parseInt / parseFloat / isNaN / isFinite
  *  - Math.*  (sin, cos, floor, ceil, round, abs, pow, sqrt, log, max, min, random)
  *  - String.fromCharCode
