@@ -14,9 +14,9 @@ import kotlin.time.TimeSource
 
 class JsInterpreterTest {
 
-    private fun bool(code: String, variable: String? = null) = evalJs(code, variable) as? Boolean ?: false
-    private fun num(code: String, variable: String? = null) = evalJs(code, variable) as? Double ?: Double.NaN
-    private fun str(code: String, variable: String? = null) = jsValueToString(evalJs(code, variable))
+    private fun bool(code: String, variable: String? = null): Boolean = evalJs(code, variable) as? Boolean ?: false
+    private fun num(code: String, variable: String? = null): Double = evalJs(code, variable) as? Double ?: Double.NaN
+    private fun str(code: String, variable: String? = null): String = jsValueToString(evalJs(code, variable))
 
     private fun assertApprox(expected: Double, actual: Double, tol: Double = 1e-9) {
         assertTrue(abs(actual - expected) <= tol, "Expected $expected ± $tol but was $actual")
@@ -1033,6 +1033,9 @@ class JsInterpreterTest {
     fun objectToStringCoercion() {
         // ({}) + "" => "[object Object]"
         assertEquals("[object Object]", str("({})+''"))
+
+        // []+{} => "[object Object]"
+        assertEquals("[object Object]", str("[]+{}"))
     }
 
     @Test
@@ -1589,12 +1592,6 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun objectToStringCoercion() {
-        // []+{} => "[object Object]"
-        assertEquals("[object Object]", str("[]+{}"))
-    }
-
-    @Test
     fun objectStringCharO() {
         // ([]+{})[1] => "[object Object]"[1] => "o"
         assertEquals("o", str("([]+{})[1]"))
@@ -1859,7 +1856,7 @@ class JsInterpreterTest {
 
     @Test
     fun finiteLoopCompletesNormally() {
-        assertEquals(45.0, num("var s=0; for (var i=0;i<10;i++){ s+=i; } s"))
+        assertEquals(45.0, num("var s=0; for (var i=0;i<10;i++){ s+=i; }", "s"))
     }
 
     @Test
@@ -1885,7 +1882,7 @@ class JsInterpreterTest {
 
     @Test
     fun assignmentPowEquals() {
-        assertEquals(8.0, num("var x=2; x**=3; x"))
+        assertEquals(8.0, num("var x=2; x**=3", "x"))
     }
 
     @Test
