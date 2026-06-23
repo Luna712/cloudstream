@@ -75,6 +75,10 @@ annotation class InternalAPI
 )
 annotation class UnsafeSSL
 
+// Temporary; will be removed when Jackson -> Kotlinx serialization is completed
+@InternalAPI
+annotation class SkipSerializationTest
+
 /**
  * Defines the constant for the all languages preference, if this is set then it is
  * the equivalent of all languages being set
