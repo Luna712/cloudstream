@@ -1,6 +1,9 @@
 name: Artifact Build
 
-on: [pull_request]
+on:
+  pull_request:
+  issue_comment:
+    types: [created]
 
 permissions:
   contents: read
@@ -8,6 +11,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
     steps:
     - uses: actions/checkout@v6
 
@@ -37,8 +41,14 @@ jobs:
 
   instrumented-tests:
     runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'issue_comment' &&
+      github.event.issue.pull_request &&
+      contains(github.event.comment.body, 'run tests')
     steps:
     - uses: actions/checkout@v6
+      with:
+        ref: refs/pull/${{ github.event.issue.number }}/head
 
     - name: Set up JDK 17
       uses: actions/setup-java@v5
