@@ -1,10 +1,11 @@
 package com.lagradost.cloudstream3.ui.search
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.nicehttp.NiceResponse
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * API for fetching search suggestions from external sources.
@@ -16,16 +17,16 @@ object SearchSuggestionApi {
     
     @Serializable
     data class TmdbSearchResult(
-        @SerialName("results") val results: List<TmdbSearchItem>?
+        @JsonProperty("results") @SerialName("results") val results: List<TmdbSearchItem>?,
     )
     
     @Serializable
     data class TmdbSearchItem(
-        @SerialName("media_type") val mediaType: String?,
-        @SerialName("title") val title: String?,
-        @SerialName("name") val name: String?,
-        @SerialName("original_title") val originalTitle: String?,
-        @SerialName("original_name") val originalName: String?
+        @JsonProperty("media_type") @SerialName("media_type") val mediaType: String?,
+        @JsonProperty("title") @SerialName("title") val title: String?,
+        @JsonProperty("name") @SerialName("name") val name: String?,
+        @JsonProperty("original_title") @SerialName("original_title") val originalTitle: String?,
+        @JsonProperty("original_name") @SerialName("original_name") val originalName: String?,
     )
     
     /**
