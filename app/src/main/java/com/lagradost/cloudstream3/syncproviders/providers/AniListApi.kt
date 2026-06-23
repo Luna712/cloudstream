@@ -259,16 +259,16 @@ class AniListApi : SyncAPI() {
                     mapOf(
                         "query" to query,
                         "variables" to Variables(
-							search = name,
-							page = 1,
-							type = "ANIME",
-						).toJson()
+                            search = name,
+                            page = 1,
+                            type = "ANIME",
+                        ).toJson()
                     )
 
                 val res = app.post(
                     "https://graphql.anilist.co/",
                     // headers = mapOf(),
-                    data = data,// (if (vars == null) mapOf("query" to q) else mapOf("query" to q, "variables" to vars))
+                    data = data, // (if (vars == null) mapOf("query" to q) else mapOf("query" to q, "variables" to vars))
                     timeout = 5000 // REASONABLE TIMEOUT
                 ).text.replace("\\", "")
                 return parseJson<GetSearchRoot>(res)
@@ -524,12 +524,12 @@ class AniListApi : SyncAPI() {
         ).text.replace("\\/", "/")
     }
 
-	@Serializable
-	data class Variables(
-		@JsonProperty("search") @SerialName("search") val search: String,
-		@JsonProperty("page") @SerialName("page") val page: Int,
-		@JsonProperty("type") @SerialName("type") val type: String,
-	)
+    @Serializable
+    data class Variables(
+        @JsonProperty("search") @SerialName("search") val search: String,
+        @JsonProperty("page") @SerialName("page") val page: Int,
+        @JsonProperty("type") @SerialName("type") val type: String,
+    )
 
     @Serializable
     data class MediaRecommendation(
@@ -731,17 +731,17 @@ class AniListApi : SyncAPI() {
 
     suspend fun toggleLike(auth: AuthData, id: Int): Boolean {
         val q = """mutation (${'$'}animeId: Int = $id) {
-				ToggleFavourite (animeId: ${'$'}animeId) {
-					anime {
-						nodes {
-							id
-							title {
-								romaji
-							}
-						}
-					}
-				}
-			}"""
+                ToggleFavourite (animeId: ${'$'}animeId) {
+                    anime {
+                        nodes {
+                            id
+                            title {
+                                romaji
+                            }
+                        }
+                    }
+                }
+            }"""
         val data = postApi(auth.token, q)
         return data != ""
     }
@@ -749,18 +749,18 @@ class AniListApi : SyncAPI() {
     /** Used to query a saved MediaItem on the list to get the id for removal */
     @Serializable
     data class MediaListItemRoot(
-		@JsonProperty("data") @SerialName("data") val data: MediaListItem? = null,
-	)
+        @JsonProperty("data") @SerialName("data") val data: MediaListItem? = null,
+    )
 
     @Serializable
     data class MediaListItem(
-		@JsonProperty("MediaList") @SerialName("MediaList") val mediaList: MediaListId? = null,
-	)
+        @JsonProperty("MediaList") @SerialName("MediaList") val mediaList: MediaListId? = null,
+    )
 
     @Serializable
     data class MediaListId(
-		@JsonProperty("id") @SerialName("id") val id: Long? = null,
-	)
+        @JsonProperty("id") @SerialName("id") val id: Long? = null,
+    )
 
     private suspend fun postDataAboutId(
         auth: AuthData,
@@ -813,22 +813,22 @@ class AniListApi : SyncAPI() {
 
     private suspend fun getUser(token: AuthToken): AniListUser? {
         val q = """
-				{
-  					Viewer {
-    					id
-    					name
-						avatar {
-							large
-						}
-                        favourites {
-                            anime {
-                                nodes {
-                                    id
-                                }
+            {
+                Viewer {
+                    id
+                    name
+                    avatar {
+                        large
+                    }
+                    favourites {
+                        anime {
+                            nodes {
+                                id
                             }
                         }
-  					}
-				}"""
+                    }
+                }
+            }"""
         val data = postApi(token, q)
         if (data.isNullOrBlank()) return null
         val userData = parseJson<AniListRoot>(data)
@@ -939,8 +939,8 @@ class AniListApi : SyncAPI() {
         @JsonProperty("id") @SerialName("id") val id: Int?,
         /**
          * MAIN - A primary character role in the media
-		 * SUPPORTING - A supporting character role in the media
-		 * BACKGROUND - A background character in the media
+         * SUPPORTING - A supporting character role in the media
+         * BACKGROUND - A background character in the media
          */
         @JsonProperty("role") @SerialName("role") val role: String?,
         @JsonProperty("name") @SerialName("name") val name: String?,
