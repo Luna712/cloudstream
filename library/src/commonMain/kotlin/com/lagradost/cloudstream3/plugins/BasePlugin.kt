@@ -68,10 +68,10 @@ abstract class BasePlugin {
         @SerialName("pluginClassName")
         var pluginClassName: String? = null
 
-        @SerialName("version")
-        var version: Int? = null
-
         @SerialName("requiresResources")
         var requiresResources: Boolean = false
+
+        @SerialName("version")
+        var version: Int? = null
     }
 }
