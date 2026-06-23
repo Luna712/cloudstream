@@ -75,14 +75,16 @@ annotation class InternalAPI
 )
 annotation class UnsafeSSL
 
-// Temporary; will be removed when Jackson -> Kotlinx serialization is completed
+/** Temporary; will be removed when the Jackson -> Kotlinx serialization migration is completed. */
 @InternalAPI
+@Target(AnnotationTarget.CLASS)
+@Retention(AnnotationRetention.RUNTIME)
 annotation class SkipSerializationTest
 
 /**
  * Defines the constant for the all languages preference, if this is set then it is
  * the equivalent of all languages being set
- **/
+ */
 const val AllLanguagesName = "universal"
 
 const val USER_AGENT =
