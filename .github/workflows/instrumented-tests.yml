@@ -13,11 +13,29 @@ jobs:
     runs-on: ubuntu-latest
     if: |
       github.event.issue.pull_request &&
-      github.event.comment.body == '/run-tests' &&
-      (
-        github.event.comment.user.login == 'Luna7112'
-      )
+      github.event.comment.body == '/run-tests'
     steps:
+    - name: Check permission
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const login = context.payload.comment.user.login;
+          const association = context.payload.comment.author_association;
+          const allowed = [];
+          
+          const { data } = await github.rest.orgs.checkMembershipForUser({
+            org: context.repo.owner,
+            username: login,
+          }).catch(() => ({ data: null }));
+
+          const isAllowed =
+            login === 'Luna7112' ||
+            allowed.includes(association);
+
+          if (!isAllowed) {
+            core.setFailed(`User ${login} is not permitted to trigger this workflow.`);
+          }
+
     - uses: actions/checkout@v6
       with:
         ref: refs/pull/${{ github.event.issue.number }}/head
