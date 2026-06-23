@@ -50,7 +50,7 @@ import kotlin.time.Instant
  * API available only on prerelease builds.
  * Using it will cause stable to crash with `NoSuchMethodException`.
  */
-@MustBeDocumented // Same as java.lang.annotation.Documented
+@MustBeDocumented
 @Retention(AnnotationRetention.BINARY) // This is only an IDE hint, and will not be used in the runtime
 @RequiresOptIn(
     message = "This API is only available on prerelease builds. " +
