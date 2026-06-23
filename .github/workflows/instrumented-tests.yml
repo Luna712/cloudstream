@@ -13,7 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     if: |
       github.event.issue.pull_request &&
-      github.event.comment.body == '/run-tests'
+      github.event.comment.body == '/run-tests' &&
+      (
+        github.event.comment.user.login == 'Luna7112'
+      )
     steps:
     - uses: actions/checkout@v6
       with:
