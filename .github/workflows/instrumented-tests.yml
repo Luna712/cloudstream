@@ -21,12 +21,7 @@ jobs:
         script: |
           const login = context.payload.comment.user.login;
           const association = context.payload.comment.author_association;
-          const allowed = [];
-          
-          const { data } = await github.rest.orgs.checkMembershipForUser({
-            org: context.repo.owner,
-            username: login,
-          }).catch(() => ({ data: null }));
+          const allowed = ['OWNER', 'MEMBER'];
 
           const isAllowed =
             login === 'Luna712' ||
@@ -48,7 +43,7 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: 'Instrumented tests are running. Check the [Actions tab](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for results.'
+            body: 'Instrumented tests are running. [View live progress](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})'
           })
 
     - name: Set up JDK 17
@@ -79,6 +74,7 @@ jobs:
         sudo udevadm trigger --name-match=kvm
 
     - name: Run Instrumented Tests
+      id: tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
         api-level: ${{ steps.sdk.outputs.version }}
@@ -92,3 +88,18 @@ jobs:
       with:
         name: instrumented-test-results
         path: '**/build/reports/androidTests/'
+
+    - name: Post finished comment
+      if: always()
+      uses: actions/github-script@v9
+      with:
+        script: |
+          const success = '${{ steps.tests.outcome }}' === 'success';
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: success
+              ? 'Instrumented tests passed. [View results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})'
+              : 'Instrumented tests failed. [View results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})'
+          })
