@@ -8,7 +8,7 @@ import kotlin.test.assertTrue
 class SplitUrlParametersTest {
 
     @Test
-    fun parsesBasicQueryParameters() {
+    fun splitsBasicQueryParameters() {
         val url = Url("https://example.com/path?foo=bar&baz=qux")
         val result = splitUrlParameters(url)
         assertEquals(mapOf("foo" to "bar", "baz" to "qux"), result)
@@ -44,7 +44,7 @@ class SplitUrlParametersTest {
     }
 
     @Test
-    fun stringOverloadParsesBasicQueryParameters() {
+    fun stringOverloadSplitsBasicQueryParameters() {
         val result = splitUrlParameters("https://example.com/path?foo=bar&baz=qux")
         assertEquals(mapOf("foo" to "bar", "baz" to "qux"), result)
     }
