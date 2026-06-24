@@ -8,7 +8,7 @@ import kotlin.test.assertTrue
 class SplitUrlParametersTest {
 
     @Test
-    fun splitsBasicQueryParameters() {
+    fun splitsBasicParameters() {
         val url = Url("https://example.com/path?foo=bar&baz=qux")
         val result = splitUrlParameters(url)
         assertEquals(mapOf("foo" to "bar", "baz" to "qux"), result)
@@ -22,7 +22,7 @@ class SplitUrlParametersTest {
     }
 
     @Test
-    fun returnsEmptyMapWhenThereIsNoQueryString() {
+    fun returnsEmptyMapWhenThereIsNoParameters() {
         val url = Url("https://example.com/path")
         val result = splitUrlParameters(url)
         assertTrue(result.isEmpty())
@@ -44,7 +44,7 @@ class SplitUrlParametersTest {
     }
 
     @Test
-    fun stringOverloadSplitsBasicQueryParameters() {
+    fun stringOverloadSplitsBasicParameters() {
         val result = splitUrlParameters("https://example.com/path?foo=bar&baz=qux")
         assertEquals(mapOf("foo" to "bar", "baz" to "qux"), result)
     }
@@ -56,7 +56,7 @@ class SplitUrlParametersTest {
     }
 
     @Test
-    fun stringOverloadReturnsEmptyMapWhenThereIsNoQueryString() {
+    fun stringOverloadReturnsEmptyMapWhenThereIsNoParameters() {
         val result = splitUrlParameters("https://example.com/path")
         assertTrue(result.isEmpty())
     }
