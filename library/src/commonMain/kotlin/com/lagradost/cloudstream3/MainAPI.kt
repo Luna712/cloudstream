@@ -762,7 +762,7 @@ fun sortUrls(urls: Set<ExtractorLink>): List<ExtractorLink> {
 }
 
 /**
- * Parses the query string of a [Url] into a map of key-value pairs.
+ * Splits the parameters of a [Url] into aap of key-value pairs.
  *
  * Unlike a manual `split("&")` / `split("=")` implementation, this relies on Ktor's
  * built-in query parser ([Url.parameters]), which already handles URL-decoding,
@@ -776,31 +776,31 @@ fun sortUrls(urls: Set<ExtractorLink>): List<ExtractorLink> {
  * @return a map of decoded query parameter names to their first decoded value.
  *
  * @sample
- * parseUrlParameters(Url("https://example.com/path?foo=bar&baz=qux"))
+ * splitUrlParameters(Url("https://example.com/path?foo=bar&baz=qux"))
  * // returns {"foo": "bar", "baz": "qux"}
  */
 @Prerelease
-fun parseUrlParameters(url: Url): Map<String, String> {
+fun splitUrlParameters(url: Url): Map<String, String> {
     return url.parameters.entries().associate { (key, values) -> key to values.firstOrNull().orEmpty() }
 }
 
 /**
- * Parses the query portion of a raw URL [String] into a map of key-value pairs.
+ * Splits the parameters of a raw URL [String] into a map of key-value pairs.
  *
  * Convenience overload for callers that have a URL as plain text rather than a parsed
  * [Url] instance. Internally parses [url] with Ktor's [Url] constructor and delegates
- * to [parseUrlParameters].
+ * to [splitUrlParameters].
  *
  * @param url the URL string whose query parameters should be extracted.
  * @return a map of decoded query parameter names to their first decoded value.
  *
  * @sample
- * parseUrlParameters("https://example.com/path?foo=bar&baz=qux")
+ * splitUrlParameters("https://example.com/path?foo=bar&baz=qux")
  * // returns {"foo": "bar", "baz": "qux"}
  */
 @Prerelease
-fun parseUrlParameters(url: String): Map<String, String> {
-    return parseUrlParameters(Url(url))
+fun splitUrlParameters(url: String): Map<String, String> {
+    return splitUrlParameters(Url(url))
 }
 
 /**

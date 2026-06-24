@@ -629,15 +629,15 @@ object AppContextUtils {
 
     // Deprecate after next stable
     /* @Deprecated(
-        message = "Use parseUrlParameters instead.",
+        message = "Use splitUrlParameters instead.",
         replaceWith = ReplaceWith(
-            expression = "parseUrlParameters(url.toString())",
-            imports = ["com.lagradost.cloudstream3.parseUrlParameters"],
+            expression = "splitUrlParameters(url.toString())",
+            imports = ["com.lagradost.cloudstream3.splitUrlParameters"],
         ),
         level = DeprecationLevel.WARNING,
     ) */
     fun splitQuery(url: java.net.URL): Map<String, String> {
-        return com.lagradost.cloudstream3.parseUrlParameters(url.toString())
+        return com.lagradost.cloudstream3.splitUrlParameters(url.toString())
     }
 
     /**| S1:E2 Hello World
