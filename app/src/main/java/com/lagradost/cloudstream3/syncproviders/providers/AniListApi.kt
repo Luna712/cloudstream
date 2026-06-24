@@ -55,7 +55,7 @@ class AniListApi : SyncAPI() {
         val token = AuthToken(
             accessToken = sanitizer["access_token"]
                 ?: throw ErrorLoadingException("No access token"),
-            //refreshToken = sanitizer["refresh_token"],
+            // refreshToken = sanitizer["refresh_token"],
             accessTokenLifetime = APIHolder.unixTime + sanitizer["expires_in"]!!.toLong(),
         )
         return token
@@ -879,6 +879,13 @@ class AniListApi : SyncAPI() {
     )
 
     @Serializable
+    data class CharacterMedia(
+        @JsonProperty("id") @SerialName("id") val id: Int?,
+        @JsonProperty("title") @SerialName("title") val title: MediaTitle?,
+        @JsonProperty("coverImage") @SerialName("coverImage") val coverImage: MediaCoverImage?,
+    )
+
+    @Serializable
     data class SeasonMedia(
         @JsonProperty("id") @SerialName("id") val id: Int?,
         @JsonProperty("title") @SerialName("title") val title: MediaTitle?,
@@ -953,7 +960,7 @@ class AniListApi : SyncAPI() {
         @JsonProperty("name") @SerialName("name") val name: String?,
         @JsonProperty("voiceActors") @SerialName("voiceActors") val voiceActors: List<Staff>?,
         @JsonProperty("favouriteOrder") @SerialName("favouriteOrder") val favouriteOrder: Int?,
-        @JsonProperty("media") @SerialName("media") val media: List<SeasonMedia>?,
+        @JsonProperty("media") @SerialName("media") val media: List<CharacterMedia>?,
         @JsonProperty("node") @SerialName("node") val node: Character?,
     )
 
