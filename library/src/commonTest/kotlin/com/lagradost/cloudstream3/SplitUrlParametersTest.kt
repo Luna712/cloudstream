@@ -22,7 +22,7 @@ class SplitUrlParametersTest {
     }
 
     @Test
-    fun returnsEmptyMapWhenThereIsNoParameters() {
+    fun returnsEmptyMapWhenThereAreNoParameters() {
         val url = Url("https://example.com/path")
         val result = splitUrlParameters(url)
         assertTrue(result.isEmpty())
@@ -56,7 +56,7 @@ class SplitUrlParametersTest {
     }
 
     @Test
-    fun stringOverloadReturnsEmptyMapWhenThereIsNoParameters() {
+    fun stringOverloadReturnsEmptyMapWhenThereAreNoParameters() {
         val result = splitUrlParameters("https://example.com/path")
         assertTrue(result.isEmpty())
     }
