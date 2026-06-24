@@ -10,8 +10,7 @@ import androidx.core.content.edit
 import androidx.core.os.ConfigurationCompat
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.APIHolder.allProviders
 import com.lagradost.cloudstream3.CloudStreamApp
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
@@ -49,6 +48,8 @@ import com.lagradost.cloudstream3.utils.USER_PROVIDER_API
 import com.lagradost.cloudstream3.utils.downloader.DownloadFileManagement
 import com.lagradost.cloudstream3.utils.downloader.DownloadFileManagement.getBasePath
 import com.lagradost.cloudstream3.utils.downloader.DownloadQueueManager
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.Locale
 
 // Change local language settings in the app.
@@ -135,7 +136,7 @@ fun Pair<String, String>.nameNextToFlagEmoji(): String {
     // fallback to [A][A] -> [?] question mak flag
     val flag = SubtitleHelper.getFlagFromIso(this.second) ?: "\ud83c\udde6\ud83c\udde6"
 
-    return "$flag\u00a0${this.first}" // \u00a0 non-breaking space
+    return "$flag\u00a0${this.first}" // \u00a0 non-breaking space
 }
 
 class SettingsGeneral : BasePreferenceFragmentCompat() {
@@ -148,14 +149,10 @@ class SettingsGeneral : BasePreferenceFragmentCompat() {
 
     @Serializable
     data class CustomSite(
-        @SerialName("parentJavaClass") // javaClass.simpleName
-        val parentJavaClass: String,
-        @SerialName("name")
-        val name: String,
-        @SerialName("url")
-        val url: String,
-        @SerialName("lang")
-        val lang: String,
+        @JsonProperty("parentJavaClass") @SerialName("parentJavaClass") val parentJavaClass: String, // javaClass.simpleName
+        @JsonProperty("name") @SerialName("name") val name: String,
+        @JsonProperty("url") @SerialName("url") val url: String,
+        @JsonProperty("lang") @SerialName("lang") val lang: String,
     )
 
     companion object {

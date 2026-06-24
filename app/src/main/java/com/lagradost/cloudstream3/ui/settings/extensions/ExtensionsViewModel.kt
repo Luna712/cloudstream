@@ -3,8 +3,7 @@ package com.lagradost.cloudstream3.ui.settings.extensions
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.amap
@@ -16,14 +15,16 @@ import com.lagradost.cloudstream3.plugins.RepositoryManager.PREBUILT_REPOSITORIE
 import com.lagradost.cloudstream3.utils.UiText
 import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 @Serializable
 data class RepositoryData(
-    @SerialName("iconUrl") val iconUrl: String?,
-    @SerialName("name") val name: String,
-    @SerialName("url") val url: String
-){
-    constructor(name: String,url: String):this(null,name,url)
+    @JsonProperty("iconUrl") @SerialName("iconUrl") val iconUrl: String?,
+    @JsonProperty("name") @SerialName("name") val name: String,
+    @JsonProperty("url") @SerialName("url") val url: String,
+) {
+    constructor(name: String, url: String): this(null, name, url)
 }
 
 const val REPOSITORIES_KEY = "REPOSITORIES_KEY"

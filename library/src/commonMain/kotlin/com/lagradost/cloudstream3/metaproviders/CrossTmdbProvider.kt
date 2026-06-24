@@ -1,7 +1,6 @@
 package com.lagradost.cloudstream3.metaproviders
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.APIHolder.apis
 import com.lagradost.cloudstream3.APIHolder.getApiFromNameNull
 import com.lagradost.cloudstream3.ErrorLoadingException
@@ -17,6 +16,8 @@ import com.lagradost.cloudstream3.toNewSearchResponseList
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
 import com.lagradost.cloudstream3.utils.ExtractorLink
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 class CrossTmdbProvider : TmdbProvider() {
     override var name = "MultiMovie"
@@ -36,8 +37,8 @@ class CrossTmdbProvider : TmdbProvider() {
 
     @Serializable
     data class CrossMetaData(
-        @SerialName("isSuccess") val isSuccess: Boolean,
-        @SerialName("movies") val movies: List<Pair<String, String>>? = null,
+        @JsonProperty("isSuccess") @SerialName("isSuccess") val isSuccess: Boolean,
+        @JsonProperty("movies") @SerialName("movies") val movies: List<Pair<String, String>>? = null,
     )
 
     override suspend fun loadLinks(

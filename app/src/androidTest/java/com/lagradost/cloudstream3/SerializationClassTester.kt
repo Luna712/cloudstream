@@ -2,6 +2,7 @@ package com.lagradost.cloudstream3
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.lagradost.cloudstream3.SkipSerializationTest
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import dalvik.system.DexFile
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -88,7 +89,6 @@ class SerializationClassTester {
                 // Create an object from the JSON using jackson
                 val mapperDecoded = jacksonMapper.readValue(originalJson, kClass.java)
 
-
                 // Deep inspect both object using the mapper toJson function.
                 // This deep equality check can be performed using other methods, but this just works.
                 val jacksonJson = mapperDecoded.toJson()
@@ -138,7 +138,7 @@ class SerializationClassTester {
                 // Not possible to use .hasAnnotation() on newer Android versions.
                 kClass.java.annotations.any {
                     it is Serializable
-                }
+                } && kClass.java.annotations.none { it is SkipSerializationTest }
             }
     }
 
