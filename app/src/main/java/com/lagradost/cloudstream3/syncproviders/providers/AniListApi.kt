@@ -872,6 +872,13 @@ class AniListApi : SyncAPI() {
     )
 
     @Serializable
+    data class RecommendedMedia(
+        @JsonProperty("id") @SerialName("id") val id: Int?,
+        @JsonProperty("title") @SerialName("title") val title: MediaTitle?,
+        @JsonProperty("coverImage") @SerialName("coverImage") val coverImage: MediaCoverImage?,
+    )
+
+    @Serializable
     data class SeasonMedia(
         @JsonProperty("id") @SerialName("id") val id: Int?,
         @JsonProperty("title") @SerialName("title") val title: MediaTitle?,
@@ -906,7 +913,7 @@ class AniListApi : SyncAPI() {
     @Serializable
     data class Recommendation(
         @JsonProperty("id") @SerialName("id") val id: Long,
-        @JsonProperty("mediaRecommendation") @SerialName("mediaRecommendation") val mediaRecommendation: SeasonMedia?,
+        @JsonProperty("mediaRecommendation") @SerialName("mediaRecommendation") val mediaRecommendation: RecommendedMedia?,
     )
 
     @Serializable
