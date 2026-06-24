@@ -762,7 +762,7 @@ fun sortUrls(urls: Set<ExtractorLink>): List<ExtractorLink> {
 }
 
 /**
- * Splits the parameters of a [Url] into aap of key-value pairs.
+ * Splits the parameters of a [Url] into a map of key-value pairs.
  *
  * Unlike a manual `split("&")` / `split("=")` implementation, this relies on Ktor's
  * built-in query parser ([Url.parameters]), which already handles URL-decoding,
