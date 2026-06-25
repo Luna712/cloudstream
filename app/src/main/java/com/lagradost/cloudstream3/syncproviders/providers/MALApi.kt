@@ -63,7 +63,7 @@ class MALApi : SyncAPI() {
     )
 
     override suspend fun login(redirectUrl: String, payload: String?): AuthToken? {
-        val payloadData = parseJson<PayLoad>(payload!!)
+        val payloadData = parseJson<Payload>(payload!!)
         val sanitizer = splitRedirectUrl(redirectUrl)
         val state = sanitizer["state"]!!
 
