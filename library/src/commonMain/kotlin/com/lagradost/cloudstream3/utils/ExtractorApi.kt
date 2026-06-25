@@ -696,8 +696,8 @@ constructor(
     /** List of separate audio tracks that can be merged with this video */
     @SerialName("audioTracks") open var audioTracks: List<AudioFile> = emptyList(),
 ) : IDownloadableMinimum {
-    @get:JsonIgnore @Transient val isM3u8: Boolean get() = type == ExtractorLinkType.M3U8
-    @get:JsonIgnore @Transient val isDash: Boolean get() = type == ExtractorLinkType.DASH
+    @get:JsonIgnore val isM3u8: Boolean get() = type == ExtractorLinkType.M3U8
+    @get:JsonIgnore val isDash: Boolean get() = type == ExtractorLinkType.DASH
 
     // Cached video size
     @Transient private var videoSize: Long? = null
