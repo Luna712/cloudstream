@@ -31,6 +31,9 @@ import com.lagradost.cloudstream3.ui.result.ResultEpisode
 import com.lagradost.cloudstream3.ui.result.VideoWatchState
 import com.lagradost.cloudstream3.utils.AppContextUtils.filterProviderByPreferredMedia
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects
+import com.lagradost.cloudstream3.utils.serializers.WriteOnlySerializer
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.KeepGeneratedSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -251,7 +254,9 @@ object DataStoreHelper {
     /**
      * Used to display notifications on new episodes and posters in library.
      */
-    @Serializable
+    @OptIn(ExperimentalSerializationApi::class)
+    @KeepGeneratedSerializer
+    @Serializable(with = LibrarySearchResponse.Serializer::class)
     abstract class LibrarySearchResponse(
         @Transient override var id: Int? = null,
         @Transient open val latestUpdatedTime: Long = 0L,
@@ -268,6 +273,12 @@ object DataStoreHelper {
         @Transient override var score: Score? = null,
         @Transient open val tags: List<String>? = null,
     ) : SearchResponse {
+        object Serializer : WriteOnlySerializer<LibrarySearchResponse>(
+            LibrarySearchResponse.generatedSerializer(),
+            setOf("rating"),
+        )
+
+        @JsonProperty("rating", access = JsonProperty.Access.WRITE_ONLY)
         @SerialName("rating")
         @Deprecated(
             "`rating` is the old scoring system, use score instead",
