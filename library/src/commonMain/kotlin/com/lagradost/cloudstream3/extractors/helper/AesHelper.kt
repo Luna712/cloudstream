@@ -1,7 +1,6 @@
 package com.lagradost.cloudstream3.extractors.helper
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.Prerelease
 import com.lagradost.cloudstream3.base64DecodeArray
 import com.lagradost.cloudstream3.base64Encode
@@ -10,6 +9,8 @@ import dev.whyoleg.cryptography.CryptographyProvider
 import dev.whyoleg.cryptography.DelicateCryptographyApi
 import dev.whyoleg.cryptography.algorithms.AES
 import dev.whyoleg.cryptography.algorithms.MD5
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 object AesHelper {
 
@@ -31,7 +32,7 @@ object AesHelper {
             password = pass,
             salt = parse.s.hexToByteArray(),
             ivLength = parse.iv.length / 2,
-            saltLength = parse.s.length / 2
+            saltLength = parse.s.length / 2,
         ) ?: return null
 
         val aesKey = aesCbc.keyDecoder().decodeFromByteArrayBlocking(AES.Key.Format.RAW, key)
@@ -100,7 +101,7 @@ object AesHelper {
             }
 
             generatedData.copyOfRange(0, keyLength) to
-                    generatedData.copyOfRange(keyLength, targetKeySize)
+                generatedData.copyOfRange(keyLength, targetKeySize)
         } catch (_: Exception) {
             null
         }
@@ -115,8 +116,8 @@ object AesHelper {
 
     @Serializable
     private data class AesData(
-        @SerialName("ct") val ct: String,
-        @SerialName("iv") val iv: String,
-        @SerialName("s") val s: String,
+        @JsonProperty("ct") @SerialName("ct") val ct: String,
+        @JsonProperty("iv") @SerialName("iv") val iv: String,
+        @JsonProperty("s") @SerialName("s") val s: String,
     )
 }
