@@ -12,8 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.content.edit
 import androidx.preference.PreferenceManager
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.BuildConfig
 import com.lagradost.cloudstream3.CommonActivity.showToast
 import com.lagradost.cloudstream3.MainActivity.Companion.deleteFileOnExit
@@ -28,6 +27,8 @@ import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream3.utils.GitInfo.currentCommitHash
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import okio.BufferedSink
 import okio.buffer
 import okio.sink
@@ -45,41 +46,41 @@ object InAppUpdater {
 
     @Serializable
     private data class GithubAsset(
-        @SerialName("name") val name: String,
-        @SerialName("size") val size: Int, // Size in bytes
-        @SerialName("browser_download_url") val browserDownloadUrl: String,
-        @SerialName("content_type") val contentType: String, // application/vnd.android.package-archive
+        @JsonProperty("name") @SerialName("name") val name: String,
+        @JsonProperty("size") @SerialName("size") val size: Int, // Size in bytes
+        @JsonProperty("browser_download_url") @SerialName("browser_download_url") val browserDownloadUrl: String,
+        @JsonProperty("content_type") @SerialName("content_type") val contentType: String, // application/vnd.android.package-archive
     )
 
     @Serializable
     private data class GithubRelease(
-        @SerialName("tag_name") val tagName: String, // Version code
-        @SerialName("body") val body: String, // Description
-        @SerialName("assets") val assets: List<GithubAsset>,
-        @SerialName("target_commitish") val targetCommitish: String, // Branch
-        @SerialName("prerelease") val prerelease: Boolean,
-        @SerialName("node_id") val nodeId: String,
+        @JsonProperty("tag_name") @SerialName("tag_name") val tagName: String, // Version code
+        @JsonProperty("body") @SerialName("body") val body: String, // Description
+        @JsonProperty("assets") @SerialName("assets") val assets: List<GithubAsset>,
+        @JsonProperty("target_commitish") @SerialName("target_commitish") val targetCommitish: String, // Branch
+        @JsonProperty("prerelease") @SerialName("prerelease") val prerelease: Boolean,
+        @JsonProperty("node_id") @SerialName("node_id") val nodeId: String,
     )
 
     @Serializable
     private data class GithubObject(
-        @SerialName("sha") val sha: String, // SHA-256 hash
-        @SerialName("type") val type: String,
-        @SerialName("url") val url: String,
+        @JsonProperty("sha") @SerialName("sha") val sha: String, // SHA-256 hash
+        @JsonProperty("type") @SerialName("type") val type: String,
+        @JsonProperty("url") @SerialName("url") val url: String,
     )
 
     @Serializable
     private data class GithubTag(
-        @SerialName("object") val githubObject: GithubObject,
+        @JsonProperty("object") @SerialName("object") val githubObject: GithubObject,
     )
 
     @Serializable
     private data class Update(
-        @SerialName("shouldUpdate") val shouldUpdate: Boolean,
-        @SerialName("updateURL") val updateURL: String?,
-        @SerialName("updateVersion") val updateVersion: String?,
-        @SerialName("changelog") val changelog: String?,
-        @SerialName("updateNodeId") val updateNodeId: String?,
+        @JsonProperty("shouldUpdate") @SerialName("shouldUpdate") val shouldUpdate: Boolean,
+        @JsonProperty("updateURL") @SerialName("updateURL") val updateURL: String?,
+        @JsonProperty("updateVersion") @SerialName("updateVersion") val updateVersion: String?,
+        @JsonProperty("changelog") @SerialName("changelog") val changelog: String?,
+        @JsonProperty("updateNodeId") @SerialName("updateNodeId") val updateNodeId: String?,
     )
 
     private suspend fun Activity.getAppUpdate(installPrerelease: Boolean): Update {
