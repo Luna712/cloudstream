@@ -239,7 +239,7 @@ class SelectSourceController(val view: ImageView, val activity: ControllerActivi
 
     private fun getCurrentMetaData(): MetadataHolder? {
         return try {
-            val data = remoteMediaClient?.mediaInfo?.customData?.toString()
+            val data = remoteMediaClient?.mediaInfo?.customData?.toString() ?: return null
             parseJson<MetadataHolder>(data)
         } catch (_: Exception) {
             null
