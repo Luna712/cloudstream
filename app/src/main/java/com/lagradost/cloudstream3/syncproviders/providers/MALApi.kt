@@ -56,9 +56,10 @@ class MALApi : SyncAPI() {
         SyncWatchType.NONE
     )
 
-    data class PayLoad(
-        val requestId: Int,
-        val codeVerifier: String
+    @Serializable
+    data class Payload(
+        @SerialName("requestId") val requestId: Int,
+        @SerialName("codeVerifier") val codeVerifier: String,
     )
 
     override suspend fun login(redirectUrl: String, payload: String?): AuthToken? {
@@ -178,13 +179,13 @@ class MALApi : SyncAPI() {
     @Serializable
     data class Recommendations(
         @SerialName("node") val node: Node? = null,
-        @SerialName("num_recommendations") val numRecommendations: Int? = null
+        @SerialName("num_recommendations") val numRecommendations: Int? = null,
     )
 
     @Serializable
     data class Studios(
         @SerialName("id") val id: Int? = null,
-        @SerialName("name") val name: String? = null
+        @SerialName("name") val name: String? = null,
     )
 
     @Serializable
@@ -193,14 +194,14 @@ class MALApi : SyncAPI() {
         @SerialName("score") val score: Int? = null,
         @SerialName("num_episodes_watched") val numEpisodesWatched: Int? = null,
         @SerialName("is_rewatching") val isRewatching: Boolean? = null,
-        @SerialName("updated_at") val updatedAt: String? = null
+        @SerialName("updated_at") val updatedAt: String? = null,
     )
 
     @Serializable
     data class RelatedAnime(
         @SerialName("node") val node: Node? = null,
         @SerialName("relation_type") val relationType: String? = null,
-        @SerialName("relation_type_formatted") val relationTypeFormatted: String? = null
+        @SerialName("relation_type_formatted") val relationTypeFormatted: String? = null,
     )
 
     @Serializable
@@ -209,13 +210,13 @@ class MALApi : SyncAPI() {
         @SerialName("completed") val completed: String? = null,
         @SerialName("on_hold") val onHold: String? = null,
         @SerialName("dropped") val dropped: String? = null,
-        @SerialName("plan_to_watch") val planToWatch: String? = null
+        @SerialName("plan_to_watch") val planToWatch: String? = null,
     )
 
     @Serializable
     data class Statistics(
         @SerialName("status") val status: Status? = null,
-        @SerialName("num_list_users") val numListUsers: Int? = null
+        @SerialName("num_list_users") val numListUsers: Int? = null,
     )
 
     private fun parseDate(string: String?): Long? {
@@ -258,7 +259,7 @@ class MALApi : SyncAPI() {
                 airStatus = when (malAnime.status) {
                     "finished_airing" -> ShowStatus.Completed
                     "currently_airing" -> ShowStatus.Ongoing
-                    //"not_yet_aired"
+                    // "not_yet_aired"
                     else -> null
                 },
                 nextAiring = null,
@@ -355,12 +356,10 @@ class MALApi : SyncAPI() {
         val codeVerifier = generateCodeVerifier()
         val requestId = ++requestIdCounter
         val codeChallenge = codeVerifier
-        val request =
-            "$mainUrl/v1/oauth2/authorize?response_type=code&client_id=$key&code_challenge=$codeChallenge&state=RequestID$requestId"
-
+        val request = "$mainUrl/v1/oauth2/authorize?response_type=code&client_id=$key&code_challenge=$codeChallenge&state=RequestID$requestId"
         return AuthLoginPage(
             url = request,
-            payload = PayLoad(requestId, codeVerifier).toJson()
+            payload = Payload(requestId, codeVerifier).toJson()
         )
     }
 
@@ -373,7 +372,6 @@ class MALApi : SyncAPI() {
                 "refresh_token" to token.refreshToken!!
             )
         ).parsed<ResponseToken>()
-
         return AuthToken(
             accessToken = res.accessToken,
             refreshToken = res.refreshToken,
@@ -382,20 +380,18 @@ class MALApi : SyncAPI() {
     }
 
     private var requestIdCounter = 0
-
-
     private val allTitles = hashMapOf<Int, MalTitleHolder>()
 
     @Serializable
     data class MalList(
         @SerialName("data") val data: List<Data>,
-        @SerialName("paging") val paging: Paging
+        @SerialName("paging") val paging: Paging,
     )
 
     @Serializable
     data class MainPicture(
         @SerialName("medium") val medium: String,
-        @SerialName("large") val large: String
+        @SerialName("large") val large: String,
     )
 
     @Serializable
@@ -422,7 +418,7 @@ class MALApi : SyncAPI() {
         @SerialName("broadcast") val broadcast: Broadcast?,
         @SerialName("nsfw") val nsfw: String?,
         @SerialName("created_at") val createdAt: String?,
-        @SerialName("updated_at") val updatedAt: String?
+        @SerialName("updated_at") val updatedAt: String?,
     )
 
     @Serializable
@@ -470,32 +466,32 @@ class MALApi : SyncAPI() {
 
     @Serializable
     data class Paging(
-        @SerialName("next") val next: String?
+        @SerialName("next") val next: String?,
     )
 
     @Serializable
     data class AlternativeTitles(
         @SerialName("synonyms") val synonyms: List<String>,
         @SerialName("en") val en: String,
-        @SerialName("ja") val ja: String
+        @SerialName("ja") val ja: String,
     )
 
     @Serializable
     data class Genres(
         @SerialName("id") val id: Int,
-        @SerialName("name") val name: String
+        @SerialName("name") val name: String,
     )
 
     @Serializable
     data class StartSeason(
         @SerialName("year") val year: Int,
-        @SerialName("season") val season: String
+        @SerialName("season") val season: String,
     )
 
     @Serializable
     data class Broadcast(
         @SerialName("day_of_the_week") val dayOfTheWeek: String?,
-        @SerialName("start_time") val startTime: String?
+        @SerialName("start_time") val startTime: String?,
     )
 
     override suspend fun library(auth: AuthData?): LibraryMetadata? {
@@ -616,7 +612,6 @@ class MALApi : SyncAPI() {
         ).text()
     }
 
-
     @Serializable
     data class ResponseToken(
         @SerialName("token_type") val tokenType: String,
@@ -640,12 +635,6 @@ class MALApi : SyncAPI() {
     data class MalNode(
         @SerialName("id") val id: Int,
         @SerialName("title") val title: String,
-        /*
-        also, but not used
-        main_picture ->
-            public string medium;
-			public string large;
-         */
     )
 
     @Serializable
@@ -690,7 +679,7 @@ class MALApi : SyncAPI() {
     @Serializable
     data class MalSearch(
         @SerialName("data") val data: List<MalSearchNode>,
-        //paging
+        // paging
     )
 
     data class MalTitleHolder(
