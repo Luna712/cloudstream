@@ -158,7 +158,7 @@ object DataStoreHelper {
         @JsonProperty("defaultImageIndex") @SerialName("defaultImageIndex") val defaultImageIndex: Int,
         @JsonProperty("lockPin") @SerialName("lockPin") val lockPin: String? = null,
     ) {
-        @get:JsonProperty("image") @get:SerialName("image") val image
+        @get:JsonProperty("image") @SerialName("image") val image
             get() = customImage?.let { UiImage.Image(it) } ?: profileImages.getOrNull(
                 defaultImageIndex
             )?.let { UiImage.Drawable(it) } ?: UiImage.Drawable(profileImages.first())
@@ -444,7 +444,7 @@ object DataStoreHelper {
                 plot = this.plot,
                 score = this.score,
                 tags = this.tags,
-            ),
+            )
         }
     }
 
