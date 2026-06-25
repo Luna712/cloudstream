@@ -181,11 +181,11 @@ object DataStore {
     }
 
     fun <T : Any> Context.getKey(path: String, valueType: Class<T>): T? {
-        try {
+        return try {
             val json: String = getSharedPrefs().getString(path, null) ?: return null
-            return parseJson(json, valueType.kotlin)
-        } catch (e: Exception) {
-            return null
+            parseJson(json, valueType.kotlin)
+        } catch (_: Exception) {
+            null
         }
     }
 
@@ -202,7 +202,7 @@ object DataStore {
         ),
     )
     inline fun <reified T : Any> String.toKotlinObject(): T {
-        return parseJson<T>(this)
+        return parseJson(this)
     }
 
     @Deprecated(
@@ -214,16 +214,16 @@ object DataStore {
         ),
     )
     fun <T : Any> String.toKotlinObject(valueType: Class<T>): T {
-        return parseJson<T>(this)
+        return parseJson(this, valueType.kotlin)
     }
 
     // GET KEY GIVEN PATH AND DEFAULT VALUE, NULL IF ERROR
     inline fun <reified T : Any> Context.getKey(path: String, defVal: T?): T? {
-        try {
+        return try {
             val json: String = getSharedPrefs().getString(path, null) ?: return defVal
-            return parseJson<T>(json)
+            parseJson<T>(json)
         } catch (_: Exception) {
-            return null
+            null
         }
     }
 
