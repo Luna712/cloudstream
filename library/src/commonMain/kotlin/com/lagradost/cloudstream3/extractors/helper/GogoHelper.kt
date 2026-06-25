@@ -1,7 +1,6 @@
 package com.lagradost.cloudstream3.extractors.helper
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.fleeksoft.ksoup.nodes.Document
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.base64Decode
@@ -18,6 +17,8 @@ import dev.whyoleg.cryptography.CryptographyProvider
 import dev.whyoleg.cryptography.DelicateCryptographyApi
 import dev.whyoleg.cryptography.algorithms.AES
 import io.ktor.http.Url
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 object GogoHelper {
 
@@ -42,7 +43,7 @@ object GogoHelper {
         string: String,
         iv: String,
         secretKeyString: String,
-        encrypt: Boolean = true
+        encrypt: Boolean = true,
     ): String {
         val ivBytes = iv.encodeToByteArray()
         val keyBytes = secretKeyString.encodeToByteArray()
@@ -77,7 +78,7 @@ object GogoHelper {
         isUsingAdaptiveKeys: Boolean,
         isUsingAdaptiveData: Boolean,
         // If you don't want to re-fetch the document
-        iframeDocument: Document? = null
+        iframeDocument: Document? = null,
     ) = safeApiCall {
         if ((iv == null || secretKey == null || secretDecryptKey == null) && !isUsingAdaptiveKeys)
             return@safeApiCall
@@ -85,10 +86,9 @@ object GogoHelper {
         val id = Regex("id=([^&]+)").find(iframeUrl)!!.value.removePrefix("id=")
 
         var document: Document? = iframeDocument
-        val foundIv =
-            iv ?: (document ?: app.get(iframeUrl).document().also { document = it })
-                .select("""div.wrapper[class*=container]""")
-                .attr("class").split("-").lastOrNull() ?: return@safeApiCall
+        val foundIv = iv ?: (document ?: app.get(iframeUrl).document().also { document = it })
+            .select("""div.wrapper[class*=container]""")
+            .attr("class").split("-").lastOrNull() ?: return@safeApiCall
         val foundKey = secretKey ?: getKey(base64Decode(id) + foundIv) ?: return@safeApiCall
         val foundDecryptKey = secretDecryptKey ?: foundKey
 
@@ -106,25 +106,24 @@ object GogoHelper {
             "id=$encryptedId&alias=$id"
         }
 
-        val jsonResponse =
-            app.get(
-                "$mainUrl/encrypt-ajax.php?$encryptRequestData",
-                headers = mapOf("X-Requested-With" to "XMLHttpRequest")
-            )
+        val jsonResponse = app.get(
+            "$mainUrl/encrypt-ajax.php?$encryptRequestData",
+            headers = mapOf("X-Requested-With" to "XMLHttpRequest")
+        )
         val dataencrypted = jsonResponse.parsedSafe<GogoJsonData>()?.data ?: return@safeApiCall
         val datadecrypted = cryptoHandler(dataencrypted, foundIv, foundDecryptKey, false)
         val sources = AppUtils.parseJson<GogoSources>(datadecrypted)
 
         suspend fun invokeGogoSource(
             source: GogoSource,
-            sourceCallback: (ExtractorLink) -> Unit
+            sourceCallback: (ExtractorLink) -> Unit,
         ) {
             if (source.file.contains(".m3u8")) {
                 M3u8Helper.generateM3u8(
                     mainApiName,
                     source.file,
                     mainUrl,
-                    headers = mapOf("Origin" to "https://plyr.link")
+                    headers = mapOf("Origin" to "https://plyr.link"),
                 ).forEach(sourceCallback)
             } else {
                 sourceCallback.invoke(
@@ -146,20 +145,20 @@ object GogoHelper {
 
     @Serializable
     data class GogoSources(
-        @SerialName("source") val source: List<GogoSource>?,
-        @SerialName("sourceBk") val sourceBk: List<GogoSource>?,
+        @JsonProperty("source") @SerialName("source") val source: List<GogoSource>?,
+        @JsonProperty("sourceBk") @SerialName("sourceBk") val sourceBk: List<GogoSource>?,
     )
 
     @Serializable
     data class GogoSource(
-        @SerialName("file") val file: String,
-        @SerialName("label") val label: String?,
-        @SerialName("type") val type: String?,
-        @SerialName("default") val default: String? = null
+        @JsonProperty("file") @SerialName("file") val file: String,
+        @JsonProperty("label") @SerialName("label") val label: String?,
+        @JsonProperty("type") @SerialName("type") val type: String?,
+        @JsonProperty("default") @SerialName("default") val default: String? = null,
     )
 
     @Serializable
     data class GogoJsonData(
-        @SerialName("data") val data: String? = null
+        @JsonProperty("data") @SerialName("data") val data: String? = null,
     )
 }
