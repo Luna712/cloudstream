@@ -21,7 +21,6 @@ import com.lagradost.cloudstream3.ui.SyncWatchType
 import com.lagradost.cloudstream3.ui.library.ListSorting
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
-import com.lagradost.cloudstream3.utils.DataStore.toKotlinObject
 import com.lagradost.cloudstream3.utils.txt
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -537,7 +536,7 @@ class MALApi : SyncAPI() {
         val fullList = mutableListOf<Data>()
         val offsetRegex = Regex("""offset=(\d+)""")
         while (true) {
-            val data: MalList = getMalAnimeListSlice(token, offset) ?: break
+            val data: MalList = getMalAnimeListSlice(token, offset)
             fullList.addAll(data.data)
             offset =
                 data.paging.next?.let { offsetRegex.find(it)?.groupValues?.get(1)?.toInt() }
@@ -546,7 +545,7 @@ class MALApi : SyncAPI() {
         return fullList.toTypedArray()
     }
 
-    private suspend fun getMalAnimeListSlice(token: AuthToken, offset: Int = 0): MalList? {
+    private suspend fun getMalAnimeListSlice(token: AuthToken, offset: Int = 0): MalList {
         val user = "@me"
         // Very lackluster docs
         // https://myanimelist.net/apiconfig/references/api/v2#operation/users_user_id_animelist_get
@@ -557,7 +556,7 @@ class MALApi : SyncAPI() {
                 "Authorization" to "Bearer ${token.accessToken}",
             ), cacheTime = 0
         ).text()
-        return res.toKotlinObject()
+        return parseJson<MalList>(res)
     }
 
     private suspend fun setScoreRequest(
