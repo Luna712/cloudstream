@@ -36,6 +36,7 @@ import com.lagradost.cloudstream3.utils.txt
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
+import kotlinx.serialization.json.JsonElement
 import java.math.BigInteger
 import java.security.SecureRandom
 import java.text.SimpleDateFormat
@@ -51,7 +52,7 @@ class SimklApi : SyncAPI() {
     override var name = "Simkl"
     override val idPrefix = "simkl"
 
-    val key = "simkl-key"
+    private val key = "simkl-key"
     override val redirectUrlIdentifier = "simkl"
     override val hasOAuth2 = true
     override val hasPin = true
@@ -61,9 +62,6 @@ class SimklApi : SyncAPI() {
     override val createAccountUrl = "$mainUrl/signup"
     override val syncIdName = SyncIdName.Simkl
 
-    /** Automatically adds simkl auth headers */
-    // private val interceptor = HeaderInterceptor()
-
     /**
      * This is required to override the reported last activity as simkl activites
      * may not always update based on testing.
@@ -72,7 +70,6 @@ class SimklApi : SyncAPI() {
 
     private object SimklCache {
         private const val SIMKL_CACHE_KEY = "SIMKL_API_CACHE"
-
         enum class CacheTimes(val value: String) {
             OneMonth("30d"),
             ThirtyMinutes("30m")
@@ -80,9 +77,9 @@ class SimklApi : SyncAPI() {
 
         @Serializable
         private class SimklCacheWrapper<T>(
-            @SerialName("obj") val obj: T?,
-            @SerialName("validUntil") val validUntil: Long,
-            @SerialName("cacheTime") val cacheTime: Long = APIHolder.unixTime,
+            @JsonProperty("obj") @SerialName("obj") val obj: T?,
+            @JsonProperty("validUntil") @SerialName("validUntil") val validUntil: Long,
+            @JsonProperty("cacheTime") @SerialName("cacheTime") val cacheTime: Long = APIHolder.unixTime,
         ) {
             /** Returns true if cache is newer than cacheDays */
             fun isFresh(): Boolean {
@@ -93,18 +90,14 @@ class SimklApi : SyncAPI() {
                 val unixTime = APIHolder.unixTime
                 return if (validUntil > unixTime) {
                     (validUntil - unixTime).toDuration(DurationUnit.SECONDS)
-                } else {
-                    Duration.ZERO
-                }
+                } else Duration.ZERO
             }
         }
 
         fun cleanOldCache() {
             getKeys(SIMKL_CACHE_KEY)?.forEach {
-                val isOld = CloudStreamApp.getKey<SimklCacheWrapper<Any>>(it)?.isFresh() == false
-                if (isOld) {
-                    removeKey(it)
-                }
+                val isOld = CloudStreamApp.getKey<SimklCacheWrapper<JsonElement>>(it)?.isFresh() == false
+                if (isOld) removeKey(it)
             }
         }
 
@@ -114,7 +107,7 @@ class SimklApi : SyncAPI() {
                 SIMKL_CACHE_KEY,
                 path,
                 // Storing as plain sting is required to make generics work.
-                SimklCacheWrapper(value, APIHolder.unixTime + cacheTime.inWholeSeconds).toJson()
+                SimklCacheWrapper(value, APIHolder.unixTime + cacheTime.inWholeSeconds).toJson(),
             )
         }
 
@@ -129,7 +122,7 @@ class SimklApi : SyncAPI() {
             return if (cache?.isFresh() == true) {
                 debugPrint {
                     "Cache hit at: $SIMKL_CACHE_KEY/$path. " +
-                            "Remains fresh for ${cache.remainingTime().inWholeDays} days or ${cache.remainingTime().inWholeSeconds} seconds."
+                        "Remains fresh for ${cache.remainingTime().inWholeDays} days or ${cache.remainingTime().inWholeSeconds} seconds."
                 }
                 cache.obj
             } else {
@@ -189,7 +182,7 @@ class SimklApi : SyncAPI() {
         enum class SimklListStatusType(
             var value: Int,
             @StringRes val stringRes: Int,
-            val originalName: String?
+            val originalName: String?,
         ) {
             Watching(0, R.string.type_watching, "watching"),
             Completed(1, R.string.type_completed, "completed"),
@@ -208,90 +201,82 @@ class SimklApi : SyncAPI() {
             }
         }
 
-        // -------------------
         @Serializable
         data class TokenRequest(
-            @SerialName("code") val code: String,
-            @SerialName("client_id") val clientId: String = CLIENT_ID,
-            @SerialName("client_secret") val clientSecret: String = CLIENT_SECRET,
-            @SerialName("redirect_uri") val redirectUri: String = "$APP_STRING://simkl",
-            @SerialName("grant_type") val grantType: String = "authorization_code"
+            @JsonProperty("code") @SerialName("code") val code: String,
+            @JsonProperty("client_id") @SerialName("client_id") val clientId: String = CLIENT_ID,
+            @JsonProperty("client_secret") @SerialName("client_secret") val clientSecret: String = CLIENT_SECRET,
+            @JsonProperty("redirect_uri") @SerialName("redirect_uri") val redirectUri: String = "$APP_STRING://simkl",
+            @JsonProperty("grant_type") @SerialName("grant_type") val grantType: String = "authorization_code",
         )
 
         @Serializable
         data class TokenResponse(
             /** No expiration date */
-            @SerialName("access_token") val accessToken: String,
-            @SerialName("token_type") val tokenType: String,
-            @SerialName("scope") val scope: String
+            @JsonProperty("access_token") @SerialName("access_token") val accessToken: String,
+            @JsonProperty("token_type") @SerialName("token_type") val tokenType: String,
+            @JsonProperty("scope") @SerialName("scope") val scope: String,
         )
-        // -------------------
 
         /** https://simkl.docs.apiary.io/#reference/users/settings/receive-settings */
         @Serializable
         data class SettingsResponse(
-            @SerialName("user")
-            val user: User,
-            @SerialName("account")
-            val account: Account,
+            @JsonProperty("user") @SerialName("user") val user: User,
+            @JsonProperty("account") @SerialName("account") val account: Account,
         ) {
             @Serializable
             data class User(
-                @SerialName("name")
-                val name: String,
-                /** Url */
-                @SerialName("avatar")
-                val avatar: String
+                @JsonProperty("name") @SerialName("name") val name: String,
+                @JsonProperty("avatar") @SerialName("avatar") val avatar: String, // Url
             )
 
             @Serializable
             data class Account(
-                @SerialName("id")
-                val id: Int,
+                @JsonProperty("id") @SerialName("id") val id: Int,
             )
         }
 
         @Serializable
         data class PinAuthResponse(
-            @SerialName("result") val result: String,
-            @SerialName("device_code") val deviceCode: String,
-            @SerialName("user_code") val userCode: String,
-            @SerialName("verification_url") val verificationUrl: String,
-            @SerialName("expires_in") val expiresIn: Int,
-            @SerialName("interval") val interval: Int,
+            @JsonProperty("result") @SerialName("result") val result: String,
+            @JsonProperty("device_code") @SerialName("device_code") val deviceCode: String,
+            @JsonProperty("user_code") @SerialName("user_code") val userCode: String,
+            @JsonProperty("verification_url") @SerialName("verification_url") val verificationUrl: String,
+            @JsonProperty("expires_in") @SerialName("expires_in") val expiresIn: Int,
+            @JsonProperty("interval") @SerialName("interval") val interval: Int,
         )
 
         @Serializable
         data class PinExchangeResponse(
-            @SerialName("result") val result: String,
-            @SerialName("message") val message: String? = null,
-            @SerialName("access_token") val accessToken: String? = null,
+            @JsonProperty("result") @SerialName("result") val result: String,
+            @JsonProperty("message") @SerialName("message") val message: String? = null,
+            @JsonProperty("access_token") @SerialName("access_token") val accessToken: String? = null,
         )
 
         // -------------------
         @Serializable
         data class ActivitiesResponse(
-            @SerialName("all") val all: String?,
-            @SerialName("tv_shows") val tvShows: UpdatedAt,
-            @SerialName("anime") val anime: UpdatedAt,
-            @SerialName("movies") val movies: UpdatedAt,
+            @JsonProperty("all") @SerialName("all") val all: String?,
+            @JsonProperty("tv_shows") @SerialName("tv_shows") val tvShows: UpdatedAt,
+            @JsonProperty("anime") @SerialName("anime") val anime: UpdatedAt,
+            @JsonProperty("movies") @SerialName("movies") val movies: UpdatedAt,
         ) {
             @Serializable
             data class UpdatedAt(
-                @SerialName("all") val all: String?,
-                @SerialName("removed_from_list") val removedFromList: String?,
-                @SerialName("rated_at") val ratedAt: String?,
+                @JsonProperty("all") @SerialName("all") val all: String?,
+                @JsonProperty("removed_from_list") @SerialName("removed_from_list") val removedFromList: String?,
+                @JsonProperty("rated_at") @SerialName("rated_at") val ratedAt: String?,
             )
         }
 
         /** https://simkl.docs.apiary.io/#reference/tv/episodes/get-tv-show-episodes */
         @Serializable
         data class EpisodeMetadata(
-            @SerialName("title") val title: String?,
-            @SerialName("description") val description: String?,
-            @SerialName("season") val season: Int?,
-            @SerialName("episode") val episode: Int,
-            @SerialName("img") val img: String?
+            @JsonProperty("title") @SerialName("title") val title: String?,
+            @JsonProperty("description") @SerialName("description") val description: String?,
+            @JsonProperty("season") @SerialName("season") val season: Int?,
+            @JsonProperty("episode") @SerialName("episode") val episode: Int,
+            @JsonProperty("img") @SerialName("img") val img: String?,
         ) {
             companion object {
                 fun convertToEpisodes(list: List<EpisodeMetadata>?): List<MediaObject.Season.Episode>? {
@@ -316,15 +301,15 @@ class SimklApi : SyncAPI() {
          */
         @Serializable
         open class MediaObject(
-            @SerialName("title") open val title: String?,
-            @SerialName("year") open val year: Int?,
-            @SerialName("ids") open val ids: Ids?,
-            @SerialName("total_episodes") val totalEpisodes: Int? = null,
-            @SerialName("status") val status: String? = null,
-            @SerialName("poster") val poster: String? = null,
-            @SerialName("type") val type: String? = null,
-            @SerialName("seasons") open val seasons: List<Season>? = null,
-            @SerialName("episodes") open val episodes: List<Season.Episode>? = null
+            @JsonProperty("title") @SerialName("title") open val title: String?,
+            @JsonProperty("year") @SerialName("year") open val year: Int?,
+            @JsonProperty("ids") @SerialName("ids") open val ids: Ids?,
+            @JsonProperty("total_episodes") @SerialName("total_episodes") val totalEpisodes: Int? = null,
+            @JsonProperty("status") @SerialName("status") val status: String? = null,
+            @JsonProperty("poster") @SerialName("poster") val poster: String? = null,
+            @JsonProperty("type") @SerialName("type") val type: String? = null,
+            @JsonProperty("seasons") @SerialName("seasons") open val seasons: List<Season>? = null,
+            @JsonProperty("episodes") @SerialName("episodes") open val episodes: List<Season.Episode>? = null,
         ) {
             fun hasEnded(): Boolean {
                 return status == "released" || status == "ended"
@@ -332,20 +317,20 @@ class SimklApi : SyncAPI() {
 
             @Serializable
             data class Season(
-                @SerialName("number") val number: Int,
-                @SerialName("episodes") val episodes: List<Episode>
+                @JsonProperty("number") @SerialName("number") val number: Int,
+                @JsonProperty("episodes") @SerialName("episodes") val episodes: List<Episode>,
             ) {
                 @Serializable
-                data class Episode(@SerialName("number") val number: Int)
+                data class Episode(@JsonProperty("number") @SerialName("number") val number: Int)
             }
 
             @Serializable
             data class Ids(
-                @SerialName("simkl") val simkl: Int?,
-                @SerialName("imdb") val imdb: String? = null,
-                @SerialName("tmdb") val tmdb: String? = null,
-                @SerialName("mal") val mal: String? = null,
-                @SerialName("anilist") val anilist: String? = null,
+                @JsonProperty("simkl") @SerialName("simkl") val simkl: Int?,
+                @JsonProperty("imdb") @SerialName("imdb") val imdb: String? = null,
+                @JsonProperty("tmdb") @SerialName("tmdb") val tmdb: String? = null,
+                @JsonProperty("mal") @SerialName("mal") val mal: String? = null,
+                @JsonProperty("anilist") @SerialName("anilist") val anilist: String? = null,
             ) {
                 companion object {
                     fun fromMap(map: Map<SimklSyncServices, String>): Ids {
@@ -354,7 +339,7 @@ class SimklApi : SyncAPI() {
                             imdb = map[SimklSyncServices.Imdb],
                             tmdb = map[SimklSyncServices.Tmdb],
                             mal = map[SimklSyncServices.Mal],
-                            anilist = map[SimklSyncServices.AniList]
+                            anilist = map[SimklSyncServices.AniList],
                         )
                     }
                 }
@@ -368,7 +353,7 @@ class SimklApi : SyncAPI() {
                     currentIds?.simkl?.toString() ?: return null,
                     getUrlFromId(currentIds.simkl),
                     this.poster?.let { getPosterUrl(it) },
-                    if (this.type == "movie") TvType.Movie else TvType.TvSeries
+                    if (this.type == "movie") TvType.Movie else TvType.TvSeries,
                 )
             }
         }
@@ -383,7 +368,7 @@ class SimklApi : SyncAPI() {
                 private var addEpisodes: Pair<List<MediaObject.Season>?, List<MediaObject.Season.Episode>?>? = null,
                 private var removeEpisodes: Pair<List<MediaObject.Season>?, List<MediaObject.Season.Episode>?>? = null,
                 // Required for knowing if the status should be overwritten
-                private var onList: Boolean = false
+                private var onList: Boolean = false,
             ) {
                 fun token(token: AuthToken) = apply { this.headers = getHeaders(token) }
                 fun apiUrl(url: String) = apply { this.url = url }
@@ -410,7 +395,6 @@ class SimklApi : SyncAPI() {
                     oldEpisodes: Int?,
                 ) = apply {
                     if (allEpisodes == null || newEpisodes == null) return@apply
-
                     fun getEpisodes(rawEpisodes: List<EpisodeMetadata>) =
                         if (rawEpisodes.any { it.season != null }) {
                             EpisodeMetadata.convertToSeasons(rawEpisodes) to null
@@ -529,7 +513,6 @@ class SimklApi : SyncAPI() {
             hasEnded: Boolean?
         ): Array<EpisodeMetadata>? {
             if (simklId == null) return null
-
             val cacheKey = "Episodes/$simklId"
             val cache = SimklCache.getKey<Array<EpisodeMetadata>>(cacheKey)
 
@@ -548,6 +531,7 @@ class SimklApi : SyncAPI() {
                     }.toTypedArray()
                 }
             }
+
             val url = when (type) {
                 "anime" -> "https://api.simkl.com/anime/episodes/$simklId"
                 "tv" -> "https://api.simkl.com/tv/episodes/$simklId"
@@ -573,8 +557,8 @@ class SimklApi : SyncAPI() {
             @Transient override val ids: Ids? = null,
             @Transient override val seasons: List<Season>? = null,
             @Transient override val episodes: List<Season.Episode>? = null,
-            @SerialName("rating") val rating: Int? = null,
-            @SerialName("rated_at") val ratedAt: String? = null,
+            @JsonProperty("rating") @SerialName("rating") val rating: Int? = null,
+            @JsonProperty("rated_at") @SerialName("rated_at") val ratedAt: String? = null,
         ) : MediaObject(title, year, ids, seasons = seasons, episodes = episodes)
 
         @Serializable
@@ -582,8 +566,8 @@ class SimklApi : SyncAPI() {
             @Transient override val title: String? = null,
             @Transient override val year: Int? = null,
             @Transient override val ids: Ids? = null,
-            @SerialName("rating") val rating: Int,
-            @SerialName("rated_at") val ratedAt: String? = getDateTime(APIHolder.unixTime)
+            @JsonProperty("rating") @SerialName("rating") val rating: Int,
+            @JsonProperty("rated_at") @SerialName("rated_at") val ratedAt: String? = getDateTime(APIHolder.unixTime),
         ) : MediaObject(title, year, ids)
 
         @Serializable
@@ -591,29 +575,25 @@ class SimklApi : SyncAPI() {
             @Transient override val title: String? = null,
             @Transient override val year: Int? = null,
             @Transient override val ids: Ids? = null,
-            @SerialName("to") val to: String,
-            @SerialName("watched_at") val watchedAt: String? = getDateTime(APIHolder.unixTime)
+            @JsonProperty("to") @SerialName("to") val to: String,
+            @JsonProperty("watched_at") @SerialName("watched_at") val watchedAt: String? = getDateTime(APIHolder.unixTime),
         ) : MediaObject(title, year, ids)
 
         @Serializable
         data class StatusRequest(
-            @SerialName("movies") val movies: List<MediaObject>,
-            @SerialName("shows") val shows: List<MediaObject>
+            @JsonProperty("movies") @SerialName("movies") val movies: List<MediaObject>,
+            @JsonProperty("shows") @SerialName("shows") val shows: List<MediaObject>,
         )
 
         /** https://simkl.docs.apiary.io/#reference/sync/get-all-items/get-all-items-in-the-user's-watchlist */
         @Serializable
         data class AllItemsResponse(
-            @SerialName("shows")
-            val shows: List<ShowMetadata> = emptyList(),
-            @SerialName("anime")
-            val anime: List<ShowMetadata> = emptyList(),
-            @SerialName("movies")
-            val movies: List<MovieMetadata> = emptyList(),
+            @JsonProperty("shows") @SerialName("shows") val shows: List<ShowMetadata> = emptyList(),
+            @JsonProperty("anime") @SerialName("anime") val anime: List<ShowMetadata> = emptyList(),
+            @JsonProperty("movies") @SerialName("movies") val movies: List<MovieMetadata> = emptyList(),
         ) {
             companion object {
                 fun merge(first: AllItemsResponse?, second: AllItemsResponse?): AllItemsResponse {
-
                     // Replace the first item with the same id, or add the new item
                     fun <T> MutableList<T>.replaceOrAddItem(newItem: T, predicate: (T) -> Boolean) {
                         for (i in this.indices) {
@@ -625,7 +605,6 @@ class SimklApi : SyncAPI() {
                         this.add(newItem)
                     }
 
-                    //
                     fun <T : Metadata> merge(
                         first: List<T>?,
                         second: List<T>?
@@ -661,13 +640,13 @@ class SimklApi : SyncAPI() {
 
             @Serializable
             data class MovieMetadata(
-                @SerialName("last_watched_at") override val lastWatchedAt: String?,
-                @SerialName("status") override val status: String,
-                @SerialName("user_rating") override val userRating: Int?,
-                @SerialName("last_watched") override val lastWatched: String?,
-                @SerialName("watched_episodes_count") override val watchedEpisodesCount: Int?,
-                @SerialName("total_episodes_count") override val totalEpisodesCount: Int?,
-                val movie: ShowMetadata.Show
+                @JsonProperty("last_watched_at") @SerialName("last_watched_at") override val lastWatchedAt: String?,
+                @JsonProperty("status") @SerialName("status") override val status: String,
+                @JsonProperty("user_rating") @SerialName("user_rating") override val userRating: Int?,
+                @JsonProperty("last_watched") @SerialName("last_watched") override val lastWatched: String?,
+                @JsonProperty("watched_episodes_count") @SerialName("watched_episodes_count") override val watchedEpisodesCount: Int?,
+                @JsonProperty("total_episodes_count") @SerialName("total_episodes_count") override val totalEpisodesCount: Int?,
+                @JsonProperty("movie") @SerialName("movie") val movie: ShowMetadata.Show,
             ) : Metadata {
                 override fun getIds(): ShowMetadata.Show.Ids {
                     return this.movie.ids
@@ -688,20 +667,20 @@ class SimklApi : SyncAPI() {
                         null,
                         null,
                         this.movie.year?.toYear(),
-                        movie.ids.simkl
+                        movie.ids.simkl,
                     )
                 }
             }
 
             @Serializable
             data class ShowMetadata(
-                @SerialName("last_watched_at") override val lastWatchedAt: String?,
-                @SerialName("status") override val status: String,
-                @SerialName("user_rating") override val userRating: Int?,
-                @SerialName("last_watched") override val lastWatched: String?,
-                @SerialName("watched_episodes_count") override val watchedEpisodesCount: Int?,
-                @SerialName("total_episodes_count") override val totalEpisodesCount: Int?,
-                @SerialName("show") val show: Show
+                @JsonProperty("last_watched_at") @SerialName("last_watched_at") override val lastWatchedAt: String?,
+                @JsonProperty("status") @SerialName("status") override val status: String,
+                @JsonProperty("user_rating") @SerialName("user_rating") override val userRating: Int?,
+                @JsonProperty("last_watched") @SerialName("last_watched") override val lastWatched: String?,
+                @JsonProperty("watched_episodes_count") @SerialName("watched_episodes_count") override val watchedEpisodesCount: Int?,
+                @JsonProperty("total_episodes_count") @SerialName("total_episodes_count") override val totalEpisodesCount: Int?,
+                @JsonProperty("show") @SerialName("show") val show: Show,
             ) : Metadata {
                 override fun getIds(): Show.Ids {
                     return this.show.ids
@@ -722,30 +701,30 @@ class SimklApi : SyncAPI() {
                         null,
                         null,
                         this.show.year?.toYear(),
-                        show.ids.simkl
+                        show.ids.simkl,
                     )
                 }
 
                 @Serializable
                 data class Show(
-                    @SerialName("title") val title: String,
-                    @SerialName("poster") val poster: String?,
-                    @SerialName("year") val year: Int?,
-                    @SerialName("ids") val ids: Ids,
+                    @JsonProperty("title") @SerialName("title") val title: String,
+                    @JsonProperty("poster") @SerialName("poster") val poster: String?,
+                    @JsonProperty("year") @SerialName("year") val year: Int?,
+                    @JsonProperty("ids") @SerialName("ids") val ids: Ids,
                 ) {
                     @Serializable
                     data class Ids(
-                        @SerialName("simkl") val simkl: Int,
-                        @SerialName("slug") val slug: String?,
-                        @SerialName("imdb") val imdb: String?,
-                        @SerialName("zap2it") val zap2it: String?,
-                        @SerialName("tmdb") val tmdb: String?,
-                        @SerialName("offen") val offen: String?,
-                        @SerialName("tvdb") val tvdb: String?,
-                        @SerialName("mal") val mal: String?,
-                        @SerialName("anidb") val anidb: String?,
-                        @SerialName("anilist") val anilist: String?,
-                        @SerialName("traktslug") val traktslug: String?
+                        @JsonProperty("simkl") @SerialName("simkl") val simkl: Int,
+                        @JsonProperty("slug") @SerialName("slug") val slug: String?,
+                        @JsonProperty("imdb") @SerialName("imdb") val imdb: String?,
+                        @JsonProperty("zap2it") @SerialName("zap2it") val zap2it: String?,
+                        @JsonProperty("tmdb") @SerialName("tmdb") val tmdb: String?,
+                        @JsonProperty("offen") @SerialName("offen") val offen: String?,
+                        @JsonProperty("tvdb") @SerialName("tvdb") val tvdb: String?,
+                        @JsonProperty("mal") @SerialName("mal") val mal: String?,
+                        @JsonProperty("anidb") @SerialName("anidb") val anidb: String?,
+                        @JsonProperty("anilist") @SerialName("anilist") val anilist: String?,
+                        @JsonProperty("traktslug") @SerialName("traktslug") val traktslug: String?,
                     ) {
                         fun matchesId(database: SimklSyncServices, id: String): Boolean {
                             return when (database) {
@@ -762,26 +741,9 @@ class SimklApi : SyncAPI() {
         }
     }
 
-    /**
-     * Appends api keys to the requests
-     **/
-    /*private inner class HeaderInterceptor : Interceptor {
-        override fun intercept(chain: Interceptor.Chain): Response {
-            debugPrint { "${this@SimklApi.name} made request to ${chain.request().url}" }
-            return chain.proceed(
-                chain.request()
-                    .newBuilder()
-                    .addHeader("Authorization", "Bearer $token")
-                    .addHeader("simkl-api-key", CLIENT_ID)
-                    .build()
-            )
-        }
-    }*/
-
     private suspend fun getUser(token: AuthToken): SettingsResponse =
         app.post("$mainUrl/users/settings", headers = getHeaders(token))
             .parsed<SettingsResponse>()
-
 
     /**
      * Useful to get episodes on demand to prevent unnecessary requests.
@@ -790,7 +752,7 @@ class SimklApi : SyncAPI() {
         private val simklId: Int?,
         private val type: String?,
         private val totalEpisodeCount: Int?,
-        private val hasEnded: Boolean?
+        private val hasEnded: Boolean?,
     ) {
         suspend fun getEpisodes(): Array<EpisodeMetadata>? {
             return getEpisodes(simklId, type, totalEpisodeCount, hasEnded)
@@ -805,10 +767,12 @@ class SimklApi : SyncAPI() {
         val episodeConstructor: SimklEpisodeConstructor,
         override var isFavorite: Boolean? = null,
         override var maxEpisodes: Int? = null,
-        /** Save seen episodes separately to know the change from old to new.
-         * Required to remove seen episodes if count decreases */
+        /**
+         * Save seen episodes separately to know the change from old to new.
+         * Required to remove seen episodes if count decreases.
+         */
         val oldEpisodes: Int,
-        val oldStatus: String?
+        val oldStatus: String?,
     ) : SyncAPI.AbstractSyncStatus()
 
     override suspend fun status(auth: AuthData?, id: String): SyncAPI.AbstractSyncStatus? {
@@ -860,7 +824,7 @@ class SimklApi : SyncAPI() {
                 episodeConstructor = episodeConstructor,
                 oldEpisodes = foundItem.watchedEpisodesCount ?: 0,
                 oldScore = foundItem.userRating,
-                oldStatus = foundItem.status
+                oldStatus = foundItem.status,
             )
         } else {
             return SimklSyncStatus(
@@ -871,7 +835,7 @@ class SimklApi : SyncAPI() {
                 episodeConstructor = episodeConstructor,
                 oldEpisodes = 0,
                 oldStatus = null,
-                oldScore = null
+                oldScore = null,
             )
         }
     }
@@ -879,7 +843,7 @@ class SimklApi : SyncAPI() {
     override suspend fun updateStatus(
         auth: AuthData?,
         id: String,
-        newStatus: AbstractSyncStatus
+        newStatus: AbstractSyncStatus,
     ): Boolean {
         val parsedId = readIdFromString(id)
         lastScoreTime = APIHolder.unixTime
@@ -911,7 +875,6 @@ class SimklApi : SyncAPI() {
             }
 
         builder.episodes(episodes?.toList(), watchedEpisodes, simklStatus?.oldEpisodes)
-
         requireLibraryRefresh = true
         return builder.execute()
     }
@@ -920,7 +883,6 @@ class SimklApi : SyncAPI() {
     /** See https://simkl.docs.apiary.io/#reference/search/id-lookup/get-items-by-id */
     private suspend fun searchByIds(serviceMap: Map<SimklSyncServices, String>): Array<MediaObject>? {
         if (serviceMap.isEmpty()) return emptyArray()
-
         return app.get(
             "$mainUrl/search/id",
             params = mapOf("client_id" to CLIENT_ID) + serviceMap.map { (service, id) ->
@@ -937,12 +899,10 @@ class SimklApi : SyncAPI() {
 
     override fun loginRequest(): AuthLoginPage? {
         val lastLoginState = BigInteger(130, SecureRandom()).toString(32)
-        val url =
-            "https://simkl.com/oauth/authorize?response_type=code&client_id=$CLIENT_ID&redirect_uri=$APP_STRING://${redirectUrlIdentifier}&state=$lastLoginState"
-
+        val url = "https://simkl.com/oauth/authorize?response_type=code&client_id=$CLIENT_ID&redirect_uri=$APP_STRING://${redirectUrlIdentifier}&state=$lastLoginState"
         return AuthLoginPage(
             url = url,
-            payload = lastLoginState
+            payload = lastLoginState,
         )
     }
 
@@ -957,7 +917,7 @@ class SimklApi : SyncAPI() {
         return app.get(
             "$mainUrl/sync/all-items/",
             params = params,
-            headers = getHeaders(auth.token)
+            headers = getHeaders(auth.token),
         ).parsedSafe()
     }
 
@@ -976,10 +936,8 @@ class SimklApi : SyncAPI() {
         val lastRemoval = listOf(
             activities?.tvShows?.removedFromList,
             activities?.anime?.removedFromList,
-            activities?.movies?.removedFromList
-        ).maxOf {
-            getUnixTime(it) ?: -1
-        }
+            activities?.movies?.removedFromList,
+        ).maxOf { getUnixTime(it) ?: -1 }
         val lastRealUpdate =
             listOf(
                 activities?.tvShows?.all,
@@ -1014,7 +972,6 @@ class SimklApi : SyncAPI() {
 
     override suspend fun library(auth: AuthData?): SyncAPI.LibraryMetadata? {
         val list = getSyncListSmart(auth ?: return null) ?: return null
-
         val baseMap =
             SimklListStatusType.entries
                 .filter { it.value >= 0 && it.value != SimklListStatusType.ReWatching.value }
@@ -1024,9 +981,7 @@ class SimklApi : SyncAPI() {
 
         val syncMap = listOf(list.anime, list.movies, list.shows)
             .flatten()
-            .groupBy {
-                it.status
-            }
+            .groupBy { it.status }
             .mapNotNull { (status, list) ->
                 val stringRes =
                     status?.let { SimklListStatusType.fromString(it)?.stringRes }
@@ -1064,7 +1019,7 @@ class SimklApi : SyncAPI() {
             userCode = pinAuthResp.userCode,
             verificationUrl = pinAuthResp.verificationUrl,
             expiresIn = pinAuthResp.expiresIn,
-            interval = pinAuthResp.interval
+            interval = pinAuthResp.interval,
         )
     }
 
@@ -1072,7 +1027,6 @@ class SimklApi : SyncAPI() {
         val pinAuthResp = app.get(
             "$mainUrl/oauth/pin/${payload.userCode}?client_id=$CLIENT_ID"
         ).parsedSafe<PinExchangeResponse>() ?: return null
-
         return AuthToken(
             accessToken = pinAuthResp.accessToken ?: return null,
         )
@@ -1099,7 +1053,7 @@ class SimklApi : SyncAPI() {
         return AuthUser(
             id = user.account.id,
             name = user.user.name,
-            profilePicture = user.user.avatar
+            profilePicture = user.user.avatar,
         )
     }
 }
