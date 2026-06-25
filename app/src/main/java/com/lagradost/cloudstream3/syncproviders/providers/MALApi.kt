@@ -53,7 +53,7 @@ class MALApi : SyncAPI() {
         SyncWatchType.PLANTOWATCH,
         SyncWatchType.DROPPED,
         SyncWatchType.ONHOLD,
-        SyncWatchType.NONE
+        SyncWatchType.NONE,
     )
 
     @Serializable
