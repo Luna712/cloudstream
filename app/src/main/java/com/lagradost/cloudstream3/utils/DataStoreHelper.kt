@@ -1,9 +1,7 @@
 package com.lagradost.cloudstream3.utils
 
 import android.content.Context
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.APIHolder.unixTimeMS
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.context
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
@@ -33,6 +31,9 @@ import com.lagradost.cloudstream3.ui.result.ResultEpisode
 import com.lagradost.cloudstream3.ui.result.VideoWatchState
 import com.lagradost.cloudstream3.utils.AppContextUtils.filterProviderByPreferredMedia
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import java.util.Calendar
 import java.util.Date
 import java.util.GregorianCalendar
@@ -120,7 +121,6 @@ object DataStoreHelper {
             searchPreferenceTagsStrings = serializeTv(value)
         }
 
-
     private var homePreferenceStrings: List<String> by UserPreferenceDelegate(
         "home_pref_homepage",
         listOf(TvType.Movie, TvType.TvSeries).map { it.name })
@@ -152,18 +152,13 @@ object DataStoreHelper {
 
     @Serializable
     data class Account(
-        @SerialName("keyIndex")
-        val keyIndex: Int,
-        @SerialName("name")
-        val name: String,
-        @SerialName("customImage")
-        val customImage: String? = null,
-        @SerialName("defaultImageIndex")
-        val defaultImageIndex: Int,
-        @SerialName("lockPin")
-        val lockPin: String? = null,
+        @JsonProperty("keyIndex") @SerialName("keyIndex") val keyIndex: Int,
+        @JsonProperty("name") @SerialName("name") val name: String,
+        @JsonProperty("customImage") @SerialName("customImage") val customImage: String? = null,
+        @JsonProperty("defaultImageIndex") @SerialName("defaultImageIndex") val defaultImageIndex: Int,
+        @JsonProperty("lockPin") @SerialName("lockPin") val lockPin: String? = null,
     ) {
-        val image
+        @get:JsonProperty("image") @get:SerialName("image") val image
             get() = customImage?.let { UiImage.Image(it) } ?: profileImages.getOrNull(
                 defaultImageIndex
             )?.let { UiImage.Drawable(it) } ?: UiImage.Drawable(profileImages.first())
@@ -237,8 +232,8 @@ object DataStoreHelper {
 
     @Serializable
     data class PosDur(
-        @SerialName("position") val position: Long,
-        @SerialName("duration") val duration: Long
+        @JsonProperty("position") @SerialName("position") val position: Long,
+        @JsonProperty("duration") @SerialName("duration") val duration: Long,
     )
 
     fun PosDur.fixVisual(): PosDur {
@@ -255,7 +250,7 @@ object DataStoreHelper {
 
     /**
      * Used to display notifications on new episodes and posters in library.
-     **/
+     */
     @Serializable
     abstract class LibrarySearchResponse(
         @Transient override var id: Int? = null,
@@ -277,7 +272,7 @@ object DataStoreHelper {
         @Deprecated(
             "`rating` is the old scoring system, use score instead",
             replaceWith = ReplaceWith("score"),
-            level = DeprecationLevel.ERROR
+            level = DeprecationLevel.ERROR,
         )
         var rating: Int? = null
             set(value) {
@@ -290,22 +285,22 @@ object DataStoreHelper {
 
     @Serializable
     data class SubscribedData(
-        @SerialName("subscribedTime") val subscribedTime: Long,
-        @SerialName("lastSeenEpisodeCount") val lastSeenEpisodeCount: Map<DubStatus, Int?>,
-        @SerialName("id") override var id: Int? = null,
-        @SerialName("latestUpdatedTime") override val latestUpdatedTime: Long = 0L,
-        @SerialName("name") override val name: String = "",
-        @SerialName("url") override val url: String = "",
-        @SerialName("apiName") override val apiName: String = "",
-        @SerialName("type") override var type: TvType? = null,
-        @SerialName("posterUrl") override var posterUrl: String? = null,
-        @SerialName("year") override val year: Int? = null,
-        @SerialName("syncData") override val syncData: Map<String, String>? = null,
-        @SerialName("quality") override var quality: SearchQuality? = null,
-        @SerialName("posterHeaders") override var posterHeaders: Map<String, String>? = null,
-        @SerialName("plot") override val plot: String? = null,
-        @SerialName("score") override var score: Score? = null,
-        @SerialName("tags") override val tags: List<String>? = null,
+        @JsonProperty("subscribedTime") @SerialName("subscribedTime") val subscribedTime: Long,
+        @JsonProperty("lastSeenEpisodeCount") @SerialName("lastSeenEpisodeCount") val lastSeenEpisodeCount: Map<DubStatus, Int?>,
+        @JsonProperty("id") @SerialName("id") override var id: Int?,
+        @JsonProperty("latestUpdatedTime") @SerialName("latestUpdatedTime") override val latestUpdatedTime: Long,
+        @JsonProperty("name") @SerialName("name") override val name: String,
+        @JsonProperty("url") @SerialName("url") override val url: String,
+        @JsonProperty("apiName") @SerialName("apiName") override val apiName: String,
+        @JsonProperty("type") @SerialName("type") override var type: TvType?,
+        @JsonProperty("posterUrl") @SerialName("posterUrl") override var posterUrl: String?,
+        @JsonProperty("year") @SerialName("year") override val year: Int?,
+        @JsonProperty("syncData") @SerialName("syncData") override val syncData: Map<String, String>? = null,
+        @JsonProperty("quality") @SerialName("quality") override var quality: SearchQuality? = null,
+        @JsonProperty("posterHeaders") @SerialName("posterHeaders") override var posterHeaders: Map<String, String>? = null,
+        @JsonProperty("plot") @SerialName("plot") override val plot: String? = null,
+        @JsonProperty("score") @SerialName("score") override var score: Score? = null,
+        @JsonProperty("tags") @SerialName("tags") override val tags: List<String>? = null,
     ) : LibrarySearchResponse(
         id,
         latestUpdatedTime,
@@ -320,7 +315,7 @@ object DataStoreHelper {
         posterHeaders,
         plot,
         score,
-        tags
+        tags,
     ) {
         fun toLibraryItem(): SyncAPI.LibraryItem? {
             return SyncAPI.LibraryItem(
@@ -340,28 +335,28 @@ object DataStoreHelper {
                 this.id,
                 plot = this.plot,
                 score = this.score,
-                tags = this.tags
+                tags = this.tags,
             )
         }
     }
 
     @Serializable
     data class BookmarkedData(
-        @SerialName("bookmarkedTime") val bookmarkedTime: Long,
-        @SerialName("id") override var id: Int? = null,
-        @SerialName("latestUpdatedTime") override val latestUpdatedTime: Long = 0L,
-        @SerialName("name") override val name: String = "",
-        @SerialName("url") override val url: String = "",
-        @SerialName("apiName") override val apiName: String = "",
-        @SerialName("type") override var type: TvType? = null,
-        @SerialName("posterUrl") override var posterUrl: String? = null,
-        @SerialName("year") override val year: Int? = null,
-        @SerialName("syncData") override val syncData: Map<String, String>? = null,
-        @SerialName("quality") override var quality: SearchQuality? = null,
-        @SerialName("posterHeaders") override var posterHeaders: Map<String, String>? = null,
-        @SerialName("plot") override val plot: String? = null,
-        @SerialName("score") override var score: Score? = null,
-        @SerialName("tags") override val tags: List<String>? = null,
+        @JsonProperty("bookmarkedTime") @SerialName("bookmarkedTime") val bookmarkedTime: Long,
+        @JsonProperty("id") @SerialName("id") override var id: Int?,
+        @JsonProperty("latestUpdatedTime") @SerialName("latestUpdatedTime") override val latestUpdatedTime: Long,
+        @JsonProperty("name") @SerialName("name") override val name: String,
+        @JsonProperty("url") @SerialName("url") override val url: String,
+        @JsonProperty("apiName") @SerialName("apiName") override val apiName: String,
+        @JsonProperty("type") @SerialName("type") override var type: TvType?,
+        @JsonProperty("posterUrl") @SerialName("posterUrl") override var posterUrl: String?,
+        @JsonProperty("year") @SerialName("year") override val year: Int?,
+        @JsonProperty("syncData") @SerialName("syncData") override val syncData: Map<String, String>? = null,
+        @JsonProperty("quality") @SerialName("quality") override var quality: SearchQuality? = null,
+        @JsonProperty("posterHeaders") @SerialName("posterHeaders") override var posterHeaders: Map<String, String>? = null,
+        @JsonProperty("plot") @SerialName("plot") override val plot: String? = null,
+        @JsonProperty("score") @SerialName("score") override var score: Score? = null,
+        @JsonProperty("tags") @SerialName("tags") override val tags: List<String>? = null,
     ) : LibrarySearchResponse(
         id,
         latestUpdatedTime,
@@ -374,7 +369,7 @@ object DataStoreHelper {
         syncData,
         quality,
         posterHeaders,
-        plot
+        plot,
     ) {
         fun toLibraryItem(id: String): SyncAPI.LibraryItem {
             return SyncAPI.LibraryItem(
@@ -394,28 +389,28 @@ object DataStoreHelper {
                 this.id,
                 plot = this.plot,
                 score = this.score,
-                tags = this.tags
+                tags = this.tags,
             )
         }
     }
 
     @Serializable
     data class FavoritesData(
-        @SerialName("favoritesTime") val favoritesTime: Long,
-        @SerialName("id") override var id: Int? = null,
-        @SerialName("latestUpdatedTime") override val latestUpdatedTime: Long = 0L,
-        @SerialName("name") override val name: String = "",
-        @SerialName("url") override val url: String = "",
-        @SerialName("apiName") override val apiName: String = "",
-        @SerialName("type") override var type: TvType? = null,
-        @SerialName("posterUrl") override var posterUrl: String? = null,
-        @SerialName("year") override val year: Int? = null,
-        @SerialName("syncData") override val syncData: Map<String, String>? = null,
-        @SerialName("quality") override var quality: SearchQuality? = null,
-        @SerialName("posterHeaders") override var posterHeaders: Map<String, String>? = null,
-        @SerialName("plot") override val plot: String? = null,
-        @SerialName("score") override var score: Score? = null,
-        @SerialName("tags") override val tags: List<String>? = null,
+        @JsonProperty("favoritesTime") @SerialName("favoritesTime") val favoritesTime: Long,
+        @JsonProperty("id") @SerialName("id") override var id: Int?,
+        @JsonProperty("latestUpdatedTime") @SerialName("latestUpdatedTime") override val latestUpdatedTime: Long,
+        @JsonProperty("name") @SerialName("name") override val name: String,
+        @JsonProperty("url") @SerialName("url") override val url: String,
+        @JsonProperty("apiName") @SerialName("apiName") override val apiName: String,
+        @JsonProperty("type") @SerialName("type") override var type: TvType?,
+        @JsonProperty("posterUrl") @SerialName("posterUrl") override var posterUrl: String?,
+        @JsonProperty("year") @SerialName("year") override val year: Int?,
+        @JsonProperty("syncData") @SerialName("syncData") override val syncData: Map<String, String>? = null,
+        @JsonProperty("quality") @SerialName("quality") override var quality: SearchQuality? = null,
+        @JsonProperty("posterHeaders") @SerialName("posterHeaders") override var posterHeaders: Map<String, String>? = null,
+        @JsonProperty("plot") @SerialName("plot") override val plot: String? = null,
+        @JsonProperty("score") @SerialName("score") override var score: Score? = null,
+        @JsonProperty("tags") @SerialName("tags") override val tags: List<String>? = null,
     ) : LibrarySearchResponse(
         id,
         latestUpdatedTime,
@@ -428,7 +423,7 @@ object DataStoreHelper {
         syncData,
         quality,
         posterHeaders,
-        plot
+        plot,
     ) {
         fun toLibraryItem(): SyncAPI.LibraryItem? {
             return SyncAPI.LibraryItem(
@@ -448,27 +443,27 @@ object DataStoreHelper {
                 this.id,
                 plot = this.plot,
                 score = this.score,
-                tags = this.tags
-            )
+                tags = this.tags,
+            ),
         }
     }
 
     @Serializable
     data class ResumeWatchingResult(
-        @SerialName("name") override val name: String,
-        @SerialName("url") override val url: String,
-        @SerialName("apiName") override val apiName: String,
-        @SerialName("type") override var type: TvType? = null,
-        @SerialName("posterUrl") override var posterUrl: String?,
-        @SerialName("watchPos") val watchPos: PosDur?,
-        @SerialName("id") override var id: Int?,
-        @SerialName("parentId") val parentId: Int?,
-        @SerialName("episode") val episode: Int?,
-        @SerialName("season") val season: Int?,
-        @SerialName("isFromDownload") val isFromDownload: Boolean,
-        @SerialName("quality") override var quality: SearchQuality? = null,
-        @SerialName("posterHeaders") override var posterHeaders: Map<String, String>? = null,
-        @SerialName("score") override var score: Score? = null,
+        @JsonProperty("name") @SerialName("name") override val name: String,
+        @JsonProperty("url") @SerialName("url") override val url: String,
+        @JsonProperty("apiName") @SerialName("apiName") override val apiName: String,
+        @JsonProperty("type") @SerialName("type") override var type: TvType? = null,
+        @JsonProperty("posterUrl") @SerialName("posterUrl") override var posterUrl: String?,
+        @JsonProperty("watchPos") @SerialName("watchPos") val watchPos: PosDur?,
+        @JsonProperty("id") @SerialName("id") override var id: Int?,
+        @JsonProperty("parentId") @SerialName("parentId") val parentId: Int?,
+        @JsonProperty("episode") @SerialName("episode") val episode: Int?,
+        @JsonProperty("season") @SerialName("season") val season: Int?,
+        @JsonProperty("isFromDownload") @SerialName("isFromDownload") val isFromDownload: Boolean,
+        @JsonProperty("quality") @SerialName("quality") override var quality: SearchQuality? = null,
+        @JsonProperty("posterHeaders") @SerialName("posterHeaders") override var posterHeaders: Map<String, String>? = null,
+        @JsonProperty("score") @SerialName("score") override var score: Score? = null,
     ) : SearchResponse
 
     /**
