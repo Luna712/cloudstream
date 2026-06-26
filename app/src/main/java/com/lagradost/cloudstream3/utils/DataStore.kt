@@ -7,6 +7,7 @@ import androidx.preference.PreferenceManager
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKeyClass
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.removeKey
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKeyClass
+import com.lagradost.cloudstream3.InternalAPI
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJsonLiteral
@@ -170,7 +171,8 @@ object DataStore {
         }
     }
 
-    private fun Context.putStringKey(path: String, value: String?) {
+    @InternalAPI
+    fun Context.putStringKey(path: String, value: String?) {
         try {
             getSharedPrefs().edit {
                 putString(path, value)
