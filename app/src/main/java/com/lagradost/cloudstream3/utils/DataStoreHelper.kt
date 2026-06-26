@@ -287,7 +287,7 @@ object DataStoreHelper {
             }
     }
 
-    @OptIn(ExperimentalSerializationApi::class)
+    @OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
     @KeepGeneratedSerializer
     @Serializable(with = SubscribedData.Serializer::class)
     data class SubscribedData(
@@ -351,7 +351,7 @@ object DataStoreHelper {
         }
     }
 
-    @OptIn(ExperimentalSerializationApi::class)
+    @OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
     @KeepGeneratedSerializer
     @Serializable(with = BookmarkedData.Serializer::class)
     data class BookmarkedData(
@@ -412,7 +412,7 @@ object DataStoreHelper {
         }
     }
 
-    @OptIn(ExperimentalSerializationApi::class)
+    @OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
     @KeepGeneratedSerializer
     @Serializable(with = FavoritesData.Serializer::class)
     data class FavoritesData(
