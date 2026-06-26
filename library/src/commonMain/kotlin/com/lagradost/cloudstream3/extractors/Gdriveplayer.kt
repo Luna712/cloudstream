@@ -10,11 +10,11 @@ import kotlinx.serialization.Serializable
 import org.jsoup.nodes.Element
 
 class DatabaseGdrive2 : Gdriveplayer() {
-    override var mainUrl = "https://databasegdriveplayer.co"
+    override val mainUrl = "https://databasegdriveplayer.co"
 }
 
 class DatabaseGdrive : Gdriveplayer() {
-    override var mainUrl = "https://series.databasegdriveplayer.co"
+    override val mainUrl = "https://series.databasegdriveplayer.co"
 }
 
 class Gdriveplayerapi : Gdriveplayer() {
@@ -78,7 +78,6 @@ open class Gdriveplayer : ExtractorApi() {
         callback: (ExtractorLink) -> Unit,
     ) {
         val document = app.get(url).document
-
         val eval = unpackJs(document)?.replace("\\", "") ?: return
         val data = Regex("data='(\\S+?)'").first(eval) ?: return
         val password = Regex("null,['|\"](\\w+)['|\"]").first(eval)
@@ -86,9 +85,9 @@ open class Gdriveplayer : ExtractorApi() {
             ?.joinToString("") {
                 it.toInt().toChar().toString()
             }.let { Regex("var pass = \"(\\S+?)\"").first(it ?: return)?.encodeToByteArray() }
-            ?: throw ErrorLoadingException("can't find password")
-        val decryptedData = cryptoAESHandler(data, password, false, false)?.let { getAndUnpack(it) }?.replace("\\", "")
+                ?: throw ErrorLoadingException("can't find password")
 
+        val decryptedData = cryptoAESHandler(data, password, false, false)?.let { getAndUnpack(it) }?.replace("\\", "")
         val sourceData = decryptedData?.substringAfter("sources:[")?.substringBefore("],")
         val subData = decryptedData?.substringAfter("tracks:[")?.substringBefore("],")
 
