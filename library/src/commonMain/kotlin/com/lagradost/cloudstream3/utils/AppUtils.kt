@@ -22,7 +22,8 @@ object AppUtils {
         return toJsonLiteral()
     }
 
-    private fun Any.toJsonLiteralImpl(serializer: KSerializer<Any>?): String {
+    @InternalAPI
+    fun Any.toJsonLiteralImpl(serializer: KSerializer<Any>?): String {
         var fallbackTrace: String? = null
         if (serializer != null) {
             try {
