@@ -50,17 +50,18 @@ const val RESULT_WATCH_STATE = "result_watch_state"
 const val RESULT_WATCH_STATE_DATA = "result_watch_state_data"
 const val RESULT_SUBSCRIBED_STATE_DATA = "result_subscribed_state_data"
 const val RESULT_FAVORITES_STATE_DATA = "result_favorites_state_data"
-const val RESULT_RESUME_WATCHING = "result_resume_watching_2" // changed due to id changes
+const val RESULT_RESUME_WATCHING = "result_resume_watching_2" // Changed due to id changes
 const val RESULT_RESUME_WATCHING_OLD = "result_resume_watching"
 const val RESULT_RESUME_WATCHING_HAS_MIGRATED = "result_resume_watching_migrated"
 const val RESULT_EPISODE = "result_episode"
 const val RESULT_SEASON = "result_season"
 const val RESULT_DUB = "result_dub"
 const val KEY_RESULT_SORT = "result_sort"
-const val USER_PINNED_PROVIDERS = "user_pinned_providers" //key for pinned user set
+const val USER_PINNED_PROVIDERS = "user_pinned_providers" // Key for pinned user set
 
 class UserPreferenceDelegate<T : Any>(
-    private val key: String, private val default: T //, private val klass: KClass<T>
+    private val key: String,
+    private val default: T,
 ) {
     private val klass: KClass<out T> = default::class
     private val realKey get() = "${DataStoreHelper.currentAccount}/$key"
@@ -70,13 +71,11 @@ class UserPreferenceDelegate<T : Any>(
     operator fun setValue(
         self: Any?,
         property: KProperty<*>,
-        t: T?
+        t: T?,
     ) {
         if (t == null) {
             removeKey(realKey)
-        } else {
-            setKeyClass(realKey, t)
-        }
+        } else setKeyClass(realKey, t)
     }
 }
 
@@ -89,7 +88,7 @@ object DataStoreHelper {
         R.drawable.profile_bg_pink,
         R.drawable.profile_bg_purple,
         R.drawable.profile_bg_red,
-        R.drawable.profile_bg_teal
+        R.drawable.profile_bg_teal,
     )
 
     private var searchPreferenceProvidersStrings: List<String> by UserPreferenceDelegate(
@@ -119,6 +118,7 @@ object DataStoreHelper {
     private var searchPreferenceTagsStrings: List<String> by UserPreferenceDelegate(
         "search_pref_tags",
         listOf(TvType.Movie, TvType.TvSeries).map { it.name })
+
     var searchPreferenceTags: List<TvType>
         get() = deserializeTv(searchPreferenceTagsStrings)
         set(value) {
@@ -128,6 +128,7 @@ object DataStoreHelper {
     private var homePreferenceStrings: List<String> by UserPreferenceDelegate(
         "home_pref_homepage",
         listOf(TvType.Movie, TvType.TvSeries).map { it.name })
+
     var homePreference: List<TvType>
         get() = deserializeTv(homePreferenceStrings)
         set(value) {
@@ -138,16 +139,19 @@ object DataStoreHelper {
         "home_bookmarked_last_list",
         IntArray(0)
     )
+
     var playBackSpeed: Float by UserPreferenceDelegate("playback_speed", 1.0f)
     var resizeMode: Int by UserPreferenceDelegate("resize_mode", 0)
     var librarySortingMode: Int by UserPreferenceDelegate(
         "library_sorting_mode",
         ListSorting.AlphabeticalA.ordinal
     )
+
     private var _resultsSortingMode: Int by UserPreferenceDelegate(
         "results_sorting_mode",
         EpisodeSortType.NUMBER_ASC.ordinal
     )
+
     var resultsSortingMode: EpisodeSortType
         get() = EpisodeSortType.entries.getOrNull(_resultsSortingMode) ?: EpisodeSortType.NUMBER_ASC
         set(value) {
@@ -184,14 +188,11 @@ object DataStoreHelper {
             val key = "$currentAccount/$USER_SELECTED_HOMEPAGE_API"
             if (value == null) {
                 removeKey(key)
-            } else {
-                setKey(key, value)
-            }
+            } else setKey(key, value)
         }
 
     fun setAccount(account: Account) {
         val homepage = currentHomePage
-
         selectedKeyIndex = account.keyIndex
         AccountManager.updateAccountIds()
         showToast(context?.getString(R.string.logged_account, account.name) ?: account.name)
@@ -209,7 +210,7 @@ object DataStoreHelper {
             currentAccounts.getOrNull(currentAccounts.indexOfFirst { it.keyIndex == 0 }) ?: Account(
                 keyIndex = 0,
                 name = context.getString(R.string.default_account),
-                defaultImageIndex = 0
+                defaultImageIndex = 0,
             )
         }
     }
@@ -229,9 +230,7 @@ object DataStoreHelper {
         } ?: accounts.toList()).firstNotNullOfOrNull { account ->
             if (account.keyIndex == selectedKeyIndex) {
                 account
-            } else {
-                null
-            }
+            } else null
         }
     }
 
@@ -244,10 +243,12 @@ object DataStoreHelper {
     fun PosDur.fixVisual(): PosDur {
         if (duration <= 0) return PosDur(0, duration)
         val percentage = position * 100 / duration
-        if (percentage <= 1) return PosDur(0, duration)
-        if (percentage <= 5) return PosDur(5 * duration / 100, duration)
-        if (percentage >= 95) return PosDur(duration, duration)
-        return this
+        return when {
+            percentage <= 1 -> PosDur(0, duration)
+            percentage <= 5 -> PosDur(5 * duration / 100, duration)
+            percentage >= 95 -> PosDur(duration, duration)
+            else -> this
+        }
     }
 
     fun Int.toYear(): Date =
@@ -541,12 +542,12 @@ object DataStoreHelper {
                     it.episode,
                     it.season,
                     it.isFromDownload,
-                    it.updateTime
+                    it.updateTime,
                 )
                 removeLastWatchedOld(it.parentId)
             }
         }
-        //}
+        // }
     }
 
     fun setLastWatched(
@@ -567,7 +568,7 @@ object DataStoreHelper {
                 episode,
                 season,
                 updateTime ?: System.currentTimeMillis(),
-                isFromDownload
+                isFromDownload,
             )
         )
     }
@@ -584,7 +585,7 @@ object DataStoreHelper {
 
     fun getLastWatched(id: Int?): DownloadObjects.ResumeWatching? {
         if (id == null) return null
-        return getKey(
+        return getKey<DownloadObjects.ResumeWatching>(
             "$currentAccount/$RESULT_RESUME_WATCHING",
             id.toString(),
         )
@@ -592,7 +593,7 @@ object DataStoreHelper {
 
     private fun getLastWatchedOld(id: Int?): DownloadObjects.ResumeWatching? {
         if (id == null) return null
-        return getKey(
+        return getKey<DownloadObjects.ResumeWatching>(
             "$currentAccount/$RESULT_RESUME_WATCHING_OLD",
             id.toString(),
         )
@@ -606,18 +607,18 @@ object DataStoreHelper {
 
     fun getBookmarkedData(id: Int?): BookmarkedData? {
         if (id == null) return null
-        return getKey("$currentAccount/$RESULT_WATCH_STATE_DATA", id.toString())
+        return getKey<BookmarkedData>("$currentAccount/$RESULT_WATCH_STATE_DATA", id.toString())
     }
 
     fun getAllBookmarkedData(): List<BookmarkedData> {
         return getKeys("$currentAccount/$RESULT_WATCH_STATE_DATA")?.mapNotNull {
-            getKey(it)
+            getKey<BookmarkedData>(it)
         } ?: emptyList()
     }
 
     fun getAllSubscriptions(): List<SubscribedData> {
         return getKeys("$currentAccount/$RESULT_SUBSCRIBED_STATE_DATA")?.mapNotNull {
-            getKey(it)
+            getKey<SubscribedData>(it)
         } ?: emptyList()
     }
 
@@ -634,7 +635,7 @@ object DataStoreHelper {
         if (id == null || data == null || episodeResponse == null) return
         val newData = data.copy(
             latestUpdatedTime = unixTimeMS,
-            lastSeenEpisodeCount = episodeResponse.getLatestEpisodes()
+            lastSeenEpisodeCount = episodeResponse.getLatestEpisodes(),
         )
         setKey("$currentAccount/$RESULT_SUBSCRIBED_STATE_DATA", id.toString(), newData)
     }
@@ -647,12 +648,12 @@ object DataStoreHelper {
 
     fun getSubscribedData(id: Int?): SubscribedData? {
         if (id == null) return null
-        return getKey("$currentAccount/$RESULT_SUBSCRIBED_STATE_DATA", id.toString())
+        return getKey<SubscribedData>("$currentAccount/$RESULT_SUBSCRIBED_STATE_DATA", id.toString())
     }
 
     fun getAllFavorites(): List<FavoritesData> {
         return getKeys("$currentAccount/$RESULT_FAVORITES_STATE_DATA")?.mapNotNull {
-            getKey(it)
+            getKey<FavoritesData>(it)
         } ?: emptyList()
     }
 
@@ -670,7 +671,7 @@ object DataStoreHelper {
 
     fun getFavoritesData(id: Int?): FavoritesData? {
         if (id == null) return null
-        return getKey("$currentAccount/$RESULT_FAVORITES_STATE_DATA", id.toString())
+        return getKey<FavoritesData>("$currentAccount/$RESULT_FAVORITES_STATE_DATA", id.toString())
     }
 
     fun setViewPos(id: Int?, pos: Long, dur: Long) {
@@ -718,7 +719,7 @@ object DataStoreHelper {
                         resumeMeta.id,
                         resumeMeta.episode,
                         resumeMeta.season,
-                        isFromDownload = false
+                        isFromDownload = false,
                     )
                 }
 
@@ -728,7 +729,7 @@ object DataStoreHelper {
                         resumeMeta.id,
                         resumeMeta.episode,
                         resumeMeta.season,
-                        isFromDownload = true
+                        isFromDownload = true,
                     )
                 }
             }
@@ -737,17 +738,16 @@ object DataStoreHelper {
 
     fun getViewPos(id: Int?): PosDur? {
         if (id == null) return null
-        return getKey("$currentAccount/$VIDEO_POS_DUR", id.toString(), null)
+        return getKey<PosDur>("$currentAccount/$VIDEO_POS_DUR", id.toString(), null)
     }
 
     fun getVideoWatchState(id: Int?): VideoWatchState? {
         if (id == null) return null
-        return getKey("$currentAccount/$VIDEO_WATCH_STATE", id.toString(), null)
+        return getKey<VideoWatchState>("$currentAccount/$VIDEO_WATCH_STATE", id.toString(), null)
     }
 
     fun setVideoWatchState(id: Int?, watchState: VideoWatchState) {
         if (id == null) return
-
         // None == No key
         if (watchState == VideoWatchState.None) {
             removeKey("$currentAccount/$VIDEO_WATCH_STATE", id.toString())
@@ -758,7 +758,7 @@ object DataStoreHelper {
 
     fun getDub(id: Int): DubStatus? {
         return DubStatus.entries
-            .getOrNull(getKey("$currentAccount/$RESULT_DUB", id.toString(), -1) ?: -1)
+            .getOrNull(getKey<Int>("$currentAccount/$RESULT_DUB", id.toString(), -1) ?: -1)
     }
 
     fun setDub(id: Int, status: DubStatus) {
@@ -779,13 +779,13 @@ object DataStoreHelper {
             getKey<Int>(
                 "$currentAccount/$RESULT_WATCH_STATE",
                 id.toString(),
-                null
+                null,
             )
         )
     }
 
     fun getResultSeason(id: Int): Int? {
-        return getKey("$currentAccount/$RESULT_SEASON", id.toString(), null)
+        return getKey<Int>("$currentAccount/$RESULT_SEASON", id.toString(), null)
     }
 
     fun setResultSeason(id: Int, value: Int?) {
@@ -793,7 +793,7 @@ object DataStoreHelper {
     }
 
     fun getResultEpisode(id: Int): Int? {
-        return getKey("$currentAccount/$RESULT_EPISODE", id.toString(), null)
+        return getKey<Int>("$currentAccount/$RESULT_EPISODE", id.toString(), null)
     }
 
     fun setResultEpisode(id: Int, value: Int?) {
@@ -806,12 +806,12 @@ object DataStoreHelper {
 
     fun getSync(id: Int, idPrefixes: List<String>): List<String?> {
         return idPrefixes.map { idPrefix ->
-            getKey("${idPrefix}_sync", id.toString())
+            getKey<String>("${idPrefix}_sync", id.toString())
         }
     }
 
     var pinnedProviders: Array<String>
-        get() = getKey(USER_PINNED_PROVIDERS) ?: emptyArray<String>()
+        get() = getKey<Array<String>>(USER_PINNED_PROVIDERS) ?: emptyArray<String>()
         set(value) = setKey(USER_PINNED_PROVIDERS, value)
 
 }
