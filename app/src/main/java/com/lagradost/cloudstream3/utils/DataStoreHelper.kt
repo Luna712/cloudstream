@@ -254,9 +254,7 @@ object DataStoreHelper {
     /**
      * Used to display notifications on new episodes and posters in library.
      */
-    @OptIn(ExperimentalSerializationApi::class)
-    @KeepGeneratedSerializer
-    @Serializable(with = LibrarySearchResponse.Serializer::class)
+    @Serializable
     abstract class LibrarySearchResponse(
         @Transient override var id: Int? = null,
         @Transient open val latestUpdatedTime: Long = 0L,
@@ -272,29 +270,11 @@ object DataStoreHelper {
         @Transient open val plot: String? = null,
         @Transient override var score: Score? = null,
         @Transient open val tags: List<String>? = null,
-    ) : SearchResponse {
-        object Serializer : WriteOnlySerializer<LibrarySearchResponse>(
-            LibrarySearchResponse.generatedSerializer(),
-            setOf("rating"),
-        )
+    ) : SearchResponse
 
-        @JsonProperty("rating", access = JsonProperty.Access.WRITE_ONLY)
-        @SerialName("rating")
-        @Deprecated(
-            "`rating` is the old scoring system, use score instead",
-            replaceWith = ReplaceWith("score"),
-            level = DeprecationLevel.ERROR,
-        )
-        var rating: Int? = null
-            set(value) {
-                if (value != null) {
-                    @Suppress("DEPRECATION_ERROR")
-                    score = Score.fromOld(value)
-                }
-            }
-    }
-
-    @Serializable
+    @OptIn(ExperimentalSerializationApi::class)
+    @KeepGeneratedSerializer
+    @Serializable(with = SubscribedData.Serializer::class)
     data class SubscribedData(
         @JsonProperty("subscribedTime") @SerialName("subscribedTime") val subscribedTime: Long,
         @JsonProperty("lastSeenEpisodeCount") @SerialName("lastSeenEpisodeCount") val lastSeenEpisodeCount: Map<DubStatus, Int?>,
@@ -328,6 +308,26 @@ object DataStoreHelper {
         score,
         tags,
     ) {
+        object Serializer : WriteOnlySerializer<SubscribedData>(
+            SubscribedData.generatedSerializer(),
+            setOf("rating"),
+        )
+
+        @JsonProperty("rating", access = JsonProperty.Access.WRITE_ONLY)
+        @SerialName("rating")
+        @Deprecated(
+            "`rating` is the old scoring system, use score instead",
+            replaceWith = ReplaceWith("score"),
+            level = DeprecationLevel.ERROR,
+        )
+        var rating: Int? = null
+            set(value) {
+                if (value != null) {
+                    @Suppress("DEPRECATION_ERROR")
+                    score = Score.fromOld(value)
+                }
+            }
+
         fun toLibraryItem(): SyncAPI.LibraryItem? {
             return SyncAPI.LibraryItem(
                 name,
@@ -351,7 +351,9 @@ object DataStoreHelper {
         }
     }
 
-    @Serializable
+    @OptIn(ExperimentalSerializationApi::class)
+    @KeepGeneratedSerializer
+    @Serializable(with = BookmarkedData.Serializer::class)
     data class BookmarkedData(
         @JsonProperty("bookmarkedTime") @SerialName("bookmarkedTime") val bookmarkedTime: Long,
         @JsonProperty("id") @SerialName("id") override var id: Int?,
@@ -382,6 +384,26 @@ object DataStoreHelper {
         posterHeaders,
         plot,
     ) {
+        object Serializer : WriteOnlySerializer<BookmarkedData>(
+            BookmarkedData.generatedSerializer(),
+            setOf("rating"),
+        )
+
+        @JsonProperty("rating", access = JsonProperty.Access.WRITE_ONLY)
+        @SerialName("rating")
+        @Deprecated(
+            "`rating` is the old scoring system, use score instead",
+            replaceWith = ReplaceWith("score"),
+            level = DeprecationLevel.ERROR,
+        )
+        var rating: Int? = null
+            set(value) {
+                if (value != null) {
+                    @Suppress("DEPRECATION_ERROR")
+                    score = Score.fromOld(value)
+                }
+            }
+
         fun toLibraryItem(id: String): SyncAPI.LibraryItem {
             return SyncAPI.LibraryItem(
                 name,
@@ -405,7 +427,9 @@ object DataStoreHelper {
         }
     }
 
-    @Serializable
+    @OptIn(ExperimentalSerializationApi::class)
+    @KeepGeneratedSerializer
+    @Serializable(with = FavoritesData.Serializer::class)
     data class FavoritesData(
         @JsonProperty("favoritesTime") @SerialName("favoritesTime") val favoritesTime: Long,
         @JsonProperty("id") @SerialName("id") override var id: Int?,
@@ -436,6 +460,26 @@ object DataStoreHelper {
         posterHeaders,
         plot,
     ) {
+        object Serializer : WriteOnlySerializer<FavoritesData>(
+            FavoritesData.generatedSerializer(),
+            setOf("rating"),
+        )
+
+        @JsonProperty("rating", access = JsonProperty.Access.WRITE_ONLY)
+        @SerialName("rating")
+        @Deprecated(
+            "`rating` is the old scoring system, use score instead",
+            replaceWith = ReplaceWith("score"),
+            level = DeprecationLevel.ERROR,
+        )
+        var rating: Int? = null
+            set(value) {
+                if (value != null) {
+                    @Suppress("DEPRECATION_ERROR")
+                    score = Score.fromOld(value)
+                }
+            }
+
         fun toLibraryItem(): SyncAPI.LibraryItem? {
             return SyncAPI.LibraryItem(
                 name,
