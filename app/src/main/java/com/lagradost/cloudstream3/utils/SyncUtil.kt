@@ -61,7 +61,7 @@ object SyncUtil {
 
     /**
      * first. Mal, second. Anilist,
-     * valid sites are: Gogoanime, Twistmoe and 9anime
+     * Valid sites are: Gogoanime, Twistmoe and 9anime
      */
     private suspend fun getIdsFromSlug(
         slug: String,

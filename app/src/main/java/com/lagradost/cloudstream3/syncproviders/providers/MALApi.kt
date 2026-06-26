@@ -78,13 +78,13 @@ class MALApi : SyncAPI() {
                 "client_id" to key,
                 "code" to currentCode,
                 "code_verifier" to payloadData.codeVerifier,
-                "grant_type" to "authorization_code"
+                "grant_type" to "authorization_code",
             )
         ).parsed<ResponseToken>()
         return AuthToken(
             accessTokenLifetime = APIHolder.unixTime + token.expiresIn.toLong(),
             refreshToken = token.refreshToken,
-            accessToken = token.accessToken
+            accessToken = token.accessToken,
         )
     }
 
@@ -98,7 +98,7 @@ class MALApi : SyncAPI() {
         return AuthUser(
             id = user.id,
             name = user.name,
-            profilePicture = user.picture
+            profilePicture = user.picture,
         )
     }
 
@@ -117,7 +117,7 @@ class MALApi : SyncAPI() {
                 this.name,
                 node.id.toString(),
                 "$mainUrl/anime/${node.id}/",
-                node.mainPicture?.large ?: node.mainPicture?.medium
+                node.mainPicture?.large ?: node.mainPicture?.medium,
             )
         }
     }
@@ -221,7 +221,7 @@ class MALApi : SyncAPI() {
     private fun parseDate(string: String?): Long? {
         return try {
             SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(string ?: return null)?.time
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             null
         }
     }
@@ -232,7 +232,7 @@ class MALApi : SyncAPI() {
             apiName = this.name,
             syncId = node.id.toString(),
             url = "$mainUrl/anime/${node.id}",
-            posterUrl = node.mainPicture?.large
+            posterUrl = node.mainPicture?.large,
         )
     }
 
@@ -345,7 +345,7 @@ class MALApi : SyncAPI() {
                 SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.getDefault()).parse(
                     string ?: return null
                 )?.time?.div(1000)
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 null
             }
         }
@@ -358,7 +358,7 @@ class MALApi : SyncAPI() {
         val request = "$mainUrl/v1/oauth2/authorize?response_type=code&client_id=$key&code_challenge=$codeChallenge&state=RequestID$requestId"
         return AuthLoginPage(
             url = request,
-            payload = Payload(requestId, codeVerifier).toJson()
+            payload = Payload(requestId, codeVerifier).toJson(),
         )
     }
 
@@ -368,13 +368,13 @@ class MALApi : SyncAPI() {
             data = mapOf(
                 "client_id" to key,
                 "grant_type" to "refresh_token",
-                "refresh_token" to token.refreshToken!!
+                "refresh_token" to token.refreshToken!!,
             )
         ).parsed<ResponseToken>()
         return AuthToken(
             accessToken = res.accessToken,
             refreshToken = res.refreshToken,
-            accessTokenLifetime = APIHolder.unixTime + res.expiresIn.toLong()
+            accessTokenLifetime = APIHolder.unixTime + res.expiresIn.toLong(),
         )
     }
 
@@ -549,8 +549,7 @@ class MALApi : SyncAPI() {
         val user = "@me"
         // Very lackluster docs
         // https://myanimelist.net/apiconfig/references/api/v2#operation/users_user_id_animelist_get
-        val url =
-            "$apiUrl/v2/users/$user/animelist?fields=list_status,num_episodes,media_type,status,start_date,end_date,synopsis,alternative_titles,mean,genres,rank,num_list_users,nsfw,average_episode_duration,num_favorites,popularity,num_scoring_users,start_season,favorites_info,broadcast,created_at,updated_at&nsfw=1&limit=100&offset=$offset"
+        val url = "$apiUrl/v2/users/$user/animelist?fields=list_status,num_episodes,media_type,status,start_date,end_date,synopsis,alternative_titles,mean,genres,rank,num_list_users,nsfw,average_episode_duration,num_favorites,popularity,num_scoring_users,start_season,favorites_info,broadcast,created_at,updated_at&nsfw=1&limit=100&offset=$offset"
         val res = app.get(
             url, headers = mapOf(
                 "Authorization" to "Bearer ${token.accessToken}",
@@ -599,7 +598,7 @@ class MALApi : SyncAPI() {
         val data = mapOf(
             "status" to status,
             "score" to score?.toString(),
-            "num_watched_episodes" to numWatchedEpisodes?.toString()
+            "num_watched_episodes" to numWatchedEpisodes?.toString(),
         ).filterValues { it != null } as Map<String, String>
 
         return app.put(

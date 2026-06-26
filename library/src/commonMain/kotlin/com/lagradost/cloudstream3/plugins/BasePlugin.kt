@@ -7,10 +7,13 @@ import com.lagradost.cloudstream3.MainAPI
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.utils.extractorApis
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 const val PLUGIN_TAG = "PluginInstance"
 
 abstract class BasePlugin {
+
     /**
      * Used to register providers instances of MainAPI
      * @param element MainAPI provider you want to register
@@ -59,19 +62,18 @@ abstract class BasePlugin {
         }
     var filename: String? = null
 
-
     @Serializable
     class Manifest {
-        @SerialName("name")
+        @JsonProperty("name") @SerialName("name")
         var name: String? = null
 
-        @SerialName("pluginClassName")
+        @JsonProperty("pluginClassName") @SerialName("pluginClassName")
         var pluginClassName: String? = null
 
-        @SerialName("requiresResources")
+        @JsonProperty("requiresResources") @SerialName("requiresResources")
         var requiresResources: Boolean = false
 
-        @SerialName("version")
+        @JsonProperty("version") @SerialName("version")
         var version: Int? = null
     }
 }
