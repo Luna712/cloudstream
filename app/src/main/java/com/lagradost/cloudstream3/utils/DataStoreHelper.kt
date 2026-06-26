@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.utils
 
 import android.content.Context
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.APIHolder.unixTimeMS
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.context
@@ -161,10 +162,11 @@ object DataStoreHelper {
         @JsonProperty("defaultImageIndex") @SerialName("defaultImageIndex") val defaultImageIndex: Int,
         @JsonProperty("lockPin") @SerialName("lockPin") val lockPin: String? = null,
     ) {
-        @get:JsonProperty("image") @SerialName("image") val image
-            get() = customImage?.let { UiImage.Image(it) } ?: profileImages.getOrNull(
-                defaultImageIndex
-            )?.let { UiImage.Drawable(it) } ?: UiImage.Drawable(profileImages.first())
+        @JsonIgnore
+        val image get() = customImage?.let { UiImage.Image(it) } ?:
+            profileImages.getOrNull(defaultImageIndex)?.let {
+                UiImage.Drawable(it)
+            } ?: UiImage.Drawable(profileImages.first())
     }
 
     const val TAG = "data_store_helper"
