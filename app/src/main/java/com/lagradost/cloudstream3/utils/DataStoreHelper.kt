@@ -270,7 +270,22 @@ object DataStoreHelper {
         @Transient open val plot: String? = null,
         @Transient override var score: Score? = null,
         @Transient open val tags: List<String>? = null,
-    ) : SearchResponse
+    ) : SearchResponse {
+        @JsonProperty("rating", access = JsonProperty.Access.WRITE_ONLY)
+        @SerialName("rating")
+        @Deprecated(
+            "`rating` is the old scoring system, use score instead",
+            replaceWith = ReplaceWith("score"),
+            level = DeprecationLevel.ERROR,
+        )
+        var rating: Int? = null
+            set(value) {
+                if (value != null) {
+                    @Suppress("DEPRECATION_ERROR")
+                    score = Score.fromOld(value)
+                }
+            }
+    }
 
     @OptIn(ExperimentalSerializationApi::class)
     @KeepGeneratedSerializer
@@ -312,21 +327,6 @@ object DataStoreHelper {
             SubscribedData.generatedSerializer(),
             setOf("rating"),
         )
-
-        @JsonProperty("rating", access = JsonProperty.Access.WRITE_ONLY)
-        @SerialName("rating")
-        @Deprecated(
-            "`rating` is the old scoring system, use score instead",
-            replaceWith = ReplaceWith("score"),
-            level = DeprecationLevel.ERROR,
-        )
-        var rating: Int? = null
-            set(value) {
-                if (value != null) {
-                    @Suppress("DEPRECATION_ERROR")
-                    score = Score.fromOld(value)
-                }
-            }
 
         fun toLibraryItem(): SyncAPI.LibraryItem? {
             return SyncAPI.LibraryItem(
@@ -389,21 +389,6 @@ object DataStoreHelper {
             setOf("rating"),
         )
 
-        @JsonProperty("rating", access = JsonProperty.Access.WRITE_ONLY)
-        @SerialName("rating")
-        @Deprecated(
-            "`rating` is the old scoring system, use score instead",
-            replaceWith = ReplaceWith("score"),
-            level = DeprecationLevel.ERROR,
-        )
-        var rating: Int? = null
-            set(value) {
-                if (value != null) {
-                    @Suppress("DEPRECATION_ERROR")
-                    score = Score.fromOld(value)
-                }
-            }
-
         fun toLibraryItem(id: String): SyncAPI.LibraryItem {
             return SyncAPI.LibraryItem(
                 name,
@@ -464,21 +449,6 @@ object DataStoreHelper {
             FavoritesData.generatedSerializer(),
             setOf("rating"),
         )
-
-        @JsonProperty("rating", access = JsonProperty.Access.WRITE_ONLY)
-        @SerialName("rating")
-        @Deprecated(
-            "`rating` is the old scoring system, use score instead",
-            replaceWith = ReplaceWith("score"),
-            level = DeprecationLevel.ERROR,
-        )
-        var rating: Int? = null
-            set(value) {
-                if (value != null) {
-                    @Suppress("DEPRECATION_ERROR")
-                    score = Score.fromOld(value)
-                }
-            }
 
         fun toLibraryItem(): SyncAPI.LibraryItem? {
             return SyncAPI.LibraryItem(
