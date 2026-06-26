@@ -18,28 +18,28 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonElement
 
 class Bysezejataos : ByseSX() {
-    override var name = "Bysezejataos"
-    override var mainUrl = "https://bysezejataos.com"
+    override val name = "Bysezejataos"
+    override val mainUrl = "https://bysezejataos.com"
 }
 
 class ByseBuho : ByseSX() {
-    override var name = "ByseBuho"
-    override var mainUrl = "https://bysebuho.com"
+    override val name = "ByseBuho"
+    override val mainUrl = "https://bysebuho.com"
 }
 
 class ByseVepoin : ByseSX() {
-    override var name = "ByseVepoin"
-    override var mainUrl = "https://bysevepoin.com"
+    override val name = "ByseVepoin"
+    override val mainUrl = "https://bysevepoin.com"
 }
 
 class ByseQekaho : ByseSX() {
-    override var name = "ByseQekaho"
-    override var mainUrl = "https://byseqekaho.com"
+    override val name = "ByseQekaho"
+    override val mainUrl = "https://byseqekaho.com"
 }
 
 open class ByseSX : ExtractorApi() {
-    override var name = "Byse"
-    override var mainUrl = "https://byse.sx"
+    override val name = "Byse"
+    override val mainUrl = "https://byse.sx"
     override val requiresReferer = true
 
     private val aesGcm = CryptographyProvider.Default.get(AES.GCM)
