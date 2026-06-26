@@ -33,7 +33,7 @@ open class Gofile : ExtractorApi() {
         val wt = Regex("""appdata\.wt\s*=\s*[\"']([^\"']+)[\"']""").find(globalRes)?.groupValues?.get(1) ?: return
         val headers = mapOf(
             "Authorization" to "Bearer $token",
-            "X-Website-Token" to wt
+            "X-Website-Token" to wt,
         )
 
         val parsedResponse = app.get(
