@@ -188,6 +188,7 @@ object DataStore {
     }
 
     /** Reified overload, prevents type erasure for generic types. */
+    @JvmName("setKeyReified")
     inline fun <reified T : Any> Context.setKey(path: String, value: T) {
         putStringKey(path, value.toJsonLiteral())
     }
