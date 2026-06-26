@@ -10,8 +10,8 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 open class Tantifilm : ExtractorApi() {
-    override var name = "Tantifilm"
-    override var mainUrl = "https://cercafilm.net"
+    override val name = "Tantifilm"
+    override val mainUrl = "https://cercafilm.net"
     override val requiresReferer = false
 
     override suspend fun getUrl(url: String, referer: String?): List<ExtractorLink>? {
