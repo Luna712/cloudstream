@@ -11,8 +11,8 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 open class StreamEmbed : ExtractorApi() {
-    override var name = "StreamEmbed"
-    override var mainUrl = "https://watch.gxplayer.xyz"
+    override val name = "StreamEmbed"
+    override val mainUrl = "https://watch.gxplayer.xyz"
     override val requiresReferer = true
 
     override suspend fun getUrl(
