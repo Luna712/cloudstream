@@ -29,35 +29,43 @@ object AppUtils {
         // registered manually in serializersModule, we need both to support all cases
         val serializer =
             this::class.serializerOrNull() ?: json.serializersModule.getContextual(this::class)
-        return if (serializer != null) {
+        var fallbackTrace: String? = null
+        if (serializer != null) {
             try {
                 debugPrint { "AppUtils/toJsonLiteral: using kotlinx serialization for ${this::class.qualifiedName}" }
                 @Suppress("UNCHECKED_CAST")
-                json.encodeToString(serializer as KSerializer<Any>, this)
+                return json.encodeToString(serializer as KSerializer<Any>, this)
             } catch (e: SerializationException) {
                 logError(e)
+                fallbackTrace = e.stackTraceToString()
                 debugPrint { "AppUtils/toJsonLiteral: kotlinx failed, falling back to Jackson for ${this::class.qualifiedName}" }
-                mapper.writeValueAsString(this)
             }
         } else {
-            debugPrint { "AppUtils/toJsonLiteral: using Jackson for ${this::class.qualifiedName} (no kotlinx serializer found)" }
-            mapper.writeValueAsString(this)
+            fallbackTrace = Exception().stackTraceToString()
         }
+
+        debugPrint { "AppUtils/toJsonLiteral: using Jackson for ${this::class.qualifiedName}\n$fallbackTrace" }
+        return mapper.writeValueAsString(this)
     }
 
     @InternalAPI
     fun <T : Any> parseJson(value: String, kClass: KClass<T>): T {
         val serializer = kClass.serializerOrNull() ?: json.serializersModule.getContextual(kClass)
+        var fallbackTrace: String? = null
         if (serializer != null) {
             try {
                 debugPrint { "AppUtils/parseJson(kClass): using kotlinx serialization for ${kClass.qualifiedName}" }
                 return json.decodeFromString(serializer, value)
             } catch (e: SerializationException) {
                 logError(e)
+                fallbackTrace = e.stackTraceToString()
+                debugPrint { "AppUtils/parseJson(kClass): kotlinx failed, falling back to Jackson for ${kClass.qualifiedName}" }
             }
+        } else {
+            fallbackTrace = Exception().stackTraceToString()
         }
 
-        debugPrint { "AppUtils/parseJson(kClass): using Jackson for ${kClass.qualifiedName}" }
+        debugPrint { "AppUtils/parseJson(kClass): using Jackson for ${kClass.qualifiedName}\n$fallbackTrace" }
         return mapper.readValue(value, kClass.java)
     }
 
@@ -71,18 +79,25 @@ object AppUtils {
             .getOrNull()
 
         // Prefer Kotlin Serialization over Jackson
+        var fallbackTrace: String? = null
         if (serializer != null) {
             try {
                 debugPrint { "AppUtils/parseJson<reified>: using kotlinx serialization for ${T::class.qualifiedName}" }
                 return json.decodeFromString(serializer, value)
             } catch (e: SerializationException) {
                 logError(e)
-            } catch (_: Throwable) {
+                fallbackTrace = e.stackTraceToString()
+                debugPrint { "AppUtils/parseJson<reified>: kotlinx failed, falling back to Jackson for ${T::class.qualifiedName}" }
+            } catch (e: Throwable) {
                 // Pass, the above code will trigger a NoSuchMethodError on stable due to our previously undefined json variable
+                fallbackTrace = e.stackTraceToString()
+                debugPrint { "AppUtils/parseJson<reified>: unexpected error for ${T::class.qualifiedName}, falling back to Jackson" }
             }
+        } else {
+            fallbackTrace = Exception().stackTraceToString()
         }
 
-        debugPrint { "AppUtils/parseJson<reified>: using Jackson for ${T::class.qualifiedName}" }
+        debugPrint { "AppUtils/parseJson<reified>: using Jackson for ${T::class.qualifiedName}\n$fallbackTrace" }
         return mapper.readValue(value)
     }
 
