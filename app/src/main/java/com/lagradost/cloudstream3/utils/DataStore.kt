@@ -170,14 +170,24 @@ object DataStore {
         }
     }
 
-    fun <T> Context.setKey(path: String, value: T) {
+    private fun Context.putStringKey(path: String, value: String?) {
         try {
             getSharedPrefs().edit {
-                putString(path, value?.toJsonLiteral())
+                putString(path, value)
             }
         } catch (e: Exception) {
             logError(e)
         }
+    }
+
+    /** Non-reified fallback for binary compat. Prefer the reified overload where possible. */
+    fun <T> Context.setKey(path: String, value: T) {
+        putStringKey(path, value?.toJsonLiteral())
+    }
+
+    /** Reified overload, prevents type erasure for generic types. */
+    inline fun <reified T : Any> Context.setKey(path: String, value: T) {
+        putStringKey(path, value.toJsonLiteral())
     }
 
     fun <T : Any> Context.getKey(path: String, valueType: Class<T>): T? {
