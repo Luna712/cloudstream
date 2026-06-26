@@ -5,6 +5,8 @@ import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.extractors.helper.AesHelper.cryptoAESHandler
 import com.lagradost.cloudstream3.utils.*
 import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import org.jsoup.nodes.Element
 
 class DatabaseGdrive2 : Gdriveplayer() {
@@ -73,7 +75,7 @@ open class Gdriveplayer : ExtractorApi() {
         url: String,
         referer: String?,
         subtitleCallback: (SubtitleFile) -> Unit,
-        callback: (ExtractorLink) -> Unit
+        callback: (ExtractorLink) -> Unit,
     ) {
         val document = app.get(url).document
 
@@ -111,16 +113,17 @@ open class Gdriveplayer : ExtractorApi() {
                 subtitleCallback.invoke(
                     newSubtitleFile(
                         sub.label,
-                        httpsify(sub.file)
+                        httpsify(sub.file),
                     )
                 )
             }
         }
     }
 
+    @Serializable
     data class Tracks(
-        @JsonProperty("file") val file: String,
-        @JsonProperty("kind") val kind: String,
-        @JsonProperty("label") val label: String,
+        @JsonProperty("file") @SerialName("file") val file: String,
+        @JsonProperty("kind") @SerialName("kind") val kind: String,
+        @JsonProperty("label") @SerialName("label") val label: String,
     )
 }
