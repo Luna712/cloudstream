@@ -25,7 +25,7 @@ open class Cda : ExtractorApi() {
             "https://ebd.cda.pl/647x500/$mediaId", headers = mapOf(
                 "Referer" to "https://ebd.cda.pl/647x500/$mediaId",
                 "User-Agent" to USER_AGENT,
-                "Cookie" to "cda.player=html5"
+                "Cookie" to "cda.player=html5",
             )
         ).document
         val dataRaw = doc.selectFirst("[player_data]")?.attr("player_data") ?: return null
