@@ -18,8 +18,8 @@ class StreamM4u : XStreamCdn() {
 }
 
 class Fembed9hd : XStreamCdn() {
-    override var name = "Fembed9hd"
-    override var mainUrl = "https://fembed9hd.com"
+    override val name = "Fembed9hd"
+    override val mainUrl = "https://fembed9hd.com"
 }
 
 class Cdnplayer : XStreamCdn() {
