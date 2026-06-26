@@ -132,6 +132,10 @@ class CloudStreamApp : Application(), SingletonImageLoader.Factory {
             context?.setKey(path, value)
         }
 
+        inline fun <reified T : Any> setKey(path: String, value: T) {
+            context?.setKey(path, value)
+        }
+
         fun <T> setKey(folder: String, path: String, value: T) {
             context?.setKey(folder, path, value)
         }
