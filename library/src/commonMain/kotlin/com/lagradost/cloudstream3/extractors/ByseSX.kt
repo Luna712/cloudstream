@@ -15,6 +15,7 @@ import io.ktor.http.Url
 import io.ktor.http.decodeURLPart
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonElement
 
 class Bysezejataos : ByseSX() {
     override var name = "Bysezejataos"
@@ -178,4 +179,5 @@ data class PlaybackDecryptSource(
     @JsonProperty("mime_type") @SerialName("mime_type") val mimeType: String,
     @JsonProperty("url") @SerialName("url") val url: String,
     @JsonProperty("bitrate_kbps") @SerialName("bitrate_kbps") val bitrateKbps: Long,
+    @JsonProperty("height") @SerialName("height") val height: JsonElement?,
 )
