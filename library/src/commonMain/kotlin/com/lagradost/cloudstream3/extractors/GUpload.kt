@@ -11,6 +11,7 @@ import com.lagradost.cloudstream3.utils.getQualityFromName
 import com.lagradost.cloudstream3.utils.newExtractorLink
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonElement
 
 open class GUpload: ExtractorApi() {
     override val name: String = "GUpload"
@@ -47,8 +48,8 @@ open class GUpload: ExtractorApi() {
         @JsonProperty("posterUrl") @SerialName("posterUrl") val posterUrl: String? = null,
         @JsonProperty("videoId") @SerialName("videoId") val videoId: String? = null,
         @JsonProperty("primaryColor") @SerialName("primaryColor") val primaryColor: String? = null,
-        @JsonProperty("audioTracks") @SerialName("audioTracks") val audioTracks: List<Any?> = emptyList(),
-        @JsonProperty("subtitleTracks") @SerialName("subtitleTracks") val subtitleTracks: List<Any?> = emptyList(),
+        @JsonProperty("audioTracks") @SerialName("audioTracks") val audioTracks: List<JsonElement?> = emptyList(),
+        @JsonProperty("subtitleTracks") @SerialName("subtitleTracks") val subtitleTracks: List<JsonElement?> = emptyList(),
         @JsonProperty("vastFallbackList") @SerialName("vastFallbackList") val vastFallbackList: List<String> = emptyList(),
         @JsonProperty("videoOwnerId") @SerialName("videoOwnerId") val videoOwnerId: Long = 0,
     )
