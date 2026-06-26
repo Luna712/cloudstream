@@ -126,7 +126,7 @@ open class ByseSX : ExtractorApi() {
             name,
             streamUrl,
             mainUrl,
-            headers = headers
+            headers = headers,
         ).forEach(callback)
     }
 }
