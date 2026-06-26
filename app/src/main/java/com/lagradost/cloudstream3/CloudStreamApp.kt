@@ -133,8 +133,7 @@ class CloudStreamApp : Application(), SingletonImageLoader.Factory {
         }
 
         inline fun <reified T : Any> setKey(path: String, value: T) {
-            val ctx = context ?: return
-            ctx.setKey(path, value)
+            context?.setKey(path, value)
         }
 
         fun <T> setKey(folder: String, path: String, value: T) {
