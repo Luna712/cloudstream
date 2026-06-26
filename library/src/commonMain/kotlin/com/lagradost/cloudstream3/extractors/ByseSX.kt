@@ -178,5 +178,4 @@ data class PlaybackDecryptSource(
     @JsonProperty("mime_type") @SerialName("mime_type") val mimeType: String,
     @JsonProperty("url") @SerialName("url") val url: String,
     @JsonProperty("bitrate_kbps") @SerialName("bitrate_kbps") val bitrateKbps: Long,
-    @JsonProperty("height") @SerialName("height") val height: Any?,
 )
