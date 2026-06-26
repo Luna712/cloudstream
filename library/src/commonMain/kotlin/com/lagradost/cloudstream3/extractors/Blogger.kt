@@ -24,10 +24,10 @@ open class Blogger : ExtractorApi() {
                             newExtractorLink(
                                 name,
                                 name,
-                                it.play_url,
+                                it.playUrl,
                             ) {
                                 this.referer = "https://www.youtube.com/"
-                                this.quality = when (it.format_id) {
+                                this.quality = when (it.formatId) {
                                     18 -> 360
                                     22 -> 720
                                     else -> Qualities.Unknown.value
@@ -44,7 +44,7 @@ open class Blogger : ExtractorApi() {
 
     @Serializable
     private data class ResponseSource(
-        @JsonProperty("play_url") @SerialName("play_url") val play_url: String,
-        @JsonProperty("format_id") @SerialName("format_id") val format_id: Int
+        @JsonProperty("play_url") @SerialName("play_url") val playUrl: String,
+        @JsonProperty("format_id") @SerialName("format_id") val formatId: Int,
     )
 }
