@@ -68,7 +68,7 @@ open class PeaceMakerst : ExtractorApi() {
     data class PeaceResponse(
         @JsonProperty("videoImage") @SerialName("videoImage") val videoImage: String?,
         @JsonProperty("videoSources") @SerialName("videoSources") val videoSources: List<VideoSource>,
-        @JsonProperty("sIndex") @SerialName("sIndex") val sIndex: String,
+        @JsonProperty("sIndex") @SerialName("sIndex") val sourceIndex: String,
         @JsonProperty("sourceList") @SerialName("sourceList") val sourceList: Map<String, String>,
     )
 
