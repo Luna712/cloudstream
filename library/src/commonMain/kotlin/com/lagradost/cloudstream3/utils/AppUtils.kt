@@ -52,6 +52,7 @@ object AppUtils {
 
     /** Reified version, preserves full generic type info at call site. */
     @InternalAPI
+    @JvmName("toJsonLiteralReified")
     inline fun <reified T : Any> T.toJsonLiteral(): String {
         val serializer = runCatching { serializer<T>() }
             .recoverCatching { json.serializersModule.getContextual(T::class) }
