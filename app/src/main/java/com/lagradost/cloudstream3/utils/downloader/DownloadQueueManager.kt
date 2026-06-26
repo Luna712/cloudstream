@@ -53,7 +53,7 @@ object DownloadQueueManager {
     fun init(context: Context) {
         ioSafe {
             _queue.collect { queue ->
-                setKey(QUEUE_KEY, queue)
+                setKey<Array<DownloadQueueWrapper>>(QUEUE_KEY, queue)
             }
         }
 
