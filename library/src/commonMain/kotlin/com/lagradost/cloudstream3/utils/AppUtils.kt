@@ -4,16 +4,12 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import com.lagradost.cloudstream3.InternalAPI
 import com.lagradost.cloudstream3.json
 import com.lagradost.cloudstream3.mapper
+import com.lagradost.cloudstream3.mvvm.debugPrint
 import com.lagradost.cloudstream3.mvvm.logError
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerializationException
-import kotlinx.serialization.json.JsonArray
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.json.JsonNull
-import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.serializer
 import kotlinx.serialization.serializerOrNull
 import kotlin.reflect.KClass
@@ -33,53 +29,19 @@ object AppUtils {
         // registered manually in serializersModule, we need both to support all cases
         val serializer =
             this::class.serializerOrNull() ?: json.serializersModule.getContextual(this::class)
-        if (serializer != null) {
+        return if (serializer != null) {
             try {
+                debugPrint { "AppUtils/toJsonLiteral: using kotlinx serialization for ${this::class.qualifiedName}" }
                 @Suppress("UNCHECKED_CAST")
-                return json.encodeToString(serializer as KSerializer<Any>, this)
+                json.encodeToString(serializer as KSerializer<Any>, this)
             } catch (e: SerializationException) {
                 logError(e)
-                return mapper.writeValueAsString(this)
+                debugPrint { "AppUtils/toJsonLiteral: kotlinx failed, falling back to Jackson for ${this::class.qualifiedName}" }
+                mapper.writeValueAsString(this)
             }
-        }
-        // Handle generic collection/map types where type params are erased at runtime.
-        // Convert to JsonElement to support mixed types within collections.
-        return try {
-            json.encodeToString(JsonElement.serializer(), toJsonElement())
-        } catch (e: SerializationException) {
-            logError(e)
+        } else {
+            debugPrint { "AppUtils/toJsonLiteral: using Jackson for ${this::class.qualifiedName} (no kotlinx serializer found)" }
             mapper.writeValueAsString(this)
-        }
-    }
-
-    /**
-     * Recursively converts any value to a [JsonElement], supporting mixed-type
-     * collections, nested maps, nulls, primitives, and @Serializable objects.
-     */
-    private fun Any?.toJsonElement(): JsonElement {
-        if (this == null) return JsonNull
-        // Try kotlinx serializer first (handles @Serializable and primitives)
-        val serializer = this::class.serializerOrNull()
-            ?: json.serializersModule.getContextual(this::class)
-        if (serializer != null) {
-            try {
-                @Suppress("UNCHECKED_CAST")
-                return json.encodeToJsonElement(serializer as KSerializer<Any>, this)
-            } catch (_: SerializationException) {
-                // fall through to manual handling
-            }
-        }
-        return when (this) {
-            is Boolean -> JsonPrimitive(this)
-            is Number -> JsonPrimitive(this)
-            is String -> JsonPrimitive(this)
-            is Enum<*> -> JsonPrimitive(this.name)
-            is Array<*> -> JsonArray(this.map { it.toJsonElement() })
-            is Collection<*> -> JsonArray(this.map { it.toJsonElement() })
-            is Map<*, *> -> JsonObject(this.entries.associate { (k, v) ->
-                k.toString() to v.toJsonElement()
-            })
-            else -> throw SerializationException("No serializer found for ${this::class.simpleName}")
         }
     }
 
@@ -88,12 +50,14 @@ object AppUtils {
         val serializer = kClass.serializerOrNull() ?: json.serializersModule.getContextual(kClass)
         if (serializer != null) {
             try {
+                debugPrint { "AppUtils/parseJson(kClass): using kotlinx serialization for ${kClass.qualifiedName}" }
                 return json.decodeFromString(serializer, value)
             } catch (e: SerializationException) {
                 logError(e)
             }
         }
 
+        debugPrint { "AppUtils/parseJson(kClass): using Jackson for ${kClass.qualifiedName}" }
         return mapper.readValue(value, kClass.java)
     }
 
@@ -109,6 +73,7 @@ object AppUtils {
         // Prefer Kotlin Serialization over Jackson
         if (serializer != null) {
             try {
+                debugPrint { "AppUtils/parseJson<reified>: using kotlinx serialization for ${T::class.qualifiedName}" }
                 return json.decodeFromString(serializer, value)
             } catch (e: SerializationException) {
                 logError(e)
@@ -117,6 +82,7 @@ object AppUtils {
             }
         }
 
+        debugPrint { "AppUtils/parseJson<reified>: using Jackson for ${T::class.qualifiedName}" }
         return mapper.readValue(value)
     }
 
