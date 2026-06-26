@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.utils.downloader
 
 import android.net.Uri
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.Score
 import com.lagradost.cloudstream3.SkipSerializationTest
@@ -35,6 +36,7 @@ object DownloadObjects {
         }
 
         /** Loop through the current download instances to see if it is currently downloading. Also includes link loading. */
+        @JsonIgnore
         fun isCurrentlyDownloading(): Boolean {
             return DownloadQueueService.downloadInstances.value.any { it.downloadQueueWrapper.id == this.id }
         }
