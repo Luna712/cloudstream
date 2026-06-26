@@ -40,9 +40,7 @@ open class Flyfile : ExtractorApi() {
 
     @Serializable
     private data class StreamInfo(
-        @SerialName("url")
-        val url: String,
-        @SerialName("token")
-        val token: String
+        @SerialName("url") val url: String,
+        @SerialName("token") val token: String,
     )
 }
