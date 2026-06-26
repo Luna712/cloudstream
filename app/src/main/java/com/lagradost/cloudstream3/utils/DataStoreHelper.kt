@@ -496,7 +496,7 @@ object DataStoreHelper {
 
     /**
      * A datastore wide account for future implementations of a multiple account system
-     **/
+     */
 
     fun getAllWatchStateIds(): List<Int>? {
         val folder = "$currentAccount/$RESULT_WATCH_STATE"
@@ -532,7 +532,7 @@ object DataStoreHelper {
     }
 
     fun migrateResumeWatching() {
-        // if (getKey(RESULT_RESUME_WATCHING_HAS_MIGRATED, false) != true) {
+        // if (getKey<Boolean>(RESULT_RESUME_WATCHING_HAS_MIGRATED, false) != true) {
         setKey(RESULT_RESUME_WATCHING_HAS_MIGRATED, true)
         getAllResumeStateIdsOld()?.forEach { id ->
             getLastWatchedOld(id)?.let {
@@ -813,5 +813,4 @@ object DataStoreHelper {
     var pinnedProviders: Array<String>
         get() = getKey<Array<String>>(USER_PINNED_PROVIDERS) ?: emptyArray<String>()
         set(value) = setKey(USER_PINNED_PROVIDERS, value)
-
 }
