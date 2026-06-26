@@ -6,12 +6,6 @@ import com.lagradost.nicehttp.Requests
 import com.lagradost.nicehttp.ResponseParser
 import io.ktor.client.engine.okhttp.OkHttpEngine
 import okhttp3.OkHttpClient
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.InternalSerializationApi
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonElement
-import kotlinx.serialization.serializer
-import kotlinx.serialization.serializerOrNull
 import kotlin.reflect.KClass
 
 // Short name for requests client to make it nicer to use
@@ -32,6 +26,7 @@ private val jsonResponseParser = object : ResponseParser {
         return obj.toJson()
     }
 }
+
 /** The default networking helper. This helper performs SSL checks.
  * If you need to make requests to websites with invalid SSL certificates use insecureApp instead. */
 var app = Requests(responseParser = jsonResponseParser).apply {
