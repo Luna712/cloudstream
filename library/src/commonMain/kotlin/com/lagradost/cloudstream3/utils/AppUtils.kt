@@ -22,17 +22,12 @@ object AppUtils {
         return toJsonLiteral()
     }
 
-    /** Sometimes we want to encode as JSON even if it is already a String. */
-    @InternalAPI
-    fun Any.toJsonLiteral(): String {
-        val serializer =
-            this::class.serializerOrNull() ?: json.serializersModule.getContextual(this::class)
+    private fun Any.toJsonLiteralImpl(serializer: KSerializer<Any>?): String {
         var fallbackTrace: String? = null
         if (serializer != null) {
             try {
                 debugPrint { "AppUtils/toJsonLiteral: using kotlinx serialization for ${this::class.qualifiedName}" }
-                @Suppress("UNCHECKED_CAST")
-                return json.encodeToString(serializer as KSerializer<Any>, this)
+                return json.encodeToString(serializer, this)
             } catch (e: SerializationException) {
                 logError(e)
                 fallbackTrace = e.stackTraceToString()
@@ -41,9 +36,27 @@ object AppUtils {
         } else {
             fallbackTrace = Exception().stackTraceToString()
         }
-
         debugPrint { "AppUtils/toJsonLiteral: using Jackson for ${this::class.qualifiedName}\n$fallbackTrace" }
         return mapper.writeValueAsString(this)
+    }
+
+    /** Runtime lookup version, subject to type erasure for generic types. */
+    @InternalAPI
+    fun Any.toJsonLiteral(): String {
+        val serializer = this::class.serializerOrNull()
+            ?: json.serializersModule.getContextual(this::class)
+        @Suppress("UNCHECKED_CAST")
+        return toJsonLiteralImpl(serializer as KSerializer<Any>?)
+    }
+
+    /** Reified version, preserves full generic type info at call site. */
+    @InternalAPI
+    inline fun <reified T : Any> T.toJsonLiteral(): String {
+        val serializer = runCatching { serializer<T>() }
+            .recoverCatching { json.serializersModule.getContextual(T::class) }
+            .getOrNull()
+        @Suppress("UNCHECKED_CAST")
+        return toJsonLiteralImpl(serializer as KSerializer<Any>?)
     }
 
     @InternalAPI
@@ -62,7 +75,6 @@ object AppUtils {
         } else {
             fallbackTrace = Exception().stackTraceToString()
         }
-
         debugPrint { "AppUtils/parseJson(kClass): using Jackson for ${kClass.qualifiedName}\n$fallbackTrace" }
         return mapper.readValue(value, kClass.java)
     }
@@ -90,7 +102,6 @@ object AppUtils {
         } else {
             fallbackTrace = Exception().stackTraceToString()
         }
-
         debugPrint { "AppUtils/parseJson<reified>: using Jackson for ${T::class.qualifiedName}\n$fallbackTrace" }
         return mapper.readValue(value)
     }
