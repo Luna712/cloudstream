@@ -162,7 +162,7 @@ object DataStoreHelper {
         @JsonProperty("defaultImageIndex") @SerialName("defaultImageIndex") val defaultImageIndex: Int,
         @JsonProperty("lockPin") @SerialName("lockPin") val lockPin: String? = null,
     ) {
-        @JsonIgnore
+        @get:JsonIgnore
         val image get() = customImage?.let { UiImage.Image(it) } ?:
             profileImages.getOrNull(defaultImageIndex)?.let {
                 UiImage.Drawable(it)
