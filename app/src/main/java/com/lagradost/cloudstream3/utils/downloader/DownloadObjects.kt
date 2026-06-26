@@ -3,6 +3,7 @@ package com.lagradost.cloudstream3.utils.downloader
 import android.net.Uri
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.Score
+import com.lagradost.cloudstream3.SkipSerializationTest
 import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.services.DownloadQueueService
 import com.lagradost.cloudstream3.ui.player.SubtitleData
@@ -161,6 +162,7 @@ object DownloadObjects {
     )
 
     @Serializable
+    @SkipSerializationTest // Uri has issues with Jackson
     data class DownloadedFileInfoResult(
         @JsonProperty("fileLength") @SerialName("fileLength") val fileLength: Long,
         @JsonProperty("totalBytes") @SerialName("totalBytes") val totalBytes: Long,
