@@ -22,7 +22,7 @@ open class MailRu : ExtractorApi() {
     ) {
         val extRef = referer ?: ""
         val vidId = url.substringAfter("video/embed/").trim()
-        val videoReq = app.get("${mainUrl}/+/video/meta/${vidId}", referer=url)
+        val videoReq = app.get("$mainUrl/+/video/meta/$vidId", referer = url)
         val videoKey = videoReq.cookies["video_key"].toString()
         val videoData = AppUtils.tryParseJson<MailRuData>(videoReq.text) ?:
             throw ErrorLoadingException("Video not found")
@@ -37,7 +37,7 @@ open class MailRu : ExtractorApi() {
                     type = ExtractorLinkType.M3U8,
                 ) {
                     this.referer = url
-                    this.headers = mapOf("Cookie" to "video_key=${videoKey}")
+                    this.headers = mapOf("Cookie" to "video_key=$videoKey")
                     this.quality = getQualityFromName(video.key)
                 }
             )
