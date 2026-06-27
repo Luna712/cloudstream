@@ -4,6 +4,8 @@ import com.lagradost.cloudstream3.Prerelease
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.utils.StringUtils.decodeUrl
 import com.lagradost.cloudstream3.utils.StringUtils.encodeUrl
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.isActive
 import kotlin.math.E
 import kotlin.math.PI
 import kotlin.math.abs
@@ -133,6 +135,29 @@ fun evalJs(
     maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
 ): Any? {
     val interpreter = JsInterpreter(maxExecutionTime, maxInstructions)
+    val result = interpreter.eval(js)
+    return if (variable != null) interpreter.getVar(variable) else result
+}
+
+/**
+ * Scope-aware variant of [evalJs]. The interpreter checks [CoroutineScope.isActive] every
+ * 1024 instructions and aborts (returning [Unit]) if the scope has been cancelled.
+ *
+ * There is no thread dispatch or suspension: this function runs synchronously on the
+ * calling thread, so it carries zero coroutine overhead for normal (non-cancelled) scripts.
+ * Cancellation latency is bounded to one check window (~1024 interpreter instructions).
+ *
+ * Typical usage inside a coroutine:
+ *   val result = coroutineScope { evalJs("...") }
+ */
+@Prerelease
+fun CoroutineScope.evalJs(
+    js: String,
+    variable: String? = null,
+    maxExecutionTime: Duration = JS_DEFAULT_MAX_EXECUTION_TIME,
+    maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
+): Any? {
+    val interpreter = JsInterpreter(maxExecutionTime, maxInstructions, this)
     val result = interpreter.eval(js)
     return if (variable != null) interpreter.getVar(variable) else result
 }
@@ -728,7 +753,9 @@ private class ThrowSignal(val value: Any?) : Throwable()
 
 /**
  * Internal signal thrown once a script exceeds its execution budget (time or instruction
- * count). Deliberately extends [Throwable] rather than [Exception]. The interpreter's own
+ * count), or the enclosing [CoroutineScope] has been cancelled.
+ *
+ * Deliberately extends [Throwable] rather than [Exception]. The interpreter's own
  * `try`/`catch` node handling (see [JsInterpreter.execNode]'s `TryCatch` branch) only catches
  * `Exception`, so a JS script can't wrap an infinite loop in its own try/catch and swallow this,
  * keeping the loop alive forever.
@@ -865,6 +892,7 @@ private class Scope(val parent: Scope? = null) {
 private class JsInterpreter(
     private val maxExecutionTime: Duration = JS_DEFAULT_MAX_EXECUTION_TIME,
     private val maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
+    private val scope: CoroutineScope? = null,
 ) {
     private val globalScope = Scope()
 
@@ -1013,17 +1041,28 @@ private class JsInterpreter(
 
     /**
      * Called on every statement execution. Throws [JsExecutionLimitExceeded] once the
-     * script has used up its time or instruction budget. This is what lets
-     * `evalJs("while(true){}")` return instead of burning the CPU forever.
+     * script has used up its time or instruction budget, or the enclosing [CoroutineScope]
+     * has been cancelled.
+     *
+     * [JsExecutionLimitExceeded] extends [Throwable] rather than [Exception], so a JS
+     * script cannot catch it with its own try/catch block (the [TryCatch] handler in
+     * [execNode] only catches [Exception]).
+     *
+     * The scope is only sampled every 1024 ticks (the same as the clock check)
+     * so there is no per-instruction overhead for callers that do not supply
+     * a scope.
      */
     private fun checkBudget() {
         instructionCount++
         if (instructionCount >= maxInstructions) {
             throw JsExecutionLimitExceeded("script exceeded max instruction count of $maxInstructions")
         }
-        // Only sample the clock every 1024 ticks. Calling elapsedNow() on every single
-        // statement would add measurable overhead to normal (non-runaway) scripts.
-        if (instructionCount and 0x3FFL == 0L && startMark.elapsedNow() >= maxExecutionTime) {
+        // Only sample every 1024 ticks to avoid measurable overhead on normal scripts.
+        if (instructionCount and 0x3FFL != 0L) return
+        if (scope != null && !scope.isActive) {
+            throw JsExecutionLimitExceeded("script cancelled: coroutine scope is no longer active")
+        }
+        if (startMark.elapsedNow() >= maxExecutionTime) {
             throw JsExecutionLimitExceeded("script exceeded max execution time of $maxExecutionTime")
         }
     }
@@ -1442,7 +1481,7 @@ private class JsInterpreter(
                 } catch (_: Exception) { null }
             }
             else -> key.toIntOrNull()?.let {
-                if (it >= 0 && it < obj.length) obj[it].toString() else Unit 
+                if (it >= 0 && it < obj.length) obj[it].toString() else Unit
             } ?: Unit
         }
         is Double -> when (key) {
