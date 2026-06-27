@@ -2176,7 +2176,7 @@ class JsInterpreterTest {
          */
         val mark = TimeSource.Monotonic.markNow()
         assertFailsWith<TimeoutCancellationException> {
-            runTest {
+            kotlinx.coroutines.runBlocking {
                 withTimeout(3000.milliseconds) {
                     withContext(Dispatchers.Default) {
                         this.evalJs("while(true){}")
