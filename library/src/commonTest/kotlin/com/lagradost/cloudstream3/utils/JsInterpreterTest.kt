@@ -2166,7 +2166,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() {
+    fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() = runTest {
         /**
          * GlobalScope.launch(Dispatchers.Default) runs on a real background thread with
          * real wall-clock time, so withTimeout fires after a genuine 300ms rather than
@@ -2179,7 +2179,7 @@ class JsInterpreterTest {
          */
         var elapsed = Duration.ZERO
         val done = Channel<Unit>()
-        CoroutineScope(Dispatchers.Default).launch {
+        activeScope().launch {
             assertFailsWith<JsCancellationException> {
                 withTimeout(300.milliseconds) {
                     val mark = TimeSource.Monotonic.markNow()
