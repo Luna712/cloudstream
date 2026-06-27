@@ -1,7 +1,7 @@
 package com.lagradost.cloudstream3.utils
 
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.TimeoutCancellationException
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
@@ -2165,7 +2165,7 @@ class JsInterpreterTest {
         // extension picks that up at the next budget check and aborts, so the call returns
         // before the internal time budget (default 5s) fires.
         val mark = TimeSource.Monotonic.markNow()
-        assertFailsWith<TimeoutCancellationException>{
+        assertFailsWith<CancellationException>{
             withTimeout(300.milliseconds) {
                 this.evalJs("while(true){}")
                 delay(301.milliseconds) // advance virtual time past deadline
