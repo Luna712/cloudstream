@@ -2165,7 +2165,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun scopeEvalJsWithTimeoutCancelsInfiniteLoop() {
+    fun scopeEvalJsWithTimeoutCancelsInfiniteLoop() = runTest {
         /**
          * evalJs is synchronous, so withTimeout cannot preempt it on the same thread.
          * withContext(Dispatchers.Default) moves evalJs onto a real background thread,
@@ -2176,12 +2176,11 @@ class JsInterpreterTest {
          */
         val mark = TimeSource.Monotonic.markNow()
         assertFailsWith<TimeoutCancellationException> {
-            kotlinx.coroutines.runBlocking {
-                withTimeout(3000.milliseconds) {
-                    withContext(Dispatchers.Default) {
-                        this.evalJs("while(true){}")
-                    }
+            withTimeout(3000.milliseconds) {
+                val deferred = async(Dispatchers.Default) {
+                    evalJs("while(true){}")
                 }
+                deferred.await()
             }
         }
         assertTrue(
