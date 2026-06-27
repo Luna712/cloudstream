@@ -220,8 +220,8 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext.junit.ktx)
     androidTestImplementation(libs.instancio.core)
     androidTestImplementation(libs.kotlin.test)
-    testImplementation(libs.junit)
     testImplementation(libs.json)
+    testImplementation(libs.junit)
 
     // Android Core & Lifecycle
     implementation(libs.activity.ktx)
