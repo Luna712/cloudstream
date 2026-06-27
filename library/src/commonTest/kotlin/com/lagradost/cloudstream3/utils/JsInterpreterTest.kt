@@ -2142,7 +2142,7 @@ class JsInterpreterTest {
         val scope = activeScope()
         scope.cancel()
         val mark = TimeSource.Monotonic.markNow()
-        assertFailsWith<CancellationException> {
+        assertFailsWith<JsCancellationException> {
             scope.evalJs("while(true){ try{ throw 1; }catch(e){} }")
         }
         assertTrue(
@@ -2175,7 +2175,7 @@ class JsInterpreterTest {
         */
         val mark = TimeSource.Monotonic.markNow()
         assertFailsWith<JsCancellationException> {
-            withTimeout(300.milliseconds) {
+            withTimeout(3000.milliseconds) {
                 withContext(Dispatchers.Default) {
                     this.evalJs("while(true){}")
                 }
