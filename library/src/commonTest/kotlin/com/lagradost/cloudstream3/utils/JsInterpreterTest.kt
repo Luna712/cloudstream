@@ -1,5 +1,8 @@
 package com.lagradost.cloudstream3.utils
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
 import kotlin.math.E
 import kotlin.math.PI
 import kotlin.math.abs
@@ -2057,5 +2060,110 @@ class JsInterpreterTest {
     @Test
     fun combinedCoercionOfNaNEmptyStringAndArrayHoleIsZero() {
         assertEquals(0.0, evalJs("+!!NaN * \"\" - - [,]"))
+    }
+
+    /** Returns a [CoroutineScope] backed by a plain [Job] with no dispatcher attached. */
+    private fun activeScope(): CoroutineScope = CoroutineScope(Job())
+
+    @Test
+    fun scopeEvalJsFiniteScriptReturnsCorrectResult() {
+        // Normal script with an active scope should behave identically to plain evalJs.
+        val scope = activeScope()
+        val result = scope.evalJs("var s=0; for(var i=1;i<=10;i++){s+=i}", "s")
+        assertEquals(55.0, result as? Double ?: 0.0)
+        scope.cancel()
+    }
+
+    @Test
+    fun scopeEvalJsStringResultWithActiveScope() {
+        val scope = activeScope()
+        val result = jsValueToString(scope.evalJs("'hello'.split('').reverse().join('')"))
+        assertEquals("olleh", result)
+        scope.cancel()
+    }
+
+    @Test
+    fun scopeEvalJsVariableLookupWithActiveScope() {
+        val scope = activeScope()
+        val result = scope.evalJs("var x = 21 * 2", "x")
+        assertEquals(42.0, result as? Double ?: 0.0)
+        scope.cancel()
+    }
+
+    @Test
+    fun scopeEvalJsCancelledBeforeCallReturnsUnit() {
+        // Cancel the scope before calling evalJs — the very first budget check should abort.
+        val scope = activeScope()
+        scope.cancel()
+        val result = scope.evalJs("var x = 1 + 2; x")
+        // Cancelled scope => script aborted => Unit (same as all other abort paths).
+        assertEquals(Unit, result)
+    }
+
+    @Test
+    fun scopeEvalJsInfiniteLoopAbortedWhenScopeCancelled() {
+        // Pre-cancel the scope. The first budget check (tick 1024) sees isActive==false and aborts.
+        val scope = activeScope()
+        scope.cancel()
+        val mark = TimeSource.Monotonic.markNow()
+        val result = scope.evalJs("while(true){}", maxExecutionTime = 5.seconds)
+        assertEquals(Unit, result)
+        // Should return almost immediately, no need to spin up to the time budget.
+        assertTrue(mark.elapsedNow() < 2.seconds)
+    }
+
+    @Test
+    fun scopeEvalJsInfiniteLoopAbortedByOwnBudgetEvenWithActiveScope() {
+        // Even with an active (never-cancelled) scope the internal budget still fires.
+        val scope = activeScope()
+        val mark = TimeSource.Monotonic.markNow()
+        val result = scope.evalJs("while(true){}", maxExecutionTime = 200.milliseconds)
+        assertEquals(Unit, result)
+        assertTrue(mark.elapsedNow() < 2.seconds)
+        scope.cancel()
+    }
+
+    @Test
+    fun scopeEvalJsJsTryCatchCannotSwallowCancellation() {
+        // A JS try/catch must not be able to intercept the cancellation signal and keep
+        // the infinite loop alive. The script should still abort promptly.
+        val scope = activeScope()
+        scope.cancel()
+        val mark = TimeSource.Monotonic.markNow()
+        val result = scope.evalJs(
+            "while(true){ try{ throw 1; }catch(e){} }",
+            maxExecutionTime = 5.seconds,
+        )
+        assertEquals(Unit, result)
+        assertTrue(
+            mark.elapsedNow() < 2.seconds,
+            "JS try/catch appears to have swallowed the cancellation; elapsed: ${mark.elapsedNow()}"
+        )
+    }
+
+    @Test
+    fun scopeEvalJsCancelledScopeProducesUnitNotException() {
+        // Cancellation must be silent (Unit), not a thrown exception leaking to the caller.
+        val scope = activeScope()
+        scope.cancel()
+        var threw = false
+        val result = try {
+            scope.evalJs("1+1")
+        } catch (_: Throwable) {
+            threw = true
+            Unit
+        }
+        assertFalse(threw, "evalJs threw an exception on a cancelled scope instead of returning Unit")
+        assertEquals(Unit, result)
+    }
+
+    @Test
+    fun plainEvalJsUnaffectedBySeparatelyCancelledScope() {
+        // Cancelling an unrelated scope must not affect the plain (no-scope) evalJs overload.
+        val unrelatedScope = activeScope()
+        unrelatedScope.cancel()
+        // Plain evalJs has no scope, it must complete normally.
+        val result = evalJs("1+2")
+        assertEquals(3.0, result as? Double ?: 0.0)
     }
 }
