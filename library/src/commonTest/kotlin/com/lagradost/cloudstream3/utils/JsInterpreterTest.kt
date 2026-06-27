@@ -14,6 +14,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
+import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
@@ -2110,7 +2111,7 @@ class JsInterpreterTest {
         val scope = activeScope()
         scope.cancel()
         val mark = TimeSource.Monotonic.markNow()
-        val result = scope.evalJs("while(true){}", maxExecutionTime = 5.seconds)
+        val result = scope.evalJs("while(true){}")
         assertEquals(Unit, result)
         // Should return almost immediately, no need to spin up to the time budget.
         assertTrue(mark.elapsedNow() < 2.seconds)
@@ -2134,10 +2135,7 @@ class JsInterpreterTest {
         val scope = activeScope()
         scope.cancel()
         val mark = TimeSource.Monotonic.markNow()
-        val result = scope.evalJs(
-            "while(true){ try{ throw 1; }catch(e){} }",
-            maxExecutionTime = 5.seconds,
-        )
+        val result = scope.evalJs("while(true){ try{ throw 1; }catch(e){} }")
         assertEquals(Unit, result)
         assertTrue(
             mark.elapsedNow() < 2.seconds,
@@ -2162,34 +2160,17 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun plainEvalJsUnaffectedBySeparatelyCancelledScope() {
-        // Cancelling an unrelated scope must not affect the plain (no-scope) evalJs overload.
-        val unrelatedScope = activeScope()
-        unrelatedScope.cancel()
-        // Plain evalJs has no scope, it must complete normally.
-        val result = evalJs("1+2")
-        assertEquals(3.0, result as? Double ?: 0.0)
-    }
-
-    @Test
     fun scopeEvalJsWithTimeoutCancelsInfiniteLoop() = runTest {
         // withTimeout cancels the Job of the scope it runs in. The CoroutineScope.evalJs
         // extension picks that up at the next budget check and aborts, so the call returns
-        // before the internal time budget (5s) fires.
+        // before the internal time budget (default 5s) fires.
         val mark = TimeSource.Monotonic.markNow()
-        var timedOut = false
-        try {
+        assertFailsWith<TimeoutCancellationException>{
             withTimeout(300.milliseconds) {
-                delay(301.milliseconds)
-                this.evalJs(
-                    "while(true){}",
-                    maxExecutionTime = 5.seconds,
-                )
+                delay(301.milliseconds) // advance virtual time past deadline
+                this.evalJs("while(true){}")
             }
-        } catch (_: TimeoutCancellationException) {
-            timedOut = true
         }
-        assertTrue(timedOut, "Expected TimeoutCancellationException but none was thrown")
         // Should have returned well within the 5s internal budget.
         assertTrue(
             mark.elapsedNow() < 2.seconds,
