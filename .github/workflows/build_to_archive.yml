@@ -36,7 +36,7 @@ jobs:
         private_key: ${{ secrets.GH_APP_KEY }}
         repository: "recloudstream/cloudstream-archive"
 
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: Set up JDK 17
       uses: actions/setup-java@v5
@@ -76,7 +76,7 @@ jobs:
         MAL_KEY: ${{ secrets.MAL_KEY }}
         ANILIST_KEY: ${{ secrets.ANILIST_KEY }}
 
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
       with:
         repository: "recloudstream/cloudstream-archive"
         token: ${{ steps.generate_archive_token.outputs.token }}
