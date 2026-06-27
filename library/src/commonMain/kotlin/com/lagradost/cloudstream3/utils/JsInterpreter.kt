@@ -1138,6 +1138,11 @@ private class JsInterpreter(
                         if (node.catchParam != null) inner.define(node.catchParam, e.value)
                         for (s in node.catchBody) execNode(s, inner)
                     }
+                } catch (e: CancellationException) {
+                    // CancellationException must never be swallowed by a JS try/catch.
+                    // It must propagate so withTimeout and structured concurrency
+                    // work correctly.
+                    throw e
                 } catch (_: Exception) {
                     // swallow other exceptions inside try (e.g. runtime errors)
                 } finally {
