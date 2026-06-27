@@ -1,12 +1,10 @@
 package com.lagradost.cloudstream3.utils
 
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
@@ -2168,9 +2166,14 @@ class JsInterpreterTest {
 
     @Test
     fun scopeEvalJsWithTimeoutCancelsInfiniteLoop() = runTest {
-        // withTimeout cancels the Job of the scope it runs in. The CoroutineScope.evalJs
-        // extension picks that up at the next budget check and aborts, so the call returns
-        // before the internal time budget (default 5s) fires.
+        /**
+         * evalJs is synchronous, so withTimeout cannot preempt it on the same thread.
+         * withContext(Dispatchers.Default) moves evalJs onto a real background thread,
+         * freeing the test coroutine to process the withTimeout cancellation while
+         * evalJs is running. When the 300ms deadline fires, withTimeout cancels its
+         * scope's Job, the same scope passed to evalJs via `this`, and evalJs sees
+         * isActive==false on the next instruction, throwing JsCancellationException.
+        */
         val mark = TimeSource.Monotonic.markNow()
         assertFailsWith<CancellationException> {
             withTimeout(300.milliseconds) {
