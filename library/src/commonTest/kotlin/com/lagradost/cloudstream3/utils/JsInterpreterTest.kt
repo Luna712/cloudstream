@@ -2165,7 +2165,7 @@ class JsInterpreterTest {
         }
     }
 
-    @Test
+    /* @Test
     fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() {
         /**
          * Dispatchers.Default does not use the TestCoroutineScheduler so real time
@@ -2199,5 +2199,34 @@ class JsInterpreterTest {
             elapsed < 1.seconds,
             "evalJs ran too long, timeout may not have fired: $elapsed",
         )
+    }*/
+
+    @Test
+fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() {
+    var elapsed = kotlin.time.Duration.ZERO
+    var exception: Exception? = null
+    val latch = java.util.concurrent.CountDownLatch(1)
+    
+    kotlinx.coroutines.GlobalScope.launch(Dispatchers.Default) {
+        try {
+            withTimeout(300.milliseconds) {
+                val mark = TimeSource.Monotonic.markNow()
+                try {
+                    evalJs("while(true){}", maxExecutionTime = 5.seconds)
+                } finally {
+                    elapsed = mark.elapsedNow()
+                }
+            }
+        } catch (e: Exception) {
+            exception = e
+        } finally {
+            latch.countDown()
+        }
     }
+    
+    latch.await(5, java.util.concurrent.TimeUnit.SECONDS)
+    assertTrue(exception is TimeoutCancellationException)
+    assertTrue(elapsed > 200.milliseconds)
+    assertTrue(elapsed < 1.seconds)
+}
 }
