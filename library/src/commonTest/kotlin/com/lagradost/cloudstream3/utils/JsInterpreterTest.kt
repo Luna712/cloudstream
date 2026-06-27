@@ -2166,7 +2166,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() = runTest {
+    fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() {
         /**
          * Dispatchers.Default does not use the TestCoroutineScheduler so real time
          * passes inside it. We measure elapsed time using a monotonic mark started
@@ -2178,6 +2178,7 @@ class JsInterpreterTest {
          */
         var elapsed = kotlin.time.Duration.ZERO
         assertFailsWith<Exception> {
+            runTest {
             withTimeout(300.milliseconds) {
                 val deferred = async(Dispatchers.Default) {
                     val mark = TimeSource.Monotonic.markNow()
@@ -2189,8 +2190,7 @@ class JsInterpreterTest {
                 }
                 deferred.await()
             }
-        }
-        throw AssertionError("$elapsed")
+        } }
         assertTrue(
             elapsed > 200.milliseconds,
             "evalJs should have run for ~300ms before cancellation, but elapsed: $elapsed",
