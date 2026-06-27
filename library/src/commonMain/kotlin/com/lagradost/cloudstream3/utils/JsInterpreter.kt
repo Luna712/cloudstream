@@ -81,16 +81,6 @@ private val JS_DEFAULT_MAX_EXECUTION_TIME: Duration = 5.seconds
 private const val JS_DEFAULT_MAX_INSTRUCTIONS: Long = 50_000_000L
 
 /**
- * Thrown when the enclosing [CoroutineScope] is cancelled (e.g. by [withTimeout]).
- *
- * The [TryCatch] handler in [JsInterpreter.execNode] explicitly rethrows this before
- * its generic `catch (Exception)` clause, so a JS script's own try/catch block cannot
- * swallow it and keep a cancelled loop alive.
- */
-@Prerelease
-class JsCancellationException(message: String) : CancellationException(message)
-
-/**
  * Convert any JS runtime value to its JavaScript string representation.
  * Mirrors what JS `String(value)` would produce.
  */
@@ -162,6 +152,7 @@ fun evalJs(
  *   val result = coroutineScope { evalJs("...") }
  */
 @Prerelease
+@Throws(CancellationException::class)
 fun CoroutineScope.evalJs(
     js: String,
     variable: String? = null,
@@ -761,6 +752,21 @@ private class ReturnSignal(val value: Any?) : Throwable()
 private object BreakSignal : Throwable()
 private object ContinueSignal : Throwable()
 private class ThrowSignal(val value: Any?) : Throwable()
+
+/**
+ * Thrown when the enclosing [CoroutineScope] is cancelled (e.g. by [withTimeout]).
+ * Extends [CancellationException] so coroutines recognize and handle it correctly.
+ *
+ * We use a dedicated subclass rather than [CancellationException] directly so that
+ * tests can use [assertFailsWith]<[JsCancellationException]> to verify that cancellation
+ * originated from the interpreter's scope check rather than some other source. The class
+ * is [internal] rather than private for the same reason.
+ *
+ * The [TryCatch] handler in [JsInterpreter.execNode] explicitly rethrows this before
+ * its generic `catch (Exception)` clause, so a JS script's own try/catch block cannot
+ * swallow it and keep a cancelled loop alive.
+ */
+internal class JsCancellationException(message: String) : CancellationException(message)
 
 /**
  * Internal signal thrown once a script exceeds its execution budget (time or instruction
