@@ -2,10 +2,10 @@ package com.lagradost.cloudstream3.utils
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withTimeout
@@ -2180,7 +2180,7 @@ class JsInterpreterTest {
          */
         var elapsed = Duration.ZERO
         val done = Channel<Unit>()
-        GlobalScope.launch(Dispatchers.Default) {
+        coroutineScope.launch(Dispatchers.Default) {
             assertFailsWith<JsCancellationException> {
                 withTimeout(300.milliseconds) {
                     val mark = TimeSource.Monotonic.markNow()
