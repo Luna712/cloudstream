@@ -2180,7 +2180,7 @@ class JsInterpreterTest {
          */
         var elapsed = Duration.ZERO
         val done = Channel<Unit>()
-        coroutineScope.launch(Dispatchers.Default) {
+        coroutineScope {
             assertFailsWith<JsCancellationException> {
                 withTimeout(300.milliseconds) {
                     val mark = TimeSource.Monotonic.markNow()
