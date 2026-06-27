@@ -2165,7 +2165,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun scopeEvalJsWithTimeoutCancelsInfiniteLoop() = runTest {
+    fun scopeEvalJsWithTimeoutCancelsInfiniteLoop() {
         /**
          * evalJs is synchronous, so withTimeout cannot preempt it on the same thread.
          * withContext(Dispatchers.Default) moves evalJs onto a real background thread,
@@ -2173,12 +2173,14 @@ class JsInterpreterTest {
          * evalJs is running. When the 300ms deadline fires, withTimeout cancels its
          * scope's Job, the same scope passed to evalJs via `this`, and evalJs sees
          * isActive==false on the next instruction, throwing JsCancellationException.
-        */
+         */
         val mark = TimeSource.Monotonic.markNow()
         assertFailsWith<TimeoutCancellationException> {
-            withTimeout(3000.milliseconds) {
-                withContext(Dispatchers.Default) {
-                    this.evalJs("while(true){}")
+            runTest {
+                withTimeout(3000.milliseconds) {
+                    withContext(Dispatchers.Default) {
+                        this.evalJs("while(true){}")
+                    }
                 }
             }
         }
