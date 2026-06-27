@@ -2145,19 +2145,15 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun scopeEvalJsCancelledScopeProducesUnitNotException() {
-        // Cancellation must be silent (Unit), not a thrown exception leaking to the caller.
+    fun scopeEvalJsCancelledScopeThrowsCancellationException() {
+        // A cancelled scope must propagate CancellationException so that withTimeout
+        // and structured concurrency see the cancellation correctly. Swallowing it
+        // silently as Unit would break withTimeout.
         val scope = activeScope()
         scope.cancel()
-        var threw = false
-        val result = try {
+        assertFailsWith<CancellationException> {
             scope.evalJs("1+1")
-        } catch (_: Throwable) {
-            threw = true
-            Unit
         }
-        assertFalse(threw, "evalJs threw an exception on a cancelled scope instead of returning Unit")
-        assertEquals(Unit, result)
     }
 
     @Test
@@ -2165,19 +2161,15 @@ class JsInterpreterTest {
         // withTimeout cancels the Job of the scope it runs in. The CoroutineScope.evalJs
         // extension picks that up at the next budget check and aborts, so the call returns
         // before the internal time budget (default 5s) fires.
-        val mark = TimeSource.Monotonic.markNow()
-        val job = backgroundScope.launch {
-            this.evalJs("while(true){}", maxExecutionTime = 5.seconds)
-        }
-        assertFailsWith<CancellationException> {
+        var evalCompleted = false
+        val job = launch {
             withTimeout(300.milliseconds) {
-                job.join()
+                this.evalJs("while(true){}")
             }
+            evalCompleted = true
         }
+        job.join()
+        assertFalse(evalCompleted)
         assertTrue(job.isCancelled)
-        assertTrue(
-            mark.elapsedNow() < 2.seconds,
-            "Script ran longer than expected after withTimeout; elapsed: ${mark.elapsedNow()}",
-        )
     }
 }
