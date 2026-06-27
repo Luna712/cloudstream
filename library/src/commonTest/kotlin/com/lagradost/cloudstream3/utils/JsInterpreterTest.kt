@@ -2202,7 +2202,7 @@ class JsInterpreterTest {
         )
     }*/
 
-    @Test
+    /*@Test
 fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() = runTest {
     var elapsed = kotlin.time.Duration.ZERO
     var exception: Exception? = null
@@ -2227,6 +2227,29 @@ fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() = runTest {
 
     done.receive()
     assertTrue(exception is JsCancellationException)
+    assertTrue(elapsed > 200.milliseconds, "evalJs should have run for ~300ms but elapsed: $elapsed")
+    assertTrue(elapsed < 1.seconds, "evalJs ran too long: $elapsed")
+}*/
+@Test
+fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() = runTest {
+    var elapsed = kotlin.time.Duration.ZERO
+    val done = kotlinx.coroutines.channels.Channel<Unit>()
+
+    kotlinx.coroutines.GlobalScope.launch(Dispatchers.Default) {
+        assertFailsWith<JsCancellationException> {
+            withTimeout(300.milliseconds) {
+                val mark = TimeSource.Monotonic.markNow()
+                try {
+                    evalJs("while(true){}", maxExecutionTime = 5.seconds)
+                } finally {
+                    elapsed = mark.elapsedNow()
+                }
+            }
+        }
+        done.send(Unit)
+    }
+
+    done.receive()
     assertTrue(elapsed > 200.milliseconds, "evalJs should have run for ~300ms but elapsed: $elapsed")
     assertTrue(elapsed < 1.seconds, "evalJs ran too long: $elapsed")
 }
