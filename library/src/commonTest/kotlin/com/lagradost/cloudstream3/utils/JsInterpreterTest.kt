@@ -2166,7 +2166,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() = runTest {
+    fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() {
         /**
          * GlobalScope.launch(Dispatchers.Default) runs on a real background thread with
          * real wall-clock time, so withTimeout fires after a genuine 300ms rather than
