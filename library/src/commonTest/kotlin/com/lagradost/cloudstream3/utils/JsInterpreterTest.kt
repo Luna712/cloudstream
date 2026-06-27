@@ -2110,7 +2110,7 @@ class JsInterpreterTest {
     @Test
     fun scopeEvalJsInfiniteLoopAbortedWhenScopeCancelled() {
         // Pre-cancel the scope and confirm an infinite loop aborts well within the
-        // generous time budget. A sub-1s return against a 5s budget proves it was
+        // time budget. A sub-1s return against a 5s budget proves it was
         // scope cancellation, not the clock, that stopped the script.
         val scope = activeScope()
         scope.cancel()
