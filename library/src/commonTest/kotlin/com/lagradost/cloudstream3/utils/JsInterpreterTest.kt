@@ -2190,6 +2190,7 @@ class JsInterpreterTest {
                 deferred.await()
             }
         }
+        throw AssertionError("$elapsed")
         assertTrue(
             elapsed > 200.milliseconds,
             "evalJs should have run for ~300ms before cancellation, but elapsed: $elapsed",
