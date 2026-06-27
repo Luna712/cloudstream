@@ -2235,7 +2235,7 @@ fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() = runTest {
     var elapsed = kotlin.time.Duration.ZERO
     val done = kotlinx.coroutines.channels.Channel<Unit>()
 
-    kotlinx.coroutines.GlobalScope.launch(Dispatchers.Default) {
+    withContext(Dispatchers.Default) {
         assertFailsWith<JsCancellationException> {
             withTimeout(300.milliseconds) {
                 val mark = TimeSource.Monotonic.markNow()
