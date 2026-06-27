@@ -2,13 +2,12 @@ package com.lagradost.cloudstream3.utils
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.TimeoutCancellationException
-import kotlinx.coroutines.async
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
-import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
 import kotlin.math.E
 import kotlin.math.PI
@@ -19,6 +18,7 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.TimeSource
@@ -2166,22 +2166,23 @@ class JsInterpreterTest {
         }
     }
 
-    /* @Test
-    fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() {
+    @Test
+    fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() = runTest {
         /**
-         * Dispatchers.Default does not use the TestCoroutineScheduler so real time
-         * passes inside it. We measure elapsed time using a monotonic mark started
-         * before the async block, since the work runs on a real thread with real time,
-         * the elapsed time reflects actual wall-clock duration, not virtual time.
-         * If withTimeout fired before evalJs started (trivially), elapsed would be ~0ms.
-         * If it fired after ~300ms of real running, elapsed will be ~300ms, proving
-         * evalJs was genuinely cancelled mid-execution.
+         * GlobalScope.launch(Dispatchers.Default) runs on a real background thread with
+         * real wall-clock time, so withTimeout fires after a genuine 300ms rather than
+         * instantly via the virtual clock. The test coroutine suspends at done.receive(),
+         * keeping runTest alive until the background coroutine finishes.
+         *
+         * We measure elapsed time inside the coroutine. If withTimeout fired before
+         * evalJs started, elapsed would be ~0ms. ~300ms proves evalJs was genuinely
+         * running and cancelled mid-execution, not trivially before it began.
          */
-        var elapsed = kotlin.time.Duration.ZERO
-        assertFailsWith<Exception> {
-            runTest {
-            withTimeout(300.milliseconds) {
-                val deferred = async(Dispatchers.Default) {
+        var elapsed = Duration.ZERO
+        val done = Channel<Unit>()
+        GlobalScope.launch(Dispatchers.Default) {
+            assertFailsWith<JsCancellationException> {
+                withTimeout(300.milliseconds) {
                     val mark = TimeSource.Monotonic.markNow()
                     try {
                         evalJs("while(true){}")
@@ -2189,68 +2190,12 @@ class JsInterpreterTest {
                         elapsed = mark.elapsedNow()
                     }
                 }
-                deferred.await()
             }
-        } }
-        assertTrue(
-            elapsed > 200.milliseconds,
-            "evalJs should have run for ~300ms before cancellation, but elapsed: $elapsed",
-        )
-        assertTrue(
-            elapsed < 1.seconds,
-            "evalJs ran too long, timeout may not have fired: $elapsed",
-        )
-    }*/
-
-    /*@Test
-fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() = runTest {
-    var elapsed = kotlin.time.Duration.ZERO
-    var exception: Exception? = null
-    val done = kotlinx.coroutines.channels.Channel<Unit>()
-
-    kotlinx.coroutines.GlobalScope.launch(Dispatchers.Default) {
-        try {
-            withTimeout(300.milliseconds) {
-                val mark = TimeSource.Monotonic.markNow()
-                try {
-                    evalJs("while(true){}", maxExecutionTime = 5.seconds)
-                } finally {
-                    elapsed = mark.elapsedNow()
-                }
-            }
-        } catch (e: Exception) {
-            exception = e
-        } finally {
             done.send(Unit)
         }
+
+        done.receive()
+        assertTrue(elapsed > 200.milliseconds, "evalJs should have run for ~300ms but elapsed: $elapsed")
+        assertTrue(elapsed < 1.seconds, "evalJs ran too long: $elapsed")
     }
-
-    done.receive()
-    assertTrue(exception is JsCancellationException)
-    assertTrue(elapsed > 200.milliseconds, "evalJs should have run for ~300ms but elapsed: $elapsed")
-    assertTrue(elapsed < 1.seconds, "evalJs ran too long: $elapsed")
-}*/
-@Test
-fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() = runTest {
-    var elapsed = kotlin.time.Duration.ZERO
-    val done = kotlinx.coroutines.channels.Channel<Unit>()
-
-    withContext(Dispatchers.Default) {
-        assertFailsWith<JsCancellationException> {
-            withTimeout(300.milliseconds) {
-                val mark = TimeSource.Monotonic.markNow()
-                try {
-                    evalJs("while(true){}", maxExecutionTime = 5.seconds)
-                } finally {
-                    elapsed = mark.elapsedNow()
-                }
-            }
-        }
-        done.send(Unit)
-    }
-
-    done.receive()
-    assertTrue(elapsed > 200.milliseconds, "evalJs should have run for ~300ms but elapsed: $elapsed")
-    assertTrue(elapsed < 1.seconds, "evalJs ran too long: $elapsed")
-}
 }
