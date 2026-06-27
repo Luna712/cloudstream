@@ -1034,11 +1034,11 @@ private class JsInterpreter(
             last
         } catch (r: ReturnSignal) {
             r.value
-        /* } catch (e: CancellationException) {
+        } catch (e: JsExecutionLimitExceeded) {
             // CancellationException must never be swallowed. It signals that the
             // enclosing coroutine has been cancelled and must propagate so that the
             // coroutine can clean up correctly.
-            throw e */
+            throw e
         } catch (e: Throwable) {
             logError(e)
             Unit
