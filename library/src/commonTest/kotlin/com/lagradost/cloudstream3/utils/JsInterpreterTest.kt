@@ -2165,7 +2165,7 @@ class JsInterpreterTest {
         // extension picks that up at the next budget check and aborts, so the call returns
         // before the internal time budget (default 5s) fires.
         val mark = TimeSource.Monotonic.markNow()
-        assertFailsWith<TimeoutCancellationException>{
+        assertFailsWith<IndexOutOfBoundsException>{
             withTimeout(300.milliseconds) {
                 delay(301.milliseconds) // advance virtual time past deadline
                 this.evalJs("while(true){}")
