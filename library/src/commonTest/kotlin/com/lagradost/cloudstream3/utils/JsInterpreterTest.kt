@@ -2226,7 +2226,7 @@ fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() = runTest {
     }
 
     done.receive()
-    assertTrue(exception is TimeoutCancellationException)
+    assertTrue(exception is JsCancellationException)
     assertTrue(elapsed > 200.milliseconds, "evalJs should have run for ~300ms but elapsed: $elapsed")
     assertTrue(elapsed < 1.seconds, "evalJs ran too long: $elapsed")
 }
