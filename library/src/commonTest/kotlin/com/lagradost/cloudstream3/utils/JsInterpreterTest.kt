@@ -2,11 +2,13 @@ package com.lagradost.cloudstream3.utils
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
 import kotlin.math.E
 import kotlin.math.PI
@@ -2169,15 +2171,17 @@ class JsInterpreterTest {
         // withTimeout cancels the Job of the scope it runs in. The CoroutineScope.evalJs
         // extension picks that up at the next budget check and aborts, so the call returns
         // before the internal time budget (default 5s) fires.
-        var evalCompleted = false
-        val job = launch {
+        val mark = TimeSource.Monotonic.markNow()
+        assertFailsWith<CancellationException> {
             withTimeout(300.milliseconds) {
-                this.evalJs("while(true){}")
+                withContext(Dispatchers.Default) {
+                    this.evalJs("while(true){}")
+                }
             }
-            evalCompleted = true
         }
-        job.join()
-        assertFalse(evalCompleted)
-        assertTrue(job.isCancelled)
+        assertTrue(
+            mark.elapsedNow() < 1.seconds,
+            "Expected abort well before 5s time budget; elapsed: ${mark.elapsedNow()}",
+        )
     }
 }
