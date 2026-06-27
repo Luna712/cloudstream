@@ -753,6 +753,15 @@ private object ContinueSignal : Throwable()
 private class ThrowSignal(val value: Any?) : Throwable()
 
 /**
+ * Thrown when the enclosing [CoroutineScope] is cancelled (e.g. by [withTimeout]).
+ *
+ * The [TryCatch] handler in [JsInterpreter.execNode] explicitly rethrows this before
+ * its generic `catch (Exception)` clause, so a JS script's own try/catch block cannot
+ * swallow it and keep a cancelled loop alive.
+ */
+private class JsCancellationException(message: String) : CancellationException(message)
+
+/**
  * Internal signal thrown once a script exceeds its execution budget (time or instruction
  * count), or the enclosing [CoroutineScope] has been cancelled.
  *
@@ -1034,7 +1043,7 @@ private class JsInterpreter(
             last
         } catch (r: ReturnSignal) {
             r.value
-        } catch (e: CancellationException) {
+        } catch (e: JsCancellationException) {
             // CancellationException must never be swallowed. It signals that the
             // enclosing coroutine has been cancelled and must propagate so that the
             // coroutine can clean up correctly.
@@ -1061,7 +1070,7 @@ private class JsInterpreter(
             throw JsExecutionLimitExceeded("script exceeded max instruction count of $maxInstructions")
         }
         if (scope != null && !scope.isActive) {
-            throw CancellationException("script cancelled: coroutine scope is no longer active")
+            throw JsCancellationException("script cancelled: coroutine scope is no longer active")
         }
         // Only sample the clock every 1024 ticks. Calling elapsedNow() on every single
         // statement would add measurable overhead to normal (non-runaway) scripts.
@@ -1132,13 +1141,13 @@ private class JsInterpreter(
             is TryCatch -> {
                 try {
                     for (s in node.body) execNode(s, scope)
-                } catch (e: ThrowSignal) {
+                } catch (ts: ThrowSignal) {
                     if (node.catchBody != null) {
                         val inner = Scope(scope)
-                        if (node.catchParam != null) inner.define(node.catchParam, e.value)
+                        if (node.catchParam != null) inner.define(node.catchParam, ts.value)
                         for (s in node.catchBody) execNode(s, inner)
                     }
-                } catch (e: CancellationException) {
+                } catch (e: JsCancellationException) {
                     // CancellationException must never be swallowed by a JS try/catch.
                     // It must propagate so withTimeout and structured concurrency
                     // work correctly.
