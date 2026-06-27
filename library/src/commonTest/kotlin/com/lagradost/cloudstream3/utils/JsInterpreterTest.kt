@@ -2168,8 +2168,8 @@ class JsInterpreterTest {
         // TimeoutCancellationException
         assertFailsWith<IndexOutOfBoundsException>{
             withTimeout(300.milliseconds) {
-                this.evalJs("while(true){}")
                 delay(301.milliseconds) // advance virtual time past deadline
+                this.evalJs("while(true){}")
             }
         }
         // Should have returned well within the 5s internal budget.
