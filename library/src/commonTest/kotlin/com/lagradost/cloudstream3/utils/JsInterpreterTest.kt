@@ -1,7 +1,6 @@
 package com.lagradost.cloudstream3.utils
 
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.Channel
@@ -2168,10 +2167,10 @@ class JsInterpreterTest {
     @Test
     fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() = runTest {
         /**
-         * GlobalScope.launch(Dispatchers.Default) runs on a real background thread with
-         * real wall-clock time, so withTimeout fires after a genuine 300ms rather than
-         * instantly via the virtual clock. The test coroutine suspends at done.receive(),
-         * keeping runTest alive until the background coroutine finishes.
+         * activeScope() provides a real CoroutineScope with a real Job, so withTimeout
+         * fires after a genuine 300ms rather than instantly via the virtual clock.
+         * The test coroutine suspends at done.receive(), keeping runTest alive until
+         * the background coroutine finishes.
          *
          * We measure elapsed time inside the coroutine. If withTimeout fired before
          * evalJs started, elapsed would be ~0ms. ~300ms proves evalJs was genuinely
