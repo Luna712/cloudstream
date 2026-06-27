@@ -2166,27 +2166,37 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun scopeEvalJsWithTimeoutCancelsInfiniteLoop() = runTest {
+    fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() = runTest {
         /**
-         * evalJs is synchronous, so withTimeout cannot preempt it on the same thread.
-         * withContext(Dispatchers.Default) moves evalJs onto a real background thread,
-         * freeing the test coroutine to process the withTimeout cancellation while
-         * evalJs is running. When the 300ms deadline fires, withTimeout cancels its
-         * scope's Job, the same scope passed to evalJs via `this`, and evalJs sees
-         * isActive==false on the next instruction, throwing JsCancellationException.
+         * Dispatchers.Default does not use the TestCoroutineScheduler so real time
+         * passes inside it. We measure elapsed time using a monotonic mark started
+         * before the async block, since the work runs on a real thread with real time,
+         * the elapsed time reflects actual wall-clock duration, not virtual time.
+         * If withTimeout fired before evalJs started (trivially), elapsed would be ~0ms.
+         * If it fired after ~300ms of real running, elapsed will be ~300ms, proving
+         * evalJs was genuinely cancelled mid-execution.
          */
-        val mark = TimeSource.Monotonic.markNow()
+        var elapsed = kotlin.time.Duration.ZERO
         assertFailsWith<TimeoutCancellationException> {
-            withTimeout(3000.milliseconds) {
+            withTimeout(300.milliseconds) {
                 val deferred = async(Dispatchers.Default) {
-                    evalJs("while(true){}")
+                    val mark = TimeSource.Monotonic.markNow()
+                    try {
+                        evalJs("while(true){}")
+                    } finally {
+                        elapsed = mark.elapsedNow()
+                    }
                 }
                 deferred.await()
             }
         }
         assertTrue(
-            mark.elapsedNow() < 1.seconds,
-            "Expected abort well before 5s time budget; elapsed: ${mark.elapsedNow()}",
+            elapsed > 200.milliseconds,
+            "evalJs should have run for ~300ms before cancellation, but elapsed: $elapsed",
+        )
+        assertTrue(
+            elapsed < 1.seconds,
+            "evalJs ran too long, timeout may not have fired: $elapsed",
         )
     }
 }
