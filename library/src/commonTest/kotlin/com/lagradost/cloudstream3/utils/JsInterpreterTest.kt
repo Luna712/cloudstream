@@ -2097,25 +2097,31 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun scopeEvalJsCancelledBeforeCallReturnsUnit() {
-        // Cancel the scope before calling evalJs, the very first budget check should abort.
+    fun scopeEvalJsCancelledBeforeCallThrowsCancellationException() {
+        // Cancel the scope before calling evalJs. The very first budget check sees
+        // isActive==false and throws JsCancellationException immediately.
         val scope = activeScope()
         scope.cancel()
-        val result = scope.evalJs("var x = 1 + 2", "x")
-        // Cancelled scope => script aborted => Unit (same as all other abort paths).
-        assertEquals(Unit, result)
+        assertFailsWith<CancellationException> {
+            scope.evalJs("var x = 1 + 2", "x")
+        }
     }
 
     @Test
     fun scopeEvalJsInfiniteLoopAbortedWhenScopeCancelled() {
-        // Pre-cancel the scope. The first budget check (tick 1024) sees isActive==false and aborts.
+        // Pre-cancel the scope and confirm an infinite loop aborts well within the
+        // generous time budget. A sub-1s return against a 5s budget proves it was
+        // scope cancellation, not the clock, that stopped the script.
         val scope = activeScope()
         scope.cancel()
         val mark = TimeSource.Monotonic.markNow()
-        val result = scope.evalJs("while(true){}")
-        assertEquals(Unit, result)
-        // Should return almost immediately, no need to spin up to the time budget.
-        assertTrue(mark.elapsedNow() < 2.seconds)
+        assertFailsWith<CancellationException> {
+            scope.evalJs("while(true){}")
+        }
+        assertTrue(
+            mark.elapsedNow() < 1.seconds,
+            "Expected abort well before 5s time budget; elapsed: ${mark.elapsedNow()}",
+        )
     }
 
     @Test
@@ -2132,15 +2138,17 @@ class JsInterpreterTest {
     @Test
     fun scopeEvalJsJsTryCatchCannotSwallowCancellation() {
         // A JS try/catch must not be able to intercept the cancellation signal and keep
-        // the infinite loop alive. The script should still abort promptly.
+        // the infinite loop alive. JsCancellationException extends CancellationException
+        // which the TryCatch node handler explicitly rethrows before catch(_: Exception).
         val scope = activeScope()
         scope.cancel()
         val mark = TimeSource.Monotonic.markNow()
-        val result = scope.evalJs("while(true){ try{ throw 1; }catch(e){} }")
-        assertEquals(Unit, result)
+        assertFailsWith<CancellationException> {
+            scope.evalJs("while(true){ try{ throw 1; }catch(e){} }")
+        }
         assertTrue(
-            mark.elapsedNow() < 2.seconds,
-            "JS try/catch appears to have swallowed the cancellation; elapsed: ${mark.elapsedNow()}"
+            mark.elapsedNow() < 1.seconds,
+            "JS try/catch appears to have swallowed the cancellation; elapsed: ${mark.elapsedNow()}",
         )
     }
 
