@@ -1057,11 +1057,11 @@ private class JsInterpreter(
         if (instructionCount >= maxInstructions) {
             throw JsExecutionLimitExceeded("script exceeded max instruction count of $maxInstructions")
         }
-        // Only sample every 1024 ticks to avoid measurable overhead on normal scripts.
-        if (instructionCount and 0x3FFL != 0L) return
         if (scope != null && !scope.isActive) {
             throw JsExecutionLimitExceeded("script cancelled: coroutine scope is no longer active")
         }
+        // Only sample every 1024 ticks to avoid measurable overhead on normal scripts.
+        if (instructionCount and 0x3FFL != 0L) return
         if (startMark.elapsedNow() >= maxExecutionTime) {
             throw JsExecutionLimitExceeded("script exceeded max execution time of $maxExecutionTime")
         }
