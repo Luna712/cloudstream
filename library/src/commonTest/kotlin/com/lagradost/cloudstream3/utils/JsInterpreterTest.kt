@@ -1,8 +1,11 @@
 package com.lagradost.cloudstream3.utils
 
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.withTimeout
 import kotlin.math.E
 import kotlin.math.PI
 import kotlin.math.abs
@@ -2092,7 +2095,7 @@ class JsInterpreterTest {
 
     @Test
     fun scopeEvalJsCancelledBeforeCallReturnsUnit() {
-        // Cancel the scope before calling evalJs — the very first budget check should abort.
+        // Cancel the scope before calling evalJs, the very first budget check should abort.
         val scope = activeScope()
         scope.cancel()
         val result = scope.evalJs("var x = 1 + 2; x")
@@ -2165,5 +2168,33 @@ class JsInterpreterTest {
         // Plain evalJs has no scope, it must complete normally.
         val result = evalJs("1+2")
         assertEquals(3.0, result as? Double ?: 0.0)
+    }
+
+    @Test
+    fun scopeEvalJsWithTimeoutCancelsInfiniteLoop() = runTest {
+        // withTimeout cancels the Job of the scope it runs in. The CoroutineScope.evalJs
+        // extension picks that up at the next budget check and aborts, so the call returns
+        // before the internal time budget (5s) fires.
+        val mark = TimeSource.Monotonic.markNow()
+        var timedOut = false
+        try {
+            withTimeout(300.milliseconds) {
+                // `this` inside withTimeout is a CoroutineScope whose Job is cancelled
+                // when the timeout fires. Calling the extension on it lets the
+                // interpreter's budget check observe the cancellation.
+                this.evalJs(
+                    "while(true){}",
+                    maxExecutionTime = 5.seconds,
+                )
+            }
+        } catch (_: TimeoutCancellationException) {
+            timedOut = true
+        }
+        assertTrue(timedOut, "Expected TimeoutCancellationException but none was thrown")
+        // Should have returned well within the 5s internal budget.
+        assertTrue(
+            mark.elapsedNow() < 2.seconds,
+            "Script ran longer than expected after withTimeout; elapsed: ${mark.elapsedNow()}",
+        )
     }
 }
