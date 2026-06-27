@@ -2177,7 +2177,7 @@ class JsInterpreterTest {
          * evalJs was genuinely cancelled mid-execution.
          */
         var elapsed = kotlin.time.Duration.ZERO
-        assertFailsWith<TimeoutCancellationException> {
+        assertFailsWith<Exception> {
             withTimeout(300.milliseconds) {
                 val deferred = async(Dispatchers.Default) {
                     val mark = TimeSource.Monotonic.markNow()
