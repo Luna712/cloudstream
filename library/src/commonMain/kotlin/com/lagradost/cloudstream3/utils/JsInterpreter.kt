@@ -144,7 +144,7 @@ fun evalJs(
  * Scope-aware variant of [evalJs]. The interpreter checks [CoroutineScope.isActive] every
  * 1024 instructions and aborts (returning [Unit]) if the scope has been cancelled.
  *
- * There is no thread dispatch or suspension: this function runs synchronously on the
+ * There is no thread dispatch or suspension. This function runs synchronously on the
  * calling thread, so it carries zero coroutine overhead for normal (non-cancelled) scripts.
  * Cancellation latency is bounded to one check window (~1024 interpreter instructions).
  *
@@ -1048,15 +1048,12 @@ private class JsInterpreter(
     /**
      * Called on every statement execution. Throws [JsExecutionLimitExceeded] once the
      * script has used up its time or instruction budget, or the enclosing [CoroutineScope]
-     * has been cancelled.
+     * has been cancelled. This is what lets something like `evalJs("while(true){}")`
+     * return instead of burning the CPU forever.
      *
      * [JsExecutionLimitExceeded] extends [Throwable] rather than [Exception], so a JS
      * script cannot catch it with its own try/catch block (the [TryCatch] handler in
      * [execNode] only catches [Exception]).
-     *
-     * The scope is only sampled every 1024 ticks (the same as the clock check)
-     * so there is no per-instruction overhead for callers that do not supply
-     * a scope.
      */
     private fun checkBudget() {
         instructionCount++
@@ -1066,7 +1063,8 @@ private class JsInterpreter(
         if (scope != null && !scope.isActive) {
             throw JsExecutionLimitExceeded("script cancelled: coroutine scope is no longer active")
         }
-        // Only sample every 1024 ticks to avoid measurable overhead on normal scripts.
+        // Only sample the clock every 1024 ticks. Calling elapsedNow() on every single
+        // statement would add measurable overhead to normal (non-runaway) scripts.
         if (instructionCount and 0x3FFL != 0L) return
         if (startMark.elapsedNow() >= maxExecutionTime) {
             throw JsExecutionLimitExceeded("script exceeded max execution time of $maxExecutionTime")
