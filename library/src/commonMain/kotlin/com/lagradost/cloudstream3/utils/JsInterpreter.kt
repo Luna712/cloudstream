@@ -1065,8 +1065,7 @@ private class JsInterpreter(
         }
         // Only sample the clock every 1024 ticks. Calling elapsedNow() on every single
         // statement would add measurable overhead to normal (non-runaway) scripts.
-        if (instructionCount and 0x3FFL != 0L) return
-        if (startMark.elapsedNow() >= maxExecutionTime) {
+        if (instructionCount and 0x3FFL == 0L && startMark.elapsedNow() >= maxExecutionTime) {
             throw JsExecutionLimitExceeded("script exceeded max execution time of $maxExecutionTime")
         }
     }
