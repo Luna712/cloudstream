@@ -3,6 +3,7 @@ package com.lagradost.cloudstream3.utils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
@@ -2174,7 +2175,7 @@ class JsInterpreterTest {
          * isActive==false on the next instruction, throwing JsCancellationException.
         */
         val mark = TimeSource.Monotonic.markNow()
-        assertFailsWith<JsCancellationException> {
+        assertFailsWith<TimeoutCancellationException> {
             withTimeout(3000.milliseconds) {
                 withContext(Dispatchers.Default) {
                     this.evalJs("while(true){}")
