@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.utils
 
-import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -2097,12 +2096,12 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun scopeEvalJsCancelledBeforeCallThrowsCancellationException() {
+    fun scopeEvalJsCancelledBeforeCallThrowsJsCancellationException() {
         // Cancel the scope before calling evalJs. The very first budget check sees
         // isActive==false and throws JsCancellationException immediately.
         val scope = activeScope()
         scope.cancel()
-        assertFailsWith<CancellationException> {
+        assertFailsWith<JsCancellationException> {
             scope.evalJs("var x = 1 + 2", "x")
         }
     }
@@ -2115,7 +2114,7 @@ class JsInterpreterTest {
         val scope = activeScope()
         scope.cancel()
         val mark = TimeSource.Monotonic.markNow()
-        assertFailsWith<CancellationException> {
+        assertFailsWith<JsCancellationException> {
             scope.evalJs("while(true){}")
         }
         assertTrue(
@@ -2153,7 +2152,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun scopeEvalJsCancelledScopeThrowsCancellationException() {
+    fun scopeEvalJsCancelledScopeThrowsJsCancellationException() {
         // A cancelled scope must propagate CancellationException so that withTimeout
         // and structured concurrency see the cancellation correctly. Swallowing it
         // silently as Unit would break withTimeout.
@@ -2175,7 +2174,7 @@ class JsInterpreterTest {
          * isActive==false on the next instruction, throwing JsCancellationException.
         */
         val mark = TimeSource.Monotonic.markNow()
-        assertFailsWith<CancellationException> {
+        assertFailsWith<JsCancellationException> {
             withTimeout(300.milliseconds) {
                 withContext(Dispatchers.Default) {
                     this.evalJs("while(true){}")
