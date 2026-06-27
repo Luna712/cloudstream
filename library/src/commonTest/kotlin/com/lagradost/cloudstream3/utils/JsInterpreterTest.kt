@@ -2100,7 +2100,7 @@ class JsInterpreterTest {
         // Cancel the scope before calling evalJs, the very first budget check should abort.
         val scope = activeScope()
         scope.cancel()
-        val result = scope.evalJs("var x = 1 + 2; x")
+        val result = scope.evalJs("var x = 1 + 2", "x")
         // Cancelled scope => script aborted => Unit (same as all other abort paths).
         assertEquals(Unit, result)
     }
@@ -2165,14 +2165,12 @@ class JsInterpreterTest {
         // extension picks that up at the next budget check and aborts, so the call returns
         // before the internal time budget (default 5s) fires.
         val mark = TimeSource.Monotonic.markNow()
-        // TimeoutCancellationException
-        assertFailsWith<IndexOutOfBoundsException>{
+        assertFailsWith<TimeoutCancellationException>{
             withTimeout(300.milliseconds) {
-                delay(301.milliseconds) // advance virtual time past deadline
                 this.evalJs("while(true){}")
+                delay(301.milliseconds) // advance virtual time past deadline
             }
         }
-        // Should have returned well within the 5s internal budget.
         assertTrue(
             mark.elapsedNow() < 2.seconds,
             "Script ran longer than expected after withTimeout; elapsed: ${mark.elapsedNow()}",
