@@ -1061,7 +1061,7 @@ private class JsInterpreter(
             throw JsExecutionLimitExceeded("script exceeded max instruction count of $maxInstructions")
         }
         if (scope != null && !scope.isActive) {
-            throw JsExecutionLimitExceeded("script cancelled: coroutine scope is no longer active")
+            throw CancellationException("script cancelled: coroutine scope is no longer active")
         }
         // Only sample the clock every 1024 ticks. Calling elapsedNow() on every single
         // statement would add measurable overhead to normal (non-runaway) scripts.
