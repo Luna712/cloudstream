@@ -2226,7 +2226,7 @@ fun suspendEvalJsWithTimeoutCancelsInfiniteLoop() {
     }
     
     latch.await(5, java.util.concurrent.TimeUnit.SECONDS)
-    assertTrue(exception is TimeoutCancellationException)
+    assertTrue(exception is JsCancellationException)
     assertTrue(elapsed > 200.milliseconds)
     assertTrue(elapsed < 1.seconds)
 }
