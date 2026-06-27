@@ -2165,12 +2165,15 @@ class JsInterpreterTest {
         // extension picks that up at the next budget check and aborts, so the call returns
         // before the internal time budget (default 5s) fires.
         val mark = TimeSource.Monotonic.markNow()
-        assertFailsWith<CancellationException>{
+        val job = backgroundScope.launch {
+            this.evalJs("while(true){}", maxExecutionTime = 5.seconds)
+        }
+        assertFailsWith<CancellationException> {
             withTimeout(300.milliseconds) {
-                this.evalJs("while(true){}")
-                delay(301.milliseconds) // advance virtual time past deadline
+                job.join()
             }
         }
+        assertTrue(job.isCancelled)
         assertTrue(
             mark.elapsedNow() < 2.seconds,
             "Script ran longer than expected after withTimeout; elapsed: ${mark.elapsedNow()}",
