@@ -2161,7 +2161,7 @@ class JsInterpreterTest {
         // silently as Unit would break withTimeout.
         val scope = activeScope()
         scope.cancel()
-        assertFailsWith<CancellationException> {
+        assertFailsWith<JsCancellationException> {
             scope.evalJs("1+1")
         }
     }
