@@ -4,6 +4,7 @@ import com.lagradost.cloudstream3.Prerelease
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.utils.StringUtils.decodeUrl
 import com.lagradost.cloudstream3.utils.StringUtils.encodeUrl
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.isActive
 import kotlin.math.E
@@ -1033,6 +1034,11 @@ private class JsInterpreter(
             last
         } catch (r: ReturnSignal) {
             r.value
+        } catch (e: CancellationException) {
+            // CancellationException must never be swallowed. It signals that the
+            // enclosing coroutine has been cancelled and must propagate so that the
+            // coroutine can clean up correctly.
+            throw e
         } catch (e: Throwable) {
             logError(e)
             Unit
