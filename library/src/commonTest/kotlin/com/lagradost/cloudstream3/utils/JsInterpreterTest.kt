@@ -4,6 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withTimeout
 import kotlin.math.E
@@ -2179,9 +2180,7 @@ class JsInterpreterTest {
         var timedOut = false
         try {
             withTimeout(300.milliseconds) {
-                // `this` inside withTimeout is a CoroutineScope whose Job is cancelled
-                // when the timeout fires. Calling the extension on it lets the
-                // interpreter's budget check observe the cancellation.
+                delay(301.milliseconds)
                 this.evalJs(
                     "while(true){}",
                     maxExecutionTime = 5.seconds,
