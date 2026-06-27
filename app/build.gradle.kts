@@ -214,14 +214,14 @@ android {
 
 dependencies {
     // Testing
-    testImplementation(libs.junit)
-    testImplementation(libs.json)
     androidTestImplementation(libs.androidx.test.core)
     androidTestImplementation(libs.androidx.test.espresso.core)
     androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.ext.junit.ktx)
     androidTestImplementation(libs.instancio.core)
-    androidTestImplementation(libs.junit.ktx)
     androidTestImplementation(libs.kotlin.test)
+    testImplementation(libs.junit)
+    testImplementation(libs.json)
 
     // Android Core & Lifecycle
     implementation(libs.activity.ktx)
