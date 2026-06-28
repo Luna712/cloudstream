@@ -207,8 +207,9 @@ class SettingsPlayer : BasePreferenceFragmentCompat() {
         getPref(R.string.player_default_key)?.setOnPreferenceClickListener {
             // Pair each player with its display name, dropping any with none,
             // which would mean something is definitely wrong.
-            val players = VideoClickActionHolder.getPlayers(activity)
-                .mapNotNull { it to (it.name.asStringNull(activity) ?: it::class.simpleName) }
+            val players = VideoClickActionHolder.getPlayers(activity).mapNotNull { player ->
+                (player.name.asStringNull(activity) ?: player::class.simpleName)?.let { player to it }
+            }
 
             val prefNames = buildList {
                 add(getString(R.string.player_settings_play_in_app)) // built-in player display name
