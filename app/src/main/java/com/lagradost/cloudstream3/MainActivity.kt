@@ -784,7 +784,6 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             }
         }
 
-
         val builder = NavOptions.Builder().setLaunchSingleTop(true).setRestoreState(true)
             .setEnterAnim(R.anim.enter_anim)
             .setExitAnim(R.anim.exit_anim)
@@ -815,22 +814,24 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
                     try {
                         getKey<Array<SettingsGeneral.CustomSite>>(USER_PROVIDER_API)?.let { list ->
                             list.forEach { custom ->
-                                allProviders.firstOrNull { it.javaClass.simpleName == custom.parentJavaClass }
-                                    ?.let {
-                                        allProviders.add(
-                                            it.javaClass.getDeclaredConstructor().newInstance()
-                                                .apply {
-                                                    name = custom.name
-                                                    lang = custom.lang
-                                                    mainUrl = custom.url.trimEnd('/')
-                                                    canBeOverridden = false
-                                                })
-                                    }
+                                allProviders.firstOrNull {
+                                    it::class.simpleName == custom.parentClassName
+                                }?.let {
+                                    allProviders.add(
+                                        it::class.java.getDeclaredConstructor().newInstance().apply {
+                                            name = custom.name
+                                            lang = custom.lang
+                                            mainUrl = custom.url.trimEnd('/')
+                                            canBeOverridden = false
+                                        }
+                                    )
+                                }
                             }
                         }
                         // it.hashCode() is not enough to make sure they are distinct
-                        apis =
-                            allProviders.distinctBy { it.lang + it.name + it.mainUrl + it.javaClass.name }
+                        apis = allProviders.distinctBy {
+                            it.lang + it.name + it.mainUrl + it::class.qualifiedName
+                        }
                         APIHolder.apiMap = null
                     } catch (e: Exception) {
                         logError(e)
