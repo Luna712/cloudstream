@@ -137,7 +137,7 @@ fun <R> argamap(
     }.map { it.await() }
 }
 
-@Deprecated("Use runAllAsync with concurrency parameter", level = DeprecationLevel.HIDDEN)
+// @Deprecated("Use runAllAsync with concurrency parameter", level = DeprecationLevel.HIDDEN)
 @Throws(CancellationException::class)
 suspend fun <R> runAllAsync(
     vararg transforms: suspend () -> R,
