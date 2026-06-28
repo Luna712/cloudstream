@@ -205,29 +205,34 @@ class SettingsPlayer : BasePreferenceFragmentCompat() {
         }
 
         getPref(R.string.player_default_key)?.setOnPreferenceClickListener {
+            // Pair each player with its display name, dropping any with none,
+            // which would mean something is definitely wrong.
             val players = VideoClickActionHolder.getPlayers(activity)
-            val prefNames = buildList {
-                add(getString(R.string.player_settings_play_in_app))
-                addAll(players.map { it.name.asStringNull(activity) ?: it.javaClass.simpleName })
-            }
-            val prefValues = buildList {
-                add("")
-                addAll(players.map { it.uniqueId() })
-            }
-            val current =
-                settingsManager.getString(getString(R.string.player_default_key), "") ?: ""
+                .mapNotNull { it to (it.name.asStringNull(activity) ?: it::class.simpleName) }
 
+            val prefNames = buildList {
+                add(getString(R.string.player_settings_play_in_app)) // built-in player display name
+                addAll(players.map { (_, name) -> name })
+            }
+
+            val prefValues = buildList {
+                add("") // "" = built-in player, matches default
+                addAll(players.map { (player, _) -> player.uniqueId() })
+            }
+
+            val current = settingsManager.getString(getString(R.string.player_default_key), "") ?: ""
             activity?.showBottomDialog(
                 prefNames.toList(),
-                prefValues.indexOf(current),
+                prefValues.indexOf(current), // finds index of currently selected player
                 getString(R.string.player_pref),
                 true,
-                {}
+                {},
             ) {
                 settingsManager.edit {
                     putString(getString(R.string.player_default_key), prefValues[it])
                 }
             }
+
             return@setOnPreferenceClickListener true
         }
 
