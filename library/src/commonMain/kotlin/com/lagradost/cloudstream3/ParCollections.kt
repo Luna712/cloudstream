@@ -137,11 +137,11 @@ fun <R> argamap(
     }.map { it.await() }
 }
 
-// @Deprecated("Use runAllAsync with concurrency parameter", level = DeprecationLevel.HIDDEN)
+@Deprecated("Use runAllAsync with concurrency parameter", level = DeprecationLevel.HIDDEN)
 @Throws(CancellationException::class)
 suspend fun <R> runAllAsync(
     vararg transforms: suspend () -> R,
-): List<R?> = runAllAsync(DEFAULT_CONCURRENCY, *transforms)
+): List<R?> = runAllAsync(*transforms, concurrency = DEFAULT_CONCURRENCY)
 
 /**
  * Runs all different functions at the same time and awaits for all to be finished, then returns
@@ -149,8 +149,8 @@ suspend fun <R> runAllAsync(
  */
 @Throws(CancellationException::class)
 suspend fun <R> runAllAsync(
-    concurrency: Int = DEFAULT_CONCURRENCY,
     vararg transforms: suspend () -> R,
+    concurrency: Int = DEFAULT_CONCURRENCY,
 ): List<R?> = coroutineScope {
     val semaphore = Semaphore(concurrency)
     transforms.map { fn ->
