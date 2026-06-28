@@ -174,10 +174,13 @@ import com.lagradost.cloudstream3.utils.UIHelper.setNavigationBarColorCompat
 import com.lagradost.cloudstream3.utils.UIHelper.toPx
 import com.lagradost.cloudstream3.utils.USER_PROVIDER_API
 import com.lagradost.cloudstream3.utils.USER_SELECTED_HOMEPAGE_API
+import com.lagradost.cloudstream3.utils.downloader.DownloadQueueManager
 import com.lagradost.cloudstream3.utils.setText
 import com.lagradost.cloudstream3.utils.setTextHtml
 import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.safefile.SafeFile
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import java.io.File
@@ -187,10 +190,8 @@ import java.net.URLDecoder
 import java.nio.charset.Charset
 import kotlin.math.abs
 import kotlin.math.absoluteValue
+import kotlin.reflect.full.createInstance
 import kotlin.system.exitProcess
-import com.lagradost.cloudstream3.utils.downloader.DownloadQueueManager
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.cancel
 
 class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCallback {
     companion object {
@@ -818,7 +819,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
                                     it::class.simpleName == custom.parentClassName
                                 }?.let {
                                     allProviders.add(
-                                        it::class.java.getDeclaredConstructor().newInstance().apply {
+                                        it::class.createInstance().apply {
                                             name = custom.name
                                             lang = custom.lang
                                             mainUrl = custom.url.trimEnd('/')
