@@ -18,6 +18,7 @@ import com.lagradost.cloudstream3.ui.result.ResultEpisode
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import dev.whyoleg.cryptography.CryptographyProvider
+import dev.whyoleg.cryptography.DelicateCryptographyApi
 import dev.whyoleg.cryptography.algorithms.MD5
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -34,6 +35,7 @@ class AnimeSkipAuth : AuthAPI() {
     val baseClientId = "as1JgiMbW4wKfmTLWXS79iTDQFll76pk"
 
     suspend fun md5(input: String): String {
+        @OptIn(DelicateCryptographyApi::class)
         val digest = CryptographyProvider.Default.get(MD5)
             .hasher().hash(input.encodeToByteArray())
         return BigInteger(1, digest).toString(16).padStart(32, '0')
