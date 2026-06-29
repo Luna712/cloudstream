@@ -84,22 +84,24 @@ object RepositoryManager {
     private val GH_REGEX =
         Regex("^https://raw.githubusercontent.com/([A-Za-z0-9-]+)/([A-Za-z0-9_.-]+)/(.*)$")
 
-
     /** Returns a SHA-256 string of the file content.
      * Example: "sha256-b70462c264cb7f90fc2860a8e58d7544ce747ff347d1d11fa093623901853573" **/
     @WorkerThread
-    suspend fun sha256(file: File): String {
-        val hasher = CryptographyProvider.Default.get(SHA256).hasher()
-        file.inputStream().use { fis ->
-            val buffer = ByteArray(8192)
-            var read = fis.read(buffer)
-            while (read != -1) {
-                hasher.update(buffer, 0, read)
-                read = fis.read(buffer)
+    fun sha256(file: File): String {
+        val hashFunction = CryptographyProvider.Default.get(SHA256)
+            .hasher().createHashFunction()
+        hashFunction.use {
+            file.inputStream().use { fis ->
+                val buffer = ByteArray(8192)
+                var read = fis.read(buffer)
+                while (read != -1) {
+                    it.update(buffer, 0, read)
+                    read = fis.read(buffer)
+                }
             }
-        }
 
-        return "sha256-" + hasher.hash().joinToString("") { "%02x".format(it) }
+            return "sha256-" + it.hashToByteArray().joinToString("") { b -> "%02x".format(b) }
+        }
     }
 
     /* Convert raw.githubusercontent.com urls to cdn.jsdelivr.net if enabled in settings */
