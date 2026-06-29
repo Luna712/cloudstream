@@ -24,7 +24,7 @@ import kotlinx.serialization.json.decodeFromJsonElement
  *   @Serializable
  *   data class MyData(
  *       @Serializable(with = NullableStringSerializer::class)
- *       val title: String? = null,
+ *       @SerialName("title") val title: String? = null,
  *   )
  */
 @Prerelease
