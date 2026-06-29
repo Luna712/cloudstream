@@ -26,7 +26,7 @@ object VotingApi {
             .fold("") { str, it -> str + "%02x".format(it) }
 
     suspend fun SitePlugin.getVotes(): Int = getVotes(url)
-    fun SitePlugin.hasVoted(): Boolean = hasVoted(url)
+    suspend fun SitePlugin.hasVoted(): Boolean = hasVoted(url)
     suspend fun SitePlugin.vote(): Int = vote(url)
     fun SitePlugin.canVote(): Boolean = canVote(this.url)
 
@@ -52,7 +52,7 @@ object VotingApi {
             votesCache[pluginUrl] = it
         }
 
-    fun hasVoted(pluginUrl: String) =
+    suspend fun hasVoted(pluginUrl: String) =
         getKey("cs3-votes/${transformUrl(pluginUrl)}") ?: false
 
     fun canVote(pluginUrl: String): Boolean =
