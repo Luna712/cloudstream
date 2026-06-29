@@ -29,6 +29,7 @@ import kotlinx.serialization.json.decodeFromJsonElement
  */
 @Prerelease
 object NullableStringSerializer : KSerializer<String?> {
+
     override val descriptor: SerialDescriptor =
         PrimitiveSerialDescriptor("NullableString", PrimitiveKind.STRING)
 
@@ -42,7 +43,7 @@ object NullableStringSerializer : KSerializer<String?> {
     }
 
     override fun serialize(encoder: Encoder, value: String?) {
-        @OptIn(ExperimentalSerializationApi::class)
+        @OptIn(ExperimentalSerializationApi::class) // encodeNull is experimental for now
         if (value == null) encoder.encodeNull() else encoder.encodeString(value)
     }
 }
