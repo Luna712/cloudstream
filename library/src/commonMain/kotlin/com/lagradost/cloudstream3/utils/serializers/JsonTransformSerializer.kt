@@ -16,8 +16,8 @@ import kotlinx.serialization.json.JsonTransformingSerializer
  *
  * Behaviours (applied in order per field):
  *   singleValueAsListKeys ACCEPT_SINGLE_VALUE_AS_ARRAY
- *   emptyArrayAsNullKeys ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT
  *   emptyStringAsNullKeys ACCEPT_EMPTY_STRING_AS_NULL_OBJECT
+ *   emptyArrayAsNullKeys ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT
  *
  * Usage:
  *
@@ -32,8 +32,8 @@ import kotlinx.serialization.json.JsonTransformingSerializer
  *       object Serializer : JsonTransformSerializer<MyData>(
  *           MyData.generatedSerializer(),
  *           singleValueAsListKeys = setOf("tags"),
- *           emptyArrayAsNullKeys = setOf("tags", "meta"),
  *           emptyStringAsNullKeys = setOf("title", "tags"),
+ *           emptyArrayAsNullKeys = setOf("tags", "meta"),
  *       )
  *   }
  */
@@ -49,6 +49,14 @@ abstract class JsonTransformSerializer<T : Any>(
         if (element !is JsonObject) return element
         return JsonObject(element.mapValues { (key, value) ->
             var result = value
+            if (key in singleValueAsListKeys) {
+                result = when (result) {
+                    is JsonArray -> result
+                    JsonNull -> JsonArray(emptyList())
+                    else -> JsonArray(listOf(result))
+                }
+            }
+
             if (key in emptyStringAsNullKeys) {
                 if (result is JsonPrimitive && result.isString && result.content.isEmpty()) {
                     result = JsonNull
@@ -58,14 +66,6 @@ abstract class JsonTransformSerializer<T : Any>(
             if (key in emptyArrayAsNullKeys) {
                 if (result is JsonArray && result.isEmpty()) {
                     result = JsonNull
-                }
-            }
-
-            if (key in singleValueAsListKeys) {
-                result = when (result) {
-                    is JsonArray -> result
-                    JsonNull -> JsonArray(emptyList())
-                    else -> JsonArray(listOf(result))
                 }
             }
 
