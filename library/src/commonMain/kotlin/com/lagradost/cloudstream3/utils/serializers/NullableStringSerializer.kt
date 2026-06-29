@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.utils.serializers
 
 import com.lagradost.cloudstream3.Prerelease
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.descriptors.PrimitiveKind
@@ -41,6 +42,7 @@ object NullableStringSerializer : KSerializer<String?> {
     }
 
     override fun serialize(encoder: Encoder, value: String?) {
+        @OptIn(ExperimentalSerializationApi::class)
         if (value == null) encoder.encodeNull() else encoder.encodeString(value)
     }
 }
