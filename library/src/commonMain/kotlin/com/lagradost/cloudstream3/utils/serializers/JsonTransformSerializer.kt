@@ -25,9 +25,9 @@ import kotlinx.serialization.json.JsonTransformingSerializer
  *   @KeepGeneratedSerializer
  *   @Serializable(with = MyData.Serializer::class)
  *   data class MyData(
- *       val title: String? = null,
- *       val tags: List<String>? = null,
- *       val meta: MyMeta? = null,
+ *       @SerialName("title") val title: String? = null,
+ *       @SerialName("tags") val tags: List<String>? = null,
+ *       @SerialName("meta") val meta: MyMeta? = null,
  *   ) {
  *       object Serializer : JsonTransformSerializer<MyData>(
  *           MyData.generatedSerializer(),
