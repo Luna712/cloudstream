@@ -7,9 +7,10 @@ import com.lagradost.cloudstream3.CloudStreamApp.Companion.context
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKey
 import com.lagradost.cloudstream3.R
-import java.security.MessageDigest
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.Coroutines.main
+import dev.whyoleg.cryptography.CryptographyProvider
+import dev.whyoleg.cryptography.algorithms.SHA256
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.serialization.SerialName
@@ -19,10 +20,9 @@ object VotingApi {
     private const val LOGKEY = "VotingApi"
     private const val API_DOMAIN = "https://api.countify.xyz"
 
-    private fun transformUrl(url: String): String =
-        MessageDigest
-            .getInstance("SHA-256")
-            .digest("${url}#funny-salt".toByteArray())
+    private suspend fun transformUrl(url: String): String =
+        CryptographyProvider.Default.get(SHA256)
+            .hasher().hash("$url#funny-salt".encodeToByteArray())
             .fold("") { str, it -> str + "%02x".format(it) }
 
     suspend fun SitePlugin.getVotes(): Int = getVotes(url)
