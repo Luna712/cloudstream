@@ -8,12 +8,12 @@ import com.lagradost.cloudstream3.APIHolder.unixTimeMS
 import com.lagradost.cloudstream3.base64Encode
 import com.lagradost.cloudstream3.syncproviders.AccountManager.Companion.APP_STRING
 import com.lagradost.cloudstream3.utils.AppContextUtils.splitQuery
+import dev.whyoleg.cryptography.random.CryptographyRandom
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonNames
 import java.net.URI
-import java.security.SecureRandom
 
 data class AuthLoginPage(
     /** The website to open to authenticate */
@@ -182,9 +182,7 @@ abstract class AuthAPI {
         fun generateCodeVerifier(): String {
             // It is recommended to use a URL-safe string as code_verifier.
             // See section 4 of RFC 7636 for more details.
-            val secureRandom = SecureRandom()
-            val codeVerifierBytes = ByteArray(96) // base64 has 6bit per char; (8/6)*96 = 128
-            secureRandom.nextBytes(codeVerifierBytes)
+            val codeVerifierBytes = CryptographyRandom.nextBytes(96) // base64 has 6bit per char; (8/6)*96 = 128
             return base64Encode(codeVerifierBytes).trimEnd('=')
                 .replace("+", "-").replace("/", "_").replace("\n", "")
         }
