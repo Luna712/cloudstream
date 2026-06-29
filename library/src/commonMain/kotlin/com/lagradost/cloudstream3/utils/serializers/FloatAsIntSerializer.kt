@@ -22,7 +22,7 @@ import kotlinx.serialization.json.intOrNull
  *   @Serializable
  *   data class MyData(
  *       @Serializable(with = FloatAsIntSerializer::class)
- *       val count: Int = 0,
+ *       @SerialName("count") val count: Int = 0,
  *   )
  */
 @Prerelease
