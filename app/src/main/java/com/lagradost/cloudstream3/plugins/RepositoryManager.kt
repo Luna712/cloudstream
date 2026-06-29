@@ -16,6 +16,8 @@ import com.lagradost.cloudstream3.plugins.PluginManager.getPluginSanitizedFileNa
 import com.lagradost.cloudstream3.plugins.PluginManager.unloadPlugin
 import com.lagradost.cloudstream3.ui.settings.extensions.REPOSITORIES_KEY
 import com.lagradost.cloudstream3.ui.settings.extensions.RepositoryData
+import dev.whyoleg.cryptography.CryptographyProvider
+import dev.whyoleg.cryptography.algorithms.SHA256
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.serialization.SerialName
@@ -24,7 +26,6 @@ import java.io.File
 import java.nio.file.AtomicMoveNotSupportedException
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
-import java.security.MessageDigest
 import java.util.concurrent.TimeUnit
 
 /**
@@ -87,18 +88,18 @@ object RepositoryManager {
     /** Returns a SHA-256 string of the file content.
      * Example: "sha256-b70462c264cb7f90fc2860a8e58d7544ce747ff347d1d11fa093623901853573" **/
     @WorkerThread
-    fun sha256(file: File): String {
-        val digest = MessageDigest.getInstance("SHA-256")
-
+    suspend fun sha256(file: File): String {
+        val hasher = CryptographyProvider.Default.get(SHA256).hasher()
         file.inputStream().use { fis ->
             val buffer = ByteArray(8192)
             var read = fis.read(buffer)
             while (read != -1) {
-                digest.update(buffer, 0, read)
+                hasher.update(buffer, 0, read)
                 read = fis.read(buffer)
             }
         }
-        return "sha256-" + digest.digest().joinToString("") { "%02x".format(it) }
+
+        return "sha256-" + hasher.hash().joinToString("") { "%02x".format(it) }
     }
 
     /* Convert raw.githubusercontent.com urls to cdn.jsdelivr.net if enabled in settings */
