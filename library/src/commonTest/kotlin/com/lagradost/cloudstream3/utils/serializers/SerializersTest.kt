@@ -12,7 +12,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
-@OptIn(ExperimentalSerializationApi::class)
+@OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
 @KeepGeneratedSerializer
 @Serializable(with = NonEmptyData.Serializer::class)
 data class NonEmptyData(
@@ -24,7 +24,7 @@ data class NonEmptyData(
     object Serializer : NonEmptySerializer<NonEmptyData>(NonEmptyData.generatedSerializer())
 }
 
-@OptIn(ExperimentalSerializationApi::class)
+@OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
 @KeepGeneratedSerializer
 @Serializable(with = WriteOnlyData.Serializer::class)
 data class WriteOnlyData(
@@ -37,7 +37,7 @@ data class WriteOnlyData(
     )
 }
 
-@OptIn(ExperimentalSerializationApi::class)
+@OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
 @KeepGeneratedSerializer
 @Serializable(with = MultiWriteOnly.Serializer::class)
 data class MultiWriteOnly(
@@ -51,7 +51,7 @@ data class MultiWriteOnly(
     )
 }
 
-@OptIn(ExperimentalSerializationApi::class)
+@OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
 @KeepGeneratedSerializer
 @Serializable(with = SingleValueData.Serializer::class)
 data class SingleValueData(
@@ -69,7 +69,7 @@ data class NestedMeta(
     @SerialName("key") val key: String = "",
 )
 
-@OptIn(ExperimentalSerializationApi::class)
+@OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
 @KeepGeneratedSerializer
 @Serializable(with = EmptyArrayData.Serializer::class)
 data class EmptyArrayData(
@@ -82,7 +82,7 @@ data class EmptyArrayData(
     )
 }
 
-@OptIn(ExperimentalSerializationApi::class)
+@OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
 @KeepGeneratedSerializer
 @Serializable(with = EmptyStringData.Serializer::class)
 data class EmptyStringData(
@@ -96,7 +96,7 @@ data class EmptyStringData(
     )
 }
 
-@OptIn(ExperimentalSerializationApi::class)
+@OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
 @KeepGeneratedSerializer
 @Serializable(with = SingleValueOrNullData.Serializer::class)
 data class SingleValueOrNullData(
@@ -111,7 +111,7 @@ data class SingleValueOrNullData(
     )
 }
 
-@OptIn(ExperimentalSerializationApi::class)
+@OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
 @KeepGeneratedSerializer
 @Serializable(with = NullableFieldsData.Serializer::class)
 data class NullableFieldsData(
@@ -126,7 +126,7 @@ data class NullableFieldsData(
     )
 }
 
-@OptIn(ExperimentalSerializationApi::class)
+@OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
 @KeepGeneratedSerializer
 @Serializable(with = SingleValueOrEmptyStringData.Serializer::class)
 data class SingleValueOrEmptyStringData(
@@ -140,7 +140,7 @@ data class SingleValueOrEmptyStringData(
     )
 }
 
-@OptIn(ExperimentalSerializationApi::class)
+@OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
 @KeepGeneratedSerializer
 @Serializable(with = AllTransformsData.Serializer::class)
 data class AllTransformsData(
