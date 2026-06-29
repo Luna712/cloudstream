@@ -33,12 +33,11 @@ abstract class SingleValueAsListSerializer<T : Any>(tSerializer: KSerializer<T>)
 
     override fun transformDeserialize(element: JsonElement): JsonElement {
         if (element !is JsonObject) return element
-
         return JsonObject(element.mapValues { (_, value) ->
             when (value) {
                 is JsonArray -> value
-                JsonNull     -> JsonArray(emptyList())
-                else         -> JsonArray(listOf(value))
+                JsonNull -> JsonArray(emptyList())
+                else -> JsonArray(listOf(value))
             }
         })
     }
