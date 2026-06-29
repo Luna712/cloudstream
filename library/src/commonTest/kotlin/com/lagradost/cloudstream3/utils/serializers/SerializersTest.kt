@@ -58,8 +58,16 @@ data class SingleValueData(
     @SerialName("tags") val tags: List<String> = emptyList(),
     @SerialName("nums") val nums: List<Int> = emptyList(),
 ) {
-    object Serializer : SingleValueAsListSerializer<SingleValueData>(SingleValueData.generatedSerializer())
+    object Serializer : JsonTransformSerializer<SingleValueData>(
+        SingleValueData.generatedSerializer(),
+        singleValueAsListKeys = setOf("tags", "nums"),
+    )
 }
+
+@Serializable
+data class NestedMeta(
+    @SerialName("key") val key: String = "",
+)
 
 @OptIn(ExperimentalSerializationApi::class)
 @KeepGeneratedSerializer
@@ -68,13 +76,11 @@ data class EmptyArrayData(
     @SerialName("meta") val meta: NestedMeta? = null,
     @SerialName("other") val other: String = "hello",
 ) {
-    object Serializer : EmptyArrayAsNullSerializer<EmptyArrayData>(EmptyArrayData.generatedSerializer())
+    object Serializer : JsonTransformSerializer<EmptyArrayData>(
+        EmptyArrayData.generatedSerializer(),
+        emptyArrayAsNullKeys = setOf("meta"),
+    )
 }
-
-@Serializable
-data class NestedMeta(
-  @SerialName("key") val key: String = "",
-)
 
 @OptIn(ExperimentalSerializationApi::class)
 @KeepGeneratedSerializer
@@ -84,7 +90,71 @@ data class EmptyStringData(
     @SerialName("episode") val episode: NestedMeta? = null,
     @SerialName("keep") val keep: String? = "hello",
 ) {
-    object Serializer : EmptyStringAsNullSerializer<EmptyStringData>(EmptyStringData.generatedSerializer())
+    object Serializer : JsonTransformSerializer<EmptyStringData>(
+        EmptyStringData.generatedSerializer(),
+        emptyStringAsNullKeys = setOf("title", "episode", "keep"),
+    )
+}
+
+@OptIn(ExperimentalSerializationApi::class)
+@KeepGeneratedSerializer
+@Serializable(with = SingleValueOrNullData.Serializer::class)
+data class SingleValueOrNullData(
+    @SerialName("tags") val tags: List<String>? = null,
+    @SerialName("nums") val nums: List<Int>? = null,
+    @SerialName("other") val other: String = "hello",
+) {
+    object Serializer : JsonTransformSerializer<SingleValueOrNullData>(
+        SingleValueOrNullData.generatedSerializer(),
+        singleValueAsListKeys = setOf("tags", "nums"),
+        emptyArrayAsNullKeys = setOf("tags", "nums"),
+    )
+}
+
+@OptIn(ExperimentalSerializationApi::class)
+@KeepGeneratedSerializer
+@Serializable(with = NullableFieldsData.Serializer::class)
+data class NullableFieldsData(
+    @SerialName("title") val title: String? = null,
+    @SerialName("meta") val meta: NestedMeta? = null,
+    @SerialName("other") val other: String = "hello",
+) {
+    object Serializer : JsonTransformSerializer<NullableFieldsData>(
+        NullableFieldsData.generatedSerializer(),
+        emptyStringAsNullKeys = setOf("title"),
+        emptyArrayAsNullKeys = setOf("meta"),
+    )
+}
+
+@OptIn(ExperimentalSerializationApi::class)
+@KeepGeneratedSerializer
+@Serializable(with = SingleValueOrEmptyStringData.Serializer::class)
+data class SingleValueOrEmptyStringData(
+    @SerialName("tags") val tags: List<String> = emptyList(),
+    @SerialName("title") val title: String? = null,
+) {
+    object Serializer : JsonTransformSerializer<SingleValueOrEmptyStringData>(
+        SingleValueOrEmptyStringData.generatedSerializer(),
+        singleValueAsListKeys = setOf("tags"),
+        emptyStringAsNullKeys = setOf("title"),
+    )
+}
+
+@OptIn(ExperimentalSerializationApi::class)
+@KeepGeneratedSerializer
+@Serializable(with = AllTransformsData.Serializer::class)
+data class AllTransformsData(
+    @SerialName("tags") val tags: List<String>? = null,
+    @SerialName("title") val title: String? = null,
+    @SerialName("meta") val meta: NestedMeta? = null,
+    @SerialName("other") val other: String = "hello",
+) {
+    object Serializer : JsonTransformSerializer<AllTransformsData>(
+        AllTransformsData.generatedSerializer(),
+        singleValueAsListKeys = setOf("tags"),
+        emptyArrayAsNullKeys = setOf("tags", "meta"),
+        emptyStringAsNullKeys = setOf("title", "tags"),
+    )
 }
 
 @Serializable
@@ -294,6 +364,152 @@ class SerializersTest {
         val data = EmptyStringData(title = "hello", episode = NestedMeta("x"), keep = "world")
         val encoded = data.toJson()
         val decoded = parseJson<EmptyStringData>(encoded)
+        assertEquals(data, decoded)
+    }
+
+    @Test
+    fun singleValueOrNullWrapsBareValueInList() {
+        val input = """{"tags":"a","nums":1,"other":"hello"}"""
+        val result = parseJson<SingleValueOrNullData>(input)
+        assertEquals(listOf("a"), result.tags)
+        assertEquals(listOf(1), result.nums)
+    }
+
+    @Test
+    fun singleValueOrNullTreatsEmptyArrayAsNull() {
+        val input = """{"tags":[],"nums":[],"other":"hello"}"""
+        val result = parseJson<SingleValueOrNullData>(input)
+        assertNull(result.tags)
+        assertNull(result.nums)
+    }
+
+    @Test
+    fun singleValueOrNullDecodesArrayNormally() {
+        val input = """{"tags":["a","b"],"nums":[1,2],"other":"hello"}"""
+        val result = parseJson<SingleValueOrNullData>(input)
+        assertEquals(listOf("a", "b"), result.tags)
+        assertEquals(listOf(1, 2), result.nums)
+    }
+
+    @Test
+    fun singleValueOrNullDoesNotAffectOtherFields() {
+        val input = """{"tags":[],"nums":[],"other":"world"}"""
+        val result = parseJson<SingleValueOrNullData>(input)
+        assertEquals("world", result.other)
+    }
+
+    @Test
+    fun nullableFieldsEmptyStringBecomesNull() {
+        val input = """{"title":"","meta":{"key":"value"},"other":"hello"}"""
+        val result = parseJson<NullableFieldsData>(input)
+        assertNull(result.title)
+        assertEquals(NestedMeta("value"), result.meta)
+    }
+
+    @Test
+    fun nullableFieldsEmptyArrayBecomesNull() {
+        val input = """{"title":"hello","meta":[],"other":"hello"}"""
+        val result = parseJson<NullableFieldsData>(input)
+        assertEquals("hello", result.title)
+        assertNull(result.meta)
+    }
+
+    @Test
+    fun nullableFieldsBothNullAtOnce() {
+        val input = """{"title":"","meta":[],"other":"hello"}"""
+        val result = parseJson<NullableFieldsData>(input)
+        assertNull(result.title)
+        assertNull(result.meta)
+    }
+
+    @Test
+    fun nullableFieldsDoesNotAffectOtherFields() {
+        val input = """{"title":"","meta":[],"other":"world"}"""
+        val result = parseJson<NullableFieldsData>(input)
+        assertEquals("world", result.other)
+    }
+
+    @Test
+    fun nullableFieldsRoundtripsCorrectly() {
+        val data = NullableFieldsData(title = "hello", meta = NestedMeta("x"), other = "world")
+        val encoded = data.toJson()
+        val decoded = parseJson<NullableFieldsData>(encoded)
+        assertEquals(data, decoded)
+    }
+
+    @Test
+    fun singleValueOrEmptyStringWrapsBareString() {
+        val input = """{"tags":"a","title":"hello"}"""
+        val result = parseJson<SingleValueOrEmptyStringData>(input)
+        assertEquals(listOf("a"), result.tags)
+        assertEquals("hello", result.title)
+    }
+
+    @Test
+    fun singleValueOrEmptyStringTurnsEmptyTitleToNull() {
+        val input = """{"tags":["a"],"title":""}"""
+        val result = parseJson<SingleValueOrEmptyStringData>(input)
+        assertEquals(listOf("a"), result.tags)
+        assertNull(result.title)
+    }
+
+    @Test
+    fun singleValueOrEmptyStringRoundtripsCorrectly() {
+        val data = SingleValueOrEmptyStringData(tags = listOf("x"), title = "hello")
+        val encoded = data.toJson()
+        val decoded = parseJson<SingleValueOrEmptyStringData>(encoded)
+        assertEquals(data, decoded)
+    }
+
+    @Test
+    fun allTransformsWrapsBareStringInList() {
+        val input = """{"tags":"a","title":"hello","meta":{"key":"value"},"other":"world"}"""
+        val result = parseJson<AllTransformsData>(input)
+        assertEquals(listOf("a"), result.tags)
+    }
+
+    @Test
+    fun allTransformsEmptyArrayTagsBecomesNull() {
+        val input = """{"tags":[],"title":"hello","meta":{"key":"value"},"other":"world"}"""
+        val result = parseJson<AllTransformsData>(input)
+        assertNull(result.tags)
+    }
+
+    @Test
+    fun allTransformsEmptyMetaBecomesNull() {
+        val input = """{"tags":["a"],"title":"hello","meta":[],"other":"world"}"""
+        val result = parseJson<AllTransformsData>(input)
+        assertNull(result.meta)
+    }
+
+    @Test
+    fun allTransformsEmptyTitleBecomesNull() {
+        val input = """{"tags":["a"],"title":"","meta":{"key":"value"},"other":"world"}"""
+        val result = parseJson<AllTransformsData>(input)
+        assertNull(result.title)
+    }
+
+    @Test
+    fun allTransformsAllNullAtOnce() {
+        val input = """{"tags":[],"title":"","meta":[],"other":"world"}"""
+        val result = parseJson<AllTransformsData>(input)
+        assertNull(result.tags)
+        assertNull(result.title)
+        assertNull(result.meta)
+    }
+
+    @Test
+    fun allTransformsDoesNotAffectOtherFields() {
+        val input = """{"tags":[],"title":"","meta":[],"other":"world"}"""
+        val result = parseJson<AllTransformsData>(input)
+        assertEquals("world", result.other)
+    }
+
+    @Test
+    fun allTransformsRoundtripsCorrectly() {
+        val data = AllTransformsData(tags = listOf("a"), title = "hello", meta = NestedMeta("x"), other = "world")
+        val encoded = data.toJson()
+        val decoded = parseJson<AllTransformsData>(encoded)
         assertEquals(data, decoded)
     }
 
