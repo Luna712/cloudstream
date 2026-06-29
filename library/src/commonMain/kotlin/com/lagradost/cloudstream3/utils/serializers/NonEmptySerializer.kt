@@ -34,7 +34,6 @@ abstract class NonEmptySerializer<T : Any>(tSerializer: KSerializer<T>) :
 
     override fun transformSerialize(element: JsonElement): JsonElement {
         if (element !is JsonObject) return element
-
         return JsonObject(element.filterValues { value ->
             when (value) {
                 is JsonPrimitive -> value.content.isNotEmpty()
