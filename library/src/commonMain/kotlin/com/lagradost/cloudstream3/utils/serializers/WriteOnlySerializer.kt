@@ -12,7 +12,7 @@ import kotlinx.serialization.json.JsonTransformingSerializer
  *
  * Usage:
  *
- *   @OptIn(ExperimentalSerializationApi::class)
+ *   @OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
  *   @KeepGeneratedSerializer
  *   @Serializable(with = MyData.Serializer::class)
  *   data class MyData(
