@@ -22,7 +22,7 @@ import kotlinx.serialization.json.longOrNull
  *   @Serializable
  *   data class MyData(
  *       @Serializable(with = FloatAsLongSerializer::class)
- *       val timestamp: Long = 0L,
+ *       @SerialName("timestamp") val timestamp: Long = 0L,
  *   )
  */
 @Prerelease
