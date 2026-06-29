@@ -57,6 +57,58 @@ data class UriData(
     val uri: Uri = Uri.EMPTY,
 )
 
+@OptIn(ExperimentalSerializationApi::class)
+@KeepGeneratedSerializer
+@Serializable(with = SingleValueData.Serializer::class)
+data class SingleValueData(
+    val tags: List<String> = emptyList(),
+    val nums: List<Int> = emptyList(),
+) {
+    object Serializer : SingleValueAsListSerializer<SingleValueData>(SingleValueData.generatedSerializer())
+}
+
+@OptIn(ExperimentalSerializationApi::class)
+@KeepGeneratedSerializer
+@Serializable(with = EmptyArrayData.Serializer::class)
+data class EmptyArrayData(
+    val meta: NestedMeta? = null,
+    val other: String = "hello",
+) {
+    object Serializer : EmptyArrayAsNullSerializer<EmptyArrayData>(EmptyArrayData.generatedSerializer())
+}
+
+@Serializable
+data class NestedMeta(val key: String = "")
+
+@OptIn(ExperimentalSerializationApi::class)
+@KeepGeneratedSerializer
+@Serializable(with = EmptyStringData.Serializer::class)
+data class EmptyStringData(
+    val title: String? = null,
+    val episode: NestedMeta? = null,
+    val keep: String? = "hello",
+) {
+    object Serializer : EmptyStringAsNullSerializer<EmptyStringData>(EmptyStringData.generatedSerializer())
+}
+
+@Serializable
+data class FloatIntData(
+    @Serializable(with = FloatAsIntSerializer::class)
+    val count: Int = 0,
+)
+
+@Serializable
+data class FloatLongData(
+    @Serializable(with = FloatAsLongSerializer::class)
+    val timestamp: Long = 0L,
+)
+
+@Serializable
+data class NullableStringData(
+    @Serializable(with = NullableStringSerializer::class)
+    val title: String? = null,
+)
+
 class SerializerTest {
 
     @Test
@@ -153,5 +205,208 @@ class SerializerTest {
         val encoded = data.toJson()
         val decoded = parseJson<UriData>(encoded)
         assertEquals(data.uri, decoded.uri)
+    }
+
+    @Test
+    fun singleValueAsListDecodesArrayNormally() {
+        val input = """{"tags":["a","b"],"nums":[1,2]}"""
+        val result = parseJson<SingleValueData>(input)
+        assertEquals(listOf("a", "b"), result.tags)
+        assertEquals(listOf(1, 2), result.nums)
+    }
+
+    @Test
+    fun singleValueAsListWrapsBareStringInList() {
+        val input = """{"tags":"a","nums":[1]}"""
+        val result = parseJson<SingleValueData>(input)
+        assertEquals(listOf("a"), result.tags)
+    }
+
+    @Test
+    fun singleValueAsListWrapsBareIntInList() {
+        val input = """{"tags":[],"nums":42}"""
+        val result = parseJson<SingleValueData>(input)
+        assertEquals(listOf(42), result.nums)
+    }
+
+    @Test
+    fun singleValueAsListDecodesNullAsEmptyList() {
+        val input = """{"tags":null,"nums":[]}"""
+        val result = parseJson<SingleValueData>(input)
+        assertEquals(emptyList<String>(), result.tags)
+    }
+
+    @Test
+    fun singleValueAsListRoundtripsCorrectly() {
+        val data = SingleValueData(tags = listOf("x", "y"), nums = listOf(1, 2))
+        val encoded = data.toJson()
+        val decoded = parseJson<SingleValueData>(encoded)
+        assertEquals(data, decoded)
+    }
+
+    @Test
+    fun emptyArrayAsNullDecodesEmptyArrayAsNull() {
+        val input = """{"meta":[],"other":"hello"}"""
+        val result = parseJson<EmptyArrayData>(input)
+        assertNull(result.meta)
+    }
+
+    @Test
+    fun emptyArrayAsNullDecodesNullAsNull() {
+        val input = """{"meta":null,"other":"hello"}"""
+        val result = parseJson<EmptyArrayData>(input)
+        assertNull(result.meta)
+    }
+
+    @Test
+    fun emptyArrayAsNullDecodesObjectNormally() {
+        val input = """{"meta":{"key":"value"},"other":"hello"}"""
+        val result = parseJson<EmptyArrayData>(input)
+        assertEquals(NestedMeta("value"), result.meta)
+    }
+
+    @Test
+    fun emptyArrayAsNullDoesNotAffectOtherFields() {
+        val input = """{"meta":[],"other":"world"}"""
+        val result = parseJson<EmptyArrayData>(input)
+        assertEquals("world", result.other)
+    }
+
+    @Test
+    fun emptyArrayAsNullRoundtripsCorrectly() {
+        val data = EmptyArrayData(meta = NestedMeta("test"), other = "hello")
+        val encoded = data.toJson()
+        val decoded = parseJson<EmptyArrayData>(encoded)
+        assertEquals(data, decoded)
+    }
+
+    @Test
+    fun emptyStringAsNullDecodesEmptyStringAsNull() {
+        val input = """{"title":"","episode":null,"keep":"hello"}"""
+        val result = parseJson<EmptyStringData>(input)
+        assertNull(result.title)
+    }
+
+    @Test
+    fun emptyStringAsNullDecodesNullAsNull() {
+        val input = """{"title":null,"episode":null,"keep":"hello"}"""
+        val result = parseJson<EmptyStringData>(input)
+        assertNull(result.title)
+    }
+
+    @Test
+    fun emptyStringAsNullKeepsNonEmptyString() {
+        val input = """{"title":"hello","episode":null,"keep":"world"}"""
+        val result = parseJson<EmptyStringData>(input)
+        assertEquals("hello", result.title)
+    }
+
+    @Test
+    fun emptyStringAsNullDecodesObjectNormally() {
+        val input = """{"title":null,"episode":{"key":"value"},"keep":"hello"}"""
+        val result = parseJson<EmptyStringData>(input)
+        assertEquals(NestedMeta("value"), result.episode)
+    }
+
+    @Test
+    fun emptyStringAsNullDoesNotAffectNonEmptyFields() {
+        val input = """{"title":"","episode":null,"keep":"world"}"""
+        val result = parseJson<EmptyStringData>(input)
+        assertEquals("world", result.keep)
+    }
+
+    @Test
+    fun emptyStringAsNullRoundtripsCorrectly() {
+        val data = EmptyStringData(title = "hello", episode = NestedMeta("x"), keep = "world")
+        val encoded = data.toJson()
+        val decoded = parseJson<EmptyStringData>(encoded)
+        assertEquals(data, decoded)
+    }
+
+    @Test
+    fun floatAsIntTruncatesFloat() {
+        val input = """{"count":3.9}"""
+        val result = parseJson<FloatIntData>(input)
+        assertEquals(3, result.count)
+    }
+
+    @Test
+    fun floatAsIntDecodesIntNormally() {
+        val input = """{"count":42}"""
+        val result = parseJson<FloatIntData>(input)
+        assertEquals(42, result.count)
+    }
+
+    @Test
+    fun floatAsIntHandlesNegativeFloat() {
+        val input = """{"count":-2.7}"""
+        val result = parseJson<FloatIntData>(input)
+        assertEquals(-2, result.count)
+    }
+
+    @Test
+    fun floatAsIntRoundtripsCorrectly() {
+        val data = FloatIntData(count = 7)
+        val encoded = data.toJson()
+        val decoded = parseJson<FloatIntData>(encoded)
+        assertEquals(data, decoded)
+    }
+
+    @Test
+    fun floatAsLongTruncatesFloat() {
+        val input = """{"timestamp":1234567890.9}"""
+        val result = parseJson<FloatLongData>(input)
+        assertEquals(1234567890L, result.timestamp)
+    }
+
+    @Test
+    fun floatAsLongDecodesLongNormally() {
+        val input = """{"timestamp":9999999999}"""
+        val result = parseJson<FloatLongData>(input)
+        assertEquals(9999999999L, result.timestamp)
+    }
+
+    @Test
+    fun floatAsLongHandlesNegativeFloat() {
+        val input = """{"timestamp":-100.6}"""
+        val result = parseJson<FloatLongData>(input)
+        assertEquals(-100L, result.timestamp)
+    }
+
+    @Test
+    fun floatAsLongRoundtripsCorrectly() {
+        val data = FloatLongData(timestamp = 1700000000L)
+        val encoded = data.toJson()
+        val decoded = parseJson<FloatLongData>(encoded)
+        assertEquals(data, decoded)
+    }
+
+    @Test
+    fun nullableStringDecodesEmptyStringAsNull() {
+        val input = """{"title":""}"""
+        val result = parseJson<NullableStringData>(input)
+        assertNull(result.title)
+    }
+
+    @Test
+    fun nullableStringDecodesNullAsNull() {
+        val input = """{"title":null}"""
+        val result = parseJson<NullableStringData>(input)
+        assertNull(result.title)
+    }
+
+    @Test
+    fun nullableStringKeepsNonEmptyString() {
+        val input = """{"title":"hello"}"""
+        val result = parseJson<NullableStringData>(input)
+        assertEquals("hello", result.title)
+    }
+
+    @Test
+    fun nullableStringRoundtripsCorrectly() {
+        val data = NullableStringData(title = "world")
+        val encoded = data.toJson()
+        val decoded = parseJson<NullableStringData>(encoded)
+        assertEquals(data, decoded)
     }
 }
