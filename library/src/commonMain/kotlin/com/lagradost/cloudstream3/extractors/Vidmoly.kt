@@ -40,7 +40,7 @@ open class Vidmoly : ExtractorApi() {
             else url
 
         val script = app.get(newUrl, headers = headers, referer = referer)
-            .document.select("script")
+            .document().select("script")
             .firstOrNull { it.data().contains("sources:") }
             ?.data()
 

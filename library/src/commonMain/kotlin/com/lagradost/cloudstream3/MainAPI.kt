@@ -195,12 +195,12 @@ object APIHolder {
                     referer = referer,
                     cacheTime = 0
                 )
-                    .text
+                    .text()
                     .substringAfter("releases/")
                     .substringBefore("/")
             val recapToken =
                 app.get("https://www.google.com/recaptcha/api2/anchor?ar=1&hl=en&size=invisible&cb=cs3&k=$key&co=$domain&v=$vToken")
-                    .document
+                    .document()
                     .selectFirst("#recaptcha-token")?.attr("value")
             if (recapToken != null) {
                 return app.post(
@@ -213,7 +213,7 @@ object APIHolder {
                         "sa" to "",
                         "reason" to "q"
                     ), cacheTime = 0
-                ).text
+                ).text()
                     .substringAfter("rresp\",\"")
                     .substringBefore("\"")
             }

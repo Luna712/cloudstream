@@ -30,7 +30,7 @@ open class GDMirrorbot : ExtractorApi() {
         val (sid, host) = if (!url.contains("key=")) {
             Pair(url.substringAfterLast("embed/"), getBaseUrl(app.get(url).url))
         } else {
-            var pageText = app.get(url).text
+            var pageText = app.get(url).text()
             val finalId = Regex("""FinalID\s*=\s*"([^"]+)"""").find(pageText)?.groupValues?.get(1)
             val myKey = Regex("""myKey\s*=\s*"([^"]+)"""").find(pageText)?.groupValues?.get(1)
             val idType = Regex("""idType\s*=\s*"([^"]+)"""").find(pageText)?.groupValues?.get(1) ?: "imdbid"
@@ -45,7 +45,7 @@ open class GDMirrorbot : ExtractorApi() {
                 } else {
                     "$mainUrl/mymovieapi?$idType=$finalId&key=$myKey"
                 }
-                pageText = app.get(apiUrl).text
+                pageText = app.get(apiUrl).text()
             }
 
             val jsonElement = JsonParser.parseString(pageText)
@@ -63,7 +63,7 @@ open class GDMirrorbot : ExtractorApi() {
         }
 
         val postData = mapOf("sid" to sid)
-        val responseText = app.post("$host/embedhelper.php", data = postData).text
+        val responseText = app.post("$host/embedhelper.php", data = postData).text()
 
         val rootElement = JsonParser.parseString(responseText)
         if (!rootElement.isJsonObject) return

@@ -29,7 +29,7 @@ open class CloudMailRu : ExtractorApi() {
         )
         val vidId      = url.substringAfter("public/").encodeToByteArray()
         val vidIdEnc   = base64Encode(vidId)
-        val videoReq   = app.get(url, headers=headers).text
+        val videoReq   = app.get(url, headers=headers).text()
         val regex      = Regex(pattern = "videowl_view\":\\{\"count\":\"1\",\"url\":\"([^\"]*)\"\\}", options = setOf(RegexOption.IGNORE_CASE))
         val videoMatch = regex.find(videoReq)?.groupValues?.get(1).toString()
         val videoUrl   = "$videoMatch/0p/$vidIdEnc.m3u8?double_encode=1"

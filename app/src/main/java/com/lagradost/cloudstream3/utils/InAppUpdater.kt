@@ -101,7 +101,7 @@ object InAppUpdater {
         val url = "https://api.github.com/repos/$GITHUB_USER_NAME/$GITHUB_REPO/releases"
         val headers = mapOf("Accept" to "application/vnd.github.v3+json")
         val response = parseJson<Array<GithubRelease>>(
-            app.get(url, headers = headers).text
+            app.get(url, headers = headers).text()
         ).toList()
 
         val versionRegex = Regex("""(.*?((\d+)\.(\d+)\.(\d+))\.apk)""")
@@ -156,7 +156,7 @@ object InAppUpdater {
         val releaseUrl = "https://api.github.com/repos/$GITHUB_USER_NAME/$GITHUB_REPO/releases"
         val headers = mapOf("Accept" to "application/vnd.github.v3+json")
         val response = parseJson<Array<GithubRelease>>(
-            app.get(releaseUrl, headers = headers).text
+            app.get(releaseUrl, headers = headers).text()
         ).toList()
 
         val found = response.lastOrNull { rel ->
@@ -201,7 +201,7 @@ object InAppUpdater {
             val sink: BufferedSink = downloadedFile.sink().buffer()
 
             updateLock.withLock {
-                sink.writeAll(app.get(url).body.source())
+                sink.writeAll(app.get(url).body().source())
                 sink.close()
                 openApk(this, Uri.fromFile(downloadedFile))
             }

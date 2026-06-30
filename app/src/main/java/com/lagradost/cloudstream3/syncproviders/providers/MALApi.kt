@@ -246,7 +246,7 @@ class MALApi : SyncAPI() {
             url, headers = mapOf(
                 "Authorization" to "Bearer $auth"
             )
-        ).text
+        ).text()
         return parseJson<MalAnime>(res).let { malAnime ->
             SyncAPI.SyncResult(
                 id = internalId.toString(),
@@ -554,7 +554,7 @@ class MALApi : SyncAPI() {
             url, headers = mapOf(
                 "Authorization" to "Bearer ${token.accessToken}",
             ), cacheTime = 0
-        ).text
+        ).text()
         return parseJson<MalList>(res)
     }
 
@@ -607,7 +607,7 @@ class MALApi : SyncAPI() {
                 "Authorization" to "Bearer ${token.accessToken}"
             ),
             data = data
-        ).text
+        ).text()
     }
 
     @Serializable

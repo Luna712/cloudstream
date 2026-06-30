@@ -16,7 +16,7 @@ open class Acefile : ExtractorApi() {
         callback: (ExtractorLink) -> Unit
     ) {
         val id = "/(?:d|download|player|f|file)/(\\w+)".toRegex().find(url)?.groupValues?.get(1)
-        val script = getAndUnpack(app.get("$mainUrl/player/${id ?: return}").text)
+        val script = getAndUnpack(app.get("$mainUrl/player/${id ?: return}").text())
         val service = """service\s*=\s*['"]([^'"]+)""".toRegex().find(script)?.groupValues?.get(1)
         val serverUrl = """['"](\S+check&id\S+?)['"]""".toRegex().find(script)?.groupValues?.get(1)
             ?.replace("\"+service+\"", service ?: return)

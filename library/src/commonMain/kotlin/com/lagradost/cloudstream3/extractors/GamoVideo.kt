@@ -18,7 +18,7 @@ open class GamoVideo : ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ) {
-        app.get(url, referer = referer).document.select("script")
+        app.get(url, referer = referer).document().select("script")
             .firstOrNull { JwPlayerHelper.canParseJwScript(it.data()) }!!.let {
                 JwPlayerHelper.extractStreamLinks(it.data(), name, mainUrl, callback, subtitleCallback)
             }

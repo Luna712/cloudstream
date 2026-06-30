@@ -12,7 +12,7 @@ open class Blogger : ExtractorApi() {
 
     override suspend fun getUrl(url: String, referer: String?): List<ExtractorLink> {
         val sources = mutableListOf<ExtractorLink>()
-        with(app.get(url).document) {
+        with(app.get(url).document()) {
             this.select("script").map { script ->
                 if (script.data().contains("\"streams\":[")) {
                     val data = script.data().substringAfter("\"streams\":[")

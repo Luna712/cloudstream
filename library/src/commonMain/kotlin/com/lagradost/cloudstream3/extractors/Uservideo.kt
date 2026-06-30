@@ -20,11 +20,11 @@ open class Uservideo : ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ) {
-        val script = app.get(url).document.selectFirst("script:containsData(hosts =)")?.data()
+        val script = app.get(url).document().selectFirst("script:containsData(hosts =)")?.data()
         val host = script?.substringAfter("hosts = [\"")?.substringBefore("\"];")
         val servers = script?.substringAfter("servers = \"")?.substringBefore("\";")
 
-        val sources = app.get("$host/s/$servers").text.substringAfter("\"sources\":[").substringBefore("],").let {
+        val sources = app.get("$host/s/$servers").text().substringAfter("\"sources\":[").substringBefore("],").let {
             AppUtils.tryParseJson<List<Sources>>("[$it]")
         }
         val quality = Regex("(\\d{3,4})[Pp]").find(url)?.groupValues?.getOrNull(1)?.toIntOrNull()

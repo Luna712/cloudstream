@@ -25,7 +25,7 @@ open class Vidoza: ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ) {
-        val response = app.get(url).document
+        val response = app.get(url).document()
         val script = response.selectFirst("script:containsData(sourcesCode)")?.data()
             ?: throw RuntimeException("couldn't find script containing video data")
 

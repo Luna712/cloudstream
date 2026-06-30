@@ -28,7 +28,7 @@ open class ZplayerV2 : ExtractorApi() {
     override val requiresReferer = false
 
     override suspend fun getUrl(url: String, referer: String?): List<ExtractorLink> {
-        val doc = app.get(url).document
+        val doc = app.get(url).document()
         val sources = mutableListOf<ExtractorLink>()
         doc.select("script").map { script ->
             if (script.data().contains("eval(function(p,a,c,k,e,d)")) {
@@ -38,7 +38,7 @@ open class ZplayerV2 : ExtractorApi() {
                     it.value
                 }.toList().amap { urlm3u8 ->
                     if (urlm3u8.contains("m3u8")) {
-                        val testurl = app.get(urlm3u8, headers = mapOf("Referer" to url)).text
+                        val testurl = app.get(urlm3u8, headers = mapOf("Referer" to url)).text()
                         if (testurl.contains("EXTM3U")) {
                             M3u8Helper.generateM3u8(
                                 name,

@@ -18,7 +18,7 @@ open class UpstreamExtractor : ExtractorApi() {
         callback: (ExtractorLink) -> Unit
     ) {
         //Log.i(this.name, "Result => (no extractor) ${url}")
-        val doc = app.get(url, referer = referer).text
+        val doc = app.get(url, referer = referer).text()
         if (doc.isNotBlank()) {
             var reg = Regex("(?<=master)(.*)(?=hls)")
             val result = reg.find(doc)?.groupValues?.map {

@@ -21,7 +21,7 @@ open class PlayLtXyz: ExtractorApi() {
         var idUser = ""
         var idFile = ""
         var bodyText = ""
-        val doc = app.get(url, referer = referer).document
+        val doc = app.get(url, referer = referer).document()
         //Log.i(this.name, "Result => (url, script) $url / ${doc.select("script")}")
         bodyText = doc.select("script").firstOrNull {
             val text = it.toString()
@@ -55,7 +55,7 @@ open class PlayLtXyz: ExtractorApi() {
             val data = app.post(posturl, headers = ajaxHead, data = ajaxData)
             //Log.i(this.name, "Result => (posturl) $posturl")
             if (data.isSuccessful) {
-                val itemstr = data.text
+                val itemstr = data.text()
                 Log.i(this.name, "Result => (data) $itemstr")
                 tryParseJson<ResponseData?>(itemstr)?.let { item ->
                     val linkUrl = item.data ?: ""

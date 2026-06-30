@@ -76,10 +76,10 @@ open class VidHidePro : ExtractorApi() {
         )
         
         val response = app.get(getEmbedUrl(url), referer = referer)
-        val script = if (!getPacked(response.text).isNullOrEmpty()) {
-            getAndUnpack(response.text)
+        val script = if (!getPacked(response.text()).isNullOrEmpty()) {
+            getAndUnpack(response.text())
         } else {
-            response.document.selectFirst("script:containsData(sources:)")?.data()
+            response.document().selectFirst("script:containsData(sources:)")?.data()
         } ?: return
 
         JwPlayerHelper.extractStreamLinks(script, name, mainUrl, callback, subtitleCallback, headers)

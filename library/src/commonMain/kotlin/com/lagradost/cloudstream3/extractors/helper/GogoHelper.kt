@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.extractors.helper
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fleeksoft.ksoup.nodes.Document
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.base64Decode
 import com.lagradost.cloudstream3.base64DecodeArray
@@ -18,7 +19,6 @@ import dev.whyoleg.cryptography.algorithms.AES
 import io.ktor.http.Url
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import org.jsoup.nodes.Document
 
 object GogoHelper {
 
@@ -86,7 +86,7 @@ object GogoHelper {
         val id = Regex("id=([^&]+)").find(iframeUrl)!!.value.removePrefix("id=")
 
         var document: Document? = iframeDocument
-        val foundIv = iv ?: (document ?: app.get(iframeUrl).document.also { document = it })
+        val foundIv = iv ?: (document ?: app.get(iframeUrl).document().also { document = it })
             .select("""div.wrapper[class*=container]""")
             .attr("class").split("-").lastOrNull() ?: return@safeApiCall
         val foundKey = secretKey ?: getKey(base64Decode(id) + foundIv) ?: return@safeApiCall
@@ -98,7 +98,7 @@ object GogoHelper {
         val encryptedId = cryptoHandler(id, foundIv, foundKey)
         val encryptRequestData = if (isUsingAdaptiveData) {
             // Only fetch the document if necessary
-            val realDocument = document ?: app.get(iframeUrl).document
+            val realDocument = document ?: app.get(iframeUrl).document()
             val dataEncrypted = realDocument.select("script[data-name='episode']").attr("data-value")
             val headers = cryptoHandler(dataEncrypted, foundIv, foundKey, false)
             "id=$encryptedId&alias=$id&" + headers.substringAfter("&")

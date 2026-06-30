@@ -71,7 +71,7 @@ object SyncUtil {
         try {
             // Gogoanime, Twistmoe and 9anime
             val url = "https://raw.githubusercontent.com/MALSync/MAL-Sync-Backup/master/data/pages/$site/$slug.json"
-            val response = app.get(url, cacheTime = 1, cacheUnit = TimeUnit.DAYS).text
+            val response = app.get(url, cacheTime = 1, cacheUnit = TimeUnit.DAYS).text()
             val mapped = tryParseJson<MalSyncPage?>(response)
 
             val overrideMal = mapped?.malId ?: mapped?.mal?.id ?: mapped?.anilist?.malId

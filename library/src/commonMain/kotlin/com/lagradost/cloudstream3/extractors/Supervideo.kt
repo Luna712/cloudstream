@@ -18,7 +18,7 @@ open class Supervideo : ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ) {
-        val response = app.get(url).text
+        val response = app.get(url).text()
         val jstounpack = Regex("eval((.|\\n)*?)</script>").find(response)?.groups?.get(1)?.value
         val unpacked = JsUnpacker(jstounpack).unpack()
 

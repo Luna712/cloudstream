@@ -45,7 +45,7 @@ open class Hxfile : ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ) {
-        val document = app.get(url, allowRedirects = redirect, referer = referer).document
+        val document = app.get(url, allowRedirects = redirect, referer = referer).document()
         with(document) {
             this.select("script").map { script ->
                 if (getPacked(script.data()) != null) {

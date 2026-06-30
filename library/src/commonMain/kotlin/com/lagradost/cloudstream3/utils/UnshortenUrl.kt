@@ -66,7 +66,7 @@ object ShortLink {
     }
 
     suspend fun unshortenAdfly(url: String): String {
-        val html = app.get(url).text
+        val html = app.get(url).text()
         val ysmm = Regex("""var ysmm =.*;?""").find(html)!!.value
         if (ysmm.isNotEmpty()) {
             var left = ""
@@ -165,12 +165,12 @@ object ShortLink {
     }
 
     suspend fun unshortenNuovoLink(url: String): String {
-        return app.get(url, allowRedirects = true).document.selectFirst("a")!!.attr("href")
+        return app.get(url, allowRedirects = true).document().selectFirst("a")!!.attr("href")
 
     }
 
     suspend fun unshortenUprot(url: String): String {
-        val page = app.get(url).text
+        val page = app.get(url).text()
         Regex("""<a[^>]+href="([^"]+)".*Continue""").findAll(page)
             .map { it.value.replace("""<a href="""", "") }
             .toList().forEach { link ->
@@ -186,7 +186,7 @@ object ShortLink {
     }
 
     suspend fun unshortenIsecure(url: String): String {
-        val doc = app.get(url).document
+        val doc = app.get(url).document()
         return doc.selectFirst("iframe")?.attr("src")?.trim() ?: url
     }
 }

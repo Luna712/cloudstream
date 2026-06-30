@@ -24,7 +24,7 @@ open class SecvideoOnline : ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ) {
-        val doc = app.get(url, referer = referer).document
+        val doc = app.get(url, referer = referer).document()
         for (script in doc.select("script")) {
             val files = fileListRegex.findAll(script.data())
                 .mapNotNull { it.groupValues.getOrNull(1)?.split(",") }

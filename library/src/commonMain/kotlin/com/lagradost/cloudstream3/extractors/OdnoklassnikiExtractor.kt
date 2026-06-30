@@ -30,7 +30,7 @@ open class Odnoklassniki : ExtractorApi() {
             "User-Agent" to USER_AGENT,
         )
         val embedUrl = url.replace("/video/","/videoembed/")
-        val videoReq  = app.get(embedUrl, headers=headers).text.replace("\\&quot;", "\"").replace("\\\\", "\\")
+        val videoReq  = app.get(embedUrl, headers=headers).text().replace("\\&quot;", "\"").replace("\\\\", "\\")
             .replace(Regex("\\\\u([0-9A-Fa-f]{4})")) { matchResult ->
                 matchResult.groupValues[1].toInt(16).toChar().toString()
             }

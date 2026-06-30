@@ -10,7 +10,7 @@ open class Maxstream : ExtractorApi() {
     override val requiresReferer = false
     override suspend fun getUrl(url: String, referer: String?): List<ExtractorLink>? {
         val extractedLinksList: MutableList<ExtractorLink> = mutableListOf()
-        val response = app.get(url).text
+        val response = app.get(url).text()
         val jstounpack = Regex("cript\">eval((.|\\n)*?)</script>").find(response)?.groups?.get(1)?.value
         val unpacjed = JsUnpacker(jstounpack).unpack()
         val extractedUrl = unpacjed?.let { Regex("""src:"((.|\n)*?)",type""").find(it) }?.groups?.get(1)?.value.toString()

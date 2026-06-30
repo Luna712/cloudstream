@@ -20,7 +20,7 @@ class VstreamhubHelper {
         ) {
             if (url.startsWith(baseUrl)) {
                 // Fetch links
-                val doc = app.get(url).document.select("script")
+                val doc = app.get(url).document().select("script")
                 doc.forEach {
                     val innerText = it.toString()
                     if (!innerText.isNullOrEmpty()) {

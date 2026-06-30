@@ -821,7 +821,7 @@ object VideoDownloadManager {
                 referer = referer,
                 verify = false
             )
-            val requestStream = request.body.byteStream()
+            val requestStream = request.body().byteStream()
 
             var read: Int
 

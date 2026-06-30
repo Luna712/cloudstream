@@ -20,7 +20,7 @@ open class Krakenfiles : ExtractorApi() {
         callback: (ExtractorLink) -> Unit
     ) {
         val id = Regex("/(?:view|embed-video)/([\\da-zA-Z]+)").find(url)?.groupValues?.get(1)
-        val doc = app.get("$mainUrl/embed-video/$id").document
+        val doc = app.get("$mainUrl/embed-video/$id").document()
         val link = doc.selectFirst("source")?.attr("src")
 
         callback.invoke(

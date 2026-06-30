@@ -35,7 +35,7 @@ open class VkExtractor : ExtractorApi() {
             "Cache-Control" to "no-cache"
         )
         val cookie = app.get(url, headers = headers, allowRedirects = false).cookies
-        val response = app.get(url, headers = headers, allowRedirects = false, cookies = cookie).text
+        val response = app.get(url, headers = headers, allowRedirects = false, cookies = cookie).text()
         val listUrl = listOf("url", "dash_sep", "hls")
 
         listUrl.forEach { linkType ->

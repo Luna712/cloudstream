@@ -86,11 +86,11 @@ open class Userload : ExtractorApi() {
 
         val extractedLinksList: MutableList<ExtractorLink> = mutableListOf()
 
-        val response = app.get(url).text
+        val response = app.get(url).text()
         val jsToUnpack = Regex("ext/javascript\">eval((.|\\n)*?)</script>").find(response)?.groups?.get(1)?.value
         val unpacked = JsUnpacker(jsToUnpack).unpack()
         val videoJs = app.get("$mainUrl/api/assets/userload/js/videojs.js")
-        val videoJsToDecode = videoJs.text
+        val videoJsToDecode = videoJs.text()
         val values = decodeVideoJs(videoJsToDecode)
         val morocco = unpacked!!.split(";").filter { it.contains(values[0]) }[0].split("=")[1].drop(1).dropLast(1)
         val mycountry = unpacked.split(";").filter { it.contains(values[1]) }[0].split("=")[1].drop(1).dropLast(1)
@@ -98,8 +98,8 @@ open class Userload : ExtractorApi() {
             "morocco" to morocco,
             "mycountry" to mycountry
         ))
-        val videoLink = videoLinkPage.text
-        val nameSource = app.get(url).document.head().selectFirst("title")!!.text()
+        val videoLink = videoLinkPage.text()
+        val nameSource = app.get(url).document().head().selectFirst("title")!!.text()
         extractedLinksList.add(
             newExtractorLink(
                 name,

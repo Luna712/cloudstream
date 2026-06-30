@@ -23,7 +23,7 @@ open class Moviehab : ExtractorApi() {
         callback: (ExtractorLink) -> Unit
     ) {
         val res = app.get(url)
-        res.document.select("video#player").let {
+        res.document().select("video#player").let {
             //should redirect first for making it works
             val link = app.get("$mainUrl/${it.select("source").attr("src")}", referer = url).url
             M3u8Helper.generateM3u8(
