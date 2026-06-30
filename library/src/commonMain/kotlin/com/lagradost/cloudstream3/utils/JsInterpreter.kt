@@ -127,6 +127,12 @@ class JsContext(
  * @return The last expression value, or the named variable value if [variable] is specified.
  *         Returns [Unit] on evaluation failure, timeout, or when the result is JS undefined.
  *         JS null is represented as Kotlin null. Use [jsValueToString] to convert to a JS string.
+ *
+ * NOTE: This overload cannot observe coroutine cancellation. A script can only be stopped
+ * by its time/instruction budget, and `withTimeout` cannot pre-empt it mid-flight either
+ * (there's no suspension point). If you're calling this from within a coroutine, prefer
+ * [CoroutineScope.evalJs] instead, which checks [CoroutineScope.isActive] during
+ * execution and aborts promptly when the scope is cancelled.
  */
 @Prerelease
 fun evalJs(
@@ -141,12 +147,13 @@ fun evalJs(
 }
 
 /**
- * Scope-aware variant of [evalJs]. The interpreter checks [CoroutineScope.isActive] every
- * 1024 instructions and aborts (returning [Unit]) if the scope has been cancelled.
+ * Scope-aware variant of [evalJs]. The interpreter checks [CoroutineScope.isActive] on
+ * every statement/expression executed (not throttled like the wall-clock check) and
+ * aborts (throwing [CancellationException]) as soon as the scope has been cancelled.
  *
  * There is no thread dispatch or suspension. This function runs synchronously on the
  * calling thread, so it carries zero coroutine overhead for normal (non-cancelled) scripts.
- * Cancellation latency is bounded to one check window (~1024 interpreter instructions).
+ * Cancellation latency is bounded to a single interpreter instruction.
  *
  * Typical usage inside a coroutine:
  *   val result = coroutineScope { evalJs("...") }
