@@ -117,12 +117,9 @@ open class TmdbProvider : MainAPI() {
         @JsonProperty("first_air_date") @SerialName("first_air_date") val firstAirDate: String? = null,
         @JsonProperty("media_type") @SerialName("media_type") val mediaType: String? = null, // for multi-search
     ) {
-        @get:JsonIgnore
-        val isTv get() = name != null || mediaType == "tv"
-        @get:JsonIgnore
-        val displayTitle get() = title ?: originalTitle ?: name ?: originalName ?: ""
-        @get:JsonIgnore
-        val year get() = (releaseDate ?: firstAirDate)?.take(4)?.toIntOrNull()
+        @get:JsonIgnore val isTv get() = name != null || mediaType == "tv"
+        @get:JsonIgnore val displayTitle get() = title ?: originalTitle ?: name ?: originalName ?: ""
+        @get:JsonIgnore val year get() = (releaseDate ?: firstAirDate)?.take(4)?.toIntOrNull()
     }
 
     @Serializable
@@ -209,10 +206,8 @@ open class TmdbProvider : MainAPI() {
         @JsonProperty("similar") @SerialName("similar") val similar: TmdbPageResult? = null,
         @JsonProperty("content_ratings") @SerialName("content_ratings") val contentRatings: TmdbContentRatings? = null,
     ) {
-        @get:JsonIgnore
-        val displayTitle get() = name ?: originalName ?: ""
-        @get:JsonIgnore
-        val year get() = firstAirDate?.take(4)?.toIntOrNull()
+        @get:JsonIgnore val displayTitle get() = name ?: originalName ?: ""
+        @get:JsonIgnore val year get() = firstAirDate?.take(4)?.toIntOrNull()
     }
 
     @Serializable
@@ -234,10 +229,8 @@ open class TmdbProvider : MainAPI() {
         @JsonProperty("similar") @SerialName("similar") val similar: TmdbPageResult? = null,
         @JsonProperty("release_dates") @SerialName("release_dates") val releaseDates: TmdbReleaseDates? = null,
     ) {
-        @get:JsonIgnore
-        val displayTitle get() = title ?: originalTitle ?: ""
-        @get:JsonIgnore
-        val year get() = releaseDate?.take(4)?.toIntOrNull()
+        @get:JsonIgnore val displayTitle get() = title ?: originalTitle ?: ""
+        @get:JsonIgnore val year get() = releaseDate?.take(4)?.toIntOrNull()
     }
 
     private fun getImageUrl(link: String?): String? {
@@ -292,7 +285,7 @@ open class TmdbProvider : MainAPI() {
             it ?: return@mapNotNull null
             Pair(
                 Actor(it.name ?: return@mapNotNull null, getImageUrl(it.profilePath)),
-                it.character
+                it.character,
             )
         }
     }
@@ -336,6 +329,7 @@ open class TmdbProvider : MainAPI() {
             val fullSeason = parseJson<TmdbSeasonDetail>(
                 getApi("/tv/$id/season/$seasonNum", mapOf("append_to_response" to "external_ids"))
             )
+
             fullSeason.episodes?.forEach { episode ->
                 episodes += newEpisode(
                     TmdbLink(
@@ -415,7 +409,6 @@ open class TmdbProvider : MainAPI() {
         var discoverSeries: List<TvSeriesSearchResponse> = listOf()
         var topMovies: List<MovieSearchResponse> = listOf()
         var topSeries: List<TvSeriesSearchResponse> = listOf()
-
         runAllAsync(
             {
                 discoverMovies = parseJson<TmdbPageResult>(
