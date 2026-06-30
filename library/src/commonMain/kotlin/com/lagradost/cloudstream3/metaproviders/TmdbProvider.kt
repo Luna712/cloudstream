@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream3.metaproviders
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.Actor
 import com.lagradost.cloudstream3.ActorData
@@ -116,14 +117,17 @@ open class TmdbProvider : MainAPI() {
         @JsonProperty("first_air_date") @SerialName("first_air_date") val firstAirDate: String? = null,
         @JsonProperty("media_type") @SerialName("media_type") val mediaType: String? = null, // for multi-search
     ) {
+        @get:JsonIgnore
         val isTv get() = name != null || mediaType == "tv"
+        @get:JsonIgnore
         val displayTitle get() = title ?: originalTitle ?: name ?: originalName ?: ""
+        @get:JsonIgnore
         val year get() = (releaseDate ?: firstAirDate)?.take(4)?.toIntOrNull()
     }
 
     @Serializable
-    data class TmdbPageResult<T>(
-        @JsonProperty("results") @SerialName("results") val results: List<T>? = null,
+    data class TmdbPageResult(
+        @JsonProperty("results") @SerialName("results") val results: List<TmdbSearchResult>? = null,
         @JsonProperty("total_pages") @SerialName("total_pages") val totalPages: Int? = null,
         @JsonProperty("total_results") @SerialName("total_results") val totalResults: Int? = null,
     )
@@ -201,11 +205,13 @@ open class TmdbProvider : MainAPI() {
         @JsonProperty("external_ids") @SerialName("external_ids") val externalIds: TmdbIds? = null,
         @JsonProperty("videos") @SerialName("videos") val videos: TmdbVideos? = null,
         @JsonProperty("credits") @SerialName("credits") val credits: TmdbCredits? = null,
-        @JsonProperty("recommendations") @SerialName("recommendations") val recommendations: TmdbPageResult<TmdbSearchResult>? = null,
-        @JsonProperty("similar") @SerialName("similar") val similar: TmdbPageResult<TmdbSearchResult>? = null,
+        @JsonProperty("recommendations") @SerialName("recommendations") val recommendations: TmdbPageResult? = null,
+        @JsonProperty("similar") @SerialName("similar") val similar: TmdbPageResult? = null,
         @JsonProperty("content_ratings") @SerialName("content_ratings") val contentRatings: TmdbContentRatings? = null,
     ) {
+        @get:JsonIgnore
         val displayTitle get() = name ?: originalName ?: ""
+        @get:JsonIgnore
         val year get() = firstAirDate?.take(4)?.toIntOrNull()
     }
 
@@ -224,11 +230,13 @@ open class TmdbProvider : MainAPI() {
         @JsonProperty("external_ids") @SerialName("external_ids") val externalIds: TmdbIds? = null,
         @JsonProperty("videos") @SerialName("videos") val videos: TmdbVideos? = null,
         @JsonProperty("credits") @SerialName("credits") val credits: TmdbCredits? = null,
-        @JsonProperty("recommendations") @SerialName("recommendations") val recommendations: TmdbPageResult<TmdbSearchResult>? = null,
-        @JsonProperty("similar") @SerialName("similar") val similar: TmdbPageResult<TmdbSearchResult>? = null,
+        @JsonProperty("recommendations") @SerialName("recommendations") val recommendations: TmdbPageResult? = null,
+        @JsonProperty("similar") @SerialName("similar") val similar: TmdbPageResult? = null,
         @JsonProperty("release_dates") @SerialName("release_dates") val releaseDates: TmdbReleaseDates? = null,
     ) {
+        @get:JsonIgnore
         val displayTitle get() = title ?: originalTitle ?: ""
+        @get:JsonIgnore
         val year get() = releaseDate?.take(4)?.toIntOrNull()
     }
 
@@ -410,22 +418,22 @@ open class TmdbProvider : MainAPI() {
 
         runAllAsync(
             {
-                discoverMovies = parseJson<TmdbPageResult<TmdbSearchResult>>(
+                discoverMovies = parseJson<TmdbPageResult>(
                     getApi("/discover/movie", mapOf("page" to "$page"))
                 ).results?.map { it.toSearchResponse() as MovieSearchResponse } ?: listOf()
             },
             {
-                discoverSeries = parseJson<TmdbPageResult<TmdbSearchResult>>(
+                discoverSeries = parseJson<TmdbPageResult>(
                     getApi("/discover/tv", mapOf("page" to "$page"))
                 ).results?.map { it.toSearchResponse() as TvSeriesSearchResponse } ?: listOf()
             },
             {
-                topMovies = parseJson<TmdbPageResult<TmdbSearchResult>>(
+                topMovies = parseJson<TmdbPageResult>(
                     getApi("/movie/top_rated", mapOf("page" to "$page", "language" to "en-US", "region" to "US"))
                 ).results?.map { it.toSearchResponse() as MovieSearchResponse } ?: listOf()
             },
             {
-                topSeries = parseJson<TmdbPageResult<TmdbSearchResult>>(
+                topSeries = parseJson<TmdbPageResult>(
                     getApi("/tv/top_rated", mapOf("page" to "$page", "language" to "en-US"))
                 ).results?.map { it.toSearchResponse() as TvSeriesSearchResponse } ?: listOf()
             },
