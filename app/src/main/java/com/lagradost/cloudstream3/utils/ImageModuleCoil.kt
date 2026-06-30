@@ -19,7 +19,7 @@ import coil3.load
 import coil3.memory.MemoryCache
 import coil3.network.NetworkHeaders
 import coil3.network.httpHeaders
-import coil3.network.okhttp.OkHttpNetworkFetcherFactory
+import coil3.network.ktor3.KtorNetworkFetcherFactory
 import coil3.request.CachePolicy
 import coil3.request.ErrorResult
 import coil3.request.ImageRequest
@@ -29,7 +29,7 @@ import coil3.request.crossfade
 import coil3.util.DebugLogger
 import com.lagradost.cloudstream3.BuildConfig
 import com.lagradost.cloudstream3.USER_AGENT
-import com.lagradost.cloudstream3.network.buildDefaultClient
+import com.lagradost.cloudstream3.network.buildDefaultKtorClient
 import okio.Path.Companion.toOkioPath
 import java.io.File
 import java.nio.ByteBuffer
@@ -57,17 +57,10 @@ object ImageLoader {
             }
             /** Pass interceptors with care, unnecessary passing tokens to servers
             or image hosting services causes unauthorized exceptions **/
-            .components {
-                add(OkHttpNetworkFetcherFactory(callFactory = { buildDefaultClient(context) }))
-                if (isBrokenHardware) {
-                    add(BitmapFactoryDecoder.Factory())
-                } // sw decoder
-            }
-            .apply {
-                if (isBrokenHardware) { // coil will auto choose optimal config on modern device
-                    bitmapConfig(Bitmap.Config.ARGB_8888)
-                }
-                setupCoilLogger()
+            .components { add(KtorNetworkFetcherFactory(httpClient = { buildDefaultKtorClient(context) })) }
+            .also {
+                it.setupCoilLogger()
+                Log.d(TAG, "buildImageLoader: Setting COIL Image Loader.")
             }
             .build()
     }
