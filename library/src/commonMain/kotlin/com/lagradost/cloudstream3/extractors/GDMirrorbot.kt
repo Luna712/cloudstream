@@ -50,7 +50,7 @@ open class GDMirrorbot : ExtractorApi() {
 
             val embedData = tryParseJson<EmbedData>(pageText)
             val embedId = url.substringAfterLast("/")
-            val sidValue = embedData?.data?.firstOrNull()?.fileslug
+            val sidValue = embedData?.data?.firstOrNull()?.fileSlug
                 ?.takeIf { it.isNotBlank() } ?: embedId
             Pair(sidValue, hostUrl)
         }
@@ -75,7 +75,7 @@ open class GDMirrorbot : ExtractorApi() {
                     )
                 }
                 raw.startsWith("{") -> tryParseJson<Map<String, String>>(
-                    raw.substringBefore("\n}").substringBefore(",\n\"").let { "{$it}" }
+                    raw.substringBefore("\n}").substringBefore(",\n\"").let { "$it" }
                         .let { responseText.substringAfter("\"mresult\":").trimStart() }
                 )
                 else -> null
@@ -111,7 +111,7 @@ open class GDMirrorbot : ExtractorApi() {
 
     @Serializable
     private data class FileSlug(
-        @JsonProperty("fileslug") @SerialName("fileslug") val fileslug: String? = null,
+        @JsonProperty("fileslug") @SerialName("fileslug") val fileSlug: String? = null,
     )
 
     @Serializable
