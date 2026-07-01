@@ -2,6 +2,7 @@ package com.lagradost.cloudstream3.syncproviders.providers
 
 import androidx.annotation.StringRes
 import androidx.core.net.toUri
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.APIHolder
@@ -746,6 +747,7 @@ class SimklApi : SyncAPI() {
                 @JsonProperty("total_episodes_count") @SerialName("total_episodes_count") override val totalEpisodesCount: Int?,
                 @JsonProperty("movie") @SerialName("movie") val movie: ShowMetadata.Show,
             ) : Metadata {
+                @JsonIgnore
                 override fun getIds(): ShowMetadata.Show.Ids {
                     return this.movie.ids
                 }
@@ -780,6 +782,7 @@ class SimklApi : SyncAPI() {
                 @JsonProperty("total_episodes_count") @SerialName("total_episodes_count") override val totalEpisodesCount: Int?,
                 @JsonProperty("show") @SerialName("show") val show: Show,
             ) : Metadata {
+                @JsonIgnore
                 override fun getIds(): Show.Ids {
                     return this.show.ids
                 }
