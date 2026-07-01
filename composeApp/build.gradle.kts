@@ -47,6 +47,10 @@ kotlin {
             implementation(libs.activity.compose)
             implementation(libs.preference.ktx)
         }
+
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+        }
     }
 }
 
