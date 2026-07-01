@@ -62,7 +62,8 @@ class DeviceLayoutTest {
     fun isLandscapeDoesNotThrow() {
         DeviceLayout.update()
         // Just verifying this completes without throwing on every target,
-        // since the actual boolean result is platform/environment dependent.
+        // since the actual result is platform/environment dependent,
+        // which we might add tests for eventually but not for now.
         DeviceLayout.isLandscape()
     }
 }
