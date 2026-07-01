@@ -9,12 +9,19 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.v2.runComposeUiTest
 import com.lagradost.cloudstream4.ui.icons.tune
 import com.lagradost.cloudstream4.ui.theme.CloudStreamTheme
+import com.lagradost.cloudstream4.utils.DeviceLayout
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 @OptIn(ExperimentalTestApi::class)
 class SettingsItemTest {
+
+    @BeforeTest
+    fun resolveDeviceLayout() {
+        DeviceLayout.update()
+    }
 
     @Test
     fun displaysTitleAndSubtitleWhenBothAreProvided() = runComposeUiTest {
