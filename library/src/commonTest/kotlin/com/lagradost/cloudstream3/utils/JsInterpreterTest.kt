@@ -427,463 +427,463 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun multiVarDeclaration() {
+    fun multiVarDeclaration() = runTest {
         assertEquals(3.0, num("var a=1, b=2; a+b"))
     }
 
     @Test
-    fun assignmentPlusEquals() {
+    fun assignmentPlusEquals() = runTest {
         assertEquals(15.0, num("var x=10; x+=5; x"))
     }
 
     @Test
-    fun assignmentMinusEquals() {
+    fun assignmentMinusEquals() = runTest {
         assertEquals(5.0, num("var x=10; x-=5; x"))
     }
 
     @Test
-    fun assignmentTimesEquals() {
+    fun assignmentTimesEquals() = runTest {
         assertEquals(20.0, num("var x=4; x*=5; x"))
     }
 
     @Test
-    fun assignmentDivideEquals() {
+    fun assignmentDivideEquals() = runTest {
         assertEquals(5.0, num("var x=10; x/=2; x"))
     }
 
     @Test
-    fun assignmentModuloEquals() {
+    fun assignmentModuloEquals() = runTest {
         assertEquals(1.0, num("var x=7; x%=3; x"))
     }
 
     @Test
-    fun prefixIncrement() {
+    fun prefixIncrement() = runTest {
         assertEquals(6.0, num("var x=5; ++x"))
     }
 
     @Test
-    fun postfixIncrementReturnsOldValue() {
+    fun postfixIncrementReturnsOldValue() = runTest {
         assertEquals(5.0, num("var x=5; x++"))
     }
 
     @Test
-    fun postfixIncrementMutatesVariable() {
+    fun postfixIncrementMutatesVariable() = runTest {
         assertEquals(6.0, num("var x=5; x++; x"))
     }
 
     @Test
-    fun prefixDecrement() {
+    fun prefixDecrement() = runTest {
         assertEquals(4.0, num("var x=5; --x"))
     }
 
     @Test
-    fun postfixDecrement() {
+    fun postfixDecrement() = runTest {
         assertEquals(5.0, num("var x=5; x--"))
     }
 
     @Test
-    fun postfixDecrementMutates() {
+    fun postfixDecrementMutates() = runTest {
         assertEquals(4.0, num("var x=5; x--; x"))
     }
 
     @Test
-    fun commaOperatorReturnsLast() {
+    fun commaOperatorReturnsLast() = runTest {
         // Sequence/comma expression: (1, 2, 3) => 3
         assertEquals(3.0, num("(1,2,3)"))
     }
 
     @Test
-    fun typeofNumber() {
+    fun typeofNumber() = runTest {
         assertEquals("number", str("typeof 42"))
     }
 
     @Test
-    fun typeofString() {
+    fun typeofString() = runTest {
         assertEquals("string", str("typeof 'x'"))
     }
 
     @Test
-    fun typeofBoolean() {
+    fun typeofBoolean() = runTest {
         assertEquals("boolean", str("typeof true"))
     }
 
     @Test
-    fun typeofUndefined() {
+    fun typeofUndefined() = runTest {
         assertEquals("undefined", str("typeof undefined"))
     }
 
     @Test
-    fun typeofFunction() {
+    fun typeofFunction() = runTest {
         assertEquals("function", str("typeof function(){}"))
     }
 
     @Test
-    fun typeofNull() {
+    fun typeofNull() = runTest {
         // typeof null === "object" in JS
         assertEquals("object", str("typeof null"))
     }
 
     @Test
-    fun typeofObject() {
+    fun typeofObject() = runTest {
         assertEquals("object", str("typeof {}"))
     }
 
     @Test
-    fun typeofArray() {
+    fun typeofArray() = runTest {
         assertEquals("object", str("typeof []"))
     }
 
     @Test
-    fun typeofUndeclaredVariable() {
+    fun typeofUndeclaredVariable() = runTest {
         // typeof on an undeclared variable should not throw, returns "undefined"
         assertEquals("undefined", str("typeof neverDeclaredXyz"))
     }
 
     @Test
-    fun voidOperator() {
+    fun voidOperator() = runTest {
         assertEquals(Unit, evalJs("void 0"))
     }
 
     @Test
-    fun voidOperatorOnExpression() {
+    fun voidOperatorOnExpression() = runTest {
         assertEquals(Unit, evalJs("void (1+2)"))
     }
 
     @Test
-    fun stringConcatenation() {
+    fun stringConcatenation() = runTest {
         assertEquals("ab", str("'a'+'b'"))
     }
 
     @Test
-    fun numberPlusStringCoercesToString() {
+    fun numberPlusStringCoercesToString() = runTest {
         assertEquals("1x", str("1+'x'"))
     }
 
     @Test
-    fun stringLength() {
+    fun stringLength() = runTest {
         assertEquals(5.0, num("'hello'.length"))
     }
 
     @Test
-    fun stringCharAt() {
+    fun stringCharAt() = runTest {
         assertEquals("e", str("'hello'.charAt(1)"))
     }
 
     @Test
-    fun stringCharAtOutOfRange() {
+    fun stringCharAtOutOfRange() = runTest {
         assertEquals("", str("'hello'.charAt(99)"))
     }
 
     @Test
-    fun stringCharCodeAt() {
+    fun stringCharCodeAt() = runTest {
         assertEquals(104.0, num("'hello'.charCodeAt(0)"))
     }
 
     @Test
-    fun stringCodePointAt() {
+    fun stringCodePointAt() = runTest {
         assertEquals(104.0, num("'hello'.codePointAt(0)"))
     }
 
     @Test
-    fun stringBracketIndexing() {
+    fun stringBracketIndexing() = runTest {
         // 'hello'[1] === 'e'
         assertEquals("e", str("'hello'[1]"))
     }
 
     @Test
-    fun stringBracketIndexingFirst() {
+    fun stringBracketIndexingFirst() = runTest {
         assertEquals("h", str("'hello'[0]"))
     }
 
     @Test
-    fun stringIndexOfFound() {
+    fun stringIndexOfFound() = runTest {
         assertEquals(1.0, num("'hello'.indexOf('e')"))
     }
 
     @Test
-    fun stringIndexOfNotFound() {
+    fun stringIndexOfNotFound() = runTest {
         assertEquals(-1.0, num("'hello'.indexOf('z')"))
     }
 
     @Test
-    fun stringLastIndexOf() {
+    fun stringLastIndexOf() = runTest {
         assertEquals(3.0, num("'abcabc'.lastIndexOf('a')"))
     }
 
     @Test
-    fun stringLastIndexOfNotFound() {
+    fun stringLastIndexOfNotFound() = runTest {
         assertEquals(-1.0, num("'hello'.lastIndexOf('z')"))
     }
 
     @Test
-    fun stringSlice() {
+    fun stringSlice() = runTest {
         assertEquals("ell", str("'hello'.slice(1,4)"))
     }
 
     @Test
-    fun stringSliceNegativeIndex() {
+    fun stringSliceNegativeIndex() = runTest {
         assertEquals("lo", str("'hello'.slice(-2)"))
     }
 
     @Test
-    fun stringSliceNegativeEnd() {
+    fun stringSliceNegativeEnd() = runTest {
         assertEquals("hel", str("'hello'.slice(0,-2)"))
     }
 
     @Test
-    fun stringSubstr() {
+    fun stringSubstr() = runTest {
         assertEquals("ell", str("'hello'.substr(1,3)"))
     }
 
     @Test
-    fun stringSubstring() {
+    fun stringSubstring() = runTest {
         assertEquals("ell", str("'hello'.substring(1,4)"))
     }
 
     @Test
-    fun stringSubstringSwapsArgs() {
+    fun stringSubstringSwapsArgs() = runTest {
         // substring swaps start/end if start > end
         assertEquals("ell", str("'hello'.substring(4,1)"))
     }
 
     @Test
-    fun stringSplitAndJoin() {
+    fun stringSplitAndJoin() = runTest {
         assertEquals("a-b-c", str("'a|b|c'.split('|').join('-')"))
     }
 
     @Test
-    fun stringSplitEmptySepGivesChars() {
+    fun stringSplitEmptySepGivesChars() = runTest {
         assertEquals("h,e,l,l,o", str("'hello'.split('').join(',')"))
     }
 
     @Test
-    fun stringReplaceFirstOccurrence() {
+    fun stringReplaceFirstOccurrence() = runTest {
         assertEquals("xbc", str("'abc'.replace('a','x')"))
     }
 
     @Test
-    fun stringReplaceAll() {
+    fun stringReplaceAll() = runTest {
         assertEquals("xbxbxb", str("'ababab'.replace('a','x').replace('a','x').replace('a','x')"))
     }
 
     @Test
-    fun stringReplaceAllMethod() {
+    fun stringReplaceAllMethod() = runTest {
         assertEquals("xbxbxb", str("'ababab'.replaceAll('a','x')"))
     }
 
     @Test
-    fun stringToUpperCase() {
+    fun stringToUpperCase() = runTest {
         assertEquals("HELLO", str("'hello'.toUpperCase()"))
     }
 
     @Test
-    fun stringToLowerCase() {
+    fun stringToLowerCase() = runTest {
         assertEquals("hello", str("'HELLO'.toLowerCase()"))
     }
 
     @Test
-    fun stringTrim() {
+    fun stringTrim() = runTest {
         assertEquals("hi", str("'  hi  '.trim()"))
     }
 
     @Test
-    fun stringTrimStart() {
+    fun stringTrimStart() = runTest {
         assertEquals("hi  ", str("'  hi  '.trimStart()"))
     }
 
     @Test
-    fun stringTrimEnd() {
+    fun stringTrimEnd() = runTest {
         assertEquals("  hi", str("'  hi  '.trimEnd()"))
     }
 
     @Test
-    fun stringRepeat() {
+    fun stringRepeat() = runTest {
         assertEquals("aaa", str("'a'.repeat(3)"))
     }
 
     @Test
-    fun stringRepeatZero() {
+    fun stringRepeatZero() = runTest {
         assertEquals("", str("'a'.repeat(0)"))
     }
 
     @Test
-    fun stringPadStart() {
+    fun stringPadStart() = runTest {
         assertEquals("005", str("'5'.padStart(3,'0')"))
     }
 
     @Test
-    fun stringPadEnd() {
+    fun stringPadEnd() = runTest {
         assertEquals("500", str("'5'.padEnd(3,'0')"))
     }
 
     @Test
-    fun stringPadStartNoOpWhenLongEnough() {
+    fun stringPadStartNoOpWhenLongEnough() = runTest {
         assertEquals("hello", str("'hello'.padStart(3,'0')"))
     }
 
     @Test
-    fun stringIncludes() {
+    fun stringIncludes() = runTest {
         assertTrue(bool("'hello'.includes('ell')"))
     }
 
     @Test
-    fun stringIncludesFalse() {
+    fun stringIncludesFalse() = runTest {
         assertFalse(bool("'hello'.includes('xyz')"))
     }
 
     @Test
-    fun stringStartsWith() {
+    fun stringStartsWith() = runTest {
         assertTrue(bool("'hello'.startsWith('hel')"))
     }
 
     @Test
-    fun stringEndsWith() {
+    fun stringEndsWith() = runTest {
         assertTrue(bool("'hello'.endsWith('llo')"))
     }
 
     @Test
-    fun stringFromCharCode() {
+    fun stringFromCharCode() = runTest {
         assertEquals("A", str("String.fromCharCode(65)"))
     }
 
     @Test
-    fun stringFromCharCodeMultiple() {
+    fun stringFromCharCodeMultiple() = runTest {
         assertEquals("Hi", str("String.fromCharCode(72,105)"))
     }
 
     @Test
-    fun stringToString() {
+    fun stringToString() = runTest {
         assertEquals("hello", str("'hello'.toString()"))
     }
 
     @Test
-    fun stringMatch() {
+    fun stringMatch() = runTest {
         // match returns array of groups; [0] is the full match
         assertEquals("ell", str("'hello'.match('ell')[0]"))
     }
 
     @Test
-    fun stringMatchNoMatch() {
+    fun stringMatchNoMatch() = runTest {
         assertNull(evalJs("'hello'.match('xyz')"))
     }
 
     @Test
-    fun numberToStringRadix16() {
+    fun numberToStringRadix16() = runTest {
         assertEquals("ff", str("(255).toString(16)"))
     }
 
     @Test
-    fun numberToStringRadix2() {
+    fun numberToStringRadix2() = runTest {
         assertEquals("1010", str("(10).toString(2)"))
     }
 
     @Test
-    fun numberToFixed() {
+    fun numberToFixed() = runTest {
         assertEquals("3.14", str("(3.14159).toFixed(2)"))
     }
 
     @Test
-    fun toFixedZeroDigits() {
+    fun toFixedZeroDigits() = runTest {
         assertEquals("4", str("(3.6).toFixed(0)"))
     }
 
     @Test
-    fun toFixedTwoDigits() {
+    fun toFixedTwoDigits() = runTest {
         assertEquals("3.14", str("(3.14159).toFixed(2)"))
     }
 
     @Test
-    fun toFixedPadsWithZeroes() {
+    fun toFixedPadsWithZeroes() = runTest {
         assertEquals("3.10", str("(3.1).toFixed(2)"))
     }
 
     @Test
-    fun toFixedNegativeNumber() {
+    fun toFixedNegativeNumber() = runTest {
         assertEquals("-3.14", str("(-3.14159).toFixed(2)"))
     }
 
     @Test
-    fun toFixedNegativeBetweenZeroAndMinusOne() {
+    fun toFixedNegativeBetweenZeroAndMinusOne() = runTest {
         assertEquals("-0.50", str("(-0.5).toFixed(2)"))
     }
 
     @Test
-    fun toFixedWholeNumber() {
+    fun toFixedWholeNumber() = runTest {
         assertEquals("5.00", str("(5).toFixed(2)"))
     }
 
     @Test
-    fun toFixedZeroValue() {
+    fun toFixedZeroValue() = runTest {
         assertEquals("0.00", str("(0).toFixed(2)"))
     }
 
     @Test
-    fun arrayLiteralAndLength() {
+    fun arrayLiteralAndLength() = runTest {
         assertEquals(3.0, num("[1,2,3].length"))
     }
 
     @Test
-    fun arrayIndexAccess() {
+    fun arrayIndexAccess() = runTest {
         assertEquals(2.0, num("[1,2,3][1]"))
     }
 
     @Test
-    fun arrayJoin() {
+    fun arrayJoin() = runTest {
         assertEquals("1,2,3", str("[1,2,3].join(',')"))
     }
 
     @Test
-    fun arrayJoinDefaultSep() {
+    fun arrayJoinDefaultSep() = runTest {
         assertEquals("1,2,3", str("[1,2,3].join()"))
     }
 
     @Test
-    fun arrayReverse() {
+    fun arrayReverse() = runTest {
         assertEquals("3,2,1", str("[1,2,3].reverse().join(',')"))
     }
 
     @Test
-    fun arrayPushReturnsNewLength() {
+    fun arrayPushReturnsNewLength() = runTest {
         assertEquals(4.0, num("var a=[1,2,3]; a.push(4)"))
     }
 
     @Test
-    fun arrayPushMutates() {
+    fun arrayPushMutates() = runTest {
         assertEquals("1,2,3,4", str("var a=[1,2,3]; a.push(4); a.join(',')"))
     }
 
     @Test
-    fun arrayPopRemovesLastElement() {
+    fun arrayPopRemovesLastElement() = runTest {
         assertEquals(3.0, num("var a=[1,2,3]; a.pop()"))
     }
 
     @Test
-    fun arrayPopMutates() {
+    fun arrayPopMutates() = runTest {
         assertEquals("1,2", str("var a=[1,2,3]; a.pop(); a.join(',')"))
     }
 
     @Test
-    fun arrayShift() {
+    fun arrayShift() = runTest {
         assertEquals(1.0, num("var a=[1,2,3]; a.shift()"))
     }
 
     @Test
-    fun arrayShiftMutates() {
+    fun arrayShiftMutates() = runTest {
         assertEquals("2,3", str("var a=[1,2,3]; a.shift(); a.join(',')"))
     }
 
     @Test
-    fun arrayUnshift() {
+    fun arrayUnshift() = runTest {
         assertEquals(4.0, num("var a=[2,3,4]; a.unshift(1)"))
     }
 
     @Test
-    fun arrayUnshiftMutates() {
+    fun arrayUnshiftMutates() = runTest {
         assertEquals("1,2,3,4", str("var a=[2,3,4]; a.unshift(1); a.join(',')"))
     }
 
     @Test
-    fun arraySlice() {
+    fun arraySlice() = runTest {
         assertEquals("2,3", str("[1,2,3,4].slice(1,3).join(',')"))
     }
 
@@ -1311,68 +1311,68 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun parseIntLeadingWhitespace() {
+    fun parseIntLeadingWhitespace() = runTest {
         assertEquals(42.0, num("parseInt('  42  ')"))
     }
 
     @Test
-    fun parseFloat() {
+    fun parseFloat() = runTest {
         assertApprox(3.14, num("parseFloat('3.14')"))
     }
 
     @Test
-    fun isNanTrue() {
+    fun isNanTrue() = runTest {
         assertTrue(bool("isNaN(NaN)"))
     }
 
     @Test
-    fun isNanFalse() {
+    fun isNanFalse() = runTest {
         assertFalse(bool("isNaN(1)"))
     }
 
     @Test
-    fun isFiniteFalse() {
+    fun isFiniteFalse() = runTest {
         assertFalse(bool("isFinite(Infinity)"))
     }
 
     @Test
-    fun isFiniteTrue() {
+    fun isFiniteTrue() = runTest {
         assertTrue(bool("isFinite(1)"))
     }
 
     @Test
-    fun consoleLogDoesNotThrow() {
+    fun consoleLogDoesNotThrow() = runTest {
         // console.log is a no-op; just ensure it runs without exception
         assertEquals(Unit, evalJs("console.log('test', 1, 2)"))
     }
 
     @Test
-    fun decodeURIComponentBasic() {
+    fun decodeURIComponentBasic() = runTest {
         assertEquals("hello world", str("decodeURIComponent('hello%20world')"))
     }
 
     @Test
-    fun encodeURIComponentBasic() {
+    fun encodeURIComponentBasic() = runTest {
         assertTrue(str("encodeURIComponent('hello world')").contains("%"))
     }
 
     @Test
-    fun tryCatchSwallowsThrownValue() {
+    fun tryCatchSwallowsThrownValue() = runTest {
         assertEquals(42.0, num("var r=0; try{throw 42}catch(e){r=e} r"))
     }
 
     @Test
-    fun finallyAlwaysRuns() {
+    fun finallyAlwaysRuns() = runTest {
         assertEquals(99.0, num("var r=0; try{throw 1}catch(e){}finally{r=99} r"))
     }
 
     @Test
-    fun tryWithoutThrowSkipsCatch() {
+    fun tryWithoutThrowSkipsCatch() = runTest {
         assertEquals(1.0, num("var r=0; try{r=1}catch(e){r=99} r"))
     }
 
     @Test
-    fun tryCatchThrowString() {
+    fun tryCatchThrowString() = runTest {
         assertEquals("oops", str("var r=''; try{throw 'oops'}catch(e){r=e} r"))
     }
 
