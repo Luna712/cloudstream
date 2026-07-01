@@ -5,7 +5,8 @@ package com.lagradost.cloudstream3.extractors
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.*
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 open class PeaceMakerst : ExtractorApi() {
     override val name            = "PeaceMakerst"
@@ -60,29 +61,34 @@ open class PeaceMakerst : ExtractorApi() {
         )
     }
 
+    @Serializable
     data class PeaceResponse(
-        @JsonProperty("videoImage")   val videoImage: String?,
-        @JsonProperty("videoSources") val videoSources: List<VideoSource>,
-        @JsonProperty("sIndex")       val sIndex: String,
-        @JsonProperty("sourceList")   val sourceList: Map<String, String>
+        @SerialName("videoImage")   val videoImage: String?,
+        @SerialName("videoSources") val videoSources: List<VideoSource>,
+        @SerialName("sIndex")       val sIndex: String,
+        @SerialName("sourceList")   val sourceList: Map<String, String>
     )
 
+    @Serializable
     data class VideoSource(
-        @JsonProperty("file")  val file: String,
-        @JsonProperty("label") val label: String,
-        @JsonProperty("type")  val type: String
+        @SerialName("file")  val file: String,
+        @SerialName("label") val label: String,
+        @SerialName("type")  val type: String
     )
 
+    @Serializable
     data class Teve2ApiResponse(
-        @JsonProperty("Media") val media: Teve2Media
+        @SerialName("Media") val media: Teve2Media
     )
 
+    @Serializable
     data class Teve2Media(
-        @JsonProperty("Link") val link: Teve2Link
+        @SerialName("Link") val link: Teve2Link
     )
 
+    @Serializable
     data class Teve2Link(
-        @JsonProperty("ServiceUrl") val serviceUrl: String,
-        @JsonProperty("SecurePath") val securePath: String
+        @SerialName("ServiceUrl") val serviceUrl: String,
+        @SerialName("SecurePath") val securePath: String
     )
 }

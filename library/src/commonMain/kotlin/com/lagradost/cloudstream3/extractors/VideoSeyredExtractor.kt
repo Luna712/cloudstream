@@ -2,10 +2,11 @@
 
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.*
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
 
 open class VideoSeyred : ExtractorApi() {
@@ -47,24 +48,27 @@ open class VideoSeyred : ExtractorApi() {
         }
     }
 
+    @Serializable
     data class VideoSeyredSource(
-        @JsonProperty("image")   val image: String,
-        @JsonProperty("title")   val title: String,
-        @JsonProperty("sources") val sources: List<VSSource>,
-        @JsonProperty("tracks")  val tracks: List<VSTrack>
+        @SerialName("image")   val image: String,
+        @SerialName("title")   val title: String,
+        @SerialName("sources") val sources: List<VSSource>,
+        @SerialName("tracks")  val tracks: List<VSTrack>
     )
 
+    @Serializable
     data class VSSource(
-        @JsonProperty("file")    val file: String,
-        @JsonProperty("type")    val type: String,
-        @JsonProperty("default") val default: String
+        @SerialName("file")    val file: String,
+        @SerialName("type")    val type: String,
+        @SerialName("default") val default: String
     )
 
+    @Serializable
     data class VSTrack(
-        @JsonProperty("file")     val file: String,
-        @JsonProperty("kind")     val kind: String,
-        @JsonProperty("language") val language: String? = null,
-        @JsonProperty("label")    val label: String?    = null,
-        @JsonProperty("default")  val default: String?  = null
+        @SerialName("file")     val file: String,
+        @SerialName("kind")     val kind: String,
+        @SerialName("language") val language: String? = null,
+        @SerialName("label")    val label: String?    = null,
+        @SerialName("default")  val default: String?  = null
     )
 }

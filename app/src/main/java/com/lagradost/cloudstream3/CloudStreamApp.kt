@@ -121,7 +121,7 @@ class CloudStreamApp : Application(), SingletonImageLoader.Factory {
         }
 
         fun <T : Any> setKeyClass(path: String, value: T) {
-            context?.setKey(path, value)
+            context?.setKey<Any>(path, value)
         }
 
         fun removeKeys(folder: String): Int? {
@@ -129,6 +129,11 @@ class CloudStreamApp : Application(), SingletonImageLoader.Factory {
         }
 
         fun <T> setKey(path: String, value: T) {
+            context?.setKey(path, value)
+        }
+
+        @JvmName("setKeyReified")
+        inline fun <reified T : Any> setKey(path: String, value: T) {
             context?.setKey(path, value)
         }
 

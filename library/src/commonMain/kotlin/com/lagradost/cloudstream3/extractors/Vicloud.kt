@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.APIHolder.unixTimeMS
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
@@ -42,13 +43,15 @@ open class Vicloud : ExtractorApi() {
 
     }
 
+    @Serializable
     private data class Sources(
-        @JsonProperty("file") val file: String? = null,
-        @JsonProperty("label") val label: String? = null,
+        @SerialName("file") val file: String? = null,
+        @SerialName("label") val label: String? = null,
     )
 
+    @Serializable
     private data class Responses(
-        @JsonProperty("sources") val sources: List<Sources>? = arrayListOf(),
+        @SerialName("sources") val sources: List<Sources>? = arrayListOf(),
     )
 
 }

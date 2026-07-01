@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.ErrorLoadingException
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
@@ -172,26 +173,30 @@ open class Rabbitstream : ExtractorApi() {
         return decryptedData.decodeToString()
     }
 
+    @Serializable
     data class Tracks(
-        @JsonProperty("file") val file: String? = null,
-        @JsonProperty("label") val label: String? = null,
-        @JsonProperty("kind") val kind: String? = null,
+        @SerialName("file") val file: String? = null,
+        @SerialName("label") val label: String? = null,
+        @SerialName("kind") val kind: String? = null,
     )
 
+    @Serializable
     data class Sources(
-        @JsonProperty("file") val file: String? = null,
-        @JsonProperty("type") val type: String? = null,
-        @JsonProperty("label") val label: String? = null,
+        @SerialName("file") val file: String? = null,
+        @SerialName("type") val type: String? = null,
+        @SerialName("label") val label: String? = null,
     )
 
+    @Serializable
     data class SourcesResponses(
-        @JsonProperty("sources") val sources: List<Sources?>? = emptyList(),
-        @JsonProperty("tracks") val tracks: List<Tracks?>? = emptyList(),
+        @SerialName("sources") val sources: List<Sources?>? = emptyList(),
+        @SerialName("tracks") val tracks: List<Tracks?>? = emptyList(),
     )
 
+    @Serializable
     data class SourcesEncrypted(
-        @JsonProperty("sources") val sources: String? = null,
-        @JsonProperty("encrypted") val encrypted: Boolean? = null,
-        @JsonProperty("tracks") val tracks: List<Tracks?>? = emptyList(),
+        @SerialName("sources") val sources: String? = null,
+        @SerialName("encrypted") val encrypted: Boolean? = null,
+        @SerialName("tracks") val tracks: List<Tracks?>? = emptyList(),
     )
 }

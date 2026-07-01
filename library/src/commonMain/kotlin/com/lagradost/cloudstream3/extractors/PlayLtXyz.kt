@@ -1,7 +1,8 @@
 package com.lagradost.cloudstream3.extractors
 
 import com.lagradost.api.Log
-import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.*
 import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
@@ -11,8 +12,9 @@ open class PlayLtXyz: ExtractorApi() {
     override val mainUrl: String = "https://play.playlt.xyz"
     override val requiresReferer = true
 
+    @Serializable
     private data class ResponseData(
-        @JsonProperty("data") val data: String? = null
+        @SerialName("data") val data: String? = null
     )
 
     override suspend fun getUrl(url: String, referer: String?): List<ExtractorLink> {
@@ -57,7 +59,7 @@ open class PlayLtXyz: ExtractorApi() {
             if (data.isSuccessful) {
                 val itemstr = data.text()
                 Log.i(this.name, "Result => (data) $itemstr")
-                tryParseJson<ResponseData?>(itemstr)?.let { item ->
+                tryParseJson<ResponseData>(itemstr)?.let { item ->
                     val linkUrl = item.data ?: ""
                     if (linkUrl.isNotBlank()) {
                         extractedLinksList.add(
