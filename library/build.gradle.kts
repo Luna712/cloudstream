@@ -56,19 +56,20 @@ kotlin {
         }
 
         commonMain.dependencies {
-            implementation(libs.annotation) // Annotations
+            api(libs.annotation) // Annotations
+            api(libs.kotlinx.atomicfu)
+            api(libs.kotlinx.coroutines.core)
+            api(libs.kotlinx.datetime)
+            api(libs.kotlinx.serialization.json) // JSON Parser
+            api(libs.ksoup) // HTML Parser
+            api(libs.ktor.http)
+            api(libs.nicehttp) // HTTP Library
+            api(libs.bundles.cryptography) // Cryptography
+
             implementation(libs.jackson.module.kotlin) // JSON Parser
             implementation(libs.jsoup) // HTML Parser
-            implementation(libs.kotlinx.atomicfu)
-            implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.kotlinx.datetime)
-            implementation(libs.kotlinx.serialization.json) // JSON Parser
-            implementation(libs.ksoup) // HTML Parser
-            implementation(libs.ktor.http)
-            implementation(libs.nicehttp) // HTTP Library
             implementation(libs.rhino) // Run JavaScript
             implementation(libs.tmdb.java) // TMDB API v3 Wrapper Made with RetroFit
-            implementation(libs.bundles.cryptography) // Cryptography
 
             // Deprecated; will be removed once extensions have time to migrate from using it
             implementation("me.xdrop:fuzzywuzzy:1.4.0")
