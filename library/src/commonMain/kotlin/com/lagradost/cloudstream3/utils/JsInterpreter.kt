@@ -137,7 +137,7 @@ suspend fun evalJs(
     maxExecutionTime: Duration = JS_DEFAULT_MAX_EXECUTION_TIME,
     maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
 ): Any? = coroutineScope {
-    val interpreter = JsInterpreter(maxExecutionTime, maxInstructions, scope)
+    val interpreter = JsInterpreter(maxExecutionTime, maxInstructions, this)
     val result = interpreter.eval(js)
     return if (variable != null) interpreter.getVar(variable) else result
 }
