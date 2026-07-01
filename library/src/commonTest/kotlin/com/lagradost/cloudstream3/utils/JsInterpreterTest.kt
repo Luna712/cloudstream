@@ -888,158 +888,158 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun arraySliceNegative() {
+    fun arraySliceNegative() = runTest {
         assertEquals("3,4", str("[1,2,3,4].slice(-2).join(',')"))
     }
 
     @Test
-    fun arraySpliceRemove() {
+    fun arraySpliceRemove() = runTest {
         assertEquals("2,3", str("var a=[1,2,3,4]; a.splice(1,2).join(',')"))
     }
 
     @Test
-    fun arraySpliceMutates() {
+    fun arraySpliceMutates() = runTest {
         assertEquals("1,4", str("var a=[1,2,3,4]; a.splice(1,2); a.join(',')"))
     }
 
     @Test
-    fun arraySpliceInsert() {
+    fun arraySpliceInsert() = runTest {
         assertEquals("1,9,8,4", str("var a=[1,2,3,4]; a.splice(1,2,9,8); a.join(',')"))
     }
 
     @Test
-    fun arrayMap() {
+    fun arrayMap() = runTest {
         assertEquals("2,4,6", str("[1,2,3].map(function(x){return x*2}).join(',')"))
     }
 
     @Test
-    fun arrayFilter() {
+    fun arrayFilter() = runTest {
         assertEquals("2,4", str("[1,2,3,4].filter(function(x){return x%2===0}).join(',')"))
     }
 
     @Test
-    fun arrayReduce() {
+    fun arrayReduce() = runTest {
         assertEquals(10.0, num("[1,2,3,4].reduce(function(acc,x){return acc+x},0)"))
     }
 
     @Test
-    fun arrayReduceNoInitial() {
+    fun arrayReduceNoInitial() = runTest {
         assertEquals(10.0, num("[1,2,3,4].reduce(function(acc,x){return acc+x})"))
     }
 
     @Test
-    fun arrayForEachSideEffect() {
+    fun arrayForEachSideEffect() = runTest {
         assertEquals(6.0, num("var s=0; [1,2,3].forEach(function(x){s+=x}); s"))
     }
 
     @Test
-    fun arrayFind() {
+    fun arrayFind() = runTest {
         assertEquals(3.0, num("[1,2,3,4].find(function(x){return x>2})"))
     }
 
     @Test
-    fun arrayFindNotFound() {
+    fun arrayFindNotFound() = runTest {
         assertEquals(Unit, evalJs("[1,2,3].find(function(x){return x>9})"))
     }
 
     @Test
-    fun arrayIndexOf() {
+    fun arrayIndexOf() = runTest {
         assertEquals(2.0, num("[10,20,30].indexOf(30)"))
     }
 
     @Test
-    fun arrayIndexOfNotFound() {
+    fun arrayIndexOfNotFound() = runTest {
         assertEquals(-1.0, num("[10,20,30].indexOf(99)"))
     }
 
     @Test
-    fun arrayIncludes() {
+    fun arrayIncludes() = runTest {
         assertTrue(bool("[1,2,3].includes(2)"))
     }
 
     @Test
-    fun arrayIncludesFalse() {
+    fun arrayIncludesFalse() = runTest {
         assertFalse(bool("[1,2,3].includes(9)"))
     }
 
     @Test
-    fun arrayConcat() {
+    fun arrayConcat() = runTest {
         assertEquals("1,2,3,4", str("[1,2].concat([3,4]).join(',')"))
     }
 
     @Test
-    fun arraySome() {
+    fun arraySome() = runTest {
         assertTrue(bool("[1,2,3].some(function(x){return x>2})"))
     }
 
     @Test
-    fun arraySomeFalse() {
+    fun arraySomeFalse() = runTest {
         assertFalse(bool("[1,2,3].some(function(x){return x>9})"))
     }
 
     @Test
-    fun arrayEvery() {
+    fun arrayEvery() = runTest {
         assertFalse(bool("[1,2,3].every(function(x){return x>2})"))
     }
 
     @Test
-    fun arrayEveryTrue() {
+    fun arrayEveryTrue() = runTest {
         assertTrue(bool("[3,4,5].every(function(x){return x>2})"))
     }
 
     @Test
-    fun arraySortDefault() {
+    fun arraySortDefault() = runTest {
         // Default sort is lexicographic: [10,9,2] => [10,2,9]
         assertEquals("10,2,9", str("[10,9,2].sort().join(',')"))
     }
 
     @Test
-    fun arraySortWithComparator() {
+    fun arraySortWithComparator() = runTest {
         assertEquals("1,2,10", str("[10,1,2].sort(function(a,b){return a-b}).join(',')"))
     }
 
     @Test
-    fun arrayFlat() {
+    fun arrayFlat() = runTest {
         assertEquals("1,2,3,4", str("[[1,2],[3,4]].flat().join(',')"))
     }
 
     @Test
-    fun arrayToString() {
+    fun arrayToString() = runTest {
         assertEquals("1,2,3", str("[1,2,3].toString()"))
     }
 
     @Test
-    fun newArrayWithSize() {
+    fun newArrayWithSize() = runTest {
         assertEquals(5.0, num("new Array(5).length"))
     }
 
     @Test
-    fun objectPropertyAccessWithDot() {
+    fun objectPropertyAccessWithDot() = runTest {
         assertEquals(1.0, num("var o={a:1}; o.a"))
     }
 
     @Test
-    fun objectPropertyAccessWithBracket() {
+    fun objectPropertyAccessWithBracket() = runTest {
         assertEquals(2.0, num("var o={b:2}; o['b']"))
     }
 
     @Test
-    fun objectPropertyAssignment() {
+    fun objectPropertyAssignment() = runTest {
         assertEquals(99.0, num("var o={}; o.x=99; o.x"))
     }
 
     @Test
-    fun objectKeys() {
+    fun objectKeys() = runTest {
         assertEquals("a,b", str("Object.keys({a:1,b:2}).join(',')"))
     }
 
     @Test
-    fun objectValues() {
+    fun objectValues() = runTest {
         assertEquals("1,2", str("Object.values({a:1,b:2}).join(',')"))
     }
 
     @Test
-    fun objectToStringCoercion() {
+    fun objectToStringCoercion() = runTest {
         // ({}) + "" => "[object Object]"
         assertEquals("[object Object]", str("({})+''"))
 
@@ -1048,93 +1048,93 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun ifTrueBranch() {
+    fun ifTrueBranch() = runTest {
         assertEquals(1.0, num("var r=0; if(true){r=1} r"))
     }
 
     @Test
-    fun ifFalseUsesElse() {
+    fun ifFalseUsesElse() = runTest {
         assertEquals(2.0, num("var r=0; if(false){r=1}else{r=2} r"))
     }
 
     @Test
-    fun ifElseIfChain() {
+    fun ifElseIfChain() = runTest {
         assertEquals(2.0, num("var x=5; var r=0; if(x<3){r=1}else if(x<7){r=2}else{r=3} r"))
     }
 
     @Test
-    fun whileLoop() {
+    fun whileLoop() = runTest {
         assertEquals(10.0, num("var i=0; while(i<10){i++} i"))
     }
 
     @Test
-    fun whileBreak() {
+    fun whileBreak() = runTest {
         assertEquals(5.0, num("var i=0; while(true){if(i===5)break; i++} i"))
     }
 
     @Test
-    fun whileContinue() {
+    fun whileContinue() = runTest {
         assertEquals(25.0, num("var i=0; var s=0; while(i<10){i++; if(i%2===0)continue; s+=i} s"))
     }
 
     @Test
-    fun forLoop() {
+    fun forLoop() = runTest {
         assertEquals(10.0, num("var s=0; for(var i=1;i<=4;i++){s+=i} s"))
     }
 
     @Test
-    fun forLoopWithBreak() {
+    fun forLoopWithBreak() = runTest {
         assertEquals(3.0, num("var i; for(i=0;i<10;i++){if(i===3)break} i"))
     }
 
     @Test
-    fun forLoopNoInitTestUpdate() {
+    fun forLoopNoInitTestUpdate() = runTest {
         // All three parts optional; behaves like while(true) with internal break
         assertEquals(3.0, num("var i=0; for(;;){if(i>=3)break; i++} i"))
     }
 
     @Test
-    fun forInOverObjectKeys() {
+    fun forInOverObjectKeys() = runTest {
         assertEquals("a,b,c", str("var o={a:1,b:2,c:3}; var keys=[]; for(var k in o){keys.push(k)} keys.sort().join(',')"))
     }
 
     @Test
-    fun forInOverArrayGivesIndices() {
+    fun forInOverArrayGivesIndices() = runTest {
         assertEquals("0,1,2", str("var a=[10,20,30]; var idx=[]; for(var i in a){idx.push(i)} idx.join(',')"))
     }
 
     @Test
-    fun namedFunctionDeclarationAndCall() {
+    fun namedFunctionDeclarationAndCall() = runTest {
         assertEquals(7.0, num("function add(a,b){return a+b} add(3,4)"))
     }
 
     @Test
-    fun anonymousFunctionExpression() {
+    fun anonymousFunctionExpression() = runTest {
         assertEquals(12.0, num("var mul=function(a,b){return a*b}; mul(3,4)"))
     }
 
     @Test
-    fun recursiveFunction() {
+    fun recursiveFunction() = runTest {
         assertEquals(120.0, num("function fact(n){if(n<=1)return 1; return n*fact(n-1)} fact(5)"))
     }
 
     @Test
-    fun closureCapturesOuterVariable() {
+    fun closureCapturesOuterVariable() = runTest {
         assertEquals(3.0, num("var c=0; function inc(){c+=1} inc();inc();inc(); c"))
     }
 
     @Test
-    fun immediatelyInvokedFunctionExpression() {
+    fun immediatelyInvokedFunctionExpression() = runTest {
         assertEquals(9.0, num("(function(x){return x*x})(3)"))
     }
 
     @Test
-    fun functionAsArgument() {
+    fun functionAsArgument() = runTest {
         assertEquals(6.0, num("function apply(f,x){return f(x)} apply(function(n){return n+1},5)"))
     }
 
     @Test
-    fun nestedClosure() {
+    fun nestedClosure() = runTest {
         val code = """
             function makeAdder(n) {
                 return function(x) { return x + n; }
@@ -1146,11 +1146,11 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun closureCounterFactory() {
+    fun closureCounterFactory() = runTest {
         val code = """
-            function makeCounter() {
+            function makeCounter() = runTest {
                 var count = 0;
-                return function() { count += 1; return count; }
+                return function() = runTest { count += 1; return count; }
             }
             var c = makeCounter();
             c(); c(); c()
@@ -1159,9 +1159,9 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun argumentsObject() {
+    fun argumentsObject() = runTest {
         val code = """
-            function sum() {
+            function sum() = runTest {
                 var total = 0;
                 for(var i=0; i<arguments.length; i++) { total += arguments[i]; }
                 return total;
@@ -1172,12 +1172,12 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun functionReturnUndefinedImplicitly() {
+    fun functionReturnUndefinedImplicitly() = runTest {
         assertEquals(Unit, evalJs("function f(){} f()"))
     }
 
     @Test
-    fun newExpressionCallsFunction() {
+    fun newExpressionCallsFunction() = runTest {
         // Our interpreter just calls the function; result of new is the JsObject thisVal
         // We verify it doesn't throw and the constructor side-effects are observable
         val code = """
@@ -1189,124 +1189,124 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun mathFloor() {
+    fun mathFloor() = runTest {
         assertEquals(3.0, num("Math.floor(3.9)"))
     }
 
     @Test
-    fun mathCeil() {
+    fun mathCeil() = runTest {
         assertEquals(4.0, num("Math.ceil(3.1)"))
     }
 
     @Test
-    fun mathRound() {
+    fun mathRound() = runTest {
         assertEquals(4.0, num("Math.round(3.6)"))
     }
 
     @Test
-    fun mathAbs() {
+    fun mathAbs() = runTest {
         assertEquals(5.0, num("Math.abs(-5)"))
     }
 
     @Test
-    fun mathSqrt() {
+    fun mathSqrt() = runTest {
         assertApprox(3.0, num("Math.sqrt(9)"))
     }
 
     @Test
-    fun mathPow() {
+    fun mathPow() = runTest {
         assertEquals(8.0, num("Math.pow(2,3)"))
     }
 
     @Test
-    fun mathMax() {
+    fun mathMax() = runTest {
         assertEquals(9.0, num("Math.max(1,9,3)"))
     }
 
     @Test
-    fun mathMin() {
+    fun mathMin() = runTest {
         assertEquals(1.0, num("Math.min(1,9,3)"))
     }
 
     @Test
-    fun mathPi() {
+    fun mathPi() = runTest {
         assertApprox(PI, num("Math.PI"))
     }
 
     @Test
-    fun mathE() {
+    fun mathE() = runTest {
         assertApprox(E, num("Math.E"))
     }
 
     @Test
-    fun mathLog() {
+    fun mathLog() = runTest {
         assertApprox(0.0, num("Math.log(1)"))
     }
 
     @Test
-    fun mathLog2() {
+    fun mathLog2() = runTest {
         assertApprox(3.0, num("Math.log2(8)"))
     }
 
     @Test
-    fun mathLog10() {
+    fun mathLog10() = runTest {
         assertApprox(2.0, num("Math.log10(100)"))
     }
 
     @Test
-    fun mathSin() {
+    fun mathSin() = runTest {
         assertApprox(0.0, num("Math.sin(0)"))
     }
 
     @Test
-    fun mathCos() {
+    fun mathCos() = runTest {
         assertApprox(1.0, num("Math.cos(0)"))
     }
 
     @Test
-    fun mathTruncPositive() {
+    fun mathTruncPositive() = runTest {
         assertEquals(3.0, num("Math.trunc(3.9)"))
     }
 
     @Test
-    fun mathTruncNegative() {
+    fun mathTruncNegative() = runTest {
         assertEquals(-3.0, num("Math.trunc(-3.9)"))
     }
 
     @Test
-    fun mathTruncZero() {
+    fun mathTruncZero() = runTest {
         assertEquals(0.0, num("Math.trunc(0.5)"))
     }
 
     @Test
-    fun mathRandomInRange() {
+    fun mathRandomInRange() = runTest {
         val r = num("Math.random()")
         assertTrue(r >= 0.0 && r < 1.0, "Math.random() should be in [0,1) but was $r")
     }
 
     @Test
-    fun mathRandomProducesDifferentValues() {
+    fun mathRandomProducesDifferentValues() = runTest {
         val results = (1..20).map { num("Math.random()") }.toSet()
         assertTrue(results.size > 1, "Math.random() produced identical values across 20 calls")
     }
 
     @Test
-    fun parseIntDecimal() {
+    fun parseIntDecimal() = runTest {
         assertEquals(42.0, num("parseInt('42')"))
     }
 
     @Test
-    fun parseIntHex() {
+    fun parseIntHex() = runTest {
         assertEquals(255.0, num("parseInt('ff',16)"))
     }
 
     @Test
-    fun parseIntBinary() {
+    fun parseIntBinary() = runTest {
         assertEquals(5.0, num("parseInt('101',2)"))
     }
 
     @Test
-    fun parseIntInvalid() {
+    fun parseIntInvalid() = runTest {
         assertTrue(num("parseInt('abc')").isNaN())
     }
 
@@ -1377,12 +1377,12 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun tryCatchThrowObject() {
+    fun tryCatchThrowObject() = runTest {
         assertEquals(404.0, num("var r=0; try{throw {code:404}}catch(e){r=e.code} r"))
     }
 
     @Test
-    fun jsContextPersistsVariablesAcrossEvals() {
+    fun jsContextPersistsVariablesAcrossEvals() = runTest {
         val ctx = JsContext()
         ctx.eval("var x = 10")
         ctx.eval("x += 5")
@@ -1390,13 +1390,13 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun jsContextGetReturnsNullForUndefined() {
+    fun jsContextGetReturnsNullForUndefined() = runTest {
         val ctx = JsContext()
         assertNull(ctx["nope"])
     }
 
     @Test
-    fun jsContextSetExposesValueToEval() {
+    fun jsContextSetExposesValueToEval() = runTest {
         val ctx = JsContext()
         ctx["base"] = 100.0
         ctx.eval("var result = base + 1")
@@ -1404,14 +1404,14 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun jsContextEvalReturnsLastExpression() {
+    fun jsContextEvalReturnsLastExpression() = runTest {
         val ctx = JsContext()
         val result = ctx.eval("1+2")
         assertEquals(3.0, result as? Double ?: 0.0)
     }
 
     @Test
-    fun jsContextUrlExtractionPattern() {
+    fun jsContextUrlExtractionPattern() = runTest {
         val scriptContent = "var url = '/e/abc123?t=' + (1000+337) + '&s=xyz'"
         val ctx = JsContext()
         ctx.eval(scriptContent)
@@ -1419,236 +1419,236 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun evaluateMathSimpleAddition() {
+    fun evaluateMathSimpleAddition() = runTest {
         assertEquals("5", jsValueToString(evalJs("eval(2+3)")))
     }
 
     @Test
-    fun evaluateMathNestedParens() {
+    fun evaluateMathNestedParens() = runTest {
         assertEquals("12", jsValueToString(evalJs("eval((2+4)*2)")))
     }
 
     @Test
-    fun evaluateMathProducesCharCode() {
+    fun evaluateMathProducesCharCode() = runTest {
         val code = "eval(1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1)"
         assertEquals(65.0, (evalJs(code) as? Double) ?: 0.0)
     }
 
     @Test
-    fun evalJsWithVariableReturnsNamedVar() {
+    fun evalJsWithVariableReturnsNamedVar() = runTest {
         assertEquals(42.0, num("var x = 42", "x"))
     }
 
     @Test
-    fun evalJsWithVariableAfterComputation() {
+    fun evalJsWithVariableAfterComputation() = runTest {
         assertEquals(7.0, num("var x = 1 + 2 * 3", "x"))
     }
 
     @Test
-    fun evalJsWithVariableStringValue() {
+    fun evalJsWithVariableStringValue() = runTest {
         assertEquals("https://example.com", str("var url = 'https://example.com'", "url"))
     }
 
     @Test
-    fun evalJsWithVariableNullValue() {
+    fun evalJsWithVariableNullValue() = runTest {
         assertNull(evalJs("var x = null", "x"))
     }
 
     @Test
-    fun evalJsWithVariableReturnsNullForUndefined() {
+    fun evalJsWithVariableReturnsNullForUndefined() = runTest {
         assertNull(evalJs("var x = 42", "y"))
     }
 
     @Test
-    fun evalJsWithVariableUnitWhenNoVariable() {
+    fun evalJsWithVariableUnitWhenNoVariable() = runTest {
         assertEquals(Unit, evalJs("var x = 42"))
     }
 
     @Test
-    fun evalJsWithVariableAfterMultipleStatements() {
+    fun evalJsWithVariableAfterMultipleStatements() = runTest {
         assertEquals(15.0, num("var x = 0; for(var i=1;i<=5;i++){x+=i}", "x"))
     }
 
     @Test
-    fun emptyArrayPlusEmptyArrayIsEmptyString() {
+    fun emptyArrayPlusEmptyArrayIsEmptyString() = runTest {
         // [] + [] => ""
         assertEquals("", str("[]+[]"))
     }
 
     @Test
-    fun unaryPlusEmptyArrayIsZero() {
+    fun unaryPlusEmptyArrayIsZero() = runTest {
         // +[] => 0
         assertEquals(0.0, num("+[]"))
     }
 
     @Test
-    fun notArrayIsFalse() {
+    fun notArrayIsFalse() = runTest {
         // ![] => false  (array is truthy, so ![] is false)
         assertFalse(bool("![]"))
     }
 
     @Test
-    fun doubleNotArrayIsTrue() {
+    fun doubleNotArrayIsTrue() = runTest {
         // !![] => true
         assertTrue(bool("!![]"))
     }
 
     @Test
-    fun unaryPlusDoubleNotArrayIsOne() {
+    fun unaryPlusDoubleNotArrayIsOne() = runTest {
         // +!![] => 1
         assertEquals(1.0, num("+!![]"))
     }
 
     @Test
-    fun unaryPlusNotArrayIsZero() {
+    fun unaryPlusNotArrayIsZero() = runTest {
         // +![] => 0
         assertEquals(0.0, num("+![]"))
     }
 
     @Test
-    fun falseCoercedToString() {
+    fun falseCoercedToString() = runTest {
         // ![]+[] => "false"
         assertEquals("false", str("![]+[]"))
     }
 
     @Test
-    fun trueCoercedToString() {
+    fun trueCoercedToString() = runTest {
         // !![]+[] => "true"
         assertEquals("true", str("!![]+[]"))
     }
 
     @Test
-    fun falseStringViaStringConcat() {
+    fun falseStringViaStringConcat() = runTest {
         // (![]+""): false + "" => "false"
         assertEquals("false", str("![]+''"))
     }
 
     @Test
-    fun trueStringViaStringConcat() {
+    fun trueStringViaStringConcat() = runTest {
         // (!![]+""): true + "" => "true"
         assertEquals("true", str("!![]+''"))
     }
 
     @Test
-    fun undefinedCoercedToString() {
+    fun undefinedCoercedToString() = runTest {
         assertEquals("undefined", str("[][0]+[]"))
     }
 
     @Test
-    fun charF() {
+    fun charF() = runTest {
         // (![]+[])[0] => "false"[0] => "f"
         assertEquals("f", str("(![]+[])[0]"))
     }
 
     @Test
-    fun charA() {
+    fun charA() = runTest {
         // (![]+[])[1] => "false"[1] => "a"
         assertEquals("a", str("(![]+[])[1]"))
     }
 
     @Test
-    fun charL() {
+    fun charL() = runTest {
         // (![]+[])[2] => "false"[2] => "l"
         assertEquals("l", str("(![]+[])[2]"))
     }
 
     @Test
-    fun charS() {
+    fun charS() = runTest {
         // (![]+[])[3] => "false"[3] => "s"
         assertEquals("s", str("(![]+[])[3]"))
     }
 
     @Test
-    fun charE() {
+    fun charE() = runTest {
         // (![]+[])[4] => "false"[4] => "e"
         assertEquals("e", str("(![]+[])[4]"))
     }
 
     @Test
-    fun charT() {
+    fun charT() = runTest {
         // (!![]+[])[0] => "true"[0] => "t"
         assertEquals("t", str("(!![]+[])[0]"))
     }
 
     @Test
-    fun charR() {
+    fun charR() = runTest {
         // (!![]+[])[1] => "true"[1] => "r"
         assertEquals("r", str("(!![]+[])[1]"))
     }
 
     @Test
-    fun charU() {
+    fun charU() = runTest {
         // (!![]+[])[2] => "true"[2] => "u"
         assertEquals("u", str("(!![]+[])[2]"))
     }
 
     @Test
-    fun indexViaArithmetic() {
+    fun indexViaArithmetic() = runTest {
         // (![]+[])[+[]] => "false"[0] => "f"  (index built from +[])
         assertEquals("f", str("(![]+[])[+[]]"))
     }
 
     @Test
-    fun indexOneViaArithmetic() {
+    fun indexOneViaArithmetic() = runTest {
         // (![]+[])[+!![]] => "false"[1] => "a"
         assertEquals("a", str("(![]+[])[+!![]]"))
     }
 
     @Test
-    fun arrayToStringCoercion() {
+    fun arrayToStringCoercion() = runTest {
         // [1,2,3]+[] => "1,2,3"
         assertEquals("1,2,3", str("[1,2,3]+[]"))
     }
 
     @Test
-    fun objectStringCharO() {
+    fun objectStringCharO() = runTest {
         // ([]+{})[1] => "[object Object]"[1] => "o"
         assertEquals("o", str("([]+{})[1]"))
     }
 
     @Test
-    fun objectStringCharB() {
+    fun objectStringCharB() = runTest {
         // ([]+{})[2] => "[object Object]"[2] => "b"
         assertEquals("b", str("([]+{})[2]"))
     }
 
     @Test
-    fun filterFunctionToString() {
+    fun filterFunctionToString() = runTest {
         // []["filter"]+"" => "function filter() { [native code] }"
         assertEquals("function filter() { [native code] }", str("[]['filter']+''"))
     }
 
     @Test
-    fun filterStringCharF() {
+    fun filterStringCharF() = runTest {
         // ([]["filter"]+[])[0] => "function filter() { [native code] }"[0] => "f"
         assertEquals("f", str("([]['filter']+[])[0]"))
     }
 
     @Test
-    fun filterStringCharU() {
+    fun filterStringCharU() = runTest {
         // ([]["filter"]+[])[1] => "u"
         assertEquals("u", str("([]['filter']+[])[1]"))
     }
 
     @Test
-    fun filterStringCharN() {
+    fun filterStringCharN() = runTest {
         // ([]["filter"]+[])[2] => "n"
         assertEquals("n", str("([]['filter']+[])[2]"))
     }
 
     @Test
-    fun filterStringCharC() {
+    fun filterStringCharC() = runTest {
         // ([]["filter"]+[])[3] => "c"
         assertEquals("c", str("([]['filter']+[])[3]"))
     }
 
     @Test
-    fun filterStringCharI() {
+    fun filterStringCharI() = runTest {
         assertEquals("i", str("([]['filter']+[])[5]"))
     }
 
     @Test
-    fun nativeCodeBracketChar() {
+    fun nativeCodeBracketChar() = runTest {
         // "function filter() { [native code] }" contains '[' at index 20
         val s = "function filter() { [native code] }"
         val idx = s.indexOf('[')
@@ -1656,29 +1656,29 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun nativeCodeSpaceChar() {
+    fun nativeCodeSpaceChar() = runTest {
         // space at index 8
         assertEquals(" ", str("([]['filter']+[])[8]"))
     }
 
     @Test
-    fun buildsNumberViaAddition() {
+    fun buildsNumberViaAddition() = runTest {
         // +!![] + +!![] + +!![] => 3
         assertEquals(3.0, num("+!![]+!![]+!![]"))
     }
 
     @Test
-    fun buildsNumberTen() {
+    fun buildsNumberTen() = runTest {
         assertEquals("10", str("(+!![])+[+[]]"))
     }
 
     @Test
-    fun stringFromCharCodeViaNativeExtraction() {
+    fun stringFromCharCodeViaNativeExtraction() = runTest {
         assertEquals("A", str("String['fromCharCode'](65)"))
     }
 
     @Test
-    fun fullAlphaFromFalseTrue() {
+    fun fullAlphaFromFalseTrue() = runTest {
         assertEquals("ftaseru", str("""
             var f = ![]+[];
             var t = !![]+[];
@@ -1687,30 +1687,30 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun functionToStringContainsNativeCode() {
+    fun functionToStringContainsNativeCode() = runTest {
         // Any array method coerced to string should contain "native code"
         assertTrue(str("[]['map']+''").contains("native code"))
     }
 
     @Test
-    fun functionToStringContainsFunctionKeyword() {
+    fun functionToStringContainsFunctionKeyword() = runTest {
         assertTrue(str("[]['join']+''").startsWith("function"))
     }
 
     @Test
-    fun typeofCoercion() {
+    fun typeofCoercion() = runTest {
         // typeof([]) + [] => "object"
         assertEquals("object", str("typeof([])+[]"))
     }
 
     @Test
-    fun typeofFunctionCoercion() {
+    fun typeofFunctionCoercion() = runTest {
         // typeof([]['filter']) => "function"
         assertEquals("function", str("typeof([]['filter'])"))
     }
 
     @Test
-    fun hexEncodedStringDecoding() {
+    fun hexEncodedStringDecoding() = runTest {
         val code = """
             var encoded = '48|65|6c|6c|6f';
             var decoded = encoded.split('|').map(function(h){
@@ -1722,7 +1722,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun charCodeArrayToString() {
+    fun charCodeArrayToString() = runTest {
         val code = """
             var codes = [72, 101, 108, 108, 111];
             var s = '';
@@ -1735,12 +1735,12 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun stringReversePattern() {
+    fun stringReversePattern() = runTest {
         assertEquals("hello world", str("'dlrow olleh'.split('').reverse().join('')"))
     }
 
     @Test
-    fun baseConversionLookupTable() {
+    fun baseConversionLookupTable() = runTest {
         val code = """
             var alpha = '0123456789abcdef';
             function toBase16(n) {
@@ -1757,7 +1757,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun xorDeobfuscation() {
+    fun xorDeobfuscation() = runTest {
         val code = """
             var _0x1 = function(s) {
                 return s.split('').map(function(c) {
@@ -1771,7 +1771,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun symtabLookupPattern() {
+    fun symtabLookupPattern() = runTest {
         val code = """
             var symtab = ['hello', '', 'world', 'foo'];
             var tokens = '0 2'.split(' ');
@@ -1786,7 +1786,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun hunterDecoderDufHelper() {
+    fun hunterDecoderDufHelper() = runTest {
         val code = """
             function duf(d, e) {
                 var str = '0123456789abcdefghijklmnopqrstuvwxyz';
@@ -1805,17 +1805,17 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun chainedStringMethods() {
+    fun chainedStringMethods() = runTest {
         assertEquals("OLLEH", str("'hello'.split('').reverse().join('').toUpperCase()"))
     }
 
     @Test
-    fun deeplyNestedArithmetic() {
+    fun deeplyNestedArithmetic() = runTest {
         assertEquals(39.0, num("((((1+1)*3)+((2*3)+1))*3)"))
     }
 
     @Test
-    fun closureOverLoopVariable() {
+    fun closureOverLoopVariable() = runTest {
         val code = """
             var fns = [];
             for(var i=0; i<3; i++){
@@ -1827,7 +1827,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun multilineStringConcatenation() {
+    fun multilineStringConcatenation() = runTest {
         val code = """
             var a = 'foo';
             var b = 'bar';
@@ -1838,17 +1838,17 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun bitwiseTruncationPattern() {
+    fun bitwiseTruncationPattern() = runTest {
         assertEquals(5.0, num("(11/2)|0"))
     }
 
     @Test
-    fun infiniteLoopIsAbortedByExecutionBudget() {
+    fun infiniteLoopIsAbortedByExecutionBudget() = runTest {
         assertEquals(Unit, evalJs("while(true){}"))
     }
 
     @Test
-    fun infiniteLoopIsAbortedByTimeBudget() {
+    fun infiniteLoopIsAbortedByTimeBudget() = runTest {
         val mark = TimeSource.Monotonic.markNow()
         val result = evalJs("while(true){}", maxExecutionTime = 200.milliseconds)
         assertEquals(Unit, result)
@@ -1857,131 +1857,131 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun infiniteLoopIsAbortedByTinyInstructionBudget() {
+    fun infiniteLoopIsAbortedByTinyInstructionBudget() = runTest {
         // A tiny instruction cap but a generous time budget, the instruction count is what
         // should abort this, not the clock.
         assertEquals(Unit, evalJs("while(true){}", maxExecutionTime = 60.seconds, maxInstructions = 1000))
     }
 
     @Test
-    fun finiteLoopCompletesNormally() {
+    fun finiteLoopCompletesNormally() = runTest {
         assertEquals(45.0, num("var s=0; for (var i=0;i<10;i++){ s+=i; }", "s"))
     }
 
     @Test
-    fun exponentiation() {
+    fun exponentiation() = runTest {
         assertEquals(1024.0, num("2**10"))
     }
 
     @Test
-    fun exponentiationIsRightAssociative() {
+    fun exponentiationIsRightAssociative() = runTest {
         // 2 ** (3 ** 2) == 2 ** 9 == 512, NOT (2 ** 3) ** 2 == 64
         assertEquals(512.0, num("2**3**2"))
     }
 
     @Test
-    fun exponentiationWithNegativeExponent() {
+    fun exponentiationWithNegativeExponent() = runTest {
         assertEquals(0.5, num("2**-1"))
     }
 
     @Test
-    fun exponentiationOverflowsToInfinity() {
+    fun exponentiationOverflowsToInfinity() = runTest {
         assertTrue(num("10**1000").isInfinite())
     }
 
     @Test
-    fun assignmentPowEquals() {
+    fun assignmentPowEquals() = runTest {
         assertEquals(8.0, num("var x=2; x**=3", "x"))
     }
 
     @Test
-    fun legacyOctalLiteral() {
+    fun legacyOctalLiteral() = runTest {
         // 010 (octal) == 8
         assertEquals(8.0, num("010"))
     }
 
     @Test
-    fun legacyOctalLiteralArithmetic() {
+    fun legacyOctalLiteralArithmetic() = runTest {
         // 010 (octal, 8) - 03 (octal, 3) == 5
         assertEquals(5.0, num("010 - 03"))
     }
 
     @Test
-    fun octalLikeLiteralWithNonOctalDigitIsDecimal() {
+    fun octalLikeLiteralWithNonOctalDigitIsDecimal() = runTest {
         // "08" contains a non-octal digit (8), so JS treats it as plain decimal 8.
         assertEquals(8.0, num("08"))
     }
 
     @Test
-    fun arrayElisionsCountTowardLength() {
+    fun arrayElisionsCountTowardLength() = runTest {
         assertEquals(3.0, num("[,,,].length"))
     }
 
     @Test
-    fun arrayTrailingCommaDoesNotAddElement() {
+    fun arrayTrailingCommaDoesNotAddElement() = runTest {
         assertEquals(2.0, num("[1,2,].length"))
     }
 
     @Test
-    fun arrayTrailingElisionAfterCommaAddsAHole() {
+    fun arrayTrailingElisionAfterCommaAddsAHole() = runTest {
         assertEquals(3.0, num("[1,2,,].length"))
     }
 
     @Test
-    fun arrayHoleJoinsAsEmptyString() {
+    fun arrayHoleJoinsAsEmptyString() = runTest {
         // Array.prototype.join treats holes/undefined/null as "", not the literal "undefined".
         assertEquals("1,,3", str("[1,,3].join(',')"))
     }
 
     @Test
-    fun parseIntStopsAtExponentNotation() {
+    fun parseIntStopsAtExponentNotation() = runTest {
         // 0.0000005 stringifies to "5e-7"; parseInt reads the leading "5" and stops at "e".
         assertEquals(5.0, num("parseInt(0.0000005)"))
     }
 
     @Test
-    fun parseIntWithExplicitRadix() {
+    fun parseIntWithExplicitRadix() = runTest {
         assertEquals(255.0, num("parseInt('ff', 16)"))
     }
 
     @Test
-    fun parseIntStopsAtFirstNonDigit() {
+    fun parseIntStopsAtFirstNonDigit() = runTest {
         assertEquals(42.0, num("parseInt('42px')"))
     }
 
     @Test
-    fun parseIntInvalidInputIsNaN() {
+    fun parseIntInvalidInputIsNaN() = runTest {
         assertTrue(num("parseInt('xyz')").isNaN())
     }
 
     @Test
-    fun emptyStringCoercesToZero() {
+    fun emptyStringCoercesToZero() = runTest {
         assertEquals(0.0, num("\"\" - 0"))
     }
 
     @Test
-    fun emptyStringMinusNegatedEmptyStringIsZero() {
+    fun emptyStringMinusNegatedEmptyStringIsZero() = runTest {
         assertEquals(0.0, evalJs("\"\" - - \"\""))
     }
 
     @Test
-    fun emptyStringMinusNumber() {
+    fun emptyStringMinusNumber() = runTest {
         assertEquals(-1.0, evalJs("\"\" - 1"))
     }
 
     @Test
-    fun nullCoercesToZeroNotNaN() {
+    fun nullCoercesToZeroNotNaN() = runTest {
         assertEquals(1.0, num("null + 1"))
     }
 
     @Test
-    fun undefinedCoercesToNaNNotZero() {
+    fun undefinedCoercesToNaNNotZero() = runTest {
         // Unlike null, undefined coerces to NaN, not 0.
         assertTrue(num("undefined + 1").isNaN())
     }
 
     @Test
-    fun postfixIncrementOnNonLvalueFailsGracefully() {
+    fun postfixIncrementOnNonLvalueFailsGracefully() = runTest {
         assertEquals(2.0, evalJs("true+1"))
         // `true++` has no valid assignment target (a SyntaxError in real JS); evalJs falls
         // back to Unit instead of returning a bogus number.
@@ -1989,82 +1989,82 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun booleanAdditionCoercesToNumber() {
+    fun booleanAdditionCoercesToNumber() = runTest {
         assertEquals(1.0, num("true + false"))
     }
 
     @Test
-    fun arrayPlusArrayConcatenatesAsStrings() {
+    fun arrayPlusArrayConcatenatesAsStrings() = runTest {
         assertEquals("1,2,34,5,6", str("[1, 2, 3] + [4, 5, 6]"))
     }
 
     @Test
-    fun commaOperatorWithTwoOperands() {
+    fun commaOperatorWithTwoOperands() = runTest {
         assertEquals(2.0, num("10,2"))
     }
 
     @Test
-    fun doubleNegationOfEmptyStringIsFalse() {
+    fun doubleNegationOfEmptyStringIsFalse() = runTest {
         assertFalse(bool("!!\"\""))
     }
 
     @Test
-    fun looseEqualityBooleanVsNonNumericStringIsFalse() {
+    fun looseEqualityBooleanVsNonNumericStringIsFalse() = runTest {
         assertFalse(bool("true == \"true\""))
     }
 
     @Test
-    fun nullPlusZeroIsZero() {
+    fun nullPlusZeroIsZero() = runTest {
         assertEquals(0.0, num("null + 0"))
     }
 
     @Test
-    fun zeroDividedByZeroIsNaN() {
+    fun zeroDividedByZeroIsNaN() = runTest {
         assertTrue(num("0/0").isNaN())
     }
 
     @Test
-    fun exponentiationInfinityComparisonIsFalse() {
+    fun exponentiationInfinityComparisonIsFalse() = runTest {
         assertFalse(bool("1/0 > 10 ** 1000"))
     }
 
     @Test
-    fun nullMinusZeroThenStringConcat() {
+    fun nullMinusZeroThenStringConcat() = runTest {
         assertEquals("00", str("(null - 0) + \"0\""))
     }
 
     @Test
-    fun nonNumericStringMinusNumberThenAddBoolean() {
+    fun nonNumericStringMinusNumberThenAddBoolean() = runTest {
         assertTrue(num("true + (\"true\" - 0) ").isNaN())
     }
 
     @Test
-    fun negatedTruthyNumbersSumToZero() {
+    fun negatedTruthyNumbersSumToZero() = runTest {
         assertEquals(0.0, num("!5 + !5"))
     }
 
     @Test
-    fun numberAdditionThenStringConcatenation() {
+    fun numberAdditionThenStringConcatenation() = runTest {
         assertEquals("33", str("1 + 2 + \"3\""))
     }
 
     @Test
-    fun typeofNaNIsNumber() {
+    fun typeofNaNIsNumber() = runTest {
         assertEquals("number", str("typeof NaN"))
     }
 
     @Test
-    fun undefinedPlusFalseIsNaN() {
+    fun undefinedPlusFalseIsNaN() = runTest {
         assertTrue(num("undefined + false").isNaN())
     }
 
     @Test
-    fun logicalAndShortCircuitsOnFalsyEmptyString() {
+    fun logicalAndShortCircuitsOnFalsyEmptyString() = runTest {
         assertEquals("", str("\"\" && -0"))
     }
 
     @Test
-    fun combinedCoercionOfNaNEmptyStringAndArrayHoleIsZero() {
+    fun combinedCoercionOfNaNEmptyStringAndArrayHoleIsZero() = runTest {
         assertEquals(0.0, evalJs("+!!NaN * \"\" - - [,]"))
     }
 
@@ -2072,7 +2072,7 @@ class JsInterpreterTest {
     private fun activeScope(): CoroutineScope = CoroutineScope(Job())
 
     @Test
-    fun scopeEvalJsFiniteScriptReturnsCorrectResult() {
+    fun scopeEvalJsFiniteScriptReturnsCorrectResult() = runTest {
         // Normal script with an active scope should behave identically to plain evalJs.
         val scope = activeScope()
         val result = scope.evalJs("var s=0; for(var i=1;i<=10;i++){s+=i}", "s")
@@ -2081,7 +2081,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun scopeEvalJsStringResultWithActiveScope() {
+    fun scopeEvalJsStringResultWithActiveScope() = runTest {
         val scope = activeScope()
         val result = jsValueToString(scope.evalJs("'hello'.split('').reverse().join('')"))
         assertEquals("olleh", result)
@@ -2089,7 +2089,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun scopeEvalJsVariableLookupWithActiveScope() {
+    fun scopeEvalJsVariableLookupWithActiveScope() = runTest {
         val scope = activeScope()
         val result = scope.evalJs("var x = 21 * 2", "x")
         assertEquals(42.0, result as? Double ?: 0.0)
@@ -2097,7 +2097,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun scopeEvalJsCancelledBeforeCallThrowsJsCancellationException() {
+    fun scopeEvalJsCancelledBeforeCallThrowsJsCancellationException() = runTest {
         // Cancel the scope before calling evalJs. The very first budget check sees
         // isActive==false and throws JsCancellationException immediately.
         val scope = activeScope()
@@ -2108,7 +2108,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun scopeEvalJsInfiniteLoopAbortedWhenScopeCancelled() {
+    fun scopeEvalJsInfiniteLoopAbortedWhenScopeCancelled() = runTest {
         // Pre-cancel the scope and confirm an infinite loop aborts well within the
         // time budget. A sub-1s return against a 5s budget proves it was
         // scope cancellation, not the clock, that stopped the script.
@@ -2125,7 +2125,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun scopeEvalJsInfiniteLoopAbortedByOwnBudgetEvenWithActiveScope() {
+    fun scopeEvalJsInfiniteLoopAbortedByOwnBudgetEvenWithActiveScope() = runTest {
         // Even with an active (never-cancelled) scope the internal budget still fires.
         val scope = activeScope()
         val mark = TimeSource.Monotonic.markNow()
@@ -2136,7 +2136,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun scopeEvalJsJsTryCatchCannotSwallowCancellation() {
+    fun scopeEvalJsJsTryCatchCannotSwallowCancellation() = runTest {
         // A JS try/catch must not be able to intercept the cancellation signal and keep
         // the infinite loop alive. JsCancellationException extends CancellationException
         // which the TryCatch node handler explicitly rethrows before catch(_: Exception).
@@ -2153,7 +2153,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun scopeEvalJsCancelledScopeThrowsJsCancellationException() {
+    fun scopeEvalJsCancelledScopeThrowsJsCancellationException() = runTest {
         // A cancelled scope must propagate CancellationException so that withTimeout
         // and structured concurrency see the cancellation correctly. Swallowing it
         // silently as Unit would break withTimeout.
