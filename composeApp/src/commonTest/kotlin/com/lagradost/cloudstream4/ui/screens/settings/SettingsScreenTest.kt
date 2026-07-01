@@ -4,7 +4,6 @@ import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.longClick
 import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.onParent
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.v2.runComposeUiTest
@@ -138,9 +137,7 @@ class SettingsScreenTest {
         }
         waitForIdle()
 
-        // The version chips have no click behavior of their own; the combinedClickable
-        // that handles the long-press lives on their shared parent Row.
-        onNodeWithText(version.appVersion).onParent().performTouchInput { longClick() }
+        onNodeWithText(version.appVersion).performTouchInput { longClick() }
         waitForIdle()
 
         assertTrue(longClicked, "Expected long-pressing the version footer to fire onVersionLongClick")
@@ -161,7 +158,7 @@ class SettingsScreenTest {
         }
         waitForIdle()
 
-        onNodeWithText(version.appVersion).onParent().performClick()
+        onNodeWithText(version.appVersion).performClick()
         waitForIdle()
 
         assertTrue(!longClicked)
