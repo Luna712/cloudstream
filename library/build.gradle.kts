@@ -56,7 +56,8 @@ kotlin {
         }
 
         commonMain.dependencies {
-            api(libs.annotation) // Annotations
+            api(libs.androidx.annotation) // Annotations
+            api(libs.bundles.cryptography) // Cryptography
             api(libs.kotlinx.atomicfu)
             api(libs.kotlinx.coroutines.core)
             api(libs.kotlinx.datetime)
@@ -64,7 +65,6 @@ kotlin {
             api(libs.ksoup) // HTML Parser
             api(libs.ktor.http)
             api(libs.nicehttp) // HTTP Library
-            api(libs.bundles.cryptography) // Cryptography
 
             implementation(libs.jackson.module.kotlin) // JSON Parser
             implementation(libs.jsoup) // HTML Parser
