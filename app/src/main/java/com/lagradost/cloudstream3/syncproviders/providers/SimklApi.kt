@@ -210,7 +210,7 @@ class SimklApi : SyncAPI() {
         }
 
         fun getPosterUrl(poster: String): String {
-            return "https://wsrv.nl/?url=https://simkl.in/posters/$poster_m.webp"
+            return "https://wsrv.nl/?url=https://simkl.in/posters/${poster}_m.webp"
         }
 
         private fun getUrlFromId(id: Int): String {
@@ -240,7 +240,7 @@ class SimklApi : SyncAPI() {
         }
 
         @JsonInclude(JsonInclude.Include.NON_EMPTY)
-        @OptIn(ExperimentalSerializationApi::class)
+        @OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
         @KeepGeneratedSerializer
         @Serializable(with = TokenRequest.Serializer::class)
         data class TokenRequest(
@@ -313,7 +313,7 @@ class SimklApi : SyncAPI() {
 
         /** https://simkl.docs.apiary.io/#reference/tv/episodes/get-tv-show-episodes */
         @JsonInclude(JsonInclude.Include.NON_EMPTY)
-        @OptIn(ExperimentalSerializationApi::class)
+        @OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
         @KeepGeneratedSerializer
         @Serializable(with = EpisodeMetadata.Serializer::class)
         data class EpisodeMetadata(
@@ -347,7 +347,7 @@ class SimklApi : SyncAPI() {
          * Useful for finding shows from metadata.
          */
         @JsonInclude(JsonInclude.Include.NON_EMPTY)
-        @OptIn(ExperimentalSerializationApi::class)
+        @OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
         @KeepGeneratedSerializer
         @Serializable(with = MediaObject.Serializer::class)
         data class MediaObject(
@@ -368,7 +368,7 @@ class SimklApi : SyncAPI() {
             }
 
             @JsonInclude(JsonInclude.Include.NON_EMPTY)
-            @OptIn(ExperimentalSerializationApi::class)
+            @OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
             @KeepGeneratedSerializer
             @Serializable(with = Season.Serializer::class)
             data class Season(
@@ -384,7 +384,7 @@ class SimklApi : SyncAPI() {
             }
 
             @JsonInclude(JsonInclude.Include.NON_EMPTY)
-            @OptIn(ExperimentalSerializationApi::class)
+            @OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
             @KeepGeneratedSerializer
             @Serializable(with = Ids.Serializer::class)
             data class Ids(
@@ -608,7 +608,7 @@ class SimklApi : SyncAPI() {
         }
 
         @JsonInclude(JsonInclude.Include.NON_EMPTY)
-        @OptIn(ExperimentalSerializationApi::class)
+        @OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
         @KeepGeneratedSerializer
         @Serializable(with = HistoryMediaObject.Serializer::class)
         data class HistoryMediaObject(
@@ -624,7 +624,7 @@ class SimklApi : SyncAPI() {
         }
 
         @JsonInclude(JsonInclude.Include.NON_EMPTY)
-        @OptIn(ExperimentalSerializationApi::class)
+        @OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
         @KeepGeneratedSerializer
         @Serializable(with = RatingMediaObject.Serializer::class)
         data class RatingMediaObject(
@@ -638,7 +638,7 @@ class SimklApi : SyncAPI() {
         }
 
         @JsonInclude(JsonInclude.Include.NON_EMPTY)
-        @OptIn(ExperimentalSerializationApi::class)
+        @OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
         @KeepGeneratedSerializer
         @Serializable(with = StatusMediaObject.Serializer::class)
         data class StatusMediaObject(
@@ -652,7 +652,7 @@ class SimklApi : SyncAPI() {
         }
 
         @JsonInclude(JsonInclude.Include.NON_EMPTY)
-        @OptIn(ExperimentalSerializationApi::class)
+        @OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
         @KeepGeneratedSerializer
         @Serializable(with = StatusRequest.Serializer::class)
         data class StatusRequest(
@@ -664,7 +664,7 @@ class SimklApi : SyncAPI() {
 
         /** Same shape as [StatusRequest], for the endpoints that post [HistoryMediaObject]s instead. */
         @JsonInclude(JsonInclude.Include.NON_EMPTY)
-        @OptIn(ExperimentalSerializationApi::class)
+        @OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
         @KeepGeneratedSerializer
         @Serializable(with = HistoryRequest.Serializer::class)
         data class HistoryRequest(
