@@ -241,7 +241,7 @@ private fun SettingsScreenPreview() {
             version = SettingsVersionState(
                 appVersion = "1.0.0-PRE",
                 commitHash = "abc1234",
-                buildDate = "May 25, 2026 12:00:00 AM",
+                buildDate = "Jan 1, 2026 12:00:00 AM",
             ),
             onNavigate = {},
             onVersionLongClick = {},
