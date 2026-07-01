@@ -58,7 +58,7 @@ video = "1.0.0"
 workRuntimeKtx = "2.11.2"
 zipline = "1.27.0"
 
-jvmTarget = "1.8"
+jvmTarget = "11"
 jdkToolchain = "17"
 minSdk = "23"
 compileSdk = "36"
