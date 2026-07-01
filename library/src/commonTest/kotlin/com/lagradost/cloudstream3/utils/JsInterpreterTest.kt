@@ -1148,9 +1148,9 @@ class JsInterpreterTest {
     @Test
     fun closureCounterFactory() = runTest {
         val code = """
-            function makeCounter() = runTest {
+            function makeCounter() {
                 var count = 0;
-                return function() = runTest { count += 1; return count; }
+                return function() { count += 1; return count; }
             }
             var c = makeCounter();
             c(); c(); c()
@@ -1161,7 +1161,7 @@ class JsInterpreterTest {
     @Test
     fun argumentsObject() = runTest {
         val code = """
-            function sum() = runTest {
+            function sum() {
                 var total = 0;
                 for(var i=0; i<arguments.length; i++) { total += arguments[i]; }
                 return total;
