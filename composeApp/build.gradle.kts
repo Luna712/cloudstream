@@ -47,6 +47,15 @@ kotlin {
             implementation(libs.activity.compose)
             implementation(libs.preference.ktx)
         }
+
+        commonTest.dependencies {
+            implementation(libs.compose.ui.test)
+            implementation(libs.kotlin.test)
+        }
+
+        jvmTest.dependencies {
+            implementation(compose.desktop.currentOs)
+        }
     }
 }
 
