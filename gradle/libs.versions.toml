@@ -8,7 +8,7 @@ annotation = "1.10.0"
 appcompat = "1.7.1"
 biometric = "1.4.0-alpha07"
 buildkonfigGradlePlugin = "0.21.2"
-coil = { strictly = "3.5.0" } # Later versions require jvmTarget 11 or later
+coil = { strictly = "3.3.0" } # Later versions require jvmTarget 11 or later
 colorpicker = "6b46b49"
 composeMaterial3 = "1.11.0-alpha07"
 composeMultiplatform = "1.11.1"
@@ -58,7 +58,7 @@ video = "1.0.0"
 workRuntimeKtx = "2.11.2"
 zipline = "1.27.0"
 
-jvmTarget = "11"
+jvmTarget = "1.8"
 jdkToolchain = "17"
 minSdk = "23"
 compileSdk = "36"
