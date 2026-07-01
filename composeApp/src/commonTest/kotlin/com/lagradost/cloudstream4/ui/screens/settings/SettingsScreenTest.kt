@@ -27,7 +27,7 @@ class SettingsScreenTest {
     private val version = SettingsVersionState(
         appVersion = "1.0.0-PRE",
         commitHash = "abc1234",
-        buildDate = "Jan 1, 2026",
+        buildDate = "Jan 1, 2026 12:00:00 AM",
     )
 
     @Test
