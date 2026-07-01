@@ -23,315 +23,315 @@ import kotlin.time.TimeSource
 
 class JsInterpreterTest {
 
-    private fun bool(code: String, variable: String? = null): Boolean = evalJs(code, variable) as? Boolean ?: false
-    private fun num(code: String, variable: String? = null): Double = evalJs(code, variable) as? Double ?: Double.NaN
-    private fun str(code: String, variable: String? = null): String = jsValueToString(evalJs(code, variable))
+    private suspend fun bool(code: String, variable: String? = null): Boolean = evalJs(code, variable) as? Boolean ?: false
+    private suspend fun num(code: String, variable: String? = null): Double = evalJs(code, variable) as? Double ?: Double.NaN
+    private suspend fun str(code: String, variable: String? = null): String = jsValueToString(evalJs(code, variable))
 
     private fun assertApprox(expected: Double, actual: Double, tol: Double = 1e-9) {
         assertTrue(abs(actual - expected) <= tol, "Expected $expected ± $tol but was $actual")
     }
 
     @Test
-    fun integerLiteral() {
+    fun integerLiteral() = runTest {
         assertEquals(42.0, num("42"))
     }
 
     @Test
-    fun negativeLiteral() {
+    fun negativeLiteral() = runTest {
         assertEquals(-7.0, num("-7"))
     }
 
     @Test
-    fun floatLiteral() {
+    fun floatLiteral() = runTest {
         assertApprox(3.14, num("3.14"))
     }
 
     @Test
-    fun hexLiteral() {
+    fun hexLiteral() = runTest {
         assertEquals(255.0, num("0xff"))
     }
 
     @Test
-    fun stringLiteralDouble() {
+    fun stringLiteralDouble() = runTest {
         assertEquals("hi", str("\"hi\""))
     }
 
     @Test
-    fun stringLiteralSingle() {
+    fun stringLiteralSingle() = runTest {
         assertEquals("hi", str("'hi'"))
     }
 
     @Test
-    fun templateLiteral() {
+    fun templateLiteral() = runTest {
         assertEquals("hi", str("`hi`"))
     }
 
     @Test
-    fun booleanTrue() {
+    fun booleanTrue() = runTest {
         assertTrue(bool("true"))
     }
 
     @Test
-    fun booleanFalse() {
+    fun booleanFalse() = runTest {
         assertFalse(bool("false"))
     }
 
     @Test
-    fun nullLiteral() {
+    fun nullLiteral() = runTest {
         assertNull(evalJs("null"))
     }
 
     @Test
-    fun undefinedLiteral() {
+    fun undefinedLiteral() = runTest {
         assertEquals(Unit, evalJs("undefined"))
     }
 
     @Test
-    fun addition() {
+    fun addition() = runTest {
         assertEquals(5.0, num("2+3"))
     }
 
     @Test
-    fun subtraction() {
+    fun subtraction() = runTest {
         assertEquals(1.0, num("3-2"))
     }
 
     @Test
-    fun multiplication() {
+    fun multiplication() = runTest {
         assertEquals(6.0, num("2*3"))
     }
 
     @Test
-    fun division() {
+    fun division() = runTest {
         assertEquals(2.5, num("5/2"))
     }
 
     @Test
-    fun modulo() {
+    fun modulo() = runTest {
         assertEquals(1.0, num("7%3"))
     }
 
     @Test
-    fun operatorPrecedence() {
+    fun operatorPrecedence() = runTest {
         assertEquals(7.0, num("1+2*3"))
     }
 
     @Test
-    fun parenthesesOverride() {
+    fun parenthesesOverride() = runTest {
         assertEquals(9.0, num("(1+2)*3"))
     }
 
     @Test
-    fun unaryMinus() {
+    fun unaryMinus() = runTest {
         assertEquals(-5.0, num("-(2+3)"))
     }
 
     @Test
-    fun unaryPlusCoerces() {
+    fun unaryPlusCoerces() = runTest {
         assertEquals(3.0, num("+'3'"))
     }
 
     @Test
-    fun stringMinusNumberCoercesToNumber() {
+    fun stringMinusNumberCoercesToNumber() = runTest {
         // "3" - 1 => 2  (JS coerces string to number for subtraction)
         assertEquals(2.0, num("'3'-1"))
     }
 
     @Test
-    fun stringTimesStringCoercesToNumber() {
+    fun stringTimesStringCoercesToNumber() = runTest {
         // "3" * "4" => 12
         assertEquals(12.0, num("'3'*'4'"))
     }
 
     @Test
-    fun nanArithmetic() {
+    fun nanArithmetic() = runTest {
         // NaN + 1 => NaN
         assertTrue(num("NaN+1").isNaN())
     }
 
     @Test
-    fun infinityPositive() {
+    fun infinityPositive() = runTest {
         assertTrue(num("Infinity").isInfinite() && num("Infinity") > 0)
     }
 
     @Test
-    fun infinityArithmetic() {
+    fun infinityArithmetic() = runTest {
         assertTrue(num("Infinity+1").isInfinite())
     }
 
     @Test
-    fun divisionByZeroIsInfinity() {
+    fun divisionByZeroIsInfinity() = runTest {
         assertTrue(num("1/0").isInfinite() && num("1/0") > 0)
     }
 
     @Test
-    fun bitwiseAnd() {
+    fun bitwiseAnd() = runTest {
         assertEquals(2.0, num("6&3"))
     }
 
     @Test
-    fun bitwiseOr() {
+    fun bitwiseOr() = runTest {
         assertEquals(7.0, num("5|3"))
     }
 
     @Test
-    fun bitwiseXor() {
+    fun bitwiseXor() = runTest {
         assertEquals(6.0, num("5^3"))
     }
 
     @Test
-    fun bitwiseNot() {
+    fun bitwiseNot() = runTest {
         assertEquals(-6.0, num("~5"))
     }
 
     @Test
-    fun bitwiseNotOnNegative() {
+    fun bitwiseNotOnNegative() = runTest {
         assertEquals(4.0, num("~(-5)"))
     }
 
     @Test
-    fun bitwiseNotTruncatesFloat() {
+    fun bitwiseNotTruncatesFloat() = runTest {
         // ~3.9 == ~3 == -4
         assertEquals(-4.0, num("~3.9"))
     }
 
     @Test
-    fun leftShift() {
+    fun leftShift() = runTest {
         assertEquals(20.0, num("5<<2"))
     }
 
     @Test
-    fun rightShift() {
+    fun rightShift() = runTest {
         assertEquals(1.0, num("5>>2"))
     }
 
     @Test
-    fun unsignedRightShift() {
+    fun unsignedRightShift() = runTest {
         assertEquals(1.0, num("5>>>2"))
     }
 
     @Test
-    fun unsignedRightShiftOnNegative() {
+    fun unsignedRightShiftOnNegative() = runTest {
         // (-1 >>> 0) in JS == 4294967295 (treats as unsigned 32-bit)
         assertEquals(4294967295.0, num("-1>>>0"))
     }
 
     @Test
-    fun bitwiseOrWithZeroTruncatesFloat() {
+    fun bitwiseOrWithZeroTruncatesFloat() = runTest {
         // 3.9|0 == 3  (common JS truncation idiom)
         assertEquals(3.0, num("3.9|0"))
     }
 
     @Test
-    fun lessThanTrue() {
+    fun lessThanTrue() = runTest {
         assertTrue(bool("1<2"))
     }
 
     @Test
-    fun lessThanFalse() {
+    fun lessThanFalse() = runTest {
         assertFalse(bool("2<1"))
     }
 
     @Test
-    fun greaterThanTrue() {
+    fun greaterThanTrue() = runTest {
         assertTrue(bool("2>1"))
     }
 
     @Test
-    fun lessThanOrEqualEqual() {
+    fun lessThanOrEqualEqual() = runTest {
         assertTrue(bool("2<=2"))
     }
 
     @Test
-    fun greaterThanOrEqualEqual() {
+    fun greaterThanOrEqualEqual() = runTest {
         assertTrue(bool("2>=2"))
     }
 
     @Test
-    fun looseEqNumberString() {
+    fun looseEqNumberString() = runTest {
         assertTrue(bool("1=='1'"))
     }
 
     @Test
-    fun looseEqNullUndefined() {
+    fun looseEqNullUndefined() = runTest {
         // null == undefined is true in JS
         assertTrue(bool("null==undefined"))
     }
 
     @Test
-    fun looseEqNullNotZero() {
+    fun looseEqNullNotZero() = runTest {
         // null == 0 is false in JS
         assertFalse(bool("null==0"))
     }
 
     @Test
-    fun looseNeqWorks() {
+    fun looseNeqWorks() = runTest {
         assertTrue(bool("1!='2'"))
     }
 
     @Test
-    fun strictEqSameType() {
+    fun strictEqSameType() = runTest {
         assertTrue(bool("1===1"))
     }
 
     @Test
-    fun strictEqDifferentType() {
+    fun strictEqDifferentType() = runTest {
         assertFalse(bool("1==='1'"))
     }
 
     @Test
-    fun strictNeq() {
+    fun strictNeq() = runTest {
         assertTrue(bool("1!=='1'"))
     }
 
     @Test
-    fun instanceofArrayTrue() {
+    fun instanceofArrayTrue() = runTest {
         assertTrue(bool("[] instanceof Array"))
     }
 
     @Test
-    fun instanceofArrayFalseForObject() {
+    fun instanceofArrayFalseForObject() = runTest {
         assertFalse(bool("({}) instanceof Array"))
     }
 
     @Test
-    fun instanceofObjectTrueForPlainObject() {
+    fun instanceofObjectTrueForPlainObject() = runTest {
         assertTrue(bool("({}) instanceof Object"))
     }
 
     @Test
-    fun instanceofObjectTrueForArray() {
+    fun instanceofObjectTrueForArray() = runTest {
         // Arrays are objects in JS
         assertTrue(bool("[] instanceof Object"))
     }
 
     @Test
-    fun instanceofFunctionTrue() {
+    fun instanceofFunctionTrue() = runTest {
         assertTrue(bool("(function(){}) instanceof Function"))
     }
 
     @Test
-    fun instanceofFunctionFalseForArray() {
+    fun instanceofFunctionFalseForArray() = runTest {
         assertFalse(bool("[] instanceof Function"))
     }
 
     @Test
-    fun instanceofUserDefinedConstructorTrue() {
+    fun instanceofUserDefinedConstructorTrue() = runTest {
         assertTrue(bool("function Dog(){} var d = new Dog(); d instanceof Dog"))
     }
 
     @Test
-    fun instanceofUserDefinedConstructorFalseForOtherClass() {
+    fun instanceofUserDefinedConstructorFalseForOtherClass() = runTest {
         assertFalse(bool("function Cat(){} function Dog(){} var d = new Dog(); d instanceof Cat"))
     }
 
     @Test
-    fun instanceofUserDefinedConstructorFalseForPlainObject() {
+    fun instanceofUserDefinedConstructorFalseForPlainObject() = runTest {
         assertFalse(bool("function Dog(){} ({}) instanceof Dog"))
     }
 
     @Test
-    fun instanceofUserDefinedConstructorWithProperties() {
+    fun instanceofUserDefinedConstructorWithProperties() = runTest {
         val code = """
             function Point(x, y) { this.x = x; this.y = y; }
             var p = new Point(1, 2);
@@ -341,88 +341,88 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun inOperatorOnObject() {
+    fun inOperatorOnObject() = runTest {
         assertTrue(bool("'a' in {a:1}"))
     }
 
     @Test
-    fun inOperatorOnObjectMissing() {
+    fun inOperatorOnObjectMissing() = runTest {
         assertFalse(bool("'z' in {a:1}"))
     }
 
     @Test
-    fun inOperatorOnArray() {
+    fun inOperatorOnArray() = runTest {
         assertTrue(bool("0 in [10,20]"))
     }
 
     @Test
-    fun logicalAndRightWhenLeftTruthy() {
+    fun logicalAndRightWhenLeftTruthy() = runTest {
         assertEquals(2.0, num("1&&2"))
     }
 
     @Test
-    fun logicalAndLeftWhenLeftFalsy() {
+    fun logicalAndLeftWhenLeftFalsy() = runTest {
         assertEquals(0.0, num("0&&2"))
     }
 
     @Test
-    fun logicalOrLeftWhenTruthy() {
+    fun logicalOrLeftWhenTruthy() = runTest {
         assertEquals(1.0, num("1||2"))
     }
 
     @Test
-    fun logicalOrRightWhenLeftFalsy() {
+    fun logicalOrRightWhenLeftFalsy() = runTest {
         assertEquals(2.0, num("0||2"))
     }
 
     @Test
-    fun logicalNot() {
+    fun logicalNot() = runTest {
         assertTrue(bool("!false"))
     }
 
     @Test
-    fun logicalNotOnZero() {
+    fun logicalNotOnZero() = runTest {
         assertTrue(bool("!0"))
     }
 
     @Test
-    fun logicalNotOnEmptyString() {
+    fun logicalNotOnEmptyString() = runTest {
         assertTrue(bool("!''"))
     }
 
     @Test
-    fun logicalNotOnNonEmptyString() {
+    fun logicalNotOnNonEmptyString() = runTest {
         assertFalse(bool("!'x'"))
     }
 
     @Test
-    fun ternaryTrueBranch() {
+    fun ternaryTrueBranch() = runTest {
         assertEquals(1.0, num("true?1:2"))
     }
 
     @Test
-    fun ternaryFalseBranch() {
+    fun ternaryFalseBranch() = runTest {
         assertEquals(2.0, num("false?1:2"))
     }
 
     @Test
-    fun nestedTernary() {
+    fun nestedTernary() = runTest {
         // 1>2 ? 'a' : 3>2 ? 'b' : 'c'  => 'b'
         assertEquals("b", str("1>2?'a':3>2?'b':'c'"))
     }
 
     @Test
-    fun varDeclarationAndRead() {
+    fun varDeclarationAndRead() = runTest {
         assertEquals(10.0, num("var x=10; x"))
     }
 
     @Test
-    fun letDeclaration() {
+    fun letDeclaration() = runTest {
         assertEquals("hello", str("let s='hello'; s"))
     }
 
     @Test
-    fun constDeclaration() {
+    fun constDeclaration() = runTest {
         assertApprox(3.14, num("const PI=3.14; PI"))
     }
 
