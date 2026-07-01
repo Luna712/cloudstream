@@ -52,8 +52,8 @@ object VotingApi {
             votesCache[pluginUrl] = it
         }
 
-    suspend fun hasVoted(pluginUrl: String) =
-        getKey("cs3-votes/${transformUrl(pluginUrl)}") ?: false
+    suspend fun hasVoted(pluginUrl: String): Boolean =
+        getKey<Boolean>("cs3-votes/${transformUrl(pluginUrl)}") ?: false
 
     fun canVote(pluginUrl: String): Boolean =
         PluginManager.urlPlugins.contains(pluginUrl)
