@@ -32,11 +32,12 @@ import com.lagradost.cloudstream3.ui.library.ListSorting
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
 import com.lagradost.cloudstream3.utils.DataStoreHelper.toYear
+import com.lagradost.cloudstream3.utils.serializers.NonEmptySerializer
 import com.lagradost.cloudstream3.utils.txt
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.KeepGeneratedSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
-import kotlinx.serialization.json.JsonElement
 import java.math.BigInteger
 import java.security.SecureRandom
 import java.text.SimpleDateFormat
@@ -76,53 +77,93 @@ class SimklApi : SyncAPI() {
         }
 
         @Serializable
-        private class SimklCacheWrapper<T>(
-            @JsonProperty("obj") @SerialName("obj") val obj: T?,
+        private data class MediaObjectCacheEntry(
+            @JsonProperty("obj") @SerialName("obj") val obj: MediaObject?,
             @JsonProperty("validUntil") @SerialName("validUntil") val validUntil: Long,
             @JsonProperty("cacheTime") @SerialName("cacheTime") val cacheTime: Long = APIHolder.unixTime,
-        ) {
-            /** Returns true if cache is newer than cacheDays */
-            fun isFresh(): Boolean {
-                return validUntil > APIHolder.unixTime
-            }
+        )
 
-            fun remainingTime(): Duration {
-                val unixTime = APIHolder.unixTime
-                return if (validUntil > unixTime) {
-                    (validUntil - unixTime).toDuration(DurationUnit.SECONDS)
-                } else Duration.ZERO
+        @Serializable
+        private data class EpisodesCacheEntry(
+            @JsonProperty("obj") @SerialName("obj") val obj: Array<EpisodeMetadata>?,
+            @JsonProperty("validUntil") @SerialName("validUntil") val validUntil: Long,
+            @JsonProperty("cacheTime") @SerialName("cacheTime") val cacheTime: Long = APIHolder.unixTime,
+        )
+
+        /** Minimal shape used only to peek at an entry's expiry, without caring which of the
+         * concrete entry types above actually produced it. */
+        @Serializable
+        private data class CacheFreshness(
+            @JsonProperty("validUntil") @SerialName("validUntil") val validUntil: Long,
+        )
+
+        private fun Long.isFresh(): Boolean = this > APIHolder.unixTime
+
+        private fun Long.remaining(): Duration {
+            val unixTime = APIHolder.unixTime
+            return if (this > unixTime) {
+                (this - unixTime).toDuration(DurationUnit.SECONDS)
+            } else {
+                Duration.ZERO
             }
         }
 
         fun cleanOldCache() {
             getKeys(SIMKL_CACHE_KEY)?.forEach {
-                val isOld = CloudStreamApp.getKey<SimklCacheWrapper<JsonElement>>(it)?.isFresh() == false
-                if (isOld) removeKey(it)
+                val isOld = CloudStreamApp.getKey<CacheFreshness>(it)?.validUntil?.isFresh() == false
+                if (isOld) {
+                    removeKey(it)
+                }
             }
         }
 
-        fun <T> setKey(path: String, value: T, cacheTime: Duration) {
+        fun setMediaObject(path: String, value: MediaObject, cacheTime: Duration) {
             debugPrint { "Set cache: $SIMKL_CACHE_KEY/$path for ${cacheTime.inWholeDays} days or ${cacheTime.inWholeSeconds} seconds." }
             setKey(
                 SIMKL_CACHE_KEY,
                 path,
-                // Storing as plain sting is required to make generics work.
-                SimklCacheWrapper(value, APIHolder.unixTime + cacheTime.inWholeSeconds).toJson(),
+                MediaObjectCacheEntry(value, APIHolder.unixTime + cacheTime.inWholeSeconds).toJson()
             )
         }
 
-        /**
-         * Gets cached object, if object is not fresh returns null and removes it from cache
-         */
-        inline fun <reified T : Any> getKey(path: String): T? {
+        /** Gets the cached [MediaObject], if it's not fresh returns null and removes it from cache */
+        fun getMediaObject(path: String): MediaObject? {
             val cache = getKey<String>(SIMKL_CACHE_KEY, path)?.let {
-                tryParseJson<SimklCacheWrapper<T>>(it)
+                tryParseJson<MediaObjectCacheEntry>(it)
             }
 
-            return if (cache?.isFresh() == true) {
+            return if (cache?.validUntil?.isFresh() == true) {
                 debugPrint {
                     "Cache hit at: $SIMKL_CACHE_KEY/$path. " +
-                        "Remains fresh for ${cache.remainingTime().inWholeDays} days or ${cache.remainingTime().inWholeSeconds} seconds."
+                        "Remains fresh for ${cache.validUntil.remaining().inWholeDays} days or ${cache.validUntil.remaining().inWholeSeconds} seconds."
+                }
+                cache.obj
+            } else {
+                debugPrint { "Cache miss at: $SIMKL_CACHE_KEY/$path" }
+                removeKey(SIMKL_CACHE_KEY, path)
+                null
+            }
+        }
+
+        fun setEpisodes(path: String, value: Array<EpisodeMetadata>, cacheTime: Duration) {
+            debugPrint { "Set cache: $SIMKL_CACHE_KEY/$path for ${cacheTime.inWholeDays} days or ${cacheTime.inWholeSeconds} seconds." }
+            setKey(
+                SIMKL_CACHE_KEY,
+                path,
+                EpisodesCacheEntry(value, APIHolder.unixTime + cacheTime.inWholeSeconds).toJson()
+            )
+        }
+
+        /** Gets the cached episode list, if it's not fresh returns null and removes it from cache */
+        fun getEpisodes(path: String): Array<EpisodeMetadata>? {
+            val cache = getKey<String>(SIMKL_CACHE_KEY, path)?.let {
+                tryParseJson<EpisodesCacheEntry>(it)
+            }
+
+            return if (cache?.validUntil?.isFresh() == true) {
+                debugPrint {
+                    "Cache hit at: $SIMKL_CACHE_KEY/$path. " +
+                        "Remains fresh for ${cache.validUntil.remaining().inWholeDays} days or ${cache.validUntil.remaining().inWholeSeconds} seconds."
                 }
                 cache.obj
             } else {
@@ -201,14 +242,19 @@ class SimklApi : SyncAPI() {
             }
         }
 
-        @Serializable
+        @JsonInclude(JsonInclude.Include.NON_EMPTY)
+        @OptIn(ExperimentalSerializationApi::class)
+        @KeepGeneratedSerializer
+        @Serializable(with = TokenRequest.Serializer::class)
         data class TokenRequest(
             @JsonProperty("code") @SerialName("code") val code: String,
             @JsonProperty("client_id") @SerialName("client_id") val clientId: String = CLIENT_ID,
             @JsonProperty("client_secret") @SerialName("client_secret") val clientSecret: String = CLIENT_SECRET,
             @JsonProperty("redirect_uri") @SerialName("redirect_uri") val redirectUri: String = "$APP_STRING://simkl",
             @JsonProperty("grant_type") @SerialName("grant_type") val grantType: String = "authorization_code",
-        )
+        ) {
+            object Serializer : NonEmptySerializer<TokenRequest>(TokenRequest.generatedSerializer())
+        }
 
         @Serializable
         data class TokenResponse(
@@ -270,7 +316,10 @@ class SimklApi : SyncAPI() {
         }
 
         /** https://simkl.docs.apiary.io/#reference/tv/episodes/get-tv-show-episodes */
-        @Serializable
+        @JsonInclude(JsonInclude.Include.NON_EMPTY)
+        @OptIn(ExperimentalSerializationApi::class)
+        @KeepGeneratedSerializer
+        @Serializable(with = EpisodeMetadata.Serializer::class)
         data class EpisodeMetadata(
             @JsonProperty("title") @SerialName("title") val title: String?,
             @JsonProperty("description") @SerialName("description") val description: String?,
@@ -278,6 +327,8 @@ class SimklApi : SyncAPI() {
             @JsonProperty("episode") @SerialName("episode") val episode: Int,
             @JsonProperty("img") @SerialName("img") val img: String?,
         ) {
+            object Serializer : NonEmptySerializer<EpisodeMetadata>(EpisodeMetadata.generatedSerializer())
+
             companion object {
                 fun convertToEpisodes(list: List<EpisodeMetadata>?): List<MediaObject.Season.Episode>? {
                     return list?.map {
@@ -299,32 +350,45 @@ class SimklApi : SyncAPI() {
          * https://simkl.docs.apiary.io/#introduction/about-simkl-api/standard-media-objects
          * Useful for finding shows from metadata
          */
-        @Serializable
-        open class MediaObject(
-            @JsonProperty("title") @SerialName("title") open val title: String?,
-            @JsonProperty("year") @SerialName("year") open val year: Int?,
-            @JsonProperty("ids") @SerialName("ids") open val ids: Ids?,
+        @JsonInclude(JsonInclude.Include.NON_EMPTY)
+        @OptIn(ExperimentalSerializationApi::class)
+        @KeepGeneratedSerializer
+        @Serializable(with = MediaObject.Serializer::class)
+        data class MediaObject(
+            @JsonProperty("title") @SerialName("title") val title: String?,
+            @JsonProperty("year") @SerialName("year") val year: Int?,
+            @JsonProperty("ids") @SerialName("ids") val ids: Ids?,
             @JsonProperty("total_episodes") @SerialName("total_episodes") val totalEpisodes: Int? = null,
             @JsonProperty("status") @SerialName("status") val status: String? = null,
             @JsonProperty("poster") @SerialName("poster") val poster: String? = null,
             @JsonProperty("type") @SerialName("type") val type: String? = null,
-            @JsonProperty("seasons") @SerialName("seasons") open val seasons: List<Season>? = null,
-            @JsonProperty("episodes") @SerialName("episodes") open val episodes: List<Season.Episode>? = null,
+            @JsonProperty("seasons") @SerialName("seasons") val seasons: List<Season>? = null,
+            @JsonProperty("episodes") @SerialName("episodes") val episodes: List<Season.Episode>? = null,
         ) {
+            object Serializer : NonEmptySerializer<MediaObject>(MediaObject.generatedSerializer())
+
             fun hasEnded(): Boolean {
                 return status == "released" || status == "ended"
             }
 
-            @Serializable
+            @JsonInclude(JsonInclude.Include.NON_EMPTY)
+            @OptIn(ExperimentalSerializationApi::class)
+            @KeepGeneratedSerializer
+            @Serializable(with = Season.Serializer::class)
             data class Season(
                 @JsonProperty("number") @SerialName("number") val number: Int,
                 @JsonProperty("episodes") @SerialName("episodes") val episodes: List<Episode>,
             ) {
+                object Serializer : NonEmptySerializer<Season>(Season.generatedSerializer())
+
                 @Serializable
                 data class Episode(@JsonProperty("number") @SerialName("number") val number: Int)
             }
 
-            @Serializable
+            @JsonInclude(JsonInclude.Include.NON_EMPTY)
+            @OptIn(ExperimentalSerializationApi::class)
+            @KeepGeneratedSerializer
+            @Serializable(with = Ids.Serializer::class)
             data class Ids(
                 @JsonProperty("simkl") @SerialName("simkl") val simkl: Int?,
                 @JsonProperty("imdb") @SerialName("imdb") val imdb: String? = null,
@@ -332,6 +396,8 @@ class SimklApi : SyncAPI() {
                 @JsonProperty("mal") @SerialName("mal") val mal: String? = null,
                 @JsonProperty("anilist") @SerialName("anilist") val anilist: String? = null,
             ) {
+                object Serializer : NonEmptySerializer<Ids>(Ids.generatedSerializer())
+
                 companion object {
                     fun fromMap(map: Map<SimklSyncServices, String>): Ids {
                         return Ids(
@@ -422,7 +488,7 @@ class SimklApi : SyncAPI() {
                     return if (this.status == SimklListStatusType.None.value) {
                         app.post(
                             "$url/sync/history/remove",
-                            json = StatusRequest(
+                            json = HistoryRequest(
                                 shows = listOf(HistoryMediaObject(ids = ids)),
                                 movies = emptyList()
                             ),
@@ -454,7 +520,7 @@ class SimklApi : SyncAPI() {
                         val episodeRemovalResponse = removeEpisodes?.let { (seasons, episodes) ->
                             app.post(
                                 "${this.url}/sync/history/remove",
-                                json = StatusRequest(
+                                json = HistoryRequest(
                                     shows = listOf(
                                         HistoryMediaObject(
                                             ids = ids,
@@ -478,7 +544,7 @@ class SimklApi : SyncAPI() {
                             if (addEpisodes != null || shouldRate) {
                                 app.post(
                                     "${this.url}/sync/history",
-                                    json = StatusRequest(
+                                    json = HistoryRequest(
                                         shows = listOf(
                                             HistoryMediaObject(
                                                 null,
@@ -514,7 +580,7 @@ class SimklApi : SyncAPI() {
         ): Array<EpisodeMetadata>? {
             if (simklId == null) return null
             val cacheKey = "Episodes/$simklId"
-            val cache = SimklCache.getKey<Array<EpisodeMetadata>>(cacheKey)
+            val cache = SimklCache.getEpisodes(cacheKey)
 
             // Return cached result if its higher or equal the amount of episodes.
             if (cache != null && cache.size >= (episodes ?: 0)) {
@@ -546,44 +612,76 @@ class SimklApi : SyncAPI() {
                         if (hasEnded == true) SimklCache.CacheTimes.OneMonth.value else SimklCache.CacheTimes.ThirtyMinutes.value
 
                     // 1 Month cache
-                    SimklCache.setKey(cacheKey, it, Duration.parse(cacheTime))
+                    SimklCache.setEpisodes(cacheKey, it, Duration.parse(cacheTime))
                 }
         }
 
-        @Serializable
+        @JsonInclude(JsonInclude.Include.NON_EMPTY)
+        @OptIn(ExperimentalSerializationApi::class)
+        @KeepGeneratedSerializer
+        @Serializable(with = HistoryMediaObject.Serializer::class)
         data class HistoryMediaObject(
-            @Transient override val title: String? = null,
-            @Transient override val year: Int? = null,
-            @Transient override val ids: Ids? = null,
-            @Transient override val seasons: List<Season>? = null,
-            @Transient override val episodes: List<Season.Episode>? = null,
+            @JsonProperty("title") @SerialName("title") val title: String? = null,
+            @JsonProperty("year") @SerialName("year") val year: Int? = null,
+            @JsonProperty("ids") @SerialName("ids") val ids: MediaObject.Ids? = null,
+            @JsonProperty("seasons") @SerialName("seasons") val seasons: List<MediaObject.Season>? = null,
+            @JsonProperty("episodes") @SerialName("episodes") val episodes: List<MediaObject.Season.Episode>? = null,
             @JsonProperty("rating") @SerialName("rating") val rating: Int? = null,
             @JsonProperty("rated_at") @SerialName("rated_at") val ratedAt: String? = null,
-        ) : MediaObject(title, year, ids, seasons = seasons, episodes = episodes)
+        ) {
+            object Serializer : NonEmptySerializer<HistoryMediaObject>(HistoryMediaObject.generatedSerializer())
+        }
 
-        @Serializable
+        @JsonInclude(JsonInclude.Include.NON_EMPTY)
+        @OptIn(ExperimentalSerializationApi::class)
+        @KeepGeneratedSerializer
+        @Serializable(with = RatingMediaObject.Serializer::class)
         data class RatingMediaObject(
-            @Transient override val title: String? = null,
-            @Transient override val year: Int? = null,
-            @Transient override val ids: Ids? = null,
+            @JsonProperty("title") @SerialName("title") val title: String? = null,
+            @JsonProperty("year") @SerialName("year") val year: Int? = null,
+            @JsonProperty("ids") @SerialName("ids") val ids: MediaObject.Ids? = null,
             @JsonProperty("rating") @SerialName("rating") val rating: Int,
             @JsonProperty("rated_at") @SerialName("rated_at") val ratedAt: String? = getDateTime(APIHolder.unixTime),
-        ) : MediaObject(title, year, ids)
+        ) {
+            object Serializer : NonEmptySerializer<RatingMediaObject>(RatingMediaObject.generatedSerializer())
+        }
 
-        @Serializable
+        @JsonInclude(JsonInclude.Include.NON_EMPTY)
+        @OptIn(ExperimentalSerializationApi::class)
+        @KeepGeneratedSerializer
+        @Serializable(with = StatusMediaObject.Serializer::class)
         data class StatusMediaObject(
-            @Transient override val title: String? = null,
-            @Transient override val year: Int? = null,
-            @Transient override val ids: Ids? = null,
+            @JsonProperty("title") @SerialName("title") val title: String? = null,
+            @JsonProperty("year") @SerialName("year") val year: Int? = null,
+            @JsonProperty("ids") @SerialName("ids") val ids: MediaObject.Ids? = null,
             @JsonProperty("to") @SerialName("to") val to: String,
             @JsonProperty("watched_at") @SerialName("watched_at") val watchedAt: String? = getDateTime(APIHolder.unixTime),
-        ) : MediaObject(title, year, ids)
+        ) {
+            object Serializer : NonEmptySerializer<StatusMediaObject>(StatusMediaObject.generatedSerializer())
+        }
 
-        @Serializable
+        @JsonInclude(JsonInclude.Include.NON_EMPTY)
+        @OptIn(ExperimentalSerializationApi::class)
+        @KeepGeneratedSerializer
+        @Serializable(with = StatusRequest.Serializer::class)
         data class StatusRequest(
-            @JsonProperty("movies") @SerialName("movies") val movies: List<MediaObject>,
-            @JsonProperty("shows") @SerialName("shows") val shows: List<MediaObject>,
-        )
+            @JsonProperty("movies") @SerialName("movies") val movies: List<StatusMediaObject>,
+            @JsonProperty("shows") @SerialName("shows") val shows: List<StatusMediaObject>,
+        ) {
+            object Serializer : NonEmptySerializer<StatusRequest>(StatusRequest.generatedSerializer())
+        }
+
+        /** Same shape as [StatusRequest], for the endpoints that post [HistoryMediaObject]s instead. */
+        @JsonInclude(JsonInclude.Include.NON_EMPTY)
+        @OptIn(ExperimentalSerializationApi::class)
+        @KeepGeneratedSerializer
+        @Serializable(with = HistoryRequest.Serializer::class)
+        data class HistoryRequest(
+            @JsonProperty("movies") @SerialName("movies") val movies: List<HistoryMediaObject>,
+            @JsonProperty("shows") @SerialName("shows") val shows: List<HistoryMediaObject>,
+        ) {
+            object Serializer : NonEmptySerializer<HistoryRequest>(HistoryRequest.generatedSerializer())
+        }
 
         /** https://simkl.docs.apiary.io/#reference/sync/get-all-items/get-all-items-in-the-user's-watchlist */
         @Serializable
@@ -785,12 +883,12 @@ class SimklApi : SyncAPI() {
         val idKey =
             realIds.toList().map { "${it.first.originalName}=${it.second}" }.sorted().joinToString()
 
-        val cachedObject = SimklCache.getKey<MediaObject>(idKey)
+        val cachedObject = SimklCache.getMediaObject(idKey)
         val searchResult: MediaObject = cachedObject
             ?: (searchByIds(realIds)?.firstOrNull()?.also { result ->
                 val cacheTime =
                     if (result.hasEnded()) SimklCache.CacheTimes.OneMonth.value else SimklCache.CacheTimes.ThirtyMinutes.value
-                SimklCache.setKey(idKey, result, Duration.parse(cacheTime))
+                SimklCache.setMediaObject(idKey, result, Duration.parse(cacheTime))
             }) ?: return null
 
         val episodeConstructor = SimklEpisodeConstructor(
