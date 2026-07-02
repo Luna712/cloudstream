@@ -32,17 +32,8 @@ open class Userload : ExtractorApi() {
         return array
     }
 
-    private fun evaluateMath(mathExpression : String): String {
-        val rhino = Context.enter()
-        rhino.initStandardObjects()
-        rhino.setInterpretedMode(true)
-        val scope: Scriptable = rhino.initStandardObjects()
-        return try {
-            rhino.evaluateString(scope, "eval($mathExpression)", "JavaScript", 1, null).toString()
-        }
-        catch (e: EvaluatorException){
-            ""
-        }
+    private fun evaluateMath(mathExpression: String): String {
+        return jsValueToString(evalJs("eval($mathExpression)"))
     }
 
     private fun decodeVideoJs(text: String): List<String> {
