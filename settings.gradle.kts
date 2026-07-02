@@ -15,7 +15,7 @@ dependencyResolutionManagement {
         mavenLocal()
         maven("https://jitpack.io")
 
-        exclusiveContent {
+        /*exclusiveContent {
             forRepository {
                 ivy("https://nodejs.org/dist/") {
                     name = "Node Distributions at $url"
@@ -27,7 +27,7 @@ dependencyResolutionManagement {
                 }
             }
             filter { includeGroup("org.nodejs") }
-        }
+        }*/
     }
 }
 
