@@ -16,14 +16,12 @@ import com.lagradost.cloudstream3.utils.Coroutines.atomicListOf
 import com.lagradost.cloudstream3.utils.Coroutines.mainWork
 import com.lagradost.cloudstream3.utils.SubtitleHelper.fromCodeToLangTagIETF
 import com.lagradost.cloudstream3.utils.SubtitleHelper.fromLanguageToTagIETF
+import com.lagradost.nicehttp.NiceInterceptorCompat
 import com.lagradost.nicehttp.RequestBodyTypes
 import io.ktor.http.Url
 import io.ktor.http.URLBuilder
 import io.ktor.http.encodedPath
 import io.ktor.http.takeFrom
-import okhttp3.Interceptor
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody.Companion.toRequestBody
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalTime
 import kotlinx.datetime.TimeZone
@@ -316,9 +314,9 @@ object APIHolder {
                 "sort" to "SEARCH_MATCH",
                 "type" to "ANIME",
             )
-        ).toJson().toRequestBody(RequestBodyTypes.JSON.toMediaTypeOrNull())
+        ).toJson()
 
-        return app.post("https://graphql.anilist.co", requestBody = data)
+        return app.post("https://graphql.anilist.co", json = data)
             .parsedSafe()
     }
 }
@@ -692,7 +690,7 @@ abstract class MainAPI {
     }
 
     /** An okhttp interceptor for used in OkHttpDataSource */
-    open fun getVideoInterceptor(extractorLink: ExtractorLink): Interceptor? {
+    open fun getVideoInterceptor(extractorLink: ExtractorLink): NiceInterceptorCompat? {
         return null
     }
 
