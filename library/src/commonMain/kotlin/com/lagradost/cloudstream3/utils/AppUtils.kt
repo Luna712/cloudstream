@@ -10,6 +10,7 @@ import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.serializer
 import kotlinx.serialization.serializerOrNull
+import kotlin.jvm.JvmName
 import kotlin.reflect.KClass
 
 @OptIn(ExperimentalSerializationApi::class, InternalSerializationApi::class)
@@ -23,11 +24,11 @@ object AppUtils {
     @InternalAPI
     fun Any.toJsonLiteralImpl(serializer: KSerializer<Any>?): String {
         if (serializer == null) {
-            val e = Exception("No serializer found for ${this::class.qualifiedName}")
+            val e = Exception("No serializer found for ${this::class.simpleName}")
             logError(e)
             throw e
         }
-        debugPrint { "AppUtils/toJsonLiteral: using kotlinx serialization for ${this::class.qualifiedName}" }
+        debugPrint { "AppUtils/toJsonLiteral: using kotlinx serialization for ${this::class.simpleName}" }
         return json.encodeToString(serializer, this)
     }
 
@@ -55,11 +56,11 @@ object AppUtils {
     fun <T : Any> parseJson(value: String, kClass: KClass<T>): T {
         val serializer = kClass.serializerOrNull() ?: json.serializersModule.getContextual(kClass)
         if (serializer == null) {
-            val e = Exception("No serializer found for ${kClass.qualifiedName}")
+            val e = Exception("No serializer found for ${kClass.simpleName}")
             logError(e)
             throw e
         }
-        debugPrint { "AppUtils/parseJson(kClass): using kotlinx serialization for ${kClass.qualifiedName}" }
+        debugPrint { "AppUtils/parseJson(kClass): using kotlinx serialization for ${kClass.simpleName}" }
         @Suppress("UNCHECKED_CAST")
         return json.decodeFromString(serializer, value) as T
     }
@@ -72,12 +73,12 @@ object AppUtils {
             .getOrNull()
 
         if (serializer == null) {
-            val e = Exception("No serializer found for ${T::class.qualifiedName}")
+            val e = Exception("No serializer found for ${T::class.simpleName}")
             logError(e)
             throw e
         }
 
-        debugPrint { "AppUtils/parseJson<reified>: using kotlinx serialization for ${T::class.qualifiedName}" }
+        debugPrint { "AppUtils/parseJson<reified>: using kotlinx serialization for ${T::class.simpleName}" }
         return json.decodeFromString(serializer, value)
     }
 
