@@ -41,7 +41,6 @@ kotlin {
     jvm()
     js {
         browser()
-        nodejs()
     }
 
     compilerOptions {
