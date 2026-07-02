@@ -47,8 +47,10 @@ import com.lagradost.cloudstream3.utils.USER_PROVIDER_API
 import com.lagradost.cloudstream3.utils.downloader.DownloadFileManagement
 import com.lagradost.cloudstream3.utils.downloader.DownloadFileManagement.getBasePath
 import com.lagradost.cloudstream3.utils.downloader.DownloadQueueManager
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonNames
 import java.util.Locale
 
 // Change local language settings in the app.
@@ -146,9 +148,11 @@ class SettingsGeneral : BasePreferenceFragmentCompat() {
         setToolBarScrollFlags()
     }
 
+    @OptIn(ExperimentalSerializationApi::class) // JsonNames is an experimental annotation for now
     @Serializable
     data class CustomSite(
-        @SerialName("parentJavaClass") val parentJavaClass: String, // javaClass.simpleName
+        @SerialName("parentClassName") @JsonNames("parentJavaClass")
+        val parentClassName: String, // ::class.simpleName
         @SerialName("name") val name: String,
         @SerialName("url") val url: String,
         @SerialName("lang") val lang: String,
@@ -241,13 +245,14 @@ class SettingsGeneral : BasePreferenceFragmentCompat() {
                     val url = binding.siteUrlInput.text?.toString()
                     val lang = binding.siteLangInput.text?.toString()
                     val realLang = if (lang.isNullOrBlank()) provider.lang else lang
-                    if (url.isNullOrBlank() || name.isNullOrBlank()) {
+                    val simpleName = provider::class.simpleName
+                    if (url.isNullOrBlank() || name.isNullOrBlank() || simpleName == null) {
                         showToast(R.string.error_invalid_data, Toast.LENGTH_SHORT)
                         return@setOnClickListener
                     }
 
                     val current = getCurrent()
-                    val newSite = CustomSite(provider.javaClass.simpleName, name, url, realLang)
+                    val newSite = CustomSite(simpleName, name, url, realLang)
                     current.add(newSite)
                     setKey(USER_PROVIDER_API, current.toTypedArray())
                     // reload apis

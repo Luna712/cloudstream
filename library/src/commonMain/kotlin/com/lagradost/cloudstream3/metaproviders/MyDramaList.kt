@@ -28,11 +28,11 @@ import com.lagradost.cloudstream3.newTvSeriesLoadResponse
 import com.lagradost.cloudstream3.newTvSeriesSearchResponse
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
+import com.lagradost.nicehttp.HeadersInterceptor
+import io.ktor.http.HttpHeaders
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonElement
-import okhttp3.Interceptor
-import okhttp3.Response
 
 // Reference: https://mydramalist.github.io/MDL-API/
 abstract class MyDramaListAPI : MainAPI() {
@@ -50,19 +50,9 @@ abstract class MyDramaListAPI : MainAPI() {
         val API_KEY: String = BuildConfig.MDL_API_KEY
         const val API_HOST = "https://api.mydramalist.com/v1"
         const val SITE_HOST = "https://mydramalist.com"
-        private val headerInterceptor = MyDramaListInterceptor()
-    }
-
-    /** Automatically adds required api headers */
-    private class MyDramaListInterceptor : Interceptor {
-        override fun intercept(chain: Interceptor.Chain): Response {
-            return chain.proceed(
-                chain.request().newBuilder()
-                    .removeHeader("user-agent")
-                    .addHeader("user-agent", "Dart/3.6 (dart:io)")
-                    .addHeader("mdl-api-key", API_KEY)
-                    .build()
-            )
+        private val headerInterceptor = HeadersInterceptor {
+            header(HttpHeaders.UserAgent, "Dart/3.6 (dart:io)")
+            header("mdl-api-key", API_KEY)
         }
     }
 
@@ -76,21 +66,19 @@ abstract class MyDramaListAPI : MainAPI() {
     )
 
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
-        val list = app.get(
-            url = "${request.data}&limit=20&page=$page&lang=en-US",
+        val list = app.get("${request.data}&limit=20&page=$page&lang=en-US") {
             interceptor = headerInterceptor
-        ).parsed<List<MediaSummary>>().map { element ->
+        }.parsed<ArrayList<MediaSummary>>().map { element ->
             element.toSearchResponse()
         }
         return newHomePageResponse(request.name, list)
     }
 
     override suspend fun search(query: String): List<SearchResponse>? {
-        return app.post(
-            url = "$API_HOST/search/titles",
-            data = mapOf("q" to query),
+        return app.post("$API_HOST/search/titles") {
+            data = mapOf("q" to query)
             interceptor = headerInterceptor
-        ).parsed<List<MediaSummary>>().map { element ->
+        }.parsed<ArrayList<MediaSummary>>().map { element ->
             element.toSearchResponse()
         }
     }
@@ -127,10 +115,9 @@ abstract class MyDramaListAPI : MainAPI() {
     override suspend fun load(url: String): LoadResponse {
         val data = parseJson<Data>(url)
 
-        return app.get(
-            url = "$API_HOST/titles/${data.media?.id}",
+        return app.get("$API_HOST/titles/${data.media?.id}") {
             interceptor = headerInterceptor
-        ).parsed<Media>().toLoadResponse(data)
+        }.parsed<Media>().toLoadResponse(data)
     }
 
     private suspend fun Media.toLoadResponse(data: Data): LoadResponse {
@@ -277,10 +264,9 @@ abstract class MyDramaListAPI : MainAPI() {
         @SerialName("updated_at") val updatedAt: Long,
     ) {
         suspend fun fetchCredits(): List<ActorData> {
-            val actors = app.get(
-                url = "$API_HOST/titles/$id/credits",
+            val actors = app.get("$API_HOST/titles/$id/credits") {
                 interceptor = headerInterceptor
-            ).parsed<Credits>().cast.map {
+            }.parsed<Credits>().cast.map {
                 ActorData(
                     Actor(
                         name = it.name,
@@ -292,18 +278,16 @@ abstract class MyDramaListAPI : MainAPI() {
             return actors
         }
 
-        suspend fun fetchRecommendations(): List<MediaSummary> {
-            return app.get(
-                url = "$API_HOST/titles/$id/recommendations",
+        suspend fun fetchRecommendations(): Recommendations {
+            return app.get("$API_HOST/titles/$id/recommendations") {
                 interceptor = headerInterceptor
-            ).parsed<List<MediaSummary>>()
+            }.parsed<ArrayList<MediaSummary>>()
         }
 
         suspend fun fetchTrailer(): String? {
-            return app.get(
-                url = "$SITE_HOST/v1/trailers/${trailer?.id}",
+            return app.get("$SITE_HOST/v1/trailers/${trailer?.id}") {
                 interceptor = headerInterceptor
-            ).parsedSafe<TrailerRoot>()?.trailer?.trailerDetails?.source
+            }.parsedSafe<TrailerRoot>()?.trailer?.trailerDetails?.source
         }
 
         fun fixGenres(): List<String> {
@@ -318,10 +302,9 @@ abstract class MyDramaListAPI : MainAPI() {
     }
 
     private suspend fun Media.fetchEpisodes(): List<Episode> {
-        return app.get(
-            url = "$API_HOST/titles/${this.id}/episodes",
+        return app.get("$API_HOST/titles/${this.id}/episodes") {
             interceptor = headerInterceptor
-        ).parsed<List<ShowEpisodesItem>>().map {
+        }.parsed<ArrayList<ShowEpisodesItem>>().map {
             it.episodes
         }.flatten().map { ep ->
             val link = LinkData(
