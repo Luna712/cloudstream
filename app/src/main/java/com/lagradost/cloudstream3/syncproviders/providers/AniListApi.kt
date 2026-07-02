@@ -269,7 +269,7 @@ class AniListApi : SyncAPI() {
                     // headers = mapOf(),
                     data = data, // (if (vars == null) mapOf("query" to q) else mapOf("query" to q, "variables" to vars))
                     timeout = 5000 // REASONABLE TIMEOUT
-                ).text.replace("\\", "")
+                ).text().replace("\\", "")
                 return parseJson<GetSearchRoot>(res)
             } catch (e: Exception) {
                 logError(e)
@@ -453,7 +453,7 @@ class AniListApi : SyncAPI() {
                 "https://graphql.anilist.co",
                 data = mapOf("query" to q),
                 cacheTime = 0,
-            ).text
+            ).text()
 
             return tryParseJson<SeasonResponse>(data) ?: throw ErrorLoadingException("Error parsing $data")
         }
@@ -520,7 +520,7 @@ class AniListApi : SyncAPI() {
                 )
             ), // (if (vars == null) mapOf("query" to q) else mapOf("query" to q, "variables" to vars))
             timeout = 5 // REASONABLE TIMEOUT
-        ).text.replace("\\/", "/")
+        ).text().replace("\\/", "/")
     }
 
     @Serializable
@@ -918,7 +918,6 @@ class AniListApi : SyncAPI() {
 
     @Serializable
     data class Recommendation(
-        @SerialName("id") val id: Long,
         @SerialName("mediaRecommendation") val mediaRecommendation: RecommendedMedia?,
     )
 
