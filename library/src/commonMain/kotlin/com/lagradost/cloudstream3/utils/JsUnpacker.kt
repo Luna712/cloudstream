@@ -55,7 +55,7 @@ class JsUnpacker(packedJS: String?) {
                     val x = unbase.unbase(word)
                     val value = if (x in symtab.indices) symtab[x] else null
                     if (!value.isNullOrEmpty()) {
-                        decoded.replace(
+                        decoded.setRange(
                             wordMatch.range.first + replaceOffset,
                             wordMatch.range.last + 1 + replaceOffset,
                             value
