@@ -21,7 +21,7 @@ actual class WebViewResolver actual constructor(
         actual var webViewUserAgent: String? = null
     }
 
-    override suspend fun intercept(ctx: HttpSendInterceptorContext): HttpClientCall {
+    actual override suspend fun intercept(ctx: HttpSendInterceptorContext): HttpClientCall {
         // No WebView on JS/WASM, just proceed with the request as-is
         return ctx.proceed()
     }
