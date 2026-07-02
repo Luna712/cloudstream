@@ -39,6 +39,7 @@ kotlin {
     }
 
     jvm()
+    js()
 
     compilerOptions {
         freeCompilerArgs.addAll(
