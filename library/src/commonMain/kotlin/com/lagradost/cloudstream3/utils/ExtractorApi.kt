@@ -324,8 +324,6 @@ import kotlinx.serialization.Transient
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
-import kotlin.uuid.toJavaUuid
-import kotlin.uuid.toKotlinUuid
 
 /**
  * For use in the ConcatenatingMediaSource.
@@ -469,17 +467,6 @@ val WIDEVINE_DRM_UUID = Uuid.fromLongs(-0x121074568629b532L, -0x5c37d8232ae2de13
 @Prerelease
 val PLAYREADY_DRM_UUID = Uuid.fromLongs(-0x65fb0f8667bfbd7aL, -0x546d19a41f77a06bL)
 
-// Deprecate after next stable
-
-// @Deprecated("Use CLEARKEY_DRM_UUID", ReplaceWith("CLEARKEY_DRM_UUID"), level = DeprecationLevel.WARNING)
-val CLEARKEY_UUID = CLEARKEY_DRM_UUID.toJavaUuid()
-
-// @Deprecated("Use WIDEVINE_DRM_UUID", ReplaceWith("WIDEVINE_DRM_UUID"), level = DeprecationLevel.WARNING)
-val WIDEVINE_UUID = WIDEVINE_DRM_UUID.toJavaUuid()
-
-// @Deprecated("Use PLAYREADY_DRM_UUID", ReplaceWith("PLAYREADY_DRM_UUID"), level = DeprecationLevel.WARNING)
-val PLAYREADY_UUID = PLAYREADY_DRM_UUID.toJavaUuid()
-
 suspend fun newExtractorLink(
     source: String,
     name: String,
@@ -494,33 +481,6 @@ suspend fun newExtractorLink(
             source = source,
             name = name,
             url = url,
-            type = type ?: INFER_TYPE
-        )
-
-    builder.initializer()
-    return builder
-}
-
-// Deprecate after next stable
-/* @Deprecated(
-    message = "Use Kotlin Uuid (kotlin.uuid.Uuid) instead of Java UUID.",
-    level = DeprecationLevel.WARNING,
-) */
-suspend fun newDrmExtractorLink(
-    source: String,
-    name: String,
-    url: String,
-    type: ExtractorLinkType? = null,
-    uuid: java.util.UUID,
-    initializer: suspend DrmExtractorLink.() -> Unit = { }
-): DrmExtractorLink {
-    @Suppress("DEPRECATION_ERROR")
-    val builder =
-        DrmExtractorLink(
-            source = source,
-            name = name,
-            url = url,
-            uuid = uuid.toKotlinUuid(),
             type = type ?: INFER_TYPE
         )
 
@@ -657,14 +617,6 @@ open class DrmExtractorLink private constructor(
         kty = kty,
         licenseUrl = licenseUrl,
     )
-
-    @Deprecated(message = "Use Kotlin Uuid", level = DeprecationLevel.HIDDEN)
-    fun setUuid(uuid: java.util.UUID) {
-        this.uuid = uuid.toKotlinUuid()
-    }
-
-    @Deprecated(message = "Use Kotlin Uuid", level = DeprecationLevel.HIDDEN)
-    fun getUuid(): java.util.UUID = this.uuid.toJavaUuid()
 }
 
 /** Class holds extracted media info to be passed to the player.
