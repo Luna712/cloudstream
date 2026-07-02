@@ -409,7 +409,6 @@ enum class ExtractorLinkType {
     MAGNET;
 
     // See https://www.iana.org/assignments/media-types/media-types.xhtml
-    @JsonIgnore
     fun getMimeType(): String {
         return when (this) {
             VIDEO -> "video/mp4"
