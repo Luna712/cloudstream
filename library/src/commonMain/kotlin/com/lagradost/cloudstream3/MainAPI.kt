@@ -791,22 +791,6 @@ fun fixTitle(str: String): String {
     }
 }
 
-/**
- * Get rhino context in a safe way as it needs to be initialized on the main thread.
- *
- * Make sure you get the scope using: val scope: Scriptable = rhino.initSafeStandardObjects()
- *
- * Use like the following: rhino.evaluateString(scope, js, "JavaScript", 1, null)
- **/
-suspend fun getRhinoContext(): org.mozilla.javascript.Context {
-    return Coroutines.mainWork {
-        val rhino = org.mozilla.javascript.Context.enter()
-        rhino.initSafeStandardObjects()
-        rhino.setInterpretedMode(true)
-        rhino
-    }
-}
-
 /** https://www.imdb.com/title/tt2861424/ -> tt2861424
  * @param url Imdb Url you need to get the Id from.
  * @return imdb id formatted string
