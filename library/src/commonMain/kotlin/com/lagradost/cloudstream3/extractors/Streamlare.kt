@@ -10,8 +10,6 @@ import com.lagradost.cloudstream3.utils.INFER_TYPE
 import com.lagradost.cloudstream3.utils.newExtractorLink
 import com.lagradost.cloudstream3.utils.Qualities
 import com.lagradost.nicehttp.RequestBodyTypes
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody.Companion.toRequestBody
 
 
 class Streamlare : Slmaxed() {
@@ -47,7 +45,7 @@ open class Slmaxed : ExtractorApi() {
         val id = embedRegex.find(url)!!.groupValues[1]
         val json = app.post(
             "${mainUrl}api/video/stream/get",
-            requestBody = """{"id":"$id"}""".toRequestBody(RequestBodyTypes.JSON.toMediaTypeOrNull())
+            json = """{"id":"$id"}"""
         ).parsed<JsonResponse>()
         return json.result?.mapNotNull {
             it.value.let { result ->
