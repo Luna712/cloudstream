@@ -26,8 +26,7 @@ class JsUnpacker(packedJS: String?) {
         val js = packedJS ?: return null
         try {
             val match = Regex(
-                """\}\s*\('(.*)',\s*(.*?),\s*(\d+),\s*'(.*?)'\.split\('\|'\)""",
-                RegexOption.DOT_MATCHES_ALL
+                """(?s)\}\s*\('(.*)',\s*(.*?),\s*(\d+),\s*'(.*?)'\.split\('\|'\)"""
             ).find(js)
             if (match != null && match.groupValues.size == 5) {
                 val payload = match.groupValues[1].replace("\\'", "'")
