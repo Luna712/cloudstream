@@ -3,9 +3,6 @@ package com.lagradost.cloudstream3.extractors
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.*
-import org.mozilla.javascript.Context
-import org.mozilla.javascript.EvaluatorException
-import org.mozilla.javascript.Scriptable
 
 open class Userload : ExtractorApi() {
     override var name = "Userload"
