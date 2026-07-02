@@ -39,7 +39,10 @@ kotlin {
     }
 
     jvm()
-    js()
+    js {
+        browser()
+        nodejs()
+    }
 
     compilerOptions {
         freeCompilerArgs.addAll(
