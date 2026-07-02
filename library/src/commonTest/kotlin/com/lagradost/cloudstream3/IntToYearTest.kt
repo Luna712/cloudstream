@@ -22,7 +22,7 @@ class IntToYearTest {
     @Test
     fun toYearSetsMonthToJanuary() {
         val result = 2026.toYear()
-        assertEquals(1, result.month)
+        assertEquals(1, result.month.number)
     }
 
     @Test
