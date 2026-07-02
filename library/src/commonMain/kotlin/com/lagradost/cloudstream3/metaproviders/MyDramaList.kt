@@ -279,7 +279,7 @@ abstract class MyDramaListAPI : MainAPI() {
             return actors
         }
 
-        suspend fun fetchRecommendations(): Recommendations {
+        suspend fun fetchRecommendations(): ArrayList<MediaSummary> {
             return app.get("$API_HOST/titles/$id/recommendations") {
                 interceptor = headerInterceptor
             }.parsed<ArrayList<MediaSummary>>()
