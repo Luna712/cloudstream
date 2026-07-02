@@ -15,7 +15,8 @@ dependencyResolutionManagement {
         mavenLocal()
         maven("https://jitpack.io")
 
-        /*exclusiveContent {
+        // https://youtrack.jetbrains.com/issue/KT-55620/
+        exclusiveContent {
             forRepository {
                 ivy("https://nodejs.org/dist/") {
                     name = "Node Distributions at $url"
@@ -27,7 +28,21 @@ dependencyResolutionManagement {
                 }
             }
             filter { includeGroup("org.nodejs") }
-        }*/
+        }
+
+        exclusiveContent {
+            forRepository {
+                ivy("https://github.com/yarnpkg/yarn/releases/download") {
+                    name = "Yarn Distributions at $url"
+                    patternLayout {
+                        artifact("v[revision]/[artifact](-v[revision]).[ext]")
+                    }
+                    metadataSources { artifact() }
+                    content { includeModule("com.yarnpkg", "yarn") }
+                }
+            }
+            filter { includeGroup("com.yarnpkg") }
+        }
     }
 }
 
