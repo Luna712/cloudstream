@@ -1,7 +1,6 @@
 package com.lagradost.cloudstream3.syncproviders.providers
 
 import androidx.annotation.StringRes
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.Actor
 import com.lagradost.cloudstream3.ActorData
 import com.lagradost.cloudstream3.ActorRole
@@ -526,77 +525,77 @@ class AniListApi : SyncAPI() {
 
     @Serializable
     data class Variables(
-        @JsonProperty("search") @SerialName("search") val search: String,
-        @JsonProperty("page") @SerialName("page") val page: Int,
-        @JsonProperty("type") @SerialName("type") val type: String,
+        @SerialName("search") val search: String,
+        @SerialName("page") val page: Int,
+        @SerialName("type") val type: String,
     )
 
     @Serializable
     data class MediaRecommendation(
-        @JsonProperty("id") @SerialName("id") val id: Int,
-        @JsonProperty("title") @SerialName("title") val title: Title?,
-        @JsonProperty("idMal") @SerialName("idMal") val idMal: Int?,
-        @JsonProperty("coverImage") @SerialName("coverImage") val coverImage: CoverImage?,
-        @JsonProperty("averageScore") @SerialName("averageScore") val averageScore: Int?,
+        @SerialName("id") val id: Int,
+        @SerialName("title") val title: Title?,
+        @SerialName("idMal") val idMal: Int?,
+        @SerialName("coverImage") val coverImage: CoverImage?,
+        @SerialName("averageScore") val averageScore: Int?,
     )
 
     @Serializable
     data class FullAnilistList(
-        @JsonProperty("data") @SerialName("data") val data: Data?,
+        @SerialName("data") val data: Data?,
     )
 
     @Serializable
     data class CompletedAt(
-        @JsonProperty("year") @SerialName("year") val year: Int,
-        @JsonProperty("month") @SerialName("month") val month: Int,
-        @JsonProperty("day") @SerialName("day") val day: Int,
+        @SerialName("year") val year: Int,
+        @SerialName("month") val month: Int,
+        @SerialName("day") val day: Int,
     )
 
     @Serializable
     data class StartedAt(
-        @JsonProperty("year") @SerialName("year") val year: String?,
-        @JsonProperty("month") @SerialName("month") val month: String?,
-        @JsonProperty("day") @SerialName("day") val day: String?,
+        @SerialName("year") val year: String?,
+        @SerialName("month") val month: String?,
+        @SerialName("day") val day: String?,
     )
 
     @Serializable
     data class Title(
-        @JsonProperty("english") @SerialName("english") val english: String?,
-        @JsonProperty("romaji") @SerialName("romaji") val romaji: String?,
+        @SerialName("english") val english: String?,
+        @SerialName("romaji") val romaji: String?,
     )
 
     @Serializable
     data class CoverImage(
-        @JsonProperty("medium") @SerialName("medium") val medium: String?,
-        @JsonProperty("large") @SerialName("large") val large: String?,
-        @JsonProperty("extraLarge") @SerialName("extraLarge") val extraLarge: String?,
+        @SerialName("medium") val medium: String?,
+        @SerialName("large") val large: String?,
+        @SerialName("extraLarge") val extraLarge: String?,
     )
 
     @Serializable
     data class Media(
-        @JsonProperty("id") @SerialName("id") val id: Int,
-        @JsonProperty("idMal") @SerialName("idMal") val idMal: Int?,
-        @JsonProperty("season") @SerialName("season") val season: String?,
-        @JsonProperty("seasonYear") @SerialName("seasonYear") val seasonYear: Int,
-        @JsonProperty("format") @SerialName("format") val format: String?,
-        @JsonProperty("episodes") @SerialName("episodes") val episodes: Int,
-        @JsonProperty("title") @SerialName("title") val title: Title,
-        @JsonProperty("description") @SerialName("description") val description: String?,
-        @JsonProperty("coverImage") @SerialName("coverImage") val coverImage: CoverImage,
-        @JsonProperty("synonyms") @SerialName("synonyms") val synonyms: List<String>,
-        @JsonProperty("nextAiringEpisode") @SerialName("nextAiringEpisode") val nextAiringEpisode: SeasonNextAiringEpisode?,
+        @SerialName("id") val id: Int,
+        @SerialName("idMal") val idMal: Int?,
+        @SerialName("season") val season: String?,
+        @SerialName("seasonYear") val seasonYear: Int,
+        @SerialName("format") val format: String?,
+        @SerialName("episodes") val episodes: Int,
+        @SerialName("title") val title: Title,
+        @SerialName("description") val description: String?,
+        @SerialName("coverImage") val coverImage: CoverImage,
+        @SerialName("synonyms") val synonyms: List<String>,
+        @SerialName("nextAiringEpisode") val nextAiringEpisode: SeasonNextAiringEpisode?,
     )
 
     @Serializable
     data class Entries(
-        @JsonProperty("status") @SerialName("status") val status: String?,
-        @JsonProperty("completedAt") @SerialName("completedAt") val completedAt: CompletedAt,
-        @JsonProperty("startedAt") @SerialName("startedAt") val startedAt: StartedAt,
-        @JsonProperty("updatedAt") @SerialName("updatedAt") val updatedAt: Int,
-        @JsonProperty("progress") @SerialName("progress") val progress: Int,
-        @JsonProperty("score") @SerialName("score") val score: Int,
-        @JsonProperty("private") @SerialName("private") val private: Boolean,
-        @JsonProperty("media") @SerialName("media") val media: Media,
+        @SerialName("status") val status: String?,
+        @SerialName("completedAt") val completedAt: CompletedAt,
+        @SerialName("startedAt") val startedAt: StartedAt,
+        @SerialName("updatedAt") val updatedAt: Int,
+        @SerialName("progress") val progress: Int,
+        @SerialName("score") val score: Int,
+        @SerialName("private") val private: Boolean,
+        @SerialName("media") val media: Media,
     ) {
         fun toLibraryItem(): SyncAPI.LibraryItem {
             return SyncAPI.LibraryItem(
@@ -625,18 +624,18 @@ class AniListApi : SyncAPI() {
 
     @Serializable
     data class Lists(
-        @JsonProperty("status") @SerialName("status") val status: String?,
-        @JsonProperty("entries") @SerialName("entries") val entries: List<Entries>,
+        @SerialName("status") val status: String?,
+        @SerialName("entries") val entries: List<Entries>,
     )
 
     @Serializable
     data class MediaListCollection(
-        @JsonProperty("lists") @SerialName("lists") val lists: List<Lists>,
+        @SerialName("lists") val lists: List<Lists>,
     )
 
     @Serializable
     data class Data(
-        @JsonProperty("MediaListCollection") @SerialName("MediaListCollection") val mediaListCollection: MediaListCollection,
+        @SerialName("MediaListCollection") val mediaListCollection: MediaListCollection,
     )
 
     private suspend fun getAniListAnimeListSmart(auth: AuthData): Array<Lists>? {
@@ -749,17 +748,17 @@ class AniListApi : SyncAPI() {
     /** Used to query a saved MediaItem on the list to get the id for removal */
     @Serializable
     data class MediaListItemRoot(
-        @JsonProperty("data") @SerialName("data") val data: MediaListItem? = null,
+        @SerialName("data") val data: MediaListItem? = null,
     )
 
     @Serializable
     data class MediaListItem(
-        @JsonProperty("MediaList") @SerialName("MediaList") val mediaList: MediaListId? = null,
+        @SerialName("MediaList") val mediaList: MediaListId? = null,
     )
 
     @Serializable
     data class MediaListId(
-        @JsonProperty("id") @SerialName("id") val id: Long? = null,
+        @SerialName("id") val id: Long? = null,
     )
 
     private suspend fun postDataAboutId(
@@ -863,355 +862,355 @@ class AniListApi : SyncAPI() {
 
     @Serializable
     data class SeasonResponse(
-        @JsonProperty("data") @SerialName("data") val data: SeasonData,
+        @SerialName("data") val data: SeasonData,
     )
 
     @Serializable
     data class SeasonData(
-        @JsonProperty("Media") @SerialName("Media") val media: SeasonMedia,
+        @SerialName("Media") val media: SeasonMedia,
     )
 
     @Serializable
     data class RecommendedMedia(
-        @JsonProperty("id") @SerialName("id") val id: Int?,
-        @JsonProperty("title") @SerialName("title") val title: MediaTitle?,
-        @JsonProperty("coverImage") @SerialName("coverImage") val coverImage: MediaCoverImage?,
+        @SerialName("id") val id: Int?,
+        @SerialName("title") val title: MediaTitle?,
+        @SerialName("coverImage") val coverImage: MediaCoverImage?,
     )
 
     @Serializable
     data class CharacterMedia(
-        @JsonProperty("id") @SerialName("id") val id: Int?,
-        @JsonProperty("title") @SerialName("title") val title: MediaTitle?,
-        @JsonProperty("coverImage") @SerialName("coverImage") val coverImage: MediaCoverImage?,
+        @SerialName("id") val id: Int?,
+        @SerialName("title") val title: MediaTitle?,
+        @SerialName("coverImage") val coverImage: MediaCoverImage?,
     )
 
     @Serializable
     data class SeasonMedia(
-        @JsonProperty("id") @SerialName("id") val id: Int?,
-        @JsonProperty("title") @SerialName("title") val title: MediaTitle?,
-        @JsonProperty("idMal") @SerialName("idMal") val idMal: Int?,
-        @JsonProperty("format") @SerialName("format") val format: String?,
-        @JsonProperty("nextAiringEpisode") @SerialName("nextAiringEpisode") val nextAiringEpisode: SeasonNextAiringEpisode?,
-        @JsonProperty("relations") @SerialName("relations") val relations: SeasonEdges?,
-        @JsonProperty("coverImage") @SerialName("coverImage") val coverImage: MediaCoverImage?,
-        @JsonProperty("duration") @SerialName("duration") val duration: Int?,
-        @JsonProperty("episodes") @SerialName("episodes") val episodes: Int?,
-        @JsonProperty("genres") @SerialName("genres") val genres: List<String>?,
-        @JsonProperty("synonyms") @SerialName("synonyms") val synonyms: List<String>?,
-        @JsonProperty("averageScore") @SerialName("averageScore") val averageScore: Int?,
-        @JsonProperty("isAdult") @SerialName("isAdult") val isAdult: Boolean?,
-        @JsonProperty("trailer") @SerialName("trailer") val trailer: MediaTrailer?,
-        @JsonProperty("description") @SerialName("description") val description: String?,
-        @JsonProperty("characters") @SerialName("characters") val characters: CharacterConnection?,
-        @JsonProperty("recommendations") @SerialName("recommendations") val recommendations: RecommendationConnection?,
+        @SerialName("id") val id: Int?,
+        @SerialName("title") val title: MediaTitle?,
+        @SerialName("idMal") val idMal: Int?,
+        @SerialName("format") val format: String?,
+        @SerialName("nextAiringEpisode") val nextAiringEpisode: SeasonNextAiringEpisode?,
+        @SerialName("relations") val relations: SeasonEdges?,
+        @SerialName("coverImage") val coverImage: MediaCoverImage?,
+        @SerialName("duration") val duration: Int?,
+        @SerialName("episodes") val episodes: Int?,
+        @SerialName("genres") val genres: List<String>?,
+        @SerialName("synonyms") val synonyms: List<String>?,
+        @SerialName("averageScore") val averageScore: Int?,
+        @SerialName("isAdult") val isAdult: Boolean?,
+        @SerialName("trailer") val trailer: MediaTrailer?,
+        @SerialName("description") val description: String?,
+        @SerialName("characters") val characters: CharacterConnection?,
+        @SerialName("recommendations") val recommendations: RecommendationConnection?,
     )
 
     @Serializable
     data class RecommendationConnection(
-        @JsonProperty("edges") @SerialName("edges") val edges: List<RecommendationEdge> = emptyList(),
-        @JsonProperty("nodes") @SerialName("nodes") val nodes: List<Recommendation> = emptyList(),
+        @SerialName("edges") val edges: List<RecommendationEdge> = emptyList(),
+        @SerialName("nodes") val nodes: List<Recommendation> = emptyList(),
     )
 
     @Serializable
     data class RecommendationEdge(
-        @JsonProperty("node") @SerialName("node") val node: Recommendation,
+        @SerialName("node") val node: Recommendation,
     )
 
     @Serializable
     data class Recommendation(
-        @JsonProperty("id") @SerialName("id") val id: Long,
-        @JsonProperty("mediaRecommendation") @SerialName("mediaRecommendation") val mediaRecommendation: RecommendedMedia?,
+        @SerialName("id") val id: Long,
+        @SerialName("mediaRecommendation") val mediaRecommendation: RecommendedMedia?,
     )
 
     @Serializable
     data class CharacterName(
-        @JsonProperty("name") @SerialName("name") val first: String?,
-        @JsonProperty("middle") @SerialName("middle") val middle: String?,
-        @JsonProperty("last") @SerialName("last") val last: String?,
-        @JsonProperty("full") @SerialName("full") val full: String?,
-        @JsonProperty("native") @SerialName("native") val native: String?,
-        @JsonProperty("alternative") @SerialName("alternative") val alternative: List<String>?,
-        @JsonProperty("alternativeSpoiler") @SerialName("alternativeSpoiler") val alternativeSpoiler: List<String>?,
-        @JsonProperty("userPreferred") @SerialName("userPreferred") val userPreferred: String?,
+        @SerialName("name") val first: String?,
+        @SerialName("middle") val middle: String?,
+        @SerialName("last") val last: String?,
+        @SerialName("full") val full: String?,
+        @SerialName("native") val native: String?,
+        @SerialName("alternative") val alternative: List<String>?,
+        @SerialName("alternativeSpoiler") val alternativeSpoiler: List<String>?,
+        @SerialName("userPreferred") val userPreferred: String?,
     )
 
     @Serializable
     data class CharacterImage(
-        @JsonProperty("large") @SerialName("large") val large: String?,
-        @JsonProperty("medium") @SerialName("medium") val medium: String?,
+        @SerialName("large") val large: String?,
+        @SerialName("medium") val medium: String?,
     )
 
     @Serializable
     data class Character(
-        @JsonProperty("name") @SerialName("name") val name: CharacterName?,
-        @JsonProperty("age") @SerialName("age") val age: String?,
-        @JsonProperty("image") @SerialName("image") val image: CharacterImage?,
+        @SerialName("name") val name: CharacterName?,
+        @SerialName("age") val age: String?,
+        @SerialName("image") val image: CharacterImage?,
     )
 
     @Serializable
     data class CharacterEdge(
-        @JsonProperty("id") @SerialName("id") val id: Int?,
+        @SerialName("id") val id: Int?,
         /**
          * MAIN - A primary character role in the media
          * SUPPORTING - A supporting character role in the media
          * BACKGROUND - A background character in the media
          */
-        @JsonProperty("role") @SerialName("role") val role: String?,
-        @JsonProperty("name") @SerialName("name") val name: String?,
-        @JsonProperty("voiceActors") @SerialName("voiceActors") val voiceActors: List<Staff>?,
-        @JsonProperty("favouriteOrder") @SerialName("favouriteOrder") val favouriteOrder: Int?,
-        @JsonProperty("media") @SerialName("media") val media: List<CharacterMedia>?,
-        @JsonProperty("node") @SerialName("node") val node: Character?,
+        @SerialName("role") val role: String?,
+        @SerialName("name") val name: String?,
+        @SerialName("voiceActors") val voiceActors: List<Staff>?,
+        @SerialName("favouriteOrder") val favouriteOrder: Int?,
+        @SerialName("media") val media: List<CharacterMedia>?,
+        @SerialName("node") val node: Character?,
     )
 
     @Serializable
     data class StaffImage(
-        @JsonProperty("large") @SerialName("large") val large: String?,
-        @JsonProperty("medium") @SerialName("medium") val medium: String?,
+        @SerialName("large") val large: String?,
+        @SerialName("medium") val medium: String?,
     )
 
     @Serializable
     data class StaffName(
-        @JsonProperty("name") @SerialName("name") val first: String?,
-        @JsonProperty("middle") @SerialName("middle") val middle: String?,
-        @JsonProperty("last") @SerialName("last") val last: String?,
-        @JsonProperty("full") @SerialName("full") val full: String?,
-        @JsonProperty("native") @SerialName("native") val native: String?,
-        @JsonProperty("alternative") @SerialName("alternative") val alternative: List<String>?,
-        @JsonProperty("userPreferred") @SerialName("userPreferred") val userPreferred: String?,
+        @SerialName("name") val first: String?,
+        @SerialName("middle") val middle: String?,
+        @SerialName("last") val last: String?,
+        @SerialName("full") val full: String?,
+        @SerialName("native") val native: String?,
+        @SerialName("alternative") val alternative: List<String>?,
+        @SerialName("userPreferred") val userPreferred: String?,
     )
 
     @Serializable
     data class Staff(
-        @JsonProperty("image") @SerialName("image") val image: StaffImage?,
-        @JsonProperty("name") @SerialName("name") val name: StaffName?,
-        @JsonProperty("age") @SerialName("age") val age: Int?,
+        @SerialName("image") val image: StaffImage?,
+        @SerialName("name") val name: StaffName?,
+        @SerialName("age") val age: Int?,
     )
 
     @Serializable
     data class CharacterConnection(
-        @JsonProperty("edges") @SerialName("edges") val edges: List<CharacterEdge>?,
-        @JsonProperty("nodes") @SerialName("nodes") val nodes: List<Character>?,
+        @SerialName("edges") val edges: List<CharacterEdge>?,
+        @SerialName("nodes") val nodes: List<Character>?,
     )
 
     @Serializable
     data class MediaTrailer(
-        @JsonProperty("id") @SerialName("id") val id: String?,
-        @JsonProperty("site") @SerialName("site") val site: String?,
-        @JsonProperty("thumbnail") @SerialName("thumbnail") val thumbnail: String?,
+        @SerialName("id") val id: String?,
+        @SerialName("site") val site: String?,
+        @SerialName("thumbnail") val thumbnail: String?,
     )
 
     @Serializable
     data class MediaCoverImage(
-        @JsonProperty("extraLarge") @SerialName("extraLarge") val extraLarge: String?,
-        @JsonProperty("large") @SerialName("large") val large: String?,
-        @JsonProperty("medium") @SerialName("medium") val medium: String?,
-        @JsonProperty("color") @SerialName("color") val color: String?,
+        @SerialName("extraLarge") val extraLarge: String?,
+        @SerialName("large") val large: String?,
+        @SerialName("medium") val medium: String?,
+        @SerialName("color") val color: String?,
     )
 
     @Serializable
     data class SeasonNextAiringEpisode(
-        @JsonProperty("episode") @SerialName("episode") val episode: Int?,
-        @JsonProperty("timeUntilAiring") @SerialName("timeUntilAiring") val timeUntilAiring: Int?,
+        @SerialName("episode") val episode: Int?,
+        @SerialName("timeUntilAiring") val timeUntilAiring: Int?,
     )
 
     @Serializable
     data class SeasonEdges(
-        @JsonProperty("edges") @SerialName("edges") val edges: List<SeasonEdge>?,
+        @SerialName("edges") val edges: List<SeasonEdge>?,
     )
 
     @Serializable
     data class SeasonEdge(
-        @JsonProperty("id") @SerialName("id") val id: Int?,
-        @JsonProperty("relationType") @SerialName("relationType") val relationType: String?,
-        @JsonProperty("node") @SerialName("node") val node: SeasonNode?,
+        @SerialName("id") val id: Int?,
+        @SerialName("relationType") val relationType: String?,
+        @SerialName("node") val node: SeasonNode?,
     )
 
     @Serializable
     data class AniListFavoritesMediaConnection(
-        @JsonProperty("nodes") @SerialName("nodes") val nodes: List<LikeNode>,
+        @SerialName("nodes") val nodes: List<LikeNode>,
     )
 
     @Serializable
     data class AniListFavourites(
-        @JsonProperty("anime") @SerialName("anime") val anime: AniListFavoritesMediaConnection,
+        @SerialName("anime") val anime: AniListFavoritesMediaConnection,
     )
 
     @Serializable
     data class MediaTitle(
-        @JsonProperty("romaji") @SerialName("romaji") val romaji: String?,
-        @JsonProperty("english") @SerialName("english") val english: String?,
-        @JsonProperty("native") @SerialName("native") val native: String?,
-        @JsonProperty("userPreferred") @SerialName("userPreferred") val userPreferred: String?,
+        @SerialName("romaji") val romaji: String?,
+        @SerialName("english") val english: String?,
+        @SerialName("native") val native: String?,
+        @SerialName("userPreferred") val userPreferred: String?,
     )
 
     @Serializable
     data class SeasonNode(
-        @JsonProperty("id") @SerialName("id") val id: Int,
-        @JsonProperty("format") @SerialName("format") val format: String?,
-        @JsonProperty("title") @SerialName("title") val title: Title?,
-        @JsonProperty("idMal") @SerialName("idMal") val idMal: Int?,
-        @JsonProperty("coverImage") @SerialName("coverImage") val coverImage: CoverImage?,
-        @JsonProperty("averageScore") @SerialName("averageScore") val averageScore: Int?,
+        @SerialName("id") val id: Int,
+        @SerialName("format") val format: String?,
+        @SerialName("title") val title: Title?,
+        @SerialName("idMal") val idMal: Int?,
+        @SerialName("coverImage") val coverImage: CoverImage?,
+        @SerialName("averageScore") val averageScore: Int?,
     )
 
     @Serializable
     data class AniListAvatar(
-        @JsonProperty("large") @SerialName("large") val large: String?,
+        @SerialName("large") val large: String?,
     )
 
     @Serializable
     data class AniListViewer(
-        @JsonProperty("id") @SerialName("id") val id: Int,
-        @JsonProperty("name") @SerialName("name") val name: String,
-        @JsonProperty("avatar") @SerialName("avatar") val avatar: AniListAvatar?,
-        @JsonProperty("favourites") @SerialName("favourites") val favourites: AniListFavourites?,
+        @SerialName("id") val id: Int,
+        @SerialName("name") val name: String,
+        @SerialName("avatar") val avatar: AniListAvatar?,
+        @SerialName("favourites") val favourites: AniListFavourites?,
     )
 
     @Serializable
     data class AniListData(
-        @JsonProperty("Viewer") @SerialName("Viewer") val viewer: AniListViewer?,
+        @SerialName("Viewer") val viewer: AniListViewer?,
     )
 
     @Serializable
     data class AniListRoot(
-        @JsonProperty("data") @SerialName("data") val data: AniListData?,
+        @SerialName("data") val data: AniListData?,
     )
 
     @Serializable
     data class AniListUser(
-        @JsonProperty("id") @SerialName("id") val id: Int,
-        @JsonProperty("name") @SerialName("name") val name: String,
-        @JsonProperty("picture") @SerialName("picture") val picture: String?,
+        @SerialName("id") val id: Int,
+        @SerialName("name") val name: String,
+        @SerialName("picture") val picture: String?,
     )
 
     @Serializable
     data class LikeNode(
-        @JsonProperty("id") @SerialName("id") val id: Int?,
+        @SerialName("id") val id: Int?,
     )
 
     @Serializable
     data class LikePageInfo(
-        @JsonProperty("total") @SerialName("total") val total: Int?,
-        @JsonProperty("currentPage") @SerialName("currentPage") val currentPage: Int?,
-        @JsonProperty("lastPage") @SerialName("lastPage") val lastPage: Int?,
-        @JsonProperty("perPage") @SerialName("perPage") val perPage: Int?,
-        @JsonProperty("hasNextPage") @SerialName("hasNextPage") val hasNextPage: Boolean?,
+        @SerialName("total") val total: Int?,
+        @SerialName("currentPage") val currentPage: Int?,
+        @SerialName("lastPage") val lastPage: Int?,
+        @SerialName("perPage") val perPage: Int?,
+        @SerialName("hasNextPage") val hasNextPage: Boolean?,
     )
 
     @Serializable
     data class LikeAnime(
-        @JsonProperty("nodes") @SerialName("nodes") val nodes: List<LikeNode>?,
-        @JsonProperty("pageInfo") @SerialName("pageInfo") val pageInfo: LikePageInfo?,
+        @SerialName("nodes") val nodes: List<LikeNode>?,
+        @SerialName("pageInfo") val pageInfo: LikePageInfo?,
     )
 
     @Serializable
     data class LikeFavourites(
-        @JsonProperty("anime") @SerialName("anime") val anime: LikeAnime?,
+        @SerialName("anime") val anime: LikeAnime?,
     )
 
     @Serializable
     data class LikeViewer(
-        @JsonProperty("favourites") @SerialName("favourites") val favourites: LikeFavourites?,
+        @SerialName("favourites") val favourites: LikeFavourites?,
     )
 
     @Serializable
     data class LikeData(
-        @JsonProperty("Viewer") @SerialName("Viewer") val viewer: LikeViewer?,
+        @SerialName("Viewer") val viewer: LikeViewer?,
     )
 
     @Serializable
     data class LikeRoot(
-        @JsonProperty("data") @SerialName("data") val data: LikeData?,
+        @SerialName("data") val data: LikeData?,
     )
 
     @Serializable
     data class AniListTitleHolder(
-        @JsonProperty("title") @SerialName("title") val title: Title?,
-        @JsonProperty("isFavourite") @SerialName("isFavourite") val isFavourite: Boolean?,
-        @JsonProperty("id") @SerialName("id") val id: Int?,
-        @JsonProperty("progress") @SerialName("progress") val progress: Int?,
-        @JsonProperty("episodes") @SerialName("episodes") val episodes: Int?,
-        @JsonProperty("score") @SerialName("score") val score: Int?,
-        @JsonProperty("type") @SerialName("type") val type: AniListStatusType?,
+        @SerialName("title") val title: Title?,
+        @SerialName("isFavourite") val isFavourite: Boolean?,
+        @SerialName("id") val id: Int?,
+        @SerialName("progress") val progress: Int?,
+        @SerialName("episodes") val episodes: Int?,
+        @SerialName("score") val score: Int?,
+        @SerialName("type") val type: AniListStatusType?,
     )
 
     @Serializable
     data class GetDataMediaListEntry(
-        @JsonProperty("progress") @SerialName("progress") val progress: Int?,
-        @JsonProperty("status") @SerialName("status") val status: String?,
-        @JsonProperty("score") @SerialName("score") val score: Int?,
+        @SerialName("progress") val progress: Int?,
+        @SerialName("status") val status: String?,
+        @SerialName("score") val score: Int?,
     )
 
     @Serializable
     data class Nodes(
-        @JsonProperty("id") @SerialName("id") val id: Int?,
-        @JsonProperty("mediaRecommendation") @SerialName("mediaRecommendation") val mediaRecommendation: MediaRecommendation?,
+        @SerialName("id") val id: Int?,
+        @SerialName("mediaRecommendation") val mediaRecommendation: MediaRecommendation?,
     )
 
     @Serializable
     data class GetDataMedia(
-        @JsonProperty("isFavourite") @SerialName("isFavourite") val isFavourite: Boolean?,
-        @JsonProperty("episodes") @SerialName("episodes") val episodes: Int?,
-        @JsonProperty("title") @SerialName("title") val title: Title?,
-        @JsonProperty("mediaListEntry") @SerialName("mediaListEntry") val mediaListEntry: GetDataMediaListEntry?,
+        @SerialName("isFavourite") val isFavourite: Boolean?,
+        @SerialName("episodes") val episodes: Int?,
+        @SerialName("title") val title: Title?,
+        @SerialName("mediaListEntry") val mediaListEntry: GetDataMediaListEntry?,
     )
 
     @Serializable
     data class Recommendations(
-        @JsonProperty("nodes") @SerialName("nodes") val nodes: List<Nodes>?,
+        @SerialName("nodes") val nodes: List<Nodes>?,
     )
 
     @Serializable
     data class GetDataData(
-        @JsonProperty("Media") @SerialName("Media") val media: GetDataMedia?,
+        @SerialName("Media") val media: GetDataMedia?,
     )
 
     @Serializable
     data class GetDataRoot(
-        @JsonProperty("data") @SerialName("data") val data: GetDataData?,
+        @SerialName("data") val data: GetDataData?,
     )
 
     @Serializable
     data class GetSearchTitle(
-        @JsonProperty("romaji") @SerialName("romaji") val romaji: String?,
+        @SerialName("romaji") val romaji: String?,
     )
 
     @Serializable
     data class TrailerObject(
-        @JsonProperty("id") @SerialName("id") val id: String?,
-        @JsonProperty("thumbnail") @SerialName("thumbnail") val thumbnail: String?,
-        @JsonProperty("site") @SerialName("site") val site: String?,
+        @SerialName("id") val id: String?,
+        @SerialName("thumbnail") val thumbnail: String?,
+        @SerialName("site") val site: String?,
     )
 
     @Serializable
     data class GetSearchMedia(
-        @JsonProperty("id") @SerialName("id") val id: Int,
-        @JsonProperty("idMal") @SerialName("idMal") val idMal: Int?,
-        @JsonProperty("seasonYear") @SerialName("seasonYear") val seasonYear: Int,
-        @JsonProperty("title") @SerialName("title") val title: GetSearchTitle,
-        @JsonProperty("startDate") @SerialName("startDate") val startDate: StartedAt,
-        @JsonProperty("averageScore") @SerialName("averageScore") val averageScore: Int?,
-        @JsonProperty("meanScore") @SerialName("meanScore") val meanScore: Int?,
-        @JsonProperty("bannerImage") @SerialName("bannerImage") val bannerImage: String?,
-        @JsonProperty("trailer") @SerialName("trailer") val trailer: TrailerObject?,
-        @JsonProperty("nextAiringEpisode") @SerialName("nextAiringEpisode") val nextAiringEpisode: SeasonNextAiringEpisode?,
-        @JsonProperty("recommendations") @SerialName("recommendations") val recommendations: Recommendations?,
-        @JsonProperty("relations") @SerialName("relations") val relations: SeasonEdges?,
+        @SerialName("id") val id: Int,
+        @SerialName("idMal") val idMal: Int?,
+        @SerialName("seasonYear") val seasonYear: Int,
+        @SerialName("title") val title: GetSearchTitle,
+        @SerialName("startDate") val startDate: StartedAt,
+        @SerialName("averageScore") val averageScore: Int?,
+        @SerialName("meanScore") val meanScore: Int?,
+        @SerialName("bannerImage") val bannerImage: String?,
+        @SerialName("trailer") val trailer: TrailerObject?,
+        @SerialName("nextAiringEpisode") val nextAiringEpisode: SeasonNextAiringEpisode?,
+        @SerialName("recommendations") val recommendations: Recommendations?,
+        @SerialName("relations") val relations: SeasonEdges?,
     )
 
     @Serializable
     data class GetSearchPage(
-        @JsonProperty("Page") @SerialName("Page") val page: GetSearchData?,
+        @SerialName("Page") val page: GetSearchData?,
     )
 
     @Serializable
     data class GetSearchData(
-        @JsonProperty("media") @SerialName("media") val media: List<GetSearchMedia>?,
+        @SerialName("media") val media: List<GetSearchMedia>?,
     )
 
     @Serializable
     data class GetSearchRoot(
-        @JsonProperty("data") @SerialName("data") val data: GetSearchPage?,
+        @SerialName("data") val data: GetSearchPage?,
     )
 }

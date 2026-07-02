@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.utils.videoskip
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.AnimeLoadResponse
 import com.lagradost.cloudstream3.LoadResponse
 import com.lagradost.cloudstream3.LoadResponse.Companion.getMalId
@@ -51,23 +50,23 @@ class AniSkip : SkipAPI() {
 
     @Serializable
     data class AniSkipResponse(
-        @JsonProperty("found") @SerialName("found") val found: Boolean,
-        @JsonProperty("results") @SerialName("results") val results: List<Stamp>?,
-        @JsonProperty("message") @SerialName("message") val message: String?,
-        @JsonProperty("statusCode") @SerialName("statusCode") val statusCode: Int,
+        @SerialName("found") val found: Boolean,
+        @SerialName("results") val results: List<Stamp>?,
+        @SerialName("message") val message: String?,
+        @SerialName("statusCode") val statusCode: Int,
     )
 
     @Serializable
     data class Stamp(
-        @JsonProperty("interval") @SerialName("interval") val interval: AniSkipInterval,
-        @JsonProperty("skipType") @SerialName("skipType") val skipType: String,
-        @JsonProperty("skipId") @SerialName("skipId") val skipId: String,
-        @JsonProperty("episodeLength") @SerialName("episodeLength") val episodeLength: Double,
+        @SerialName("interval") val interval: AniSkipInterval,
+        @SerialName("skipType") val skipType: String,
+        @SerialName("skipId") val skipId: String,
+        @SerialName("episodeLength") val episodeLength: Double,
     )
 
     @Serializable
     data class AniSkipInterval(
-        @JsonProperty("startTime") @SerialName("startTime") val startTime: Double,
-        @JsonProperty("endTime") @SerialName("endTime") val endTime: Double,
+        @SerialName("startTime") val startTime: Double,
+        @SerialName("endTime") val endTime: Double,
     )
 }

@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.actions.OpenInAppAction
 import com.lagradost.cloudstream3.BuildConfig
 import com.lagradost.cloudstream3.SkipSerializationTest
@@ -54,16 +53,15 @@ class CloudStreamPackage : OpenInAppAction(
     }
 
     @Serializable
-    @SkipSerializationTest //.Uri has issues with Jackson
     data class MinimalVideoLink(
-        @JsonProperty("uri") @SerialName("uri")
+        @SerialName("uri")
         @Serializable(with = UriSerializer::class)
         val uri: Uri?,
-        @JsonProperty("url") @SerialName("url") val url: String?,
-        @JsonProperty("mimeType") @SerialName("mimeType") val mimeType: String = "video/mp4",
-        @JsonProperty("name") @SerialName("name") val name: String?,
-        @JsonProperty("headers") @SerialName("headers") var headers: Map<String, String> = mapOf(),
-        @JsonProperty("quality") @SerialName("quality") val quality: Int?,
+        @SerialName("url") val url: String?,
+        @SerialName("mimeType") val mimeType: String = "video/mp4",
+        @SerialName("name") val name: String?,
+        @SerialName("headers") var headers: Map<String, String> = mapOf(),
+        @SerialName("quality") val quality: Int?,
     ) {
         companion object {
             fun fromExtractor(link: ExtractorLink): MinimalVideoLink = MinimalVideoLink(
@@ -101,10 +99,10 @@ class CloudStreamPackage : OpenInAppAction(
 
     @Serializable
     data class MinimalSubtitleLink(
-        @JsonProperty("url") @SerialName("url") val url: String,
-        @JsonProperty("mimeType") @SerialName("mimeType") val mimeType: String = "text/vtt",
-        @JsonProperty("name") @SerialName("name") val name: String?,
-        @JsonProperty("headers") @SerialName("headers") var headers: Map<String, String> = mapOf(),
+        @SerialName("url") val url: String,
+        @SerialName("mimeType") val mimeType: String = "text/vtt",
+        @SerialName("name") val name: String?,
+        @SerialName("headers") var headers: Map<String, String> = mapOf(),
     ) {
         companion object {
             fun fromSubtitle(sub: SubtitleData): MinimalSubtitleLink = MinimalSubtitleLink(

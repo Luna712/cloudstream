@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors.helper
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.Prerelease
 import com.lagradost.cloudstream3.SubtitleFile
@@ -151,15 +150,15 @@ object JwPlayerHelper {
 
     @Serializable
     private data class Source(
-        @JsonProperty("file") @SerialName("file") val file: String,
-        @JsonProperty("label") @SerialName("label") val label: String?,
-        @JsonProperty("type") @SerialName("type") val type: String?,
+        @SerialName("file") val file: String,
+        @SerialName("label") val label: String?,
+        @SerialName("type") val type: String?,
     )
 
     @Serializable
     data class Track(
-        @JsonProperty("file") @SerialName("file") val file: String? = null,
-        @JsonProperty("label") @SerialName("label") val label: String? = null,
-        @JsonProperty("kind") @SerialName("kind") val kind: String? = null,
+        @SerialName("file") val file: String? = null,
+        @SerialName("label") val label: String? = null,
+        @SerialName("kind") val kind: String? = null,
     )
 }

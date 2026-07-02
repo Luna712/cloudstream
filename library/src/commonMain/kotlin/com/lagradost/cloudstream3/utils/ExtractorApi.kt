@@ -2,7 +2,6 @@
 
 package com.lagradost.cloudstream3.utils
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fleeksoft.ksoup.Ksoup
 import com.lagradost.cloudstream3.AudioFile
 import com.lagradost.cloudstream3.IDownloadableMinimum
@@ -696,8 +695,8 @@ constructor(
     /** List of separate audio tracks that can be merged with this video */
     @SerialName("audioTracks") open var audioTracks: List<AudioFile> = emptyList(),
 ) : IDownloadableMinimum {
-    @get:JsonIgnore val isM3u8: Boolean get() = type == ExtractorLinkType.M3U8
-    @get:JsonIgnore val isDash: Boolean get() = type == ExtractorLinkType.DASH
+    val isM3u8: Boolean get() = type == ExtractorLinkType.M3U8
+    val isDash: Boolean get() = type == ExtractorLinkType.DASH
 
     // Cached video size
     @Transient private var videoSize: Long? = null
@@ -719,7 +718,6 @@ constructor(
         return videoSize
     }
 
-    @JsonIgnore
     fun getAllHeaders(): Map<String, String> {
         if (referer.isBlank()) {
             return headers

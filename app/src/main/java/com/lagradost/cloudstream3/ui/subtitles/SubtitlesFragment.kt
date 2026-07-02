@@ -25,7 +25,6 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.ui.CaptionStyleCompat
 import androidx.media3.ui.SubtitleView
 import androidx.preference.PreferenceManager
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.jaredrummler.android.colorpicker.ColorPickerDialog
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKey
@@ -64,29 +63,29 @@ const val SUBTITLE_DOWNLOAD_KEY = "subs_auto_download"
 
 @Serializable
 data class SaveCaptionStyle(
-    @JsonProperty("foregroundColor") @SerialName("foregroundColor") var foregroundColor: Int,
-    @JsonProperty("backgroundColor") @SerialName("backgroundColor") var backgroundColor: Int,
-    @JsonProperty("windowColor") @SerialName("windowColor") var windowColor: Int,
+    @SerialName("foregroundColor") var foregroundColor: Int,
+    @SerialName("backgroundColor") var backgroundColor: Int,
+    @SerialName("windowColor") var windowColor: Int,
     @OptIn(UnstableApi::class)
-    @JsonProperty("edgeType") @SerialName("edgeType") var edgeType: @CaptionStyleCompat.EdgeType Int,
-    @JsonProperty("edgeColor") @SerialName("edgeColor") var edgeColor: Int,
-    @FontRes @JsonProperty("typeface") @SerialName("typeface") var typeface: Int?,
-    @JsonProperty("typefaceFilePath") @SerialName("typefaceFilePath") var typefaceFilePath: String?,
-    @JsonProperty("elevation") @SerialName("elevation") var elevation: Int, // in dp
-    @JsonProperty("fixedTextSize") @SerialName("fixedTextSize") var fixedTextSize: Float?, // in sp
-    @Px @JsonProperty("edgeSize") @SerialName("edgeSize") var edgeSize: Float? = null,
-    @JsonProperty("removeCaptions") @SerialName("removeCaptions") var removeCaptions: Boolean = false,
-    @JsonProperty("removeBloat") @SerialName("removeBloat") var removeBloat: Boolean = true,
+    @SerialName("edgeType") var edgeType: @CaptionStyleCompat.EdgeType Int,
+    @SerialName("edgeColor") var edgeColor: Int,
+    @FontRes @SerialName("typeface") var typeface: Int?,
+    @SerialName("typefaceFilePath") var typefaceFilePath: String?,
+    @SerialName("elevation") var elevation: Int, // in dp
+    @SerialName("fixedTextSize") var fixedTextSize: Float?, // in sp
+    @Px @SerialName("edgeSize") var edgeSize: Float? = null,
+    @SerialName("removeCaptions") var removeCaptions: Boolean = false,
+    @SerialName("removeBloat") var removeBloat: Boolean = true,
     /** Apply caps lock to the text */
-    @JsonProperty("upperCase") @SerialName("upperCase") var upperCase: Boolean = false,
+    @SerialName("upperCase") var upperCase: Boolean = false,
     /** Apply bold to the text */
-    @JsonProperty("bold") @SerialName("bold") var bold: Boolean = false,
+    @SerialName("bold") var bold: Boolean = false,
     /** Apply italic to the text */
-    @JsonProperty("italic") @SerialName("italic") var italic: Boolean = false,
+    @SerialName("italic") var italic: Boolean = false,
     /** in px, background radius, aka how round the background (backgroundColor) on each row is */
-    @JsonProperty("backgroundRadius") @SerialName("backgroundRadius") var backgroundRadius: Float? = null,
+    @SerialName("backgroundRadius") var backgroundRadius: Float? = null,
     /** The SSA_ALIGNMENT */
-    @JsonProperty("alignment") @SerialName("alignment") var alignment: Int? = null,
+    @SerialName("alignment") var alignment: Int? = null,
 )
 
 const val DEF_SUBS_ELEVATION = 20
