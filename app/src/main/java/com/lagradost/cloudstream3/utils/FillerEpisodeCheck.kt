@@ -1,7 +1,6 @@
 package com.lagradost.cloudstream3.utils
 
 import androidx.annotation.WorkerThread
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.LoadResponse
 import com.lagradost.cloudstream3.LoadResponse.Companion.getAniListId
 import com.lagradost.cloudstream3.LoadResponse.Companion.getImdbId
@@ -29,43 +28,43 @@ object FillerEpisodeCheck {
 
     @Serializable
     data class Show(
-        @JsonProperty("slug") @SerialName("slug") val slug: String,
-        @JsonProperty("title") @SerialName("title") val title: String,
-        @JsonProperty("filler") @SerialName("filler") val filler: ArrayList<Int>,
-        @JsonProperty("mixedCanon") @SerialName("mixedCanon") val mixedCanon: ArrayList<Int>,
-        @JsonProperty("mangaCanon") @SerialName("mangaCanon") val mangaCanon: ArrayList<Int>,
-        @JsonProperty("animeCanon") @SerialName("animeCanon") val animeCanon: ArrayList<Int>,
+        @SerialName("slug") val slug: String,
+        @SerialName("title") val title: String,
+        @SerialName("filler") val filler: ArrayList<Int>,
+        @SerialName("mixedCanon") val mixedCanon: ArrayList<Int>,
+        @SerialName("mangaCanon") val mangaCanon: ArrayList<Int>,
+        @SerialName("animeCanon") val animeCanon: ArrayList<Int>,
     )
 
     @Serializable
     data class MappingRoot(
-        @JsonProperty("type") @SerialName("type") val type: String?,
-        @JsonProperty("anidb_id") @SerialName("anidb_id") val anidbId: Long?,
-        @JsonProperty("anilist_id") @SerialName("anilist_id") val anilistId: Long?,
-        @JsonProperty("animecountdown_id") @SerialName("animecountdown_id") val animecountdownId: Long?,
-        @JsonProperty("animenewsnetwork_id") @SerialName("animenewsnetwork_id") val animenewsnetworkId: Long?,
-        @JsonProperty("anime-planet_id") @SerialName("anime-planet_id") val animePlanetId: String?,
-        @JsonProperty("anisearch_id") @SerialName("anisearch_id") val anisearchId: Long?,
-        @JsonProperty("imdb_id") @SerialName("imdb_id") val imdbId: String?,
-        @JsonProperty("kitsu_id") @SerialName("kitsu_id") val kitsuId: Long?,
-        @JsonProperty("livechart_id") @SerialName("livechart_id") val livechartId: Long?,
-        @JsonProperty("mal_id") @SerialName("mal_id") val malId: Long?,
-        @JsonProperty("simkl_id") @SerialName("simkl_id") val simklId: Long?,
-        @JsonProperty("themoviedb_id") @SerialName("themoviedb_id") val themoviedbId: Long?,
-        @JsonProperty("tvdb_id") @SerialName("tvdb_id") val tvdbId: Long?,
-        @JsonProperty("season") @SerialName("season") val season: Season?,
+        @SerialName("type") val type: String?,
+        @SerialName("anidb_id") val anidbId: Long?,
+        @SerialName("anilist_id") val anilistId: Long?,
+        @SerialName("animecountdown_id") val animecountdownId: Long?,
+        @SerialName("animenewsnetwork_id") val animenewsnetworkId: Long?,
+        @SerialName("anime-planet_id") val animePlanetId: String?,
+        @SerialName("anisearch_id") val anisearchId: Long?,
+        @SerialName("imdb_id") val imdbId: String?,
+        @SerialName("kitsu_id") val kitsuId: Long?,
+        @SerialName("livechart_id") val livechartId: Long?,
+        @SerialName("mal_id") val malId: Long?,
+        @SerialName("simkl_id") val simklId: Long?,
+        @SerialName("themoviedb_id") val themoviedbId: Long?,
+        @SerialName("tvdb_id") val tvdbId: Long?,
+        @SerialName("season") val season: Season?,
     )
 
     @Serializable
     data class Season(
-        @JsonProperty("tvdb") @SerialName("tvdb") val tvdb: Long?,
-        @JsonProperty("tmdb") @SerialName("tmdb") val tmdb: Long?,
+        @SerialName("tvdb") val tvdb: Long?,
+        @SerialName("tmdb") val tmdb: Long?,
     )
 
     @Serializable
     data class CombinedMedia(
-        @JsonProperty("mapping") @SerialName("mapping") val mapping: MappingRoot?,
-        @JsonProperty("show") @SerialName("show") val show: Show,
+        @SerialName("mapping") val mapping: MappingRoot?,
+        @SerialName("show") val show: Show,
     )
 
     data class Database(

@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors.helper
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.Prerelease
 import com.lagradost.cloudstream3.base64DecodeArray
 import com.lagradost.cloudstream3.base64Encode
@@ -116,8 +115,8 @@ object AesHelper {
 
     @Serializable
     private data class AesData(
-        @JsonProperty("ct") @SerialName("ct") val ct: String,
-        @JsonProperty("iv") @SerialName("iv") val iv: String,
-        @JsonProperty("s") @SerialName("s") val s: String,
+        @SerialName("ct") val ct: String,
+        @SerialName("iv") val iv: String,
+        @SerialName("s") val s: String,
     )
 }

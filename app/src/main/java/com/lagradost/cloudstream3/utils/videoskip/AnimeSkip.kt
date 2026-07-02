@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.utils.videoskip
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.AnimeLoadResponse
 import com.lagradost.cloudstream3.ErrorLoadingException
 import com.lagradost.cloudstream3.LoadResponse
@@ -38,49 +37,49 @@ class AnimeSkipAuth : AuthAPI() {
 
     @Serializable
     data class LoginRoot(
-        @JsonProperty("data") @SerialName("data") val data: LoginData,
+        @SerialName("data") val data: LoginData,
     )
 
     @Serializable
     data class LoginData(
-        @JsonProperty("login") @SerialName("login") val login: Login,
+        @SerialName("login") val login: Login,
     )
 
     @Serializable
     data class Login(
-        @JsonProperty("authToken") @SerialName("authToken") val authToken: String,
-        @JsonProperty("refreshToken") @SerialName("refreshToken") val refreshToken: String,
-        @JsonProperty("account") @SerialName("account") val account: Account,
+        @SerialName("authToken") val authToken: String,
+        @SerialName("refreshToken") val refreshToken: String,
+        @SerialName("account") val account: Account,
     )
 
     @Serializable
     data class ApiRoot(
-        @JsonProperty("data") @SerialName("data") val data: ApiData,
+        @SerialName("data") val data: ApiData,
     )
 
     @Serializable
     data class ApiData(
-        @JsonProperty("myApiClients") @SerialName("myApiClients") val myApiClients: List<MyApiClient>,
+        @SerialName("myApiClients") val myApiClients: List<MyApiClient>,
     )
 
     @Serializable
     data class MyApiClient(
-        @JsonProperty("id") @SerialName("id") val id: String,
+        @SerialName("id") val id: String,
     )
 
     @Serializable
     data class Account(
-        @JsonProperty("profileUrl") @SerialName("profileUrl") val profileUrl: String,
-        @JsonProperty("username") @SerialName("username") val username: String,
-        @JsonProperty("email") @SerialName("email") val email: String,
+        @SerialName("profileUrl") val profileUrl: String,
+        @SerialName("username") val username: String,
+        @SerialName("email") val email: String,
     )
 
     @Serializable
     data class Payload(
-        @JsonProperty("profileUrl") @SerialName("profileUrl") val profileUrl: String,
-        @JsonProperty("username") @SerialName("username") val username: String,
-        @JsonProperty("email") @SerialName("email") val email: String,
-        @JsonProperty("clientId") @SerialName("clientId") val clientId: String,
+        @SerialName("profileUrl") val profileUrl: String,
+        @SerialName("username") val username: String,
+        @SerialName("email") val email: String,
+        @SerialName("clientId") val clientId: String,
     )
 
     override suspend fun user(token: AuthToken?): AuthUser? {
@@ -184,41 +183,41 @@ class AnimeSkip : SkipAPI() {
 
     @Serializable
     data class Root(
-        @JsonProperty("data") @SerialName("data") val data: Data,
+        @SerialName("data") val data: Data,
     )
 
     @Serializable
     data class Data(
-        @JsonProperty("searchShows") @SerialName("searchShows") val searchShows: List<SearchShow>,
+        @SerialName("searchShows") val searchShows: List<SearchShow>,
     )
 
     @Serializable
     data class SearchShow(
-        @JsonProperty("name") @SerialName("name") val name: String,
-        @JsonProperty("originalName") @SerialName("originalName") val originalName: String?,
-        @JsonProperty("seasonCount") @SerialName("seasonCount") val seasonCount: Long,
-        @JsonProperty("episodeCount") @SerialName("episodeCount") val episodeCount: Long,
-        @JsonProperty("baseDuration") @SerialName("baseDuration") val baseDuration: Double,
-        @JsonProperty("episodes") @SerialName("episodes") val episodes: List<Episode>,
+        @SerialName("name") val name: String,
+        @SerialName("originalName") val originalName: String?,
+        @SerialName("seasonCount") val seasonCount: Long,
+        @SerialName("episodeCount") val episodeCount: Long,
+        @SerialName("baseDuration") val baseDuration: Double,
+        @SerialName("episodes") val episodes: List<Episode>,
     )
 
     @Serializable
     data class Episode(
-        @JsonProperty("number") @SerialName("number") val number: String?,
-        @JsonProperty("absoluteNumber") @SerialName("absoluteNumber") val absoluteNumber: String?,
-        @JsonProperty("season") @SerialName("season") val season: String?,
-        @JsonProperty("timestamps") @SerialName("timestamps") val timestamps: List<Timestamp>,
+        @SerialName("number") val number: String?,
+        @SerialName("absoluteNumber") val absoluteNumber: String?,
+        @SerialName("season") val season: String?,
+        @SerialName("timestamps") val timestamps: List<Timestamp>,
     )
 
     @Serializable
     data class Timestamp(
-        @JsonProperty("at") @SerialName("at") val at: Double,
-        @JsonProperty("type") @SerialName("type") val type: Type,
+        @SerialName("at") val at: Double,
+        @SerialName("type") val type: Type,
     )
 
     @Serializable
     data class Type(
-        @JsonProperty("name") @SerialName("name") val name: String,
+        @SerialName("name") val name: String,
     )
 
     val cache: ConcurrentHashMap<String, Data> = ConcurrentHashMap()
