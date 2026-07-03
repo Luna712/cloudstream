@@ -194,7 +194,7 @@ open class StreamWishExtractor : ExtractorApi() {
                 additionalUrls = listOf(Regex("""txt|m3u8""")),
                 useOkhttp = false,
                 timeout = 15_000L
-            )
+            ) as? com.lagradost.nicehttp.Interceptor
 
             val interceptedStreamUrl = app.get(
                 url,
