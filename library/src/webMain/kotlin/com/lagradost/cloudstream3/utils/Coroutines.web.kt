@@ -6,7 +6,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
 actual val workerDispatcher: CoroutineDispatcher = Dispatchers.Default
-actual annotation class WorkerThread()
+internal actual annotation class WorkerThread()
 
 @AnyThread
 actual fun runOnMainThreadNative(@MainThread work: () -> Unit) {
