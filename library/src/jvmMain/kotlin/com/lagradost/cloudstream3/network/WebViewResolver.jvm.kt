@@ -28,7 +28,7 @@ actual class WebViewResolver actual constructor(
     val timeout: Long,
 ) : Interceptor {
 
-    override suspend fun intercept(ctx: HttpSendInterceptorContext): HttpClientCall {
+    actual override suspend fun intercept(ctx: HttpSendInterceptorContext): HttpClientCall {
         return ctx.proceed()
     }
 
