@@ -84,7 +84,7 @@ class APIRepository(val api: MainAPI) {
 
     suspend fun load(url: String): Resource<LoadResponse> {
         return safeApiCall {
-            com.lagradost.cloudstream3.CommonActivity.showToast("test")
+            com.lagradost.cloudstream3.CommonActivity.showToast(null, "test", null)
             withTimeout(getTimeout(api.loadTimeoutMs)) {
                 if (isInvalidData(url)) throw ErrorLoadingException()
                 val fixedUrl = api.fixUrl(url)
