@@ -691,6 +691,7 @@ class SimklApi : SyncAPI() {
                                 return
                             }
                         }
+
                         this.add(newItem)
                     }
 
@@ -1090,7 +1091,7 @@ class SimklApi : SyncAPI() {
 
     override suspend fun pinRequest(): AuthPinData? {
         val pinAuthResp = app.get(
-            "$mainUrl/oauth/pin?client_id=$CLIENT_ID&redirect_uri=$APP_STRING://${redirectUrlIdentifier}"
+            "$mainUrl/oauth/pin?client_id=$CLIENT_ID&redirect_uri=$APP_STRING://$redirectUrlIdentifier"
         ).parsedSafe<PinAuthResponse>() ?: return null
         return AuthPinData(
             deviceCode = pinAuthResp.deviceCode,
