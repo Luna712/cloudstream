@@ -88,7 +88,7 @@ open class Filesim : ExtractorApi() {
                 additionalUrls = listOf(Regex("""(m3u8|master\.txt)""")),
                 useOkhttp = false,
                 timeout = 15_000L
-            )
+            ) as? com.lagradost.nicehttp.Interceptor
 
             val interceptedUrl = app.get(
                 url = pageResponse.url,
