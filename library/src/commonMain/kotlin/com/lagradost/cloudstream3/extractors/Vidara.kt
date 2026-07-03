@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.newSubtitleFile
@@ -80,7 +79,6 @@ open class Vidara : ExtractorApi() {
         val title: String,
         val thumbnail: String,
         @SerialName("streaming_url")
-        @JsonProperty("streaming_url")
         val streamingUrl: String,
         val subtitles: List<StreamUpSubtitle>?
     )
@@ -88,7 +86,6 @@ open class Vidara : ExtractorApi() {
     @Serializable
     private data class StreamUpSubtitle(
         @SerialName("file_path")
-        @JsonProperty("file_path")
         val filePath: String,
         val language: String,
     )
