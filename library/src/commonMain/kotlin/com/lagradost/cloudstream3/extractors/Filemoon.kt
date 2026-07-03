@@ -98,7 +98,7 @@ open class FilemoonV2 : ExtractorApi() {
             )
 
             val interceptedUrl = app.get(iframeSrcUrl) {
-                referer = referer
+                this.referer = referer
                 interceptor = resolver
             }.url
 
