@@ -194,13 +194,12 @@ open class StreamWishExtractor : ExtractorApi() {
                 additionalUrls = listOf(Regex("""txt|m3u8""")),
                 useOkhttp = false,
                 timeout = 15_000L
-            ) as? com.lagradost.nicehttp.Interceptor
+            )
 
-            val interceptedStreamUrl = app.get(
-                url,
-                referer = referer,
+            val interceptedStreamUrl = app.get(url) {
+                this.referer = referer
                 interceptor = webViewM3u8Resolver
-            ).url
+            }.url
 
             if (interceptedStreamUrl.isNotEmpty()) {
                 M3u8Helper.generateM3u8(
