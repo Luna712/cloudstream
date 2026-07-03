@@ -4,9 +4,10 @@ import com.lagradost.cloudstream3.mvvm.debugException
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.nicehttp.HttpSendInterceptorContext
 import com.lagradost.nicehttp.Interceptor
-import com.lagradost.nicehttp.requestCreator
+import com.lagradost.nicehttp.buildHeaders
 import io.ktor.client.call.*
 import io.ktor.client.request.*
+import io.ktor.http.*
 
 /**
  * When used as Interceptor additionalUrls cannot be returned, use WebViewResolver(...).resolveUsingWebView(...)
@@ -28,13 +29,13 @@ actual class WebViewResolver actual constructor(
     val timeout: Long,
 ) : Interceptor {
 
-    actual override suspend fun intercept(ctx: HttpSendInterceptorContext): HttpClientCall {
-        return ctx.proceed()
-    }
-
     actual companion object {
         actual val DEFAULT_TIMEOUT = 60_000L
         actual var webViewUserAgent: String? = null
+    }
+
+    actual override suspend fun intercept(ctx: HttpSendInterceptorContext): HttpClientCall {
+        return ctx.proceed()
     }
 
     actual suspend fun resolveUsingWebView(
@@ -54,7 +55,13 @@ actual class WebViewResolver actual constructor(
     ): Pair<HttpRequestBuilder?, List<HttpRequestBuilder>> {
         return try {
             resolveUsingWebView(
-                requestCreator(method, url, referer = referer, headers = headers),
+                HttpRequestBuilder().apply {
+                    this.method = HttpMethod(method.uppercase())
+                    url(url)
+                    buildHeaders(headers, referer, emptyMap()).forEach { k, values ->
+                        values.forEach { v -> header(k, v) }
+                    }
+                },
                 requestCallBack,
             )
         } catch (e: IllegalArgumentException) {
@@ -68,6 +75,6 @@ actual class WebViewResolver actual constructor(
         request: HttpRequestBuilder,
         requestCallBack: (HttpRequestBuilder) -> Boolean,
     ): Pair<HttpRequestBuilder?, List<HttpRequestBuilder>> {
-        TODO("Not yet implemented")
+        throw UnsupportedOperationException("WebViewResolver is not supported on this platform.")
     }
 }
