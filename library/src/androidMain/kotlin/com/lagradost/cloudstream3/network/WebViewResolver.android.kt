@@ -16,7 +16,8 @@ import com.lagradost.cloudstream3.utils.Coroutines.mainWork
 import com.lagradost.cloudstream3.utils.Coroutines.runOnMainThread
 import com.lagradost.nicehttp.HttpSendInterceptorContext
 import com.lagradost.nicehttp.Interceptor
-import com.lagradost.nicehttp.requestCreator
+import com.lagradost.nicehttp.NiceResponse
+import com.lagradost.nicehttp.buildHeaders
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
@@ -86,7 +87,13 @@ actual class WebViewResolver actual constructor(
     ): Pair<HttpRequestBuilder?, List<HttpRequestBuilder>> {
         return try {
             resolveUsingWebView(
-                requestCreator(method, url, referer = referer, headers = headers),
+                HttpRequestBuilder().apply {
+                    this.method = HttpMethod(method.uppercase())
+                    url(url)
+                    buildHeaders(headers, referer, emptyMap()).forEach { k, values ->
+                        values.forEach { v -> header(k, v) }
+                    }
+                },
                 requestCallBack,
             )
         } catch (e: IllegalArgumentException) {
@@ -102,7 +109,9 @@ actual class WebViewResolver actual constructor(
         requestCallBack: (HttpRequestBuilder) -> Boolean,
     ): Pair<HttpRequestBuilder?, List<HttpRequestBuilder>> {
         val url = request.url.buildString()
-        val headers = request.headers.build()
+        // Convert Ktor Headers to Map for WebView
+        val headersMap = request.headers.build().entries()
+            .associate { (key, values) -> key to values.last() }
         Log.i(TAG, "Initial web-view request: $url")
         var webView: WebView? = null
         var shouldExit = false
@@ -190,12 +199,12 @@ actual class WebViewResolver actual constructor(
                                     super.shouldInterceptRequest(view, request)
 
                                 useOkhttp && request.method == "GET" ->
-                                    app.get(webViewUrl, headers = request.requestHeaders)
-                                        .okhttpResponse.toWebResourceResponse()
+                                    (app.get(webViewUrl, headers = request.requestHeaders)
+                                        as? NiceResponse)?.response?.toWebResourceResponse()
 
                                 useOkhttp && request.method == "POST" ->
-                                    app.post(webViewUrl, headers = request.requestHeaders)
-                                        .okhttpResponse.toWebResourceResponse()
+                                    (app.post(webViewUrl, headers = request.requestHeaders)
+                                        as? NiceResponse)?.response?.toWebResourceResponse()
 
                                 else -> super.shouldInterceptRequest(view, request)
                             }
@@ -214,7 +223,7 @@ actual class WebViewResolver actual constructor(
                     }
                 }
 
-                webView?.loadUrl(url, headers.toMap())
+                webView?.loadUrl(url, headersMap)
             } catch (e: Exception) {
                 logError(e)
             }
@@ -239,11 +248,11 @@ actual class WebViewResolver actual constructor(
 fun WebResourceRequest.toRequest(): HttpRequestBuilder? {
     val webViewUrl = this.url.toString()
     return safe {
-        requestCreator(
-            this.method,
-            webViewUrl,
-            this.requestHeaders,
-        )
+        HttpRequestBuilder().apply {
+            method = HttpMethod(this@toRequest.method.uppercase())
+            url(webViewUrl)
+            this@toRequest.requestHeaders.forEach { (k, v) -> header(k, v) }
+        }
     }
 }
 
