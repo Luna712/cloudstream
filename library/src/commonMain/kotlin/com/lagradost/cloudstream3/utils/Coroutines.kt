@@ -12,6 +12,7 @@ import kotlinx.coroutines.*
 expect fun runOnMainThreadNative(@MainThread work: (() -> Unit))
 
 @InternalAPI
+@com.lagradost.cloudstream3.UnsafeSSL
 expect annotation class WorkerThread()
 
 object Coroutines {
