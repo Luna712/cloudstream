@@ -11,7 +11,7 @@ import kotlinx.coroutines.*
 expect fun runOnMainThreadNative(@MainThread work: (() -> Unit))
 
 expect val workerDispatcher: CoroutineDispatcher
-expect annotation class WorkerThread()
+internal expect annotation class WorkerThread()
 
 object Coroutines {
     @AnyThread

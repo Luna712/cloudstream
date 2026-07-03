@@ -4,4 +4,4 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
 actual val workerDispatcher: CoroutineDispatcher = Dispatchers.IO
-actual typealias WorkerThread = androidx.annotation.WorkerThread
+internal actual typealias WorkerThread = androidx.annotation.WorkerThread

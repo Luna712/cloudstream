@@ -79,6 +79,7 @@ import com.lagradost.cloudstream3.extractors.FileMoonIn
 import com.lagradost.cloudstream3.extractors.FileMoonSx
 import com.lagradost.cloudstream3.extractors.FilemoonV2
 import com.lagradost.cloudstream3.extractors.Filesim
+import com.lagradost.cloudstream3.extractors.Firestream
 import com.lagradost.cloudstream3.extractors.Multimoviesshg
 import com.lagradost.cloudstream3.extractors.FlaswishCom
 import com.lagradost.cloudstream3.extractors.Flyfile
@@ -227,12 +228,10 @@ import com.lagradost.cloudstream3.extractors.StreamWishExtractor
 import com.lagradost.cloudstream3.extractors.StreamhideCom
 import com.lagradost.cloudstream3.extractors.StreamhideTo
 import com.lagradost.cloudstream3.extractors.Streamhub2
-import com.lagradost.cloudstream3.extractors.Streamix
 import com.lagradost.cloudstream3.extractors.Streamlare
 import com.lagradost.cloudstream3.extractors.StreamoUpload
 import com.lagradost.cloudstream3.extractors.Streamplay
 import com.lagradost.cloudstream3.extractors.Streamsss
-import com.lagradost.cloudstream3.extractors.Streamup
 import com.lagradost.cloudstream3.extractors.Streamwish2
 import com.lagradost.cloudstream3.extractors.Strwish
 import com.lagradost.cloudstream3.extractors.Strwish2
@@ -270,6 +269,7 @@ import com.lagradost.cloudstream3.extractors.VidHidePro5
 import com.lagradost.cloudstream3.extractors.VidHidePro6
 import com.lagradost.cloudstream3.extractors.VidHideHub
 import com.lagradost.cloudstream3.extractors.Ryderjet
+import com.lagradost.cloudstream3.extractors.Streamcash
 import com.lagradost.cloudstream3.extractors.VidMoxy
 import com.lagradost.cloudstream3.extractors.VidStack
 import com.lagradost.cloudstream3.extractors.VideoSeyred
@@ -286,7 +286,15 @@ import com.lagradost.cloudstream3.extractors.Vidoza
 import com.lagradost.cloudstream3.extractors.VinovoSi
 import com.lagradost.cloudstream3.extractors.VinovoTo
 import com.lagradost.cloudstream3.extractors.VidNest
+import com.lagradost.cloudstream3.extractors.VidaaraxCom
+import com.lagradost.cloudstream3.extractors.VidaaraxNet
 import com.lagradost.cloudstream3.extractors.Vidara
+import com.lagradost.cloudstream3.extractors.VidaraSo
+import com.lagradost.cloudstream3.extractors.Vidaraa
+import com.lagradost.cloudstream3.extractors.Vidaratem
+import com.lagradost.cloudstream3.extractors.Vidaraw
+import com.lagradost.cloudstream3.extractors.Vidarax
+import com.lagradost.cloudstream3.extractors.Vidavaca
 import com.lagradost.cloudstream3.extractors.Vide0Net
 import com.lagradost.cloudstream3.extractors.Vidsonic
 import com.lagradost.cloudstream3.extractors.VkExtractor
@@ -1044,6 +1052,7 @@ val extractorApis: AtomicMutableList<ExtractorApi> = atomicListOf(
     Tantifilm(),
     Userload(),
     Supervideo(),
+    Streamcash(),
 
     // StreamSB.kt works
     //  SBPlay(),
@@ -1114,9 +1123,15 @@ val extractorApis: AtomicMutableList<ExtractorApi> = atomicListOf(
     MoviehabNet(),
     Jeniusplay(),
     StreamoUpload(),
-    Streamup(),
-    Streamix(),
     Vidara(),
+    Vidavaca(),
+    Vidaraa(),
+    Vidaraw(),
+    Vidarax(),
+    VidaraSo(),
+    Vidaratem(),
+    VidaaraxCom(),
+    VidaaraxNet(),
 
     GamoVideo(),
     Gdriveplayerapi(),
@@ -1253,7 +1268,8 @@ val extractorApis: AtomicMutableList<ExtractorApi> = atomicListOf(
     GUpload(),
     HlsWish(),
     ByseQekaho(),
-    Flyfile()
+    Flyfile(),
+    Firestream(),
 )
 
 
