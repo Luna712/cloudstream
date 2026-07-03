@@ -16,7 +16,7 @@ open class GenericM3U8 : ExtractorApi() {
         val response = app.get(
             url, interceptor = WebViewResolver(
                 Regex("""master\.m3u8""")
-            )
+            ) as? Interceptor
         )
         val sources = mutableListOf<ExtractorLink>()
         if (response.url.contains("m3u8"))
