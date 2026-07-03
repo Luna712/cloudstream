@@ -28,6 +28,9 @@ jobs:
 
     - name: Run Gradle
       run: ./gradlew assemblePrereleaseDebug lint check
+      env:
+        SIMKL_CLIENT_ID: ${{ secrets.SIMKL_CLIENT_ID }}
+        SIMKL_CLIENT_SECRET: ${{ secrets.SIMKL_CLIENT_SECRET }}
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v7
