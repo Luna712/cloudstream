@@ -236,7 +236,7 @@ fun <T> throwAbleToResource(
 
 @AnyThread
 suspend fun <T> safeApiCall(
-    /* @WorkerThread */ apiCall: suspend () -> T,
+    @WorkerThread apiCall: suspend () -> T,
 ): Resource<T> {
     return withContext(Dispatchers.IO) {
         try {
