@@ -12,11 +12,11 @@ open class WatchSB : ExtractorApi() {
     override val requiresReferer = false
 
     override suspend fun getUrl(url: String, referer: String?): List<ExtractorLink> {
-        val response = app.get(
-            url, interceptor = WebViewResolver(
+        val response = app.get(url) {
+            interceptor = WebViewResolver(
                 Regex("""master\.m3u8""")
-            ) as? com.lagradost.nicehttp.Interceptor
-        )
+            )
+        }
 
         return generateM3u8(name, response.url, url, headers = response.headers.toMap())
     }
