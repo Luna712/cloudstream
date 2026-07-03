@@ -83,7 +83,7 @@ import com.lagradost.cloudstream3.utils.Coroutines.main
 import com.lagradost.cloudstream3.utils.DataStoreHelper.getAllResumeStateIds
 import com.lagradost.cloudstream3.utils.DataStoreHelper.getLastWatched
 import com.lagradost.cloudstream3.utils.FillerEpisodeCheck.toClassDir
-import com.lagradost.cloudstream3.utils.JsUnpacker.Companion.load
+// import com.lagradost.cloudstream3.utils.JsUnpacker.Companion.load
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects
 import kotlinx.coroutines.sync.Mutex
@@ -688,7 +688,7 @@ object AppContextUtils {
 
     fun Activity?.loadCache() {
         try {
-            cacheClass("android.net.NetworkCapabilities".load())
+            // cacheClass("android.net.NetworkCapabilities".load())
         } catch (_: Exception) {
         }
     }
