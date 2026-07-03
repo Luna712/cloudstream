@@ -63,7 +63,7 @@ actual class WebViewResolver actual constructor(
         }
     }
 
-    override suspend fun intercept(ctx: HttpSendInterceptorContext): HttpClientCall {
+    actual override suspend fun intercept(ctx: HttpSendInterceptorContext): HttpClientCall {
         val request = ctx.request
         val fixedRequest = resolveUsingWebView(request).first
         return ctx.proceed(fixedRequest ?: request)
