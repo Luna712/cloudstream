@@ -35,4 +35,4 @@ jobs:
         name: pull-request-build
         path: |
           app/build/outputs/apk/prerelease/debug/*.apk
-          library/build/distributions/**
+          library/build/**
