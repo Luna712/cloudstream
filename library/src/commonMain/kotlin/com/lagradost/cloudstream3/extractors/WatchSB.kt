@@ -15,7 +15,7 @@ open class WatchSB : ExtractorApi() {
         val response = app.get(
             url, interceptor = WebViewResolver(
                 Regex("""master\.m3u8""")
-            )
+            ) as? com.lagradost.nicehttp.Interceptor
         )
 
         return generateM3u8(name, response.url, url, headers = response.headers.toMap())
