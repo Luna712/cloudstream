@@ -95,7 +95,7 @@ open class FilemoonV2 : ExtractorApi() {
                 additionalUrls = listOf(Regex("""(m3u8|master\.txt)""")),
                 useOkhttp = false,
                 timeout = 15_000L
-            )
+            ) as? Interceptor
 
             val interceptedUrl = app.get(
                 iframeSrcUrl,
