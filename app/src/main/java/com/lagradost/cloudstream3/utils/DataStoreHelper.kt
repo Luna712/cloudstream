@@ -257,23 +257,13 @@ object DataStoreHelper {
     /**
      * Used to display notifications on new episodes and posters in library.
      */
-    @Serializable
-    abstract class LibrarySearchResponse(
-        @Transient override var id: Int? = null,
-        @Transient open val latestUpdatedTime: Long = 0L,
-        @Transient override val name: String = "",
-        @Transient override val url: String = "",
-        @Transient override val apiName: String = "",
-        @Transient override var type: TvType? = null,
-        @Transient override var posterUrl: String? = null,
-        @Transient open val year: Int? = null,
-        @Transient open val syncData: Map<String, String>? = null,
-        @Transient override var quality: SearchQuality? = null,
-        @Transient override var posterHeaders: Map<String, String>? = null,
-        @Transient open val plot: String? = null,
-        @Transient override var score: Score? = null,
-        @Transient open val tags: List<String>? = null,
-    ) : SearchResponse {
+    interface LibrarySearchResponse : SearchResponse {
+        val latestUpdatedTime: Long
+        val year: Int?
+        val syncData: Map<String, String>?
+        val plot: String?
+        val tags: List<String>?
+
         @JsonProperty("rating", access = JsonProperty.Access.WRITE_ONLY)
         @SerialName("rating")
         @Deprecated(
@@ -281,7 +271,8 @@ object DataStoreHelper {
             replaceWith = ReplaceWith("score"),
             level = DeprecationLevel.ERROR,
         )
-        var rating: Int? = null
+        var rating: Int?
+            get() = null
             set(value) {
                 if (value != null) {
                     @Suppress("DEPRECATION_ERROR")
@@ -310,22 +301,7 @@ object DataStoreHelper {
         @JsonProperty("plot") @SerialName("plot") override val plot: String? = null,
         @JsonProperty("score") @SerialName("score") override var score: Score? = null,
         @JsonProperty("tags") @SerialName("tags") override val tags: List<String>? = null,
-    ) : LibrarySearchResponse(
-        id,
-        latestUpdatedTime,
-        name,
-        url,
-        apiName,
-        type,
-        posterUrl,
-        year,
-        syncData,
-        quality,
-        posterHeaders,
-        plot,
-        score,
-        tags,
-    ) {
+    ) : LibrarySearchResponse {
         object Serializer : WriteOnlySerializer<SubscribedData>(
             SubscribedData.generatedSerializer(),
             setOf("rating"),
@@ -373,20 +349,7 @@ object DataStoreHelper {
         @JsonProperty("plot") @SerialName("plot") override val plot: String? = null,
         @JsonProperty("score") @SerialName("score") override var score: Score? = null,
         @JsonProperty("tags") @SerialName("tags") override val tags: List<String>? = null,
-    ) : LibrarySearchResponse(
-        id,
-        latestUpdatedTime,
-        name,
-        url,
-        apiName,
-        type,
-        posterUrl,
-        year,
-        syncData,
-        quality,
-        posterHeaders,
-        plot,
-    ) {
+    ) : LibrarySearchResponse {
         object Serializer : WriteOnlySerializer<BookmarkedData>(
             BookmarkedData.generatedSerializer(),
             setOf("rating"),
@@ -434,20 +397,7 @@ object DataStoreHelper {
         @JsonProperty("plot") @SerialName("plot") override val plot: String? = null,
         @JsonProperty("score") @SerialName("score") override var score: Score? = null,
         @JsonProperty("tags") @SerialName("tags") override val tags: List<String>? = null,
-    ) : LibrarySearchResponse(
-        id,
-        latestUpdatedTime,
-        name,
-        url,
-        apiName,
-        type,
-        posterUrl,
-        year,
-        syncData,
-        quality,
-        posterHeaders,
-        plot,
-    ) {
+    ) : LibrarySearchResponse {
         object Serializer : WriteOnlySerializer<FavoritesData>(
             FavoritesData.generatedSerializer(),
             setOf("rating"),
