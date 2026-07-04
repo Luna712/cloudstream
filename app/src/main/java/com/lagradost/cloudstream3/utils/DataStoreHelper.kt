@@ -264,15 +264,14 @@ object DataStoreHelper {
         val plot: String?
         val tags: List<String>?
 
-        @all:JsonProperty("rating", access = JsonProperty.Access.WRITE_ONLY)
-        @all:SerialName("rating")
+        @JsonProperty("rating", access = JsonProperty.Access.WRITE_ONLY)
+        @SerialName("rating")
         @Deprecated(
             "`rating` is the old scoring system, use score instead",
             replaceWith = ReplaceWith("score"),
             level = DeprecationLevel.ERROR,
         )
-        var rating: Int?
-            get() = null
+        var rating: Int? = null
             set(value) {
                 if (value != null) {
                     @Suppress("DEPRECATION_ERROR")
