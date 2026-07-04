@@ -38,7 +38,7 @@ enum class AppString {
 
 @InternalAPI
 object AppConfig {
-    /* FLAVOR */
+    /* FLAVORS */
     @Volatile
     private var flavor: AppFlavor = AppFlavor.Stable
 
