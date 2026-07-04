@@ -1,8 +1,6 @@
 package com.lagradost.cloudstream3.utils
 
 import com.lagradost.cloudstream3.InternalAPI
-import kotlinx.atomicfu.locks.SynchronizedObject
-import kotlinx.atomicfu.locks.synchronized
 import kotlin.concurrent.Volatile
 
 // Remove and update usages of it after next stable
@@ -33,8 +31,14 @@ enum class AppFlavor {
 }
 
 @InternalAPI
-object AppConfig : SynchronizedObject() {
-    /* FLAVORS */
+enum class AppString {
+    // TODO
+    AppName,
+}
+
+@InternalAPI
+object AppConfig {
+    /* FLAVOR */
     @Volatile
     private var flavor: AppFlavor = AppFlavor.Stable
 
@@ -51,21 +55,18 @@ object AppConfig : SynchronizedObject() {
     val isStable: Boolean get() = flavor.isStable
 
     /* STRINGS */
-    private val strings = mutableMapOf<String, String>()
+    @Volatile
+    private var strings: Map<AppString, String> = emptyMap()
 
-    fun setString(key: String, value: String) {
-        synchronized(this) { strings[key] = value }
+    fun setStrings(block: MutableMap<AppString, String>.() -> Unit) {
+        strings = buildMap(block)
     }
 
-    fun setStrings(values: Map<String, String>) {
-        synchronized(this) { strings.putAll(values) }
+    fun getString(key: AppString): String? {
+        return strings[key]
     }
 
-    fun getString(key: String): String? {
-        synchronized(this) { return strings[key] }
-    }
-
-    fun getStringOrDefault(key: String, default: String): String {
-        synchronized(this) { return strings[key] ?: default }
+    fun getStringOrDefault(key: AppString, default: String): String {
+        return strings[key] ?: default
     }
 }
