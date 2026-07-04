@@ -266,8 +266,7 @@ object DataStoreHelper {
 
         @get:JsonProperty("rating", access = JsonProperty.Access.WRITE_ONLY)
         @set:JsonProperty("rating", access = JsonProperty.Access.WRITE_ONLY)
-        @get:SerialName("rating")
-        @set:SerialName("rating")
+        @SerialName("rating")
         @Deprecated(
             "`rating` is the old scoring system, use score instead",
             replaceWith = ReplaceWith("score"),
