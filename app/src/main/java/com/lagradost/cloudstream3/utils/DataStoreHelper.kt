@@ -303,10 +303,10 @@ object DataStoreHelper {
         @JsonProperty("score") @SerialName("score") override var score: Score? = null,
         @JsonProperty("tags") @SerialName("tags") override val tags: List<String>? = null,
     ) : LibrarySearchResponse {
-        /* object Serializer : WriteOnlySerializer<SubscribedData>(
+        object Serializer : WriteOnlySerializer<SubscribedData>(
             SubscribedData.generatedSerializer(),
-            setOf("rating"),
-        ) */
+            setOf("rating2"),
+        )
 
         fun toLibraryItem(): SyncAPI.LibraryItem? {
             return SyncAPI.LibraryItem(
