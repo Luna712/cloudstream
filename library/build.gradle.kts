@@ -40,7 +40,8 @@ kotlin {
 
     jvm()
     js {
-        browser()
+        nodejs()
+        binaries.library()
     }
 
     compilerOptions {
