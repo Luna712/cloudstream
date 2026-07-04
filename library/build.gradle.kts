@@ -39,8 +39,9 @@ kotlin {
     }
 
     jvm()
-    js {
+    js(IR) {
         nodejs()
+        useCommonJs()
         binaries.library()
     }
 
