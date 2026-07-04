@@ -264,8 +264,8 @@ object DataStoreHelper {
         val plot: String?
         val tags: List<String>?
 
-        @JsonProperty("rating", access = JsonProperty.Access.WRITE_ONLY)
-        @SerialName("rating")
+        @all:JsonProperty("rating", access = JsonProperty.Access.WRITE_ONLY)
+        @all:SerialName("rating")
         @Deprecated(
             "`rating` is the old scoring system, use score instead",
             replaceWith = ReplaceWith("score"),
