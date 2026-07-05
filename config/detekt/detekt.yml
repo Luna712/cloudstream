@@ -28,6 +28,8 @@ formatting:
     active: false
 
 style:
+  ForbiddenComment:
+    active: false
   MagicNumber:
     active: false
   MaxLineLength:
