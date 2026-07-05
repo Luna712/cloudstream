@@ -30,13 +30,14 @@ formatting:
 style:
   MagicNumber:
     active: false
+  MaxLineLength:
+    active: true
+    maxLineLength: 120
   UnusedImports:
     active: true
   UnusedPrivateMember:
     active: true
-  MaxLineLength:
-    active: true
-    maxLineLength: 120
+    ignoreAnnotated: ['Preview']
 
 potential-bugs:
   active: true
