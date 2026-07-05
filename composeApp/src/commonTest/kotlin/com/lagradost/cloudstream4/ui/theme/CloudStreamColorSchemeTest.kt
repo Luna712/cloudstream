@@ -63,8 +63,13 @@ class CloudStreamColorSchemeTest {
         // Every preset (aside from copies that explicitly override it) shares the
         // same default primary/ongoing accent colors from the palette.
         val schemes = listOf(
-            darkScheme(), lightScheme(), draculaScheme(), lavenderScheme(), silentBlueScheme(),
+            darkScheme(),
+            lightScheme(),
+            draculaScheme(),
+            lavenderScheme(),
+            silentBlueScheme(),
         )
+
         for (scheme in schemes) {
             assertEquals(CloudStreamPalette.Primary, scheme.primary)
             assertEquals(CloudStreamPalette.Ongoing, scheme.ongoing)
