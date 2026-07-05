@@ -35,6 +35,8 @@ style:
     maxLineLength: 120
   MultiLineIfElse:
     active: false
+  SpacingBetweenDeclarationsWithComments:
+    active: false
 
 potential-bugs:
   active: true
