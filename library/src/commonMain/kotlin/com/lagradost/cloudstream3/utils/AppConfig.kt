@@ -14,9 +14,9 @@ object AppDebug {
 
 @InternalAPI
 enum class AppFlavor {
-    Stable,
+    Debug,
     Prerelease,
-    Debug;
+    Stable;
 
     val isDebug: Boolean get() = this == Debug
     val isPrerelease: Boolean get() = this == Prerelease
