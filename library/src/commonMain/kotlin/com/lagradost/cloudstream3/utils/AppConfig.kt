@@ -12,6 +12,11 @@ object AppDebug {
     var isDebug: Boolean = false
 }
 
+private inline fun <reified T : Enum<T>> enumFromString(value: String?, default: T): T {
+    if (value == null) return default
+    return enumValues<T>().firstOrNull { it.name.equals(value, ignoreCase = true) } ?: default
+}
+
 @InternalAPI
 enum class AppBuildType {
     Debug,
@@ -21,10 +26,7 @@ enum class AppBuildType {
     val isRelease: Boolean get() = this == Release
 
     companion object {
-        fun fromString(value: String?): AppBuildType {
-            if (value == null) return Release
-            return entries.firstOrNull { it.name.equals(value, ignoreCase = true) } ?: Release
-        }
+        fun fromString(value: String?): AppBuildType = enumFromString(value, Release)
     }
 }
 
@@ -37,10 +39,7 @@ enum class AppFlavor {
     val isStable: Boolean get() = this == Stable
 
     companion object {
-        fun fromString(value: String?): AppFlavor {
-            if (value == null) return Stable
-            return entries.firstOrNull { it.name.equals(value, ignoreCase = true) } ?: Stable
-        }
+        fun fromString(value: String?): AppFlavor = enumFromString(value, Stable)
     }
 }
 
