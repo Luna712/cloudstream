@@ -19,8 +19,7 @@ private inline fun <reified T : Enum<T>> enumFromString(value: String?, default:
 
 @InternalAPI
 enum class AppBuildType {
-    Debug,
-    Release;
+    Debug, Release;
 
     val isDebug: Boolean get() = this == Debug
     val isRelease: Boolean get() = this == Release
@@ -32,8 +31,7 @@ enum class AppBuildType {
 
 @InternalAPI
 enum class AppFlavor {
-    Prerelease,
-    Stable;
+    Prerelease, Stable;
 
     val isPrerelease: Boolean get() = this == Prerelease
     val isStable: Boolean get() = this == Stable
