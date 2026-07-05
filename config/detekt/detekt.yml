@@ -110,6 +110,7 @@ Compose:
     active: true
   PreviewNaming:
     active: true
+    previewNamingStrategy: suffix
   PreviewPublic:
     active: true
   RememberMissing:
