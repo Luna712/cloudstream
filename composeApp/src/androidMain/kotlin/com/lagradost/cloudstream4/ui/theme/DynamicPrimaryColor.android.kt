@@ -1,7 +1,6 @@
 package com.lagradost.cloudstream4.ui.theme
 
 import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.graphics.Color
