@@ -55,6 +55,8 @@ kotlin {
 
         jvmTest.dependencies {
             implementation(compose.desktop.currentOs)
+            implementation(libs.kotlin.reflect)
+            implementation(libs.kotlin.test)
         }
     }
 }
