@@ -109,7 +109,7 @@ Compose:
   PreviewAnnotationNaming:
     active: true
   PreviewNaming:
-    active: false
+    active: true
   PreviewPublic:
     active: true
   RememberMissing:
