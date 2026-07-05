@@ -14,8 +14,16 @@ class CloudStreamThemeModeTest {
     @Test
     fun containsAllExpectedModesByName() {
         val expected = setOf(
-            "Dark", "Amoled", "Light", "Dracula", "Lavender", "SilentBlue", "FollowSystem", "Dynamic",
+            "Dark",
+            "Amoled",
+            "Light",
+            "Dracula",
+            "Lavender",
+            "SilentBlue",
+            "FollowSystem",
+            "Dynamic",
         )
+
         val actual = CloudStreamThemeMode.entries.map { it.name }.toSet()
         assertEquals(expected, actual)
     }
