@@ -24,6 +24,8 @@ formatting:
     excludes: ['**/ui/icons/**']
   MultiLineIfElse:
     active: false
+  SpacingBetweenDeclarationsWithComments:
+    active: false
 
 style:
   MagicNumber:
@@ -35,8 +37,6 @@ style:
   MaxLineLength:
     active: true
     maxLineLength: 120
-  SpacingBetweenDeclarationsWithComments:
-    active: false
 
 potential-bugs:
   active: true
