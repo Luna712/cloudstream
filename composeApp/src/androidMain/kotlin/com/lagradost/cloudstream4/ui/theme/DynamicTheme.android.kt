@@ -1,11 +1,14 @@
 package com.lagradost.cloudstream4.ui.theme
 
 import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.res.colorResource
 
 @Composable
+@ReadOnlyComposable
 actual fun resolveDynamicTheme(): CloudStreamColorScheme {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
         buildMonetScheme()
@@ -13,9 +16,10 @@ actual fun resolveDynamicTheme(): CloudStreamColorScheme {
 }
 
 @Composable
+@ReadOnlyComposable
+@RequiresApi(Build.VERSION_CODES.S)
 private fun buildMonetScheme(): CloudStreamColorScheme {
-    val isSystemDark = isSystemInDarkTheme()
-    return if (isSystemDark) {
+    return if (isSystemInDarkTheme()) {
         CloudStreamColorScheme(
             background = colorResource(android.R.color.system_neutral1_900),
             surfaceVariant = colorResource(android.R.color.system_neutral1_800),
