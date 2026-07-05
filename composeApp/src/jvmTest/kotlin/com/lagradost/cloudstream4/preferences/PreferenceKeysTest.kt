@@ -2,6 +2,7 @@ package com.lagradost.cloudstream4.preferences
 
 import java.io.File
 import kotlin.test.Test
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class PreferenceKeysTest {
@@ -13,6 +14,6 @@ class PreferenceKeysTest {
         val keys = regex.findAll(sourceFile.readText()).map { it.groupValues[1] }.toList()
 
         assertTrue(keys.isNotEmpty(), "No preference keys found in source")
-        assertTrue(keys.toSet().size == keys.size, "Preference keys must not collide: $keys")
+        assertFalse(keys.toSet().size == keys.size, "Preference keys must not collide: $keys")
     }
 }
