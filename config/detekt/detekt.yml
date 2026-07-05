@@ -33,6 +33,8 @@ style:
   MaxLineLength:
     active: true
     maxLineLength: 120
+  MultiLineIfElse:
+    active: false
 
 potential-bugs:
   active: true
