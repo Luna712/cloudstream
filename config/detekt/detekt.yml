@@ -1,6 +1,9 @@
 build:
   maxIssues: 0
 
+config:
+  excludes: ['**/ui/icons/**']
+
 comments:
   active: false
 
