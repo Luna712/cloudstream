@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.multiplatform.library)
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.detekt)
 }
 
 kotlin {
@@ -15,6 +16,11 @@ kotlin {
 
         androidResources {
             enable = true
+        }
+
+        lint {
+            checkTestSources = true
+            checkDependencies = true
         }
     }
 
@@ -61,8 +67,23 @@ kotlin {
     }
 }
 
+detekt {
+    buildUponDefaultConfig = true
+    config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
+    source.setFrom(
+        "src/commonMain/kotlin",
+        "src/androidMain/kotlin",
+        "src/jvmMain/kotlin",
+        "src/commonTest/kotlin",
+        "src/jvmTest/kotlin",
+    )
+}
+
 dependencies {
     androidRuntimeClasspath(libs.compose.ui.tooling)
+
+    detektPlugins(libs.detekt.formatting)
+    detektPlugins(libs.compose.rules.detekt)
 }
 
 compose.resources {
