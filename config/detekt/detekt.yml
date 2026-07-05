@@ -48,6 +48,11 @@ coroutines:
 
 naming:
   active: true
+  FunctionNaming:
+    active: true
+    ignoreAnnotated: ['Composable']
+  MatchingDeclarationName:
+    active: false
 
 Compose:
   ComposableAnnotationNaming:
