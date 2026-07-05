@@ -58,6 +58,7 @@ naming:
     active: false
 
 Compose:
+  active: true
   ComposableAnnotationNaming:
     active: true
   ComposableNaming:
@@ -65,7 +66,7 @@ Compose:
   ComposableParamOrder:
     active: true
   CompositionLocalAllowlist:
-    active: false
+    active: true
   CompositionLocalNaming:
     active: true
   ContentEmitterReturningValues:
@@ -110,7 +111,6 @@ Compose:
     active: true
   PreviewNaming:
     active: true
-    previewNamingStrategy: suffix
   PreviewPublic:
     active: true
   RememberMissing:
