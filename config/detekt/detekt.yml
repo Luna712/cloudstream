@@ -1,12 +1,27 @@
 config:
   validation: true
-  excludes: '.*/ui/icons/.*'
 
 build:
   maxIssues: 0
 
 comments:
   active: false
+
+complexity:
+  LongMethod:
+    active: true
+    threshold: 60
+  LongParameterList:
+    active: false
+  TooManyFunctions:
+    active: false
+  CyclomaticComplexMethod:
+    active: false
+
+formatting:
+  Indentation:
+    active: true
+    excludes: ['**/ui/icons/**']
 
 style:
   MagicNumber:
