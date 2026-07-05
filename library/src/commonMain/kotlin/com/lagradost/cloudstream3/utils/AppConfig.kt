@@ -13,12 +13,26 @@ object AppDebug {
 }
 
 @InternalAPI
-enum class AppFlavor {
+enum class AppBuildType {
     Debug,
+    Release;
+
+    val isDebug: Boolean get() = this == Debug
+    val isRelease: Boolean get() = this == Release
+
+    companion object {
+        fun fromString(value: String?): AppBuildType {
+            if (value == null) return Release
+            return entries.firstOrNull { it.name.equals(value, ignoreCase = true) } ?: Release
+        }
+    }
+}
+
+@InternalAPI
+enum class AppFlavor {
     Prerelease,
     Stable;
 
-    val isDebug: Boolean get() = this == Debug
     val isPrerelease: Boolean get() = this == Prerelease
     val isStable: Boolean get() = this == Stable
 
@@ -38,6 +52,22 @@ enum class AppString {
 
 @InternalAPI
 object AppConfig {
+    
+    /* BUILD TYPES */
+    @Volatile
+    private var buildType: AppBuildType = AppBuildType.Release
+
+    fun setBuildType(value: AppBuildType) {
+        buildType = value
+    }
+
+    fun setBuildType(value: String?) {
+        buildType = AppBuildType.fromString(value)
+    }
+
+    val isDebug: Boolean get() = buildType.isDebug
+    val isRelease: Boolean get() = buildType.isRelease
+
     /* FLAVORS */
     @Volatile
     private var flavor: AppFlavor = AppFlavor.Stable
@@ -50,7 +80,6 @@ object AppConfig {
         flavor = AppFlavor.fromString(value)
     }
 
-    val isDebug: Boolean get() = flavor.isDebug
     val isPrerelease: Boolean get() = flavor.isPrerelease
     val isStable: Boolean get() = flavor.isStable
 
