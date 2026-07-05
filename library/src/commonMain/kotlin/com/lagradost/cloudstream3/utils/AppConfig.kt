@@ -12,21 +12,26 @@ object AppDebug {
     var isDebug: Boolean = false
 }
 
-@InternalAPI
-enum class AppFlavor {
-    Debug,
-    Prerelease,
-    Stable;
+private inline fun <reified T : Enum<T>> enumFromString(value: String?, default: T): T {
+    if (value == null) return default
+    return enumValues<T>().firstOrNull { it.name.equals(value, ignoreCase = true) } ?: default
+}
 
-    val isDebug: Boolean get() = this == Debug
-    val isPrerelease: Boolean get() = this == Prerelease
-    val isStable: Boolean get() = this == Stable
+@InternalAPI
+enum class AppBuildType {
+    Debug, Release;
 
     companion object {
-        fun fromString(value: String?): AppFlavor {
-            if (value == null) return Stable
-            return entries.firstOrNull { it.name.equals(value, ignoreCase = true) } ?: Stable
-        }
+        fun fromString(value: String?): AppBuildType = enumFromString(value, Release)
+    }
+}
+
+@InternalAPI
+enum class AppFlavor {
+    Prerelease, Stable;
+
+    companion object {
+        fun fromString(value: String?): AppFlavor = enumFromString(value, Stable)
     }
 }
 
@@ -38,21 +43,24 @@ enum class AppString {
 
 @InternalAPI
 object AppConfig {
+    
+    /* BUILD TYPES */
+    @Volatile
+    private var buildType: AppBuildType = AppBuildType.Release
+    fun setBuildType(value: AppBuildType) {
+        buildType = value
+    }
+
     /* FLAVORS */
     @Volatile
     private var flavor: AppFlavor = AppFlavor.Stable
-
     fun setFlavor(value: AppFlavor) {
         flavor = value
     }
 
-    fun setFlavor(value: String?) {
-        flavor = AppFlavor.fromString(value)
-    }
-
-    val isDebug: Boolean get() = flavor.isDebug
-    val isPrerelease: Boolean get() = flavor.isPrerelease
-    val isStable: Boolean get() = flavor.isStable
+    /* CONVENIENCE ACCESS */
+    val isDebug: Boolean get() = buildType == AppBuildType.Debug
+    val isPrerelease: Boolean get() = flavor == AppFlavor.Prerelease
 
     /* STRINGS */
     @Volatile
