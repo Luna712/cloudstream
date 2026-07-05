@@ -1,19 +1,18 @@
 package com.lagradost.cloudstream4.preferences
 
-import java.io.File
+import kotlin.reflect.full.declaredMemberProperties
 import kotlin.test.Test
-import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class PreferenceKeysTest {
 
     @Test
     fun allPreferenceKeysAreUnique() {
-        val sourceFile = File("src/commonMain/kotlin/com/lagradost/cloudstream4/preferences/PreferenceKeys.kt")
-        val regex = """const val \w+ = "([^"]+)"""".toRegex()
-        val keys = regex.findAll(sourceFile.readText()).map { it.groupValues[1] }.toList()
+        val keys = PreferenceKeys::class.declaredMemberProperties
+            .filter { it.returnType.classifier == String::class }
+            .map { it.get(PreferenceKeys) }
 
-        assertTrue(keys.isNotEmpty(), "No preference keys found in source")
-        assertFalse(keys.toSet().size == keys.size, "Preference keys must not collide: $keys")
+        assertTrue(keys.isNotEmpty(), "No preference keys found via reflection")
+        assertTrue(keys.toSet().size == keys.size, "Preference keys must not collide: $keys")
     }
 }
