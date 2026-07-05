@@ -58,7 +58,7 @@ object AppConfig {
         flavor = value
     }
 
-    /* CONVENANCE ACCESS */
+    /* CONVENIENCE ACCESS */
     val isDebug: Boolean get() = buildType == AppBuildType.Debug
     val isPrerelease: Boolean get() = flavor == AppFlavor.Prerelease
 
