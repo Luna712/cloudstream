@@ -1,0 +1,54 @@
+build:
+  maxIssues: 0
+
+comments:
+  active: false
+
+complexity:
+  LongMethod:
+    active: true
+    threshold: 60
+  LongParameterList:
+    active: true
+    functionThreshold: 8
+    constructorThreshold: 10
+  TooManyFunctions:
+    active: true
+    thresholdInFiles: 30
+  CyclomaticComplexMethod:
+    active: true
+    threshold: 20
+
+style:
+  MagicNumber:
+    active: false
+  UnusedImports:
+    active: true
+  UnusedPrivateMember:
+    active: true
+  MaxLineLength:
+    active: true
+    maxLineLength: 120
+
+potential-bugs:
+  active: true
+
+coroutines:
+  active: true
+  GlobalCoroutineUsage:
+    active: true
+
+naming:
+  active: true
+
+Compose:
+  ComposableFunctionNaming:
+    active: true
+  CompositionLocalAllowlist:
+    active: false
+  ModifierMissing:
+    active: true
+  ModifierReused:
+    active: true
+  UnstableCollections:
+    active: true
