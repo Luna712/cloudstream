@@ -15,7 +15,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-@OptIn(ExperimentalTestApi::class)
+// @OptIn(ExperimentalTestApi::class)
 class SettingsItemTest {
 
     @BeforeTest
