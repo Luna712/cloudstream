@@ -15,12 +15,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-/**
- * Covers the two distinct interaction models of [Modifier.tvFocusable]:
- *  - Phone/touch (`isTV = false`): behaves like a normal clickable, one tap = one click.
- *  - TV (`isTV = true`): the first tap only requests focus, a second tap while
- *    focused is what actually invokes [onClick] (mirrors D-pad "select" behavior).
- */
 @OptIn(ExperimentalTestApi::class)
 class TvFocusableTest {
 
