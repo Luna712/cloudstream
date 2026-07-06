@@ -30,11 +30,20 @@ formatting:
 style:
   ForbiddenComment:
     active: false
+  ForbiddenImport:
+    active: true
+    forbiddenImports:
+      - value: 'kotlin.jvm.JvmField'
+        reason: 'Use explicit backing properties instead.'
+      - value: 'java.util.*'
+        reason: 'Use Kotlin standard library APIs instead.'
   MagicNumber:
     active: false
   MaxLineLength:
     active: true
     maxLineLength: 120
+  SpacingAfterPackageAndImports:
+    active: true
   UnusedImports:
     active: true
   UnusedPrivateMember:
