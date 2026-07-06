@@ -1,16 +1,12 @@
 config:
   validation: true
 
-build:
-  maxIssues: 0
-
 comments:
   active: false
 
 complexity:
   LongMethod:
-    active: true
-    threshold: 60
+    active: false
   LongParameterList:
     active: false
   TooManyFunctions:
@@ -32,7 +28,7 @@ style:
     active: false
   ForbiddenImport:
     active: true
-    imports: # forbiddenImports
+    forbiddenImports:
       - value: 'kotlin.jvm.JvmField'
         reason: 'Use explicit backing properties instead.'
       - value: 'java.util.*'
@@ -42,13 +38,15 @@ style:
   MaxLineLength:
     active: true
     maxLineLength: 120
-  SpacingBetweenPackageAndImports: # SpacingAfterPackageAndImports
+  SpacingAfterPackageAndImports:
     active: true
-  UnusedImports:
+  UnusedImport:
     active: true
-  UnusedPrivateMember:
+  UnusedPrivateFunction:
     active: true
     ignoreAnnotated: ['Preview']
+  UnusedPrivateProperty:
+    active: true
   WildcardImport:
     active: true
     excludeImports: []
