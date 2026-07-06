@@ -16,6 +16,9 @@ complexity:
 
 ktlint:
   active: true
+  BackingPropertyNaming:
+    active: true
+    excludes: ['**/ui/icons/**']
   Indentation:
     active: true
     excludes: ['**/ui/icons/**']
