@@ -40,6 +40,9 @@ style:
   UnusedPrivateMember:
     active: true
     ignoreAnnotated: ['Preview']
+  WildcardImport:
+    active: true
+    excludeImports: []
 
 potential-bugs:
   active: true
