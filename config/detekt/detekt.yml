@@ -42,7 +42,7 @@ style:
   MaxLineLength:
     active: true
     maxLineLength: 120
-  SpacingAfterPackageDeclaration: # SpacingAfterPackageAndImports
+  SpacingBetweenPackageAndImports: # SpacingAfterPackageAndImports
     active: true
   UnusedImports:
     active: true
