@@ -14,7 +14,8 @@ complexity:
   CyclomaticComplexMethod:
     active: false
 
-formatting:
+ktlint:
+  active: true
   Indentation:
     active: true
     excludes: ['**/ui/icons/**']
