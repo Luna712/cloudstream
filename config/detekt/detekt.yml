@@ -32,7 +32,7 @@ style:
     active: false
   ForbiddenImport:
     active: true
-    forbiddenImports:
+    imports: # forbiddenImports
       - value: 'kotlin.jvm.JvmField'
         reason: 'Use explicit backing properties instead.'
       - value: 'java.util.*'
@@ -42,7 +42,7 @@ style:
   MaxLineLength:
     active: true
     maxLineLength: 120
-  SpacingAfterPackageAndImports:
+  SpacingAfterPackageDeclaration: # SpacingAfterPackageAndImports
     active: true
   UnusedImports:
     active: true
