@@ -20,12 +20,12 @@ ktlint:
     active: true
     excludes: ['**/ui/icons/**']
   BlankLineBetweenWhenConditions:
-    active: true
+    active: false
     severity: info
   ClassSignature:
     active: false
   FunctionExpressionBody:
-    active: true
+    active: false
     severity: info
   FunctionSignature:
     active: false
@@ -33,10 +33,10 @@ ktlint:
     active: true
     excludes: ['**/ui/icons/**']
   MultiLineIfElse:
-    active: true
+    active: false
     severity: info
   SpacingBetweenDeclarationsWithComments:
-    active: true
+    active: false
     severity: info
   TrailingCommaOnCallSite:
     active: false
