@@ -128,6 +128,7 @@ fun SettingsScreen(
     version: SettingsVersionState,
     onNavigate: (SettingsCategory) -> Unit,
     onVersionLongClick: () -> Unit = {},
+    modifier: Modifier = Modifier,
 ) {
     val colors = CloudStreamTheme.colors
     val isTV = remember { DeviceLayout.isLayout(DeviceLayout.TV) }
@@ -138,7 +139,7 @@ fun SettingsScreen(
     }
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(colors.background)
             .windowInsetsPadding(WindowInsets.statusBars)
@@ -158,11 +159,11 @@ fun SettingsScreen(
 
             SettingsCategory.entries.forEachIndexed { index, category ->
                 SettingsItem(
+                    onClick = { onNavigate(category) },
                     title = category.label(),
                     subtitle = category.subtitle(),
                     icon = category.icon(),
                     focusRequester = if (index == 0) firstItemFocusRequester else null,
-                    onClick = { onNavigate(category) },
                 )
             }
 
