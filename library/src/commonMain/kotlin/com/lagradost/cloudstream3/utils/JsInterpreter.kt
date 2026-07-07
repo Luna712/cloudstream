@@ -1,11 +1,12 @@
 package com.lagradost.cloudstream3.utils
 
+import androidx.annotation.VisibleForTesting
 import com.lagradost.cloudstream3.Prerelease
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.utils.StringUtils.decodeUrl
 import com.lagradost.cloudstream3.utils.StringUtils.encodeUrl
 import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.isActive
 import kotlin.math.E
 import kotlin.math.PI
@@ -96,20 +97,28 @@ fun jsValueToString(v: Any?): String = toJsString(v)
  *        independent of wall-clock time.
  */
 @Prerelease
-class JsContext(
+class JsContext private constructor(
     maxExecutionTime: Duration = JS_DEFAULT_MAX_EXECUTION_TIME,
     maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
+    scope: CoroutineScope? = null
 ) {
-    private val interpreter = JsInterpreter(maxExecutionTime, maxInstructions)
+    private val interpreter = JsInterpreter(maxExecutionTime, maxInstructions, scope)
 
     /** Evaluate [code] in this context.  Returns the last expression value. */
-    fun eval(code: String): Any? = interpreter.eval(code)
+    suspend fun eval(code: String): Any? = interpreter.eval(code)
 
     /** Retrieve a variable set by previously evaluated code. */
     operator fun get(name: String): Any? = interpreter.getVar(name)
 
     /** Expose a Kotlin value to subsequently evaluated JS code. */
     operator fun set(name: String, value: Any?) = interpreter.setVar(name, value)
+}
+
+@Prerelease
+suspend fun newJsContext(initializer: suspend JsContext.() -> Unit = {}) : JsContext = coroutineScope {
+    JsContext(scope = this).apply {
+        initializer()
+    }
 }
 
 /**
@@ -129,37 +138,23 @@ class JsContext(
  *         JS null is represented as Kotlin null. Use [jsValueToString] to convert to a JS string.
  */
 @Prerelease
-fun evalJs(
-    js: String,
-    variable: String? = null,
-    maxExecutionTime: Duration = JS_DEFAULT_MAX_EXECUTION_TIME,
-    maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
-): Any? {
-    val interpreter = JsInterpreter(maxExecutionTime, maxInstructions)
-    val result = interpreter.eval(js)
-    return if (variable != null) interpreter.getVar(variable) else result
-}
-
-/**
- * Scope-aware variant of [evalJs]. The interpreter checks [CoroutineScope.isActive] every
- * 1024 instructions and aborts (returning [Unit]) if the scope has been cancelled.
- *
- * There is no thread dispatch or suspension. This function runs synchronously on the
- * calling thread, so it carries zero coroutine overhead for normal (non-cancelled) scripts.
- * Cancellation latency is bounded to one check window (~1024 interpreter instructions).
- *
- * Typical usage inside a coroutine:
- *   val result = coroutineScope { evalJs("...") }
- */
-@Prerelease
 @Throws(CancellationException::class)
-fun CoroutineScope.evalJs(
+suspend fun evalJs(
     js: String,
     variable: String? = null,
     maxExecutionTime: Duration = JS_DEFAULT_MAX_EXECUTION_TIME,
     maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
+): Any? = coroutineScope { evalJsInternal(js, variable, maxExecutionTime, maxInstructions, this) }
+
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+internal fun evalJsInternal(
+    js: String,
+    variable: String? = null,
+    maxExecutionTime: Duration = JS_DEFAULT_MAX_EXECUTION_TIME,
+    maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
+    scope: CoroutineScope? = null
 ): Any? {
-    val interpreter = JsInterpreter(maxExecutionTime, maxInstructions, this)
+    val interpreter = JsInterpreter(maxExecutionTime, maxInstructions, scope)
     val result = interpreter.eval(js)
     return if (variable != null) interpreter.getVar(variable) else result
 }
@@ -766,6 +761,7 @@ private class ThrowSignal(val value: Any?) : Throwable()
  * its generic `catch (Exception)` clause, so a JS script's own try/catch block cannot
  * swallow it and keep a cancelled loop alive.
  */
+@VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
 internal class JsCancellationException(message: String) : CancellationException(message)
 
 /**
