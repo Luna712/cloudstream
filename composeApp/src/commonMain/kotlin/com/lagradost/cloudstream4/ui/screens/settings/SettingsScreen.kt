@@ -159,11 +159,11 @@ fun SettingsScreen(
 
             SettingsCategory.entries.forEachIndexed { index, category ->
                 SettingsItem(
-                    onClick = { onNavigate(category) },
                     title = category.label(),
                     subtitle = category.subtitle(),
                     icon = category.icon(),
                     focusRequester = if (index == 0) firstItemFocusRequester else null,
+                    onClick = { onNavigate(category) },
                 )
             }
 
