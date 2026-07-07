@@ -31,12 +31,12 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun SettingsItem(
-    onClick: () -> Unit,
     title: String,
-    modifier: Modifier = Modifier,
     subtitle: String? = null,
     icon: ImageVector? = null,
     focusRequester: FocusRequester? = null,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val colors = CloudStreamTheme.colors
     val isTV = remember { DeviceLayout.isLayout(DeviceLayout.TV) }
