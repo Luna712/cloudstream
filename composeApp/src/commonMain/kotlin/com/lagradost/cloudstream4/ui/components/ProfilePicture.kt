@@ -29,7 +29,13 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 enum class ProfileImage {
-    DARK_BLUE, BLUE, ORANGE, PINK, PURPLE, RED, TEAL,
+    BLUE,
+    DARK_BLUE,
+    ORANGE,
+    PINK,
+    PURPLE,
+    RED,
+    TEAL,
 }
 
 @Composable
