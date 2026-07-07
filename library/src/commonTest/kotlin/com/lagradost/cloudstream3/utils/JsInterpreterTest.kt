@@ -541,12 +541,12 @@ class JsInterpreterTest {
 
     @Test
     fun voidOperator() {
-        assertEquals(Unit, evalJs("void 0"))
+        assertEquals(Unit, evalJsInternal("void 0"))
     }
 
     @Test
     fun voidOperatorOnExpression() {
-        assertEquals(Unit, evalJs("void (1+2)"))
+        assertEquals(Unit, evalJsInternal("void (1+2)"))
     }
 
     @Test
@@ -939,7 +939,7 @@ class JsInterpreterTest {
 
     @Test
     fun arrayFindNotFound() {
-        assertEquals(Unit, evalJs("[1,2,3].find(function(x){return x>9})"))
+        assertEquals(Unit, evalJsInternal("[1,2,3].find(function(x){return x>9})"))
     }
 
     @Test
@@ -1382,7 +1382,7 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun jsContextPersistsVariablesAcrossEvals() {
+    fun jsContextPersistsVariablesAcrossEvals() = runTest {
         val ctx = newJsContext()
         ctx.eval("var x = 10")
         ctx.eval("x += 5")
@@ -1390,13 +1390,13 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun jsContextGetReturnsNullForUndefined() {
+    fun jsContextGetReturnsNullForUndefined() = runTest {
         val ctx = newJsContext()
         assertNull(ctx["nope"])
     }
 
     @Test
-    fun jsContextSetExposesValueToEval() {
+    fun jsContextSetExposesValueToEval() = runTest {
         val ctx = newJsContext()
         ctx["base"] = 100.0
         ctx.eval("var result = base + 1")
@@ -1404,14 +1404,14 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun jsContextEvalReturnsLastExpression() {
+    fun jsContextEvalReturnsLastExpression() = runTest {
         val ctx = newJsContext()
         val result = ctx.eval("1+2")
         assertEquals(3.0, result as? Double ?: 0.0)
     }
 
     @Test
-    fun jsContextUrlExtractionPattern() {
+    fun jsContextUrlExtractionPattern() = runTest {
         val scriptContent = "var url = '/e/abc123?t=' + (1000+337) + '&s=xyz'"
         val ctx = newJsContext()
         ctx.eval(scriptContent)
