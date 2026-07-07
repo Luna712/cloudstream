@@ -58,16 +58,18 @@ private fun ProfileImage.toRes(): DrawableResource = when (this) {
  * @param profileImage Local background image fallback
  * @param size Diameter of the circle, default 50.dp
  * @param profilePictureUrl Optional remote URL to load via Coil
+ * @param modifier Modifier to be applied to the profile picture container
  */
 @Composable
 fun ProfilePicture(
     profileImage: ProfileImage,
     size: Dp = 50.dp,
     profilePictureUrl: String? = null,
+    modifier: Modifier = Modifier,
 ) {
     val colors = CloudStreamTheme.colors
     Box(
-        modifier = Modifier
+        modifier = modifier
             .size(size)
             .border(2.dp, colors.onBackground.copy(alpha = 0.2f), CircleShape)
             .clip(CircleShape),
