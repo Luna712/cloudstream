@@ -19,12 +19,18 @@ ktlint:
   BackingPropertyNaming:
     active: true
     excludes: ['**/ui/icons/**']
+  ClassSignature:
+    active: false
+  FunctionSignature:
+    active: false
   Indentation:
     active: true
     excludes: ['**/ui/icons/**']
   MultiLineIfElse:
     active: false
   SpacingBetweenDeclarationsWithComments:
+    active: false
+  TrailingCommaOnCallSite:
     active: false
 
 style:
@@ -81,6 +87,7 @@ Compose:
     active: true
   CompositionLocalAllowlist:
     active: true
+    allowedCompositionLocals: LocalCloudStreamColors
   CompositionLocalNaming:
     active: true
   ContentEmitterReturningValues:
