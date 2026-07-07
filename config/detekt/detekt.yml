@@ -19,17 +19,25 @@ ktlint:
   BackingPropertyNaming:
     active: true
     excludes: ['**/ui/icons/**']
+  BlankLineBetweenWhenConditions:
+    active: true
+    severity: info
   ClassSignature:
     active: false
+  FunctionExpressionBody:
+    active: true
+    severity: info
   FunctionSignature:
     active: false
   Indentation:
     active: true
     excludes: ['**/ui/icons/**']
   MultiLineIfElse:
-    active: false
+    active: true
+    severity: info
   SpacingBetweenDeclarationsWithComments:
-    active: false
+    active: true
+    severity: info
   TrailingCommaOnCallSite:
     active: false
 
