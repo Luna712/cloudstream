@@ -106,6 +106,7 @@ class JsContext internal constructor(
     private val interpreter = JsInterpreter(maxExecutionTime, maxInstructions, scope)
 
     /** Evaluate [code] in this context.  Returns the last expression value. */
+    @Throws(CancellationException::class)
     suspend fun eval(code: String): Any? = interpreter.eval(code)
 
     /** Retrieve a variable set by previously evaluated code. */
