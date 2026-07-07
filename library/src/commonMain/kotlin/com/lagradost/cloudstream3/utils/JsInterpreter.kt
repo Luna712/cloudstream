@@ -98,10 +98,10 @@ fun jsValueToString(v: Any?): String = toJsString(v)
  *        independent of wall-clock time.
  */
 @Prerelease
-class JsContext private constructor(
+class JsContext internal constructor(
     maxExecutionTime: Duration = JS_DEFAULT_MAX_EXECUTION_TIME,
     maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
-    scope: CoroutineScope? = null
+    scope: CoroutineScope? = null,
 ) {
     private val interpreter = JsInterpreter(maxExecutionTime, maxInstructions, scope)
 
@@ -153,7 +153,7 @@ internal fun evalJsInternal(
     variable: String? = null,
     maxExecutionTime: Duration = JS_DEFAULT_MAX_EXECUTION_TIME,
     maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
-    scope: CoroutineScope? = null
+    scope: CoroutineScope? = null,
 ): Any? {
     val interpreter = JsInterpreter(maxExecutionTime, maxInstructions, scope)
     val result = interpreter.eval(js)
