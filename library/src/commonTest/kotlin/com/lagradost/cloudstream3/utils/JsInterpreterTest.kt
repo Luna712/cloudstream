@@ -23,9 +23,9 @@ import kotlin.time.TimeSource
 
 class JsInterpreterTest {
 
-    private fun bool(code: String, variable: String? = null): Boolean = evalJs(code, variable) as? Boolean ?: false
-    private fun num(code: String, variable: String? = null): Double = evalJs(code, variable) as? Double ?: Double.NaN
-    private fun str(code: String, variable: String? = null): String = jsValueToString(evalJs(code, variable))
+    private fun bool(code: String, variable: String? = null): Boolean = evalJsInternal(code, variable) as? Boolean ?: false
+    private fun num(code: String, variable: String? = null): Double = evalJsInternal(code, variable) as? Double ?: Double.NaN
+    private fun str(code: String, variable: String? = null): String = jsValueToString(evalJsInternal(code, variable))
 
     private fun assertApprox(expected: Double, actual: Double, tol: Double = 1e-9) {
         assertTrue(abs(actual - expected) <= tol, "Expected $expected ± $tol but was $actual")
@@ -78,12 +78,12 @@ class JsInterpreterTest {
 
     @Test
     fun nullLiteral() {
-        assertNull(evalJs("null"))
+        assertNull(evalJsInternal("null"))
     }
 
     @Test
     fun undefinedLiteral() {
-        assertEquals(Unit, evalJs("undefined"))
+        assertEquals(Unit, evalJsInternal("undefined"))
     }
 
     @Test
@@ -764,7 +764,7 @@ class JsInterpreterTest {
 
     @Test
     fun stringMatchNoMatch() {
-        assertNull(evalJs("'hello'.match('xyz')"))
+        assertNull(evalJsInternal("'hello'.match('xyz')"))
     }
 
     @Test
@@ -1173,7 +1173,7 @@ class JsInterpreterTest {
 
     @Test
     fun functionReturnUndefinedImplicitly() {
-        assertEquals(Unit, evalJs("function f(){} f()"))
+        assertEquals(Unit, evalJsInternal("function f(){} f()"))
     }
 
     @Test
@@ -1343,7 +1343,7 @@ class JsInterpreterTest {
     @Test
     fun consoleLogDoesNotThrow() {
         // console.log is a no-op; just ensure it runs without exception
-        assertEquals(Unit, evalJs("console.log('test', 1, 2)"))
+        assertEquals(Unit, evalJsInternal("console.log('test', 1, 2)"))
     }
 
     @Test
@@ -1383,7 +1383,7 @@ class JsInterpreterTest {
 
     @Test
     fun jsContextPersistsVariablesAcrossEvals() {
-        val ctx = JsContext()
+        val ctx = newJsContext()
         ctx.eval("var x = 10")
         ctx.eval("x += 5")
         assertEquals(15.0, ctx["x"] as? Double ?: 0.0)
@@ -1391,13 +1391,13 @@ class JsInterpreterTest {
 
     @Test
     fun jsContextGetReturnsNullForUndefined() {
-        val ctx = JsContext()
+        val ctx = newJsContext()
         assertNull(ctx["nope"])
     }
 
     @Test
     fun jsContextSetExposesValueToEval() {
-        val ctx = JsContext()
+        val ctx = newJsContext()
         ctx["base"] = 100.0
         ctx.eval("var result = base + 1")
         assertEquals(101.0, ctx["result"] as? Double ?: 0.0)
@@ -1405,7 +1405,7 @@ class JsInterpreterTest {
 
     @Test
     fun jsContextEvalReturnsLastExpression() {
-        val ctx = JsContext()
+        val ctx = newJsContext()
         val result = ctx.eval("1+2")
         assertEquals(3.0, result as? Double ?: 0.0)
     }
@@ -1413,25 +1413,25 @@ class JsInterpreterTest {
     @Test
     fun jsContextUrlExtractionPattern() {
         val scriptContent = "var url = '/e/abc123?t=' + (1000+337) + '&s=xyz'"
-        val ctx = JsContext()
+        val ctx = newJsContext()
         ctx.eval(scriptContent)
         assertEquals("/e/abc123?t=1337&s=xyz", ctx["url"]?.toString())
     }
 
     @Test
     fun evaluateMathSimpleAddition() {
-        assertEquals("5", jsValueToString(evalJs("eval(2+3)")))
+        assertEquals("5", jsValueToString(evalJsInternal("eval(2+3)")))
     }
 
     @Test
     fun evaluateMathNestedParens() {
-        assertEquals("12", jsValueToString(evalJs("eval((2+4)*2)")))
+        assertEquals("12", jsValueToString(evalJsInternal("eval((2+4)*2)")))
     }
 
     @Test
     fun evaluateMathProducesCharCode() {
         val code = "eval(1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1+1)"
-        assertEquals(65.0, (evalJs(code) as? Double) ?: 0.0)
+        assertEquals(65.0, (evalJsInternal(code) as? Double) ?: 0.0)
     }
 
     @Test
@@ -1451,17 +1451,17 @@ class JsInterpreterTest {
 
     @Test
     fun evalJsWithVariableNullValue() {
-        assertNull(evalJs("var x = null", "x"))
+        assertNull(evalJsInternal("var x = null", "x"))
     }
 
     @Test
     fun evalJsWithVariableReturnsNullForUndefined() {
-        assertNull(evalJs("var x = 42", "y"))
+        assertNull(evalJsInternal("var x = 42", "y"))
     }
 
     @Test
     fun evalJsWithVariableUnitWhenNoVariable() {
-        assertEquals(Unit, evalJs("var x = 42"))
+        assertEquals(Unit, evalJsInternal("var x = 42"))
     }
 
     @Test
@@ -1844,13 +1844,13 @@ class JsInterpreterTest {
 
     @Test
     fun infiniteLoopIsAbortedByExecutionBudget() {
-        assertEquals(Unit, evalJs("while(true){}"))
+        assertEquals(Unit, evalJsInternal("while(true){}"))
     }
 
     @Test
     fun infiniteLoopIsAbortedByTimeBudget() {
         val mark = TimeSource.Monotonic.markNow()
-        val result = evalJs("while(true){}", maxExecutionTime = 200.milliseconds)
+        val result = evalJsInternal("while(true){}", maxExecutionTime = 200.milliseconds)
         assertEquals(Unit, result)
         // Generous upper bound just to avoid flakiness on slow machines.
         assertTrue(mark.elapsedNow() < 2.seconds)
@@ -1860,7 +1860,7 @@ class JsInterpreterTest {
     fun infiniteLoopIsAbortedByTinyInstructionBudget() {
         // A tiny instruction cap but a generous time budget, the instruction count is what
         // should abort this, not the clock.
-        assertEquals(Unit, evalJs("while(true){}", maxExecutionTime = 60.seconds, maxInstructions = 1000))
+        assertEquals(Unit, evalJsInternal("while(true){}", maxExecutionTime = 60.seconds, maxInstructions = 1000))
     }
 
     @Test
@@ -1961,12 +1961,12 @@ class JsInterpreterTest {
 
     @Test
     fun emptyStringMinusNegatedEmptyStringIsZero() {
-        assertEquals(0.0, evalJs("\"\" - - \"\""))
+        assertEquals(0.0, evalJsInternal("\"\" - - \"\""))
     }
 
     @Test
     fun emptyStringMinusNumber() {
-        assertEquals(-1.0, evalJs("\"\" - 1"))
+        assertEquals(-1.0, evalJsInternal("\"\" - 1"))
     }
 
     @Test
@@ -1982,10 +1982,10 @@ class JsInterpreterTest {
 
     @Test
     fun postfixIncrementOnNonLvalueFailsGracefully() {
-        assertEquals(2.0, evalJs("true+1"))
+        assertEquals(2.0, evalJsInternal("true+1"))
         // `true++` has no valid assignment target (a SyntaxError in real JS); evalJs falls
         // back to Unit instead of returning a bogus number.
-        assertEquals(Unit, evalJs("true++"))
+        assertEquals(Unit, evalJsInternal("true++"))
     }
 
     @Test
@@ -2065,7 +2065,7 @@ class JsInterpreterTest {
 
     @Test
     fun combinedCoercionOfNaNEmptyStringAndArrayHoleIsZero() {
-        assertEquals(0.0, evalJs("+!!NaN * \"\" - - [,]"))
+        assertEquals(0.0, evalJsInternal("+!!NaN * \"\" - - [,]"))
     }
 
     /** Returns a [CoroutineScope] backed by a plain [Job] with no dispatcher attached. */
@@ -2075,7 +2075,7 @@ class JsInterpreterTest {
     fun scopeEvalJsFiniteScriptReturnsCorrectResult() {
         // Normal script with an active scope should behave identically to plain evalJs.
         val scope = activeScope()
-        val result = scope.evalJs("var s=0; for(var i=1;i<=10;i++){s+=i}", "s")
+        val result = evalJsInternal("var s=0; for(var i=1;i<=10;i++){s+=i}", "s", scope = scope)
         assertEquals(55.0, result as? Double ?: 0.0)
         scope.cancel()
     }
@@ -2083,7 +2083,7 @@ class JsInterpreterTest {
     @Test
     fun scopeEvalJsStringResultWithActiveScope() {
         val scope = activeScope()
-        val result = jsValueToString(scope.evalJs("'hello'.split('').reverse().join('')"))
+        val result = jsValueToString(evalJsInternal("'hello'.split('').reverse().join('')", scope = scope))
         assertEquals("olleh", result)
         scope.cancel()
     }
@@ -2091,7 +2091,7 @@ class JsInterpreterTest {
     @Test
     fun scopeEvalJsVariableLookupWithActiveScope() {
         val scope = activeScope()
-        val result = scope.evalJs("var x = 21 * 2", "x")
+        val result = evalJsInternal("var x = 21 * 2", "x", scope = scope)
         assertEquals(42.0, result as? Double ?: 0.0)
         scope.cancel()
     }
@@ -2103,7 +2103,7 @@ class JsInterpreterTest {
         val scope = activeScope()
         scope.cancel()
         assertFailsWith<JsCancellationException> {
-            scope.evalJs("var x = 1 + 2", "x")
+            evalJsInternal("var x = 1 + 2", "x", scope = scope)
         }
     }
 
@@ -2116,7 +2116,7 @@ class JsInterpreterTest {
         scope.cancel()
         val mark = TimeSource.Monotonic.markNow()
         assertFailsWith<JsCancellationException> {
-            scope.evalJs("while(true){}")
+            evalJsInternal("while(true){}", scope = scope)
         }
         assertTrue(
             mark.elapsedNow() < 1.seconds,
@@ -2129,7 +2129,7 @@ class JsInterpreterTest {
         // Even with an active (never-cancelled) scope the internal budget still fires.
         val scope = activeScope()
         val mark = TimeSource.Monotonic.markNow()
-        val result = scope.evalJs("while(true){}", maxExecutionTime = 200.milliseconds)
+        val result = evalJsInternal("while(true){}", maxExecutionTime = 200.milliseconds, scope = scope)
         assertEquals(Unit, result)
         assertTrue(mark.elapsedNow() < 2.seconds)
         scope.cancel()
@@ -2144,7 +2144,7 @@ class JsInterpreterTest {
         scope.cancel()
         val mark = TimeSource.Monotonic.markNow()
         assertFailsWith<JsCancellationException> {
-            scope.evalJs("while(true){ try{ throw 1; }catch(e){} }")
+            evalJsInternal("while(true){ try{ throw 1; }catch(e){} }", scope = scope)
         }
         assertTrue(
             mark.elapsedNow() < 1.seconds,
@@ -2160,7 +2160,7 @@ class JsInterpreterTest {
         val scope = activeScope()
         scope.cancel()
         assertFailsWith<JsCancellationException> {
-            scope.evalJs("1+1")
+            evalJsInternal("1+1", scope = scope)
         }
     }
 
