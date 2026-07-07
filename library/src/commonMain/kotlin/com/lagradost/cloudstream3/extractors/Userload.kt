@@ -29,7 +29,7 @@ open class Userload : ExtractorApi() {
         return array
     }
 
-    private fun evaluateMath(mathExpression: String): String {
+    private suspend fun evaluateMath(mathExpression: String): String {
         return jsValueToString(evalJs("eval($mathExpression)"))
     }
 
