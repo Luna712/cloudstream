@@ -98,7 +98,7 @@ fun jsValueToString(v: Any?): String = toJsString(v)
  *        independent of wall-clock time.
  */
 @Prerelease
-class JsContext private constructor(
+class JsContext internal constructor(
     maxExecutionTime: Duration,
     maxInstructions: Long,
     scope: CoroutineScope,
@@ -114,18 +114,6 @@ class JsContext private constructor(
 
     /** Expose a Kotlin value to subsequently evaluated JS code. */
     operator fun set(name: String, value: Any?) = interpreter.setVar(name, value)
-
-    companion object {
-        @Prerelease
-        suspend operator fun invoke(
-            maxExecutionTime: Duration = JS_DEFAULT_MAX_EXECUTION_TIME,
-            maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
-            initializer: suspend JsContext.() -> Unit = {},
-        ): JsContext {
-            val scope = CoroutineScope(currentCoroutineContext())
-            return JsContext(maxExecutionTime, maxInstructions, scope).apply { initializer() }
-        }
-    }
 }
 
 @Prerelease
