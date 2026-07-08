@@ -1507,7 +1507,8 @@ class JsInterpreterTest {
 
     @Test
     fun jsContextEvalInfiniteLoopAbortedByCustomTimeBudget() = runTest {
-        val ctx = newJsContext(maxExecutionTime = 200.milliseconds)
+        val ctx = newJsContext()
+        ctx.maxExecutionTime = 200.milliseconds
         val mark = TimeSource.Monotonic.markNow()
         val result = ctx.eval("while(true){}")
         assertEquals(Unit, result)
@@ -1516,25 +1517,29 @@ class JsInterpreterTest {
 
     @Test
     fun jsContextEvalInfiniteLoopAbortedByTinyInstructionBudget() = runTest {
-        val ctx = newJsContext(maxExecutionTime = 60.seconds, maxInstructions = 1000)
-        // Generous time budget; instruction cap should be what stops it.
+        val ctx = newJsContext()
+        ctx.maxExecutionTime = 60.seconds
+        ctx.maxInstructions = 1000
+        // High time budget; instruction cap should be what stops it.
         val result = ctx.eval("while(true){}")
         assertEquals(Unit, result)
     }
 
     @Test
     fun jsContextEvalCustomBudgetAppliesOnlyToThatCall() = runTest {
-        val ctx = newJsContext(maxInstructions = 100)
-        // Tight budget aborts this call...
+        val ctx = newJsContext()
+        ctx.maxInstructions = 100
+        // Abort this call
         assertEquals(Unit, ctx.eval("while(true){}"))
-        // ...but the next call, using the defaults again, runs a normal script fine.
+        // The next call, using the defaults again, runs a normal script fine.
         val result = ctx.eval("1+1")
         assertEquals(2.0, result as? Double ?: 0.0)
     }
 
     @Test
     fun jsContextEvalVariablesSurviveAnAbortedPriorCall() = runTest {
-        val ctx = newJsContext(maxInstructions = 100)
+        val ctx = newJsContext()
+        ctx.maxInstructions = 100
         ctx.eval("var x = 5")
         // This call gets aborted, but shouldn't corrupt previously-set state.
         ctx.eval("while(true){}")
