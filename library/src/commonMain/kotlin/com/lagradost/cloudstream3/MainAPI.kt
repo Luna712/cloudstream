@@ -2561,6 +2561,9 @@ fun Episode.addDate(date: Instant?) {
     this.date = date?.toEpochMilliseconds()
 }
 
+@Prerelease
+fun Int.toYear(): LocalDate = LocalDate(this, 1, 1)
+
 // Deprecate after next stable
 /* @Deprecated(
     message = "Use addDate with LocalDate, Instant, or String instead.",
