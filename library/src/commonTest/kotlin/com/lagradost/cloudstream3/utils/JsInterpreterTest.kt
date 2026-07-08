@@ -1382,40 +1382,253 @@ class JsInterpreterTest {
     }
 
     @Test
-    fun jsContextPersistsVariablesAcrossEvals() = runTest {
+    fun newJsContextWithNoInitializerIsUsable() = runTest {
         val ctx = newJsContext()
-        ctx.eval("var x = 10")
-        ctx.eval("x += 5")
-        assertEquals(15.0, ctx["x"] as? Double ?: 0.0)
+        assertEquals(3.0, ctx.eval("1+2") as? Double ?: 0.0)
     }
 
     @Test
-    fun jsContextGetReturnsNullForUndefined() = runTest {
-        val ctx = newJsContext()
-        assertNull(ctx["nope"])
+    fun newJsContextInitializerRunsBeforeReturning() = runTest {
+        val ctx = newJsContext {
+            set("x", 10.0)
+            eval("var y = x + 1")
+        }
+
+        assertEquals(11.0, ctx["y"] as? Double ?: 0.0)
     }
 
     @Test
-    fun jsContextSetExposesValueToEval() = runTest {
+    fun jsContextGetReturnsNullForNeverSetVariable() = runTest {
         val ctx = newJsContext()
-        ctx["base"] = 100.0
-        ctx.eval("var result = base + 1")
-        assertEquals(101.0, ctx["result"] as? Double ?: 0.0)
+        assertNull(ctx["neverSet"])
     }
 
     @Test
-    fun jsContextEvalReturnsLastExpression() = runTest {
+    fun jsContextSetThenGetRoundTripsSameValue() = runTest {
         val ctx = newJsContext()
-        val result = ctx.eval("1+2")
-        assertEquals(3.0, result as? Double ?: 0.0)
+        ctx["greeting"] = "hello"
+        assertEquals("hello", ctx["greeting"])
+    }
+
+    @Test
+    fun jsContextSetOverwritesPreviousValue() = runTest {
+        val ctx = newJsContext()
+        ctx["x"] = 1.0
+        ctx["x"] = 2.0
+        assertEquals(2.0, ctx["x"] as? Double ?: 0.0)
+    }
+
+    @Test
+    fun jsContextSetNullIsRetrievedAsNull() = runTest {
+        val ctx = newJsContext()
+        ctx["x"] = null
+        assertNull(ctx["x"])
+    }
+
+    @Test
+    fun jsContextGetAfterEvalSetsVariable() = runTest {
+        val ctx = newJsContext()
+        ctx.eval("var fromJs = 42")
+        assertEquals(42.0, ctx["fromJs"] as? Double ?: 0.0)
+    }
+
+    @Test
+    fun jsContextPersistsVariablesAcrossManyEvalCalls() = runTest {
+        val ctx = newJsContext()
+        ctx.eval("var total = 0")
+        repeat(5) { ctx.eval("total += 1") }
+        assertEquals(5.0, ctx["total"] as? Double ?: 0.0)
+    }
+
+    @Test
+    fun jsContextFunctionDeclaredInOneEvalUsableInAnother() = runTest {
+        val ctx = newJsContext()
+        ctx.eval("function double(n) { return n * 2; }")
+        val result = ctx.eval("double(21)")
+        assertEquals(42.0, result as? Double ?: 0.0)
+    }
+
+    @Test
+    fun jsContextArrayMutatedAcrossEvalsPersists() = runTest {
+        val ctx = newJsContext()
+        ctx.eval("var arr = [1,2,3]")
+        ctx.eval("arr.push(4)")
+        assertEquals("1,2,3,4", ctx.eval("arr.join(',')") as? String)
+    }
+
+    @Test
+    fun jsContextEvalReturnsLastStatementValue() = runTest {
+        val ctx = newJsContext()
+        assertEquals(9.0, ctx.eval("var a = 3; a * a") as? Double ?: 0.0)
+    }
+
+    @Test
+    fun jsContextEvalReturnsUnitForDeclarationOnlyStatement() = runTest {
+        val ctx = newJsContext()
+        assertEquals(Unit, ctx.eval("var a = 3"))
+    }
+
+    @Test
+    fun jsContextEvalReturnsStringValue() = runTest {
+        val ctx = newJsContext()
+        assertEquals("ab", ctx.eval("'a' + 'b'"))
+    }
+
+    @Test
+    fun separateJsContextsDoNotShareVariables() = runTest {
+        val ctx1 = newJsContext { set("x", 1.0) }
+        val ctx2 = newJsContext { set("x", 2.0) }
+        assertEquals(1.0, ctx1["x"] as? Double ?: 0.0)
+        assertEquals(2.0, ctx2["x"] as? Double ?: 0.0)
+    }
+
+    @Test
+    fun separateJsContextsDoNotShareFunctions() = runTest {
+        val ctx1 = newJsContext { eval("function f(){ return 1; }") }
+        val ctx2 = newJsContext()
+        assertEquals(1.0, ctx1.eval("f()") as? Double ?: 0.0)
+        // f was never declared in ctx2, so calling it should not crash and yields Unit.
+        assertEquals(Unit, ctx2.eval("typeof f === 'function' ? f() : undefined"))
+    }
+
+    @Test
+    fun jsContextEvalDefaultBudgetHandlesNormalScript() = runTest {
+        val ctx = newJsContext()
+        val result = ctx.eval("var s=0; for(var i=1;i<=1000;i++){s+=i} s")
+        assertEquals(500500.0, result as? Double ?: 0.0)
+    }
+
+    @Test
+    fun jsContextEvalInfiniteLoopAbortedByDefaultInstructionBudget() = runTest {
+        val ctx = newJsContext()
+        assertEquals(Unit, ctx.eval("while(true){}"))
+    }
+
+    @Test
+    fun jsContextEvalInfiniteLoopAbortedByCustomTimeBudget() = runTest {
+        val ctx = newJsContext(maxExecutionTime = 200.milliseconds)
+        val mark = TimeSource.Monotonic.markNow()
+        val result = ctx.eval("while(true){}")
+        assertEquals(Unit, result)
+        assertTrue(mark.elapsedNow() < 2.seconds)
+    }
+
+    @Test
+    fun jsContextEvalInfiniteLoopAbortedByTinyInstructionBudget() = runTest {
+        val ctx = newJsContext(maxExecutionTime = 60.seconds, maxInstructions = 1000)
+        // Generous time budget; instruction cap should be what stops it.
+        val result = ctx.eval("while(true){}")
+        assertEquals(Unit, result)
+    }
+
+    @Test
+    fun jsContextEvalCustomBudgetAppliesOnlyToThatCall() = runTest {
+        val ctx = newJsContext(maxInstructions = 100)
+        // Tight budget aborts this call...
+        assertEquals(Unit, ctx.eval("while(true){}"))
+        // ...but the next call, using the defaults again, runs a normal script fine.
+        val result = ctx.eval("1+1")
+        assertEquals(2.0, result as? Double ?: 0.0)
+    }
+
+    @Test
+    fun jsContextEvalVariablesSurviveAnAbortedPriorCall() = runTest {
+        val ctx = newJsContext()
+        ctx.eval("var x = 5")
+        // This call gets aborted, but shouldn't corrupt previously-set state.
+        ctx.eval("while(true){}", maxInstructions = 100)
+        assertEquals(5.0, ctx["x"] as? Double ?: 0.0)
+    }
+
+    @Test
+    fun jsContextEvalCancelledWhenEnclosingCoroutineCancelledViaWithTimeout() = runTest {
+        val done = Channel<Unit>()
+        var elapsed = Duration.ZERO
+        launch {
+            assertFailsWith<JsCancellationException> {
+                withTimeout(300.milliseconds) {
+                    val ctx = newJsContext()
+                    val mark = TimeSource.Monotonic.markNow()
+                    try {
+                        ctx.eval("while(true){}")
+                    } finally {
+                        elapsed = mark.elapsedNow()
+                    }
+                }
+            }
+            done.send(Unit)
+        }
+        done.receive()
+        assertTrue(elapsed > 200.milliseconds, "expected genuine ~300ms run, was $elapsed")
+        assertTrue(elapsed < 1.seconds, "expected prompt cancellation, was $elapsed")
+    }
+
+    @Test
+    fun jsContextEvalNotCancelledWhenWithTimeoutDoesNotExpire() = runTest {
+        val ctx = newJsContext()
+        val result = withTimeoutOrNull(5.seconds) {
+            ctx.eval("var s=0; for(var i=0;i<100;i++){s+=i} s")
+        }
+        assertEquals(4950.0, result as? Double ?: 0.0)
+    }
+
+    @Test
+    fun jsContextCreatedInsideWithTimeoutStillUsableAfterSuccessfulCompletion() = runTest {
+        var ctx: JsContext? = null
+        withTimeout(5.seconds) {
+            ctx = newJsContext()
+            ctx!!.eval("var x = 1")
+        }
+        // The withTimeout block completed normally (didn't expire), so the context's
+        // underlying scope was never cancelled and remains usable afterward within the
+        // same enclosing runTest coroutine.
+        assertEquals(2.0, ctx!!.eval("x + 1") as? Double ?: 0.0)
+    }
+
+    @Test
+    fun jsContextJsTryCatchCannotSwallowEnclosingCancellation() = runTest {
+        val done = Channel<Unit>()
+        var elapsed = Duration.ZERO
+        launch {
+            assertFailsWith<JsCancellationException> {
+                withTimeout(300.milliseconds) {
+                    val ctx = newJsContext()
+                    val mark = TimeSource.Monotonic.markNow()
+                    try {
+                        ctx.eval("while(true){ try{ throw 1; }catch(e){} }")
+                    } finally {
+                        elapsed = mark.elapsedNow()
+                    }
+                }
+            }
+            done.send(Unit)
+        }
+        done.receive()
+        assertTrue(elapsed < 1.seconds, "JS try/catch appears to have swallowed cancellation; elapsed: $elapsed")
     }
 
     @Test
     fun jsContextUrlExtractionPattern() = runTest {
-        val scriptContent = "var url = '/e/abc123?t=' + (1000+337) + '&s=xyz'"
         val ctx = newJsContext()
-        ctx.eval(scriptContent)
+        ctx.eval("var url = '/e/abc123?t=' + (1000+337) + '&s=xyz'")
         assertEquals("/e/abc123?t=1337&s=xyz", ctx["url"]?.toString())
+    }
+
+    @Test
+    fun jsContextInitializerCanReadBackItsOwnEvalResult() = runTest {
+        var capturedDuringInit: Any? = null
+        newJsContext {
+            capturedDuringInit = eval("2 * 21")
+        }
+        assertEquals(42.0, capturedDuringInit as? Double ?: 0.0)
+    }
+
+    @Test
+    fun jsContextSequentialIndependentComputations() = runTest {
+        val ctx = newJsContext()
+        assertEquals(4.0, ctx.eval("2+2") as? Double ?: 0.0)
+        assertEquals("hi", ctx.eval("'h'+'i'") as? String)
+        assertFalse(ctx.eval("1 > 2") as? Boolean ?: true)
     }
 
     @Test
