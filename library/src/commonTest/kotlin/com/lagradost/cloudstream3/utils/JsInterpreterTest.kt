@@ -7,6 +7,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withTimeout
+import kotlinx.coroutines.withTimeoutOrNull
 import kotlin.math.E
 import kotlin.math.PI
 import kotlin.math.abs
@@ -1533,10 +1534,10 @@ class JsInterpreterTest {
 
     @Test
     fun jsContextEvalVariablesSurviveAnAbortedPriorCall() = runTest {
-        val ctx = newJsContext()
+        val ctx = newJsContext(maxInstructions = 100)
         ctx.eval("var x = 5")
         // This call gets aborted, but shouldn't corrupt previously-set state.
-        ctx.eval("while(true){}", maxInstructions = 100)
+        ctx.eval("while(true){}")
         assertEquals(5.0, ctx["x"] as? Double ?: 0.0)
     }
 
