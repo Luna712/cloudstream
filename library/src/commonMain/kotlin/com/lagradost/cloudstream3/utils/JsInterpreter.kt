@@ -123,7 +123,7 @@ suspend fun newJsContext(
     initializer: suspend JsContext.() -> Unit = {},
 ): JsContext {
     val scope = CoroutineScope(currentCoroutineContext())
-    return JsContext(scope).apply { initializer() }
+    return JsContext(scope = scope).apply { initializer() }
 }
 
 /**
