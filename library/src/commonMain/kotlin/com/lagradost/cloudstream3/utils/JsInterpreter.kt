@@ -121,7 +121,7 @@ class JsContext internal constructor(
 @Prerelease
 suspend fun newJsContext(
     initializer: suspend JsContext.() -> Unit = {},
-): JsContext = {
+): JsContext {
     val scope = CoroutineScope(currentCoroutineContext())
     return JsContext(scope).apply { initializer() }
 }
