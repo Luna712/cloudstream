@@ -7,7 +7,7 @@ import com.lagradost.cloudstream3.utils.StringUtils.decodeUrl
 import com.lagradost.cloudstream3.utils.StringUtils.encodeUrl
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.isActive
 import kotlin.math.E
 import kotlin.math.PI
@@ -98,10 +98,10 @@ fun jsValueToString(v: Any?): String = toJsString(v)
  *        independent of wall-clock time.
  */
 @Prerelease
-class JsContext internal constructor(
-    maxExecutionTime: Duration = JS_DEFAULT_MAX_EXECUTION_TIME,
-    maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
-    scope: CoroutineScope? = null,
+class JsContext private constructor(
+    maxExecutionTime: Duration,
+    maxInstructions: Long,
+    scope: CoroutineScope,
 ) {
     private val interpreter = JsInterpreter(maxExecutionTime, maxInstructions, scope)
 
@@ -114,14 +114,26 @@ class JsContext internal constructor(
 
     /** Expose a Kotlin value to subsequently evaluated JS code. */
     operator fun set(name: String, value: Any?) = interpreter.setVar(name, value)
+
+    companion object {
+        @Prerelease
+        suspend operator fun invoke(
+            maxExecutionTime: Duration = JS_DEFAULT_MAX_EXECUTION_TIME,
+            maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
+            initializer: suspend JsContext.() -> Unit = {},
+        ): JsContext {
+            val scope = CoroutineScope(currentCoroutineContext())
+            return JsContext(maxExecutionTime, maxInstructions, scope).apply { initializer() }
+        }
+    }
 }
 
 @Prerelease
-suspend fun newJsContext(initializer: suspend JsContext.() -> Unit = {}) : JsContext = coroutineScope {
-    JsContext(scope = this).apply {
-        initializer()
-    }
-}
+suspend fun newJsContext(
+    maxExecutionTime: Duration = JS_DEFAULT_MAX_EXECUTION_TIME,
+    maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
+    initializer: suspend JsContext.() -> Unit = {},
+): JsContext = JsContext(maxExecutionTime, maxInstructions, initializer)
 
 /**
  * Evaluate [js] and return its last value, or the value of [variable] if specified.
@@ -146,7 +158,10 @@ suspend fun evalJs(
     variable: String? = null,
     maxExecutionTime: Duration = JS_DEFAULT_MAX_EXECUTION_TIME,
     maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
-): Any? = coroutineScope { evalJsInternal(js, variable, maxExecutionTime, maxInstructions, this) }
+): Any? {
+    val scope = CoroutineScope(currentCoroutineContext())
+    return evalJsInternal(js, variable, maxExecutionTime, maxInstructions, scope)
+}
 
 @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
 internal fun evalJsInternal(
