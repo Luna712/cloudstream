@@ -90,12 +90,21 @@ private const val JS_DEFAULT_MAX_INSTRUCTIONS: Long = 50_000_000L
 fun jsValueToString(v: Any?): String = toJsString(v)
 
 /**
- * Stateful JS execution context.  Keeps variables alive between [eval] calls,
+ * Stateful JS execution context. Keeps variables alive between [eval] calls,
  * mimicking the Rhino "scope" object that extensions used to hold on to.
  *
- * @param maxExecutionTime wall-clock budget given to each [eval] call.
+ * Instances are created via [newJsContext], not by calling this constructor directly.
+ *
+ * @param maxExecutionTime wall-clock budget given to each [eval] call. Can still be
+ *        changed after construction (e.g. from within [newJsContext]'s initializer
+ *        block) as long as it's set before the first [eval]/[get]/[set] call, since the
+ *        underlying interpreter is built lazily from whatever values these hold at that
+ *        point. Changes made afterward have no effect.
  * @param maxInstructions hard cap on statements/expressions executed per [eval] call,
- *        independent of wall-clock time.
+ *        independent of wall-clock time. Same lazy-initialization caveat as
+ *        [maxExecutionTime] applies.
+ * @param scope the [CoroutineScope] this context's cancellation is tied to. Supplied
+ *        automatically by [newJsContext] from the caller's own coroutine context.
  */
 @Prerelease
 class JsContext internal constructor(
@@ -103,21 +112,54 @@ class JsContext internal constructor(
     var maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
     private val scope: CoroutineScope,
 ) {
+    /**
+     * Built lazily so that any changes made to [maxExecutionTime]/[maxInstructions] inside
+     * [newJsContext]'s initializer block (before the first [eval]/[get]/[set] call) are
+     * still in effect when JsInterpreter is actually constructed. Once this has been
+     * accessed once, further changes to the two vars above have no effect.
+     */
     private val interpreter: JsInterpreter by lazy {
         JsInterpreter(maxExecutionTime, maxInstructions, scope)
     }
 
-    /** Evaluate [code] in this context.  Returns the last expression value. */
+    /**
+     * Evaluate [code] in this context. Returns the last expression value.
+     *
+     * @throws CancellationException if this context's underlying coroutine scope
+     *         has been cancelled, e.g. by an enclosing `withTimeout`.
+     */
     @Throws(CancellationException::class)
     suspend fun eval(code: String): Any? = interpreter.eval(code)
 
-    /** Retrieve a variable set by previously evaluated code. */
+    /**
+     * Retrieve a variable set by previously evaluated code, or via [set].
+     * Returns `null` if never set.
+     */
     operator fun get(name: String): Any? = interpreter.getVar(name)
 
-    /** Expose a Kotlin value to subsequently evaluated JS code. */
+    /** Expose a Kotlin value to subsequently evaluated JS code under the name [name]. */
     operator fun set(name: String, value: Any?) = interpreter.setVar(name, value)
 }
 
+/**
+ * Creates a new [JsContext], running [initializer] on it before returning.
+ *
+ * The context's cancellation is automatically tied to whichever coroutine calls this
+ * function. If that coroutine is later cancelled (e.g. an enclosing `withTimeout`
+ * expires), any in-flight or subsequent [JsContext.eval] call on the returned
+ * context will throw [CancellationException].
+ *
+ * [JsContext.maxExecutionTime] / [JsContext.maxInstructions] can be changed from
+ * within [initializer] (via `this.maxExecutionTime = ...`) and will take effect, since
+ * the underlying interpreter isn't built until the context is first used.
+ *
+ * Usage:
+ *   val ctx = newJsContext {
+ *       maxInstructions = 10_000
+ *       set("x", 1.0)
+ *       eval("x + 1")
+ *   }
+ */
 @Prerelease
 suspend fun newJsContext(
     initializer: suspend JsContext.() -> Unit = {},
@@ -130,6 +172,10 @@ suspend fun newJsContext(
  * Evaluate [js] and return its last value, or the value of [variable] if specified.
  * Convenience wrapper for one-shot evaluations, equivalent to the old
  * `rhino.evaluateString(scope, js, ...)`.
+ *
+ * Cancellation is automatically tied to whichever coroutine calls this function. If
+ * that coroutine is cancelled (e.g. an enclosing `withTimeout` expires), this call
+ * throws [CancellationException].
  *
  * @param js The JavaScript code to evaluate.
  * @param variable Optional variable name to retrieve from the scope after evaluation.
