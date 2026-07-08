@@ -99,11 +99,13 @@ fun jsValueToString(v: Any?): String = toJsString(v)
  */
 @Prerelease
 class JsContext internal constructor(
-    maxExecutionTime: Duration,
-    maxInstructions: Long,
-    scope: CoroutineScope,
+    var maxExecutionTime: Duration = JS_DEFAULT_MAX_EXECUTION_TIME,
+    var maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
+    private val scope: CoroutineScope,
 ) {
-    private val interpreter = JsInterpreter(maxExecutionTime, maxInstructions, scope)
+    private val interpreter: JsInterpreter by lazy {
+        JsInterpreter(maxExecutionTime, maxInstructions, scope)
+    }
 
     /** Evaluate [code] in this context.  Returns the last expression value. */
     @Throws(CancellationException::class)
@@ -118,10 +120,11 @@ class JsContext internal constructor(
 
 @Prerelease
 suspend fun newJsContext(
-    maxExecutionTime: Duration = JS_DEFAULT_MAX_EXECUTION_TIME,
-    maxInstructions: Long = JS_DEFAULT_MAX_INSTRUCTIONS,
     initializer: suspend JsContext.() -> Unit = {},
-): JsContext = JsContext(maxExecutionTime, maxInstructions, initializer)
+): JsContext = {
+    val scope = CoroutineScope(currentCoroutineContext())
+    return JsContext(scope).apply { initializer() }
+}
 
 /**
  * Evaluate [js] and return its last value, or the value of [variable] if specified.
