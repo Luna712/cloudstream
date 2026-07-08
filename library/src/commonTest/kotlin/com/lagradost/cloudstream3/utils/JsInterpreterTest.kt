@@ -2153,6 +2153,7 @@ class JsInterpreterTest {
                     }
                 }
             }
+
             done.send(Unit)
         }
 
@@ -2161,7 +2162,6 @@ class JsInterpreterTest {
         assertTrue(elapsed < 1.seconds, "evalJs ran too long: $elapsed")
     }
 
-    
     @Test
     fun newJsContextWithNoInitializerIsUsable() = runTest {
         val ctx = newJsContext()
@@ -2341,6 +2341,7 @@ class JsInterpreterTest {
                     }
                 }
             }
+
             done.send(Unit)
         }
 
@@ -2395,6 +2396,7 @@ class JsInterpreterTest {
         newJsContext {
             capturedDuringInit = eval("2 * 21")
         }
+
         assertEquals(42.0, capturedDuringInit as? Double ?: 0.0)
     }
 
