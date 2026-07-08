@@ -64,10 +64,9 @@ object DownloadObjects {
         }
     }
 
-    @Serializable
-    abstract class DownloadCached(
-        @Transient open val id: Int = 0,
-    )
+    interface DownloadCached {
+        val id: Int
+    }
 
     @OptIn(ExperimentalSerializationApi::class) // KeepGeneratedSerializer is an experimental annotation for now
     @KeepGeneratedSerializer
@@ -82,7 +81,7 @@ object DownloadObjects {
         @SerialName("description") val description: String?,
         @SerialName("cacheTime") val cacheTime: Long,
         @SerialName("id") override val id: Int,
-    ) : DownloadCached(id) {
+    ) : DownloadCached {
         object Serializer : WriteOnlySerializer<DownloadEpisodeCached>(
             DownloadEpisodeCached.generatedSerializer(),
             setOf("rating"),
@@ -113,7 +112,7 @@ object DownloadObjects {
         @SerialName("poster") val poster: String?,
         @SerialName("cacheTime") val cacheTime: Long,
         @SerialName("id") override val id: Int,
-    ) : DownloadCached(id)
+    ) : DownloadCached
 
     @Serializable
     data class DownloadResumePackage(
