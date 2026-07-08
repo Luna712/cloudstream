@@ -40,7 +40,13 @@ kotlin {
 
     jvm()
     js(IR) {
-        nodejs()
+        nodejs {
+            testTask {
+                useMocha {
+                    timeout = "10s"
+                }
+            }
+        }
         useCommonJs()
         binaries.library()
     }
