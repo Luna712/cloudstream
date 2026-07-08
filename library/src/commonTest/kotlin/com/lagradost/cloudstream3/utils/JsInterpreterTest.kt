@@ -2183,7 +2183,7 @@ class JsInterpreterTest {
                 withTimeout(300.milliseconds) {
                     val mark = TimeSource.Monotonic.markNow()
                     try {
-                        evalJsInternal("while(true){}", scope = this)
+                        evalJs("while(true){}")
                     } finally {
                         elapsed = mark.elapsedNow()
                     }
