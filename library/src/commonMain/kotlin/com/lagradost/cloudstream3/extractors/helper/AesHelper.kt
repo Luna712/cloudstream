@@ -35,7 +35,6 @@ object AesHelper {
         } else cipher.encryptWithIv(iv, input)
     }
 
-    @OptIn(DelicateCryptographyApi::class)
     @Prerelease
     suspend fun cryptoAESHandler(
         data: String,
