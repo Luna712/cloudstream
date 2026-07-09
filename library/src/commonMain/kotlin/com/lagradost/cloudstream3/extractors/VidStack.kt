@@ -20,7 +20,6 @@ class Server1uns : VidStack() {
     override var requiresReferer = true
 }
 
-
 open class VidStack : ExtractorApi() {
     override var name = "Vidstack"
     override var mainUrl = "https://vidstack.io"
@@ -50,7 +49,7 @@ open class VidStack : ExtractorApi() {
                     encrypt = false,
                     padding = true,
                 ).decodeToString()
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 null
             }
         } ?: throw Exception("Failed to decrypt with all IVs")
