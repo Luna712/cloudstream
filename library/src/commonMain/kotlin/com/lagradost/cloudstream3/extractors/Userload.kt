@@ -56,22 +56,16 @@ open class Userload : ExtractorApi() {
             subchar.add(splitInput(v).map { evaluateMath(it).substringBefore(".") }.toString().filter { it.isDigit() })
         }
         var txtresult = ""
-        subchar.forEach{
+        subchar.forEach {
             txtresult = txtresult.plus(it.toInt(8).toChar())
         }
         val val1 = Regex(""""morocco="((.|\\n)*?)"&mycountry="""").find(txtresult)?.groups?.get(1)?.value.toString().drop(1).dropLast(1)
         val val2 = txtresult.substringAfter("""&mycountry="+""").substringBefore(")")
 
-        return listOf(
-            val1,
-            val2
-        )
-
-
+        return listOf(val1, val2)
     }
 
     override suspend fun getUrl(url: String, referer: String?): List<ExtractorLink>? {
-
         val extractedLinksList: MutableList<ExtractorLink> = mutableListOf()
 
         val response = app.get(url).text()
