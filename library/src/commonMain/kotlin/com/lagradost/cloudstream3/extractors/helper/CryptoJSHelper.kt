@@ -102,7 +102,7 @@ object CryptoJSHelper {
 
             for (i in 1 until iterations) {
                 val iterFn = md5Hasher.createHashFunction()
-                iterFn.update(block)
+                iterFn.update(block!!)
                 block = iterFn.hashToByteArray()
             }
 
