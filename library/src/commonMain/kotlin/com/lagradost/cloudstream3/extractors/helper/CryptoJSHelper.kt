@@ -136,7 +136,6 @@ object CryptoJSHelper {
         CryptographyRandom.nextBytes(length)
 }
 
-/** For backwards-compatibility */
 // Deprecate after next stable
 /* @Deprecated(
     message = "Renamed to CryptoJSHelper",
