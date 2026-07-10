@@ -128,6 +128,7 @@ fun SettingsScreen(
     version: SettingsVersionState,
     onNavigate: (SettingsCategory) -> Unit,
     onVersionLongClick: () -> Unit = {},
+    modifier: Modifier = Modifier,
 ) {
     val colors = CloudStreamTheme.colors
     val isTV = remember { DeviceLayout.isLayout(DeviceLayout.TV) }
@@ -138,7 +139,7 @@ fun SettingsScreen(
     }
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(colors.background)
             .windowInsetsPadding(WindowInsets.statusBars)
