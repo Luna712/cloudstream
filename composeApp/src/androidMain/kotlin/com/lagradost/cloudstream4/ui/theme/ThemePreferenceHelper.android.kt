@@ -51,7 +51,9 @@ fun Context.loadPrimaryColor(): CloudStreamPrimaryColor {
         "Lavender" -> CloudStreamPrimaryColor.LAVENDER
         "Monet" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             CloudStreamPrimaryColor.DYNAMIC
-        } else { CloudStreamPrimaryColor.NORMAL }
+        } else {
+            CloudStreamPrimaryColor.NORMAL
+        }
         "Monet2" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             CloudStreamPrimaryColor.DYNAMIC_TWO
         } else {
