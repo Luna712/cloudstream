@@ -40,7 +40,6 @@ val okHttpClient = (app.baseClient.engine as? OkHttpEngine)
 
 /** Same as the default app networking helper, but this instance ignores SSL certificates.
  * This should NEVER be used for sensitive networking operations such as logins. Only use this when required. */
-@Prerelease
 @UnsafeSSL
 var insecureApp = Requests(responseParser = jsonResponseParser).apply {
     defaultHeaders = mapOf("user-agent" to USER_AGENT)

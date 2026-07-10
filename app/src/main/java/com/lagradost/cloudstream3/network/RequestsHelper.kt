@@ -26,7 +26,6 @@ fun Requests.initClient(context: Context) {
 }
 
 /** Only use ignoreSSL if you know what you are doing */
-@Prerelease
 fun Requests.initClient(context: Context, ignoreSSL: Boolean = false) {
     this.baseClient = buildDefaultKtorClient(context, ignoreSSL)
 }
@@ -37,7 +36,6 @@ fun buildDefaultClient(context: Context): OkHttpClient {
 }
 
 /** Only use ignoreSSL if you know what you are doing */
-@Prerelease
 fun buildDefaultClient(context: Context, ignoreSSL: Boolean = false): OkHttpClient {
     safe { Security.insertProviderAt(Conscrypt.newProvider(), 1) }
 
