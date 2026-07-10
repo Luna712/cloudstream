@@ -101,7 +101,9 @@ class SimklApi : SyncAPI() {
             val unixTime = APIHolder.unixTime
             return if (this > unixTime) {
                 (this - unixTime).toDuration(DurationUnit.SECONDS)
-            } else Duration.ZERO
+            } else {
+                Duration.ZERO
+            }
         }
 
         fun cleanOldCache() {
@@ -943,7 +945,9 @@ class SimklApi : SyncAPI() {
         val watchedEpisodes =
             if (newStatus.status.internalId == SimklListStatusType.Completed.value) {
                 episodes?.size
-            } else newStatus.watchedEpisodes
+            } else {
+                newStatus.watchedEpisodes
+            }
 
         builder.episodes(episodes?.toList(), watchedEpisodes, simklStatus?.oldEpisodes)
         requireLibraryRefresh = true
