@@ -19,7 +19,7 @@ fun Context.loadThemeMode(): CloudStreamThemeMode {
         "SilentBlue" -> CloudStreamThemeMode.SilentBlue
         "Monet" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             CloudStreamThemeMode.Dynamic
-        } else CloudStreamThemeMode.Dark
+        } else { CloudStreamThemeMode.Dark }
         else -> CloudStreamThemeMode.Dark
     }
 }
@@ -49,10 +49,10 @@ fun Context.loadPrimaryColor(): CloudStreamPrimaryColor {
         "Lavender" -> CloudStreamPrimaryColor.LAVENDER
         "Monet" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             CloudStreamPrimaryColor.DYNAMIC
-        } else CloudStreamPrimaryColor.NORMAL
+        } else { CloudStreamPrimaryColor.NORMAL }
         "Monet2" -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             CloudStreamPrimaryColor.DYNAMIC_TWO
-        } else CloudStreamPrimaryColor.NORMAL
+        } else { CloudStreamPrimaryColor.NORMAL }
         else -> CloudStreamPrimaryColor.NORMAL
     }
 }
