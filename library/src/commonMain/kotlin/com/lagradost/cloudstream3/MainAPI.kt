@@ -317,7 +317,7 @@ object APIHolder {
         ).toJson()
 
         return app.post("https://graphql.anilist.co", json = data)
-            .parsedSafe()
+            .parsedSafe<AniSearch>()
     }
 }
 
