@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream3.extractors.helper
 
+import com.lagradost.cloudstream3.Prerelease
 import com.lagradost.cloudstream3.base64DecodeArray
 import com.lagradost.cloudstream3.base64Encode
 import dev.whyoleg.cryptography.CryptographyProvider
@@ -7,6 +8,7 @@ import dev.whyoleg.cryptography.DelicateCryptographyApi
 import dev.whyoleg.cryptography.algorithms.AES
 import dev.whyoleg.cryptography.algorithms.MD5
 import dev.whyoleg.cryptography.random.CryptographyRandom
+import kotlinx.coroutines.runBlocking
 import kotlin.math.min
 
 /**
@@ -14,7 +16,8 @@ import kotlin.math.min
  */
 // see https://gist.github.com/thackerronak/554c985c3001b16810af5fc0eb5c358f
 @Suppress("unused", "FunctionName", "SameParameterValue")
-object CryptoJS {
+@Prerelease
+object CryptoJSHelper {
     private const val KEY_SIZE = 256
     private const val IV_SIZE = 128
 
@@ -31,16 +34,15 @@ object CryptoJS {
      * @param password passphrase
      * @param plainText plain string
      */
-    @OptIn(DelicateCryptographyApi::class)
-    fun encrypt(password: String, plainText: String): String {
+    suspend fun encrypt(password: String, plainText: String): String {
         val saltBytes = generateSalt(8)
         val key = ByteArray(KEY_SIZE / 8)
         val iv = ByteArray(IV_SIZE / 8)
         evpkdf(password.encodeToByteArray(), KEY_SIZE, IV_SIZE, saltBytes, 1, key, iv)
 
-        val aesKey = aesCbc.keyDecoder().decodeFromByteArrayBlocking(AES.Key.Format.RAW, key)
+        val aesKey = aesCbc.keyDecoder().decodeFromByteArray(AES.Key.Format.RAW, key)
         val cipher = aesKey.cipher(padding = true)
-        val cipherText = cipher.encryptWithIvBlocking(iv, plainText.encodeToByteArray())
+        val cipherText = cipher.encryptWithIv(iv, plainText.encodeToByteArray())
 
         // Create CryptoJS-like encrypted: "Salted__" || salt || ciphertext
         val sBytes = APPEND.encodeToByteArray()
@@ -58,8 +60,7 @@ object CryptoJS {
      * @param password passphrase
      * @param cipherText encrypted string
      */
-    @OptIn(DelicateCryptographyApi::class)
-    fun decrypt(password: String, cipherText: String): String {
+    suspend fun decrypt(password: String, cipherText: String): String {
         val ctBytes = base64DecodeArray(cipherText)
         val saltBytes = ctBytes.copyOfRange(8, 16)
         val cipherTextBytes = ctBytes.copyOfRange(16, ctBytes.size)
@@ -68,9 +69,9 @@ object CryptoJS {
         val iv = ByteArray(IV_SIZE / 8)
         evpkdf(password.encodeToByteArray(), KEY_SIZE, IV_SIZE, saltBytes, 1, key, iv)
 
-        val aesKey = aesCbc.keyDecoder().decodeFromByteArrayBlocking(AES.Key.Format.RAW, key)
+        val aesKey = aesCbc.keyDecoder().decodeFromByteArray(AES.Key.Format.RAW, key)
         val cipher = aesKey.cipher(padding = true)
-        val plainText = cipher.decryptWithIvBlocking(iv, cipherTextBytes)
+        val plainText = cipher.decryptWithIv(iv, cipherTextBytes)
         return plainText.decodeToString()
     }
 
@@ -120,4 +121,19 @@ object CryptoJS {
 
     private fun generateSalt(length: Int): ByteArray =
         CryptographyRandom.nextBytes(length)
+}
+
+/** Backwards-compatible wrapper for [CryptoJSHelper] */
+// Deprecate after next stable
+/* @Deprecated(
+    message = "Renamed to CryptoJSHelper",
+    level = DeprecationLevel.WARNING
+    replaceWith = ReplaceWith("CryptoJSHelper"),
+) */
+object CryptoJS {
+    fun encrypt(password: String, plainText: String): String =
+        runBlocking { CryptoJSHelper.encrypt(password, plainText) }
+
+    fun decrypt(password: String, cipherText: String): String =
+        runBlocking { CryptoJSHelper.decrypt(password, cipherText) }
 }
