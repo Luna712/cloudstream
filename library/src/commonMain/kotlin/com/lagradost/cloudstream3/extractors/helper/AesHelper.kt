@@ -8,7 +8,6 @@ import dev.whyoleg.cryptography.CryptographyProvider
 import dev.whyoleg.cryptography.DelicateCryptographyApi
 import dev.whyoleg.cryptography.algorithms.AES
 import dev.whyoleg.cryptography.algorithms.MD5
-import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -44,23 +43,6 @@ object AesHelper {
         } else {
             base64Encode(cipher.encryptWithIv(iv, parse.ct.encodeToByteArray()))
         }
-    }
-
-    // Deprecate after next stable
-    /* @Deprecated(
-        message = "Set padding = false for no padding",
-        level = DeprecationLevel.WARNING,
-    ) */
-    fun cryptoAESHandler(
-        data: String,
-        pass: ByteArray,
-        encrypt: Boolean = true,
-        padding: String,
-    ): String? {
-        // If it ends with NoPadding (e.g. "AES/CBC/NoPadding"), then it
-        // doesn't have padding, otherwise we treat as if it does.
-        val hasPadding = !padding.endsWith("NoPadding")
-        return runBlocking { cryptoAESHandler(data, pass, encrypt, hasPadding) }
     }
 
     // https://stackoverflow.com/a/41434590/8166854
