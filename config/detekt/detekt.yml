@@ -33,8 +33,7 @@ ktlint:
     active: true
     excludes: ['**/ui/icons/**']
   MultiLineIfElse:
-    active: false
-    severity: info
+    active: true
   SpacingBetweenDeclarationsWithComments:
     active: false
     severity: info
