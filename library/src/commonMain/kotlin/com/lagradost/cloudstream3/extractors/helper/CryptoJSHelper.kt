@@ -34,6 +34,7 @@ object CryptoJSHelper {
      * @param password passphrase
      * @param plainText plain string
      */
+    @OptIn(DelicateCryptographyApi::class)
     suspend fun encrypt(password: String, plainText: String): String {
         val saltBytes = generateSalt(8)
         val key = ByteArray(KEY_SIZE / 8)
@@ -60,6 +61,7 @@ object CryptoJSHelper {
      * @param password passphrase
      * @param cipherText encrypted string
      */
+    @OptIn(DelicateCryptographyApi::class)
     suspend fun decrypt(password: String, cipherText: String): String {
         val ctBytes = base64DecodeArray(cipherText)
         val saltBytes = ctBytes.copyOfRange(8, 16)
