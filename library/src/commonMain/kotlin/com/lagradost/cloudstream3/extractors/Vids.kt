@@ -2,16 +2,17 @@ package com.lagradost.cloudstream3.extractors
 
 import com.lagradost.cloudstream3.Prerelease
 import com.lagradost.cloudstream3.SubtitleFile
+import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
-import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream3.utils.newExtractorLink
 
-open class Streamcash: ExtractorApi() {
-    override val name: String = "Streamcash"
-    override val mainUrl: String = "https://streamcash.to"
-    open val cdnUrl: String = "https://cdn.streamcash.to"
+open class Vids : ExtractorApi() {
+    override val name: String = "Vids"
+    override val mainUrl: String = "https://vids.st"
     override val requiresReferer: Boolean = false
+
+    private val streamUrlRegex = Regex("""const url = "(.*?)";""")
 
     override suspend fun getUrl(
         url: String,
@@ -19,13 +20,16 @@ open class Streamcash: ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ) {
-        val id = url.removeSuffix("/").substringAfterLast("/")
+        val doc = app.get(url).text
+        val streamUrlMatch =
+            streamUrlRegex.find(doc) ?: throw RuntimeException("vids: failed to find stream link")
+        val streamUrl = streamUrlMatch.groupValues[1].replace("\\", "")
+
         callback.invoke(
             newExtractorLink(
-                name = name,
                 source = name,
-                url = "$cdnUrl/videos/$id/index.m3u8",
-                type = ExtractorLinkType.M3U8
+                name = name,
+                url = streamUrl
             )
         )
     }
