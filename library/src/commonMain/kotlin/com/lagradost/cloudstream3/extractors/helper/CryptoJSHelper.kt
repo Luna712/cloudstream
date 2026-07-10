@@ -102,7 +102,7 @@ object CryptoJSHelper {
 
             for (i in 1 until iterations) {
                 val iterFn = md5Hasher.createHashFunction()
-                iterFn.update(block!!)
+                iterFn.update(block)
                 block = iterFn.hashToByteArray()
             }
 
@@ -110,14 +110,26 @@ object CryptoJSHelper {
                 destination = derivedBytes,
                 destinationOffset = numberOfDerivedWords * 4,
                 startIndex = 0,
-                endIndex = min(block.size, (targetKeySize - numberOfDerivedWords) * 4)
+                endIndex = min(block.size, (targetKeySize - numberOfDerivedWords) * 4),
             )
 
             numberOfDerivedWords += block.size / 4
         }
 
-        derivedBytes.copyInto(destination = resultKey, destinationOffset = 0, startIndex = 0, endIndex = keySize * 4)
-        derivedBytes.copyInto(destination = resultIv, destinationOffset = 0, startIndex = keySize * 4, endIndex = (keySize + ivSize) * 4)
+        derivedBytes.copyInto(
+            destination = resultKey,
+            destinationOffset = 0,
+            startIndex = 0,
+            endIndex = keySize * 4,
+        )
+
+        derivedBytes.copyInto(
+            destination = resultIv,
+            destinationOffset = 0,
+            startIndex = keySize * 4,
+            endIndex = (keySize + ivSize) * 4,
+        )
+
         return derivedBytes // key + iv
     }
 
