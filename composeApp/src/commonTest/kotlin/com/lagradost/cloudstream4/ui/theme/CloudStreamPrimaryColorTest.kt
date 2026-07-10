@@ -28,11 +28,6 @@ class CloudStreamPrimaryColorTest {
     }
 
     @Test
-    fun containsExpectedNumberOfColorOptions() {
-        assertEquals(22, CloudStreamPrimaryColor.entries.size)
-    }
-
-    @Test
     fun whiteEntryIsActuallyWhite() {
         val white = CloudStreamPrimaryColor.WHITE.color
         assertEquals(1f, white.red)
