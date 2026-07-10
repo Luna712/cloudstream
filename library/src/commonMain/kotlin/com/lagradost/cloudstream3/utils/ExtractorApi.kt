@@ -1374,7 +1374,7 @@ suspend fun getPostForm(requestUrl: String, html: String): String? {
             "accept" to "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
         ),
         data = mapOf("op" to op, "id" to id, "mode" to mode, "hash" to hash)
-    ).text
+    ).text()
 }
 
 fun ExtractorApi.fixUrl(url: String): String {
