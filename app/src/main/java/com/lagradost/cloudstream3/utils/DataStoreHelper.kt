@@ -259,6 +259,14 @@ object DataStoreHelper {
      */
     @Serializable
     abstract class LibrarySearchResponse(
+       /**
+        * These fields are marked @Transient because this class is only ever serialized through
+        * through its subclasses, which redeclare each property with their own @SerialName
+        * annotations. Without @Transient here, kotlinx.serialization would try to
+        * generate a serializer for the abstract base class itself (or double-serialize
+        * these fields), which fails/conflicts since these are meant to be overridden,
+        * not serialized directly from the parent.
+        */
         @Transient override var id: Int? = null,
         @Transient open val latestUpdatedTime: Long = 0L,
         @Transient override val name: String = "",
@@ -630,7 +638,7 @@ object DataStoreHelper {
 
     /**
      * Set new seen episodes and update time
-     **/
+     */
     fun updateSubscribedData(id: Int?, data: SubscribedData?, episodeResponse: EpisodeResponse?) {
         if (id == null || data == null || episodeResponse == null) return
         val newData = data.copy(
@@ -680,10 +688,10 @@ object DataStoreHelper {
         setKey("$currentAccount/$VIDEO_POS_DUR", id.toString(), PosDur(pos, dur))
     }
 
-    /** Sets the position, duration, and resume data of an episode/movie,
-     *
-     * if nextEpisode is not specified it will not be able to set the next episode as resumable if progress > NEXT_WATCH_EPISODE_PERCENTAGE
-     * */
+    /**
+     * Sets the position, duration, and resume data of an episode/movie,
+     * If nextEpisode is not specified it will not be able to set the next episode as resumable if progress > NEXT_WATCH_EPISODE_PERCENTAGE
+     */
     fun setViewPosAndResume(id: Int?, position: Long, duration: Long, currentEpisode: Any?, nextEpisode: Any?) {
         setViewPos(id, position, duration)
         if (id != null) {
