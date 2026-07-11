@@ -82,7 +82,7 @@ detekt {
 dependencies {
     androidRuntimeClasspath(libs.compose.ui.tooling)
 
-    detektPlugins(libs.detekt.formatting)
+    detektPlugins(libs.detekt.ktlint.wrapper)
     detektPlugins(libs.compose.rules.detekt)
 }
 
