@@ -25,6 +25,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -64,12 +65,14 @@ import com.lagradost.cloudstream4.ui.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.utils.DeviceLayout
 import org.jetbrains.compose.resources.stringResource
 
+@Immutable
 data class SettingsProfileState(
     val name: String,
     val profilePictureUrl: String? = null,
     val profileImage: ProfileImage = ProfileImage.DARK_BLUE,
 )
 
+@Immutable
 data class SettingsVersionState(
     val appVersion: String,
     val commitHash: String,
@@ -144,9 +147,13 @@ fun SettingsScreen(
             .background(colors.background)
             .windowInsetsPadding(WindowInsets.statusBars)
             .then(
-                if (isTV) Modifier.windowInsetsPadding(
-                    WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)
-                ) else Modifier
+                if (isTV) {
+                    Modifier.windowInsetsPadding(
+                        WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)
+                    )
+                } else {
+                    Modifier
+                }
             ),
         contentAlignment = Alignment.Center,
     ) {
