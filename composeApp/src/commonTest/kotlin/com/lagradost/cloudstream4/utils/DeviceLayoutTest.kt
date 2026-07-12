@@ -66,4 +66,37 @@ class DeviceLayoutTest {
         // which we might add tests for eventually but not for now.
         DeviceLayout.isLandscape()
     }
+
+    @Test
+    fun isLayoutStateMatchesSameFlagAsIsLayout() {
+        DeviceLayout.update()
+        val anyKnownLayout =
+            DeviceLayout.PHONE or DeviceLayout.TV or DeviceLayout.EMULATOR or DeviceLayout.COMPUTER
+        assertTrue(DeviceLayout.isLayoutState(anyKnownLayout).value)
+        assertTrue(DeviceLayout.isLayoutState(anyKnownLayout).value == DeviceLayout.isLayout(anyKnownLayout))
+    }
+
+    @Test
+    fun isLayoutStateDoesNotMatchUnrelatedFlagCombo() {
+        DeviceLayout.update()
+        // Whatever the resolved layout is, PHONE and TV are mutually
+        // exclusive single flags, so at most one of them can be active.
+        val phoneMatches = DeviceLayout.isLayoutState(DeviceLayout.PHONE).value
+        val tvMatches = DeviceLayout.isLayoutState(DeviceLayout.TV).value
+        assertFalse(phoneMatches && tvMatches)
+    }
+
+    @Test
+    fun isLayoutStateReflectsUpdatesToLayoutState() {
+        // update() re-resolves and writes through to both layoutId and
+        // layoutState, so isLayoutState should always agree with isLayout
+        // immediately after any call to update().
+        DeviceLayout.update()
+        val everything =
+            DeviceLayout.PHONE or DeviceLayout.TV or DeviceLayout.EMULATOR or DeviceLayout.COMPUTER
+        assertTrue(DeviceLayout.isLayoutState(everything).value == DeviceLayout.isLayout(everything))
+
+        DeviceLayout.update()
+        assertTrue(DeviceLayout.isLayoutState(everything).value == DeviceLayout.isLayout(everything))
+    }
 }
