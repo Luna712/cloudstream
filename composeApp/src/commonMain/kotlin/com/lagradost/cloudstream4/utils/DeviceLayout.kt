@@ -36,6 +36,15 @@ object DeviceLayout {
      */
     fun isLayout(flags: Layout): Boolean = layoutId.and(flags)
 
+    /**
+     * Returns a [State] that is true if the layout is any of the flags, so
+     * so isLayoutState(TV or EMULATOR) is a valid statement
+     * for checking if the layout is in the emulator
+     * or tv. Auto will become the "TV" or the
+     * "PHONE" layout.
+     *
+     * Valid flags are: PHONE, TV, EMULATOR, or COMPUTER
+     */
     fun isLayoutState(layoutFlags: Layout): State<Boolean> =
         derivedStateOf { layoutState.value.and(layoutFlags) }
 
