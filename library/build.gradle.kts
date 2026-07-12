@@ -71,6 +71,9 @@ kotlin {
 
             // Deprecated; will be removed once extensions have time to migrate from using it
             implementation("me.xdrop:fuzzywuzzy:1.4.0")
+
+            // Temp/deprecated; will be removed once extensions have time to migrate from using it
+            implementation("com.google.code.gson:gson:2.14.0")
         }
 
         commonTest.dependencies {
