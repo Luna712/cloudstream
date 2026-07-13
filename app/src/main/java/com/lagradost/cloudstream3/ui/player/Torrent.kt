@@ -40,7 +40,7 @@ object Torrent {
         return try {
             app.get(
                 "$TORRENT_SERVER_URL/echo",
-            ).text.isNotEmpty()
+            ).text().isNotEmpty()
         } catch (_: ConnectException) {
             // `Failed to connect to /127.0.0.1:8090` if the server is down
             false
