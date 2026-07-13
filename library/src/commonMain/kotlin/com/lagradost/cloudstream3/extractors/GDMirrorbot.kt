@@ -44,7 +44,7 @@ open class GDMirrorbot : ExtractorApi() {
                     val episode = Regex("""/tv/\d+/\d+/(\d+)""").find(url)?.groupValues?.get(1) ?: "1"
                     "$mainUrl/myseriesapi?tmdbid=$finalId&season=$season&epname=$episode&key=$myKey"
                 } else "$mainUrl/mymovieapi?$idType=$finalId&key=$myKey"
-                pageText = app.get(apiUrl).text
+                pageText = app.get(apiUrl).text()
             }
 
             val embedData = tryParseJson<EmbedData>(pageText)
@@ -55,7 +55,7 @@ open class GDMirrorbot : ExtractorApi() {
         }
 
         val postData = mapOf("sid" to sid)
-        val responseText = app.post("$host/embedhelper.php", data = postData).text
+        val responseText = app.post("$host/embedhelper.php", data = postData).text()
 
         val root = tryParseJson<EmbedHelper>(responseText) ?: return
         val siteUrls = root.siteUrls ?: return

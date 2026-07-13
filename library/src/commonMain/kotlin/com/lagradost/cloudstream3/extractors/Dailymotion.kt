@@ -36,7 +36,7 @@ open class Dailymotion : ExtractorApi() {
         val id = getVideoId(embedUrl) ?: return
         val metadataUrl = "$baseUrl/player/metadata/video/$id"
 
-        val response = app.get(metadataUrl, referer = embedUrl).text
+        val response = app.get(metadataUrl, referer = embedUrl).text()
         val meta = parseJson<Metadata>(response)
         meta.qualities?.get("auto")?.forEach { quality ->
             val videoUrl = quality.url

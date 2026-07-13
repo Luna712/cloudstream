@@ -68,7 +68,7 @@ open class Voe : ExtractorApi() {
             res = app.get(redirectUrl, referer = referer)
         }
 
-        val encodedString = res.document.selectFirst("script[type=application/json]")
+        val encodedString = res.document().selectFirst("script[type=application/json]")
             ?.data()?.trim()
             ?.substringAfter("[\"")
             ?.substringBeforeLast("\"]")
