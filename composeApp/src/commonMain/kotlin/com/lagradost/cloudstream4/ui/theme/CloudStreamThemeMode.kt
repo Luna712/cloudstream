@@ -3,8 +3,10 @@ package com.lagradost.cloudstream4.ui.theme
 enum class CloudStreamThemeMode {
     /** "Black" standard dark, #111111 backgrounds */
     Dark,
-    /** "Amoled" / "AmoledLight" pure black (#000000) */
+    /** "Amoled" pure black (#000000) */
     Amoled,
+    /** "AmoledLight" pure black (#000000) */
+    AmoledLight,
     /** "Light" white/gray backgrounds, dark text */
     Light,
     /** "Dracula" */
