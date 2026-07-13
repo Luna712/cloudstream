@@ -62,6 +62,7 @@ fun CloudStreamTheme(
         val base = when (mode) {
             CloudStreamThemeMode.Dark -> darkScheme()
             CloudStreamThemeMode.Amoled -> amoledScheme()
+            CloudStreamThemeMode.AmoledLight -> amoledLightScheme()
             CloudStreamThemeMode.Light -> lightScheme()
             CloudStreamThemeMode.Dracula -> draculaScheme()
             CloudStreamThemeMode.Lavender -> lavenderScheme()
