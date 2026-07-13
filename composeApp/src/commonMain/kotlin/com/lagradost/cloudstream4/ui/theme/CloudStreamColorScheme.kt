@@ -88,8 +88,8 @@ internal fun amoledScheme() = darkScheme().copy(
 )
 
 internal fun amoledLightScheme() = amoledScheme().copy(
-    surfaceVariant = CloudStreamPalette.AmoledModeLight,
-    surfaceContainer = CloudStreamPalette.AmoledModeLight,
+    surfaceVariant = CloudStreamPalette.AmoledLightBlackBg,
+    surfaceContainer = CloudStreamPalette.AmoledLightBlackBg,
 )
 
 internal fun lightScheme() = CloudStreamColorScheme(
