@@ -13,7 +13,7 @@ fun Context.loadThemeMode(): CloudStreamThemeMode {
         "Black" -> CloudStreamThemeMode.Dark
         "Light" -> CloudStreamThemeMode.Light
         "Amoled" -> CloudStreamThemeMode.Amoled
-        "AmoledLight" -> CloudStreamThemeMode.Amoled
+        "AmoledLight" -> CloudStreamThemeMode.AmoledLight
         "Dracula" -> CloudStreamThemeMode.Dracula
         "Lavender" -> CloudStreamThemeMode.Lavender
         "SilentBlue" -> CloudStreamThemeMode.SilentBlue
