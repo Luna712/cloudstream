@@ -133,7 +133,10 @@ fun Throwable.getStackTracePretty(showMessage: Boolean = true): String {
         .lines()
         .mapNotNull { line ->
             val trimmed = line.trim()
-            if (trimmed.startsWith("at ")) trimmed.removePrefix("at ") else null
+            if (!trimmed.startsWith("at ")) return@mapNotNull null
+            // pull "File.kt:42" out of "at com.pkg.Class.method(File.kt:42)"
+            Regex("""\(([^)]+)\)$""").find(trimmed)?.groupValues?.get(1)
+                ?.replace(":", " ")
         }
         .joinToString("\n")
 }
@@ -169,6 +172,7 @@ fun <T> throwAbleToResource(
             val traceLine = throwable.stackTraceToString()
                 .lines()
                 .firstOrNull { it.contains("provider.kt", ignoreCase = true) }
+                ?.let { Regex("""\(([^)]+)\)$""").find(it)?.groupValues?.get(1) }
             if (traceLine != null) {
                 return Resource.Failure(
                     false,
@@ -203,9 +207,9 @@ fun <T> throwAbleToResource(
 suspend fun <T> safeApiCall(
     @WorkerThread apiCall: suspend () -> T,
 ): Resource<T> {
-    return apiCall.ioWork {
+    return apiCall.ioWork { work ->
         try {
-            Resource.Success(it())
+            Resource.Success(work.invoke())
         } catch (throwable: Throwable) {
             logError(throwable)
             throwAbleToResource(throwable)
