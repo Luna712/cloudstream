@@ -133,7 +133,10 @@ fun Throwable.getStackTracePretty(showMessage: Boolean = true): String {
         .lines()
         .mapNotNull { line ->
             val trimmed = line.trim()
-            if (trimmed.startsWith("at ")) trimmed.removePrefix("at ") else null
+            if (!trimmed.startsWith("at ")) return@mapNotNull null
+            // pull "File.kt:42" out of "at com.pkg.Class.method(File.kt:42)"
+            Regex("""\(([^)]+)\)$""").find(trimmed)?.groupValues?.get(1)
+                ?.replace(":", " ")
         }
         .joinToString("\n")
 }
