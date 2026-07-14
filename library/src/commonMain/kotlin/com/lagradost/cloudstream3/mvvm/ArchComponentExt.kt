@@ -172,6 +172,7 @@ fun <T> throwAbleToResource(
             val traceLine = throwable.stackTraceToString()
                 .lines()
                 .firstOrNull { it.contains("provider.kt", ignoreCase = true) }
+                ?.let { Regex("""\(([^)]+)\)$""").find(it)?.groupValues?.get(1) }
             if (traceLine != null) {
                 return Resource.Failure(
                     false,
