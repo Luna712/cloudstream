@@ -1,10 +1,11 @@
 package com.lagradost.cloudstream3.extractors
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.*
 import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 open class Blogger : ExtractorApi() {
     override val name = "Blogger"
@@ -23,10 +24,10 @@ open class Blogger : ExtractorApi() {
                             newExtractorLink(
                                 name,
                                 name,
-                                it.play_url,
+                                it.playUrl,
                             ) {
                                 this.referer = "https://www.youtube.com/"
-                                this.quality = when (it.format_id) {
+                                this.quality = when (it.formatId) {
                                     18 -> 360
                                     22 -> 720
                                     else -> Qualities.Unknown.value
@@ -37,12 +38,13 @@ open class Blogger : ExtractorApi() {
                 }
             }
         }
+
         return sources
     }
 
     @Serializable
     private data class ResponseSource(
-        @SerialName("play_url") val play_url: String,
-        @SerialName("format_id") val format_id: Int
+        @JsonProperty("play_url") @SerialName("play_url") val playUrl: String,
+        @JsonProperty("format_id") @SerialName("format_id") val formatId: Int,
     )
 }
