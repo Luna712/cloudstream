@@ -1,7 +1,6 @@
 package com.lagradost.cloudstream3.extractors
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.ExtractorApi
@@ -9,6 +8,8 @@ import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream3.utils.Qualities
 import com.lagradost.cloudstream3.utils.newExtractorLink
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import kotlin.math.round
 
 open class Gofile : ExtractorApi() {
@@ -21,20 +22,18 @@ open class Gofile : ExtractorApi() {
         url: String,
         referer: String?,
         subtitleCallback: (SubtitleFile) -> Unit,
-        callback: (ExtractorLink) -> Unit
+        callback: (ExtractorLink) -> Unit,
     ) {
         val id = Regex("/(?:\\?c=|d/)([\\da-zA-Z-]+)").find(url)?.groupValues?.get(1) ?: return
-
         val token = app.post(
             "$mainApi/accounts",
         ).parsedSafe<AccountResponse>()?.data?.token ?: return
 
         val globalRes = app.get("$mainUrl/dist/js/config.js").text()
         val wt = Regex("""appdata\.wt\s*=\s*[\"']([^\"']+)[\"']""").find(globalRes)?.groupValues?.get(1) ?: return
-
         val headers = mapOf(
             "Authorization" to "Bearer $token",
-            "X-Website-Token" to wt
+            "X-Website-Token" to wt,
         )
 
         val parsedResponse = app.get(
@@ -43,7 +42,6 @@ open class Gofile : ExtractorApi() {
         ).parsedSafe<GofileResponse>()
 
         val childrenMap = parsedResponse?.data?.children ?: return
-
         for ((_, file) in childrenMap) {
             if (file.link.isNullOrEmpty() || file.type != "file") continue
             val fileName = file.name ?: ""
@@ -55,7 +53,7 @@ open class Gofile : ExtractorApi() {
                     "Gofile",
                     "[Gofile] $fileName [$formattedSize]",
                     file.link,
-                    ExtractorLinkType.VIDEO
+                    ExtractorLinkType.VIDEO,
                 ) {
                     this.quality = getQuality(fileName)
                     this.headers = mapOf("Cookie" to "accountToken=$token")
@@ -87,29 +85,29 @@ open class Gofile : ExtractorApi() {
 
     @Serializable
     data class AccountResponse(
-        @SerialName("data") val data: AccountData? = null
+        @JsonProperty("data") @SerialName("data") val data: AccountData? = null,
     )
 
     @Serializable
     data class AccountData(
-        @SerialName("token") val token: String? = null
+        @JsonProperty("token") @SerialName("token") val token: String? = null,
     )
 
     @Serializable
     data class GofileResponse(
-        @SerialName("data") val data: GofileData? = null
+        @JsonProperty("data") @SerialName("data") val data: GofileData? = null,
     )
 
     @Serializable
     data class GofileData(
-        @SerialName("children") val children: Map<String, GofileFile>? = null
+        @JsonProperty("children") @SerialName("children") val children: Map<String, GofileFile>? = null,
     )
 
     @Serializable
     data class GofileFile(
-        @SerialName("type") val type: String? = null,
-        @SerialName("name") val name: String? = null,
-        @SerialName("link") val link: String? = null,
-        @SerialName("size") val size: Long? = 0L
+        @JsonProperty("type") @SerialName("type") val type: String? = null,
+        @JsonProperty("name") @SerialName("name") val name: String? = null,
+        @JsonProperty("link") @SerialName("link") val link: String? = null,
+        @JsonProperty("size") @SerialName("size") val size: Long? = 0L,
     )
 }
