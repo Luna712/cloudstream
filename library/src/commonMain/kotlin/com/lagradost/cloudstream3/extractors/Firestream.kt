@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.Prerelease
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
@@ -44,6 +43,6 @@ class Firestream : ExtractorApi() {
 
     @Serializable
     private data class VideoResponse(
-        @JsonProperty("signedVideoUrl") @SerialName("signedVideoUrl") val signedVideoUrl: String,
+        @SerialName("signedVideoUrl") val signedVideoUrl: String,
     )
 }

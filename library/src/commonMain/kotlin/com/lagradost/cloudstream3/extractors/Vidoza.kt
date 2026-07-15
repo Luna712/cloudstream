@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
@@ -52,9 +51,9 @@ open class Vidoza : ExtractorApi() {
 
     @Serializable
     private data class VinovoVideoData(
-        @JsonProperty("src") @SerialName("src") val source: String,
-        @JsonProperty("type") @SerialName("type") val type: String?,
-        @JsonProperty("label") @SerialName("label") val label: String?,
-        @JsonProperty("res") @SerialName("res") val resolution: String?,
+        @SerialName("src") val source: String,
+        @SerialName("type") val type: String?,
+        @SerialName("label") val label: String?,
+        @SerialName("res") val resolution: String?,
     )
 }

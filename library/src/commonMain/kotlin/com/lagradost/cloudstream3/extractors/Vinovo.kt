@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.APIHolder.getCaptchaToken
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
@@ -61,7 +60,7 @@ open class VinovoTo : ExtractorApi() {
 
     @Serializable
     private data class VinovoFileResp(
-        @JsonProperty("status") @SerialName("status") val status: String,
-        @JsonProperty("token") @SerialName("token") val token: String,
+        @SerialName("status") val status: String,
+        @SerialName("token") val token: String,
     )
 }

@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
@@ -47,17 +46,17 @@ open class Slmaxed : ExtractorApi() {
 
     @Serializable
     data class JsonResponse(
-        @JsonProperty("status") @SerialName("status") val status: String? = null,
-        @JsonProperty("message") @SerialName("message") val message: String? = null,
-        @JsonProperty("type") @SerialName("type") val type: String? = null,
-        @JsonProperty("token") @SerialName("token") val token: String? = null,
-        @JsonProperty("result") @SerialName("result") val result: Map<String, Result>? = null,
+        @SerialName("status") val status: String? = null,
+        @SerialName("message") val message: String? = null,
+        @SerialName("type") val type: String? = null,
+        @SerialName("token") val token: String? = null,
+        @SerialName("result") val result: Map<String, Result>? = null,
     )
 
     @Serializable
     data class Result(
-        @JsonProperty("label") @SerialName("label") val label: String? = null,
-        @JsonProperty("file") @SerialName("file") val file: String? = null,
-        @JsonProperty("type") @SerialName("type") val type: String? = null,
+        @SerialName("label") val label: String? = null,
+        @SerialName("file") val file: String? = null,
+        @SerialName("type") val type: String? = null,
     )
 }

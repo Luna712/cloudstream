@@ -78,15 +78,15 @@ open class Vidara : ExtractorApi() {
 
     @Serializable
     private data class StreamUpFileInfo(
-        @JsonProperty("title") @SerialName("title") val title: String,
-        @JsonProperty("thumbnail") @SerialName("thumbnail") val thumbnail: String,
-        @JsonProperty("streaming_url") @SerialName("streaming_url") val streamingUrl: String,
-        @JsonProperty("subtitles") @SerialName("subtitles") val subtitles: List<StreamUpSubtitle>?,
+        @SerialName("title") val title: String,
+        @SerialName("thumbnail") val thumbnail: String,
+        @SerialName("streaming_url") val streamingUrl: String,
+        @SerialName("subtitles") val subtitles: List<StreamUpSubtitle>?,
     )
 
     @Serializable
     private data class StreamUpSubtitle(
-        @JsonProperty("file_path") @SerialName("file_path") val filePath: String,
-        @JsonProperty("language") @SerialName("language") val language: String,
+        @SerialName("file_path") val filePath: String,
+        @SerialName("language") val language: String,
     )
 }

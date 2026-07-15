@@ -2,7 +2,6 @@
 
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.*
@@ -41,12 +40,12 @@ open class TauVideo : ExtractorApi() {
 
     @Serializable
     data class TauVideoUrls(
-        @JsonProperty("urls") @SerialName("urls") val urls: List<TauVideoData>,
+        @SerialName("urls") val urls: List<TauVideoData>,
     )
 
     @Serializable
     data class TauVideoData(
-        @JsonProperty("url") @SerialName("url") val url: String,
-        @JsonProperty("label") @SerialName("label") val label: String,
+        @SerialName("url") val url: String,
+        @SerialName("label") val label: String,
     )
 }

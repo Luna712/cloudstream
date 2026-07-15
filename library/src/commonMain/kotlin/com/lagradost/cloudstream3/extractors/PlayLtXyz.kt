@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.*
@@ -74,6 +73,6 @@ open class PlayLtXyz : ExtractorApi() {
 
     @Serializable
     private data class ResponseData(
-        @JsonProperty("data") @SerialName("data") val data: String? = null,
+        @SerialName("data") val data: String? = null,
     )
 }

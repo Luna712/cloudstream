@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.USER_AGENT
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
@@ -91,15 +90,15 @@ open class Cda : ExtractorApi() {
 
     @Serializable
     data class VideoPlayerData(
-        @JsonProperty("file") @SerialName("file") val file: String,
-        @JsonProperty("qualities") @SerialName("qualities") val qualities: Map<String, String> = mapOf(),
-        @JsonProperty("quality") @SerialName("quality") val quality: String?,
-        @JsonProperty("ts") @SerialName("ts") val ts: Int?,
-        @JsonProperty("hash2") @SerialName("hash2") val hash2: String?,
+        @SerialName("file") val file: String,
+        @SerialName("qualities") val qualities: Map<String, String> = mapOf(),
+        @SerialName("quality") val quality: String?,
+        @SerialName("ts") val ts: Int?,
+        @SerialName("hash2") val hash2: String?,
     )
 
     @Serializable
     data class PlayerData(
-        @JsonProperty("video") @SerialName("video") val video: VideoPlayerData,
+        @SerialName("video") val video: VideoPlayerData,
     )
 }

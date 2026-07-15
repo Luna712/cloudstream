@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.APIHolder.getCaptchaToken
 import com.lagradost.cloudstream3.ErrorLoadingException
 import com.lagradost.cloudstream3.SubtitleFile
@@ -72,7 +71,7 @@ open class Streamplay : ExtractorApi() {
 
     @Serializable
     data class Source(
-        @JsonProperty("file") @SerialName("file") val file: String? = null,
-        @JsonProperty("label") @SerialName("label") val label: String? = null,
+        @SerialName("file") val file: String? = null,
+        @SerialName("label") val label: String? = null,
     )
 }

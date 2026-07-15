@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.newSubtitleFile
@@ -190,25 +189,25 @@ open class StreamSB : ExtractorApi() {
 
     @Serializable
     data class Subs(
-        @JsonProperty("file") @SerialName("file") val file: String? = null,
-        @JsonProperty("label") @SerialName("label") val label: String? = null,
+        @SerialName("file") val file: String? = null,
+        @SerialName("label") val label: String? = null,
     )
 
     @Serializable
     data class StreamData(
-        @JsonProperty("file") @SerialName("file") val file: String,
-        @JsonProperty("cdn_img") @SerialName("cdn_img") val cdnImg: String,
-        @JsonProperty("hash") @SerialName("hash") val hash: String,
-        @JsonProperty("subs") @SerialName("subs") val subs: ArrayList<Subs>? = arrayListOf(),
-        @JsonProperty("length") @SerialName("length") val length: String,
-        @JsonProperty("id") @SerialName("id") val id: String,
-        @JsonProperty("title") @SerialName("title") val title: String,
-        @JsonProperty("backup") @SerialName("backup") val backup: String,
+        @SerialName("file") val file: String,
+        @SerialName("cdn_img") val cdnImg: String,
+        @SerialName("hash") val hash: String,
+        @SerialName("subs") val subs: ArrayList<Subs>? = arrayListOf(),
+        @SerialName("length") val length: String,
+        @SerialName("id") val id: String,
+        @SerialName("title") val title: String,
+        @SerialName("backup") val backup: String,
     )
 
     @Serializable
     data class Main(
-        @JsonProperty("stream_data") @SerialName("stream_data") val streamData: StreamData,
-        @JsonProperty("status_code") @SerialName("status_code") val statusCode: Int,
+        @SerialName("stream_data") val streamData: StreamData,
+        @SerialName("status_code") val statusCode: Int,
     )
 }

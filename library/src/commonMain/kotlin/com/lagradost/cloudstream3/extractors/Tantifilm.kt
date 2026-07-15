@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
@@ -32,16 +31,16 @@ open class Tantifilm : ExtractorApi() {
 
     @Serializable
     data class TantifilmJsonData(
-        @JsonProperty("success") @SerialName("success") val success: Boolean,
-        @JsonProperty("data") @SerialName("data") val data: List<TantifilmData>,
-        @JsonProperty("captions") @SerialName("captions") val captions: List<String>,
-        @JsonProperty("is_vr") @SerialName("is_vr") val isVr: Boolean,
+        @SerialName("success") val success: Boolean,
+        @SerialName("data") val data: List<TantifilmData>,
+        @SerialName("captions") val captions: List<String>,
+        @SerialName("is_vr") val isVr: Boolean,
     )
 
     @Serializable
     data class TantifilmData(
-        @JsonProperty("file") @SerialName("file") val file: String,
-        @JsonProperty("label") @SerialName("label") val label: String,
-        @JsonProperty("type") @SerialName("type") val type: String,
+        @SerialName("file") val file: String,
+        @SerialName("label") val label: String,
+        @SerialName("type") val type: String,
     )
 }

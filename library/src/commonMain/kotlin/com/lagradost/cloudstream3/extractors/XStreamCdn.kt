@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.newSubtitleFile
@@ -128,28 +127,28 @@ open class XStreamCdn : ExtractorApi() {
 
     @Serializable
     private data class ResponseData(
-        @JsonProperty("file") @SerialName("file") val file: String,
-        @JsonProperty("label") @SerialName("label") val label: String,
+        @SerialName("file") val file: String,
+        @SerialName("label") val label: String,
     )
 
     @Serializable
     private data class Player(
-        @JsonProperty("poster_file") @SerialName("poster_file") val posterFile: String? = null,
+        @SerialName("poster_file") val posterFile: String? = null,
     )
 
     @Serializable
     private data class ResponseJson(
-        @JsonProperty("success") @SerialName("success") val success: Boolean,
-        @JsonProperty("player") @SerialName("player") val player: Player? = null,
-        @JsonProperty("data") @SerialName("data") val data: List<ResponseData>?,
-        @JsonProperty("captions") @SerialName("captions") val captions: List<Captions?>?,
+        @SerialName("success") val success: Boolean,
+        @SerialName("player") val player: Player? = null,
+        @SerialName("data") val data: List<ResponseData>?,
+        @SerialName("captions") val captions: List<Captions?>?,
     )
 
     @Serializable
     private data class Captions(
-        @JsonProperty("id") @SerialName("id") val id: String,
-        @JsonProperty("hash") @SerialName("hash") val hash: String,
-        @JsonProperty("language") @SerialName("language") val language: String,
-        @JsonProperty("extension") @SerialName("extension") val extension: String,
+        @SerialName("id") val id: String,
+        @SerialName("hash") val hash: String,
+        @SerialName("language") val language: String,
+        @SerialName("extension") val extension: String,
     )
 }

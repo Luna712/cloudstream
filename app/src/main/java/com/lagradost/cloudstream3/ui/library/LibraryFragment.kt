@@ -20,7 +20,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.lagradost.cloudstream3.APIHolder
@@ -71,13 +70,13 @@ enum class LibraryOpenerType(@StringRes val stringRes: Int) {
 /** Used to store how the user wants to open said poster */
 @Serializable
 data class LibraryOpener(
-    @JsonProperty("openType") @SerialName("openType") val openType: LibraryOpenerType,
-    @JsonProperty("providerData") @SerialName("providerData") val providerData: ProviderLibraryData?,
+    @SerialName("openType") val openType: LibraryOpenerType,
+    @SerialName("providerData") val providerData: ProviderLibraryData?,
 )
 
 @Serializable
 data class ProviderLibraryData(
-    @JsonProperty("apiName") @SerialName("apiName") val apiName: String,
+    @SerialName("apiName") val apiName: String,
 )
 
 class LibraryFragment : BaseFragment<FragmentLibraryBinding>(

@@ -2,7 +2,6 @@
 
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.*
@@ -63,7 +62,7 @@ open class TRsTX : ExtractorApi() {
 
     @Serializable
     data class TrstxVideoData(
-        @JsonProperty("title") @SerialName("title") val title: String? = null,
-        @JsonProperty("file") @SerialName("file") val file: String? = null,
+        @SerialName("title") val title: String? = null,
+        @SerialName("file") val file: String? = null,
     )
 }
