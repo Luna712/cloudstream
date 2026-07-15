@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.base64DecodeArray
@@ -132,51 +131,51 @@ open class ByseSX : ExtractorApi() {
 
 @Serializable
 data class DetailsRoot(
-    @JsonProperty("id") @SerialName("id") val id: Long,
-    @JsonProperty("code") @SerialName("code") val code: String,
-    @JsonProperty("title") @SerialName("title") val title: String,
-    @JsonProperty("poster_url") @SerialName("poster_url") val posterUrl: String,
-    @JsonProperty("description") @SerialName("description") val description: String,
-    @JsonProperty("created_at") @SerialName("created_at") val createdAt: String,
-    @JsonProperty("owner_private") @SerialName("owner_private") val ownerPrivate: Boolean,
-    @JsonProperty("embed_frame_url") @SerialName("embed_frame_url") val embedFrameUrl: String,
+    @SerialName("id") val id: Long,
+    @SerialName("code") val code: String,
+    @SerialName("title") val title: String,
+    @SerialName("poster_url") val posterUrl: String,
+    @SerialName("description") val description: String,
+    @SerialName("created_at") val createdAt: String,
+    @SerialName("owner_private") val ownerPrivate: Boolean,
+    @SerialName("embed_frame_url") val embedFrameUrl: String,
 )
 
 @Serializable
 data class PlaybackRoot(
-    @JsonProperty("playback") @SerialName("playback") val playback: Playback,
+    @SerialName("playback") val playback: Playback,
 )
 
 @Serializable
 data class Playback(
-    @JsonProperty("algorithm") @SerialName("algorithm") val algorithm: String,
-    @JsonProperty("iv") @SerialName("iv") val iv: String,
-    @JsonProperty("payload") @SerialName("payload") val payload: String,
-    @JsonProperty("key_parts") @SerialName("key_parts") val keyParts: List<String>,
-    @JsonProperty("expires_at") @SerialName("expires_at") val expiresAt: String,
-    @JsonProperty("decrypt_keys") @SerialName("decrypt_keys") val decryptKeys: DecryptKeys,
-    @JsonProperty("iv2") @SerialName("iv2") val iv2: String,
-    @JsonProperty("payload2") @SerialName("payload2") val payload2: String,
+    @SerialName("algorithm") val algorithm: String,
+    @SerialName("iv") val iv: String,
+    @SerialName("payload") val payload: String,
+    @SerialName("key_parts") val keyParts: List<String>,
+    @SerialName("expires_at") val expiresAt: String,
+    @SerialName("decrypt_keys") val decryptKeys: DecryptKeys,
+    @SerialName("iv2") val iv2: String,
+    @SerialName("payload2") val payload2: String,
 )
 
 @Serializable
 data class DecryptKeys(
-    @JsonProperty("edge_1") @SerialName("edge_1") val edge1: String,
-    @JsonProperty("edge_2") @SerialName("edge_2") val edge2: String,
-    @JsonProperty("legacy_fallback") @SerialName("legacy_fallback") val legacyFallback: String,
+    @SerialName("edge_1") val edge1: String,
+    @SerialName("edge_2") val edge2: String,
+    @SerialName("legacy_fallback") val legacyFallback: String,
 )
 
 @Serializable
 data class PlaybackDecrypt(
-    @JsonProperty("sources") @SerialName("sources") val sources: List<PlaybackDecryptSource>,
+    @SerialName("sources") val sources: List<PlaybackDecryptSource>,
 )
 
 @Serializable
 data class PlaybackDecryptSource(
-    @JsonProperty("quality") @SerialName("quality") val quality: String,
-    @JsonProperty("label") @SerialName("label") val label: String,
-    @JsonProperty("mime_type") @SerialName("mime_type") val mimeType: String,
-    @JsonProperty("url") @SerialName("url") val url: String,
-    @JsonProperty("bitrate_kbps") @SerialName("bitrate_kbps") val bitrateKbps: Long,
-    @JsonProperty("height") @SerialName("height") val height: Int?,
+    @SerialName("quality") val quality: String,
+    @SerialName("label") val label: String,
+    @SerialName("mime_type") val mimeType: String,
+    @SerialName("url") val url: String,
+    @SerialName("bitrate_kbps") val bitrateKbps: Long,
+    @SerialName("height") val height: Int?,
 )
