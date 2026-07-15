@@ -41,11 +41,11 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class TmdbLink(
-    @SerialName("imdbID") val imdbID: String?,
-    @SerialName("tmdbID") val tmdbID: Int?,
-    @SerialName("episode") val episode: Int?,
-    @SerialName("season") val season: Int?,
-    @SerialName("movieName") val movieName: String? = null,
+    @JsonProperty("imdbID") @SerialName("imdbID") val imdbID: String?,
+    @JsonProperty("tmdbID") @SerialName("tmdbID") val tmdbID: Int?,
+    @JsonProperty("episode") @SerialName("episode") val episode: Int?,
+    @JsonProperty("season") @SerialName("season") val season: Int?,
+    @JsonProperty("movieName") @SerialName("movieName") val movieName: String? = null,
 )
 
 open class TmdbProvider : MainAPI() {

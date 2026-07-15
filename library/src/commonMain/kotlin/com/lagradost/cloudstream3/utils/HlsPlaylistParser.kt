@@ -26,8 +26,6 @@ import io.ktor.http.Url
 import kotlinx.io.Buffer
 import kotlinx.io.IOException
 import kotlinx.io.readByteArray
-import kotlin.text.deleteRange
-import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 @Suppress("unused")
@@ -537,7 +535,7 @@ object HlsPlaylistParser {
         }
     }
 
-    object C {
+    private object C {
         /**
          * [Uuid] for the ClearKey DRM scheme.
          *
