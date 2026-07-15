@@ -84,7 +84,7 @@ fun CloudStreamTheme(
     CompositionLocalProvider(LocalCloudStreamColors provides csColors) {
         MaterialTheme(
             colorScheme = csColors.toMaterial3ColorScheme(),
-            Typography(defaultFontFamily = resolvedFontFamily),
+            typography = Typography(defaultFontFamily = resolvedFontFamily),
             content = content,
         )
     }
