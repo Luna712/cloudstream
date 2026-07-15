@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.base64Decode
@@ -44,13 +43,13 @@ open class GUpload: ExtractorApi() {
 
     @Serializable
     private data class VideoInfo(
-        @JsonProperty("videoUrl") @SerialName("videoUrl") val videoUrl: String,
-        @JsonProperty("posterUrl") @SerialName("posterUrl") val posterUrl: String? = null,
-        @JsonProperty("videoId") @SerialName("videoId") val videoId: String? = null,
-        @JsonProperty("primaryColor") @SerialName("primaryColor") val primaryColor: String? = null,
-        @JsonProperty("audioTracks") @SerialName("audioTracks") val audioTracks: List<JsonElement> = emptyList(),
-        @JsonProperty("subtitleTracks") @SerialName("subtitleTracks") val subtitleTracks: List<JsonElement> = emptyList(),
-        @JsonProperty("vastFallbackList") @SerialName("vastFallbackList") val vastFallbackList: List<String> = emptyList(),
-        @JsonProperty("videoOwnerId") @SerialName("videoOwnerId") val videoOwnerId: Long = 0,
+        @SerialName("videoUrl") val videoUrl: String,
+        @SerialName("posterUrl") val posterUrl: String? = null,
+        @SerialName("videoId") val videoId: String? = null,
+        @SerialName("primaryColor") val primaryColor: String? = null,
+        @SerialName("audioTracks") val audioTracks: List<JsonElement> = emptyList(),
+        @SerialName("subtitleTracks") val subtitleTracks: List<JsonElement> = emptyList(),
+        @SerialName("vastFallbackList") val vastFallbackList: List<String> = emptyList(),
+        @SerialName("videoOwnerId") val videoOwnerId: Long = 0,
     )
 }
