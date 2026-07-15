@@ -1,13 +1,14 @@
 package com.lagradost.cloudstream3.extractors
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.getQualityFromName
 import com.lagradost.cloudstream3.utils.newExtractorLink
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 open class Linkbox : ExtractorApi() {
     override val name = "Linkbox"
@@ -18,7 +19,7 @@ open class Linkbox : ExtractorApi() {
         url: String,
         referer: String?,
         subtitleCallback: (SubtitleFile) -> Unit,
-        callback: (ExtractorLink) -> Unit
+        callback: (ExtractorLink) -> Unit,
     ) {
         val token = Regex("""(?:/f/|/file/|\?id=)(\w+)""").find(url)?.groupValues?.get(1)
         val id = app.get("$mainUrl/api/file/share_out_list/?sortField=utime&sortAsc=0&pageNo=1&pageSize=50&shareToken=$token").parsedSafe<Responses>()?.data?.itemId
@@ -39,24 +40,23 @@ open class Linkbox : ExtractorApi() {
 
     @Serializable
     data class Resolutions(
-        @SerialName("url") val url: String? = null,
-        @SerialName("resolution") val resolution: String? = null,
+        @JsonProperty("url") @SerialName("url") val url: String? = null,
+        @JsonProperty("resolution") @SerialName("resolution") val resolution: String? = null,
     )
 
     @Serializable
     data class ItemInfo(
-        @SerialName("resolutionList") val resolutionList: ArrayList<Resolutions>? = arrayListOf(),
+        @JsonProperty("resolutionList") @SerialName("resolutionList") val resolutionList: ArrayList<Resolutions>? = arrayListOf(),
     )
 
     @Serializable
     data class Data(
-        @SerialName("itemInfo") val itemInfo: ItemInfo? = null,
-        @SerialName("itemId") val itemId: String? = null,
+        @JsonProperty("itemInfo") @SerialName("itemInfo") val itemInfo: ItemInfo? = null,
+        @JsonProperty("itemId") @SerialName("itemId") val itemId: String? = null,
     )
 
     @Serializable
     data class Responses(
-        @SerialName("data") val data: Data? = null,
+        @JsonProperty("data") @SerialName("data") val data: Data? = null,
     )
-
 }

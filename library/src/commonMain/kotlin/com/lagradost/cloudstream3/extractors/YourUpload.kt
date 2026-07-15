@@ -1,15 +1,16 @@
 package com.lagradost.cloudstream3.extractors
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.getQualityFromName
 import com.lagradost.cloudstream3.utils.newExtractorLink
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-open class YourUpload: ExtractorApi() {
+open class YourUpload : ExtractorApi() {
     override val name = "Yourupload"
     override val mainUrl = "https://www.yourupload.com"
     override val requiresReferer = false
@@ -20,13 +21,11 @@ open class YourUpload: ExtractorApi() {
             val quality = Regex("\\d{3,4}p").find(this.select("title").text())?.groupValues?.get(0)
             this.select("script").map { script ->
                 if (script.data().contains("var jwplayerOptions = {")) {
-                    val data =
-                        script.data().substringAfter("var jwplayerOptions = {").substringBefore(",\n")
+                    val data = script.data().substringAfter("var jwplayerOptions = {").substringBefore(",\n")
                     val link = tryParseJson<ResponseSource>(
-                        "{${
-                            data.replace("file", "\"file\"").replace("'", "\"")
-                        }}"
+                        "{${data.replace("file", "\"file\"").replace("'", "\"")}}"
                     )
+
                     sources.add(
                         newExtractorLink(
                             source = name,
@@ -40,12 +39,12 @@ open class YourUpload: ExtractorApi() {
                 }
             }
         }
+
         return sources
     }
 
     @Serializable
     private data class ResponseSource(
-        @SerialName("file") val file: String,
+        @JsonProperty("file") @SerialName("file") val file: String,
     )
-
 }
