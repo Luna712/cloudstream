@@ -110,24 +110,9 @@ object RepositoryManager {
     fun sha256(file: File): String {
         val hashFunction = CryptographyProvider.Default.get(SHA256)
             .hasher().createHashFunction()
-        // Use kotlinx-io eventually
-        /*
         return hashFunction.use {
             it.update(file.asSource())
             "sha256-" + it.hashToByteArray().joinToString("") { b -> "%02x".format(b) }
-        }
-        */
-        hashFunction.use {
-            file.inputStream().use { fis ->
-                val buffer = ByteArray(8192)
-                var read = fis.read(buffer)
-                while (read != -1) {
-                    it.update(buffer, 0, read)
-                    read = fis.read(buffer)
-                }
-            }
-
-            return "sha256-" + it.hashToByteArray().joinToString("") { b -> "%02x".format(b) }
         }
     }
 
