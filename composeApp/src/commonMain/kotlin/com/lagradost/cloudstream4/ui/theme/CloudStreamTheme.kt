@@ -2,6 +2,7 @@ package com.lagradost.cloudstream4.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
@@ -50,6 +51,7 @@ private fun CloudStreamColorScheme.toMaterial3ColorScheme() = if (isLight) {
 fun CloudStreamTheme(
     mode: CloudStreamThemeMode = CloudStreamThemeMode.FollowSystem,
     primaryColor: CloudStreamPrimaryColor = CloudStreamPrimaryColor.NORMAL,
+    fontOverride: CloudStreamFontSpec? = null,
     content: @Composable () -> Unit,
 ) {
     val systemDark = isSystemInDarkTheme()
@@ -78,9 +80,11 @@ fun CloudStreamTheme(
         }
     }
 
+    val resolvedFontFamily = (fontOverride ?: csColors.fontSpec).resolve()
     CompositionLocalProvider(LocalCloudStreamColors provides csColors) {
         MaterialTheme(
             colorScheme = csColors.toMaterial3ColorScheme(),
+            Typography(defaultFontFamily = resolvedFontFamily),
             content = content,
         )
     }
