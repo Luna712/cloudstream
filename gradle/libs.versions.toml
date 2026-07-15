@@ -10,7 +10,7 @@ biometric = "1.4.0-alpha07"
 buildkonfigGradlePlugin = "0.21.2"
 coil = { strictly = "3.3.0" } # Later versions require jvmTarget 11 or later
 colorpicker = "6b46b49"
-conscryptAndroid = { strictly = "2.5.2" } # 2.5.3 crashes everything
+conscryptAndroid = { strictly = "2.6.1" } # 2.5.3 crashes everything
 constraintlayout = "2.2.1"
 coreKtx = "1.18.0"
 cryptography = "0.6.0"
