@@ -38,6 +38,7 @@ class CloudStreamColorScheme(
     primary: Color,
     ongoing: Color,
     isLight: Boolean,
+    fontSpec: CloudStreamFontSpec = CloudStreamDefaultFonts.GoogleSans,
 ) {
     var background by mutableStateOf(background)
     var surfaceVariant by mutableStateOf(surfaceVariant)
