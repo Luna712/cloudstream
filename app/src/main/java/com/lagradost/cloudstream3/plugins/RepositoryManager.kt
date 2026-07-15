@@ -20,6 +20,7 @@ import dev.whyoleg.cryptography.CryptographyProvider
 import dev.whyoleg.cryptography.algorithms.SHA256
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import kotlinx.io.asSource
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import java.io.File
