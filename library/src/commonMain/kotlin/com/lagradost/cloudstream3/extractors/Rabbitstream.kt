@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.ErrorLoadingException
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
@@ -172,28 +171,28 @@ open class Rabbitstream : ExtractorApi() {
 
     @Serializable
     data class Tracks(
-        @JsonProperty("file") @SerialName("file") val file: String? = null,
-        @JsonProperty("label") @SerialName("label") val label: String? = null,
-        @JsonProperty("kind") @SerialName("kind") val kind: String? = null,
+        @SerialName("file") val file: String? = null,
+        @SerialName("label") val label: String? = null,
+        @SerialName("kind") val kind: String? = null,
     )
 
     @Serializable
     data class Sources(
-        @JsonProperty("file") @SerialName("file") val file: String? = null,
-        @JsonProperty("type") @SerialName("type") val type: String? = null,
-        @JsonProperty("label") @SerialName("label") val label: String? = null,
+        @SerialName("file") val file: String? = null,
+        @SerialName("type") val type: String? = null,
+        @SerialName("label") val label: String? = null,
     )
 
     @Serializable
     data class SourcesResponses(
-        @JsonProperty("sources") @SerialName("sources") val sources: List<Sources?>? = emptyList(),
-        @JsonProperty("tracks") @SerialName("tracks") val tracks: List<Tracks?>? = emptyList(),
+        @SerialName("sources") val sources: List<Sources?>? = emptyList(),
+        @SerialName("tracks") val tracks: List<Tracks?>? = emptyList(),
     )
 
     @Serializable
     data class SourcesEncrypted(
-        @JsonProperty("sources") @SerialName("sources") val sources: String? = null,
-        @JsonProperty("encrypted") @SerialName("encrypted") val encrypted: Boolean? = null,
-        @JsonProperty("tracks") @SerialName("tracks") val tracks: List<Tracks?>? = emptyList(),
+        @SerialName("sources") val sources: String? = null,
+        @SerialName("encrypted") val encrypted: Boolean? = null,
+        @SerialName("tracks") val tracks: List<Tracks?>? = emptyList(),
     )
 }
