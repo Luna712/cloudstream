@@ -112,7 +112,7 @@ object RepositoryManager {
         val hashFunction = CryptographyProvider.Default.get(SHA256)
             .hasher().createHashFunction()
         return hashFunction.use {
-            it.update(file.asSource())
+            it.update(file.inputStream().asSource())
             "sha256-" + it.hashToByteArray().joinToString("") { b -> "%02x".format(b) }
         }
     }
