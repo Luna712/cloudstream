@@ -2,12 +2,11 @@ package com.lagradost.cloudstream4.ui.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.FontResource
-import org.jetbrains.compose.resources.Font as ResourceFont
 
 sealed interface CloudStreamFontSpec {
 
@@ -35,15 +34,14 @@ fun CloudStreamFontSpec.resolve(): FontFamily = when (this) {
     is CloudStreamFontSpec.SystemDefault -> FontFamily.Default
 
     is CloudStreamFontSpec.Bundled -> {
-            val fonts: List<Font> = entries.map { entry ->
-                ResourceFont(entry.resource, weight = entry.weight, style = entry.style)
-            }
-            val family: FontFamily = remember(fonts) { FontFamily(fonts) }
-            family
+        val fonts = entries.map { entry ->
+            Font(entry.resource, weight = entry.weight, style = entry.style)
         }
+        remember(fonts) { FontFamily(fonts) }
+    }
 
     // Not yet implemented
-    is CloudStreamFontSpec.Custom -> Unit /* remember(path) {
+    is CloudStreamFontSpec.Custom -> FontFamily.Default /* remember(path) {
         loadCustomFontFamily(path) ?: FontFamily.Default
     } */
 }
