@@ -4,6 +4,7 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import com.lagradost.cloudstream3.InternalAPI
 import com.lagradost.cloudstream3.json
 import com.lagradost.cloudstream3.mapper
+import com.lagradost.cloudstream3.mvvm.debugPrint
 import com.lagradost.cloudstream3.mvvm.logError
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
@@ -21,60 +22,89 @@ object AppUtils {
         return toJsonLiteral()
     }
 
-    /** Sometimes we want to encode as JSON even if it is already a String. */
     @InternalAPI
-    fun Any.toJsonLiteral(): String {
-        // @Serializable generates a serializer at compile time; contextual serializers are
-        // registered manually in serializersModule, we need both to support all cases
-        val serializer =
-            this::class.serializerOrNull() ?: json.serializersModule.getContextual(this::class)
-        return if (serializer != null) {
+    fun Any.toJsonLiteralImpl(serializer: KSerializer<Any>?): String {
+        var fallbackTrace: String? = null
+        if (serializer != null) {
             try {
-                @Suppress("UNCHECKED_CAST")
-                json.encodeToString(serializer as KSerializer<Any>, this)
+                debugPrint { "AppUtils/toJsonLiteral: using kotlinx serialization for ${this::class.qualifiedName}" }
+                return json.encodeToString(serializer, this)
             } catch (e: SerializationException) {
                 logError(e)
-                mapper.writeValueAsString(this)
+                fallbackTrace = e.stackTraceToString()
+                debugPrint { "AppUtils/toJsonLiteral: kotlinx failed, falling back to Jackson for ${this::class.qualifiedName}" }
             }
         } else {
-            mapper.writeValueAsString(this)
+            fallbackTrace = Exception().stackTraceToString()
         }
+        debugPrint { "AppUtils/toJsonLiteral: using Jackson for ${this::class.qualifiedName}\n$fallbackTrace" }
+        return mapper.writeValueAsString(this)
+    }
+
+    /** Runtime lookup version, subject to type erasure for generic types. */
+    @InternalAPI
+    fun Any.toJsonLiteral(): String {
+        val serializer = this::class.serializerOrNull()
+            ?: json.serializersModule.getContextual(this::class)
+        @Suppress("UNCHECKED_CAST")
+        return toJsonLiteralImpl(serializer as KSerializer<Any>?)
+    }
+
+    /** Reified version, preserves full generic type info at call site. */
+    @InternalAPI
+    @JvmName("toJsonLiteralReified")
+    inline fun <reified T : Any> T.toJsonLiteral(): String {
+        val serializer = runCatching { serializer<T>() }
+            .recoverCatching { json.serializersModule.getContextual(T::class) }
+            .getOrNull()
+        @Suppress("UNCHECKED_CAST")
+        return toJsonLiteralImpl(serializer as KSerializer<Any>?)
     }
 
     @InternalAPI
     fun <T : Any> parseJson(value: String, kClass: KClass<T>): T {
         val serializer = kClass.serializerOrNull() ?: json.serializersModule.getContextual(kClass)
+        var fallbackTrace: String? = null
         if (serializer != null) {
             try {
+                debugPrint { "AppUtils/parseJson(kClass): using kotlinx serialization for ${kClass.qualifiedName}" }
                 return json.decodeFromString(serializer, value)
             } catch (e: SerializationException) {
                 logError(e)
+                fallbackTrace = e.stackTraceToString()
+                debugPrint { "AppUtils/parseJson(kClass): kotlinx failed, falling back to Jackson for ${kClass.qualifiedName}" }
             }
+        } else {
+            fallbackTrace = Exception().stackTraceToString()
         }
-
+        debugPrint { "AppUtils/parseJson(kClass): using Jackson for ${kClass.qualifiedName}\n$fallbackTrace" }
         return mapper.readValue(value, kClass.java)
     }
 
     // This is inlined code and can easily cause breakage in extensions!
     // Watch out when editing this to make sure stable also supports all inlined code!
     inline fun <reified T : Any> parseJson(value: String): T {
-        // @Serializable generates a serializer at compile time; contextual serializers are
-        // registered manually in serializersModule, we need both to support all cases
         val serializer = runCatching { serializer<T>() }
             .recoverCatching { json.serializersModule.getContextual(T::class) }
             .getOrNull()
 
-        // Prefer Kotlin Serialization over Jackson
+        var fallbackTrace: String? = null
         if (serializer != null) {
             try {
+                debugPrint { "AppUtils/parseJson<reified>: using kotlinx serialization for ${T::class.qualifiedName}" }
                 return json.decodeFromString(serializer, value)
             } catch (e: SerializationException) {
                 logError(e)
-            } catch (_: Throwable) {
-                // Pass, the above code will trigger a NoSuchMethodError on stable due to our previously undefined json variable
+                fallbackTrace = e.stackTraceToString()
+                debugPrint { "AppUtils/parseJson<reified>: kotlinx failed, falling back to Jackson for ${T::class.qualifiedName}" }
+            } catch (e: Throwable) {
+                fallbackTrace = e.stackTraceToString()
+                debugPrint { "AppUtils/parseJson<reified>: unexpected error for ${T::class.qualifiedName}, falling back to Jackson" }
             }
+        } else {
+            fallbackTrace = Exception().stackTraceToString()
         }
-
+        debugPrint { "AppUtils/parseJson<reified>: using Jackson for ${T::class.qualifiedName}\n$fallbackTrace" }
         return mapper.readValue(value)
     }
 
@@ -85,7 +115,6 @@ object AppUtils {
         replaceWith = ReplaceWith("parseJson<T>(reader.readText())")
     )
     inline fun <reified T> parseJson(reader: java.io.Reader, valueType: Class<T>): T {
-        // Reader-based parsing has no kotlinx equivalent, fall back to Jackson
         return mapper.readValue(reader, valueType)
     }
 

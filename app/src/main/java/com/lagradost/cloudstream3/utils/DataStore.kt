@@ -7,6 +7,7 @@ import androidx.preference.PreferenceManager
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKeyClass
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.removeKey
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKeyClass
+import com.lagradost.cloudstream3.InternalAPI
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJsonLiteral
@@ -170,22 +171,34 @@ object DataStore {
         }
     }
 
-    fun <T> Context.setKey(path: String, value: T) {
+    @InternalAPI
+    fun Context.putStringKey(path: String, value: String?) {
         try {
             getSharedPrefs().edit {
-                putString(path, value?.toJsonLiteral())
+                putString(path, value)
             }
         } catch (e: Exception) {
             logError(e)
         }
     }
 
+    /** Non-reified fallback for binary compat. Prefer the reified overload where possible. */
+    fun <T> Context.setKey(path: String, value: T) {
+        putStringKey(path, value?.toJsonLiteral())
+    }
+
+    /** Reified overload, prevents type erasure for generic types. */
+    @JvmName("setKeyReified")
+    inline fun <reified T : Any> Context.setKey(path: String, value: T) {
+        putStringKey(path, value.toJsonLiteral())
+    }
+
     fun <T : Any> Context.getKey(path: String, valueType: Class<T>): T? {
-        try {
+        return try {
             val json: String = getSharedPrefs().getString(path, null) ?: return null
-            return parseJson(json, valueType.kotlin)
-        } catch (e: Exception) {
-            return null
+            parseJson(json, valueType.kotlin)
+        } catch (_: Exception) {
+            null
         }
     }
 
@@ -193,21 +206,37 @@ object DataStore {
         setKey(getFolderName(folder, path), value)
     }
 
+    @Deprecated(
+        message = "Use parseJson<T>(this) directly instead.",
+        level = DeprecationLevel.ERROR,
+        replaceWith = ReplaceWith(
+            expression = "parseJson<T>(this)",
+            imports = ["com.lagradost.cloudstream3.utils.AppUtils.parseJson"],
+        ),
+    )
     inline fun <reified T : Any> String.toKotlinObject(): T {
         return parseJson(this)
     }
 
+    @Deprecated(
+        message = "Use parseJson<T>(this) directly instead.",
+        level = DeprecationLevel.ERROR,
+        replaceWith = ReplaceWith(
+            expression = "parseJson<T>(this)",
+            imports = ["com.lagradost.cloudstream3.utils.AppUtils.parseJson"],
+        ),
+    )
     fun <T : Any> String.toKotlinObject(valueType: Class<T>): T {
         return parseJson(this, valueType.kotlin)
     }
 
     // GET KEY GIVEN PATH AND DEFAULT VALUE, NULL IF ERROR
     inline fun <reified T : Any> Context.getKey(path: String, defVal: T?): T? {
-        try {
+        return try {
             val json: String = getSharedPrefs().getString(path, null) ?: return defVal
-            return json.toKotlinObject()
-        } catch (e: Exception) {
-            return null
+            parseJson<T>(json)
+        } catch (_: Exception) {
+            null
         }
     }
 
