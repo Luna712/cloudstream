@@ -39,6 +39,17 @@ kotlin {
     }
 
     jvm()
+    js(IR) {
+        nodejs {
+            testTask {
+                useMocha {
+                    timeout = "10s"
+                }
+            }
+        }
+        useCommonJs()
+        binaries.library()
+    }
 
     compilerOptions {
         freeCompilerArgs.add("-Xexpect-actual-classes")
@@ -54,8 +65,6 @@ kotlin {
 
         commonMain.dependencies {
             implementation(libs.annotation) // Annotations
-            implementation(libs.jackson.module.kotlin) // JSON Parser
-            implementation(libs.jsoup) // HTML Parser
             implementation(libs.kotlinx.atomicfu)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.datetime)
@@ -64,7 +73,6 @@ kotlin {
             implementation(libs.ksoup) // HTML Parser
             implementation(libs.ktor.http)
             implementation(libs.nicehttp) // HTTP Library
-            implementation(libs.rhino) // Run JavaScript
             implementation(libs.bundles.cryptography) // Cryptography
         }
 

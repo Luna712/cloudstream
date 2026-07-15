@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
@@ -46,8 +45,8 @@ open class Uservideo : ExtractorApi() {
 
     @Serializable
     data class Sources(
-        @JsonProperty("src") @SerialName("src") val src: String? = null,
-        @JsonProperty("type") @SerialName("type") val type: String? = null,
-        @JsonProperty("label") @SerialName("label") val label: String? = null,
+        @SerialName("src") val src: String? = null,
+        @SerialName("type") val type: String? = null,
+        @SerialName("label") val label: String? = null,
     )
 }

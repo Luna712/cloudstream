@@ -97,11 +97,10 @@ open class FilemoonV2 : ExtractorApi() {
                 timeout = 15_000L
             )
 
-            val interceptedUrl = app.get(
-                iframeSrcUrl,
-                referer = referer,
+            val interceptedUrl = app.get(iframeSrcUrl) {
+                this.referer = referer
                 interceptor = resolver
-            ).url
+            }.url
 
             if (interceptedUrl.isNotEmpty()) {
                 M3u8Helper.generateM3u8(

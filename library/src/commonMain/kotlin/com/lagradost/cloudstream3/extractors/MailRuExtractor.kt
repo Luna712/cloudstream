@@ -2,7 +2,6 @@
 
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.*
@@ -46,13 +45,13 @@ open class MailRu : ExtractorApi() {
 
     @Serializable
     data class MailRuData(
-        @JsonProperty("provider") @SerialName("provider") val provider: String,
-        @JsonProperty("videos") @SerialName("videos") val videos: List<MailRuVideoData>,
+        @SerialName("provider") val provider: String,
+        @SerialName("videos") val videos: List<MailRuVideoData>,
     )
 
     @Serializable
     data class MailRuVideoData(
-        @JsonProperty("url") @SerialName("url") val url: String,
-        @JsonProperty("key") @SerialName("key") val key: String,
+        @SerialName("url") val url: String,
+        @SerialName("key") val key: String,
     )
 }

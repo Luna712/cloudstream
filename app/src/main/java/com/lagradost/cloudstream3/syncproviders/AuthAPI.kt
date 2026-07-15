@@ -1,7 +1,5 @@
 package com.lagradost.cloudstream3.syncproviders
 
-import com.fasterxml.jackson.annotation.JsonAlias
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.APIHolder
 import com.lagradost.cloudstream3.APIHolder.unixTime
 import com.lagradost.cloudstream3.APIHolder.unixTimeMS
@@ -30,22 +28,22 @@ data class AuthToken(
      * This is the general access tokens/api token representing a logged in user.
      * Access tokens are the thing that applications use to make API requests on behalf of a user.
      */
-    @JsonProperty("accessToken") @SerialName("accessToken")
+    @SerialName("accessToken")
     val accessToken: String? = null,
     /** For OAuth a special refresh token is issues to refresh the access token. */
-    @JsonProperty("refreshToken") @SerialName("refreshToken")
+    @SerialName("refreshToken")
     val refreshToken: String? = null,
     /** In UnixTime (sec) when it expires */
-    @JsonProperty("accessTokenLifetime") @SerialName("accessTokenLifetime")
+    @SerialName("accessTokenLifetime")
     val accessTokenLifetime: Long? = null,
     /** In UnixTime (sec) when it expires */
-    @JsonProperty("refreshTokenLifetime") @SerialName("refreshTokenLifetime")
+    @SerialName("refreshTokenLifetime")
     val refreshTokenLifetime: Long? = null,
     /**
      * Sometimes AuthToken needs to be customized to store e.g. username/password,
      * this acts as a catch all to store text or JSON data.
      */
-    @JsonProperty("payload") @SerialName("payload")
+    @SerialName("payload")
     val payload: String? = null,
 ) {
     fun isAccessTokenExpired(marginSec: Long = 10L) =
@@ -59,19 +57,18 @@ data class AuthToken(
 @Serializable
 data class AuthUser(
     /** Account display-name, can also be email if name does not exist */
-    @JsonProperty("name") @SerialName("name")
+    @SerialName("name")
     val name: String?,
     /**
      * Unique account identifier. If a subsequent login is done then it
      * will be refused if another account with the same id exists.
      */
-    @JsonProperty("id") @SerialName("id")
+    @SerialName("id")
     val id: Int,
     /** Profile picture URL */
-    @JsonProperty("profilePicture") @SerialName("profilePicture")
+    @SerialName("profilePicture")
     val profilePicture: String? = null,
     /** Profile picture Headers of the URL */
-    @JsonProperty("profilePictureHeaders") @JsonAlias("profilePictureHeader")
     @SerialName("profilePictureHeaders") @JsonNames("profilePictureHeader")
     val profilePictureHeaders: Map<String, String>? = null,
 )
@@ -86,8 +83,8 @@ data class AuthUser(
  */
 @Serializable
 data class AuthData(
-    @JsonProperty("user") @SerialName("user") val user: AuthUser,
-    @JsonProperty("token") @SerialName("token") val token: AuthToken,
+    @SerialName("user") val user: AuthUser,
+    @SerialName("token") val token: AuthToken,
 )
 
 data class AuthPinData(
@@ -112,10 +109,10 @@ data class AuthLoginRequirement(
 /** What the user responds to the AuthLoginRequirement */
 @Serializable
 data class AuthLoginResponse(
-    @JsonProperty("password") @SerialName("password") val password: String?,
-    @JsonProperty("username") @SerialName("username") val username: String?,
-    @JsonProperty("email") @SerialName("email") val email: String?,
-    @JsonProperty("server") @SerialName("server") val server: String?,
+    @SerialName("password") val password: String?,
+    @SerialName("username") val username: String?,
+    @SerialName("email") val email: String?,
+    @SerialName("server") val server: String?,
 )
 
 /** Stateless Authentication class used for all personalized content */

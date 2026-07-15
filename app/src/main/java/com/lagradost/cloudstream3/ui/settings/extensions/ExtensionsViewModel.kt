@@ -3,7 +3,6 @@ package com.lagradost.cloudstream3.ui.settings.extensions
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
 import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.amap
@@ -20,9 +19,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class RepositoryData(
-    @JsonProperty("iconUrl") @SerialName("iconUrl") val iconUrl: String?,
-    @JsonProperty("name") @SerialName("name") val name: String,
-    @JsonProperty("url") @SerialName("url") val url: String,
+    @SerialName("iconUrl") val iconUrl: String?,
+    @SerialName("name") val name: String,
+    @SerialName("url") val url: String,
 ) {
     constructor(name: String, url: String): this(null, name, url)
 }

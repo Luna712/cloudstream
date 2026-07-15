@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
@@ -33,7 +32,7 @@ open class GDMirrorbot : ExtractorApi() {
         val (sid, host) = if (!url.contains("key=")) {
             Pair(url.substringAfterLast("embed/"), getBaseUrl(app.get(url).url))
         } else {
-            var pageText = app.get(url).text()
+            var pageText = app.get(url).text
             val finalId = Regex("""FinalID\s*=\s*"([^"]+)"""").find(pageText)?.groupValues?.get(1)
             val myKey = Regex("""myKey\s*=\s*"([^"]+)"""").find(pageText)?.groupValues?.get(1)
             val idType = Regex("""idType\s*=\s*"([^"]+)"""").find(pageText)?.groupValues?.get(1) ?: "imdbid"
@@ -106,17 +105,17 @@ open class GDMirrorbot : ExtractorApi() {
 
     @Serializable
     private data class EmbedData(
-        @JsonProperty("data") @SerialName("data") val data: List<FileSlug>? = null,
+        @SerialName("data") val data: List<FileSlug>? = null,
     )
 
     @Serializable
     private data class FileSlug(
-        @JsonProperty("fileslug") @SerialName("fileslug") val fileSlug: String? = null,
+        @SerialName("fileslug") val fileSlug: String? = null,
     )
 
     @Serializable
     private data class EmbedHelper(
-        @JsonProperty("siteUrls") @SerialName("siteUrls") val siteUrls: Map<String, String>? = null,
-        @JsonProperty("siteFriendlyNames") @SerialName("siteFriendlyNames") val siteFriendlyNames: Map<String, String>? = null,
+        @SerialName("siteUrls") val siteUrls: Map<String, String>? = null,
+        @SerialName("siteFriendlyNames") val siteFriendlyNames: Map<String, String>? = null,
     )
 }

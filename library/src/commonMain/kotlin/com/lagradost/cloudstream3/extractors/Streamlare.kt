@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
@@ -11,8 +10,6 @@ import com.lagradost.cloudstream3.utils.Qualities
 import com.lagradost.nicehttp.RequestBodyTypes
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody.Companion.toRequestBody
 
 class Streamlare : Slmaxed() {
     override val mainUrl = "https://streamlare.com/"
@@ -29,7 +26,7 @@ open class Slmaxed : ExtractorApi() {
         val id = embedRegex.find(url)!!.groupValues[1]
         val json = app.post(
             "${mainUrl}api/video/stream/get",
-            requestBody = """{"id":"$id"}""".toRequestBody(RequestBodyTypes.JSON.toMediaTypeOrNull()),
+            json = """{"id":"$id"}"""
         ).parsed<JsonResponse>()
         return json.result?.mapNotNull {
             it.value.let { result ->
@@ -49,17 +46,17 @@ open class Slmaxed : ExtractorApi() {
 
     @Serializable
     data class JsonResponse(
-        @JsonProperty("status") @SerialName("status") val status: String? = null,
-        @JsonProperty("message") @SerialName("message") val message: String? = null,
-        @JsonProperty("type") @SerialName("type") val type: String? = null,
-        @JsonProperty("token") @SerialName("token") val token: String? = null,
-        @JsonProperty("result") @SerialName("result") val result: Map<String, Result>? = null,
+        @SerialName("status") val status: String? = null,
+        @SerialName("message") val message: String? = null,
+        @SerialName("type") val type: String? = null,
+        @SerialName("token") val token: String? = null,
+        @SerialName("result") val result: Map<String, Result>? = null,
     )
 
     @Serializable
     data class Result(
-        @JsonProperty("label") @SerialName("label") val label: String? = null,
-        @JsonProperty("file") @SerialName("file") val file: String? = null,
-        @JsonProperty("type") @SerialName("type") val type: String? = null,
+        @SerialName("label") val label: String? = null,
+        @SerialName("file") val file: String? = null,
+        @SerialName("type") val type: String? = null,
     )
 }

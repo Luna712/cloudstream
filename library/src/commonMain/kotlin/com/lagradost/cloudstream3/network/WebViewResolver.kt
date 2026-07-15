@@ -1,8 +1,10 @@
 package com.lagradost.cloudstream3.network
 
 import com.lagradost.cloudstream3.USER_AGENT
-import okhttp3.Interceptor
-import okhttp3.Request
+import com.lagradost.nicehttp.HttpSendInterceptorContext
+import com.lagradost.nicehttp.Interceptor
+import io.ktor.client.call.*
+import io.ktor.client.request.*
 
 /**
  * When used as Interceptor additionalUrls cannot be returned, use WebViewResolver(...).resolveUsingWebView(...)
@@ -13,7 +15,7 @@ import okhttp3.Request
  * @param script pass custom js to execute
  * @param scriptCallback will be called with the result from custom js
  * @param timeout close webview after timeout
- * */
+ */
 expect class WebViewResolver(
     interceptUrl: Regex,
     additionalUrls: List<Regex> = emptyList(),
@@ -21,42 +23,44 @@ expect class WebViewResolver(
     useOkhttp: Boolean = true,
     script: String? = null,
     scriptCallback: ((String) -> Unit)? = null,
-    timeout: Long = DEFAULT_TIMEOUT
+    timeout: Long = DEFAULT_TIMEOUT,
 ) : Interceptor {
     companion object {
         val DEFAULT_TIMEOUT: Long
         var webViewUserAgent: String?
     }
 
-    /**
-     * @param requestCallBack asynchronously return matched requests by either interceptUrl or additionalUrls. If true, destroy WebView.
-     * @return the final request (by interceptUrl) and all the collected urls (by additionalUrls).
-     * */
-    suspend fun resolveUsingWebView(
-        url: String,
-        referer: String? = null,
-        method: String = "GET",
-        requestCallBack: (Request) -> Boolean = { false },
-    ) : Pair<Request?, List<Request>>
+    override suspend fun intercept(ctx: HttpSendInterceptorContext): HttpClientCall
 
     /**
      * @param requestCallBack asynchronously return matched requests by either interceptUrl or additionalUrls. If true, destroy WebView.
      * @return the final request (by interceptUrl) and all the collected urls (by additionalUrls).
-     * */
+     */
+    suspend fun resolveUsingWebView(
+        url: String,
+        referer: String? = null,
+        method: String = "GET",
+        requestCallBack: (HttpRequestBuilder) -> Boolean = { false },
+    ): Pair<HttpRequestBuilder?, List<HttpRequestBuilder>>
+
+    /**
+     * @param requestCallBack asynchronously return matched requests by either interceptUrl or additionalUrls. If true, destroy WebView.
+     * @return the final request (by interceptUrl) and all the collected urls (by additionalUrls).
+     */
     suspend fun resolveUsingWebView(
         url: String,
         referer: String? = null,
         headers: Map<String, String> = emptyMap(),
         method: String = "GET",
-        requestCallBack: (Request) -> Boolean = { false },
-    ) : Pair<Request?, List<Request>>
+        requestCallBack: (HttpRequestBuilder) -> Boolean = { false },
+    ): Pair<HttpRequestBuilder?, List<HttpRequestBuilder>>
 
     /**
      * @param requestCallBack asynchronously return matched requests by either interceptUrl or additionalUrls. If true, destroy WebView.
      * @return the final request (by interceptUrl) and all the collected urls (by additionalUrls).
-     * */
+     */
     suspend fun resolveUsingWebView(
-        request: Request,
-        requestCallBack: (Request) -> Boolean = { false }
-    ): Pair<Request?, List<Request>>
+        request: HttpRequestBuilder,
+        requestCallBack: (HttpRequestBuilder) -> Boolean = { false },
+    ): Pair<HttpRequestBuilder?, List<HttpRequestBuilder>>
 }

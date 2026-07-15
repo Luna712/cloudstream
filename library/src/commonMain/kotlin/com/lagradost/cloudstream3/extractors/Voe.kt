@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.base64Decode
@@ -64,7 +63,7 @@ open class Voe : ExtractorApi() {
         callback: (ExtractorLink) -> Unit,
     ) {
         var res = app.get(url, referer = referer)
-        val redirectUrl = redirectRegex.find(res.document().data())?.groupValues?.get(1)
+        val redirectUrl = redirectRegex.find(res.document.data())?.groupValues?.get(1)
         if (redirectUrl != null) {
             res = app.get(redirectUrl, referer = referer)
         }
@@ -147,7 +146,7 @@ open class Voe : ExtractorApi() {
 
     @Serializable
     private data class VoeDecrypted(
-        @JsonProperty("source") @SerialName("source") val source: String? = null,
-        @JsonProperty("direct_access_url") @SerialName("direct_access_url") val directAccessUrl: String? = null,
+        @SerialName("source") val source: String? = null,
+        @SerialName("direct_access_url") val directAccessUrl: String? = null,
     )
 }

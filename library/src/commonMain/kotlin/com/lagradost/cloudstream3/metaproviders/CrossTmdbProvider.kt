@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.metaproviders
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.APIHolder.apis
 import com.lagradost.cloudstream3.APIHolder.getApiFromNameNull
 import com.lagradost.cloudstream3.ErrorLoadingException
@@ -37,8 +36,8 @@ class CrossTmdbProvider : TmdbProvider() {
 
     @Serializable
     data class CrossMetaData(
-        @JsonProperty("isSuccess") @SerialName("isSuccess") val isSuccess: Boolean,
-        @JsonProperty("movies") @SerialName("movies") val movies: List<Pair<String, String>>? = null,
+        @SerialName("isSuccess") val isSuccess: Boolean,
+        @SerialName("movies") val movies: List<Pair<String, String>>? = null,
     )
 
     override suspend fun loadLinks(

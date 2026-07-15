@@ -10,8 +10,6 @@ import androidx.core.content.edit
 import androidx.core.os.ConfigurationCompat
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
-import com.fasterxml.jackson.annotation.JsonAlias
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.APIHolder.allProviders
 import com.lagradost.cloudstream3.CloudStreamApp
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
@@ -153,12 +151,11 @@ class SettingsGeneral : BasePreferenceFragmentCompat() {
     @OptIn(ExperimentalSerializationApi::class) // JsonNames is an experimental annotation for now
     @Serializable
     data class CustomSite(
-        @JsonProperty("parentClassName") @JsonAlias("parentJavaClass")
         @SerialName("parentClassName") @JsonNames("parentJavaClass")
         val parentClassName: String, // ::class.simpleName
-        @JsonProperty("name") @SerialName("name") val name: String,
-        @JsonProperty("url") @SerialName("url") val url: String,
-        @JsonProperty("lang") @SerialName("lang") val lang: String,
+        @SerialName("name") val name: String,
+        @SerialName("url") val url: String,
+        @SerialName("lang") val lang: String,
     )
 
     companion object {

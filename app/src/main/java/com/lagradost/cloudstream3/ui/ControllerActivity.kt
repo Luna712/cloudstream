@@ -12,7 +12,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.google.android.gms.cast.MediaLoadOptions
 import com.google.android.gms.cast.MediaQueueItem
 import com.google.android.gms.cast.MediaSeekOptions
@@ -81,14 +80,14 @@ class SkipNextEpisodeController(val view: ImageView) : UIController() {
 
 @Serializable
 data class MetadataHolder(
-    @JsonProperty("apiName") @SerialName("apiName") val apiName: String,
-    @JsonProperty("isMovie") @SerialName("isMovie") val isMovie: Boolean,
-    @JsonProperty("title") @SerialName("title") val title: String?,
-    @JsonProperty("poster") @SerialName("poster") val poster: String?,
-    @JsonProperty("currentEpisodeIndex") @SerialName("currentEpisodeIndex") val currentEpisodeIndex: Int,
-    @JsonProperty("episodes") @SerialName("episodes") val episodes: List<ResultEpisode>,
-    @JsonProperty("currentLinks") @SerialName("currentLinks") val currentLinks: List<ExtractorLink>,
-    @JsonProperty("currentSubtitles") @SerialName("currentSubtitles") val currentSubtitles: List<SubtitleData>,
+    @SerialName("apiName") val apiName: String,
+    @SerialName("isMovie") val isMovie: Boolean,
+    @SerialName("title") val title: String?,
+    @SerialName("poster") val poster: String?,
+    @SerialName("currentEpisodeIndex") val currentEpisodeIndex: Int,
+    @SerialName("episodes") val episodes: List<ResultEpisode>,
+    @SerialName("currentLinks") val currentLinks: List<ExtractorLink>,
+    @SerialName("currentSubtitles") val currentSubtitles: List<SubtitleData>,
 )
 
 class SelectSourceController(val view: ImageView, val activity: ControllerActivity) : UIController() {

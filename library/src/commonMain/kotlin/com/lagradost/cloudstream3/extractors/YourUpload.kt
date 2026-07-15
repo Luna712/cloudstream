@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
 import com.lagradost.cloudstream3.utils.ExtractorApi
@@ -45,6 +44,6 @@ open class YourUpload : ExtractorApi() {
 
     @Serializable
     private data class ResponseSource(
-        @JsonProperty("file") @SerialName("file") val file: String,
+        @SerialName("file") val file: String,
     )
 }

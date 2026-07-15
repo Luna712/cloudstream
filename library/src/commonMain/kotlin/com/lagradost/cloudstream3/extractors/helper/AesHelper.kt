@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors.helper
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.Prerelease
 import com.lagradost.cloudstream3.base64DecodeArray
 import com.lagradost.cloudstream3.base64Encode
@@ -9,7 +8,6 @@ import dev.whyoleg.cryptography.CryptographyProvider
 import dev.whyoleg.cryptography.DelicateCryptographyApi
 import dev.whyoleg.cryptography.algorithms.AES
 import dev.whyoleg.cryptography.algorithms.MD5
-import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -44,22 +42,6 @@ object AesHelper {
         } else {
             base64Encode(cipher.encryptWithIv(iv, parse.ct.encodeToByteArray()))
         }
-    }
-
-    @Deprecated(
-        message = "Set padding = false for no padding",
-        level = DeprecationLevel.WARNING,
-    )
-    fun cryptoAESHandler(
-        data: String,
-        pass: ByteArray,
-        encrypt: Boolean = true,
-        padding: String,
-    ): String? {
-        // If it ends with NoPadding (e.g. "AES/CBC/NoPadding"), then it
-        // doesn't have padding, otherwise we treat as if it does.
-        val hasPadding = !padding.endsWith("NoPadding")
-        return runBlocking { cryptoAESHandler(data, pass, encrypt, hasPadding) }
     }
 
     // https://stackoverflow.com/a/41434590/8166854
@@ -115,8 +97,8 @@ object AesHelper {
 
     @Serializable
     private data class AesData(
-        @JsonProperty("ct") @SerialName("ct") val ct: String,
-        @JsonProperty("iv") @SerialName("iv") val iv: String,
-        @JsonProperty("s") @SerialName("s") val s: String,
+        @SerialName("ct") val ct: String,
+        @SerialName("iv") val iv: String,
+        @SerialName("s") val s: String,
     )
 }

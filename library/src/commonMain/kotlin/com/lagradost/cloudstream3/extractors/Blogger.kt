@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.*
 import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
@@ -44,7 +43,7 @@ open class Blogger : ExtractorApi() {
 
     @Serializable
     private data class ResponseSource(
-        @JsonProperty("play_url") @SerialName("play_url") val playUrl: String,
-        @JsonProperty("format_id") @SerialName("format_id") val formatId: Int,
+        @SerialName("play_url") val playUrl: String,
+        @SerialName("format_id") val formatId: Int,
     )
 }

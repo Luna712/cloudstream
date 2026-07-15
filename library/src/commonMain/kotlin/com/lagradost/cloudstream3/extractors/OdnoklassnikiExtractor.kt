@@ -2,7 +2,6 @@
 
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.ErrorLoadingException
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.USER_AGENT
@@ -74,7 +73,7 @@ open class Odnoklassniki : ExtractorApi() {
 
     @Serializable
     data class OkRuVideo(
-        @JsonProperty("name") @SerialName("name") val name: String,
-        @JsonProperty("url") @SerialName("url") val url: String,
+        @SerialName("name") val name: String,
+        @SerialName("url") val url: String,
     )
 }

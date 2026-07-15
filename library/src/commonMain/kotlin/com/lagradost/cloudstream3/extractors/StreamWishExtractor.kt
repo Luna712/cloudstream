@@ -195,11 +195,10 @@ open class StreamWishExtractor : ExtractorApi() {
                 timeout = 15_000L
             )
 
-            val interceptedStreamUrl = app.get(
-                url,
-                referer = referer,
+            val interceptedStreamUrl = app.get(url) {
+                this.referer = referer
                 interceptor = webViewM3u8Resolver
-            ).url
+            }.url
 
             if (interceptedStreamUrl.isNotEmpty()) {
                 M3u8Helper.generateM3u8(

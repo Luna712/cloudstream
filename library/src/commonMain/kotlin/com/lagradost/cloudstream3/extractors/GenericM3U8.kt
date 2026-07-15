@@ -13,11 +13,11 @@ open class GenericM3U8 : ExtractorApi() {
     override val requiresReferer = false
 
     override suspend fun getUrl(url: String, referer: String?): List<ExtractorLink> {
-        val response = app.get(
-            url, interceptor = WebViewResolver(
+        val response = app.get(url) {
+            interceptor = WebViewResolver(
                 Regex("""master\.m3u8""")
             )
-        )
+        }
         val sources = mutableListOf<ExtractorLink>()
         if (response.url.contains("m3u8"))
             M3u8Helper.generateM3u8(

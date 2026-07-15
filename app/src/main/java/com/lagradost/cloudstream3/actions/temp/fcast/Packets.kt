@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.actions.temp.fcast
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -24,12 +23,12 @@ enum class Opcode(val value: Byte) {
 
 @Serializable
 data class PlayMessage(
-    @JsonProperty("container") @SerialName("container") val container: String,
-    @JsonProperty("url") @SerialName("url") val url: String? = null,
-    @JsonProperty("content") @SerialName("content") val content: String? = null,
-    @JsonProperty("time") @SerialName("time") val time: Double? = null,
-    @JsonProperty("speed") @SerialName("speed") val speed: Double? = null,
-    @JsonProperty("headers") @SerialName("headers") val headers: Map<String, String>? = null,
+    @SerialName("container") val container: String,
+    @SerialName("url") val url: String? = null,
+    @SerialName("content") val content: String? = null,
+    @SerialName("time") val time: Double? = null,
+    @SerialName("speed") val speed: Double? = null,
+    @SerialName("headers") val headers: Map<String, String>? = null,
 )
 
 data class SeekMessage(

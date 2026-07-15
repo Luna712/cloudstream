@@ -90,11 +90,10 @@ open class Filesim : ExtractorApi() {
                 timeout = 15_000L
             )
 
-            val interceptedUrl = app.get(
-                url = pageResponse.url,
-                referer = referer,
+            val interceptedUrl = app.get(pageResponse.url) {
+                this.referer = referer
                 interceptor = resolver
-            ).url
+            }.url
 
             if (interceptedUrl.isNotEmpty()) {
                 M3u8Helper.generateM3u8(

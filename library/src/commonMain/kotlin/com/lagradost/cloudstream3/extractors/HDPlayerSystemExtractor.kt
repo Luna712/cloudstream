@@ -2,7 +2,6 @@
 
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.api.Log
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.utils.*
@@ -53,9 +52,9 @@ open class HDPlayerSystem : ExtractorApi() {
 
     @Serializable
     data class SystemResponse(
-        @JsonProperty("hls") @SerialName("hls") val hls: String,
-        @JsonProperty("videoImage") @SerialName("videoImage") val videoImage: String? = null,
-        @JsonProperty("videoSource") @SerialName("videoSource") val videoSource: String,
-        @JsonProperty("securedLink") @SerialName("securedLink") val securedLink: String,
+        @SerialName("hls") val hls: String,
+        @SerialName("videoImage") val videoImage: String? = null,
+        @SerialName("videoSource") val videoSource: String,
+        @SerialName("securedLink") val securedLink: String,
     )
 }

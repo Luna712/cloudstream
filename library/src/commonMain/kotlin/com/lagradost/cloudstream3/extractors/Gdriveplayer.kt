@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream3.extractors
 
-import com.fasterxml.jackson.annotation.JsonProperty
 import com.fleeksoft.ksoup.nodes.Element
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.extractors.helper.AesHelper.cryptoAESHandler
@@ -121,8 +120,8 @@ open class Gdriveplayer : ExtractorApi() {
 
     @Serializable
     data class Tracks(
-        @JsonProperty("file") @SerialName("file") val file: String,
-        @JsonProperty("kind") @SerialName("kind") val kind: String,
-        @JsonProperty("label") @SerialName("label") val label: String,
+        @SerialName("file") val file: String,
+        @SerialName("kind") val kind: String,
+        @SerialName("label") val label: String,
     )
 }

@@ -8,7 +8,6 @@ import androidx.annotation.OptIn
 import androidx.media3.common.MimeTypes
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.ui.SubtitleView
-import com.fasterxml.jackson.annotation.JsonIgnore
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.ui.subtitles.SaveCaptionStyle
 import com.lagradost.cloudstream3.ui.subtitles.SubtitlesFragment.Companion.setSubtitleViewStyle
@@ -47,7 +46,6 @@ data class SubtitleData(
     @SerialName("languageCode") val languageCode: String?,
 ) {
     /** Internal ID for media3, unique for each link. */
-    @JsonIgnore
     fun getId(): String {
         return if (origin == SubtitleOrigin.EMBEDDED_IN_VIDEO) url
         else "$url|$name"
@@ -59,7 +57,6 @@ data class SubtitleData(
     }
 
     /** Tries hard to figure out a valid IETF tag based on language code and name. Will return null if not found. */
-    @JsonIgnore
     fun getIETF_tag(): String? {
         return fromLanguageToTagIETF(this.languageCode) ?: fromLanguageToTagIETF(this.originalName, halfMatch = true)
     }
@@ -69,7 +66,6 @@ data class SubtitleData(
     /**
      * Gets the URL, but tries to fix it if it is malformed.
      */
-    @JsonIgnore
     fun getFixedUrl(): String {
         // Some extensions fail to include the protocol, this helps with that.
         val fixedSubUrl = if (this.url.startsWith("//")) {
