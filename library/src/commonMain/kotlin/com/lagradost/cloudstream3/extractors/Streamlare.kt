@@ -1,7 +1,6 @@
 package com.lagradost.cloudstream3.extractors
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.utils.ExtractorApi
 import com.lagradost.cloudstream3.utils.ExtractorLink
@@ -10,7 +9,8 @@ import com.lagradost.cloudstream3.utils.INFER_TYPE
 import com.lagradost.cloudstream3.utils.newExtractorLink
 import com.lagradost.cloudstream3.utils.Qualities
 import com.lagradost.nicehttp.RequestBodyTypes
-
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 class Streamlare : Slmaxed() {
     override val mainUrl = "https://streamlare.com/"
@@ -23,24 +23,6 @@ open class Slmaxed : ExtractorApi() {
 
     // https://slmaxed.com/e/oLvgezw3LjPzbp8E -> oLvgezw3LjPzbp8E
     val embedRegex = Regex("""/e/([^/]*)""")
-
-
-    @Serializable
-    data class JsonResponse(
-        @SerialName("status") val status: String? = null,
-        @SerialName("message") val message: String? = null,
-        @SerialName("type") val type: String? = null,
-        @SerialName("token") val token: String? = null,
-        @SerialName("result") val result: Map<String, Result>? = null
-    )
-
-    @Serializable
-    data class Result(
-        @SerialName("label") val label: String? = null,
-        @SerialName("file") val file: String? = null,
-        @SerialName("type") val type: String? = null
-    )
-
     override suspend fun getUrl(url: String, referer: String?): List<ExtractorLink>? {
         val id = embedRegex.find(url)!!.groupValues[1]
         val json = app.post(
@@ -53,18 +35,29 @@ open class Slmaxed : ExtractorApi() {
                     this.name,
                     this.name,
                     result.file ?: return@mapNotNull null,
-                    type = if (result.type?.contains(
-                            "hls",
-                            ignoreCase = true
-                        ) == true
-                    ) ExtractorLinkType.M3U8 else INFER_TYPE
+                    type = if (result.type?.contains("hls", ignoreCase = true) == true) ExtractorLinkType.M3U8 else INFER_TYPE,
                 ) {
                     this.referer = url
-                    this.quality =
-                        result.label?.replace("p", "", ignoreCase = true)?.trim()?.toIntOrNull()
-                            ?: Qualities.Unknown.value
+                    this.quality = result.label?.replace("p", "", ignoreCase = true)?.trim()?.toIntOrNull()
+                        ?: Qualities.Unknown.value
                 }
             }
         }
     }
+
+    @Serializable
+    data class JsonResponse(
+        @JsonProperty("status") @SerialName("status") val status: String? = null,
+        @JsonProperty("message") @SerialName("message") val message: String? = null,
+        @JsonProperty("type") @SerialName("type") val type: String? = null,
+        @JsonProperty("token") @SerialName("token") val token: String? = null,
+        @JsonProperty("result") @SerialName("result") val result: Map<String, Result>? = null,
+    )
+
+    @Serializable
+    data class Result(
+        @JsonProperty("label") @SerialName("label") val label: String? = null,
+        @JsonProperty("file") @SerialName("file") val file: String? = null,
+        @JsonProperty("type") @SerialName("type") val type: String? = null,
+    )
 }
