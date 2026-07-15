@@ -33,12 +33,11 @@ sealed interface CloudStreamFontSpec {
 fun CloudStreamFontSpec.resolve(): FontFamily = when (this) {
     is CloudStreamFontSpec.SystemDefault -> FontFamily.Default
 
-    is CloudStreamFontSpec.Bundled -> remember(entries) {
-        FontFamily(
-            entries.map { entry ->
-                Font(entry.resource, weight = entry.weight, style = entry.style)
-            }
-        )
+    is CloudStreamFontSpec.Bundled -> {
+        val fonts = entries.map { entry ->
+            Font(entry.resource, weight = entry.weight, style = entry.style)
+        }
+        remember(fonts) { FontFamily(fonts) }
     }
 
     // Not yet implemented
