@@ -5,7 +5,7 @@ enum class CloudStreamThemeMode {
     Dark,
     /** "Amoled" pure black (#000000) */
     Amoled,
-    /** "AmoledLight" pure black (#000000) bg, lighter (#121213) surfaces */
+    /** "AmoledLight" pure black (#000000) background, lighter (#121213) surfaces */
     AmoledLight,
     /** "Light" white/gray backgrounds, dark text */
     Light,
