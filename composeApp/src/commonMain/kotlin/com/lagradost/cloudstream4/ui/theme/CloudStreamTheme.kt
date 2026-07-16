@@ -1,8 +1,9 @@
 package com.lagradost.cloudstream4.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Typography
+import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
@@ -11,9 +12,6 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
-
-import androidx.compose.material3.LocalTextStyle
-import androidx.compose.material3.ProvideTextStyle
 
 val LocalCloudStreamColors = staticCompositionLocalOf { darkScheme() }
 
@@ -54,7 +52,7 @@ private fun CloudStreamColorScheme.toMaterial3ColorScheme() = if (isLight) {
 fun CloudStreamTheme(
     mode: CloudStreamThemeMode = CloudStreamThemeMode.FollowSystem,
     primaryColor: CloudStreamPrimaryColor = CloudStreamPrimaryColor.NORMAL,
-    fontOverride: CloudStreamFontSpec? = null,
+    fontSpec: CloudStreamFontSpec = CloudStreamDefaultFonts.GoogleSans,
     content: @Composable () -> Unit,
 ) {
     val systemDark = isSystemInDarkTheme()
@@ -83,12 +81,11 @@ fun CloudStreamTheme(
         }
     }
 
-    val resolvedFontFamily = (fontOverride ?: csColors.fontSpec).resolve()
     CompositionLocalProvider(LocalCloudStreamColors provides csColors) {
         MaterialTheme(
             colorScheme = csColors.toMaterial3ColorScheme(),
         ) {
-            ProvideTextStyle(LocalTextStyle.current.copy(fontFamily = resolvedFontFamily)) {
+            ProvideTextStyle(LocalTextStyle.current.copy(fontFamily = fontSpec.resolve())) {
                 content()
             }
         }
