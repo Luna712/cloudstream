@@ -17,7 +17,7 @@ sealed interface CloudStreamFontSpec {
         data class Entry(
             val resource: FontResource,
             val weight: FontWeight,
-            val style: FontStyle = FontStyle.Normal,
+            val style: FontStyle,
         )
     }
 
