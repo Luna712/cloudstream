@@ -14,7 +14,7 @@ import com.lagradost.cloudstream3.syncproviders.providers.SubDlApi
 import com.lagradost.cloudstream3.syncproviders.providers.SubSourceApi
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.videoskip.AnimeSkipAuth
-import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.seconds
 
 abstract class AccountManager {
     companion object {
@@ -145,23 +145,14 @@ abstract class AccountManager {
         const val APP_STRING_SHARE = "csshare"
 
         fun secondsToReadable(seconds: Int, completedValue: String): String {
-            var secondsLong = seconds.toLong()
-            val days = TimeUnit.SECONDS
-                .toDays(secondsLong)
-            secondsLong -= TimeUnit.DAYS.toSeconds(days)
+            if (seconds < 0) return completedValue
 
-            val hours = TimeUnit.SECONDS
-                .toHours(secondsLong)
-            secondsLong -= TimeUnit.HOURS.toSeconds(hours)
+            val duration = seconds.seconds
+            val days = duration.inWholeDays
+            val hours = duration.inWholeHours % 24
+            val minutes = duration.inWholeMinutes % 60
 
-            val minutes = TimeUnit.SECONDS
-                .toMinutes(secondsLong)
-            secondsLong -= TimeUnit.MINUTES.toSeconds(minutes)
-            if (minutes < 0) {
-                return completedValue
-            }
-            //println("$days $hours $minutes")
-            return "${if (days != 0L) "$days" + "d " else ""}${if (hours != 0L) "$hours" + "h " else ""}${minutes}m"
+            return "${if (days != 0L) "${days}d " else ""}${if (hours != 0L) "${hours}h " else ""}${minutes}m"
         }
     }
 }
