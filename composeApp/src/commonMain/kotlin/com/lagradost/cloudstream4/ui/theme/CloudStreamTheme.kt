@@ -12,6 +12,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
+import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.ProvideTextStyle
+
 val LocalCloudStreamColors = staticCompositionLocalOf { darkScheme() }
 
 object CloudStreamTheme {
@@ -84,8 +87,10 @@ fun CloudStreamTheme(
     CompositionLocalProvider(LocalCloudStreamColors provides csColors) {
         MaterialTheme(
             colorScheme = csColors.toMaterial3ColorScheme(),
-            typography = Typography(defaultFontFamily = resolvedFontFamily),
-            content = content,
-        )
+        ) {
+            ProvideTextStyle(LocalTextStyle.current.copy(fontFamily = resolvedFontFamily)) {
+                content()
+            }
+        }
     }
 }
