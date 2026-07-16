@@ -319,8 +319,8 @@ object APIHolder {
                 "search" to title,
                 "sort" to "SEARCH_MATCH",
                 "type" to "ANIME",
-            )
-        ).toJson()
+            ).toJson()
+        )
 
         return app.post("https://graphql.anilist.co", data = data)
             .parsedSafe<AniSearch>()
