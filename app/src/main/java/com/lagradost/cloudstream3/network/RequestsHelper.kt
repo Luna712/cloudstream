@@ -7,12 +7,9 @@ import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.USER_AGENT
 import com.lagradost.cloudstream3.mvvm.safe
 import com.lagradost.nicehttp.Requests
-import com.lagradost.nicehttp.addNiceHttpResponseCapture
+import com.lagradost.nicehttp.defaultHttpClient
 import com.lagradost.nicehttp.ignoreAllSSLErrors
 import io.ktor.client.*
-import io.ktor.client.engine.okhttp.*
-import io.ktor.client.plugins.*
-import io.ktor.client.plugins.cache.*
 import okhttp3.Cache
 import okhttp3.Headers
 import okhttp3.Headers.Companion.toHeaders
@@ -23,12 +20,12 @@ import java.security.Security
 
 // Backwards compatible constructor, mark as deprecated later
 fun Requests.initClient(context: Context) {
-    this.baseClient = buildDefaultKtorClient(context)
+    this.baseClient = defaultHttpClient(buildDefaultClient(context))
 }
 
 /** Only use ignoreSSL if you know what you are doing */
 fun Requests.initClient(context: Context, ignoreSSL: Boolean = false) {
-    this.baseClient = buildDefaultKtorClient(context, ignoreSSL)
+    this.baseClient = defaultHttpClient(buildDefaultClient(context, ignoreSSL))
 }
 
 // Backwards compatible constructor, mark as deprecated later
@@ -65,23 +62,6 @@ fun buildDefaultClient(context: Context, ignoreSSL: Boolean = false): OkHttpClie
             }
         }
         .build()
-}
-
-/**
- * Builds a Ktor [HttpClient] using the OkHttp engine configured with the same
- * settings as [buildDefaultClient] — cache, DNS, SSL, etc.
- */
-fun buildDefaultKtorClient(context: Context, ignoreSSL: Boolean = false): HttpClient {
-    val okHttpClient = buildDefaultClient(context, ignoreSSL)
-    return HttpClient(OkHttp) {
-        install(HttpTimeout)
-        install(HttpCache)
-        install(HttpRequestRetry) { noRetry() }
-        engine {
-            preconfigured = okHttpClient
-            config { addNiceHttpResponseCapture() }
-        }
-    }
 }
 
 private val DEFAULT_HEADERS = mapOf("user-agent" to USER_AGENT)
