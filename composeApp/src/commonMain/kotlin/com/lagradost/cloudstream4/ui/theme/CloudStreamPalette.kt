@@ -20,6 +20,9 @@ internal object CloudStreamPalette {
     val AmoledBlack = Color(0xFF000000)
     val AmoledNearBlack = Color(0xFF111111)
 
+    // AmoledLight
+    val AmoledLightBlackBg = Color(0xFF121213)
+
     // Light
     val LightPrimaryGrayBg = Color(0xFFF1F1F1)
     val LightBlackBg = Color(0xFFFFFFFF)
