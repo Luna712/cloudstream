@@ -7,6 +7,7 @@ import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.USER_AGENT
 import com.lagradost.cloudstream3.mvvm.safe
 import com.lagradost.nicehttp.Requests
+import com.lagradost.nicehttp.addNiceHttpResponseCapture
 import com.lagradost.nicehttp.ignoreAllSSLErrors
 import io.ktor.client.*
 import io.ktor.client.engine.okhttp.*
@@ -78,6 +79,7 @@ fun buildDefaultKtorClient(context: Context, ignoreSSL: Boolean = false): HttpCl
         install(HttpRequestRetry) { noRetry() }
         engine {
             preconfigured = okHttpClient
+            config { addNiceHttpResponseCapture() }
         }
     }
 }
