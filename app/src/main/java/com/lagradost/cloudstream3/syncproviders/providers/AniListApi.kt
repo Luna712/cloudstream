@@ -270,7 +270,7 @@ class AniListApi : SyncAPI() {
                     // headers = mapOf(),
                     data = data, // (if (vars == null) mapOf("query" to q) else mapOf("query" to q, "variables" to vars))
                     timeout = 5000 // REASONABLE TIMEOUT
-                ).toString().replace("\\", "")
+                ).text().replace("\\", "")
                 return parseJson<GetSearchRoot>(res)
             } catch (e: Exception) {
                 logError(e)
