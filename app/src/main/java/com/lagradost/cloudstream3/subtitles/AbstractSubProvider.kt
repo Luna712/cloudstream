@@ -4,10 +4,10 @@ import androidx.core.net.toUri
 import com.lagradost.cloudstream3.MainActivity.Companion.deleteFileOnExit
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.ui.player.SubtitleOrigin
-import okio.BufferedSource
-import okio.buffer
-import okio.sink
-import okio.source
+import kotlinx.io.Source
+import kotlinx.io.asSink
+import kotlinx.io.asSource
+import kotlinx.io.buffered
 import java.io.File
 import java.util.zip.ZipInputStream
 
@@ -17,13 +17,13 @@ import java.util.zip.ZipInputStream
  * @see addFile
  */
 class SubtitleResource {
-    fun downloadFile(source: BufferedSource): File {
+    fun downloadFile(source: Source): File {
         val file = File.createTempFile("temp-subtitle", ".tmp").apply {
             deleteFileOnExit(this)
         }
-        val sink = file.sink().buffer()
-        sink.writeAll(source)
-        sink.close()
+        file.outputStream().asSink().buffered().use { sink ->
+            sink.transferFrom(source)
+        }
         source.close()
 
         return file
@@ -41,8 +41,8 @@ class SubtitleResource {
                 }
                 entries.add(zipEntry.name to tempFile)
 
-                tempFile.sink().buffer().use { buffer ->
-                    buffer.writeAll(zipInputStream.source())
+                tempFile.outputStream().asSink().buffered().use { sink ->
+                    sink.transferFrom(zipInputStream.asSource())
                 }
 
                 zipEntry = zipInputStream.nextEntry
@@ -90,4 +90,3 @@ class SubtitleResource {
         }
     }
 }
-
