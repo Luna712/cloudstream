@@ -43,7 +43,7 @@ object VotingApi {
         val id = transformUrl(pluginUrl)
         val url = "$API_DOMAIN/increment/$id"
         Log.d(LOGKEY, "Requesting POST: $url")
-        return app.post(url, emptyMap<String, String>())
+        return app.post(url) { headers = emptyMap<String, String>() }
             .parsedSafe<CountifyResult>()?.count != null
     }
 

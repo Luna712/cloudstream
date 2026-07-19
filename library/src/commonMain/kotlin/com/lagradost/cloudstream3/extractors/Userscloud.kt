@@ -18,7 +18,7 @@ open class Userscloud : ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ) {
-        val res = app.get(url).document
+        val res = app.get(url).document()
         val video = res.selectFirst("video#vjsplayer source")?.attr("src")
         val quality = res.selectFirst("div.innerTB h2 b")?.text()
         callback.invoke(

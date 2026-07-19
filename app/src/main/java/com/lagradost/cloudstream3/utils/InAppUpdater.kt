@@ -27,11 +27,11 @@ import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream3.utils.GitInfo.currentCommitHash
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import kotlinx.io.Sink
+import kotlinx.io.asSink
+import kotlinx.io.buffered
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import okio.BufferedSink
-import okio.buffer
-import okio.sink
 import java.io.BufferedReader
 import java.io.File
 import java.io.IOException
@@ -101,7 +101,7 @@ object InAppUpdater {
         val url = "https://api.github.com/repos/$GITHUB_USER_NAME/$GITHUB_REPO/releases"
         val headers = mapOf("Accept" to "application/vnd.github.v3+json")
         val response = parseJson<Array<GithubRelease>>(
-            app.get(url, headers = headers).text
+            app.get(url, headers = headers).text()
         ).toList()
 
         val versionRegex = Regex("""(.*?((\d+)\.(\d+)\.(\d+))\.apk)""")
@@ -156,7 +156,7 @@ object InAppUpdater {
         val releaseUrl = "https://api.github.com/repos/$GITHUB_USER_NAME/$GITHUB_REPO/releases"
         val headers = mapOf("Accept" to "application/vnd.github.v3+json")
         val response = parseJson<Array<GithubRelease>>(
-            app.get(releaseUrl, headers = headers).text
+            app.get(releaseUrl, headers = headers).text()
         ).toList()
 
         val found = response.lastOrNull { rel ->
@@ -171,7 +171,7 @@ object InAppUpdater {
             return Update(false, null, null, null, null)
         }
 
-        val tagResponse = parseJson<GithubTag>(app.get(tagUrl, headers = headers).text)
+        val tagResponse = parseJson<GithubTag>(app.get(tagUrl, headers = headers).text())
         val updateCommitHash = tagResponse.githubObject.sha.trim().take(7)
         Log.d(LOG_TAG, "Fetched GitHub tag: $updateCommitHash")
 
@@ -198,11 +198,12 @@ object InAppUpdater {
             }?.forEach { deleteFileOnExit(it) }
 
             val downloadedFile = File.createTempFile(appUpdateName, ".$appUpdateSuffix")
-            val sink: BufferedSink = downloadedFile.sink().buffer()
+            val sink: Sink = downloadedFile.outputStream().asSink().buffered()
 
             updateLock.withLock {
-                sink.writeAll(app.get(url).body.source())
-                sink.close()
+                sink.use {
+                    it.transferFrom(app.get(url).body().source())
+                }
                 openApk(this, Uri.fromFile(downloadedFile))
             }
 

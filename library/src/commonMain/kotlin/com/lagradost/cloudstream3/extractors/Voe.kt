@@ -64,12 +64,12 @@ open class Voe : ExtractorApi() {
         callback: (ExtractorLink) -> Unit,
     ) {
         var res = app.get(url, referer = referer)
-        val redirectUrl = redirectRegex.find(res.document.data())?.groupValues?.get(1)
+        val redirectUrl = redirectRegex.find(res.document().data())?.groupValues?.get(1)
         if (redirectUrl != null) {
             res = app.get(redirectUrl, referer = referer)
         }
 
-        val encodedString = res.document.selectFirst("script[type=application/json]")
+        val encodedString = res.document().selectFirst("script[type=application/json]")
             ?.data()?.trim()
             ?.substringAfter("[\"")
             ?.substringBeforeLast("\"]")

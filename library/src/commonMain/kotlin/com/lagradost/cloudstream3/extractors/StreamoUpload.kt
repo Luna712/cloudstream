@@ -20,7 +20,7 @@ open class StreamoUpload : ExtractorApi() {
         callback: (ExtractorLink) -> Unit
     ) {
         val response = app.get(url, referer = referer)
-        response.document.select("script").map { script ->
+        response.document().select("script").map { script ->
             if (getPacked(script.data()) != null) {
                 val data = getAndUnpack(script.data())
                 JwPlayerHelper.extractStreamLinks(data, name, mainUrl, callback, subtitleCallback)

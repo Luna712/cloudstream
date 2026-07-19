@@ -30,9 +30,9 @@ open class Fastream : ExtractorApi() {
                     "file_code" to id,
                     "auto" to "1"
                 )
-            ).document
+            ).document()
         } else {
-            app.get(url, referer = url).document
+            app.get(url, referer = url).document()
         }
         response.select("script").amap { script ->
             if (getPacked(script.data()) != null) {

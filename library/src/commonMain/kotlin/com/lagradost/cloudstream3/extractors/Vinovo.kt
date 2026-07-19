@@ -29,7 +29,7 @@ open class VinovoTo : ExtractorApi() {
     ) {
         val fixedUrl = url.replace("/d/", "/e/")
         val resp = app.get(fixedUrl, referer = referer)
-        val doc = resp.document
+        val doc = resp.document()
 
         val videoBaseUrl = doc.selectFirst("video")?.attr("data-base") ?: return
         val videoToken = doc.selectFirst("meta[name=token]")?.attr("content") ?: return

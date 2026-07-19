@@ -15,7 +15,7 @@ class AsianEmbedHelper {
             callback: (ExtractorLink) -> Unit
         ) {
             // Fetch links
-            val doc = app.get(url).document
+            val doc = app.get(url).document()
             val links = doc.select("div#list-server-more > ul > li.linkserver")
             if (!links.isNullOrEmpty()) {
                 links.amap {

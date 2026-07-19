@@ -177,12 +177,12 @@ open class StreamWishExtractor : ExtractorApi() {
         val pageResponse = app.get(resolveEmbedUrl(url), referer = referer)
 
         val playerScriptData = when {
-            !getPacked(pageResponse.text).isNullOrEmpty() -> getAndUnpack(pageResponse.text)
-            pageResponse.document.select("script").any { it.html().contains("jwplayer(\"vplayer\").setup(") } ->
-                pageResponse.document.select("script").firstOrNull {
+            !getPacked(pageResponse.text()).isNullOrEmpty() -> getAndUnpack(pageResponse.text())
+            pageResponse.document().select("script").any { it.html().contains("jwplayer(\"vplayer\").setup(") } ->
+                pageResponse.document().select("script").firstOrNull {
                     it.html().contains("jwplayer(\"vplayer\").setup(")
                 }?.html()
-            else -> pageResponse.document.selectFirst("script:containsData(sources:)")?.data()
+            else -> pageResponse.document().selectFirst("script:containsData(sources:)")?.data()
         }
 
         val linkFound = JwPlayerHelper.extractStreamLinks(playerScriptData.orEmpty(), name, mainUrl, callback, subtitleCallback, headers)

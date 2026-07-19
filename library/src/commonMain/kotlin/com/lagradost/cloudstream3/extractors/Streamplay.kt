@@ -26,7 +26,7 @@ open class Streamplay : ExtractorApi() {
         val redirectUrl = request.url
         val mainServer = Url(redirectUrl).let { "${it.protocol.name}://${it.host}" }
         val key = redirectUrl.substringAfter("embed-").substringBefore(".html")
-        val token = request.document.select("script").find { it.data().contains("sitekey:") }?.data()
+        val token = request.document().select("script").find { it.data().contains("sitekey:") }?.data()
             ?.substringAfterLast("sitekey: '")?.substringBefore("',")?.let { captchaKey ->
                 getCaptchaToken(
                     redirectUrl,
@@ -45,7 +45,7 @@ open class Streamplay : ExtractorApi() {
                 "Accept" to "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
                 "Content-Type" to "application/x-www-form-urlencoded",
             ),
-        ).document.select("script").find { script ->
+        ).document().select("script").find { script ->
             script.data().contains("eval(function(p,a,c,k,e,d)")
         }?.let {
             val data = getAndUnpack(it.data()).substringAfter("sources=[").substringBefore(",desc")

@@ -24,7 +24,7 @@ open class HDMomPlayer : ExtractorApi() {
     ) {
         val m3uLink: String?
         val extRef = referer ?: ""
-        val iSource = app.get(url, referer = extRef).text
+        val iSource = app.get(url, referer = extRef).text()
         val bePlayer = Regex("""bePlayer\('([^']+)',\s*'(\{[^\}]+\})'\);""").find(iSource)?.groupValues
         if (bePlayer != null) {
             val bePlayerPass = bePlayer.get(1)

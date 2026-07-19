@@ -2,6 +2,7 @@ package com.lagradost.cloudstream3.network
 
 import androidx.annotation.AnyThread
 import com.lagradost.cloudstream3.app
+import com.lagradost.cloudstream3.okHttpClient
 import com.lagradost.nicehttp.Requests
 import com.lagradost.nicehttp.cookies
 import kotlinx.coroutines.runBlocking
@@ -34,7 +35,7 @@ class DdosGuardKiller(private val alwaysBypass: Boolean) : Interceptor {
         ddosBypassPath = ddosBypassPath ?: Regex("'(.*?)'").find(
             app.get(
                 "https://check.ddos-guard.net/check.js"
-            ).text
+            ).text()
         )?.groupValues?.get(1)
 
         val cookies =
@@ -48,7 +49,7 @@ class DdosGuardKiller(private val alwaysBypass: Boolean) : Interceptor {
                 }
 
         val headers = getHeaders(request.headers.toMap(), cookies + request.cookies)
-        return app.baseClient.newCall(
+        return okHttpClient.newCall(
             request.newBuilder()
                 .headers(headers)
                 .build()

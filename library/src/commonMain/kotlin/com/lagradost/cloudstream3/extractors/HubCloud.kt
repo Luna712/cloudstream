@@ -33,7 +33,7 @@ class HubCloud : ExtractorApi() {
             if ("hubcloud.php" in realUrl) {
                 realUrl
             } else {
-                val rawHref = app.get(realUrl).document.select("#download").attr("href")
+                val rawHref = app.get(realUrl).document().select("#download").attr("href")
                 if (rawHref.startsWith("http", ignoreCase = true)) {
                     rawHref
                 } else {
@@ -50,7 +50,7 @@ class HubCloud : ExtractorApi() {
             return
         }
 
-        val document = app.get(href).document
+        val document = app.get(href).document()
         val size = document.selectFirst("i#size")?.text().orEmpty()
         val header = document.selectFirst("div.card-header")?.text().orEmpty()
 

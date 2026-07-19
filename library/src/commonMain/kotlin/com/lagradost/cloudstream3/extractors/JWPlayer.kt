@@ -60,7 +60,7 @@ open class JWPlayer : ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ) {
-        val script = app.get(url).document.selectFirst("script:containsData(sources:)") ?: return
+        val script = app.get(url).document().selectFirst("script:containsData(sources:)") ?: return
         JwPlayerHelper.extractStreamLinks(script.data(), name, mainUrl, callback, subtitleCallback)
     }
 }

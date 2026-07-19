@@ -24,7 +24,7 @@ open class GUpload: ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit,
     ) {
-        val response = app.get(url, referer = referer).text
+        val response = app.get(url, referer = referer).text()
 
         val playerConfigString = response.substringAfter("const config = ").substringBefore(";")
         val playerConfig = parseJson<VideoInfo>(playerConfigString)

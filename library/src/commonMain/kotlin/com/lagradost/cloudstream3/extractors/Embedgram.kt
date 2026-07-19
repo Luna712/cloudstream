@@ -19,7 +19,7 @@ open class Embedgram : ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ) {
-        val document = app.get(url, referer = referer).document
+        val document = app.get(url, referer = referer).document()
         val link = document.select("video source:last-child").attr("src")
         val quality = document.select("video source:last-child").attr("title")
         callback.invoke(

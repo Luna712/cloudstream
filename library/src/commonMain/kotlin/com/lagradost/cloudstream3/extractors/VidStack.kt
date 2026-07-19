@@ -37,7 +37,7 @@ open class VidStack : ExtractorApi() {
         val hash = url.substringAfterLast("#").substringAfter("/")
         val baseurl = getBaseUrl(url)
 
-        val encoded = app.get("$baseurl/api/v1/video?id=$hash", headers = headers).text.trim()
+        val encoded = app.get("$baseurl/api/v1/video?id=$hash", headers = headers).text().trim()
 
         val key = "kiemtienmua911ca"
         val ivList = listOf("1234567890oiuytr", "0123456789abcdef")

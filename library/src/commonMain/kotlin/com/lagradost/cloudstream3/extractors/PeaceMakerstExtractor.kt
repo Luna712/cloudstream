@@ -37,8 +37,8 @@ open class PeaceMakerst : ExtractorApi() {
             ),
         )
 
-        if (response.text.contains("teve2.com.tr\\/embed\\/")) {
-            val teve2Id = response.text.substringAfter("teve2.com.tr\\/embed\\/").substringBefore("\"")
+        if (response.text().contains("teve2.com.tr\\/embed\\/")) {
+            val teve2Id = response.text().substringAfter("teve2.com.tr\\/embed\\/").substringBefore("\"")
             val teve2Response = app.get(
                 "https://www.teve2.com.tr/action/media/$teve2Id",
                 referer = "https://www.teve2.com.tr/embed/$teve2Id",

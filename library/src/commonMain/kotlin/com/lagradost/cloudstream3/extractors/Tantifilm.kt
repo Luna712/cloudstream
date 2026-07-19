@@ -16,7 +16,7 @@ open class Tantifilm : ExtractorApi() {
 
     override suspend fun getUrl(url: String, referer: String?): List<ExtractorLink>? {
         val link = "$mainUrl/api/source/${url.substringAfterLast("/")}"
-        val response = app.post(link).text.replace("""\""","")
+        val response = app.post(link).text().replace("""\""","")
         val jsonVideoData = parseJson<TantifilmJsonData>(response)
         return jsonVideoData.data.map {
             newExtractorLink(

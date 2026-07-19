@@ -80,7 +80,7 @@ class PackageInstallerService : Service() {
                     ApkInstaller.InstallProgressStatus.Downloading
                 )
 
-                val body = app.get(url).body
+                val body = app.get(url).body()
                 val inputStream = body.byteStream()
                 installer = ApkInstaller(this)
                 val totalSize = body.contentLength()

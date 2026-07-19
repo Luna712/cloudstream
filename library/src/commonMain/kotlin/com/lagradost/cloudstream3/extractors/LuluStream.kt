@@ -42,7 +42,7 @@ open class LuluStream : ExtractorApi() {
                 "auto" to "1",
                 "referer" to (referer ?: "")
             )
-        ).document
+        ).document()
         post.selectFirst("script:containsData(vplayer)")?.data()
             ?.let { script ->
                 JwPlayerHelper.extractStreamLinks(script, name, mainUrl, callback, subtitleCallback)

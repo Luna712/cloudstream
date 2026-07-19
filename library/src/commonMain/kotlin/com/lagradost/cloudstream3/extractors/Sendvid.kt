@@ -15,7 +15,7 @@ open class Sendvid : ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ) {
-        val doc = app.get(url).document
+        val doc = app.get(url).document()
         val urlString = doc.select("head meta[property=og:video:secure_url]").attr("content")
         if (urlString.contains("m3u8"))  {
             generateM3u8(

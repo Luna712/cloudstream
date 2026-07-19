@@ -19,7 +19,7 @@ open class Mediafire : ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ) {
-        val res = app.get(url, referer = referer).document
+        val res = app.get(url, referer = referer).document()
         val title = res.select("div.dl-btn-label").text()
         val video = res.selectFirst("a#downloadButton")?.attr("href")
 

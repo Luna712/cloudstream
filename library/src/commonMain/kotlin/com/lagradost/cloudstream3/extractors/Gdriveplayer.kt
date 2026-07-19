@@ -1,13 +1,13 @@
 package com.lagradost.cloudstream3.extractors
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fleeksoft.ksoup.nodes.Element
 import com.lagradost.cloudstream3.*
 import com.lagradost.cloudstream3.extractors.helper.AesHelper.cryptoAESHandler
 import com.lagradost.cloudstream3.utils.*
 import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import org.jsoup.nodes.Element
 
 class DatabaseGdrive2 : Gdriveplayer() {
     override val mainUrl = "https://databasegdriveplayer.co"
@@ -77,7 +77,7 @@ open class Gdriveplayer : ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit,
     ) {
-        val document = app.get(url).document
+        val document = app.get(url).document()
         val eval = unpackJs(document)?.replace("\\", "") ?: return
         val data = Regex("data='(\\S+?)'").first(eval) ?: return
         val password = Regex("null,['|\"](\\w+)['|\"]").first(eval)

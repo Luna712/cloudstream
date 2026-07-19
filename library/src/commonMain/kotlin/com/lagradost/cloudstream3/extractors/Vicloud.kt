@@ -22,7 +22,7 @@ open class Vicloud : ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit,
     ) {
-        val id = Regex("\"apiQuery\":\"(.*?)\"").find(app.get(url).text)?.groupValues?.getOrNull(1)
+        val id = Regex("\"apiQuery\":\"(.*?)\"").find(app.get(url).text())?.groupValues?.getOrNull(1)
         app.get(
             "$mainUrl/api/?$id=&_=$unixTimeMS",
             headers = mapOf("X-Requested-With" to "XMLHttpRequest"),

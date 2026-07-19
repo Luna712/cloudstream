@@ -18,7 +18,7 @@ open class StreamSilk : ExtractorApi() {
         callback: (ExtractorLink) -> Unit
     ) {
         val response = app.get(url, headers = mapOf("Accept" to "*/*"))
-        response.document.select("script").firstOrNull {
+        response.document().select("script").firstOrNull {
             it.html().contains("h,u,n,t,e,r")
         }?.html()?.let { hunted ->
             JsHunter(hunted).dehunt()?.let { script ->

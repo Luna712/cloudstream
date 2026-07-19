@@ -46,7 +46,7 @@ class Megacloud : Rabbitstream() {
     }
 
     private suspend fun getKeys(): List<List<Int>> {
-        val script = app.get(scriptUrl).text
+        val script = app.get(scriptUrl).text()
         fun matchingKey(value: String): String {
             return Regex(",$value=((?:0x)?([0-9a-fA-F]+))").find(script)?.groupValues?.get(1)
                 ?.removePrefix("0x") ?: throw ErrorLoadingException("Failed to match the key")

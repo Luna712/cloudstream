@@ -19,7 +19,7 @@ open class Vtbe : ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ) {
-        val response = app.get(url,referer=mainUrl).document
+        val response = app.get(url,referer=mainUrl).document()
         val extractedpack = response.selectFirst("script:containsData(function(p,a,c,k,e,d))")?.data().toString()
         JsUnpacker(extractedpack).unpack()?.let { unPacked ->
             JwPlayerHelper.extractStreamLinks(unPacked, name, mainUrl, callback, subtitleCallback)

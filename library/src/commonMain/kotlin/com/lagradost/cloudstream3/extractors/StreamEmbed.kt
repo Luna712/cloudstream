@@ -21,7 +21,7 @@ open class StreamEmbed : ExtractorApi() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit,
     ) {
-        val jsonString = app.get(url, referer = mainUrl).text
+        val jsonString = app.get(url, referer = mainUrl).text()
             .substringAfter("var video = ").substringBefore(";")
         val video = parseJson<Details>(jsonString)
         M3u8Helper.generateM3u8(

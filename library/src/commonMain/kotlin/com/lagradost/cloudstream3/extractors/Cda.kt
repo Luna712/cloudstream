@@ -27,7 +27,7 @@ open class Cda : ExtractorApi() {
                 "User-Agent" to USER_AGENT,
                 "Cookie" to "cda.player=html5",
             )
-        ).document
+        ).document()
         val dataRaw = doc.selectFirst("[player_data]")?.attr("player_data") ?: return null
         val playerData = tryParseJson<PlayerData>(dataRaw) ?: return null
         return listOf(
